@@ -10,7 +10,9 @@ def log_evaluation_run(
     db_choice,
     k_chunks,
     retrieved_context,
-    output,
+    output_score,
+    output_justification,
+    ches_ground_truth,
     filepath="evaluation_logs.jsonl",
 ):
     log_entry = {
@@ -22,7 +24,8 @@ def log_evaluation_run(
             "k_chunks": k_chunks if use_rag else 0,
         },
         "inputs": {"text": input_text, "retrieved_context": retrieved_context},
-        "output": output,
+        "output": {"score": output_score, "justification": output_justification},
+        "ches_ground_truth": ches_ground_truth,
     }
 
     logs_dir = "logs"

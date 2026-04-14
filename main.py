@@ -1,4 +1,4 @@
-from src.streamlit import run_streamlit
+from src.streamlit import run_streamlit_app
 
 if __name__ == "__main__":
-    run_streamlit()
+    run_streamlit_app()
