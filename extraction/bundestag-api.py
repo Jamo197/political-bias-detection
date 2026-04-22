@@ -44,7 +44,8 @@ class SpeakerRegistry:
         self.cache: Dict[str, str] = {}
 
     def get_party(self, firstname: str, lastname: str, wp: int) -> str:
-        cache_key = f"{firstname}_{lastname}"
+        # Normalize the cache key to prevent duplicates due to casing
+        cache_key = f"{firstname}_{lastname}".lower()
         if cache_key in self.cache:
             return self.cache[cache_key]
 
@@ -53,7 +54,6 @@ class SpeakerRegistry:
 
         url = f"{BASE_URL}/person"
         params = {
-            # "f.wahlperiode": wp,
             "f.person": f"{lastname}, {firstname}",
             "apikey": API_KEY,
         }
@@ -61,17 +61,31 @@ class SpeakerRegistry:
         try:
             data = fetch_api_json(url, params)
             documents = data.get("documents", [])
+
             if documents:
-                # Extract party from the first person_role matching the WP
                 roles = documents[0].get("person_roles", [])
+                party = "UNKNOWN"
+
+                # Pass 1: Look for 'fraktion' in the exact legislative period first
                 for role in roles:
-                    if wp in role.get("wahlperiode_nummer", []):
-                        party = role.get("fraktion", "UNKNOWN")
-                        self.cache[cache_key] = party
-                        return party
+                    if wp in role.get("wahlperiode_nummer", []) and "fraktion" in role:
+                        party = role["fraktion"]
+                        break
+
+                # Pass 2 (Minister Fallback): If they only had a 'ressort' in the current WP,
+                # look for ANY 'fraktion' listed in their historical or generic roles.
+                if party == "UNKNOWN":
+                    for role in roles:
+                        if "fraktion" in role:
+                            party = role["fraktion"]
+                            break
+
+                self.cache[cache_key] = party
+                return party
 
             self.cache[cache_key] = "UNKNOWN"
             return "UNKNOWN"
+
         except Exception as e:
             print(f"Registry Lookup Failed for {firstname} {lastname}: {e}")
             return "UNKNOWN"
@@ -356,9 +370,9 @@ def get_person_details(firstname, lastname, legislative_period):
 # Example Execution
 if __name__ == "__main__":
     # print(get_person_details("Lars", "klingbeil", 21))
-    speaker_registry = SpeakerRegistry()
-    party = speaker_registry.get_party("Dobrindt", "Alexander")
-    print(party)
-    # START_DATE = "2026-01-01"
-    # END_DATE = "2026-04-21"
-    # download_and_organize_protocols(START_DATE, END_DATE)
+    # speaker_registry = SpeakerRegistry()
+    # party = speaker_registry.get_party("Dobrindt", "Alexander", 21)
+    # print(party)
+    START_DATE = "2026-01-01"
+    END_DATE = "2026-01-21"
+    download_and_organize_protocols(START_DATE, END_DATE)
