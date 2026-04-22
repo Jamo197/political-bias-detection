@@ -100,6 +100,7 @@ def run_streamlit_app():
         "Text to Analyze", value=st.session_state.get("current_text", ""), height=150
     )
 
+    # TODO: Make optional; if clicked then show
     # --- Metadata & Ground Truth ---
     st.subheader("2. Metadata & CHES Ground Truth")
     st.markdown(
@@ -119,15 +120,18 @@ def run_streamlit_app():
 
         with st.spinner(f"Analyzing with {llm_choice}..."):
             # Step 0: Retrieval (if enabled)
+            # TODO: Implement database with RAG (use different dbs?, ...)
             context = None
             if use_rag:
                 context = "Not implemented"  # mock_retrieve_context(input_text, db_choice, k_chunks)
                 st.info(f"**Retrieved Context:**\n{context}")
 
             # 1. Get LLM Prediction
+            # TODO: Predict is pretty slow, can maybe optimized
             prediction = evaluator.predict_bias(input_text, llm_choice)
 
             # 2. Get Ground Truth
+            # TODO: Get Ground truth from CHES; Map Party and country and year if exist, else use mean from latest three?
             ground_truth = (
                 None  # evaluator.get_ches_ground_truth(party, country, int(year))
             )
@@ -157,7 +161,7 @@ def run_streamlit_app():
                     delta = abs(predicted_score - ground_truth)
                     st.caption(f"**Absolute Error:** {delta:.2f}")
             else:
-                res_col2.metric(label="CHES Ground Truth", value="No Match Found")
+                res_col2.metric(label="CHES Ground Truth", value="Not implemented")
 
             st.info(f"**Justification:** {prediction.get('justification')}")
 

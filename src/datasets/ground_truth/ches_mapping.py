@@ -264,7 +264,7 @@ CHES_PARTIES = {
     304: {
         "country": "GE",
         "abbrev": "Grunen",
-        "name_local": "Bündnis '90; Die Grünen; B90Grune",
+        "name_local": "Bündnis '90; Die Grünen; B90Grune; BÜNDNIS 90/DIE GRÜNEN",
         "name_english": "Alliance 90; The Greens",
     },
     305: {
