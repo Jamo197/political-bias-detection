@@ -10,6 +10,8 @@ import requests
 from dotenv import load_dotenv
 from tenacity import retry, stop_after_attempt, wait_exponential
 
+WHITESPACE_REGEX = re.compile(r"\s+")
+
 # Load environment variables
 load_dotenv(Path(".env.local"))
 # DIP API Configuration
@@ -34,67 +36,6 @@ def fetch_xml_content(url):
     return response.content
 
 
-class SpeakerRegistry:
-    """
-    Caches API lookups to prevent rate limiting and drastically speed up extraction.
-    Crucial for imputing missing party affiliations for CHES alignment (RQ 1.1).
-    """
-
-    def __init__(self):
-        self.cache: Dict[str, str] = {}
-
-    def get_party(self, firstname: str, lastname: str, wp: int) -> str:
-        # Normalize the cache key to prevent duplicates due to casing
-        cache_key = f"{firstname}_{lastname}".lower()
-        if cache_key in self.cache:
-            return self.cache[cache_key]
-
-        if not firstname and not lastname:
-            return "UNKNOWN"
-
-        url = f"{BASE_URL}/person"
-        params = {
-            "f.person": f"{lastname}, {firstname}",
-            "apikey": API_KEY,
-        }
-
-        try:
-            data = fetch_api_json(url, params)
-            documents = data.get("documents", [])
-
-            if documents:
-                roles = documents[0].get("person_roles", [])
-                party = "UNKNOWN"
-
-                # Pass 1: Look for 'fraktion' in the exact legislative period first
-                for role in roles:
-                    if wp in role.get("wahlperiode_nummer", []) and "fraktion" in role:
-                        party = role["fraktion"]
-                        break
-
-                # Pass 2 (Minister Fallback): If they only had a 'ressort' in the current WP,
-                # look for ANY 'fraktion' listed in their historical or generic roles.
-                if party == "UNKNOWN":
-                    for role in roles:
-                        if "fraktion" in role:
-                            party = role["fraktion"]
-                            break
-
-                self.cache[cache_key] = party
-                return party
-
-            self.cache[cache_key] = "UNKNOWN"
-            return "UNKNOWN"
-
-        except Exception as e:
-            print(f"Registry Lookup Failed for {firstname} {lastname}: {e}")
-            return "UNKNOWN"
-
-
-# Initialize global registry
-speaker_registry = SpeakerRegistry()
-
-
 def extract_parties_from_text(text):
     """
     Scans a string for German political parties and returns a normalized list.
@@ -116,6 +57,71 @@ def extract_parties_from_text(text):
             found_parties.append(standard_name)
 
     return found_parties
+
+
+class SpeakerRegistry:
+    """
+    Optimized: Caches API lookups to disk to prevent redundant calls across sessions.
+    """
+
+    def __init__(self, cache_file="speaker_cache.json"):
+        self.cache_file = Path(cache_file)
+        self.cache: Dict[str, str] = self._load_cache()
+
+    def _load_cache(self) -> Dict[str, str]:
+        if self.cache_file.exists():
+            with open(self.cache_file, "r", encoding="utf-8") as f:
+                return json.load(f)
+        return {}
+
+    def _save_cache(self):
+        with open(self.cache_file, "w", encoding="utf-8") as f:
+            json.dump(self.cache, f, ensure_ascii=False, indent=2)
+
+    def get_party(self, firstname: str, lastname: str, wp: int) -> str:
+        cache_key = (
+            f"{firstname}_{lastname}_{wp}".lower()
+        )  # Added WP to key for historical accuracy
+        if cache_key in self.cache:
+            return self.cache[cache_key]
+
+        if not firstname and not lastname:
+            return "UNKNOWN"
+
+        url = f"{BASE_URL}/person"
+        params = {"f.person": f"{lastname}, {firstname}", "apikey": API_KEY}
+
+        try:
+            data = fetch_api_json(url, params)
+            documents = data.get("documents", [])
+            party = "UNKNOWN"
+
+            if documents:
+                roles = documents[0].get("person_roles", [])
+                party = next(
+                    (
+                        r["fraktion"]
+                        for r in roles
+                        if wp in r.get("wahlperiode_nummer", []) and "fraktion" in r
+                    ),
+                    "UNKNOWN",
+                )
+
+                if party == "UNKNOWN":
+                    party = next(
+                        (r["fraktion"] for r in roles if "fraktion" in r), "UNKNOWN"
+                    )
+
+            self.cache[cache_key] = party
+            self._save_cache()
+            return party
+
+        except Exception as e:
+            print(f"Registry Lookup Failed for {firstname} {lastname}: {e}")
+            return "UNKNOWN"
+
+
+speaker_registry = SpeakerRegistry()
 
 
 def get_protocols_for_period(start_date, end_date):
@@ -178,7 +184,6 @@ def extract_speeches_from_xml(
         for rede in top.findall(".//rede"):
             rede_id = rede.get("id", "Unknown ID")
 
-            # 1. Metadata Extraction
             redner_tag = rede.find(".//redner")
             if redner_tag is not None:
                 vorname = redner_tag.findtext(".//vorname", default="").strip()
@@ -194,7 +199,6 @@ def extract_speeches_from_xml(
 
                 speaker_name = f"{vorname} {nachname}".strip()
 
-                # Impute missing party using the DIP API Cache
                 if not fraktion:
                     fraktion = speaker_registry.get_party(
                         vorname, nachname, legislative_period
@@ -204,37 +208,29 @@ def extract_speeches_from_xml(
                 fraktion = "UNKNOWN"
                 rolle = "President"
 
-            # 2. Text Assembly & Interjection Inlining
             full_text_blocks = []
 
             for elem in rede:
                 if elem.tag == "p":
-                    p_class = elem.get("klasse", "")
-                    if "redner" in p_class:
-                        continue  # Skip speaker announcement
-
+                    if "redner" in elem.get("klasse", ""):
+                        continue
                     text = "".join(elem.itertext()).strip()
                     if text:
                         full_text_blocks.append(text)
 
                 elif elem.tag == "kommentar":
-                    # Inline floor comments (e.g., Applause, Heckling)
                     text = "".join(elem.itertext()).strip()
                     if text:
-                        full_text_blocks.append(f"\n[{text}]\n")
+                        full_text_blocks.append(f" [{text}] ")
 
                 elif elem.tag == "name":
-                    # Inline presidential interventions
                     text = "".join(elem.itertext()).strip()
                     if text:
-                        full_text_blocks.append(f"\n[{text}:]")
+                        full_text_blocks.append(f" [{text}:] ")
 
-            clean_text = " ".join(full_text_blocks)
-            clean_text = re.sub(
-                r"\s+", " ", clean_text
-            ).strip()  # Clean excessive whitespace
+            raw_text = " ".join(full_text_blocks)
+            clean_text = WHITESPACE_REGEX.sub(" ", raw_text).strip()
 
-            # 3. Construct Qdrant-Ready Flat Payload
             speeches_data.append(
                 {
                     "text": clean_text,
@@ -280,7 +276,9 @@ def download_and_organize_protocols(start_date, end_date, base_dir="bundestag_da
         except ValueError:
             year_month = "unknown_month"
 
-        wp_dir = os.path.join("datasets", base_dir, f"WP_{wp}", year_month)
+        wp_dir = os.path.join(
+            "extraction", "datasets", base_dir, f"WP_{wp}", year_month
+        )
         meta_dir = os.path.join(wp_dir, "metadata")
         xml_dir = os.path.join(wp_dir, "raw_xml")
         speech_dir = os.path.join(wp_dir, "speeches")
@@ -374,5 +372,7 @@ if __name__ == "__main__":
     # party = speaker_registry.get_party("Dobrindt", "Alexander", 21)
     # print(party)
     START_DATE = "2026-01-01"
+    END_DATE = "2026-01-21"
+    download_and_organize_protocols(START_DATE, END_DATE)
     END_DATE = "2026-01-21"
     download_and_organize_protocols(START_DATE, END_DATE)

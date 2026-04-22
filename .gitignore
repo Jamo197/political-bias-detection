@@ -6,7 +6,7 @@ dist/
 wheels/
 *.egg-info
 
-extraction/data/*
+extraction/datasets/*
 
 # Virtual environments
 .venv
