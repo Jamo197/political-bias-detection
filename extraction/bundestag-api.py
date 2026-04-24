@@ -371,8 +371,6 @@ if __name__ == "__main__":
     # speaker_registry = SpeakerRegistry()
     # party = speaker_registry.get_party("Dobrindt", "Alexander", 21)
     # print(party)
-    START_DATE = "2026-01-01"
-    END_DATE = "2026-01-21"
-    download_and_organize_protocols(START_DATE, END_DATE)
-    END_DATE = "2026-01-21"
+    START_DATE = "2020-01-01"
+    END_DATE = "2020-12-31"
     download_and_organize_protocols(START_DATE, END_DATE)

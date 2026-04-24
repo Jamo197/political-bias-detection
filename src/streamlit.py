@@ -19,7 +19,7 @@ def get_bias_label(score: float) -> str:
     Maps a continuous political bias score (0.0 - 10.0) to a categorical label.
     Handles None types gracefully if the API or CHES lookup fails.
     """
-    if score is None:
+    if not score:
         return "Unknown"
 
     score = max(0.0, min(10.0, float(score)))
