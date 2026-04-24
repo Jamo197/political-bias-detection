@@ -1,0 +1,47 @@
+{
+  "id": "5582",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 41,
+  "dokumentnummer": "20/113",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "d10a73ffae71ec0ded690fad67ea9f20",
+  "pdf_hash": "d48e55104c5add801b0d2da90f937204",
+  "aktualisiert": "2025-03-14T09:56:46+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "294208",
+      "titel": "Grundsatzbeschluss 2022 zur Deutschen Nachhaltigkeitsstrategie",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "286297",
+      "titel": "... Gesetz zur Änderung des Gesetzes zur Einführung eines Lobbyregisters für die Interessenvertretung gegenüber dem Deutschen Bundestag und gegenüber der Bundesregierung (Lobbyregistergesetz)",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "283225",
+      "titel": "Unabhängige Prüfinstanz für Lobbytransparenz und Offenlegung von Lobbykontakten",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "294533",
+      "titel": "Politische und wirtschaftliche Beziehungen zu Lateinamerika stärken - Assoziierungsabkommen zwischen der Europäischen Union und den Mercosur-Staaten in Kraft setzen",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20113.pdf",
+    "id": "5582",
+    "dokumentnummer": "20/113",
+    "datum": "2023-06-23",
+    "verteildatum": "2023-06-26",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20113.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 113. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2023-06-23"
+}

@@ -1,0 +1,47 @@
+{
+  "id": "5655",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 76,
+  "dokumentnummer": "20/176",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "d60b6c614e86704374efe18fb6810c0c",
+  "pdf_hash": "8297674970838ad9bff682e62b4f1f9c",
+  "aktualisiert": "2024-06-25T13:25:10+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "283949",
+      "titel": "Vorschlag für eine Richtlinie des Europäischen Parlaments und des Rates zur Änderung der Richtlinien 2011/61/EU und 2009/65/EG im Hinblick auf Übertragungsvereinbarungen, Liquiditätsrisikomanagement, die aufsichtliche Berichterstattung, die Erbringung von Verwahr- und Hinterlegungsdienstleistungen und die Kreditvergabe durch alternative Investmentfonds\r\nKOM(2021) 721 endg.; Ratsdok. 14365/21",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "283847",
+      "titel": "Vorschlag für eine Verordnung des Europäischen Parlaments und des Rates zur Änderung der Verordnung (EU) Nr. 600/2014 in Bezug auf die Erhöhung der Marktdatentransparenz, die Beseitigung von Hindernissen für die Entstehung eines konsolidierten Datentickers, die Optimierung der Handelspflichten und das Verbot der Entgegennahme von Zahlungen für die Weiterleitung von Kundenaufträgen\r\nKOM(2021) 727 endg.; Ratsdok. 14382/21",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "280893",
+      "titel": "Vorschlag für eine Verordnung des Europäischen Parlaments und des Rates über europäische grüne Anleihen\r\nKOM(2021) 391 endg.; Ratsdok. 10027/21",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "284005",
+      "titel": "Vorschlag für eine Verordnung des Europäischen Parlaments und des Rates zur Änderung der Verordnung (EU) 2015/760 in Bezug auf den Umfang der zulässigen Vermögenswerte und Investitionen, die Anforderungen an die Portfoliozusammensetzung und Diversifizierung, die Barkreditaufnahme und weitere Vertragsbedingungen sowie in Bezug auf die Anforderungen für die Zulassung, die Anlagepolitik und die Bedingungen für die Tätigkeit von europäischen langfristigen Investmentfonds \r\nKOM(2021) 722 endg.; Ratsdok. 14367/21",
+      "vorgangstyp": "EU-Vorlage"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20176.pdf",
+    "id": "5655",
+    "dokumentnummer": "20/176",
+    "datum": "2024-06-14",
+    "verteildatum": "2024-06-17",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20176.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 176. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2024-06-14"
+}

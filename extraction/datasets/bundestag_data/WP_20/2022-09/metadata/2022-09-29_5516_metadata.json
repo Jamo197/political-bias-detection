@@ -1,0 +1,47 @@
+{
+  "id": "5516",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 58,
+  "dokumentnummer": "20/57",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "e6bb1817da8c8f325a45901b2131539d",
+  "pdf_hash": "b1d9cf6193e0ac82b62a0f0da5a4dbd5",
+  "aktualisiert": "2022-10-10T14:43:54+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "287913",
+      "titel": "Tempolimit einführen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "291883",
+      "titel": "Bericht der Bundesregierung gemäß Artikel 13 Absatz 6 Satz 1 des Grundgesetzes für das Jahr 2020",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "283602",
+      "titel": "Europäisches Greenwashing verhindern, Einstufung von Atomkraft als nachhaltige Technologie stoppen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "286186",
+      "titel": "Schnelle und wirksame Hilfen zur Rettung der Deutschen Fischerei",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20057.pdf",
+    "id": "5516",
+    "dokumentnummer": "20/57",
+    "datum": "2022-09-29",
+    "verteildatum": "2022-09-30",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20057.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 57. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2022-09-29"
+}

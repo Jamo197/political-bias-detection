@@ -1,0 +1,47 @@
+{
+  "id": "5404",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 83,
+  "dokumentnummer": "19/220",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "0a4f1a60e8f352892942e4fc044adef0",
+  "pdf_hash": "47fc45e11c53b12fda38d4df2d54cc88",
+  "aktualisiert": "2021-04-15T08:42:03+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "273960",
+      "titel": "Gesetz zu dem Übereinkommen des Europarats vom 3. Juli 2016 über einen ganzheitlichen Ansatz für Sicherheit, Schutz und Dienstleistungen bei Fußballspielen und anderen Sportveranstaltungen",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "273810",
+      "titel": "Gesetz zur europäischen Vernetzung der Transparenzregister und zur Umsetzung der Richtlinie 2019/1153 des Europäischen Parlaments und des Rates vom 20. Juni 2019 zur Nutzung von Finanzinformationen für die Bekämpfung von Geldwäsche, Terrorismusfinanzierung und sonstigen schweren Straftaten (Transparenzregister- und Finanzinformationsgesetz)",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "271954",
+      "titel": "Viertes Gesetz zur Änderung des Seefischereigesetzes",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "272824",
+      "titel": "Gesetz zur Ergänzung und Änderung der Regelungen für die gleichberechtigte Teilhabe von Frauen an Führungspositionen in der Privatwirtschaft und im öffentlichen Dienst",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19220.pdf",
+    "id": "5404",
+    "dokumentnummer": "19/220",
+    "datum": "2021-04-14",
+    "verteildatum": "2021-04-15",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19220.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 220. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2021-04-14"
+}

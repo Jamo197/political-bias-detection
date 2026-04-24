@@ -1,0 +1,42 @@
+{
+  "id": "5738",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 88,
+  "dokumentnummer": "21/31",
+  "wahlperiode": 21,
+  "herausgeber": "BT",
+  "xml_hash": "18a3550078eb58aea0d32993c4522e1d",
+  "pdf_hash": "4677491c9f4d4d9c97ca84606f53a4e6",
+  "aktualisiert": "2025-10-15T11:50:18+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "322623",
+      "titel": "Gesetz zur Beschleunigung des Wohnungsbaus und zur Wohnraumsicherung",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "323276",
+      "titel": "Gesetz zur Ausführung von Artikel 109 Absatz 3 Satz 6 und Satz 7 des Grundgesetzes und zur Änderung anderer Gesetze",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "323274",
+      "titel": "Gesetz zur Finanzierung von Infrastrukturinvestitionen von Ländern und Kommunen (Länder-und-Kommunal-Infrastrukturfinanzierungsgesetz - LuKIFG)",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/21/21031.pdf",
+    "id": "5738",
+    "dokumentnummer": "21/31",
+    "datum": "2025-10-09",
+    "verteildatum": "2025-10-10",
+    "xml_url": "https://dserver.bundestag.de/btp/21/21031.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 31. Sitzung des 21. Deutschen Bundestages",
+  "datum": "2025-10-09"
+}

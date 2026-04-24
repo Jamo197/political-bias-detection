@@ -1,0 +1,47 @@
+{
+  "id": "5692",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 183,
+  "dokumentnummer": "20/207",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "4fe2a84e29691e6ece8a6c7447c77657",
+  "pdf_hash": "89f9e9fecc973218b736f2846907973a",
+  "aktualisiert": "2025-01-06T16:50:00+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "292263",
+      "titel": "Energieversorgung gewährleisten - Nord Stream reparieren, öffnen, sichern",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "284437",
+      "titel": "Für bezahlbares Bauen und Wohnen - Neue Deutsche Wohnungsnot stoppen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "290752",
+      "titel": "Vom Land der Mieter zum Land der Eigentümer",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "293189",
+      "titel": "Der Mittelstand ist systemrelevant - Regierungspolitik angesichts aktueller Krisen pragmatisch gestalten und die wirklichen Probleme angehen",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20207.pdf",
+    "id": "5692",
+    "dokumentnummer": "20/207",
+    "datum": "2024-12-19",
+    "verteildatum": "2024-12-20",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20207.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 207. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2024-12-19"
+}

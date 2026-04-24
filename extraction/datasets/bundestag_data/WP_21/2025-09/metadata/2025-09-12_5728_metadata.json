@@ -1,0 +1,47 @@
+{
+  "id": "5728",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 41,
+  "dokumentnummer": "21/22",
+  "wahlperiode": 21,
+  "herausgeber": "BT",
+  "xml_hash": "c7b8decb71b54145dec0b51e3662afc1",
+  "pdf_hash": "117774a958185ab7920dd625ce941096",
+  "aktualisiert": "2025-09-26T10:36:35+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "325183",
+      "titel": "Fünfter Bericht der Bundesregierung über die Auswirkungen des Patentrechts im Bereich der Biotechnologie unter anderem hinsichtlich ausreichender Technizität sowie Auswirkungen im Bereich der Pflanzen- und Tierzüchtung",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "321046",
+      "titel": "Vorschlag für eine Empfehlung des Rates zur politischen Agenda für den Europäischen Forschungsraum 2025-2027\r\nKOM(2025) 62 endg.; Ratsdok. 6693/25",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "321151",
+      "titel": "Vorschlag für eine Verordnung des Rates zur Festlegung des Instruments \"Sicherheitsmaßnahmen für Europa\" (SAFE) durch die Stärkung der europäischen Verteidigungsindustrie\r\nKOM(2025) 122 endg.; Ratsdok. 7306/25",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "321150",
+      "titel": "Vorschlag für eine Verordnung des Europäischen Parlaments und des Rates zur Änderung der Verordnung (EU) Nr. 575/2013 über Aufsichtsanforderungen an Kreditinstitute hinsichtlich der Anforderungen an Wertpapierfinanzierungsgeschäfte im Rahmen der strukturellen Liquiditätsquote\r\nKOM(2025) 146 endg.; Ratsdok. 7663/25",
+      "vorgangstyp": "EU-Vorlage"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/21/21022.pdf",
+    "id": "5728",
+    "dokumentnummer": "21/22",
+    "datum": "2025-09-12",
+    "verteildatum": "2025-09-15",
+    "xml_url": "https://dserver.bundestag.de/btp/21/21022.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 22. Sitzung des 21. Deutschen Bundestages",
+  "datum": "2025-09-12"
+}

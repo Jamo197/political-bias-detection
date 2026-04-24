@@ -1,0 +1,47 @@
+{
+  "id": "5759",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 71,
+  "dokumentnummer": "21/50",
+  "wahlperiode": 21,
+  "herausgeber": "BT",
+  "xml_hash": "aab19c9815225b9bff60eb345fa0fb7d",
+  "pdf_hash": "7c8695d1f377d8eb6aadd0736c15c78c",
+  "aktualisiert": "2026-01-19T14:30:28+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "322245",
+      "titel": "Gesetz zur Abschaffung des Gesetzes über die unternehmerischen Sorgfaltspflichten zur Vermeidung von Menschenrechtsverletzungen in Lieferketten (Lieferkettensorgfaltspflichtenabschaffungsgesetz - LkSAG)",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "329487",
+      "titel": "Baukulturbericht 2024/25 der Bundesstiftung Baukultur mit Stellungnahme der Bundesregierung",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "322263",
+      "titel": "Bürokratiewende einleiten - EU-Lieferkettenrichtlinie zügig abschaffen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "322869",
+      "titel": "Demokratie schützen - Rechtsextremisten konsequent entwaffnen und rechtsextremistische Netzwerke im Staatsdienst verhindern",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/21/21050.pdf",
+    "id": "5759",
+    "dokumentnummer": "21/50",
+    "datum": "2025-12-18",
+    "verteildatum": "2025-12-19",
+    "xml_url": "https://dserver.bundestag.de/btp/21/21050.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 50. Sitzung des 21. Deutschen Bundestages",
+  "datum": "2025-12-18"
+}

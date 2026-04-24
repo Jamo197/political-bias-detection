@@ -1,0 +1,47 @@
+{
+  "id": "5540",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 30,
+  "dokumentnummer": "20/77",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "a67cb8306fb8d7c32b5a7d0a8752acc0",
+  "pdf_hash": "9ee76ece055d80dda5d3701c8088c6b4",
+  "aktualisiert": "2022-12-20T11:43:55+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "294582",
+      "titel": "Dritter Engagementbericht\r\nZukunft Zivilgesellschaft: Junges Engagement im digitalen Zeitalter\r\nund Stellungnahme der Bundesregierung",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "281717",
+      "titel": "Vorschlag für eine Verordnung des Europäischen Parlaments und des Rates zur Änderung der Verordnung (EU) 2018/841 hinsichtlich des Geltungsbereichs, der Vereinfachung der Compliance-Vorschriften, der Festlegung der Zielwerte der Mitgliedstaaten für 2030 und der Verpflichtung, bis 2035 gemeinsam Klimaneutralität im Sektor Landnutzung, Forstwirtschaft und Landwirtschaft zu erreichen, und zur Änderung der Verordnung (EU) 2018/1999 hinsichtlich der Verbesserung der Überwachung, der Berichterstattung, der Verfolgung der Fortschritte und der Überprüfung\r\nKOM(2021) 554 endg./2; Ratsdok. 10857/21",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "294674",
+      "titel": "Empfehlung für einen Beschluss des Rates über die Ermächtigung zur Aufnahme von Verhandlungen über Abkommen über den Handel mit ökologischen/biologischen Erzeugnissen zwischen der Europäischen Union und Argentinien, Australien, Costa Rica, Indien, Israel, Japan, Kanada, Neuseeland, der Republik Korea, Tunesien und den Vereinigten Staaten von Amerika \r\nKOM(2021)259 endg.; Ratsdok. 9211/21",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "283621",
+      "titel": "Vorschlag für eine Verordnung des Europäischen Parlaments und des Rates über die Bereitstellung bestimmter Rohstoffe und Erzeugnisse, die in Verbindung mit Entwaldung und Waldschädigung in Verbindung stehen, auf dem Unionsmarkt sowie ihre Ausfuhr aus der Union und zur Aufhebung der Verordnung (EU) Nr. 995/2010\r\nKOM(2021) 706 endg.; Ratsdok. 14151/21",
+      "vorgangstyp": "EU-Vorlage"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20077.pdf",
+    "id": "5540",
+    "dokumentnummer": "20/77",
+    "datum": "2022-12-16",
+    "verteildatum": "2022-12-19",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20077.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 77. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2022-12-16"
+}

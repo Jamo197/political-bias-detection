@@ -1,0 +1,38 @@
+{
+  "id": "5700",
+  "sitzungsbemerkung": "Sondersitzung",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 4,
+  "dokumentnummer": "20/213",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "91edc4276fa345456be27a5460936f7b",
+  "pdf_hash": "fd2ac1c4c4cd08659e520265e005e022",
+  "aktualisiert": "2025-10-31T08:05:07+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "320785",
+      "titel": "Gesetz zur Errichtung eines Verteidigungsfonds für Deutschland und zur Änderung des Grundgesetzes (Artikel 87a)",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "320786",
+      "titel": "Gesetz zur Änderung des Grundgesetzes (Artikel 109 und 115)",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20213.pdf",
+    "id": "5700",
+    "dokumentnummer": "20/213",
+    "datum": "2025-03-13",
+    "verteildatum": "2025-03-14",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20213.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 213. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2025-03-13"
+}

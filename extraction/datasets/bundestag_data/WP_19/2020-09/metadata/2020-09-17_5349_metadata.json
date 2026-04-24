@@ -1,0 +1,42 @@
+{
+  "id": "5349",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 175,
+  "dokumentnummer": "19/176",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "7adc2ded322316bd2360935dbc3870b1",
+  "pdf_hash": "ac9a2660c03d095022bff94bbdd75741",
+  "aktualisiert": "2020-09-22T13:52:02+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "237095",
+      "titel": "Programm zur Beschleunigung der Digitalisierung in Deutschland",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "233040",
+      "titel": "Kosmetik ohne Mikroplastik - Dem Vorbild Schwedens folgen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "232184",
+      "titel": "Pestizide jetzt wirksam reduzieren",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19176.pdf",
+    "id": "5349",
+    "dokumentnummer": "19/176",
+    "datum": "2020-09-17",
+    "verteildatum": "2020-09-22",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19176.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 176. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2020-09-17"
+}

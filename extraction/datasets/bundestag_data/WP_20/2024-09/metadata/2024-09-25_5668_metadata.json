@@ -1,0 +1,47 @@
+{
+  "id": "5668",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 58,
+  "dokumentnummer": "20/187",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "df6ddfd22be587392acaad977ce3b72b",
+  "pdf_hash": "95871c568b47f10751d89ccf23596705",
+  "aktualisiert": "2024-12-06T07:32:22+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "306374",
+      "titel": "Belange der Menschen mit Behinderung finanziell stärken",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "312312",
+      "titel": "Gesetz zur Änderung des Gesetzes über Energiedienstleistungen und andere Effizienzmaßnahmen, zur Änderung des Energieeffizienzgesetzes und zur Änderung des Energieverbrauchskennzeichnungsgesetzes",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "313742",
+      "titel": "Eine starke neue Wohngemeinnützigkeit als nicht-profitorientierten Sektor auf dem Wohnungsmarkt einführen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "312436",
+      "titel": "Gesetz zur Beschleunigung der Verfügbarkeit von Wasserstoff und zur Änderung weiterer rechtlicher Rahmenbedingungen für den Wasserstoffhochlauf sowie zur Änderung weiterer energierechtlicher Vorschriften",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20187.pdf",
+    "id": "5668",
+    "dokumentnummer": "20/187",
+    "datum": "2024-09-25",
+    "verteildatum": "2024-09-26",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20187.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 187. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2024-09-25"
+}

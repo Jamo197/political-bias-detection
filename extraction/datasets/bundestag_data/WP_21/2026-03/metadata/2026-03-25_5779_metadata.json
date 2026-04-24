@@ -1,0 +1,47 @@
+{
+  "id": "5779",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 76,
+  "dokumentnummer": "21/67",
+  "wahlperiode": 21,
+  "herausgeber": "BT",
+  "pdf_hash": "2c837b9b71254cde7665208e6ab2d02c",
+  "xml_hash": "5f6955028460224faf06d04c57061c3c",
+  "aktualisiert": "2026-04-21T09:30:18+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "329522",
+      "titel": "Gesetz zur Änderung flaggen-, schiffsregister- und seefischereirechtlicher Vorschriften",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "329531",
+      "titel": "Gesetz zur Neuordnung aufsichtsrechtlicher Verfahren und zur Änderung weiterer Vorschriften im Bereich der rechtsberatenden Berufe",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "327989",
+      "titel": "Gesetz zur Durchführung einer Verordnung der Europäischen Union zum Datenaustausch bei Kurzzeitvermietungen sowie zur Durchsetzung von Diskriminierungsverboten der Europäischen Union",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "330468",
+      "titel": "Gesetz zur Ausweitung der notariellen Online-Verfahren im Gesellschafts- und Registerrecht, zur Digitalisierung des Führungszeugnisses und zur Verlängerung der Antragsfrist für Anträge von Soldatinnen und Soldaten auf Entschädigung wegen dienstrechtlicher Benachteiligung",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/21/21067.pdf",
+    "id": "5779",
+    "dokumentnummer": "21/67",
+    "datum": "2026-03-25",
+    "verteildatum": "2026-03-26",
+    "xml_url": "https://dserver.bundestag.de/btp/21/21067.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 67. Sitzung des 21. Deutschen Bundestages",
+  "datum": "2026-03-25"
+}

@@ -1,0 +1,47 @@
+{
+  "id": "5350",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 50,
+  "dokumentnummer": "19/177",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "16d545708829b493499929b2f6c74e2d",
+  "pdf_hash": "48fd01431230ad5f945b92bacf95d042",
+  "aktualisiert": "2020-09-21T08:42:01+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "233386",
+      "titel": "Mitteilung der Kommission an das Europäische Parlament, den Europäischen Rat und den Rat\r\nEin neuer, moderner mehrjähriger Finanzrahmen für eine Europäische Union, die ihre Prioritäten nach 2020 effizient erfüllt\r\nBeitrag der Europäischen Kommission zur informellen Tagung der Staats- und Regierungschefs am 23. Februar 2018 \r\nKOM(2018) 98 endg.; Ratsdok. 6229/18",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "233216",
+      "titel": "Vorschlag für einen Beschluss des Rates zur Feststellung der eindeutigen Gefahr einer schwerwiegenden Verletzung der Rechtsstaatlichkeit durch die Republik Polen \r\nKOM(2017) 835 endg.; Ratsdok. 16007/17",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "235934",
+      "titel": "Entschließung des Europäischen Parlaments vom 19. April 2018 zu der Anwendung der die nationalen Parlamente betreffenden Bestimmungen des Vertrags (2016/2149(INI)) \r\nEP P8_TA-PROV(2018)0186",
+      "vorgangstyp": "Unterrichtung durch das Europäische Parlament"
+    },
+    {
+      "id": "240430",
+      "titel": "Vorschlag für einen Beschluss des Rates zur Feststellung der eindeutigen Gefahr einer schwerwiegenden Verletzung der Rechtsstaatlichkeit durch Ungarn \r\nRatsdok. 12266/18",
+      "vorgangstyp": "EU-Vorlage"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19177.pdf",
+    "id": "5350",
+    "dokumentnummer": "19/177",
+    "datum": "2020-09-18",
+    "verteildatum": "2020-09-21",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19177.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 177. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2020-09-18"
+}

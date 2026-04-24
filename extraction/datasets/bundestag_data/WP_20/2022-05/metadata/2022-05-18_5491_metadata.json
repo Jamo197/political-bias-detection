@@ -1,0 +1,47 @@
+{
+  "id": "5491",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 69,
+  "dokumentnummer": "20/36",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "c9b871b2bb7f119a81afc63ecb0a9851",
+  "pdf_hash": "a9289bb9d413fa4d364d96bf6f882c1c",
+  "aktualisiert": "2022-05-19T08:22:03+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "286180",
+      "titel": "Masterplan Hilfe, Sicherheit und Integration für ukrainische Frauen, Kinder und Jugendliche",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "284827",
+      "titel": "Gesetz zur Erhöhung des Schutzes durch den gesetzlichen Mindestlohn und zu Änderungen im Bereich der geringfügigen Beschäftigung",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "287364",
+      "titel": "Eckpunkte zur Einrichtung eines Zukunftszentrums für Deutsche Einheit und Europäische Transformation",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "286156",
+      "titel": "Geflüchtete aus der Ukraine und anderen Ländern schützen - Kommunen bei der Aufnahme stärken",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20036.pdf",
+    "id": "5491",
+    "dokumentnummer": "20/36",
+    "datum": "2022-05-18",
+    "verteildatum": "2022-05-19",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20036.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 36. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2022-05-18"
+}

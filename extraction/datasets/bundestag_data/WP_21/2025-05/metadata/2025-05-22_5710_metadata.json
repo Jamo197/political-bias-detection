@@ -1,0 +1,47 @@
+{
+  "id": "5710",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 14,
+  "dokumentnummer": "21/7",
+  "wahlperiode": 21,
+  "herausgeber": "BT",
+  "xml_hash": "8f8495d53f48219f23154bd08892ed5e",
+  "pdf_hash": "d9a594077dabaaadbd148696fc06d214",
+  "aktualisiert": "2025-05-27T14:07:12+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "321864",
+      "titel": "Zeitplan des Deutschen Bundestages für das Jahr 2025 ab Juni 2025",
+      "vorgangstyp": "Geschäftsordnung"
+    },
+    {
+      "id": "321692",
+      "titel": "Gesetz zur besseren Bekämpfung überhöhter Mieten (Mietwuchergesetz)",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "321691",
+      "titel": "Gesetz zur Änderung des Grundgesetzes (Artikel 143i)",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "321944",
+      "titel": "Deindustrialisierung stoppen - Verbrenner-Verbot aufheben",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/21/21007.pdf",
+    "id": "5710",
+    "dokumentnummer": "21/7",
+    "datum": "2025-05-22",
+    "verteildatum": "2025-05-23",
+    "xml_url": "https://dserver.bundestag.de/btp/21/21007.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 7. Sitzung des 21. Deutschen Bundestages",
+  "datum": "2025-05-22"
+}

@@ -1,0 +1,47 @@
+{
+  "id": "5306",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 24,
+  "dokumentnummer": "19/144",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "d226d6d94a220b17d17b006d577a53ed",
+  "pdf_hash": "40bfe6ccdfa1d215c0a9cf157aa72023",
+  "aktualisiert": "2020-02-03T08:50:35+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "249090",
+      "titel": "Für einen VN-Verbotsvertrag - Völkerrechtliche Ächtung autonomer Waffensysteme unterstützen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "246532",
+      "titel": "Deutsches Moratorium für autonome Waffensysteme erklären und völkerrechtliches Verbot auf den Weg bringen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "241794",
+      "titel": "Keine Förderung Letaler Autonomer Waffensysteme durch den Europäischen Verteidigungsfonds",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "243344",
+      "titel": "21. Bericht der Bundesregierung zur Auswärtigen Kultur- und Bildungspolitik für das Jahr 2017",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19144.pdf",
+    "id": "5306",
+    "dokumentnummer": "19/144",
+    "datum": "2020-01-31",
+    "verteildatum": "2020-02-03",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19144.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 144. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2020-01-31"
+}

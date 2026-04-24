@@ -1,0 +1,47 @@
+{
+  "id": "5740",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 72,
+  "dokumentnummer": "21/33",
+  "wahlperiode": 21,
+  "herausgeber": "BT",
+  "xml_hash": "648171ef62da9d1e809dfac0f91ba5e1",
+  "pdf_hash": "d17a6ef59e2d690f9afb8dfbff047b91",
+  "aktualisiert": "2025-10-21T16:27:37+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "326601",
+      "titel": "Fortsetzung der Beteiligung bewaffneter deutscher Streitkräfte an der durch die Europäische Union geführten Operation EUNAVFOR MED IRINI",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "326765",
+      "titel": "Aktuelle Lage der deutschen Wirtschaft\r\n",
+      "vorgangstyp": "Mündliche Frage"
+    },
+    {
+      "id": "325403",
+      "titel": "Neufassung der Geschäftsordnung des Deutschen Bundestages",
+      "vorgangstyp": "Geschäftsordnung"
+    },
+    {
+      "id": "326602",
+      "titel": "Fortsetzung der Beteiligung bewaffneter deutscher Streitkräfte an der NATO-geführten Maritimen Sicherheitsoperation SEA GUARDIAN",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/21/21033.pdf",
+    "id": "5740",
+    "dokumentnummer": "21/33",
+    "datum": "2025-10-15",
+    "verteildatum": "2025-10-16",
+    "xml_url": "https://dserver.bundestag.de/btp/21/21033.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 33. Sitzung des 21. Deutschen Bundestages",
+  "datum": "2025-10-15"
+}

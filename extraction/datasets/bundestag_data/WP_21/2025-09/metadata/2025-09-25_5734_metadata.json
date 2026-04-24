@@ -1,0 +1,42 @@
+{
+  "id": "5734",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 48,
+  "dokumentnummer": "21/28",
+  "wahlperiode": 21,
+  "herausgeber": "BT",
+  "pdf_hash": "43775e8dd33595acfc4a3ae7c0e1d9f0",
+  "xml_hash": "4ae19e4c26551d5a070d91eeff6d2d38",
+  "aktualisiert": "2025-10-15T11:07:42+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "323423",
+      "titel": "Wahl einer Richterin oder eines Richters des Bundesverfassungsgerichts",
+      "vorgangstyp": "Wahl der Richter des Bundesverfassungsgerichts "
+    },
+    {
+      "id": "323375",
+      "titel": "Wahl einer Richterin oder eines Richters des Bundesverfassungsgerichts",
+      "vorgangstyp": "Wahl der Richter des Bundesverfassungsgerichts "
+    },
+    {
+      "id": "324698",
+      "titel": "Gesetz über die Feststellung des Bundeshaushaltsplans für das Haushaltsjahr 2026 (Haushaltsgesetz 2026 - HG 2026)",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/21/21028.pdf",
+    "id": "5734",
+    "dokumentnummer": "21/28",
+    "datum": "2025-09-25",
+    "verteildatum": "2025-09-26",
+    "xml_url": "https://dserver.bundestag.de/btp/21/21028.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 28. Sitzung des 21. Deutschen Bundestages",
+  "datum": "2025-09-25"
+}

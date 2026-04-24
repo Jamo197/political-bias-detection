@@ -1,0 +1,47 @@
+{
+  "id": "5386",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 105,
+  "dokumentnummer": "19/205",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "9fdcbc6b211a0669985d223e0585242f",
+  "pdf_hash": "fd9d47b6afd705d182fecb4986e40c0b",
+  "aktualisiert": "2021-01-28T08:22:03+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "269714",
+      "titel": "Gesetz zur Umsetzung der Verordnung des Europäischen Parlaments und des Rates über europäische Unternehmensstatistiken zur Aufhebung von zehn Rechtsakten im Bereich Unternehmensstatistiken und zur Änderung anderer Statistikgesetze",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "269713",
+      "titel": "Zweites Gesetz zur Vereinfachung und Modernisierung des Patentrechts",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "269710",
+      "titel": "Erstes Gesetz zur Änderung des Bundesjagdgesetzes, des Bundesnaturschutzgesetzes und des Waffengesetzes",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "268166",
+      "titel": "Bauwende einleiten - Für eine ressourcenschonende Bau- und Immobilienwirtschaft",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19205.pdf",
+    "id": "5386",
+    "dokumentnummer": "19/205",
+    "datum": "2021-01-27",
+    "verteildatum": "2021-01-28",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19205.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 205. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2021-01-27"
+}

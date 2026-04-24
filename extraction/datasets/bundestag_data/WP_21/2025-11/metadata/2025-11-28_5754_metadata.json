@@ -1,0 +1,47 @@
+{
+  "id": "5754",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 24,
+  "dokumentnummer": "21/45",
+  "wahlperiode": 21,
+  "herausgeber": "BT",
+  "xml_hash": "28b42b09ddfd767e8cbdd1084c3654f1",
+  "pdf_hash": "8e31892b1c26aef9fb02aab82b4f9ad3",
+  "aktualisiert": "2025-12-03T13:46:21+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "323396",
+      "titel": "Weißbuch über Optionen für eine verstärkte Unterstützung von Forschung und Entwicklung zu Technologien mit potenziell doppeltem Verwendungszweck \r\nKOM(2024) 27 endg.; Ratsdok. 5802/24",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "323381",
+      "titel": "Mitteilung der Kommission an das Europäische Parlament, den Rat und die Europäische Zentralbank\r\nEuropäisches Semester 2025: Den neuen Rahmen für die wirtschaftspolitische Steuerung mit Leben füllen \r\nKOM(2024) 705 endg.; Ratsdok. 16214/24",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "323748",
+      "titel": "Bericht der Kommission\r\nSpanien, Lettland, Österreich und Finnland\r\nBericht nach Artikel 126 Absatz 3 des Vertrags über die Arbeitsweise der Europäischen Union \r\nKOM(2025) 615 endg.; Ratsdok. 9777/25",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "323747",
+      "titel": "Empfehlung für eine Empfehlung des Rates mit dem Ziel, das übermäßige Defizit in Belgien zu beenden \r\nKOM(2025) 264 endg.; Ratsdok. 9336/25",
+      "vorgangstyp": "EU-Vorlage"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/21/21045.pdf",
+    "id": "5754",
+    "dokumentnummer": "21/45",
+    "datum": "2025-11-28",
+    "verteildatum": "2025-12-01",
+    "xml_url": "https://dserver.bundestag.de/btp/21/21045.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 45. Sitzung des 21. Deutschen Bundestages",
+  "datum": "2025-11-28"
+}

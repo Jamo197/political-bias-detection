@@ -1,0 +1,47 @@
+{
+  "id": "5467",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 60,
+  "dokumentnummer": "20/16",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "17bc2d1dc823b5cbdf91c1cad3218931",
+  "pdf_hash": "e0917cf0b5f1c0ca6f5d7e614437cb3f",
+  "aktualisiert": "2022-02-17T08:32:03+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "284386",
+      "titel": "Antisemitische Straftaten im Zusammenhang mit Protesten gegen die Corona-Schutzmaßnahmen",
+      "vorgangstyp": "Mündliche Frage"
+    },
+    {
+      "id": "284385",
+      "titel": "Anzahl der Parlamentarischen Staatssekretäre und Staatssekretäre mit vorheriger Tätigkeit für eine Lobbyorganisation",
+      "vorgangstyp": "Mündliche Frage"
+    },
+    {
+      "id": "283848",
+      "titel": "Jahreswirtschaftsbericht 2022 der Bundesregierung",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "283003",
+      "titel": "Jahresgutachten 2021/22 des Sachverständigenrates zur Begutachtung der gesamtwirtschaftlichen Entwicklung",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20016.pdf",
+    "id": "5467",
+    "dokumentnummer": "20/16",
+    "datum": "2022-02-16",
+    "verteildatum": "2022-02-17",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20016.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 16. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2022-02-16"
+}

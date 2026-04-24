@@ -1,0 +1,47 @@
+{
+  "id": "5347",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 69,
+  "dokumentnummer": "19/174",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "5107d98b85b89ae0011db77fcb908dc6",
+  "pdf_hash": "83afca8e7e71a09355a67840af49157c",
+  "aktualisiert": "2020-09-14T08:32:02+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "230638",
+      "titel": "Vorschlag für eine Verordnung des Europäischen Parlaments und des Rates zur Änderung der Verordnung (EU) Nr. 1303/2013 des Europäischen Parlaments und des Rates vom 17. Dezember 2013 mit gemeinsamen Bestimmungen über den Europäischen Fonds für regionale Entwicklung, den Europäischen Sozialfonds, den Kohäsionsfonds, den Europäischen Landwirtschaftsfonds für die Entwicklung des ländlichen Raums und den Europäischen Meeres- und Fischereifonds, sowie mit allgemeinen Bestimmungen über den Europäischen Fonds für regionale Entwicklung, den Europäischen Sozialfonds, den Kohäsionsfonds und den Europäischen Meeres- und Fischereifonds sowie zur Aufhebung der Verordnung (EG) Nr. 1083/2006 des Rates in Bezug auf die Unterstützung von Strukturreformen in den Mitgliedstaaten\r\nKOM(2017) 826 endg.; Ratsdok. 15566/17",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "235342",
+      "titel": "Tierschutz an Schlachthöfen verbessern",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "231354",
+      "titel": "Mitteilung der Kommission an das Europäische Parlament, den Rat, den Europäischen Wirtschafts- und Sozialausschuss und den Ausschuss der Regionen zum Aktionsplan für digitale Bildung \r\nKOM(2018) 22 endg.; Ratsdok. 5459/18",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "235657",
+      "titel": "Mitteilung der Kommission an das Europäische Parlament, den Rat, den Europäischen Wirtschafts- und Sozialausschuss und den Ausschuss der Regionen\r\nEin stärkeres Europa aufbauen: Die Rolle der Jugend-, Bildungs- und Kulturpolitik \r\nKOM(2018) 268 endg.; Ratsdok. 9230/18",
+      "vorgangstyp": "EU-Vorlage"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19174.pdf",
+    "id": "5347",
+    "dokumentnummer": "19/174",
+    "datum": "2020-09-11",
+    "verteildatum": "2020-09-14",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19174.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 174. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2020-09-11"
+}

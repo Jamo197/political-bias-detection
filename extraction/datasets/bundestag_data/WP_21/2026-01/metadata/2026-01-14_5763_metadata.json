@@ -1,0 +1,47 @@
+{
+  "id": "5763",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 65,
+  "dokumentnummer": "21/52",
+  "wahlperiode": 21,
+  "herausgeber": "BT",
+  "xml_hash": "5216e046ccc956e5fa9f5acf75c2ce95",
+  "pdf_hash": "cce8d03d1a9373ceb84bbece246c775f",
+  "aktualisiert": "2026-01-20T11:53:03+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "328916",
+      "titel": "Weltbodentag - Weiterentwicklung des Bodenschutzrechts zu einem Bundesbodengesundheitsgesetz",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "329526",
+      "titel": "Gesetz zur Änderung des Bundesjagdgesetzes und zur Änderung des Bundesnaturschutzgesetzes",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "328028",
+      "titel": "Bericht der Bundesregierung über Maßnahmen der Bundesregierung für Bürokratierückbau",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "329987",
+      "titel": "Aufenthaltsperspektiven für Syrer mit humanitären Aufenthaltstiteln",
+      "vorgangstyp": "Mündliche Frage"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/21/21052.pdf",
+    "id": "5763",
+    "dokumentnummer": "21/52",
+    "datum": "2026-01-14",
+    "verteildatum": "2026-01-15",
+    "xml_url": "https://dserver.bundestag.de/btp/21/21052.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 52. Sitzung des 21. Deutschen Bundestages",
+  "datum": "2026-01-14"
+}

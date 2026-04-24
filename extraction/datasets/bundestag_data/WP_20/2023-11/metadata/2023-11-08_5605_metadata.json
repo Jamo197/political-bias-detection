@@ -1,0 +1,47 @@
+{
+  "id": "5605",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 62,
+  "dokumentnummer": "20/133",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "3d19e19b1aaf6cc55f8e46f60622c131",
+  "pdf_hash": "b08367dac9b09dd90d9fdd4854d0fa3c",
+  "aktualisiert": "2023-11-13T14:50:47+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "300146",
+      "titel": "Gesetz zur Umsetzung der Richtlinie (EU) 2021/2118 im Hinblick auf die Kraftfahrzeug-Haftpflichtversicherung und die Kontrolle der entsprechenden Versicherungspflicht und zur Änderung anderer versicherungsrechtlicher Vorschriften",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "304901",
+      "titel": "Deindustrialisierung stoppen - Unternehmen und Bürger mit Bürokratieabbau entlasten",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "303318",
+      "titel": "Gesetz zur Stärkung von Wachstumschancen, Investitionen und Innovation sowie Steuervereinfachung und Steuerfairness (Wachstumschancengesetz)",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "295774",
+      "titel": "Belarus in die europäische Völkerfamilie zurückführen - Den Freiheitswillen der Menschen unterstützen",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20133.pdf",
+    "id": "5605",
+    "dokumentnummer": "20/133",
+    "datum": "2023-11-08",
+    "verteildatum": "2023-11-09",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20133.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 133. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2023-11-08"
+}

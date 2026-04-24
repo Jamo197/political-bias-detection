@@ -1,0 +1,47 @@
+{
+  "id": "5323",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 110,
+  "dokumentnummer": "19/155",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "c224be798e99942954cad91d8574bef0",
+  "pdf_hash": "b9b24c5b2b12cacb8b22071226780aaa",
+  "aktualisiert": "2020-04-23T08:40:00+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "257250",
+      "titel": "Gesetz zur staatlichen geologischen Landesaufnahme sowie zur Übermittlung, Sicherung und öffentlichen Bereitstellung geologischer Daten und zur Zurverfügungstellung geologischer Daten zur Erfüllung öffentlicher Aufgaben (Geologiedatengesetz - GeolDG)",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "231556",
+      "titel": "Für eine offene, menschenrechtsbasierte und solidarische Asylpolitik der Europäischen Union",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "259975",
+      "titel": "Gesetz zur Bekämpfung des Rechtsextremismus und der Hasskriminalität",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "260066",
+      "titel": "Gesetz zur Förderung der beruflichen Weiterbildung im Strukturwandel und zur Weiterentwicklung der Ausbildungsförderung",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19155.pdf",
+    "id": "5323",
+    "dokumentnummer": "19/155",
+    "datum": "2020-04-22",
+    "verteildatum": "2020-04-23",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19155.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 155. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2020-04-22"
+}

@@ -1,0 +1,47 @@
+{
+  "id": "5673",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 62,
+  "dokumentnummer": "20/190",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "07984329061ba7add0790126675265e3",
+  "pdf_hash": "6c90e72d7fbcf4bfefbdb2ffd9c0d7b9",
+  "aktualisiert": "2024-10-11T13:40:38+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "312679",
+      "titel": "Cyberresilienz stärken und kritische Infrastrukturen wirksam schützen - NIS-2-Richtlinie unverzüglich umsetzen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "314887",
+      "titel": "Gesetz zur Fortentwicklung des Steuerrechts und zur Anpassung des Einkommensteuertarifs (Steuerfortentwicklungsgesetz - SteFeG)",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "307977",
+      "titel": "Deutsche Unternehmen entlasten - Das Lieferkettensorgfaltspflichtengesetz abschaffen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "314877",
+      "titel": "Gesetz zur Reform der Notfallversorgung",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20190.pdf",
+    "id": "5673",
+    "dokumentnummer": "20/190",
+    "datum": "2024-10-09",
+    "verteildatum": "2024-10-10",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20190.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 190. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2024-10-09"
+}

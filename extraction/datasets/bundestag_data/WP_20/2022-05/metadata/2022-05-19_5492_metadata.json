@@ -1,0 +1,42 @@
+{
+  "id": "5492",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 53,
+  "dokumentnummer": "20/37",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "4cb4e520fc95b51f5c6240c1ed404445",
+  "pdf_hash": "fbd82119991f017c605ff5f886ab188b",
+  "aktualisiert": "2022-05-20T09:12:02+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "284855",
+      "titel": "Gesetz zur Durchführung der EU-Verordnungen über grenzüberschreitende Zustellungen und grenzüberschreitende Beweisaufnahmen in Zivil- oder Handelssachen, zur Änderung der Zivilrechtshilfe, des Vormundschafts- und Betreuungsrechts, zur Anpassung von Rechtsvorschriften zum Verbraucherschutz und zur Verbraucherrechtsdurchsetzung sowie zur Änderung sonstiger Vorschriften",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "283842",
+      "titel": "Wachstumspotenziale in der Datenökonomie gestalten, Entwicklungshemmnisse beseitigen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "284434",
+      "titel": "Verschärfung des Fachkräftemangels im Gesundheitssektor verhindern - Einrichtungsbezogene Impfpflicht abschaffen",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20037.pdf",
+    "id": "5492",
+    "dokumentnummer": "20/37",
+    "datum": "2022-05-19",
+    "verteildatum": "2022-05-20",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20037.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 37. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2022-05-19"
+}

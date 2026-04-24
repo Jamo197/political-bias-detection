@@ -1,0 +1,42 @@
+{
+  "id": "5372",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 67,
+  "dokumentnummer": "19/195",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "51643edf08cec31de46af67c64190560",
+  "pdf_hash": "85d8404d05982f2b7533bccaa4090a95",
+  "aktualisiert": "2020-11-27T08:22:03+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "248333",
+      "titel": "Kündigungsschutz für Mieterinnen und Mieter verbessern",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "248330",
+      "titel": "Keine Kündigung für Mieterinnen und Mieter über 70 Jahre",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "255230",
+      "titel": "Erstes Gesetz zur Änderung des Verpackungsgesetzes",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19195.pdf",
+    "id": "5372",
+    "dokumentnummer": "19/195",
+    "datum": "2020-11-26",
+    "verteildatum": "2020-11-27",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19195.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 195. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2020-11-26"
+}

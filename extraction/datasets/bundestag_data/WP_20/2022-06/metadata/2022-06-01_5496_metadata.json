@@ -1,0 +1,37 @@
+{
+  "id": "5496",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 3,
+  "dokumentnummer": "20/40",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "28853703e4310acb4e26d2fdd8c27a1f",
+  "pdf_hash": "80ff0a310c26484d6e0aa7258b0eba8f",
+  "aktualisiert": "2022-06-02T08:22:03+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "285688",
+      "titel": "Finanzplan des Bundes 2021 bis 2025",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "285457",
+      "titel": "Gesetz über die Feststellung des Bundeshaushaltsplans für das Haushaltsjahr 2022 (Haushaltsgesetz 2022)",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20040.pdf",
+    "id": "5496",
+    "dokumentnummer": "20/40",
+    "datum": "2022-06-01",
+    "verteildatum": "2022-06-02",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20040.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 40. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2022-06-01"
+}

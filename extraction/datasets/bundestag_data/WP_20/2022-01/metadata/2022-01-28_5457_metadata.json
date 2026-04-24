@@ -1,0 +1,47 @@
+{
+  "id": "5457",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 13,
+  "dokumentnummer": "20/15",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "afc4a4da7d1422613c6748add1620aae",
+  "pdf_hash": "4b5ed18e3bbe9fd96dd84d1e03d4721a",
+  "aktualisiert": "2022-01-31T07:42:02+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "282729",
+      "titel": "Zweiter Bericht zur Verordnung zu abschaltbaren Lasten\r\nErforderlichkeit und die Eignung abschaltbarer Lasten, um Gefährdungen oder Störungen der Sicherheit und Zuverlässigkeit des Elektrizitätsversorgungssystems zu beseitigen",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "282790",
+      "titel": "Klimaschutzbericht 2021",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "283075",
+      "titel": "Gesetz zur Änderung des Grundgesetzes (Gesetz zur Einführung der Direktwahl des Bundespräsidenten)",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "283003",
+      "titel": "Jahresgutachten 2021/22 des Sachverständigenrates zur Begutachtung der gesamtwirtschaftlichen Entwicklung",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20015.pdf",
+    "id": "5457",
+    "dokumentnummer": "20/15",
+    "datum": "2022-01-28",
+    "verteildatum": "2022-01-31",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20015.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 15. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2022-01-28"
+}

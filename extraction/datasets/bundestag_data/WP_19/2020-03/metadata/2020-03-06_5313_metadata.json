@@ -1,0 +1,47 @@
+{
+  "id": "5313",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 32,
+  "dokumentnummer": "19/150",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "d91118bd1995fdf7185873365e7be6ca",
+  "pdf_hash": "a4d1b37e651992ad8a84b6b7e9080a52",
+  "aktualisiert": "2020-03-09T09:00:01+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "235463",
+      "titel": "Vorschlag für eine Richtlinie des Europäischen Parlaments und des Rates zur Änderung der Richtlinie (EU) 2017/1132 in Bezug auf grenzüberschreitende Umwandlungen, Verschmelzungen und Spaltungen\r\nKOM(2018) 241 endg.; Ratsdok. 8561/18",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "239282",
+      "titel": "Vorschlag für eine Verordnung des Europäischen Parlaments und des Rates über die Maßnahmen der Union nach ihrem Beitritt zur Genfer Akte des Lissabonner Abkommens über Ursprungsbezeichnungen und geografische Angaben \r\nKOM(2018) 365 endg.; Ratsdok. 11515/18",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "235071",
+      "titel": "Vorschlag für eine Richtlinie des Europäischen Parlaments und des Rates zur Änderung der Richtlinie 93/13/EWG des Rates vom 5. April 1993, der Richtlinie 98/6/EG des Europäischen Parlaments und des Rates, der Richtlinie 2005/29/EG des Europäischen Parlaments und des Rates sowie der Richtlinie 2011/83/EU des Europäischen Parlaments und des Rates zur besseren Durchsetzung und Modernisierung der EU-Verbraucherschutzvorschriften\r\nKOM(2018) 185 endg.; Ratsdok. 7876/18",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "235283",
+      "titel": "Vorschlag für eine Richtlinie des Europäischen Parlaments und des Rates zum Schutz von Personen, die Verstöße gegen das Unionsrecht melden \r\nKOM(2018) 218 endg.; Ratsdok. 8713/18",
+      "vorgangstyp": "EU-Vorlage"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19150.pdf",
+    "id": "5313",
+    "dokumentnummer": "19/150",
+    "datum": "2020-03-06",
+    "verteildatum": "2020-03-09",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19150.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 150. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2020-03-06"
+}

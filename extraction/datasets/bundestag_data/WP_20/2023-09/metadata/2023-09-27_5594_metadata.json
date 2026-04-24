@@ -1,0 +1,47 @@
+{
+  "id": "5594",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 53,
+  "dokumentnummer": "20/124",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "65db2f217a369eee0bfe734cebf6c1a0",
+  "pdf_hash": "5c1b64a0738b841527a53173490f54d9",
+  "aktualisiert": "2023-09-29T13:41:49+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "301636",
+      "titel": "Flexibilisierung des Besserstellungsverbotes für gemeinnützige Forschungseinrichtungen ermöglichen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "304106",
+      "titel": "Aufnahme weiterer Staaten in die sogenannte Sicherheits- und Verteidigungsinitiative der EU zur Unterstützung der westafrikanischen Staaten im Golf von Guinea",
+      "vorgangstyp": "Mündliche Frage"
+    },
+    {
+      "id": "303401",
+      "titel": "Fortsetzung des Einsatzes bewaffneter deutscher Streitkräfte - Stabilisierung sichern, Wiedererstarken des IS verhindern, Versöhnung in Irak fördern",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "304017",
+      "titel": "Anstieg der Düngemittelimporte aus Russland",
+      "vorgangstyp": "Mündliche Frage"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20124.pdf",
+    "id": "5594",
+    "dokumentnummer": "20/124",
+    "datum": "2023-09-27",
+    "verteildatum": "2023-09-28",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20124.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 124. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2023-09-27"
+}

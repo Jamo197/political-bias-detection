@@ -1,0 +1,42 @@
+{
+  "id": "5724",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 35,
+  "dokumentnummer": "21/18",
+  "wahlperiode": 21,
+  "herausgeber": "BT",
+  "xml_hash": "ed9652f58055dd9762d3833ae6268d42",
+  "pdf_hash": "ef4548a45db854287555eb2a8553460e",
+  "aktualisiert": "2025-09-26T10:36:39+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "322128",
+      "titel": "Gesetz zur Verbesserung der Rahmenbedingungen für die Erprobung von Innovationen in Reallaboren und zur Förderung des regulatorischen Lernens",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "323469",
+      "titel": "Finanzplan des Bundes 2024 bis 2028",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "322800",
+      "titel": "Einsetzung des 1. Untersuchungsausschusses der 21. Wahlperiode (Aufarbeitung der Corona-Pandemie)",
+      "vorgangstyp": "Untersuchungsausschuss"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/21/21018.pdf",
+    "id": "5724",
+    "dokumentnummer": "21/18",
+    "datum": "2025-07-10",
+    "verteildatum": "2025-07-11",
+    "xml_url": "https://dserver.bundestag.de/btp/21/21018.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 18. Sitzung des 21. Deutschen Bundestages",
+  "datum": "2025-07-10"
+}

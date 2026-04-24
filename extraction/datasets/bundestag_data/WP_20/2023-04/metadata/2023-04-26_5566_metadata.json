@@ -1,0 +1,42 @@
+{
+  "id": "5566",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 56,
+  "dokumentnummer": "20/99",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "aa21f428053f1cd858f46b3a448c79f4",
+  "pdf_hash": "644b96040bfa16ae9f57d42c784258da",
+  "aktualisiert": "2024-05-27T10:43:33+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "297838",
+      "titel": "Fortsetzung der Beteiligung bewaffneter deutscher Streitkräfte an der durch die Europäische Union geführten Operation EUNAVFOR MED IRINI",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "283843",
+      "titel": "Deutsche Weidetierhaltung erhalten - Unkontrollierten Anstieg des Wolfsbestandes regulieren",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "291783",
+      "titel": "Ausgewogene Balance zwischen dem Schutz von Mensch und Tier sowie dem Artenschutz herstellen - Bejagung des Wolfes im Rahmen eines Bestandsmanagements ermöglichen",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20099.pdf",
+    "id": "5566",
+    "dokumentnummer": "20/99",
+    "datum": "2023-04-26",
+    "verteildatum": "2023-04-27",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20099.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 99. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2023-04-26"
+}

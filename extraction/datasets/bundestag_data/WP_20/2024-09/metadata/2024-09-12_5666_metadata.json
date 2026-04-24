@@ -1,0 +1,47 @@
+{
+  "id": "5666",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 25,
+  "dokumentnummer": "20/185",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "69847eb4edde5df9ffbcc8d28fc3b8ff",
+  "pdf_hash": "4ec40cefded8c90ee4406e637396aeaa",
+  "aktualisiert": "2024-10-08T09:52:12+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "296063",
+      "titel": "Bericht des Ausschusses für Bildung, Forschung und Technikfolgenabschätzung (18. Ausschuss) gemäß § 56a der Geschäftsordnung\r\nTechnikfolgenabschätzung (TA) \r\nAufgaben und Herausforderungen einer vielfältigen und vielfaltsfördernden Pflanzenzüchtung",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "293755",
+      "titel": "Überlebenschancen von Dialysepatienten verbessern - Cross-over-Lebendspende als Leistung der gesetzlichen Krankenversicherung erlauben",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "299366",
+      "titel": "Grenzschutzzäune gemeinsam finanzieren - Gemeinsam gegen illegale Einwanderung vorgehen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "300731",
+      "titel": "Stabilität und Sicherheit für den Westbalkan",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20185.pdf",
+    "id": "5666",
+    "dokumentnummer": "20/185",
+    "datum": "2024-09-12",
+    "verteildatum": "2024-09-13",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20185.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 185. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2024-09-12"
+}

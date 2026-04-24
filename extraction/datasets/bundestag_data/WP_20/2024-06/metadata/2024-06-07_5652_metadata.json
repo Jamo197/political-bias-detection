@@ -1,0 +1,47 @@
+{
+  "id": "5652",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 35,
+  "dokumentnummer": "20/173",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "8d57bb66fc5332dc3c2906aaebecc566",
+  "pdf_hash": "e84b36bd9627bc3bc91288fbc69d4395",
+  "aktualisiert": "2024-06-11T11:24:18+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "285810",
+      "titel": "Vorschlag für eine Richtlinie des Europäischen Parlaments und des Rates zur Bekämpfung von Gewalt gegen Frauen und häuslicher Gewalt\r\nKOM(2022) 105 endg.; Ratsdok. 7042/22",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "286060",
+      "titel": "Vorschlag für eine Richtlinie des Europäischen Parlaments und des Rates zur Änderung der Richtlinien 2005/29/EG und 2011/83/EU hinsichtlich der Stärkung der Verbraucher für den ökologischen Wandel durch besseren Schutz gegen unlautere Praktiken und bessere Informationen\r\nKOM(2022) 143 endg.; Ratsdok. 7808/22",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "287219",
+      "titel": "Vorschlag für eine Richtlinie des Europäischen Parlaments und des Rates zum Schutz von Personen, die sich öffentlich beteiligen, vor offenkundig unbegründeten oder missbräuchlichen Gerichtsverfahren (\"strategische Klagen gegen öffentliche Beteiligung\")\r\nKOM(2022) 177 endg.; Ratsdok. 8529/22",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "283747",
+      "titel": "Vorschlag für eine Richtlinie des Europäischen Parlaments und des Rates über den strafrechtlichen Schutz der Umwelt und zur Ersetzung der Richtlinie 2008/99/EG\r\nKOM(2021) 851 endg.; Ratsdok. 14459/21",
+      "vorgangstyp": "EU-Vorlage"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20173.pdf",
+    "id": "5652",
+    "dokumentnummer": "20/173",
+    "datum": "2024-06-07",
+    "verteildatum": "2024-06-10",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20173.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 173. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2024-06-07"
+}

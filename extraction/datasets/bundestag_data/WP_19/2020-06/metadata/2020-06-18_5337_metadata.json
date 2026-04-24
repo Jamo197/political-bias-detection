@@ -1,0 +1,47 @@
+{
+  "id": "5337",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 137,
+  "dokumentnummer": "19/166",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "ab10a7070ef0e8d002516a6e6127d4a8",
+  "pdf_hash": "39f93f53e041c8bdd8582db77fbca964",
+  "aktualisiert": "2020-06-23T08:20:05+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "244469",
+      "titel": "Aufklärung polizeilichen Fehlverhaltens erleichtern - Ergänzung zum Entwurf eines Gesetzes über die unabhängige Polizeibeauftragte oder den unabhängigen Polizeibeauftragten des Bundes (Bundespolizeibeauftragtengesetz - BPolBeauftrG)",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "243254",
+      "titel": "Unabhängige Polizeibeschwerdestelle auf Bundesebene einrichten",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "244464",
+      "titel": "Gesetz über die unabhängige Polizeibeauftragte oder den unabhängigen Polizeibeauftragten des Bundes (Bundespolizeibeauftragtengesetz - BPolBeauftrG)",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "244474",
+      "titel": "Änderung der Geschäftsordnung des Deutschen Bundestages \r\nhier: Umsetzung des Gesetzes über die unabhängige Polizeibeauftragte oder den unabhängigen Polizeibeauftragten des Bundes (Bundespolizeibeauftragtengesetz - BPolBeauftrG)",
+      "vorgangstyp": "Geschäftsordnung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19166.pdf",
+    "id": "5337",
+    "dokumentnummer": "19/166",
+    "datum": "2020-06-18",
+    "verteildatum": "2020-06-23",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19166.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 166. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2020-06-18"
+}

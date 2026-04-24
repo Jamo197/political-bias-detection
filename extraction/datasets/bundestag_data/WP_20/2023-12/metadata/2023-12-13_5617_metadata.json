@@ -1,0 +1,47 @@
+{
+  "id": "5617",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 74,
+  "dokumentnummer": "20/143",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "435e623db4e697227d3a380f3f468199",
+  "pdf_hash": "813d8f37111b73ecb890087e6d52c603",
+  "aktualisiert": "2024-06-03T08:27:28+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "306300",
+      "titel": "Absage des Bundesministers Dr. Karl Lauterbach für die Teilnahme am \"High-level meeting on pandemic prevention, preparedness and response\"",
+      "vorgangstyp": "Schriftliche Frage"
+    },
+    {
+      "id": "305371",
+      "titel": "Gesetz zur Verbesserung der Rückführung (Rückführungsverbesserungsgesetz)",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "304774",
+      "titel": "Gesetz zur Förderung geordneter Kreditzweitmärkte und zur Umsetzung der Richtlinie (EU) 2021/2167 über Kreditdienstleister und Kreditkäufer und zur Änderung weiterer finanzrechtlicher Bestimmungen (Kreditzweitmarktförderungsgesetz)",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "305731",
+      "titel": "Studierende finanziell entlasten - Studienkredit der Kreditanstalt für Wiederaufbau wieder zu einem geeigneten Instrument der Studienfinanzierung machen",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20143.pdf",
+    "id": "5617",
+    "dokumentnummer": "20/143",
+    "datum": "2023-12-13",
+    "verteildatum": "2023-12-14",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20143.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 143. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2023-12-13"
+}

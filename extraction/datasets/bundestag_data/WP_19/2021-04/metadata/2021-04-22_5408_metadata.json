@@ -1,0 +1,47 @@
+{
+  "id": "5408",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 158,
+  "dokumentnummer": "19/224",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "64eaeb2d4072fbfa096605cc834943ff",
+  "pdf_hash": "445142f3e8d834fc9b7bed5484a4f3cf",
+  "aktualisiert": "2021-04-27T14:12:02+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "235387",
+      "titel": "Auf das Wochenende fallende gesetzliche Feiertage an Werktagen nachholen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "239682",
+      "titel": "Freiwilligendienste ausbauen und stärken - Gemeinwohlorientiert und selbstbestimmt",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "239184",
+      "titel": "Beseitigung von Teilhabebeeinträchtigungen aufgrund von Sehschwächen durch Erweiterung der Versorgung gesetzlich Versicherter mit Sehhilfen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "240261",
+      "titel": "Partizipation in Wissenschaft und Forschung stärken",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19224.pdf",
+    "id": "5408",
+    "dokumentnummer": "19/224",
+    "datum": "2021-04-22",
+    "verteildatum": "2021-04-27",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19224.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 224. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2021-04-22"
+}

@@ -1,0 +1,37 @@
+{
+  "id": "5723",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 5,
+  "dokumentnummer": "21/17",
+  "wahlperiode": 21,
+  "herausgeber": "BT",
+  "xml_hash": "4664410d125c5bdb8cfbf16831b60a60",
+  "pdf_hash": "2b3cc59599f1bd17817bc81ed96a1fcd",
+  "aktualisiert": "2025-07-15T13:51:28+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "323469",
+      "titel": "Finanzplan des Bundes 2024 bis 2028",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "322883",
+      "titel": "Gesetz über die Feststellung des Bundeshaushaltsplans für das Haushaltsjahr 2025 (Haushaltsgesetz 2025 - HG 2025)",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/21/21017.pdf",
+    "id": "5723",
+    "dokumentnummer": "21/17",
+    "datum": "2025-07-09",
+    "verteildatum": "2025-07-10",
+    "xml_url": "https://dserver.bundestag.de/btp/21/21017.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 17. Sitzung des 21. Deutschen Bundestages",
+  "datum": "2025-07-09"
+}

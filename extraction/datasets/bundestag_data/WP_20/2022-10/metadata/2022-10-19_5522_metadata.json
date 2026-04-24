@@ -1,0 +1,47 @@
+{
+  "id": "5522",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 63,
+  "dokumentnummer": "20/62",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "8d56b542df66510db3286022d88f50bb",
+  "pdf_hash": "9ae5ca9bbb8b33928009c81bfa5b9148",
+  "aktualisiert": "2022-10-21T13:08:07+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "290260",
+      "titel": "Gesetz für einen besseren Schutz hinweisgebender Personen sowie zur Umsetzung der Richtlinie zum Schutz von Personen, die Verstöße gegen das Unionsrecht melden",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "290337",
+      "titel": "Gesetz zur Änderung des Planungssicherstellungsgesetzes",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "290338",
+      "titel": "Gesetz zur Einführung eines Chancen-Aufenthaltsrechts",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "291398",
+      "titel": "Gesetz zur Pflegepersonalbemessung im Krankenhaus sowie zur Anpassung weiterer Regelungen im Krankenhauswesen und in der Digitalisierung (Krankenhauspflegeentlastungsgesetz - KHPflEG)",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20062.pdf",
+    "id": "5522",
+    "dokumentnummer": "20/62",
+    "datum": "2022-10-19",
+    "verteildatum": "2022-10-20",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20062.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 62. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2022-10-19"
+}

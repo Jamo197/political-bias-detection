@@ -1,0 +1,47 @@
+{
+  "id": "5547",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 17,
+  "dokumentnummer": "20/83",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "b99485cb2d4a83022fe1e143e44b687b",
+  "pdf_hash": "dd536a0eebe65552d72f5eb3b583c322",
+  "aktualisiert": "2023-03-01T10:45:51+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "293658",
+      "titel": "Nationale Moorschutzstrategie",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "286256",
+      "titel": "Entwurf der Aufgabenplanung 2022 bis 2025",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "291144",
+      "titel": "Bericht der Kommission an das Europäische Parlament und den Rat\r\nHalbjährlicher Bericht über die Ausführung der Finanzierungstätigkeiten im Rahmen von NextGenerationEU gemäß Artikel 12 des Durchführungsbeschlusses C(2021) 2502 der Kommission\r\n1. Januar 2022 - 30. Juni 2022 \r\nKOM(2022)335 endg.; Ratsdok. 11355/22",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "291908",
+      "titel": "Vorschlag für einen Beschluss des Europäischen Parlaments und des Rates über die Bereitstellung einer außerordentlichen Makrofinanzhilfe für die Ukraine und zur Aufstockung des gemeinsamen Dotierungsfonds durch Garantien der Mitgliedstaaten und durch spezifische Dotierungen für bestimmte gemäß dem Beschluss Nr. 466/2014/EU garantierte finanzielle Verbindlichkeiten im Zusammenhang mit der Ukraine sowie zur Änderung des Beschlusses (EU) 2022/1201\r\nKOM(2022)557 endg.; Ratsdok. 12199/22",
+      "vorgangstyp": "EU-Vorlage"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20083.pdf",
+    "id": "5547",
+    "dokumentnummer": "20/83",
+    "datum": "2023-01-27",
+    "verteildatum": "2023-01-30",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20083.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 83. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2023-01-27"
+}

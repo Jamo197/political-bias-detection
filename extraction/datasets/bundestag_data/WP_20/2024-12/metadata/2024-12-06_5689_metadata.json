@@ -1,0 +1,47 @@
+{
+  "id": "5689",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 38,
+  "dokumentnummer": "20/204",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "0593c07e5eef4c9cc71e41277ebc9627",
+  "pdf_hash": "ebf9cbc4b8ffddc17779dc32d4d519f3",
+  "aktualisiert": "2024-12-17T10:15:00+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "288142",
+      "titel": "Bericht über die Anwendung des Kulturgutschutzgesetzes",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "287882",
+      "titel": "Evaluierungsbericht der Bundesregierung zu den durch das Urheberrechts-Wissensgesellschafts-Gesetz reformierten Vorschriften der §§ 60a bis 60h des Urheberrechtsgesetzes",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "290719",
+      "titel": "Bericht über die im Jahr 2021 ergriffenen Maßnahmen zum Zweck der Löschung von Telemedienangeboten mit kinderpornografischem Inhalt im Sinne des § 184b des Strafgesetzbuchs",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "286026",
+      "titel": "Bericht über die im Jahr 2020 ergriffenen Maßnahmen zum Zweck der Löschung von Telemedienangeboten mit kinderpornografischem Inhalt im Sinne des § 184b des Strafgesetzbuchs",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20204.pdf",
+    "id": "5689",
+    "dokumentnummer": "20/204",
+    "datum": "2024-12-06",
+    "verteildatum": "2024-12-09",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20204.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 204. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2024-12-06"
+}

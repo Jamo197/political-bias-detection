@@ -1,0 +1,47 @@
+{
+  "id": "5713",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 71,
+  "dokumentnummer": "21/9",
+  "wahlperiode": 21,
+  "herausgeber": "BT",
+  "xml_hash": "96912ac9e2d4dbbc58113274c6fa1f7c",
+  "pdf_hash": "477f165770680b263988a364f55a7652",
+  "aktualisiert": "2025-09-29T15:57:22+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "321952",
+      "titel": "Faire-Mieten-Gesetz",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "322214",
+      "titel": "Abschiebungen nach Syrien nach Aufhebung der Wirtschaftssanktionen",
+      "vorgangstyp": "Mündliche Frage"
+    },
+    {
+      "id": "322155",
+      "titel": "Ablehnung einer Überprüfung des EU-Assoziierungsabkommens mit Israel",
+      "vorgangstyp": "Mündliche Frage"
+    },
+    {
+      "id": "322210",
+      "titel": "Anhebung des Kinderfreibetrags und Weiterentwicklung des Ehegattensplittings",
+      "vorgangstyp": "Mündliche Frage"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/21/21009.pdf",
+    "id": "5713",
+    "dokumentnummer": "21/9",
+    "datum": "2025-06-04",
+    "verteildatum": "2025-06-05",
+    "xml_url": "https://dserver.bundestag.de/btp/21/21009.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 9. Sitzung des 21. Deutschen Bundestages",
+  "datum": "2025-06-04"
+}

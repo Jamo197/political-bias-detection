@@ -1,0 +1,47 @@
+{
+  "id": "5393",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 99,
+  "dokumentnummer": "19/211",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "834d0884d54ae1b2223131c6b60389c3",
+  "pdf_hash": "25422e498fb77d3ad96cbab2acc9a2d2",
+  "aktualisiert": "2021-02-25T10:02:05+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "263579",
+      "titel": "Geschlechterverhältnisse in der Krise - Kein Zurück zur alten Normalität",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "263577",
+      "titel": "Zukunftsgipfel Emanzipation einberufen - Rückwärtstrend entgegenwirken",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "263581",
+      "titel": "Geschlechtergerecht aus der Corona-Krise",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "272241",
+      "titel": "Gesetz zur Novellierung des Bundespersonalvertretungsgesetzes",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19211.pdf",
+    "id": "5393",
+    "dokumentnummer": "19/211",
+    "datum": "2021-02-24",
+    "verteildatum": "2021-02-25",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19211.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 211. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2021-02-24"
+}

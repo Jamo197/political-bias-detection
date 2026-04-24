@@ -1,0 +1,42 @@
+{
+  "id": "5449",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 26,
+  "dokumentnummer": "20/9",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "ed6705c900940ebecf1b94dbdca4196b",
+  "pdf_hash": "95eeafdb2e6116c2b378c89b8fed77f8",
+  "aktualisiert": "2021-12-17T08:32:04+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "282848",
+      "titel": "Gesetz zur Fristverlängerung für den beschleunigten Infrastrukturausbau in der Ganztagsbetreuung für Grundschulkinder",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "282698",
+      "titel": "Planungssicherheit für Familien und Kommunen - Frist für den beschleunigten Infrastrukturausbau in der Ganztagsbetreuung verlängern",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "282596",
+      "titel": "Gesetz zum Vorschlag für eine Verordnung des Rates zur Änderung der Verordnung (EG) Nr. 168/2007 zur Errichtung einer Agentur der Europäischen Union für Grundrechte und zur Inbetriebnahme der elektronischen Urkundensammlung",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20009.pdf",
+    "id": "5449",
+    "dokumentnummer": "20/9",
+    "datum": "2021-12-16",
+    "verteildatum": "2021-12-17",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20009.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 9. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2021-12-16"
+}

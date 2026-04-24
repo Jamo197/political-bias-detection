@@ -1,0 +1,47 @@
+{
+  "id": "5368",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 81,
+  "dokumentnummer": "19/192",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "61a0c59cab9ec7e98a8e46df05a33064",
+  "pdf_hash": "b671cf8eeabb5636d93db23b99b9a4fe",
+  "aktualisiert": "2020-11-24T08:42:03+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "248169",
+      "titel": "Chancen neuer Züchtungsmethoden erkennen - Für ein technologieoffenes Gentechnikrecht",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "245174",
+      "titel": "Holographie als Zukunftstechnologie fördern",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "236503",
+      "titel": "Gründung einer Agentur für radikale Innovation",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "243253",
+      "titel": "Hightech-Strategie 2025 - Strategisch ausrichten",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19192.pdf",
+    "id": "5368",
+    "dokumentnummer": "19/192",
+    "datum": "2020-11-19",
+    "verteildatum": "2020-11-24",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19192.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 192. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2020-11-19"
+}

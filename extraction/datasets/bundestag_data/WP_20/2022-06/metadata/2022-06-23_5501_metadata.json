@@ -1,0 +1,47 @@
+{
+  "id": "5501",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 69,
+  "dokumentnummer": "20/44",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "ab36899c015d933be48d7037ff060756",
+  "pdf_hash": "20b9d716145d0f776b334ba86dea9f71",
+  "aktualisiert": "2022-06-24T09:02:03+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "282849",
+      "titel": "Gründung eines Bundesministeriums für Digitalisierung",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "284429",
+      "titel": "Gesetz zur Wiederherstellung des Vorkaufsrechts in Milieuschutzgebieten (Neues Vorkaufsrecht-Gesetz - VorkG)",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "284426",
+      "titel": "Marktmacht von Tech-Giganten in die Schranken weisen - Soziale Marktwirtschaft fit machen für das digitale Zeitalter",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "283134",
+      "titel": "Kommunales Vorkaufsrecht in Milieuschutzgebieten sofort wiederherstellen",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20044.pdf",
+    "id": "5501",
+    "dokumentnummer": "20/44",
+    "datum": "2022-06-23",
+    "verteildatum": "2022-06-24",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20044.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 44. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2022-06-23"
+}

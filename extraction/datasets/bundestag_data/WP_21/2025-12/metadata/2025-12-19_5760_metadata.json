@@ -1,0 +1,47 @@
+{
+  "id": "5760",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 47,
+  "dokumentnummer": "21/51",
+  "wahlperiode": 21,
+  "herausgeber": "BT",
+  "xml_hash": "5c93fa70936c9185600f93947efceadf",
+  "pdf_hash": "d78d347b0646b976cfc5f75149cdd340",
+  "aktualisiert": "2026-01-26T09:47:43+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "324161",
+      "titel": "Fünfundzwanzigstes Hauptgutachten der Monopolkommission\r\nWettbewerb 2024",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "306516",
+      "titel": "Vorschlag für eine Verordnung des Europäischen Parlaments und des Rates zur Änderung der Verordnung (EU) 2016/1011 bezüglich des Gestaltungsbereichs der Vorschriften für Referenzwerte, der Verwendung in der Union von Referenzwerten, die von einem in einem Drittstaat angesiedelten Administrator bereitgestellt werden, und bestimmter Meldepflichten\r\nKOM(2023) 660 endg.; Ratsdok. 14833/23",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "303378",
+      "titel": "Empfehlung für einen Beschluss des Rates über die Ermächtigung zur Aufnahme von Verhandlungen mit den Vereinigten Staaten von Amerika über ein Abkommen zur Stärkung der internationalen Lieferketten für kritische Mineralien\r\nKOM(2023)327 endg.; Ratsdok. 10665/23",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "322614",
+      "titel": "Bericht über das deutsche Engagement beim Einsatz von Polizistinnen und Polizisten in internationalen Polizeimissionen 2024",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/21/21051.pdf",
+    "id": "5760",
+    "dokumentnummer": "21/51",
+    "datum": "2025-12-19",
+    "verteildatum": "2025-12-22",
+    "xml_url": "https://dserver.bundestag.de/btp/21/21051.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 51. Sitzung des 21. Deutschen Bundestages",
+  "datum": "2025-12-19"
+}

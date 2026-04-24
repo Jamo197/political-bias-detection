@@ -1,0 +1,47 @@
+{
+  "id": "5535",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 62,
+  "dokumentnummer": "20/72",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "152f3bf2aaa91469ef0400849e26e2cf",
+  "pdf_hash": "dae8305aba5141040f357041a40fa8ba",
+  "aktualisiert": "2022-12-05T08:55:10+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "294030",
+      "titel": "Neunter Bericht der Bundesrepublik Deutschland zum Übereinkommen der Vereinten Nationen zur Beseitigung jeder Form von Diskriminierung der Frau (CEDAW)",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "291802",
+      "titel": "Nationale Kraftanstrengung für einen besseren Waldbrandschutz",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "292644",
+      "titel": "Deutsche Bewerbung für die Ausrichtung der Olympischen Sommerspiele zum nächstmöglichen Termin auf den Weg bringen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "289302",
+      "titel": "Deutsche Bewerbung für die Ausrichtung der Olympischen Winterspiele 2030 auf den Weg bringen",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20072.pdf",
+    "id": "5535",
+    "dokumentnummer": "20/72",
+    "datum": "2022-11-30",
+    "verteildatum": "2022-12-01",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20072.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 72. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2022-11-30"
+}

@@ -1,0 +1,47 @@
+{
+  "id": "5755",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 84,
+  "dokumentnummer": "21/46",
+  "wahlperiode": 21,
+  "herausgeber": "BT",
+  "xml_hash": "a7a13620f03ad436bbf69b7fe44979a1",
+  "pdf_hash": "4c699a15122b5822fe784d76d73624ee",
+  "aktualisiert": "2026-01-27T08:56:17+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "328471",
+      "titel": "Konzeption des Bundes für die Gedenkstätten zur Aufarbeitung der NS-Terrorherrschaft und der SED-Diktatur",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "328504",
+      "titel": "Errichtung des Gedenkorts für die polnischen Opfer des Zweiten Weltkrieges und die Opfer der deutschen Besatzungsherrschaft in Polen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "325511",
+      "titel": "Aufnahmezusagen einhalten - Schutz für gefährdete Afghaninnen und Afghanen jetzt garantieren",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "328309",
+      "titel": "Vierter Engagementbericht\r\nZugangschancen zum freiwilligen Engagement und Stellungnahme der Bundesregierung",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/21/21046.pdf",
+    "id": "5755",
+    "dokumentnummer": "21/46",
+    "datum": "2025-12-03",
+    "verteildatum": "2025-12-04",
+    "xml_url": "https://dserver.bundestag.de/btp/21/21046.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 46. Sitzung des 21. Deutschen Bundestages",
+  "datum": "2025-12-03"
+}

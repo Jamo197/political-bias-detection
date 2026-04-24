@@ -1,0 +1,37 @@
+{
+  "id": "5707",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 4,
+  "dokumentnummer": "21/4",
+  "wahlperiode": 21,
+  "herausgeber": "BT",
+  "xml_hash": "6bfaad3b24378ddb9c0916cf600da20a",
+  "pdf_hash": "22f2927821e779df050a5ce3615b3785",
+  "aktualisiert": "2025-06-03T11:50:39+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "321753",
+      "titel": "Regierungsprogramm",
+      "vorgangstyp": "Regierungserklärung"
+    },
+    {
+      "id": "321721",
+      "titel": "Einsetzung von Ausschüssen",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/21/21004.pdf",
+    "id": "5707",
+    "dokumentnummer": "21/4",
+    "datum": "2025-05-15",
+    "verteildatum": "2025-05-16",
+    "xml_url": "https://dserver.bundestag.de/btp/21/21004.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 4. Sitzung des 21. Deutschen Bundestages",
+  "datum": "2025-05-15"
+}

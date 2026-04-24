@@ -1,0 +1,47 @@
+{
+  "id": "5406",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 39,
+  "dokumentnummer": "19/222",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "979dbf537853eb7f4ac9d36fa14bc58c",
+  "pdf_hash": "9b8a3b7cff9aa6250ee55cf8b46ceccc",
+  "aktualisiert": "2021-04-19T08:32:04+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "236345",
+      "titel": "Vorschlag für eine Verordnung des Europäischen Parlaments und des Rates zur Schaffung einer Europäischen Investitionsstabilisierungsfunktion \r\nKOM(2018) 387 endg.; Ratsdok. 9615/18",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "230635",
+      "titel": "Vorschlag für eine Richtlinie des Rates zur Festlegung von Bestimmungen zur Stärkung der haushaltspolitischen Verantwortung und der mittelfristigen Ausrichtung der Haushalte in den Mitgliedstaaten\r\nKOM(2017) 824 endg.; Ratsdok. 15660/17",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "230642",
+      "titel": "Mitteilung der Kommission an das Europäische Parlament, den Europäischen Rat, den Rat und die Europäische Zentralbank:\r\nNeue Haushaltsinstrumente für ein stabiles Euro-Währungsgebiet innerhalb des Unionsrahmens\r\nKOM(2017) 822 endg.; Ratsdok. 15654/17",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "230639",
+      "titel": "Vorschlag für eine Verordnung des Rates über die Einrichtung des Europäischen Währungsfonds\r\nKOM(2017) 827 endg.; Ratsdok. 15664/17",
+      "vorgangstyp": "EU-Vorlage"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19222.pdf",
+    "id": "5406",
+    "dokumentnummer": "19/222",
+    "datum": "2021-04-16",
+    "verteildatum": "2021-04-19",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19222.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 222. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2021-04-16"
+}

@@ -1,0 +1,47 @@
+{
+  "id": "5777",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 54,
+  "dokumentnummer": "21/65",
+  "wahlperiode": 21,
+  "herausgeber": "BT",
+  "pdf_hash": "aa0bbea01f9aa096eabf0e53028a1e32",
+  "xml_hash": "d703bb1e150fb8382c02b121c042022d",
+  "aktualisiert": "2026-04-20T15:23:41+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "323146",
+      "titel": "... Gesetz zur Änderung des Gesetzes zur Flexibilisierung von haushaltsrechtlichen Rahmenbedingungen außeruniversitärer Wissenschaftseinrichtungen (Wissenschaftsfreiheitsgesetz - WissFG)",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "326651",
+      "titel": "Gesetz zur Änderung des Konsumcannabisgesetzes - Nutzhanfliberalisierung",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "327971",
+      "titel": "Gesetz zur weiteren Digitalisierung der Zwangsvollstreckung",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "332737",
+      "titel": "Neunter Bericht zur Lage der älteren Generation in der Bundesrepublik Deutschland \r\nAlt werden in Deutschland - Vielfalt der Potenziale und Ungleichheit der Teilhabechancen \r\nund Stellungnahme der Bundesregierung",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/21/21065.pdf",
+    "id": "5777",
+    "dokumentnummer": "21/65",
+    "datum": "2026-03-19",
+    "verteildatum": "2026-03-20",
+    "xml_url": "https://dserver.bundestag.de/btp/21/21065.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 65. Sitzung des 21. Deutschen Bundestages",
+  "datum": "2026-03-19"
+}

@@ -1,0 +1,42 @@
+{
+  "id": "5635",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 83,
+  "dokumentnummer": "20/159",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "8d8fe3a62de82ab83cdbace7023bbfe7",
+  "pdf_hash": "14209ca36afb610cc12db7103830dd9d",
+  "aktualisiert": "2024-03-26T12:04:33+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "307297",
+      "titel": "Gesetz zur Modernisierung des Postrechts (Postrechtsmodernisierungsgesetz - PostModG)",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "307968",
+      "titel": "Deutsche Bauern nicht erneut belasten - Steuervergünstigung für Agrardiesel",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "301502",
+      "titel": "Bestandsregulierung der Saatkrähe ermöglichen - Belastung für Anwohner verringern - Landwirtschaftliche Aussaat sichern",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20159.pdf",
+    "id": "5635",
+    "dokumentnummer": "20/159",
+    "datum": "2024-03-20",
+    "verteildatum": "2024-03-21",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20159.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 159. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2024-03-20"
+}

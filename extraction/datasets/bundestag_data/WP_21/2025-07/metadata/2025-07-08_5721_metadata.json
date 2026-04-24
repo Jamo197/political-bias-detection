@@ -1,0 +1,37 @@
+{
+  "id": "5721",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 4,
+  "dokumentnummer": "21/16",
+  "wahlperiode": 21,
+  "herausgeber": "BT",
+  "xml_hash": "69423311c31c0e638c3558fe5cd64729",
+  "pdf_hash": "c02bb39160bf34b6c5804932cc3d0019",
+  "aktualisiert": "2025-07-15T11:50:28+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "323469",
+      "titel": "Finanzplan des Bundes 2024 bis 2028",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "322883",
+      "titel": "Gesetz über die Feststellung des Bundeshaushaltsplans für das Haushaltsjahr 2025 (Haushaltsgesetz 2025 - HG 2025)",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/21/21016.pdf",
+    "id": "5721",
+    "dokumentnummer": "21/16",
+    "datum": "2025-07-08",
+    "verteildatum": "2025-07-09",
+    "xml_url": "https://dserver.bundestag.de/btp/21/21016.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 16. Sitzung des 21. Deutschen Bundestages",
+  "datum": "2025-07-08"
+}

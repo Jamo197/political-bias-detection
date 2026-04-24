@@ -1,0 +1,47 @@
+{
+  "id": "5720",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 17,
+  "dokumentnummer": "21/15",
+  "wahlperiode": 21,
+  "herausgeber": "BT",
+  "xml_hash": "0d11f8ab10817c111db4b0753cf436d6",
+  "pdf_hash": "0233993dc358ddfefcad1e8fcbf1aef0",
+  "aktualisiert": "2025-09-26T10:36:43+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "321875",
+      "titel": "Vorläufige Haushaltsführung 2025\r\nÜberplanmäßige Verpflichtungsermächtigung bei Kapitel 0903 Titel 698 01 - Anpassungsgeld für Arbeitnehmer und Arbeitnehmerinnen des Braunkohletagebaus und der Stein- und Braunkohleanlagen (APG) - bis zur Höhe von insgesamt 4,8 Mio. Euro",
+      "vorgangstyp": "Über- und außerplanmäßige Haushaltsausgaben"
+    },
+    {
+      "id": "321704",
+      "titel": "Mehrwertsteuer auf Grundnahrungsmittel, Hygieneprodukte und auf Bus und Bahn abschaffen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "321507",
+      "titel": "Bericht nach § 99 der Bundeshaushaltsordnung über Maßnahmen zur Stärkung der Einnahmenbasis\r\nDefizite und Reformbedarf beim Steueraufkommen identifizieren - Handlungsspielräume nutzen",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "321943",
+      "titel": "Sicherheit stärken, Energieabhängigkeiten durch erneuerbare Energien verringern - Rückkehr zu Nord-Stream-Pipelines ausschließen",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/21/21015.pdf",
+    "id": "5720",
+    "dokumentnummer": "21/15",
+    "datum": "2025-06-27",
+    "verteildatum": "2025-06-30",
+    "xml_url": "https://dserver.bundestag.de/btp/21/21015.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 15. Sitzung des 21. Deutschen Bundestages",
+  "datum": "2025-06-27"
+}

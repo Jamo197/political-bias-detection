@@ -1,0 +1,47 @@
+{
+  "id": "5556",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 57,
+  "dokumentnummer": "20/90",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "220e9bf0fec00f90b846431053132431",
+  "pdf_hash": "5bc2491c29faa164a5255201c3b33496",
+  "aktualisiert": "2023-03-17T09:38:07+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "296088",
+      "titel": "Neuntes Gesetz zur Änderung des Regionalisierungsgesetzes",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "297397",
+      "titel": "Abschöpfung von Erlösen im Zusammenhang mit der Strompreisbremse",
+      "vorgangstyp": "Mündliche Frage"
+    },
+    {
+      "id": "295447",
+      "titel": "Gesetz zur Überarbeitung des Sanktionenrechts - Ersatzfreiheitsstrafe, Strafzumessung, Auflagen und Weisungen sowie  Unterbringung in einer Entziehungsanstalt",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "295446",
+      "titel": "Gesetz zur Umsetzung der Richtlinie (EU) 2021/2101 im Hinblick auf die Offenlegung von Ertragsteuerinformationen durch bestimmte Unternehmen und Zweigniederlassungen sowie zur Änderung des Verbraucherstreitbeilegungsgesetzes und des Pflichtversicherungsgesetzes",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20090.pdf",
+    "id": "5556",
+    "dokumentnummer": "20/90",
+    "datum": "2023-03-15",
+    "verteildatum": "2023-03-16",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20090.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 90. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2023-03-15"
+}

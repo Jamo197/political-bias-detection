@@ -1,0 +1,42 @@
+{
+  "id": "5407",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 105,
+  "dokumentnummer": "19/223",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "50933143a7de4aba60652f95898883e3",
+  "pdf_hash": "b94e1c1cc21fe2ae7729e2f419c7cde7",
+  "aktualisiert": "2021-04-22T08:42:03+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "247871",
+      "titel": "Share Deals - Steuervermeidung bei Immobiliengeschäften bekämpfen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "245752",
+      "titel": "Den Konflikt in der Westsahara nicht vergessen - Völkerrecht durchsetzen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "251754",
+      "titel": "Gesetz zur Änderung des Grunderwerbsteuergesetzes",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19223.pdf",
+    "id": "5407",
+    "dokumentnummer": "19/223",
+    "datum": "2021-04-21",
+    "verteildatum": "2021-04-22",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19223.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 223. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2021-04-21"
+}

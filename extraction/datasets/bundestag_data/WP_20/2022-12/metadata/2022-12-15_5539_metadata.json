@@ -1,0 +1,47 @@
+{
+  "id": "5539",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 84,
+  "dokumentnummer": "20/76",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "dc4ec304257d43b922a464a7b0029273",
+  "pdf_hash": "57977efde03a1eaaea87a7d1388e5f8f",
+  "aktualisiert": "2023-01-04T16:09:55+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "283221",
+      "titel": "Änderung der Geschäftsordnung des Deutschen Bundestages\r\nhier: Ausschussöffentlichkeit und Zugang zu Dokumenten",
+      "vorgangstyp": "Geschäftsordnung"
+    },
+    {
+      "id": "287536",
+      "titel": "Änderung der Geschäftsordnung des Deutschen Bundestages \r\nhier: Bessere Lesbarkeit von Vorlagen",
+      "vorgangstyp": "Geschäftsordnung"
+    },
+    {
+      "id": "287547",
+      "titel": "Änderung der Geschäftsordnung des Deutschen Bundestages \r\nhier: Frist für die Durchführung von öffentlichen Anhörungen",
+      "vorgangstyp": "Geschäftsordnung"
+    },
+    {
+      "id": "287539",
+      "titel": "Änderung der Geschäftsordnung des Deutschen Bundestages \r\nhier: Beratungsfrist",
+      "vorgangstyp": "Geschäftsordnung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20076.pdf",
+    "id": "5539",
+    "dokumentnummer": "20/76",
+    "datum": "2022-12-15",
+    "verteildatum": "2022-12-16",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20076.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 76. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2022-12-15"
+}

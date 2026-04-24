@@ -1,0 +1,47 @@
+{
+  "id": "5480",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 62,
+  "dokumentnummer": "20/27",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "ca24432c905d214891485b800aee1d48",
+  "pdf_hash": "808fd9db99d1d33399951308d893b3ba",
+  "aktualisiert": "2022-04-07T08:32:04+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "286091",
+      "titel": "Aufnahme von Migranten vor dem Hintergrund der Ukraine-Krise",
+      "vorgangstyp": "Mündliche Frage"
+    },
+    {
+      "id": "286092",
+      "titel": "Anzahl der an ausländischen Flughäfen zur Verhinderung der Einreise möglicher Asylbewerber nach Deutschland eingesetzten Bundespolizisten",
+      "vorgangstyp": "Mündliche Frage"
+    },
+    {
+      "id": "285383",
+      "titel": "Bürger und Mittelstand entlasten - Steuersenkungen als Reaktion auf die Inflation durchsetzen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "286123",
+      "titel": "Bemessungsgrundlage für das Ziel der Halbierung der Dauer von Verwaltungs-, Planungs- und Genehmigungsverfahren",
+      "vorgangstyp": "Mündliche Frage"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20027.pdf",
+    "id": "5480",
+    "dokumentnummer": "20/27",
+    "datum": "2022-04-06",
+    "verteildatum": "2022-04-07",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20027.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 27. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2022-04-06"
+}

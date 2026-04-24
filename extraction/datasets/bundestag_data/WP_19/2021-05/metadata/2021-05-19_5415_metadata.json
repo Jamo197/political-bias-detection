@@ -1,0 +1,47 @@
+{
+  "id": "5415",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 99,
+  "dokumentnummer": "19/229",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "48b540c2fe51aa715457fcf28e934b76",
+  "pdf_hash": "0bfdf9c25b2ceb041c8ff15c71cab11d",
+  "aktualisiert": "2021-05-20T08:22:03+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "258718",
+      "titel": "Soziale und gesundheitliche Situation von Lesben, Schwulen, Bisexuellen, trans- und intergeschlechtlichen Menschen (LSBTI) in Deutschland",
+      "vorgangstyp": "Große Anfrage"
+    },
+    {
+      "id": "248238",
+      "titel": "Vielfalt leben - Bundesweiten Aktionsplan für sexuelle und geschlechtliche Vielfalt auflegen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "260183",
+      "titel": "Fremdbestimmte Operationen an trans- und intergeschlechtlichen Menschen - Aufarbeiten, Entschuldigen und Entschädigen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "248807",
+      "titel": "Geschlechtliche und sexuelle Vielfalt in der Europäischen Union schützen",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19229.pdf",
+    "id": "5415",
+    "dokumentnummer": "19/229",
+    "datum": "2021-05-19",
+    "verteildatum": "2021-05-20",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19229.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 229. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2021-05-19"
+}

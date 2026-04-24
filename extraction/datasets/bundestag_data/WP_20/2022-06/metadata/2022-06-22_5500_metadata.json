@@ -1,0 +1,47 @@
+{
+  "id": "5500",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 55,
+  "dokumentnummer": "20/43",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "1529e681cc50d8357d9f73a90671cc85",
+  "pdf_hash": "c003a225f51d5ab60bcc0abdad769566",
+  "aktualisiert": "2022-09-20T11:15:23+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "286491",
+      "titel": "Siebenundzwanzigstes Gesetz zur Änderung des Bundesausbildungsförderungsgesetzes (27. BAföGÄndG)",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "286492",
+      "titel": "Gesetz zur Durchführung der Verordnung (EU) 2021/784 des Europäischen Parlaments und des Rates vom 29. April 2021 zur Bekämpfung der Verbreitung terroristischer Online-Inhalte und zur Änderung weiterer Gesetze",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "286495",
+      "titel": "Zweites Gesetz zur Änderung des Gesetzes zur Errichtung eines Sondervermögens \"Energie- und Klimafonds\"",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "286388",
+      "titel": "Gesetz zur Umsetzung der Richtlinie (EU) 2019/1152 des Europäischen Parlaments und des Rates vom 20. Juni 2019 über transparente und vorhersehbare Arbeitsbedingungen in der Europäischen Union im Bereich des Zivilrechts und zur Übertragung von Aufgaben an die Sozialversicherung für Landwirtschaft, Forsten und Gartenbau",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20043.pdf",
+    "id": "5500",
+    "dokumentnummer": "20/43",
+    "datum": "2022-06-22",
+    "verteildatum": "2022-06-23",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20043.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 43. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2022-06-22"
+}

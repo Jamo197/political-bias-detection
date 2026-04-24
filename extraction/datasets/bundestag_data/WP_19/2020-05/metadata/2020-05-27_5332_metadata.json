@@ -1,0 +1,47 @@
+{
+  "id": "5332",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 105,
+  "dokumentnummer": "19/162",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "072116aad41c3b40e3df8eefdfda223c",
+  "pdf_hash": "a41e51df0949380b91a86a7975ed043c",
+  "aktualisiert": "2020-05-28T08:20:00+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "255558",
+      "titel": "Einfach Leben retten - Blutspendeverbot für homosexuelle und transgeschlechtliche Menschen abschaffen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "259305",
+      "titel": "Gesetz zur Stärkung von intensivpflegerischer Versorgung und medizinischer Rehabilitation in der gesetzlichen Krankenversicherung (Intensivpflege- und Rehabilitationsstärkungsgesetz - GKV-IPReG)",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "259303",
+      "titel": "Gesetz zur Einführung der Grundrente für langjährige Versicherung in der gesetzlichen Rentenversicherung mit unterdurchschnittlichem Einkommen und für weitere Maßnahmen zur Erhöhung der Alterseinkommen (Grundrentengesetz)",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "260618",
+      "titel": "Bericht über das Ergebnis der Vorplanung und der frühen Öffentlichkeitsbeteiligung zur Ausbaustrecke Hanau - Gelnhausen",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19162.pdf",
+    "id": "5332",
+    "dokumentnummer": "19/162",
+    "datum": "2020-05-27",
+    "verteildatum": "2020-05-28",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19162.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 162. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2020-05-27"
+}

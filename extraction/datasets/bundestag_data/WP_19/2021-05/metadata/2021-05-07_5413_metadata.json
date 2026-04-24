@@ -1,0 +1,47 @@
+{
+  "id": "5413",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 48,
+  "dokumentnummer": "19/228",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "c595ad30fef76c0e43501e94a3bcda8c",
+  "pdf_hash": "84ce25bedaefe30157ebf3599bc3c520",
+  "aktualisiert": "2021-05-10T08:42:03+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "255427",
+      "titel": "Clubkultur erhalten - Clubs als Kulturorte anerkennen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "256968",
+      "titel": "Bauland in Gemeinschaftshand - Bodenpreissteigerungen bekämpfen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "256977",
+      "titel": "Spekulation den Boden entziehen, soziale Mischung erhalten und Baurecht nachhaltig ausrichten",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "254203",
+      "titel": "Clubsterben stoppen",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19228.pdf",
+    "id": "5413",
+    "dokumentnummer": "19/228",
+    "datum": "2021-05-07",
+    "verteildatum": "2021-05-10",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19228.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 228. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2021-05-07"
+}

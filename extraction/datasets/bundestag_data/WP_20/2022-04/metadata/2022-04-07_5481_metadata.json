@@ -1,0 +1,47 @@
+{
+  "id": "5481",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 75,
+  "dokumentnummer": "20/28",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "0dc651275960f2601d02ec7a51608870",
+  "pdf_hash": "786ebf5faaa371524b3a5bfa4907b441",
+  "aktualisiert": "2022-04-08T08:22:02+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "285899",
+      "titel": "Zwischenbericht zu den rechtlichen Wirkungen im Fall der Umsetzung von Artikel 25a § 99 des Bundesteilhabegesetzes (ab 2023) auf den leistungsberechtigten Personenkreis der Eingliederungshilfe",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "285900",
+      "titel": "Bericht der Bundesregierung über die Wirkungen der Reform des Unterhaltsvorschussgesetzes ein Jahr nach dem Inkrafttreten zum 1. Juli 2017",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "285901",
+      "titel": "Abschlussbericht zu den rechtlichen Wirkungen im Fall der Umsetzung von Artikel 25a § 99 des Bundesteilhabegesetzes (ab 2023) auf den leistungsberechtigten Personenkreis der Eingliederungshilfe",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "285902",
+      "titel": "Dritter Bericht der Bundesregierung zur Anhebung der Regelaltersgrenze auf 67 Jahre \r\nmit Gutachten des Sozialbeirats",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20028.pdf",
+    "id": "5481",
+    "dokumentnummer": "20/28",
+    "datum": "2022-04-07",
+    "verteildatum": "2022-04-08",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20028.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 28. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2022-04-07"
+}

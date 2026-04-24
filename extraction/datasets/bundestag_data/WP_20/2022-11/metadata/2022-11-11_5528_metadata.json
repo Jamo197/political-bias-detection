@@ -1,0 +1,42 @@
+{
+  "id": "5528",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 34,
+  "dokumentnummer": "20/67",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "3b976756121cc1289e8eb20583f11b5e",
+  "pdf_hash": "a95d45fce13afec2dc71b37b46f23a73",
+  "aktualisiert": "2022-11-16T16:02:16+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "282700",
+      "titel": "Horizont erweitern - Kernenergie für umweltfreundliche, sichere und kostengünstige Energieversorgung",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "285927",
+      "titel": "Bericht über die Umsetzung der pauschalen Gewerbesteuerkompensation im Jahr 2020 durch die Länder",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "283699",
+      "titel": "Mitteilung der Kommission an das Europäische Parlament und den Rat\r\nNachhaltige Kohlenstoffkreisläufe \r\nKOM(2021)800 endg.; Ratsdok. 15045/21",
+      "vorgangstyp": "EU-Vorlage"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20067.pdf",
+    "id": "5528",
+    "dokumentnummer": "20/67",
+    "datum": "2022-11-11",
+    "verteildatum": "2022-11-14",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20067.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 67. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2022-11-11"
+}

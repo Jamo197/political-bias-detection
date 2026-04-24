@@ -1,0 +1,37 @@
+{
+  "id": "5588",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 4,
+  "dokumentnummer": "20/118",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "764eb779a6a9f5f87544b10b3f3186e4",
+  "pdf_hash": "95e32cf6550920a1663b14134158ba9b",
+  "aktualisiert": "2023-09-07T17:19:17+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "302729",
+      "titel": "Gesetz über die Feststellung des Bundeshaushaltsplans für das Haushaltsjahr 2024 (Haushaltsgesetz 2024 - HG 2024)",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "302730",
+      "titel": "Finanzplan des Bundes 2023 bis 2027",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20118.pdf",
+    "id": "5588",
+    "dokumentnummer": "20/118",
+    "datum": "2023-09-06",
+    "verteildatum": "2023-09-07",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20118.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 118. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2023-09-06"
+}

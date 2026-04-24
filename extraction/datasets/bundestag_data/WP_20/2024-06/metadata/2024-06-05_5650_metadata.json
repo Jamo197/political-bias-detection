@@ -1,0 +1,47 @@
+{
+  "id": "5650",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 75,
+  "dokumentnummer": "20/171",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "0f4aff9d6371d39ed88ec5005828b87a",
+  "pdf_hash": "a4e86cc8f1557e394ea5199996d6cbd0",
+  "aktualisiert": "2024-12-06T07:32:15+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "311338",
+      "titel": "Abschaffung des Solidaritätszuschlags - Erster Schritt einer umfänglichen Steuerreform zur Entlastung des Mittelstands, von Unternehmen sowie Arbeitnehmern",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "308708",
+      "titel": "Berufsbildungsvalidierungs- und -digitalisierungsgesetz (BVaDiG)",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "311981",
+      "titel": "zu den Verhandlungen über einen Vorschlag für einen Beschluss des Rates über die Vorlage von Vorschlägen zur Änderung der Anhänge II und III des Übereinkommens über die Erhaltung der europäisch wild lebenden Pflanzen und Tiere und ihrer natürlichen Lebensräume (Herabstufung des Schutzstatus des Wolfs in der Berner Konvention - KOM(2023) 799 final)",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "309845",
+      "titel": "Viertes Gesetz zur Entlastung der Bürgerinnen und Bürger, der Wirtschaft sowie der Verwaltung von Bürokratie (Viertes Bürokratieentlastungsgesetz)",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20171.pdf",
+    "id": "5650",
+    "dokumentnummer": "20/171",
+    "datum": "2024-06-05",
+    "verteildatum": "2024-06-06",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20171.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 171. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2024-06-05"
+}

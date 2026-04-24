@@ -1,0 +1,47 @@
+{
+  "id": "5714",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 37,
+  "dokumentnummer": "21/10",
+  "wahlperiode": 21,
+  "herausgeber": "BT",
+  "xml_hash": "5d5e365f6595312d134b589f10ce2c10",
+  "pdf_hash": "15936d55b8c2ed0725d7ad897745dafb",
+  "aktualisiert": "2025-07-15T11:15:15+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "322237",
+      "titel": "Anpassungsverfahren gemäß § 11 Absatz 4 des Abgeordnetengesetzes",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "321693",
+      "titel": "Entlastung der Bundesregierung für das Haushaltsjahr 2023\r\n- Haushalts- und Vermögensrechnung des Bundes für das Haushaltsjahr 2023 -",
+      "vorgangstyp": "Entlastung der Bundesregierung"
+    },
+    {
+      "id": "321927",
+      "titel": "Wahl des Wehrbeauftragten des Deutschen Bundestages",
+      "vorgangstyp": "Wahl im BT"
+    },
+    {
+      "id": "322140",
+      "titel": "Auslegung der Geschäftsordnung\r\nhier:\tVerteilung des Vorschlagrechts für die Vorsitze und stellvertretenden Vorsitze der ständigen Ausschüsse im Wege des Zugriffsverfahrens",
+      "vorgangstyp": "Geschäftsordnung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/21/21010.pdf",
+    "id": "5714",
+    "dokumentnummer": "21/10",
+    "datum": "2025-06-05",
+    "verteildatum": "2025-06-06",
+    "xml_url": "https://dserver.bundestag.de/btp/21/21010.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 10. Sitzung des 21. Deutschen Bundestages",
+  "datum": "2025-06-05"
+}

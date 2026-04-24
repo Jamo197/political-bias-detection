@@ -1,0 +1,47 @@
+{
+  "id": "5781",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 19,
+  "dokumentnummer": "21/69",
+  "wahlperiode": 21,
+  "herausgeber": "BT",
+  "pdf_hash": "250eedc57b3369ad3df5be3deb9a3c56",
+  "xml_hash": "51dcddac75c3765c821313e5ecb6f1b7",
+  "aktualisiert": "2026-04-07T11:30:44+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "323676",
+      "titel": "Vorschlag für eine Richtlinie des Europäischen Parlaments und des Rates zur Bekämpfung der Korruption, zur Ersetzung des Rahmenbeschlusses 2003/568/JI des Rates und des Übereinkommens über die Bekämpfung der Bestechung, an der Beamte der Europäischen Gemeinschaften oder der Mitgliedstaaten der Europäischen Union beteiligt sind, sowie zur Änderung der Richtlinie (EU) 2017/1371 des Europäischen Parlaments und des Rates \r\nKOM(2023) 234 endg.; Ratsdok. 9241/23",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "323388",
+      "titel": "Proposal for a Regulation of the European Parliament and of the Council on the production and marketing of plant reproductive material in the Union, amending Regulations (EU) 2016/2031, 2017/625 and 2018/848 of the European Parliament and of the Council, and repealing Council Directives 66/401/EEC, 66/402/EEC, 68/193/EEC, 2002/53/EC, 2002/54/EC, 2002/55/EC, 2002/56/EC, 2002/57/EC, 2008/72/EC and 2008/90/EC (Regulation on plant reproductive material)\r\nKOM(2023) 414 endg.; Ratsdok. 11502/23",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "328244",
+      "titel": "Private Altersvorsorge modernisieren - ETF-Sparplan für die Rente ermöglichen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "323192",
+      "titel": "Mitteilung der Kommission an das Europäische Parlament, den Rat, den Europäischen Wirtschafts- und Sozialausschuss und den Ausschuss der Regionen\r\nFahrplan für die Beendigung der Energieeinfuhren aus Russland \r\nKOM(2025) 440 endg.; Ratsdok. 8686/25",
+      "vorgangstyp": "EU-Vorlage"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/21/21069.pdf",
+    "id": "5781",
+    "dokumentnummer": "21/69",
+    "datum": "2026-03-27",
+    "verteildatum": "2026-03-30",
+    "xml_url": "https://dserver.bundestag.de/btp/21/21069.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 69. Sitzung des 21. Deutschen Bundestages",
+  "datum": "2026-03-27"
+}

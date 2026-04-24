@@ -1,0 +1,43 @@
+{
+  "id": "5443",
+  "sitzungsbemerkung": "Sondersitzung",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 5,
+  "dokumentnummer": "20/4",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "51222889ce0a78dc167d8a440dbe5d6a",
+  "pdf_hash": "6fd967c133bac981c166801d44cb5e15",
+  "aktualisiert": "2025-01-09T15:20:38+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "283063",
+      "titel": "Gesetz zur Stärkung der Impfprävention gegen COVID-19 und zur Änderung weiterer Vorschriften im Zusammenhang mit der COVID-19-Pandemie",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "283085",
+      "titel": "Ausweitung der Maskenpflicht im Plenarsaal",
+      "vorgangstyp": "Anmerkung zur Plenarsitzung"
+    },
+    {
+      "id": "283072",
+      "titel": "Grundrechte sind keine Geimpftenrechte - Die Wahrnehmung von Grundrechten darf nicht von Bedingungen abhängig gemacht werden",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20004.pdf",
+    "id": "5443",
+    "dokumentnummer": "20/4",
+    "datum": "2021-12-07",
+    "verteildatum": "2021-12-08",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20004.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 4. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2021-12-07"
+}

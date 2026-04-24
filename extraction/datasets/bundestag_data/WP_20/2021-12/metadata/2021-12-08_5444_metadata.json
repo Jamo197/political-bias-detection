@@ -1,0 +1,37 @@
+{
+  "id": "5444",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 2,
+  "dokumentnummer": "20/5",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "fc71edf2186013f1c3a36db8d00c08cf",
+  "pdf_hash": "16e6ae3b09c390835d6732a20227102b",
+  "aktualisiert": "2021-12-09T08:32:02+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "283132",
+      "titel": "Bekanntgabe der Bildung der Bundesregierung und Eidesleistung der Bundesministerinnen und Bundesminister",
+      "vorgangstyp": "Ansprache/Erklärung/Mitteilung"
+    },
+    {
+      "id": "283131",
+      "titel": "Wahl des Bundeskanzlers",
+      "vorgangstyp": "Wahl im BT"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20005.pdf",
+    "id": "5444",
+    "dokumentnummer": "20/5",
+    "datum": "2021-12-08",
+    "verteildatum": "2021-12-09",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20005.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 5. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2021-12-08"
+}

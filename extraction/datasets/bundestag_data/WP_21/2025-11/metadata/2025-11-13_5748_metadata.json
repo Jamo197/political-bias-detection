@@ -1,0 +1,47 @@
+{
+  "id": "5748",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 75,
+  "dokumentnummer": "21/40",
+  "wahlperiode": 21,
+  "herausgeber": "BT",
+  "xml_hash": "fc5b2e306af289311973084ceaeaae5e",
+  "pdf_hash": "0225cc6f9b6c661d707cfeb827be3a8a",
+  "aktualisiert": "2025-11-26T10:59:59+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "322788",
+      "titel": "Gesetz zur Beseitigung der Klimaschutzfolgen und Wiederherstellung der Energieinfrastruktur in Deutschland (Klimaschutzfolgenbereinigungsgesetz)",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "322787",
+      "titel": "Gesetz zur Änderung des Grundgesetzes (Artikel 143h - Klimaschutzfolgenbereinigung)",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "321945",
+      "titel": "Organisierte Steuerhinterziehung wie Cum-Cum-Deals aufklären, Steuermilliarden konsequent zurückfordern und Aufbewahrungsfristen für Belege bei Finanzinstitutionen verlängern",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "328309",
+      "titel": "Vierter Engagementbericht\r\nZugangschancen zum freiwilligen Engagement und Stellungnahme der Bundesregierung",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/21/21040.pdf",
+    "id": "5748",
+    "dokumentnummer": "21/40",
+    "datum": "2025-11-13",
+    "verteildatum": "2025-11-14",
+    "xml_url": "https://dserver.bundestag.de/btp/21/21040.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 40. Sitzung des 21. Deutschen Bundestages",
+  "datum": "2025-11-13"
+}

@@ -1,0 +1,47 @@
+{
+  "id": "5405",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 116,
+  "dokumentnummer": "19/221",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "4b6e62c61cee0ea5b389d4604660ae85",
+  "pdf_hash": "146a22cdd652cbeb6d620bb008455264",
+  "aktualisiert": "2021-04-20T08:42:04+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "244513",
+      "titel": "Mittelrheintal mit alternativer Gütertrasse und funktionierenden Ausweichstrecken entlasten",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "242059",
+      "titel": "Ausbildungsprogramme für Imame und islamische Religionsbedienstete in Deutschland fördern",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "234858",
+      "titel": "Nach Tunnelhavarie und Rheintal-Streckensperrung 2017 von Rastatt - Aufarbeitung und Notfallmanagement entwickeln",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "241793",
+      "titel": "Für aussagekräftige Dunkelfeld-Opferbefragungen",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19221.pdf",
+    "id": "5405",
+    "dokumentnummer": "19/221",
+    "datum": "2021-04-15",
+    "verteildatum": "2021-04-20",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19221.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 221. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2021-04-15"
+}

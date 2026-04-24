@@ -1,0 +1,47 @@
+{
+  "id": "5301",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 73,
+  "dokumentnummer": "19/139",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "661f2f2cc634eb2c5c762465efca780d",
+  "pdf_hash": "07d72d774814f7affbc997b32100cf62",
+  "aktualisiert": "2020-01-16T12:20:00+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "245280",
+      "titel": "Wasser muss sauber und bezahlbar bleiben",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "249739",
+      "titel": "... Gesetz zur Änderung des Strafgesetzbuches - Strafrechtlicher Schutz bei Verunglimpfung der Europäischen Union und ihrer Symbole",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "247826",
+      "titel": "Grundwasser schützen, Überdüngung stoppen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "254554",
+      "titel": "Gesetz zur Errichtung der Deutschen Stiftung für Engagement und Ehrenamt",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19139.pdf",
+    "id": "5301",
+    "dokumentnummer": "19/139",
+    "datum": "2020-01-15",
+    "verteildatum": "2020-01-16",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19139.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 139. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2020-01-15"
+}

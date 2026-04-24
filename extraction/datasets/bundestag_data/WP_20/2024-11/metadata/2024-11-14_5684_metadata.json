@@ -1,0 +1,47 @@
+{
+  "id": "5684",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 28,
+  "dokumentnummer": "20/200",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "174e996efca4fbcffe7b394cc5e171ff",
+  "pdf_hash": "886de46ecd8ebb4f6b964ecca87ccaba",
+  "aktualisiert": "2024-12-20T13:09:59+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "293195",
+      "titel": "... Gesetz zur Änderung des Parteiengesetzes - Gesetz zur Erhöhung der Transparenz beim Sponsoring der Parteien",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "283076",
+      "titel": "Gesetz zur Änderung des Grundgesetzes (Gesetz zur Begrenzung der Amtszeit des Bundeskanzlers)",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "283074",
+      "titel": "Gesetz zur Aufhebung des Gesetzes über die Rechtsverhältnisse der Parlamentarischen Staatssekretäre",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "289563",
+      "titel": "Gesetz zur Änderung des Bundesverfassungsgerichtsgesetzes (Gesetz zur Einführung der Begründungspflicht)",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20200.pdf",
+    "id": "5684",
+    "dokumentnummer": "20/200",
+    "datum": "2024-11-14",
+    "verteildatum": "2024-11-15",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20200.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 200. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2024-11-14"
+}

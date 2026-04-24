@@ -1,0 +1,42 @@
+{
+  "id": "5595",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 48,
+  "dokumentnummer": "20/125",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "afc47d2d3f9ffe1e0fac8c78a3fdf9bd",
+  "pdf_hash": "d7e70a3990bff70bdbf5376b9cbce349",
+  "aktualisiert": "2023-10-23T08:26:11+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "289448",
+      "titel": "Antidiskriminierungsstelle des Bundes stärken - Diskriminierungsschutz erweitern",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "298216",
+      "titel": "Viertes Gesetz zur Änderung des Chemikaliengesetzes",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "298732",
+      "titel": "Elf-Punkte-Plan zum Schutz der Grenzen und vor unregulierter Massenmigration sofort umsetzen - Frühzeitige Unterrichtung des Parlaments bei kritischen Massenmigrationslagen sicherstellen",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20125.pdf",
+    "id": "5595",
+    "dokumentnummer": "20/125",
+    "datum": "2023-09-28",
+    "verteildatum": "2023-09-29",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20125.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 125. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2023-09-28"
+}

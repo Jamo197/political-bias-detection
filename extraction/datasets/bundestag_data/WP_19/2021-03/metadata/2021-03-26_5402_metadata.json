@@ -1,0 +1,42 @@
+{
+  "id": "5402",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 74,
+  "dokumentnummer": "19/219",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "5346d2c6f259baf95d07c71e56342e2b",
+  "pdf_hash": "40e6af7985b8664e04c8bc1571d2c794",
+  "aktualisiert": "2021-03-29T08:42:02+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "235224",
+      "titel": "Vorschlag für eine Verordnung des Rates zur Festlegung des Mehrjährigen Finanzrahmens für die Jahre 2021 bis 2027 \r\nKOM(2018) 322 endg.; Ratsdok. 8354/18",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "84418",
+      "titel": "Änderung der Geschäftsordnung des Deutschen Bundestages\r\nhier: Änderung der Verhaltensregeln für Mitglieder des Deutschen Bundestages (Anlage 1 der Geschäftsordnung)",
+      "vorgangstyp": "Geschäftsordnung"
+    },
+    {
+      "id": "235251",
+      "titel": "Mitteilung der Kommission an das Europäische Parlament, den Europäischen Rat, den Rat, den Europäischen Wirtschafts- und Sozialausschuss und den Ausschuss der Regionen\r\nEin moderner Haushalt für eine Union, die schützt, stärkt und verteidigt\r\nMehrjähriger Finanzrahmen 2021-2027 \r\nKOM(2018) 321 endg.; Ratsdok. 8353/18",
+      "vorgangstyp": "EU-Vorlage"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19219.pdf",
+    "id": "5402",
+    "dokumentnummer": "19/219",
+    "datum": "2021-03-26",
+    "verteildatum": "2021-03-29",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19219.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 219. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2021-03-26"
+}

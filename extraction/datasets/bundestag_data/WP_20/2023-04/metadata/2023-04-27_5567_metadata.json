@@ -1,0 +1,47 @@
+{
+  "id": "5567",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 40,
+  "dokumentnummer": "20/100",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "57631b2ea4258a8796fda95731f44d4f",
+  "pdf_hash": "1312a3590fc6d49e31b7572d72d3182b",
+  "aktualisiert": "2023-05-02T16:41:35+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "291448",
+      "titel": "Kinder und Jugendliche beim Aufholen von pandemiebedingten Lernrückständen und der Milderung von psychosozialen Folgen nicht allein lassen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "293206",
+      "titel": "Straßenblockierer und Museumsrandalierer härter bestrafen - Menschen und Kulturgüter vor radikalem Protest schützen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "289254",
+      "titel": "Neuausrichtung der deutschen Politik im Nahen und Mittleren Osten und Nordafrika - Strategischer Ansatz auf Augenhöhe",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "291783",
+      "titel": "Ausgewogene Balance zwischen dem Schutz von Mensch und Tier sowie dem Artenschutz herstellen - Bejagung des Wolfes im Rahmen eines Bestandsmanagements ermöglichen",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20100.pdf",
+    "id": "5567",
+    "dokumentnummer": "20/100",
+    "datum": "2023-04-27",
+    "verteildatum": "2023-04-28",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20100.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 100. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2023-04-27"
+}

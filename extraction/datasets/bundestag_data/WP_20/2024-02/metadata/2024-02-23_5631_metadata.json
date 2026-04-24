@@ -1,0 +1,47 @@
+{
+  "id": "5631",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 24,
+  "dokumentnummer": "20/155",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "317c781ef225ac71a33579ca8bf1aecb",
+  "pdf_hash": "090625c880a1ad82c3e6bf5ce4854385",
+  "aktualisiert": "2024-03-05T14:08:40+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "299946",
+      "titel": "Stärkung der Fusionsforschung auf Weltklasseniveau",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "298085",
+      "titel": "Bericht nach § 99 der Bundeshaushaltsordnung zur Dauerkrise der Deutschen Bahn AG - Hinweise für eine strukturelle Weiterentwicklung",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "299177",
+      "titel": "Vorschlag für eine Verordnung des Europäischen Parlaments und des Rates über die wirksame Koordinierung der Wirtschaftspolitik und die multilaterale haushaltspolitische Überwachung und zur Aufhebung der Verordnung (EG) Nr. 1466/97 des Rates\r\nKOM(2023)240 endg.; Ratsdok. 8776/23",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "289298",
+      "titel": "Enquete-Kommission \"Lehren aus Afghanistan für das künftige vernetzte Engagement Deutschlands\"",
+      "vorgangstyp": "Enquete-Kommission"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20155.pdf",
+    "id": "5631",
+    "dokumentnummer": "20/155",
+    "datum": "2024-02-23",
+    "verteildatum": "2024-02-26",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20155.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 155. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2024-02-23"
+}

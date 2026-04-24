@@ -1,0 +1,47 @@
+{
+  "id": "5552",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 62,
+  "dokumentnummer": "20/87",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "165733706d58db30d00c8d2970d9acc8",
+  "pdf_hash": "b25eba5e2ef2282a3060d4536701ec69",
+  "aktualisiert": "2023-10-23T08:25:23+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "294375",
+      "titel": "Umgehend bundesweite Transparenz bei Straftaten mit dem Tatmittel Messer sowie bei Antisemitismus im Kontext von Zuwanderung herstellen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "296262",
+      "titel": "Die Ankündigungen zu den Härtefallhilfen gegen die hohen Energiepreise sofort und vollständig umsetzen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "293207",
+      "titel": "Konsequente Reaktion des Rechtsstaats auf den russischen Angriffskrieg ermöglichen - Sondertribunal einrichten",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "295443",
+      "titel": "Gesetz zur Änderung des Fünften Buches Sozialgesetzbuch - Stiftung Unabhängige Patientenberatung Deutschland - und zur Änderung weiterer Gesetze",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20087.pdf",
+    "id": "5552",
+    "dokumentnummer": "20/87",
+    "datum": "2023-03-01",
+    "verteildatum": "2023-03-02",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20087.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 87. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2023-03-01"
+}

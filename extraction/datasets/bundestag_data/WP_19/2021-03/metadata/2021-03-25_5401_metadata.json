@@ -1,0 +1,47 @@
+{
+  "id": "5401",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 166,
+  "dokumentnummer": "19/218",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "c3c022577c0430a732821517d4207451",
+  "pdf_hash": "6d485b7f5991838a3f9d94c92eec395f",
+  "aktualisiert": "2021-03-26T08:12:04+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "232185",
+      "titel": "Transparenz schaffen - Verbindliches Register für Lobbyistinnen und Lobbyisten einführen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "245032",
+      "titel": "Ende der Zeitumstellung",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "240246",
+      "titel": "Mehr Frauen in Führungspositionen zur Organisation des Gesundheitswesens",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "84421",
+      "titel": "Gesetz zur Einführung des verpflichtenden Lobbyregisters (Lobbyregistergesetz)",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19218.pdf",
+    "id": "5401",
+    "dokumentnummer": "19/218",
+    "datum": "2021-03-25",
+    "verteildatum": "2021-03-26",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19218.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 218. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2021-03-25"
+}

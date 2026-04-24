@@ -1,0 +1,47 @@
+{
+  "id": "5397",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 98,
+  "dokumentnummer": "19/215",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "e03eb817ac90684196d62f7eb2a272b4",
+  "pdf_hash": "b341a2e75373a6cf2e39290c10998330",
+  "aktualisiert": "2021-03-15T09:22:04+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "254102",
+      "titel": "Smart Germany - Deutschland digital stärken, Onlinekurs \"Künstliche Intelligenz\" initiieren",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "248607",
+      "titel": "Ergebnisse der deutschen Aufbau- und Entwicklungszusammenarbeit in Afghanistan 2002 bis 2018",
+      "vorgangstyp": "Große Anfrage"
+    },
+    {
+      "id": "254100",
+      "titel": "Smart Germany - Learning Analytics und Künstliche Intelligenz in der Schule fördern, Lerndaten schützen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "258993",
+      "titel": "Reisen für alle ermöglichen - Barrierefreiheit im Tourismus zum Standard machen",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19215.pdf",
+    "id": "5397",
+    "dokumentnummer": "19/215",
+    "datum": "2021-03-04",
+    "verteildatum": "2021-03-15",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19215.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 215. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2021-03-04"
+}

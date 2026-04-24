@@ -1,0 +1,47 @@
+{
+  "id": "5452",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 13,
+  "dokumentnummer": "20/11",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "e48577ba1921cd40267ba772f99b1905",
+  "pdf_hash": "25a7b051f389db53e40dca02cbbfd69c",
+  "aktualisiert": "2022-01-14T08:52:04+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "282706",
+      "titel": "Heiz- und Stromkostenanstieg stoppen - Staatliche Abgaben auf Energie senken",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "282705",
+      "titel": "Energiewende rückgängig machen - Wirtschaft und private Haushalte entlasten",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "282704",
+      "titel": "Blackout und Brownout verhindern - Energieversorgung sicherstellen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "282700",
+      "titel": "Horizont erweitern - Kernenergie für umweltfreundliche, sichere und kostengünstige Energieversorgung",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20011.pdf",
+    "id": "5452",
+    "dokumentnummer": "20/11",
+    "datum": "2022-01-13",
+    "verteildatum": "2022-01-14",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20011.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 11. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2022-01-13"
+}

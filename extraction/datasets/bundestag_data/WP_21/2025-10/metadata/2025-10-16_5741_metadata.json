@@ -1,0 +1,47 @@
+{
+  "id": "5741",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 82,
+  "dokumentnummer": "21/34",
+  "wahlperiode": 21,
+  "herausgeber": "BT",
+  "xml_hash": "50993ccfe99bc1dc8eb159e129a24f81",
+  "pdf_hash": "4094343f33ac1654db3767c335054303",
+  "aktualisiert": "2025-11-18T17:39:27+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "322127",
+      "titel": "Gesetz zum Vertrag über die Errichtung, den Betrieb und die Weiterentwicklung des Nationalen Once-Only-Technical-Systems (NOOTS) - Vertrag zur Ausführung von Artikel 91c Absatz 1, Absatz 2 GG - NOOTS-Staatsvertrag",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "326863",
+      "titel": "Änderung der Geschäftsordnung des Deutschen Bundestages\r\nhier: Besetzung des Präsidiums in § 5 GO-BT",
+      "vorgangstyp": "Geschäftsordnung"
+    },
+    {
+      "id": "326862",
+      "titel": "Änderung der Geschäftsordnung des Deutschen Bundestages\r\nhier: Wahl und Abwahl des Präsidenten und der Stellvertreter in § 2 GO-BT",
+      "vorgangstyp": "Geschäftsordnung"
+    },
+    {
+      "id": "321944",
+      "titel": "Deindustrialisierung stoppen - Verbrenner-Verbot aufheben",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/21/21034.pdf",
+    "id": "5741",
+    "dokumentnummer": "21/34",
+    "datum": "2025-10-16",
+    "verteildatum": "2025-10-17",
+    "xml_url": "https://dserver.bundestag.de/btp/21/21034.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 34. Sitzung des 21. Deutschen Bundestages",
+  "datum": "2025-10-16"
+}

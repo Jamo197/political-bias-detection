@@ -1,0 +1,47 @@
+{
+  "id": "5613",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 37,
+  "dokumentnummer": "20/140",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "63193829e1d33b60166eab1ea8f812c3",
+  "pdf_hash": "a5d11f91dbd0d5193115ed32224d4e56",
+  "aktualisiert": "2023-12-01T09:06:07+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "305232",
+      "titel": "Gemeinsamer Bericht über Forschungsergebnisse zu Methodiken zur ökobilanziellen Bewertung von Wohn- und Nichtwohngebäuden",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "304275",
+      "titel": "Weiteres Vorgehen der Bundesregierung hinsichtlich des Wissenschaftszeitvertragsgesetzes",
+      "vorgangstyp": "Große Anfrage"
+    },
+    {
+      "id": "299340",
+      "titel": "Datengrundlage für Maßnahmen zur Kontrolle der Ausbreitung von SARS-CoV-2 (COVID-19)",
+      "vorgangstyp": "Große Anfrage"
+    },
+    {
+      "id": "302863",
+      "titel": "Haushaltsfinanzierungsgesetz",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20140.pdf",
+    "id": "5613",
+    "dokumentnummer": "20/140",
+    "datum": "2023-11-29",
+    "verteildatum": "2023-11-30",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20140.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 140. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2023-11-29"
+}

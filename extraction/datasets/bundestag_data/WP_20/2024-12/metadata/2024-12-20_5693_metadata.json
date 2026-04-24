@@ -1,0 +1,47 @@
+{
+  "id": "5693",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 83,
+  "dokumentnummer": "20/208",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "c42721e0bc66fafa8a58a0cab245eee4",
+  "pdf_hash": "c0e9d0ffdace5819988a3471cf53e2ff",
+  "aktualisiert": "2025-01-15T10:10:24+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "285974",
+      "titel": "Stellungnahme des Deutschen Ethikrates\r\nHilfe durch Zwang? - Professionelle Sorgebeziehungen im Spannungsfeld von Wohl und Selbstbestimmung",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "285904",
+      "titel": "Achter Erfahrungsbericht der Bundesregierung über die Durchführung des Stammzellgesetzes",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "285915",
+      "titel": "Bericht der Bundesregierung zur Evaluierung des Netzwerkdurchsetzungsgesetzes",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "285908",
+      "titel": "Zweiter Bericht der Bundesregierung über die Erfahrungen mit der Präimplantationsdiagnostik",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20208.pdf",
+    "id": "5693",
+    "dokumentnummer": "20/208",
+    "datum": "2024-12-20",
+    "verteildatum": "2024-12-23",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20208.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 208. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2024-12-20"
+}

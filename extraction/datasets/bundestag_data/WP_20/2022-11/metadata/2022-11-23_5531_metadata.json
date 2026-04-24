@@ -1,0 +1,37 @@
+{
+  "id": "5531",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 5,
+  "dokumentnummer": "20/69",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "07c2fa3df518c8281878d7ace39e64e4",
+  "pdf_hash": "20ed7d792fbb447a5d9e1baf798dc6f6",
+  "aktualisiert": "2023-02-03T12:38:57+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "290228",
+      "titel": "Finanzplan des Bundes 2022 bis 2026",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "290223",
+      "titel": "Gesetz über die Feststellung des Bundeshaushaltsplans für das Haushaltsjahr 2023 (Haushaltsgesetz 2023)",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20069.pdf",
+    "id": "5531",
+    "dokumentnummer": "20/69",
+    "datum": "2022-11-23",
+    "verteildatum": "2022-11-24",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20069.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 69. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2022-11-23"
+}

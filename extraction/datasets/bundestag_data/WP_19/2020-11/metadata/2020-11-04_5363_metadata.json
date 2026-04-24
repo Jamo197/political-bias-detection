@@ -1,0 +1,42 @@
+{
+  "id": "5363",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 87,
+  "dokumentnummer": "19/188",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "36ceb28877903e70bf1af6b0285c3514",
+  "pdf_hash": "609effafa2c4dea305dcd1f8a88f65f2",
+  "aktualisiert": "2020-11-05T08:22:03+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "265662",
+      "titel": "Gesetz zur Digitalisierung von Verwaltungsverfahren bei der Gewährung von Familienleistungen",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "258943",
+      "titel": "Einer ehemaligen Staatssekretärin im BMVg das Ehrenkreuz der Bundeswehr entziehen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "267157",
+      "titel": "Belarus - Gewaltsame Unterdrückung der Opposition beenden und Zivilgesellschaft stärken",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19188.pdf",
+    "id": "5363",
+    "dokumentnummer": "19/188",
+    "datum": "2020-11-04",
+    "verteildatum": "2020-11-05",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19188.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 188. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2020-11-04"
+}

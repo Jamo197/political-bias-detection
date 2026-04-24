@@ -1,0 +1,47 @@
+{
+  "id": "5493",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 23,
+  "dokumentnummer": "20/38",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "8b1e0c0a80e6b9090351a5e11f0d5724",
+  "pdf_hash": "eed0a80aa8bfdf0673983088d9e617f2",
+  "aktualisiert": "2022-05-23T08:42:03+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "283385",
+      "titel": "Vorschlag für eine Empfehlung des Rates zu individuellen Lernkonten \r\nKOM(2021)773 endg.; Ratsdok. 15076/21",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "286018",
+      "titel": "Bericht zur Evaluation des Carsharinggesetzes",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "280669",
+      "titel": "Vorschlag für eine Empfehlung des Rates zu einem Pakt für Forschung und Innovation in Europa\r\nKOM(2021) 407 endg.; Ratsdok. 10942/21",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "283209",
+      "titel": "Gesetz zur Änderung des Infektionsschutzgesetzes (Gesetz zur Einführung einer Entschädigungsregelung für präventive Betriebsschließungen aufgrund des Infektionsschutzes)",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20038.pdf",
+    "id": "5493",
+    "dokumentnummer": "20/38",
+    "datum": "2022-05-20",
+    "verteildatum": "2022-05-23",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20038.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 38. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2022-05-20"
+}

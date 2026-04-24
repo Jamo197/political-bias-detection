@@ -1,0 +1,47 @@
+{
+  "id": "5648",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 52,
+  "dokumentnummer": "20/170",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "7560a41bccf8e3b27bdbf783948304e9",
+  "pdf_hash": "dbcda30c66af128dcc77efe26ef06ef1",
+  "aktualisiert": "2024-05-29T15:38:45+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "285712",
+      "titel": "Vorschlag für eine Verordnung des Europäischen Parlaments und des Rates über die Betriebsstabilität digitaler Systeme des Finanzsektors und zur Änderung der Verordnungen (EG) Nr. 1060/2009, (EU) Nr. 648/2012, (EU) Nr. 600/2014 und (EU) Nr. 909/2014\r\nKOM(2020) 595 endg.; Ratsdok. 11051/20",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "282282",
+      "titel": "Vorschlag für eine Verordnung des Europäischen Parlaments und des Rates über die Übermittlung von Angaben bei Geldtransfers und Transfers bestimmter Kryptowerte (Neufassung)\r\nKOM(2021) 422 endg.; Ratsdok. 10290/21",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "285713",
+      "titel": "Vorschlag für eine Richtlinie des Europäischen Parlaments und des Rates zur Änderung der Richtlinien 2006/43/EC, 2009/65/EC, 2009/138/EU, 2011/61/EU, 2013/36/EU, 2014/65/EU, (EU) 2015/2366 und (EU) 2016/2341\r\nKOM(2020) 596 endg.; Ratsdok. 11052/20",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "285715",
+      "titel": "Vorschlag für eine Verordnung des Europäischen Parlaments und des Rates über Märkte für Kryptowerte und zur Änderung der Richtlinie (EU) 2019/1937\r\nKOM(2020) 593 endg.; Ratsdok. 11053/20",
+      "vorgangstyp": "EU-Vorlage"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20170.pdf",
+    "id": "5648",
+    "dokumentnummer": "20/170",
+    "datum": "2024-05-17",
+    "verteildatum": "2024-05-21",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20170.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 170. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2024-05-17"
+}

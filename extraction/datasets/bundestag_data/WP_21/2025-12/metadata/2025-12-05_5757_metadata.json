@@ -1,0 +1,47 @@
+{
+  "id": "5757",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 48,
+  "dokumentnummer": "21/48",
+  "wahlperiode": 21,
+  "herausgeber": "BT",
+  "xml_hash": "fa8ff794e7a93b0a5e0aeb0513ac9f05",
+  "pdf_hash": "1ba647c8a97e3f32b0df88c917e39de7",
+  "aktualisiert": "2025-12-16T10:22:18+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "321232",
+      "titel": "Vorschlag für eine Verordnung des Europäischen Parlaments und des Rates zur Änderung der Verordnung (EU) 2021/691 im Hinblick auf die Unterstützung von in umstrukturierenden Unternehmen beschäftigten Arbeitnehmern, die von einem unmittelbar bevorstehenden Stellenabbau betroffen sind\r\nKOM(2025) 140 endg.; Ratsdok. 7721/25",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "321562",
+      "titel": "Vorschlag für eine Verordnung des Europäischen Parlaments und des Rates zur Einrichtung eines gemeinsamen Systems für die Rückkehr von illegal in der Union aufhältigen Drittstaatsangehörigen und zur Aufhebung der Richtlinie 2008/115/EG des Europäischen Parlaments und des Rates, der Richtlinie 2001/40/EG des Rates und der Entscheidung 2004/191/EG des Rates\r\nKOM(2025) 101 endg.; Ratsdok. 6917/25",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "325498",
+      "titel": "Abschlussbericht der Lenkungsausschüsse der Fonds \"Heimerziehung in der Bundesrepublik Deutschland in den Jahren 1949 bis 1975\" und \"Heimerziehung in der DDR in den Jahren 1949 bis 1990\"\r\nmit Stellungnahme der Bundesregierung",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "328309",
+      "titel": "Vierter Engagementbericht\r\nZugangschancen zum freiwilligen Engagement und Stellungnahme der Bundesregierung",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/21/21048.pdf",
+    "id": "5757",
+    "dokumentnummer": "21/48",
+    "datum": "2025-12-05",
+    "verteildatum": "2025-12-08",
+    "xml_url": "https://dserver.bundestag.de/btp/21/21048.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 48. Sitzung des 21. Deutschen Bundestages",
+  "datum": "2025-12-05"
+}

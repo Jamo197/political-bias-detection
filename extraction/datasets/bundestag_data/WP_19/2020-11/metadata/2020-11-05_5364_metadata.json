@@ -1,0 +1,47 @@
+{
+  "id": "5364",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 69,
+  "dokumentnummer": "19/189",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "03a466b24882f993d0f1a5d2293402fa",
+  "pdf_hash": "cad6519c70ea16f355540e10c61bf061",
+  "aktualisiert": "2020-11-10T08:32:03+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "246342",
+      "titel": "Ein System für alle - Privatversicherte in gesetzliche Krankenversicherung überführen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "235265",
+      "titel": "Gesetz zur fortlaufenden Untersuchung der Kriminalitätslage und ergänzenden Auswertung der polizeilichen Kriminalitätsstatistik (Kriminalitätsstatistikgesetz - KStatG)",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "234852",
+      "titel": "Beamtinnen und Beamten den Weg in die gesetzliche Krankenversicherung erleichtern",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "237080",
+      "titel": "Enquete-Kommission \"Künstliche Intelligenz - Gesellschaftliche Verantwortung und wirtschaftliche, soziale und ökologische Potenziale\"",
+      "vorgangstyp": "Enquete-Kommission"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19189.pdf",
+    "id": "5364",
+    "dokumentnummer": "19/189",
+    "datum": "2020-11-05",
+    "verteildatum": "2020-11-10",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19189.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 189. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2020-11-05"
+}

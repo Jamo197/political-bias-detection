@@ -1,0 +1,47 @@
+{
+  "id": "5644",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 41,
+  "dokumentnummer": "20/167",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "6e88744d9463526f64630790337d4719",
+  "pdf_hash": "f1f6993aac42a5deea7e9b67d2049609",
+  "aktualisiert": "2024-05-07T12:15:21+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "288823",
+      "titel": "Vorschlag für eine Richtlinie des Europäischen Parlaments und des Rates über die Abschöpfung und Einziehung von Vermögenswerten\r\nKOM(2022) 245 endg.; Ratsdok. 9598/22",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "295759",
+      "titel": "Bericht des Stabilitätsrates gemäß § 9 des Stabilitätsratsgesetzes",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "285925",
+      "titel": "Deutscher Aufbau- und Resilienzplan",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "296006",
+      "titel": "Neunzehnte Tagung der Konferenz am 10. und 11. Oktober 2022 in Prag",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20167.pdf",
+    "id": "5644",
+    "dokumentnummer": "20/167",
+    "datum": "2024-04-26",
+    "verteildatum": "2024-04-29",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20167.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 167. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2024-04-26"
+}

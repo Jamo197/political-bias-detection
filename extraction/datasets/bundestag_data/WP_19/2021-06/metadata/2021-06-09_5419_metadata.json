@@ -1,0 +1,42 @@
+{
+  "id": "5419",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 100,
+  "dokumentnummer": "19/232",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "07d22abb0424f48ea813d57d9077b5c2",
+  "pdf_hash": "7f4c8679989448a0fd6b8ed8621fc563",
+  "aktualisiert": "2021-06-10T08:32:03+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "276008",
+      "titel": "Gesetz zum Erlass eines Tierarzneimittelgesetzes und zur Anpassung arzneimittelrechtlicher und anderer Vorschriften",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "275943",
+      "titel": "Gesetz zur Errichtung einer \"Stiftung Orte der deutschen Demokratiegeschichte\" und zur Änderung des Gesetzes zur Errichtung einer Stiftung \"Haus der Geschichte der Bundesrepublik Deutschland\"",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "274402",
+      "titel": "Gesetz zur Weiterentwicklung des Ausländerzentralregisters",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19232.pdf",
+    "id": "5419",
+    "dokumentnummer": "19/232",
+    "datum": "2021-06-09",
+    "verteildatum": "2021-06-10",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19232.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 232. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2021-06-09"
+}

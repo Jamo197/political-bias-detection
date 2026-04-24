@@ -1,0 +1,37 @@
+{
+  "id": "5477",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 2,
+  "dokumentnummer": "20/24",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "044ca473d4e82bdad86ebb0c7a105822",
+  "pdf_hash": "baf57f6f351e542e3cf3842fbae7a859",
+  "aktualisiert": "2022-03-24T08:02:04+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "285688",
+      "titel": "Finanzplan des Bundes 2021 bis 2025",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "285457",
+      "titel": "Gesetz über die Feststellung des Bundeshaushaltsplans für das Haushaltsjahr 2022 (Haushaltsgesetz 2022)",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20024.pdf",
+    "id": "5477",
+    "dokumentnummer": "20/24",
+    "datum": "2022-03-23",
+    "verteildatum": "2022-03-24",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20024.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 24. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2022-03-23"
+}

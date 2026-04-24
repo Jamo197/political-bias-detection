@@ -1,0 +1,47 @@
+{
+  "id": "5783",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 76,
+  "dokumentnummer": "21/70",
+  "wahlperiode": 21,
+  "herausgeber": "BT",
+  "pdf_hash": "dfac703d536d51b10eb32591be1f2744",
+  "xml_hash": "f243e428cd6ad99baad2b0585447942c",
+  "aktualisiert": "2026-04-17T10:54:26+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "333597",
+      "titel": "Abgrenzung von ZEAM und Task Force gegen Desinformation zur Vermeidung von Parallelstrukturen",
+      "vorgangstyp": "Mündliche Frage"
+    },
+    {
+      "id": "333185",
+      "titel": "Erteilung eines Ordnungsrufes an den Abg Dr. Fabian Fahl (Die Linke)",
+      "vorgangstyp": "Geschäftsordnung"
+    },
+    {
+      "id": "333636",
+      "titel": "Abbau des zweiten Gleises zwischen Halle und Peißen",
+      "vorgangstyp": "Mündliche Frage"
+    },
+    {
+      "id": "330469",
+      "titel": "Gesetz zur Modernisierung der nationalen Umsetzung von europäischen Regelungen zum Ökodesign, zur Energieverbrauchskennzeichnung und zu weiteren Regelungen",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/21/21070.pdf",
+    "id": "5783",
+    "dokumentnummer": "21/70",
+    "datum": "2026-04-15",
+    "verteildatum": "2026-04-16",
+    "xml_url": "https://dserver.bundestag.de/btp/21/21070.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 70. Sitzung des 21. Deutschen Bundestages",
+  "datum": "2026-04-15"
+}

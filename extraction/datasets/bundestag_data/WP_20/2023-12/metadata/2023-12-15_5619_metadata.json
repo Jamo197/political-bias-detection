@@ -1,0 +1,47 @@
+{
+  "id": "5619",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 37,
+  "dokumentnummer": "20/145",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "744a1d71d83b93674a20912ec4e73c8c",
+  "pdf_hash": "f069061bdd37facef28fa26caff8c63c",
+  "aktualisiert": "2024-01-16T14:04:32+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "275778",
+      "titel": "Report from the Commission to the Council\r\nAssessment of third countries' level of cooperation on readmission in 2019\r\n(Dokument liegt nicht in deutscher Sprache vor) \r\nKOM(2021)55 endg.; Ratsdok. 6032/21",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "282714",
+      "titel": "8. Sektorgutachten Bahn der Monopolkommission gemäß § 78 Absatz 1 des Eisenbahnregulierungsgesetzes\r\nWettbewerb in den Takt!",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "304525",
+      "titel": "7. Sektorgutachten Bahn \r\nder Monopolkommission gemäß § 78 Absatz 1 des Eisenbahnregulierungsgesetzes \r\nMehr Qualität und Wettbewerb auf die Schiene",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "288456",
+      "titel": "Bericht der Kommission an das Europäische Parlament und den Rat über den Fortschritt bei der Umsetzung der Richtlinie 2014/89/EU zur Schaffung eines Rahmens für die maritime Raumplanung \r\nKOM(2022) 185 endg.; Ratsdok. 9048/22",
+      "vorgangstyp": "EU-Vorlage"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20145.pdf",
+    "id": "5619",
+    "dokumentnummer": "20/145",
+    "datum": "2023-12-15",
+    "verteildatum": "2023-12-18",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20145.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 145. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2023-12-15"
+}

@@ -1,0 +1,47 @@
+{
+  "id": "5590",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 19,
+  "dokumentnummer": "20/120",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "566e891bb599e0d0f1fba92995821ccd",
+  "pdf_hash": "ca0036b464b45d1d94526a2401716bad",
+  "aktualisiert": "2023-12-05T09:56:53+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "298665",
+      "titel": "Eigentum vor Willkür in der Energiepolitik schützen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "297144",
+      "titel": "Bericht der Kommission an das Europäische Parlament, den Rat, den Europäischen Wirtschafts- und Sozialausschuss und den Ausschuss der Regionen\r\nBericht über die Fortschritte bei der Bekämpfung des Menschenhandels (vierter Bericht) \r\nKOM(2022) 736 endg.; Ratsdok. 5215/23",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "289089",
+      "titel": "Vorschlag für eine Verordnung des Europäischen Parlaments und des Rates über die nachhaltige Verwendung von Pflanzenschutzmitteln und zur Änderung der Verordnung (EU) 2021/2115\r\nKOM(2022) 305 endg.; Ratsdok. 10654/22",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "298217",
+      "titel": "Gesetz zur Modernisierung des Pass-, des Ausweis- und des ausländerrechtlichen Dokumentenwesens",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20120.pdf",
+    "id": "5590",
+    "dokumentnummer": "20/120",
+    "datum": "2023-09-08",
+    "verteildatum": "2023-09-11",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20120.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 120. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2023-09-08"
+}

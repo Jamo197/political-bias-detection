@@ -1,0 +1,47 @@
+{
+  "id": "5526",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 72,
+  "dokumentnummer": "20/65",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "d439678e932d75b70e5d767a481a6b3c",
+  "pdf_hash": "f2cabd6f47605abe0a4e8f9f8b4da891",
+  "aktualisiert": "2023-04-06T11:54:31+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "290716",
+      "titel": "Gesetz zur Umsetzung der Richtlinie (EU) 2021/514 des Rates vom 22. März 2021 zur Änderung der Richtlinie 2011/16/EU über die Zusammenarbeit der Verwaltungsbehörden im Bereich der Besteuerung und zur Modernisierung des Steuerverfahrensrechts",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "290304",
+      "titel": "Gesetz zur Abschaffung der Kostenheranziehung von jungen Menschen in der Kinder- und Jugendhilfe",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "290338",
+      "titel": "Gesetz zur Einführung eines Chancen-Aufenthaltsrechts",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "291395",
+      "titel": "Gesetz zum Ausgleich der Inflation durch einen fairen Einkommensteuertarif sowie zur Anpassung weiterer steuerlicher Regelungen (Inflationsausgleichsgesetz - InflAusG)",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20065.pdf",
+    "id": "5526",
+    "dokumentnummer": "20/65",
+    "datum": "2022-11-09",
+    "verteildatum": "2022-11-10",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20065.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 65. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2022-11-09"
+}

@@ -1,0 +1,47 @@
+{
+  "id": "5387",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 102,
+  "dokumentnummer": "19/206",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "09bfc53f0c41f15142a89a1e21ad9fcf",
+  "pdf_hash": "927a39dd35b7d3db486af8771893a43e",
+  "aktualisiert": "2021-02-02T08:32:04+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "248338",
+      "titel": "zu dem Vorschlag für eine Verordnung des Europäischen Parlaments und des Rates über Europäische Herausgabeanordnungen und Sicherungsanordnungen für elektronische Beweismittel in Strafsachen (KOM(2018) 225 endg.; Ratsdok 8110/18)",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "261966",
+      "titel": "Wirtschaftliche Belebung mit marktwirtschaftlichen Prinzipien",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "262208",
+      "titel": "Sofortige Aussetzung aller Regressverfahren gegen niedergelassene Ärzte",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "267399",
+      "titel": "Effektivere Bekämpfung von Kinderehen in Deutschland - Hilfsangebote für von Kinderehen betroffene Minderjährige schaffen",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19206.pdf",
+    "id": "5387",
+    "dokumentnummer": "19/206",
+    "datum": "2021-01-28",
+    "verteildatum": "2021-02-02",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19206.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 206. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2021-01-28"
+}

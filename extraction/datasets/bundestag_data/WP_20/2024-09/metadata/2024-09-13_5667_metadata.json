@@ -1,0 +1,47 @@
+{
+  "id": "5667",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 39,
+  "dokumentnummer": "20/186",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "dc4223cfc0f0aa35f2b290074d330366",
+  "pdf_hash": "17597e35ac4b2dfcfd1e7c6a5169d524",
+  "aktualisiert": "2024-10-08T10:08:27+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "285642",
+      "titel": "Mitteilung der Kommission an das Europäische Parlament, den Rat, den Europäischen Wirtschafts- und Sozialausschuss und den Ausschuss der Regionen\r\nEine europäische Erklärung zu den digitalen Rechten und Grundsätzen für die digitale Dekade \r\nKOM(2022) 27 endg.; Ratsdok. 5781/22",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "294347",
+      "titel": "Mitteilung der Kommission an das Europäische Parlament, den Rat, die Europäische Zentralbank, den Europäischen Wirtschafts- und Sozialausschuss und den Ausschuss der Regionen: Mitteilung über Leitlinien für eine Reform des EU-Rahmens für die wirtschaftspolitische Steuerung\r\nKOM(2022) 583 endg.; Ratsdok. 13828/22",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "299178",
+      "titel": "Vorschlag für eine Verordnung des Rates zur Änderung der Verordnung (EG) Nr. 1467/97 über die Beschleunigung und Klärung des Verfahrens bei einem übermäßigen Defizit\r\nKOM(2023) 241 endg.; Ratsdok. 8777/23",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "284226",
+      "titel": "Vorschlag für einen Beschluss des Europäischen Parlaments und des Rates über das Politikprogramm für 2030 \"Weg in die digitale Dekade\"\r\nKOM(2021) 574 endg.; Ratsdok. 11900/21",
+      "vorgangstyp": "EU-Vorlage"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20186.pdf",
+    "id": "5667",
+    "dokumentnummer": "20/186",
+    "datum": "2024-09-13",
+    "verteildatum": "2024-09-16",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20186.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 186. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2024-09-13"
+}

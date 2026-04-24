@@ -1,0 +1,47 @@
+{
+  "id": "5432",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 7,
+  "dokumentnummer": "20/1",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "0d77b6a20d3e5afee49bd737a81ec16e",
+  "pdf_hash": "384ce6eccb31b172f493d98ea03bef4c",
+  "aktualisiert": "2021-10-27T10:52:04+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "282550",
+      "titel": "Festlegung der Zahl der Stellvertreterinnen und Stellvertreter des Präsidenten",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "282546",
+      "titel": "Eröffnung konstituierender Sitzungen durch den Alterspräsidenten",
+      "vorgangstyp": "Geschäftsordnung"
+    },
+    {
+      "id": "282545",
+      "titel": "Weitergeltung von Geschäftsordnungsrecht",
+      "vorgangstyp": "Geschäftsordnung"
+    },
+    {
+      "id": "282564",
+      "titel": "Eröffnung der 1. Sitzung des 20. Deutschen Bundestages",
+      "vorgangstyp": "Ansprache/Erklärung/Mitteilung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20001.pdf",
+    "id": "5432",
+    "dokumentnummer": "20/1",
+    "datum": "2021-10-26",
+    "verteildatum": "2021-10-27",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20001.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 1. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2021-10-26"
+}

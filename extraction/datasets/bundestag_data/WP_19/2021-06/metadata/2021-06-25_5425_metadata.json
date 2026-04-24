@@ -1,0 +1,47 @@
+{
+  "id": "5425",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 133,
+  "dokumentnummer": "19/237",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "ddb90e924763b59805344701fbb787e3",
+  "pdf_hash": "d04564db8828e327853d1ee640b5cbf8",
+  "aktualisiert": "2021-06-28T08:32:02+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "230171",
+      "titel": "Sofortprogramm gegen den Pflegenotstand in der Altenpflege",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "234709",
+      "titel": "Bericht der Bundesregierung über die Maßnahmen zur Förderung der Kulturarbeit gemäß § 96 des Bundesvertriebenengesetzes in den Jahren 2015 und 2016",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "243257",
+      "titel": "Bericht zum Umfang des Verwaltungsaufwandes von Bund und Ländern - Zwei Jahre Kulturgutschutzgesetz",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "253454",
+      "titel": "13. Tätigkeitsbericht des Bundesbeauftragten für die Unterlagen des Staatssicherheitsdienstes der ehemaligen Deutschen Demokratischen Republik für die Jahre 2015 und 2016",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19237.pdf",
+    "id": "5425",
+    "dokumentnummer": "19/237",
+    "datum": "2021-06-25",
+    "verteildatum": "2021-06-28",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19237.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 237. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2021-06-25"
+}

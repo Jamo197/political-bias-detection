@@ -1,0 +1,47 @@
+{
+  "id": "5568",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 23,
+  "dokumentnummer": "20/101",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "9dcd8ad287f49093e9b19144f3d5a669",
+  "pdf_hash": "a55c2cde51e71fdb2e2e01b8e854af14",
+  "aktualisiert": "2023-10-23T08:25:13+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "284648",
+      "titel": "Vorschlag für eine Verordnung des Europäischen Parlaments und des Rates über die Verringerung der Methanemissionen im Energiesektor und zur Änderung der Verordnung (EU) 2019/942\r\nKOM(2021) 805 endg.; Ratsdok. 15063/21",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "291907",
+      "titel": "Vorschlag für einen Beschluss des Rates über die vollständige Aussetzung der Anwendung des Abkommens zwischen der Europäischen Gemeinschaft und der Russischen Föderation über die Erleichterung der Ausstellung von Visa für Bürger der Europäischen Union und für Staatsangehörige der Russischen Föderation \r\nKOM(2022)661 endg.; Ratsdok. 12037/22",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "295721",
+      "titel": "Bericht der Kommission an das Europäische Parlament und den Rat\r\nBericht 2022 über die Verwirklichung der Energieeffizienzziele bis 2020 \r\nKOM(2022) 641 endg.; Ratsdok. 14914/22",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "295633",
+      "titel": "Mitteilung der Kommission an das Europäische Parlament, den Rat und die Europäische Zentralbank zu den Übersichten über die Haushaltsplanung 2023: Gesamtbewertung \r\nKOM(2022) 900 endg.; Ratsdok. EG 41/22",
+      "vorgangstyp": "EU-Vorlage"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20101.pdf",
+    "id": "5568",
+    "dokumentnummer": "20/101",
+    "datum": "2023-04-28",
+    "verteildatum": "2023-05-02",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20101.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 101. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2023-04-28"
+}

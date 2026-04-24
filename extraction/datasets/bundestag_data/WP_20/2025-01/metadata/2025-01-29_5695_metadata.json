@@ -1,0 +1,47 @@
+{
+  "id": "5695",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 67,
+  "dokumentnummer": "20/209",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "29d5978f321590b4b8899a17b2707e79",
+  "pdf_hash": "d135915ede0ef6e3b332e97828b71686",
+  "aktualisiert": "2025-04-29T10:20:23+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "313341",
+      "titel": "Opfer von NS-\"Euthanasie\" und Zwangssterilisation - Aufarbeitung intensivieren",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "314907",
+      "titel": "Gesetz über die Feststellung des Wirtschaftsplans des ERP-Sondervermögens für das Jahr 2025 (ERP-Wirtschaftsplangesetz 2025 - ERPWiPlanG 2025)",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "319717",
+      "titel": "Ausstieg der USA aus dem Pariser Klimaschutz-Abkommen",
+      "vorgangstyp": "Mündliche Frage"
+    },
+    {
+      "id": "313973",
+      "titel": "Heimatpolitik der Bundesregierung - Pläne zur Herstellung gleichwertiger Lebensverhältnisse",
+      "vorgangstyp": "Große Anfrage"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20209.pdf",
+    "id": "5695",
+    "dokumentnummer": "20/209",
+    "datum": "2025-01-29",
+    "verteildatum": "2025-01-30",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20209.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 209. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2025-01-29"
+}

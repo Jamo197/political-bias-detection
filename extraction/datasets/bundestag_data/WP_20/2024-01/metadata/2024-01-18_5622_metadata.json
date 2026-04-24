@@ -1,0 +1,47 @@
+{
+  "id": "5622",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 49,
+  "dokumentnummer": "20/147",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "e3f80ae14569f07a35cbf658e37f52ef",
+  "pdf_hash": "745265e1340151a8a76e1949e81be0ba",
+  "aktualisiert": "2024-03-11T11:52:50+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "292647",
+      "titel": "Für eine erfolgreiche Politik der Außenwirtschaft und der Rohstoffsicherung ohne ideologische Scheuklappen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "292621",
+      "titel": "Deutschlands Rohstoffabhängigkeit reduzieren - Neue Rohstoffpartnerschaften auf den Weg bringen, heimische Rohstoffgewinnung stärken",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "294376",
+      "titel": "Hochschulen in Härtefallregelung aufnehmen - Schutzschirm für wissenschaftlichen Nachwuchs spannen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "291782",
+      "titel": "IP-Adressen rechtssicher speichern und Kinder vor sexuellem Missbrauch schützen",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20147.pdf",
+    "id": "5622",
+    "dokumentnummer": "20/147",
+    "datum": "2024-01-18",
+    "verteildatum": "2024-01-19",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20147.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 147. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2024-01-18"
+}

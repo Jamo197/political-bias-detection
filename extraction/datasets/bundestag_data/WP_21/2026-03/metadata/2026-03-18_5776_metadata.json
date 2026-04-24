@@ -1,0 +1,47 @@
+{
+  "id": "5776",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 67,
+  "dokumentnummer": "21/64",
+  "wahlperiode": 21,
+  "herausgeber": "BT",
+  "pdf_hash": "5c1db35cc205587aa65989822c737a9a",
+  "xml_hash": "971c62df6dd4056b0b0b181828c77dab",
+  "aktualisiert": "2026-03-24T10:29:55+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "332477",
+      "titel": "Abbau des Sanierungsstaus bei der Verkehrsinfrastruktur im Jahr 2026",
+      "vorgangstyp": "Mündliche Frage"
+    },
+    {
+      "id": "325806",
+      "titel": "Medizinische Versorgungszentren reformieren",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "332484",
+      "titel": "Abschluss der Ausbaumaßnahmen an der Bahnstrecke Magdeburg - Halberstadt",
+      "vorgangstyp": "Mündliche Frage"
+    },
+    {
+      "id": "328213",
+      "titel": "Primärversorgung gesetzlich verankern - Die Versorgung der Patientinnen und Patienten bedarfsgerecht steuern, Fachkräfte entlasten",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/21/21064.pdf",
+    "id": "5776",
+    "dokumentnummer": "21/64",
+    "datum": "2026-03-18",
+    "verteildatum": "2026-03-19",
+    "xml_url": "https://dserver.bundestag.de/btp/21/21064.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 64. Sitzung des 21. Deutschen Bundestages",
+  "datum": "2026-03-18"
+}

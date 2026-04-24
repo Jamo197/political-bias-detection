@@ -1,0 +1,47 @@
+{
+  "id": "5361",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 102,
+  "dokumentnummer": "19/186",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "c457438f67a73f1b656da63b4ac1681a",
+  "pdf_hash": "471a3368a24566b41768514cd68e2d92",
+  "aktualisiert": "2020-11-04T10:22:02+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "232111",
+      "titel": "Cannabiskontrollgesetz (CannKG)",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "244889",
+      "titel": "Flächendeckende Versorgung mit Arzneimitteln sichern und ausbauen, Wettbewerb stärken - Versandhandel mit verschreibungspflichtigen Arzneimitteln verbieten, Zustellung durch Boten zukünftig nicht nur im Einzelfall erlauben",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "244883",
+      "titel": "Medizinalcannabis auf eine wissenschaftliche Grundlage stellen - Verfahren im Arzneimittelmarktneuordnungsgesetz zur Nutzenbewertung und Preisfindung anwenden, Anwendungssicherheit verbessern und Krankenkassen entlasten",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "232193",
+      "titel": "Gesundheitsschutz statt Strafverfolgung - Für einen progressiven Umgang mit Cannabiskonsum",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19186.pdf",
+    "id": "5361",
+    "dokumentnummer": "19/186",
+    "datum": "2020-10-29",
+    "verteildatum": "2020-11-04",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19186.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 186. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2020-10-29"
+}

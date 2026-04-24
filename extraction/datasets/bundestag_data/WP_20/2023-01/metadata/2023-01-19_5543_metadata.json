@@ -1,0 +1,47 @@
+{
+  "id": "5543",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 38,
+  "dokumentnummer": "20/79",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "49a7f469989a3ab4c1ff5f19c471102b",
+  "pdf_hash": "74572cf74b39e475209fd7efdc8d31d8",
+  "aktualisiert": "2023-02-03T12:39:14+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "289636",
+      "titel": "Entlastung der Bundesregierung für das Haushaltsjahr 2021\r\n- Haushalts- und Vermögensrechnung des Bundes für das Haushaltsjahr 2021 -",
+      "vorgangstyp": "Entlastung der Bundesregierung"
+    },
+    {
+      "id": "288770",
+      "titel": "zu dem Vorschlag für eine Verordnung des Europäischen Parlaments und des Rates zur Festlegung von Vorschriften für die Prävention und Bekämpfung des sexuellen Missbrauchs von Kindern (\"Proposal for a Regulation of the European Parliament and of the Council laying down rules to prevent and combat child sexual abuse\") KOM(2022) 209",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "284647",
+      "titel": "Gesetz zur Stärkung der Gerichte in Wirtschaftsstreitigkeiten",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "284445",
+      "titel": "Beabsichtigte Rückgabe der Benin-Bronzen an Nigeria umgehend stoppen",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20079.pdf",
+    "id": "5543",
+    "dokumentnummer": "20/79",
+    "datum": "2023-01-19",
+    "verteildatum": "2023-01-20",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20079.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 79. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2023-01-19"
+}

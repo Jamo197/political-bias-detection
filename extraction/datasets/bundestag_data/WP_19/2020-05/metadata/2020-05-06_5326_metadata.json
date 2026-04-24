@@ -1,0 +1,47 @@
+{
+  "id": "5326",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 87,
+  "dokumentnummer": "19/157",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "fa1eb1bae1c10f6995413d8c3bae4263",
+  "pdf_hash": "7ba25ab3dada6454beea36ef26423586",
+  "aktualisiert": "2020-05-07T08:10:00+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "257238",
+      "titel": "... Gesetz zur Änderung des Strafgesetzbuches - Verbesserung des Persönlichkeitsschutzes bei Bildaufnahmen",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "259307",
+      "titel": "Gesetz zur Bekämpfung des Rechtsextremismus und der Hasskriminalität",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "259975",
+      "titel": "Gesetz zur Bekämpfung des Rechtsextremismus und der Hasskriminalität",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "253087",
+      "titel": "... Gesetz zur Änderung des Strafgesetzbuchs - Strafbarkeit der Bildaufnahme des Intimbereichs (sog. Upskirting)",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19157.pdf",
+    "id": "5326",
+    "dokumentnummer": "19/157",
+    "datum": "2020-05-06",
+    "verteildatum": "2020-05-07",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19157.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 157. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2020-05-06"
+}

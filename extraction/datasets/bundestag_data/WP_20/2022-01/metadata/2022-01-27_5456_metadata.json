@@ -1,0 +1,42 @@
+{
+  "id": "5456",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 43,
+  "dokumentnummer": "20/14",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "21b021616213d94092d1bcaacaa3ea26",
+  "pdf_hash": "2245226eb676b73e4d860a115a5a37ed",
+  "aktualisiert": "2022-01-28T08:32:03+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "283166",
+      "titel": "Gesetz über die Feststellung eines Zweiten Nachtrags zum Bundeshaushaltsplan für das Haushaltsjahr 2021 (Zweites Nachtragshaushaltsgesetz 2021)",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "283607",
+      "titel": "Sammelübersicht 15 des Petitionsausschusses (2. Ausschuss) über Anträge zu Petitionen",
+      "vorgangstyp": "Petition"
+    },
+    {
+      "id": "280940",
+      "titel": "Gesetz über die Feststellung des Wirtschaftsplans des ERP-Sondervermögens für das Jahr 2022, zur elektronischen Erhebung der Bankenabgabe und zur Änderung der Strafprozessordnung",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20014.pdf",
+    "id": "5456",
+    "dokumentnummer": "20/14",
+    "datum": "2022-01-27",
+    "verteildatum": "2022-01-28",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20014.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 14. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2022-01-27"
+}

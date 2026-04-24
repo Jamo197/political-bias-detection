@@ -1,0 +1,47 @@
+{
+  "id": "5308",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 70,
+  "dokumentnummer": "19/146",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "b1c8a42874f80bf8732b2241538fcbce",
+  "pdf_hash": "da826a423e611d8c807f57f075b3db03",
+  "aktualisiert": "2020-02-14T08:20:00+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "236500",
+      "titel": "Gesetz zur Anpassung der abstammungsrechtlichen Regelungen an das Gesetz zur Einführung des Rechts auf Eheschließung für Personen gleichen Geschlechts",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "242243",
+      "titel": "Fluggastrechte besser durchsetzen, Verbraucherinnen und Verbraucher bei Insolvenzen schützen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "232834",
+      "titel": "Fluggäste bei Insolvenz der Fluggesellschaft besser schützen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "234848",
+      "titel": "... Gesetz zur Änderung des Gesetzes über die Entschädigung für Strafverfolgungsmaßnahmen (StrEG)",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19146.pdf",
+    "id": "5308",
+    "dokumentnummer": "19/146",
+    "datum": "2020-02-13",
+    "verteildatum": "2020-02-14",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19146.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 146. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2020-02-13"
+}

@@ -1,0 +1,47 @@
+{
+  "id": "5428",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 39,
+  "dokumentnummer": "19/239",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "9cab8364edebc16d7563c525ed753619",
+  "pdf_hash": "7a3712f8ce24ebe40ac56b11ccd6b9b8",
+  "aktualisiert": "2021-09-09T10:02:04+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "280591",
+      "titel": "Gesetz zur Änderung des Gesetzes zur Errichtung eines Sondervermögens \"Aufbauhilfe\" - Schnelle Hilfe für Betroffene der Hochwasserkatastrophe\r\n(Aufbauhilfefonds-Errichtungsgesetz - AufbhG)",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "281195",
+      "titel": "Gesetz zur Errichtung eines Sondervermögens \"Aufbauhilfe 2021\" und zur vorübergehenden Aussetzung der Insolvenzantragspflicht wegen Starkregenfällen und Hochwassern im Juli 2021 sowie zur Änderung weiterer Gesetze (Aufbauhilfegesetz 2021 - AufbhG 2021)",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "278111",
+      "titel": "Gesetz zur ganztägigen Förderung von Kindern im Grundschulalter (Ganztagsförderungsgesetz - GaFöG)",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "278103",
+      "titel": "Rechnung des Bundesrechnungshofes für das Haushaltsjahr 2020\r\n- Einzelplan 20 -",
+      "vorgangstyp": "Entlastung des Bundesrechnungshofes"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19239.pdf",
+    "id": "5428",
+    "dokumentnummer": "19/239",
+    "datum": "2021-09-07",
+    "verteildatum": "2021-09-09",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19239.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 239. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2021-09-07"
+}

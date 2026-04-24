@@ -1,0 +1,47 @@
+{
+  "id": "5515",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 57,
+  "dokumentnummer": "20/56",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "92f71d9e183db00be003f1b16ad221a7",
+  "pdf_hash": "5a1ea8c0df905e608dc5a36e2fb409b0",
+  "aktualisiert": "2022-09-29T16:38:53+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "290304",
+      "titel": "Gesetz zur Abschaffung der Kostenheranziehung von jungen Menschen in der Kinder- und Jugendhilfe",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "289442",
+      "titel": "Patientenberatung stärken und ihr Angebot verbessern",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "290332",
+      "titel": "Zweites Gesetz zur Änderung des Brennstoffemissionshandelsgesetzes",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "288773",
+      "titel": "Entschließungsantrag zur Regierungserklärung zum Europäischen Rat am 23. und 24. Juni 2022 in Brüssel, zum G7-Gipfel vom 26. bis 28. Juni 2022 in Elmau und zum NATO-Gipfeltreffen vom 28. bis 30. Juni 2022 in Madrid",
+      "vorgangstyp": "Entschließungsantrag BT"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20056.pdf",
+    "id": "5515",
+    "dokumentnummer": "20/56",
+    "datum": "2022-09-28",
+    "verteildatum": "2022-09-29",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20056.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 56. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2022-09-28"
+}

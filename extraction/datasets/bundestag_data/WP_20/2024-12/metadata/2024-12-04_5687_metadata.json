@@ -1,0 +1,47 @@
+{
+  "id": "5687",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 55,
+  "dokumentnummer": "20/202",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "794e12b63722ebca150d272a26802ab2",
+  "pdf_hash": "822c57839dd764ecc4965003122f1886",
+  "aktualisiert": "2024-12-11T15:59:19+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "316295",
+      "titel": "Moratorium für den Rückbau abgeschalteter Kernkraftwerke",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "316288",
+      "titel": "Wohlstand statt Verzicht - Neuanfang wagen mit Kernenergie - Verlässliche, kostengünstige und umweltverträgliche Energieversorgung für alle",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "311335",
+      "titel": "Beitritt zur europäischen Nuklearallianz",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "312304",
+      "titel": "Gesetz zur Änderung des Produktsicherheitsgesetzes und weiterer produktsicherheitsrechtlicher Vorschriften",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20202.pdf",
+    "id": "5687",
+    "dokumentnummer": "20/202",
+    "datum": "2024-12-04",
+    "verteildatum": "2024-12-05",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20202.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 202. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2024-12-04"
+}

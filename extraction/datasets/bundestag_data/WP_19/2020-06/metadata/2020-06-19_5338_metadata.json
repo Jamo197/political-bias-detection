@@ -1,0 +1,47 @@
+{
+  "id": "5338",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 48,
+  "dokumentnummer": "19/167",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "47adea8d388b0c30c6c967c1d07a3921",
+  "pdf_hash": "34e331549c34e8b43f978b9cf230c673",
+  "aktualisiert": "2020-06-22T08:40:00+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "258397",
+      "titel": "Jahresbericht 2019 (61. Bericht)",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "253290",
+      "titel": "Antiextremistischer Grundkonsens in Politik und Gesellschaft - Rechtsstaat und Demokratie schützen - Antifa ächten",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "259936",
+      "titel": "Bericht der Kommission an den Rat über die Empfehlungen der Hochrangigen Gruppe der Weisen zur Europäischen Finanzarchitektur zur Förderung der Entwicklung \r\nKOM(2020) 43 endg.; Ratsdok. 5686/20",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "257943",
+      "titel": "Sonderbericht des Europäischen Rechnungshofs Nr. 22/2019\r\nDie EU-Anforderungen an die nationalen Haushaltsrahmen müssen weiter verschärft und ihre Anwendung muss besser überwacht werden\r\nERH 22/2019",
+      "vorgangstyp": "EU-Vorlage"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19167.pdf",
+    "id": "5338",
+    "dokumentnummer": "19/167",
+    "datum": "2020-06-19",
+    "verteildatum": "2020-06-22",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19167.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 167. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2020-06-19"
+}

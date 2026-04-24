@@ -1,0 +1,47 @@
+{
+  "id": "5548",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 55,
+  "dokumentnummer": "20/84",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "9b7a1dad97bcd64f2c268f6c7fed2105",
+  "pdf_hash": "8d44fb8c622dfc5f08eaef283470e406",
+  "aktualisiert": "2023-03-01T10:46:00+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "295780",
+      "titel": "Eine europäische Antwort auf das US-Gesetz zur Inflationsbekämpfung geben - Standort Europa stärken, transatlantische Partnerschaft ausbauen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "294329",
+      "titel": "Fünftes Gesetz zur Änderung des Staatsangehörigkeitsgesetzes",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "296218",
+      "titel": "Abgabequoten der Grundsteuererklärungen bei Bundesliegenschaften",
+      "vorgangstyp": "Mündliche Frage"
+    },
+    {
+      "id": "296214",
+      "titel": "Abhängigkeit der deutschen Wirtschaft von Produzenten von Fluorpolymeren im Ausland",
+      "vorgangstyp": "Mündliche Frage"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20084.pdf",
+    "id": "5548",
+    "dokumentnummer": "20/84",
+    "datum": "2023-02-08",
+    "verteildatum": "2023-02-09",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20084.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 84. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2023-02-08"
+}

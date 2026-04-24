@@ -1,0 +1,47 @@
+{
+  "id": "5746",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 36,
+  "dokumentnummer": "21/38",
+  "wahlperiode": 21,
+  "herausgeber": "BT",
+  "xml_hash": "802716e9223465fd64c3ae680b9f4fb6",
+  "pdf_hash": "e6aceb7e2572dcefc5704f379fc0ceae",
+  "aktualisiert": "2025-11-20T15:32:25+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "325462",
+      "titel": "Haushaltsführung 2023 \r\nÜber- und außerplanmäßige Ausgaben und Verpflichtungsermächtigungen im ersten Vierteljahr des Haushaltsjahres 2023",
+      "vorgangstyp": "Über- und außerplanmäßige Haushaltsausgaben"
+    },
+    {
+      "id": "325463",
+      "titel": "Haushaltsführung 2023 \r\nÜber- und außerplanmäßige Ausgaben und Verpflichtungsermächtigungen \r\nim zweiten Vierteljahr des Haushaltsjahres 2023",
+      "vorgangstyp": "Über- und außerplanmäßige Haushaltsausgaben"
+    },
+    {
+      "id": "325465",
+      "titel": "Haushaltsführung 2023\r\nÜber- und außerplanmäßige Ausgaben und Verpflichtungsermächtigungen im dritten Vierteljahr des Haushaltsjahres 2023",
+      "vorgangstyp": "Über- und außerplanmäßige Haushaltsausgaben"
+    },
+    {
+      "id": "325468",
+      "titel": "Haushaltsführung 2023\r\nÜber- und außerplanmäßige Ausgaben und Verpflichtungsermächtigungen im vierten Vierteljahr des Haushaltsjahres 2023",
+      "vorgangstyp": "Über- und außerplanmäßige Haushaltsausgaben"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/21/21038.pdf",
+    "id": "5746",
+    "dokumentnummer": "21/38",
+    "datum": "2025-11-07",
+    "verteildatum": "2025-11-10",
+    "xml_url": "https://dserver.bundestag.de/btp/21/21038.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 38. Sitzung des 21. Deutschen Bundestages",
+  "datum": "2025-11-07"
+}

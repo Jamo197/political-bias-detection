@@ -1,0 +1,42 @@
+{
+  "id": "5587",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 9,
+  "dokumentnummer": "20/117",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "036da007f7fd7c5799727e9dd5f42ab5",
+  "pdf_hash": "063d89183bd71e55173766184c1418bf",
+  "aktualisiert": "2023-10-18T12:55:49+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "302729",
+      "titel": "Gesetz über die Feststellung des Bundeshaushaltsplans für das Haushaltsjahr 2024 (Haushaltsgesetz 2024 - HG 2024)",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "302730",
+      "titel": "Finanzplan des Bundes 2023 bis 2027",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "298723",
+      "titel": "Gesetz zur Änderung des Gebäudeenergiegesetzes, zur Änderung des Bürgerlichen Gesetzbuches, zur Änderung der Verordnung über Heizkostenabrechnung, zur Änderung der Betriebskostenverordnung und zur Änderung der Kehr- und Überprüfungsordnung\r\n[Heizungsgesetz]",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20117.pdf",
+    "id": "5587",
+    "dokumentnummer": "20/117",
+    "datum": "2023-09-05",
+    "verteildatum": "2023-09-06",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20117.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 117. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2023-09-05"
+}

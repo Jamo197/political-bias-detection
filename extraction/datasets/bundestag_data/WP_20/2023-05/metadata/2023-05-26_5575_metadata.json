@@ -1,0 +1,47 @@
+{
+  "id": "5575",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 26,
+  "dokumentnummer": "20/107",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "fdb80833347f6c3169f1602e7dafc86b",
+  "pdf_hash": "cabe9a4f414f55d4924624898306083f",
+  "aktualisiert": "2023-10-23T08:25:49+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "293988",
+      "titel": "Gesetz zur weiteren Beschleunigung von Planungs- und Genehmigungsverfahren an Brücken auf Bundesfernstraßen",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "294589",
+      "titel": "Bericht der Kommission an das Europäische Parlament und den Rat gemäß Artikel 14 Absatz 3 der Verordnung (EU) 2019/880 des Europäischen Parlaments und des Rates vom 17. April 2019 über das Verbringen und die Einfuhr von Kulturgütern\r\nKOM(2022) 580 endg.; Ratsdok. 14704/22",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "294019",
+      "titel": "Pflegeversicherung - Bürokratie abbauen, Pflegebedürftige und ihre Angehörigen entlasten",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "284589",
+      "titel": "Vorschlag für eine Richtlinie des Europäischen Parlaments und des Rates zur Änderung des Beschlusses 2005/671/JI des Rates im Hinblick auf seine Angleichung an die Unionsvorschriften über den Schutz personenbezogener Daten\r\nKOM(2021)767 endg.; Ratsdok. 14706/21",
+      "vorgangstyp": "EU-Vorlage"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20107.pdf",
+    "id": "5575",
+    "dokumentnummer": "20/107",
+    "datum": "2023-05-26",
+    "verteildatum": "2023-05-30",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20107.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 107. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2023-05-26"
+}

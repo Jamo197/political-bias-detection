@@ -1,0 +1,47 @@
+{
+  "id": "5412",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 148,
+  "dokumentnummer": "19/227",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "c188ef81ef760f931e0e481202c3265d",
+  "pdf_hash": "a7aec62a44ad535a3b48aa4c4f974d6e",
+  "aktualisiert": "2021-05-11T09:05:41+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "240755",
+      "titel": "Verschmutzung der Meere - Plastikflut unverzüglich stoppen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "242507",
+      "titel": "Einheitliches Prüfverfahren zur fachlichen Eignung ausländischer Ärzte aus Drittstaaten",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "241811",
+      "titel": "Netzwerkdurchsetzungsgesetz weiterentwickeln - Nutzerrechte stärken, Meinungsfreiheit in sozialen Netzwerken sicherstellen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "243776",
+      "titel": "Änderung der Verordnung über das Anlaufen der inneren Gewässer der Bundesrepublik Deutschland aus Seegebieten seewärts der Grenze des deutschen Küstenmeeres und das Auslaufen - Anlaufbedingungsverordnung",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19227.pdf",
+    "id": "5412",
+    "dokumentnummer": "19/227",
+    "datum": "2021-05-06",
+    "verteildatum": "2021-05-11",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19227.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 227. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2021-05-06"
+}

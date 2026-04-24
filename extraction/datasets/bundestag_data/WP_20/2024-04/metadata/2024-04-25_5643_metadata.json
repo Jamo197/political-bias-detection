@@ -1,0 +1,47 @@
+{
+  "id": "5643",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 41,
+  "dokumentnummer": "20/166",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "b5be0681d60b2cfab6c7355dce3dbb67",
+  "pdf_hash": "9bd3074a1b661e796952bda091c5a15b",
+  "aktualisiert": "2024-04-30T17:00:39+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "295387",
+      "titel": "Das iranische Terrorregime effektiv sanktionieren und so die iranische Revolutionsbewegung aktiv unterstützen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "303860",
+      "titel": "Ein Jahr Iran-Revolution - An Jina Mahsa Amini erinnern und den Freiheitskampf der Menschen im Iran aktiv unterstützen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "303892",
+      "titel": "Generalshotel retten - Denkmäler schützen und nicht zerstören",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "305606",
+      "titel": "Antisemitismus durch Zuwanderung klar benennen und effektiv bekämpfen - Unterstützer von antisemitischem Terrorismus ausweisen",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20166.pdf",
+    "id": "5643",
+    "dokumentnummer": "20/166",
+    "datum": "2024-04-25",
+    "verteildatum": "2024-04-26",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20166.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 166. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2024-04-25"
+}

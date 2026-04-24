@@ -1,0 +1,47 @@
+{
+  "id": "5623",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 48,
+  "dokumentnummer": "20/148",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "72afc358a9f95dd4cded318fb21c0569",
+  "pdf_hash": "d823c306887e394419493e8cb0a8538d",
+  "aktualisiert": "2024-02-09T14:54:14+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "284596",
+      "titel": "Vorschlag für eine Richtlinie des Europäischen Parlaments und des Rates zur Änderung der Richtlinie 2003/8/EG des Rates, der Rahmenbeschlüsse 2002/465/JI, 2002/584/JI, 2003/577/JI, 2005/214/JI, 2006/783/JI, 2008/909/JI, 2008/947/JI, 2009/829/JI und 2009/948/JI sowie der Richtlinie 2014/41/EU des Europäischen Parlaments und des Rates im Hinblick auf die Digitalisierung der justiziellen Zusammenarbeit\r\nKOM(2021)760 endg.; Ratsdok. 14821/21",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "287391",
+      "titel": "Bericht des Ausschusses für Bildung, Forschung und Technikfolgenabschätzung (18. Ausschuss) gemäß § 56a der Geschäftsordnung\r\nTechnikfolgenabschätzung (TA)\r\nDigitalisierung der Landwirtschaft: gesellschaftliche Voraussetzungen, Rahmenbedingungen und Effekte\r\nEndbericht Teil II",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "283701",
+      "titel": "Vorschlag für eine Verordnung des Europäischen Parlaments und des Rates über die Digitalisierung der justiziellen Zusammenarbeit und des Zugangs zur Justiz in grenzüberschreitenden Zivil-, Handels- und Strafsachen und zur Änderung einiger Rechtsakte im Bereich der justiziellen Zusammenarbeit\r\nKOM(2021)759 endg.; Ratsdok. 14850/21",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "287388",
+      "titel": "Bericht des Ausschusses für Bildung, Forschung und Technikfolgenabschätzung (18. Ausschuss) gemäß § 56a der Geschäftsordnung\r\nTechnikfolgenabschätzung (TA)\r\nDigitalisierung der Landwirtschaft: technologischer Stand und Perspektiven\r\nEndbericht Teil I",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20148.pdf",
+    "id": "5623",
+    "dokumentnummer": "20/148",
+    "datum": "2024-01-19",
+    "verteildatum": "2024-01-22",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20148.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 148. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2024-01-19"
+}

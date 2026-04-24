@@ -1,0 +1,47 @@
+{
+  "id": "5371",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 93,
+  "dokumentnummer": "19/194",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "2fa0d0d705da16b262cac325be9d8c7c",
+  "pdf_hash": "a10eabf559252fe3a321d1bfffda3653",
+  "aktualisiert": "2020-11-26T13:02:02+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "263711",
+      "titel": "Corona digital bekämpfen - Senioren, Familien und Jugendlichen digitale Möglichkeiten zur Linderung der Corona-Krise aufzeigen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "265765",
+      "titel": "Familienpolitik krisensicher und verlässlich gestalten",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "265334",
+      "titel": "Mit einer Technologie-Task-Force Innovationen schnell umsetzen und auf Krisen vorbereitet sein",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "264508",
+      "titel": "Corona digital bekämpfen - Start-up-Hilfen gerecht verteilen",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19194.pdf",
+    "id": "5371",
+    "dokumentnummer": "19/194",
+    "datum": "2020-11-25",
+    "verteildatum": "2020-11-26",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19194.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 194. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2020-11-25"
+}

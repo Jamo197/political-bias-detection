@@ -1,0 +1,42 @@
+{
+  "id": "5570",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 60,
+  "dokumentnummer": "20/103",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "9d68b6102859e4ee6ebc33e28e0d2440",
+  "pdf_hash": "8598cfe526eddc187f67d7285c870f2e",
+  "aktualisiert": "2023-10-23T08:25:38+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "290260",
+      "titel": "Gesetz für einen besseren Schutz hinweisgebender Personen sowie zur Umsetzung der Richtlinie zum Schutz von Personen, die Verstöße gegen das Unionsrecht melden",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "287082",
+      "titel": "Nationale Kraftanstrengung zur Abschiebung von abgelehnten Asylbewerbern",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "292287",
+      "titel": "zu den Verhandlungen über einen Vorschlag für eine Richtlinie des Europäischen Parlaments und des Rates zur Änderung der Richtlinie 2010/75/EU des Europäischen Parlaments und des Rates vom 24. November 2010 über Industrieemissionen (integrierte Vermeidung und Verminderung der Umweltverschmutzung) und der Richtlinie 1999/31/EG des Rates vom 26. April 1999 über Abfalldeponien",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20103.pdf",
+    "id": "5570",
+    "dokumentnummer": "20/103",
+    "datum": "2023-05-11",
+    "verteildatum": "2023-05-12",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20103.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 103. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2023-05-11"
+}

@@ -1,0 +1,47 @@
+{
+  "id": "5772",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 76,
+  "dokumentnummer": "21/61",
+  "wahlperiode": 21,
+  "herausgeber": "BT",
+  "pdf_hash": "8aa5814285b0edbd0749383050fb950c",
+  "xml_hash": "92c5786270d2f178480f9b0ab0fd4789",
+  "aktualisiert": "2026-03-06T08:50:52+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "329483",
+      "titel": "Gesetz zur Modernisierung des Produkthaftungsrechts",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "329472",
+      "titel": "Gesetz zur Weiterentwicklung der Digitalisierung in der Migrationsverwaltung (Migrationsverwaltungsdigitalisierungsweiterentwicklungsgesetz - MDWG)",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "329555",
+      "titel": "Infrastruktur-Zukunftsgesetz",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "326702",
+      "titel": "Gesetz zur Stärkung der Angebote der Jugendarbeit im Ganztag während der Schulferien",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/21/21061.pdf",
+    "id": "5772",
+    "dokumentnummer": "21/61",
+    "datum": "2026-03-04",
+    "verteildatum": "2026-03-05",
+    "xml_url": "https://dserver.bundestag.de/btp/21/21061.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 61. Sitzung des 21. Deutschen Bundestages",
+  "datum": "2026-03-04"
+}

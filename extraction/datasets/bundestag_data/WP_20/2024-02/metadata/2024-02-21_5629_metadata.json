@@ -1,0 +1,47 @@
+{
+  "id": "5629",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 85,
+  "dokumentnummer": "20/153",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "a9ca34cc2a70bfb94499765613a54502",
+  "pdf_hash": "b86c209494bd58b89130d29be93800da",
+  "aktualisiert": "2024-06-13T10:08:06+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "304682",
+      "titel": "Gesetz zur Einführung einer Kindergrundsicherung",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "307297",
+      "titel": "Gesetz zur Modernisierung des Postrechts (Postrechtsmodernisierungsgesetz - PostModG)",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "307295",
+      "titel": "Zweites Gesetz zur Änderung des DWD-Gesetzes sowie zur Änderung handelsrechtlicher Vorschriften",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "303108",
+      "titel": "Bericht über das Ergebnis der Vorplanung und der frühen Öffentlichkeitsbeteiligung ABS Paderborn - Halle (Kurve Mönchehof - Ihringshausen) \"Kurve Kassel\"",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20153.pdf",
+    "id": "5629",
+    "dokumentnummer": "20/153",
+    "datum": "2024-02-21",
+    "verteildatum": "2024-02-22",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20153.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 153. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2024-02-21"
+}

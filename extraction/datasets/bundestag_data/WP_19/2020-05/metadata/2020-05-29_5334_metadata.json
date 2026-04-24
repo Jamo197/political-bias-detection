@@ -1,0 +1,47 @@
+{
+  "id": "5334",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 40,
+  "dokumentnummer": "19/164",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "b09a786908c604e05c0348d886cbf23e",
+  "pdf_hash": "23480399f0fc3c14a67cbf7da30e9a28",
+  "aktualisiert": "2020-06-02T08:40:00+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "243967",
+      "titel": "Bericht der Wahlkreiskommission für die 19. Wahlperiode des Deutschen Bundestages gemäß § 3 des Bundeswahlgesetzes",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "256725",
+      "titel": "Jahresbericht 2018",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "256622",
+      "titel": "Bericht über die Entwicklung der Menschenrechtssituation in Deutschland im Zeitraum Juli 2018 bis Juni 2019",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "256763",
+      "titel": "Mitteilung der Kommission an das Europäische Parlament und den Rat über die Überprüfung der vollständigen Anwendung des Schengen-Besitzstands durch Kroatien \r\nKOM(2019) 497 endg.; Ratsdok. 13396/19",
+      "vorgangstyp": "EU-Vorlage"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19164.pdf",
+    "id": "5334",
+    "dokumentnummer": "19/164",
+    "datum": "2020-05-29",
+    "verteildatum": "2020-06-02",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19164.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 164. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2020-05-29"
+}

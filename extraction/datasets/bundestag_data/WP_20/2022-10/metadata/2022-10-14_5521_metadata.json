@@ -1,0 +1,47 @@
+{
+  "id": "5521",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 31,
+  "dokumentnummer": "20/61",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "b20b14319534a0d91a37d4e5992c7803",
+  "pdf_hash": "87864d5f1edb41c7d7efd8c3c04bb827",
+  "aktualisiert": "2022-10-19T10:06:50+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "292370",
+      "titel": "Jahresbericht der Bundesregierung zum Stand der Deutschen Einheit 2021",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "280803",
+      "titel": "Mitteilung der Kommission an das Europäische Parlament, den Rat, den Europäischen Wirtschafts- und Sozialausschuss und den Ausschuss der Regionen\r\nBericht über die Rechtsstaatlichkeit 2021\r\nDie Lage der Rechtsstaatlichkeit in der Europäischen Union\r\nKOM(2021) 700 endg.; Ratsdok. 10341/21",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "284161",
+      "titel": "Bericht der Kommission an das Europäische Parlament und den Rat über Rumäniens Fortschritte im Rahmen des Kooperations- und Kontrollverfahrens \r\nKOM(2021) 370 endg.; Ratsdok. 9702/21",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "280670",
+      "titel": "Bericht der Kommission: Jahresbericht 2020 über die Anwendung der Grundsätze der Subsidiarität und der Verhältnismäßigkeit und die Beziehungen zu den nationalen Parlamenten\r\nKOM(2021) 417 endg.; Ratsdok. 12116/21",
+      "vorgangstyp": "EU-Vorlage"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20061.pdf",
+    "id": "5521",
+    "dokumentnummer": "20/61",
+    "datum": "2022-10-14",
+    "verteildatum": "2022-10-17",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20061.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 61. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2022-10-14"
+}

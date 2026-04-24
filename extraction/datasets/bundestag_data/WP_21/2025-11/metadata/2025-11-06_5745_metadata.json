@@ -1,0 +1,47 @@
+{
+  "id": "5745",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 92,
+  "dokumentnummer": "21/37",
+  "wahlperiode": 21,
+  "herausgeber": "BT",
+  "xml_hash": "9c85b84350d521d50df4087210bc7ae0",
+  "pdf_hash": "1e2dfcc0006a420747aacf3616e59031",
+  "aktualisiert": "2025-11-18T17:22:06+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "322830",
+      "titel": "Priorität für Pflege - Jetzt Sofortmaßnahmen ergreifen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "322268",
+      "titel": "Leistungskürzungen und Beitragsexplosion in Gesundheit und Pflege verhindern - Jetzt gerechte Finanzierung einführen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "321692",
+      "titel": "Gesetz zur besseren Bekämpfung überhöhter Mieten (Mietwuchergesetz)",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "322836",
+      "titel": "Familien entlasten - Das Ehegattensplitting zu einer umfassenden Familienförderung umbauen",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/21/21037.pdf",
+    "id": "5745",
+    "dokumentnummer": "21/37",
+    "datum": "2025-11-06",
+    "verteildatum": "2025-11-07",
+    "xml_url": "https://dserver.bundestag.de/btp/21/21037.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 37. Sitzung des 21. Deutschen Bundestages",
+  "datum": "2025-11-06"
+}

@@ -1,0 +1,47 @@
+{
+  "id": "5358",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 24,
+  "dokumentnummer": "19/184",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "56cecc180a5d98dcbf7bc6d4cc891ef1",
+  "pdf_hash": "0717aefde85a3cf0ccdb3211aedb82a0",
+  "aktualisiert": "2020-10-12T08:42:02+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "251029",
+      "titel": "Die fiskalischen Lasten der Zuwanderung",
+      "vorgangstyp": "Große Anfrage"
+    },
+    {
+      "id": "250411",
+      "titel": "Bericht der Expertenkommission Fracking 2019",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "256652",
+      "titel": "Tätigkeitsbericht der Bundesnetzagentur - Post 2018/2019 mit\r\n11. Sektorgutachten Post der Monopolkommission - Die Novelle des Postgesetzes: Neue Chancen für den Wettbewerb",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "257661",
+      "titel": "Finanzielle Lasten der Migrationspolitik umfassend offenlegen",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19184.pdf",
+    "id": "5358",
+    "dokumentnummer": "19/184",
+    "datum": "2020-10-09",
+    "verteildatum": "2020-10-12",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19184.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 184. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2020-10-09"
+}

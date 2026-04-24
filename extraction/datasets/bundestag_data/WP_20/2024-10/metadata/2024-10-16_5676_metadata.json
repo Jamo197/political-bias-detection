@@ -1,0 +1,47 @@
+{
+  "id": "5676",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 57,
+  "dokumentnummer": "20/193",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "0727052b31f77476d95d4da19ddc8fdc",
+  "pdf_hash": "40993cd521fe42598f9df73ce914dae9",
+  "aktualisiert": "2024-11-05T11:07:31+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "311905",
+      "titel": "Stärkung des Luftverkehrsstandortes Deutschland - Für angemessene Standortkosten, effiziente Abfertigung und sichere Arbeitsplätze",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "310123",
+      "titel": "Gute Wissenschaft braucht gute Arbeitsbedingungen - Paradigmenwechsel beim Wissenschaftszeitvertragsgesetz unverzüglich umsetzen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "310588",
+      "titel": "Gesetz zur Änderung des Befristungsrechts für die Wissenschaft",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "314975",
+      "titel": "Jahressteuergesetz 2024 (Jahressteuergesetz 2024 - JStG 2024)",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20193.pdf",
+    "id": "5676",
+    "dokumentnummer": "20/193",
+    "datum": "2024-10-16",
+    "verteildatum": "2024-10-17",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20193.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 193. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2024-10-16"
+}

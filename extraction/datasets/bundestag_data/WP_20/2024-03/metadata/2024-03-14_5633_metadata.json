@@ -1,0 +1,47 @@
+{
+  "id": "5633",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 54,
+  "dokumentnummer": "20/157",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "018f037df9fe4977e9678d973147955b",
+  "pdf_hash": "e316db1fdb57323373bb89c973393dd5",
+  "aktualisiert": "2024-04-04T11:36:30+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "298643",
+      "titel": "Versteckte Preiserhöhungen verhindern - Für mehr Klarheit und Transparenz beim Einkauf von Bedarfsgütern sorgen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "304882",
+      "titel": "Innovation ermöglichen, Investitionen erleichtern - Agenda für Bürokratieabbau und bessere Rechtsetzung",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "303050",
+      "titel": "Befugnisse der Bundespolizei bei Abschiebungen zur Bewältigung der Massenmigration stärken und Fahndungskorridor erweitern",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "300784",
+      "titel": "Linksextremismus effektiver bekämpfen - Risikobewertungsinstrument \"RADAR-links\" für linksextremistische Gewalttäter einführen",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20157.pdf",
+    "id": "5633",
+    "dokumentnummer": "20/157",
+    "datum": "2024-03-14",
+    "verteildatum": "2024-03-15",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20157.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 157. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2024-03-14"
+}

@@ -1,0 +1,42 @@
+{
+  "id": "5696",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 109,
+  "dokumentnummer": "20/210",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "e1459af004f0d4dfd91c805d5822197e",
+  "pdf_hash": "4a541e4fe0fe2bf1ac999b031bbc6717",
+  "aktualisiert": "2025-02-06T16:20:16+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "312308",
+      "titel": "Gesetz zur Stärkung der Gesundheitsversorgung in der Kommune (Gesundheitsversorgungsstärkungsgesetz - GVSG)",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "311938",
+      "titel": "Gesundheit für alle - Modern, gemeinwohlorientiert und solidarisch",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "311242",
+      "titel": "Stabilität und Nachhaltigkeit der Finanzierung der Sozialversicherung",
+      "vorgangstyp": "Große Anfrage"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20210.pdf",
+    "id": "5696",
+    "dokumentnummer": "20/210",
+    "datum": "2025-01-30",
+    "verteildatum": "2025-01-31",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20210.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 210. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2025-01-30"
+}

@@ -1,0 +1,47 @@
+{
+  "id": "5600",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 15,
+  "dokumentnummer": "20/129",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "a10d501cf0b2f3b67f81b878d9d4b0e4",
+  "pdf_hash": "e13a69b20aa111fce4e44eefb7c40603",
+  "aktualisiert": "2025-03-14T09:52:53+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "301612",
+      "titel": "Umsetzung deutscher Positionen im Rahmen der Trilog-Verhandlungen zur Verabschiedung eines europäischen Gesetzes über Künstliche Intelligenz",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "300843",
+      "titel": "Vorschlag für einen Durchführungsbeschluss des Rates zur Änderung des Durchführungsbeschlusses (EU) (ST 12532/21 INIT; ST 12532/21 ADD 1) des Rates vom 3. November 2021 zur Billigung der Bewertung des Aufbau- und Resilienzplans Estlands \r\nKOM(2023)265 endg.; Ratsdok. 9364/23",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "300840",
+      "titel": "Entschließung des Europäischen Parlaments vom 10. Mai 2023 zum Thema \"Eigenmittel: ein Neubeginn für die Finanzen der EU, ein Neubeginn für Europa\" (2022/2172(INI)) \r\nEP P9_TA(2023)0195",
+      "vorgangstyp": "Unterrichtung durch das Europäische Parlament"
+    },
+    {
+      "id": "301555",
+      "titel": "Europäische KI-Verordnung - Für eine engagierte und innovationsfreundliche Mitgestaltung Deutschlands bei der Regulierung Künstlicher Intelligenz in Europa",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20129.pdf",
+    "id": "5600",
+    "dokumentnummer": "20/129",
+    "datum": "2023-10-13",
+    "verteildatum": "2023-10-16",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20129.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 129. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2023-10-13"
+}

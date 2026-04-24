@@ -1,0 +1,42 @@
+{
+  "id": "5318",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 42,
+  "dokumentnummer": "19/154",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "006b4288b3460ea3a2b052103048833b",
+  "pdf_hash": "31874c0d1d8da7fa239afe6085a530fd",
+  "aktualisiert": "2025-03-19T13:36:11+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "258727",
+      "titel": "Dreizehnte Tagung der Konferenz am 30. September und 1. Oktober 2019 in Helsinki",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "260525",
+      "titel": "Eckpunkte zur Corona-Soforthilfe für Kleinstunternehmen und Soloselbständige",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "260093",
+      "titel": "Ergänzung des Einsatzes bewaffneter deutscher Streitkräfte - Stabilisierung sichern, Wiedererstarken des IS verhindern, Versöhnung fördern in Irak und Syrien",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19154.pdf",
+    "id": "5318",
+    "dokumentnummer": "19/154",
+    "datum": "2020-03-25",
+    "verteildatum": "2020-03-26",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19154.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 154. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2020-03-25"
+}

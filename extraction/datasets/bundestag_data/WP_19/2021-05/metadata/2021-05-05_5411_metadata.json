@@ -1,0 +1,47 @@
+{
+  "id": "5411",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 111,
+  "dokumentnummer": "19/226",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "a068fcf6a055c6c4528bd4f21f65aaf4",
+  "pdf_hash": "221326280152e580d3f28127399a3855",
+  "aktualisiert": "2021-05-06T08:42:14+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "258395",
+      "titel": "Steuerskandale wie Cum/Ex zukünftig verhindern",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "241425",
+      "titel": "Cum/Ex-Steuerskandal unverzüglich beenden",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "254735",
+      "titel": "Volle und wirksame Teilhabe für Menschen mit Behinderung durch ein Assistenzhundegesetz",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "232180",
+      "titel": "Prüfung und Überarbeitung des Gesetzes zur Umsetzung der Verbraucherrechterichtlinie und zur Änderung des Gesetzes zur Regelung der Wohnungsvermittlung bezüglich des Handwerkerwiderrufs",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19226.pdf",
+    "id": "5411",
+    "dokumentnummer": "19/226",
+    "datum": "2021-05-05",
+    "verteildatum": "2021-05-06",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19226.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 226. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2021-05-05"
+}

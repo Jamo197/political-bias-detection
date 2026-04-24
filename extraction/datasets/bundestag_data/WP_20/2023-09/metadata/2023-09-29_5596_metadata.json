@@ -1,0 +1,47 @@
+{
+  "id": "5596",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 19,
+  "dokumentnummer": "20/126",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "136131eb1d7815222db51b94bb6abc6d",
+  "pdf_hash": "2ed0238dfc2744972b9796c5d5d8cc76",
+  "aktualisiert": "2023-10-04T13:12:15+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "284420",
+      "titel": "Bildung am Limit - Ausbildungsoffensive für mehr Lehrkräfte und Erzieherinnen und Erzieher",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "293204",
+      "titel": "Endometriose - Endlich verstehen, behandeln, erforschen, begleiten",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "295090",
+      "titel": "Evaluierungsbericht der Bundesregierung zum Kohlendioxid-Speicherungsgesetz",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "292298",
+      "titel": "Dritter Bericht der Bundesregierung zum Aufbauinstrument \"Next Generation EU\"",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20126.pdf",
+    "id": "5596",
+    "dokumentnummer": "20/126",
+    "datum": "2023-09-29",
+    "verteildatum": "2023-10-02",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20126.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 126. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2023-09-29"
+}

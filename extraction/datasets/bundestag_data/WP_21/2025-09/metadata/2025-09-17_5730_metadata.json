@@ -1,0 +1,37 @@
+{
+  "id": "5730",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 4,
+  "dokumentnummer": "21/24",
+  "wahlperiode": 21,
+  "herausgeber": "BT",
+  "xml_hash": "d1a80effc2746591651a6efb9f641488",
+  "pdf_hash": "3ef1e1f7c2fa642a4559da1dd6fe7853",
+  "aktualisiert": "2025-10-06T09:12:22+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "323469",
+      "titel": "Finanzplan des Bundes 2024 bis 2028",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "322883",
+      "titel": "Gesetz über die Feststellung des Bundeshaushaltsplans für das Haushaltsjahr 2025 (Haushaltsgesetz 2025 - HG 2025)",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/21/21024.pdf",
+    "id": "5730",
+    "dokumentnummer": "21/24",
+    "datum": "2025-09-17",
+    "verteildatum": "2025-09-18",
+    "xml_url": "https://dserver.bundestag.de/btp/21/21024.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 24. Sitzung des 21. Deutschen Bundestages",
+  "datum": "2025-09-17"
+}

@@ -1,0 +1,47 @@
+{
+  "id": "5577",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 66,
+  "dokumentnummer": "20/109",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "13760d27da42f68f74732dd58adf9861",
+  "pdf_hash": "26e609df0de02ffef53fe5f62a292902",
+  "aktualisiert": "2023-06-21T12:56:34+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "288779",
+      "titel": "Mit einer engagierten Politik die EU-Perspektive für die Staaten des westlichen Balkans erneuern",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "291801",
+      "titel": "Mit steuerlichen Maßnahmen Wärmewende beschleunigen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "289322",
+      "titel": "Leid an der EU-Außengrenze beenden - Illegale Pushbacks und Menschenrechtsverletzungen effektiv verhindern",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "284421",
+      "titel": "Menschen- und Flüchtlingsrechte in der Europäischen Union und an der polnisch-belarussischen Grenze verteidigen",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20109.pdf",
+    "id": "5577",
+    "dokumentnummer": "20/109",
+    "datum": "2023-06-15",
+    "verteildatum": "2023-06-16",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20109.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 109. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2023-06-15"
+}

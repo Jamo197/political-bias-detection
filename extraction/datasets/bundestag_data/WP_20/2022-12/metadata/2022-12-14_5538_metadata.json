@@ -1,0 +1,47 @@
+{
+  "id": "5538",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 49,
+  "dokumentnummer": "20/75",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "6ae09a5eda59d5e6c8dc8dcbeb00171c",
+  "pdf_hash": "25294094eb037b085689d07df3f5965c",
+  "aktualisiert": "2022-12-19T10:28:00+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "287843",
+      "titel": "Unterstützung in Bildung und Forschung für Geflüchtete aus der Ukraine",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "292382",
+      "titel": "Gesetz zur Modernisierung des Bundesbaus",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "287846",
+      "titel": "Zügig pragmatische Lösungen schaffen - Beschulung ukrainischer Flüchtlingskinder bestmöglich sicherstellen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "293193",
+      "titel": "Den EU-Beitrittskandidaten Moldau weiter unterstützen",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20075.pdf",
+    "id": "5538",
+    "dokumentnummer": "20/75",
+    "datum": "2022-12-14",
+    "verteildatum": "2022-12-15",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20075.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 75. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2022-12-14"
+}

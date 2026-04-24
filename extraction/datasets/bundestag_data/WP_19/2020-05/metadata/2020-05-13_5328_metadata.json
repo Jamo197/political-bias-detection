@@ -1,0 +1,47 @@
+{
+  "id": "5328",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 69,
+  "dokumentnummer": "19/159",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "a46ffa051edc26149e083ef06967c23b",
+  "pdf_hash": "ee34866b727d37b7a6c7612390021e48",
+  "aktualisiert": "2020-05-14T08:20:00+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "261950",
+      "titel": "Fortsetzung der Beteiligung bewaffneter deutscher Streitkräfte an der Multidimensionalen Integrierten Stabilisierungsmission der Vereinten Nationen in Mali (MINUSMA)",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "261947",
+      "titel": "Fortsetzung der Beteiligung bewaffneter deutscher Streitkräfte an der Militärmission der Europäischen Union als Beitrag zur Ausbildung der malischen Streitkräfte (EUTM Mali)",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "261945",
+      "titel": "Fortsetzung der Beteiligung bewaffneter deutscher Streitkräfte an der internationalen Sicherheitspräsenz in Kosovo (KFOR)",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "262066",
+      "titel": "Abzug US-amerikanischer Atomwaffen aus Deutschland",
+      "vorgangstyp": "Mündliche Frage"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19159.pdf",
+    "id": "5328",
+    "dokumentnummer": "19/159",
+    "datum": "2020-05-13",
+    "verteildatum": "2020-05-14",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19159.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 159. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2020-05-13"
+}

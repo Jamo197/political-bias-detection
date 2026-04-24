@@ -1,0 +1,47 @@
+{
+  "id": "5509",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 27,
+  "dokumentnummer": "20/51",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "6707e4b7a5c5acb8d39564c49ffc518b",
+  "pdf_hash": "2464ae6c865e9385d1cab45270336214",
+  "aktualisiert": "2022-09-20T11:15:38+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "287812",
+      "titel": "Rechnung des Bundesrechnungshofes für das Haushaltsjahr 2021 \r\n- Einzelplan 20 -",
+      "vorgangstyp": "Entlastung des Bundesrechnungshofes"
+    },
+    {
+      "id": "288772",
+      "titel": "Gesetz zur Verbesserung der Entschädigung im Fall einer Geflügelseuche",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "288950",
+      "titel": "Opfer von NS-\"Euthanasie\" und Zwangssterilisation als Verfolgte des Nationalsozialismus anerkennen - Aufarbeitung vorantreiben",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "283135",
+      "titel": "Entlastung der Bundesregierung für das Haushaltsjahr 2020\r\n- Haushalts- und Vermögensrechnung des Bundes für das Haushaltsjahr 2020 -",
+      "vorgangstyp": "Entlastung der Bundesregierung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20051.pdf",
+    "id": "5509",
+    "dokumentnummer": "20/51",
+    "datum": "2022-09-08",
+    "verteildatum": "2022-09-09",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20051.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 51. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2022-09-08"
+}

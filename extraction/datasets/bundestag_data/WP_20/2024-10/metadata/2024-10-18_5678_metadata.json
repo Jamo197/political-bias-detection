@@ -1,0 +1,37 @@
+{
+  "id": "5678",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 30,
+  "dokumentnummer": "20/195",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "d560ec85539dbb6c55329aaec8cb5dd8",
+  "pdf_hash": "d74ecf400cdeb0faf552f70c5e3a3b05",
+  "aktualisiert": "2024-10-28T16:21:45+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "311547",
+      "titel": "Gesetz zur Änderung des Soldatenentschädigungsgesetzes und des Soldatenversorgungsrechts",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "312306",
+      "titel": "Gesetz zur Modernisierung und zum Bürokratieabbau im Strom- und Energiesteuerrecht",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20195.pdf",
+    "id": "5678",
+    "dokumentnummer": "20/195",
+    "datum": "2024-10-18",
+    "verteildatum": "2024-10-21",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20195.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 195. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2024-10-18"
+}

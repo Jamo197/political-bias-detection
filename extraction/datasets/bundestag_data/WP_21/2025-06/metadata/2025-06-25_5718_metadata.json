@@ -1,0 +1,42 @@
+{
+  "id": "5718",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 92,
+  "dokumentnummer": "21/13",
+  "wahlperiode": 21,
+  "herausgeber": "BT",
+  "xml_hash": "40a570dc1d1cdcb414eced83c8f46e4a",
+  "pdf_hash": "95460fbd1398be3dbd4f7eb178e5aefb",
+  "aktualisiert": "2025-07-15T11:15:11+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "321992",
+      "titel": "Fortsetzung der Beteiligung bewaffneter deutscher Streitkräfte an der durch die Europäische Union geführten Operation EUFOR ALTHEA in Bosnien und Herzegowina",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "322241",
+      "titel": "Sechstes Gesetz zur Änderung des Allgemeinen Eisenbahngesetzes",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "321943",
+      "titel": "Sicherheit stärken, Energieabhängigkeiten durch erneuerbare Energien verringern - Rückkehr zu Nord-Stream-Pipelines ausschließen",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/21/21013.pdf",
+    "id": "5718",
+    "dokumentnummer": "21/13",
+    "datum": "2025-06-25",
+    "verteildatum": "2025-06-26",
+    "xml_url": "https://dserver.bundestag.de/btp/21/21013.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 13. Sitzung des 21. Deutschen Bundestages",
+  "datum": "2025-06-25"
+}

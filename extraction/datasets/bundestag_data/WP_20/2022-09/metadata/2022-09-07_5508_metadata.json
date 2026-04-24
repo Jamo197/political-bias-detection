@@ -1,0 +1,37 @@
+{
+  "id": "5508",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 5,
+  "dokumentnummer": "20/50",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "0280639c2b2c2c0a70c2a7f58e604049",
+  "pdf_hash": "de50cee112d17c2e1609bde68e94b187",
+  "aktualisiert": "2022-09-13T16:55:19+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "290228",
+      "titel": "Finanzplan des Bundes 2022 bis 2026",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "290223",
+      "titel": "Gesetz über die Feststellung des Bundeshaushaltsplans für das Haushaltsjahr 2023 (Haushaltsgesetz 2023)",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20050.pdf",
+    "id": "5508",
+    "dokumentnummer": "20/50",
+    "datum": "2022-09-07",
+    "verteildatum": "2022-09-08",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20050.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 50. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2022-09-07"
+}

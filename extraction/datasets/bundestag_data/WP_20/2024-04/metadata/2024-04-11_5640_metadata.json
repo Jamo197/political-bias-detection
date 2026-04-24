@@ -1,0 +1,47 @@
+{
+  "id": "5640",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 48,
+  "dokumentnummer": "20/163",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "7889f66e564b2ca0842ac61efa6e55a6",
+  "pdf_hash": "16c083a21909a4922c08b506821482b0",
+  "aktualisiert": "2024-04-18T13:15:46+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "297696",
+      "titel": "Verbraucherfreundliche und transparente Kennzeichnung von Insekten in Lebensmitteln",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "299229",
+      "titel": "Gesetz zur Verbesserung des Klimaschutzes beim Immissionsschutz, zur Beschleunigung immissionsschutzrechtlicher Genehmigungsverfahren und zur Umsetzung von EU-Recht",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "301636",
+      "titel": "Flexibilisierung des Besserstellungsverbotes für gemeinnützige Forschungseinrichtungen ermöglichen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "294074",
+      "titel": "Baukulturbericht 2022/23 der Bundesstiftung Baukultur mit Stellungnahme der Bundesregierung",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20163.pdf",
+    "id": "5640",
+    "dokumentnummer": "20/163",
+    "datum": "2024-04-11",
+    "verteildatum": "2024-04-12",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20163.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 163. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2024-04-11"
+}

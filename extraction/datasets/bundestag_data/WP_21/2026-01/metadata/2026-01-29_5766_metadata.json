@@ -1,0 +1,47 @@
+{
+  "id": "5766",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 53,
+  "dokumentnummer": "21/56",
+  "wahlperiode": 21,
+  "herausgeber": "BT",
+  "xml_hash": "e793206ae87889298e828c6c52377081",
+  "pdf_hash": "f208b684de6bde4a62ee90eec2ddcbe2",
+  "aktualisiert": "2026-02-04T16:05:18+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "326707",
+      "titel": "Erstes Gesetz zur Änderung des Hohe-See-Einbringungsgesetzes",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "325554",
+      "titel": "Zukunft sichern, Klima schützen - Naturverträgliche Lösungen vor Verfahren zur CO2-Abscheidung und -Speicherung",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "323419",
+      "titel": "Ultraschalluntersuchengen zur Altersbestimmung in Asyl- und Strafverfahren zur Praxisreife bringen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "322910",
+      "titel": "Gesetz zur Abschaffung des § 188 des Strafgesetzbuchs - Stärkung der Meinungsfreiheit und Gleichheit vor dem Gesetz",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/21/21056.pdf",
+    "id": "5766",
+    "dokumentnummer": "21/56",
+    "datum": "2026-01-29",
+    "verteildatum": "2026-01-30",
+    "xml_url": "https://dserver.bundestag.de/btp/21/21056.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 56. Sitzung des 21. Deutschen Bundestages",
+  "datum": "2026-01-29"
+}

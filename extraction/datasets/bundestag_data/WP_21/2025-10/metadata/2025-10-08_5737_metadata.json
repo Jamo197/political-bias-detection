@@ -1,0 +1,42 @@
+{
+  "id": "5737",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 79,
+  "dokumentnummer": "21/30",
+  "wahlperiode": 21,
+  "herausgeber": "BT",
+  "xml_hash": "01344b2efdccdba65ff6def7d38cf577",
+  "pdf_hash": "f6f0d27f841f2b897acf82b50c5b69bf",
+  "aktualisiert": "2025-12-02T09:43:01+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "322125",
+      "titel": "Gesetz zur Änderung des Staatsangehörigkeitsgesetzes sowie weiterer Vorschriften",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "322859",
+      "titel": "Steuerprivilegien für höchste Erbschaften streichen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "322813",
+      "titel": "Einbürgerungen unabhängig vom Einkommen ermöglichen",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/21/21030.pdf",
+    "id": "5737",
+    "dokumentnummer": "21/30",
+    "datum": "2025-10-08",
+    "verteildatum": "2025-10-09",
+    "xml_url": "https://dserver.bundestag.de/btp/21/21030.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 30. Sitzung des 21. Deutschen Bundestages",
+  "datum": "2025-10-08"
+}

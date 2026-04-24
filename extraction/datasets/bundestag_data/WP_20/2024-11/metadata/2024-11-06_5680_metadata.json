@@ -1,0 +1,47 @@
+{
+  "id": "5680",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 62,
+  "dokumentnummer": "20/196",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "dec3bf2267d5cef860f8713f6d514837",
+  "pdf_hash": "890d91469b78b561241d60d046850e24",
+  "aktualisiert": "2024-11-19T15:00:23+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "312317",
+      "titel": "Gesetz zur Änderung des Tierschutzgesetzes und des Tiererzeugnisse-Handels-Verbotsgesetzes",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "315282",
+      "titel": "Gesetz zur Stärkung der Herzgesundheit (Gesundes-Herz-Gesetz - GHG)",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "315288",
+      "titel": "Gesetz zur Beschleunigung der Genehmigungsverfahren von Geothermieanlagen, Wärmepumpen und Wärmespeichern sowie zur Änderung weiterer rechtlicher Rahmenbedingungen für den klimaneutralen Ausbau der Wärmeversorgung",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "314884",
+      "titel": "Gesetz zur Stärkung der Öffentlichen Gesundheit",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20196.pdf",
+    "id": "5680",
+    "dokumentnummer": "20/196",
+    "datum": "2024-11-06",
+    "verteildatum": "2024-11-07",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20196.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 196. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2024-11-06"
+}

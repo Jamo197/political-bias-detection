@@ -1,0 +1,47 @@
+{
+  "id": "5302",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 59,
+  "dokumentnummer": "19/140",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "95b24d34596d4f53b631dbbe81643785",
+  "pdf_hash": "70e42044ac83d176fd5bdf29849f1e07",
+  "aktualisiert": "2020-01-17T08:20:01+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "242050",
+      "titel": "Sofortprogramm Zentralstatistik Wohnungs- und Obdachlosigkeit",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "245709",
+      "titel": "Strategie für saubere und gesunde Luft jetzt umsetzen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "243764",
+      "titel": "Wohnungs- und Obdachlosigkeit bekämpfen, Zwangsräumungen verhindern",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "237231",
+      "titel": "Mobilitätsforschung neu denken - Experimentierräume für Stadt und Land schaffen",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19140.pdf",
+    "id": "5302",
+    "dokumentnummer": "19/140",
+    "datum": "2020-01-16",
+    "verteildatum": "2020-01-17",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19140.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 140. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2020-01-16"
+}

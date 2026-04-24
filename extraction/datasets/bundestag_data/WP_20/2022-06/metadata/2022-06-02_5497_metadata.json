@@ -1,0 +1,42 @@
+{
+  "id": "5497",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 29,
+  "dokumentnummer": "20/41",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "fd96c46edd9d633531afe20c2a6a9c06",
+  "pdf_hash": "133daaf556695557f3e6b8e5c0d30249",
+  "aktualisiert": "2022-06-03T08:32:03+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "285688",
+      "titel": "Finanzplan des Bundes 2021 bis 2025",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "285457",
+      "titel": "Gesetz über die Feststellung des Bundeshaushaltsplans für das Haushaltsjahr 2022 (Haushaltsgesetz 2022)",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "288372",
+      "titel": "Fünfter Bodenschutzbericht der Bundesregierung",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20041.pdf",
+    "id": "5497",
+    "dokumentnummer": "20/41",
+    "datum": "2022-06-02",
+    "verteildatum": "2022-06-03",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20041.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 41. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2022-06-02"
+}

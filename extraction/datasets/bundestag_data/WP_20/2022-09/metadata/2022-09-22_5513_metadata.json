@@ -1,0 +1,42 @@
+{
+  "id": "5513",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 67,
+  "dokumentnummer": "20/54",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "0a8357425ac3d7bb46df3f1cc917b906",
+  "pdf_hash": "fad9047fc3b9f41785ac488b839b3e76",
+  "aktualisiert": "2022-10-11T19:06:20+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "286494",
+      "titel": "Achtes Gesetz zur Änderung von Verbrauchsteuergesetzen",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "286257",
+      "titel": "Nachhaltige Impulse für Einzelhandel und Innenstädte",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "286488",
+      "titel": "Gesetz zur Durchführung des Haager Übereinkommens vom 2. Juli 2019 über die Anerkennung und Vollstreckung ausländischer Entscheidungen in Zivil- und Handelssachen sowie zur Änderung der Zivilprozessordnung, des Bürgerlichen Gesetzbuchs, des Wohnungseigentumsgesetzes und des Gesetzes zur Modernisierung des Strafverfahrens",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20054.pdf",
+    "id": "5513",
+    "dokumentnummer": "20/54",
+    "datum": "2022-09-22",
+    "verteildatum": "2022-09-23",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20054.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 54. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2022-09-22"
+}

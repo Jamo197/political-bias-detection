@@ -1,0 +1,47 @@
+{
+  "id": "5706",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 52,
+  "dokumentnummer": "21/3",
+  "wahlperiode": 21,
+  "herausgeber": "BT",
+  "xml_hash": "4a0995da1b5e5bf10baa2a1a762c9e38",
+  "pdf_hash": "9106a5dfa6947255f2b6be59a0824af3",
+  "aktualisiert": "2025-05-20T11:19:30+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "321685",
+      "titel": "Anweisung von Bundeskanzler Friedrich Merz an das BMI zur Durchführung von Grenzkontrollen",
+      "vorgangstyp": "Mündliche Frage"
+    },
+    {
+      "id": "321686",
+      "titel": "Abschaffung des Meeresbeauftragten\r\n",
+      "vorgangstyp": "Mündliche Frage"
+    },
+    {
+      "id": "321683",
+      "titel": "Altersbestimmung von Asylsuchenden bei Zurückweisungen an den deutschen Außengrenzen",
+      "vorgangstyp": "Mündliche Frage"
+    },
+    {
+      "id": "321669",
+      "titel": "Beendigung von Resettlement-Aufnahmen",
+      "vorgangstyp": "Mündliche Frage"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/21/21003.pdf",
+    "id": "5706",
+    "dokumentnummer": "21/3",
+    "datum": "2025-05-14",
+    "verteildatum": "2025-05-15",
+    "xml_url": "https://dserver.bundestag.de/btp/21/21003.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 3. Sitzung des 21. Deutschen Bundestages",
+  "datum": "2025-05-14"
+}

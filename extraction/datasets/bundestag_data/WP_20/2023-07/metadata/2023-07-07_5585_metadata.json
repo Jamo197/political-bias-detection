@@ -1,0 +1,47 @@
+{
+  "id": "5585",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 48,
+  "dokumentnummer": "20/116",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "3bb3c3cb1d6e323b7de08ae75b6eed69",
+  "pdf_hash": "c11c0ada74ab80899d62151334f5cf3a",
+  "aktualisiert": "2023-10-23T08:26:05+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "283364",
+      "titel": "Haushaltsführung 2021\r\nÜber- und außerplanmäßige Ausgaben und Verpflichtungsermächtigungen im ersten Vierteljahr des Haushaltsjahres 2021",
+      "vorgangstyp": "Über- und außerplanmäßige Haushaltsausgaben"
+    },
+    {
+      "id": "279899",
+      "titel": "Vorschlag für eine Richtlinie des Europäischen Parlaments und des Rates über Verbraucherkredite\r\nKOM(2021) 347 endg.; Ratsdok. 10382/21",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "283367",
+      "titel": "Haushaltsführung 2021\r\nÜber- und außerplanmäßige Ausgaben und Verpflichtungsermächtigungen im zweiten Vierteljahr des Haushaltsjahres 2021",
+      "vorgangstyp": "Über- und außerplanmäßige Haushaltsausgaben"
+    },
+    {
+      "id": "283421",
+      "titel": "Haushaltsführung 2021\r\nÜber- und außerplanmäßige Ausgaben und Verpflichtungsermächtigungen im dritten Vierteljahr des Haushaltsjahres 2021",
+      "vorgangstyp": "Über- und außerplanmäßige Haushaltsausgaben"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20116.pdf",
+    "id": "5585",
+    "dokumentnummer": "20/116",
+    "datum": "2023-07-07",
+    "verteildatum": "2023-07-10",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20116.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 116. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2023-07-07"
+}

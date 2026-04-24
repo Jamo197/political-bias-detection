@@ -1,0 +1,47 @@
+{
+  "id": "5505",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 93,
+  "dokumentnummer": "20/48",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "1e3ad25c863fb17414f8f20cc4de79b0",
+  "pdf_hash": "edd90edd631d39d15a8cf54234a9b3fd",
+  "aktualisiert": "2022-08-31T16:14:39+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "285994",
+      "titel": "Bericht des Bundeskartellamtes über seine Tätigkeit in den Jahren 2019/2020 sowie über die Lage und Entwicklung auf seinem Aufgabengebiet \r\nund Stellungnahme der Bundesregierung",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "285920",
+      "titel": "Haushaltsführung 2020\r\nÜber- und außerplanmäßige Ausgaben und Verpflichtungsermächtigungen im dritten Vierteljahr des Haushaltsjahres 2020",
+      "vorgangstyp": "Über- und außerplanmäßige Haushaltsausgaben"
+    },
+    {
+      "id": "285912",
+      "titel": "Haushaltsführung 2020\r\nÜber- und außerplanmäßige Ausgaben und Verpflichtungsermächtigungen im ersten Vierteljahr des Haushaltsjahres 2020",
+      "vorgangstyp": "Über- und außerplanmäßige Haushaltsausgaben"
+    },
+    {
+      "id": "285916",
+      "titel": "Haushaltsführung 2020\r\nÜber- und außerplanmäßige Ausgaben und Verpflichtungsermächtigungen im zweiten Vierteljahr des Haushaltsjahres 2020",
+      "vorgangstyp": "Über- und außerplanmäßige Haushaltsausgaben"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20048.pdf",
+    "id": "5505",
+    "dokumentnummer": "20/48",
+    "datum": "2022-07-08",
+    "verteildatum": "2022-07-11",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20048.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 48. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2022-07-08"
+}

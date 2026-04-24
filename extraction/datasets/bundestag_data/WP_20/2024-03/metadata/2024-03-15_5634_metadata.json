@@ -1,0 +1,47 @@
+{
+  "id": "5634",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 37,
+  "dokumentnummer": "20/158",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "6e507982b26b2a76d9f1b34ab81693d2",
+  "pdf_hash": "8f64fe80ff1ee0f8756f1f402ff8dc8d",
+  "aktualisiert": "2024-03-25T14:44:21+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "232244",
+      "titel": "Entschließung des Europäischen Parlaments vom 16. November 2017 zu dem Jahresbericht 2016 über die Tätigkeit des Europäischen Bürgerbeauftragten (2017/2126(INI)) \r\nEP P8_TA-PROV(2017)0449",
+      "vorgangstyp": "Unterrichtung durch das Europäische Parlament"
+    },
+    {
+      "id": "232248",
+      "titel": "Entschließung des Europäischen Parlaments vom 14. Dezember 2017 gemäß Artikel 216 Absatz 7 der Geschäftsordnung über die Beratungen des Petitionsausschusses im Jahr 2016 (2017/2222(INI)) \r\nEP P8_TA-PROV(2017)0502",
+      "vorgangstyp": "Unterrichtung durch das Europäische Parlament"
+    },
+    {
+      "id": "243808",
+      "titel": "Entschließung des Europäischen Parlaments vom 13. Dezember 2018 zum Jahresbericht 2017 über die Tätigkeit des Europäischen Bürgerbeauftragten (2018/2105(INI)) \r\nEP P8_TA-PROV(2018)0531",
+      "vorgangstyp": "Unterrichtung durch das Europäische Parlament"
+    },
+    {
+      "id": "245012",
+      "titel": "Entschließung des Europäischen Parlaments vom 13. Februar 2019 zu den Ergebnissen der Beratungen des Petitionsausschusses im Jahr 2018 (2018/2280(INI)) \r\nEP P8_TA-PROV(2019)0114",
+      "vorgangstyp": "Unterrichtung durch das Europäische Parlament"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20158.pdf",
+    "id": "5634",
+    "dokumentnummer": "20/158",
+    "datum": "2024-03-15",
+    "verteildatum": "2024-03-18",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20158.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 158. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2024-03-15"
+}

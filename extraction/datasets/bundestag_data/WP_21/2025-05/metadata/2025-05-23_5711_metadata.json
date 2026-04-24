@@ -1,0 +1,47 @@
+{
+  "id": "5711",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 8,
+  "dokumentnummer": "21/8",
+  "wahlperiode": 21,
+  "herausgeber": "BT",
+  "xml_hash": "68864d3e4edfb3c6e8337409e7d0e6ae",
+  "pdf_hash": "e9faaaf3b9107e33e40bddd4db08e113",
+  "aktualisiert": "2025-05-28T09:39:34+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "321952",
+      "titel": "Faire-Mieten-Gesetz",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "321717",
+      "titel": "Ein Tierschutzgesetz, das Tiere wirksam schützt",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "321949",
+      "titel": "Gesetz zur Verbesserung der Rahmenbedingungen für die Erprobung von Innovationen in Reallaboren und zur Förderung des regulatorischen Lernens",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "321947",
+      "titel": "Kein Heizungsgesetz durch die Hintertür - CO2-Bepreisung abschaffen",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/21/21008.pdf",
+    "id": "5711",
+    "dokumentnummer": "21/8",
+    "datum": "2025-05-23",
+    "verteildatum": "2025-05-26",
+    "xml_url": "https://dserver.bundestag.de/btp/21/21008.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 8. Sitzung des 21. Deutschen Bundestages",
+  "datum": "2025-05-23"
+}

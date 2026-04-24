@@ -1,0 +1,47 @@
+{
+  "id": "5580",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 59,
+  "dokumentnummer": "20/111",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "193d138cbdab9020f0e331e2f1a82cc9",
+  "pdf_hash": "3c536530122c7d9a5aa164c37d522194",
+  "aktualisiert": "2025-03-14T09:52:32+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "287842",
+      "titel": "Den Traum von den eigenen vier Wänden ermöglichen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "301059",
+      "titel": "Bericht über das deutsche Engagement beim Einsatz von Polizistinnen und Polizisten in internationalen Polizeimissionen 2020",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "295945",
+      "titel": "Bericht über das deutsche Engagement beim Einsatz von Polizistinnen und Polizisten in internationalen Polizeimissionen 2021",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "298723",
+      "titel": "Gesetz zur Änderung des Gebäudeenergiegesetzes, zur Änderung des Bürgerlichen Gesetzbuches, zur Änderung der Verordnung über Heizkostenabrechnung, zur Änderung der Betriebskostenverordnung und zur Änderung der Kehr- und Überprüfungsordnung\r\n[Heizungsgesetz]",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20111.pdf",
+    "id": "5580",
+    "dokumentnummer": "20/111",
+    "datum": "2023-06-21",
+    "verteildatum": "2023-06-22",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20111.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 111. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2023-06-21"
+}

@@ -1,0 +1,47 @@
+{
+  "id": "5672",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 41,
+  "dokumentnummer": "20/189",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "cac232d49b206b710dbc55ee8091bc28",
+  "pdf_hash": "124a10fd8a19b779ac408618d2f0e6c5",
+  "aktualisiert": "2024-10-02T11:33:28+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "284221",
+      "titel": "Bericht der Kommission an das Europäische Parlament und den Rat\r\nBewertungsbericht gemäß Artikel 38 der Verordnung über das Statut und die Finanzierung europäischer politischer Parteien und europäischer politischer Stiftungen \r\nKOM(2021) 717 endg.; Ratsdok. 14388/21",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "285126",
+      "titel": "Empfehlung für einen Beschluss des Rates über die Ermächtigung zur Aufnahme von Verhandlungen über ein Abkommen zwischen der Europäischen Union und dem Vereinigten Königreich Großbritannien und Nordirland über die Zusammenarbeit und den Informationsaustausch in Wettbewerbssachen \r\nKOM(2021) 228 endg.; Ratsdok. 8760/21",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "291723",
+      "titel": "Bericht des Ausschusses für Bildung, Forschung und Technikfolgenabschätzung (18. Ausschuss) gemäß § 56a der Geschäftsordnung\r\nTechnikfolgenabschätzung (TA)\r\nKünstliche Intelligenz und Distributed-Ledger-Technologie in der öffentlichen Verwaltung",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "294580",
+      "titel": "Bericht der Kommission an das Europäische Parlament und den Rat\r\nJahresbericht über die 2021 finanzierten humanitären Hilfsmaßnahmen der Europäischen Union\r\nKOM(2022) 647 endg.; Ratsdok. 15055/22",
+      "vorgangstyp": "EU-Vorlage"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20189.pdf",
+    "id": "5672",
+    "dokumentnummer": "20/189",
+    "datum": "2024-09-27",
+    "verteildatum": "2024-09-30",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20189.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 189. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2024-09-27"
+}

@@ -1,0 +1,37 @@
+{
+  "id": "5625",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 9,
+  "dokumentnummer": "20/150",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "700689612973d7cfd19664b7ccaa3de8",
+  "pdf_hash": "09cfcd406ed51306d0630ab2c116e22d",
+  "aktualisiert": "2024-02-09T14:54:20+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "302729",
+      "titel": "Gesetz über die Feststellung des Bundeshaushaltsplans für das Haushaltsjahr 2024 (Haushaltsgesetz 2024 - HG 2024)",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "302730",
+      "titel": "Finanzplan des Bundes 2023 bis 2027",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20150.pdf",
+    "id": "5625",
+    "dokumentnummer": "20/150",
+    "datum": "2024-01-31",
+    "verteildatum": "2024-02-01",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20150.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 150. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2024-01-31"
+}

@@ -1,0 +1,47 @@
+{
+  "id": "5717",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 5,
+  "dokumentnummer": "21/12",
+  "wahlperiode": 21,
+  "herausgeber": "BT",
+  "xml_hash": "b4e0aa9f2c783d5dc56700af69959647",
+  "pdf_hash": "6c192e6ee17ecd71b42a1361858a15e2",
+  "aktualisiert": "2025-07-08T17:44:04+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "322377",
+      "titel": "Erteilung eines Ordnungsrufes an den Abg Stephan Brandner (AfD)",
+      "vorgangstyp": "Geschäftsordnung"
+    },
+    {
+      "id": "321977",
+      "titel": "Gesetz zur Verlängerung der Fristen im Investitionsprogramm Ganztagsausbau",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "322129",
+      "titel": "Gesetz zu dem Vierten Protokoll vom 18. September 2023 zur Änderung des Vertrags vom 27. Oktober 1956 zwischen der Bundesrepublik Deutschland, der Französischen Republik und dem Großherzogtum Luxemburg über die Schiffbarmachung der Mosel",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "322316",
+      "titel": "Gesetz für ein steuerliches Investitionssofortprogramm zur Stärkung des Wirtschaftsstandorts Deutschland",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/21/21012.pdf",
+    "id": "5717",
+    "dokumentnummer": "21/12",
+    "datum": "2025-06-24",
+    "verteildatum": "2025-06-25",
+    "xml_url": "https://dserver.bundestag.de/btp/21/21012.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 12. Sitzung des 21. Deutschen Bundestages",
+  "datum": "2025-06-24"
+}

@@ -1,0 +1,47 @@
+{
+  "id": "5608",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 61,
+  "dokumentnummer": "20/136",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "41407d68fddabe6af7dd12b5c3ef31bc",
+  "pdf_hash": "37c8006a3766e36e8bbc2414b493c604",
+  "aktualisiert": "2023-11-28T11:27:15+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "304909",
+      "titel": "Fünfter Bericht der Bundesregierung zum Aufbauinstrument \"Next Generation EU\"",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "303278",
+      "titel": "Gesetz über die Selbstbestimmung in Bezug auf den Geschlechtseintrag und zur Änderung weiterer Vorschriften",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "303092",
+      "titel": "Transsexuellengesetz erhalten und den Schutz von Menschen mit Geschlechtsdysphorie verbessern",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "300103",
+      "titel": "Die Abwanderung hochqualifizierter deutscher Wissenschaftler statistisch erfassen und gegensteuernd tätig werden",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20136.pdf",
+    "id": "5608",
+    "dokumentnummer": "20/136",
+    "datum": "2023-11-15",
+    "verteildatum": "2023-11-16",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20136.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 136. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2023-11-15"
+}

@@ -1,0 +1,47 @@
+{
+  "id": "5749",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 17,
+  "dokumentnummer": "21/41",
+  "wahlperiode": 21,
+  "herausgeber": "BT",
+  "xml_hash": "b68982de235001a41681d8cde04cb41d",
+  "pdf_hash": "0d03f83724a5471d67c52ef10c7f2799",
+  "aktualisiert": "2025-12-05T11:02:36+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "323118",
+      "titel": "Vorschlag für einen Beschluss des Rates über den Abschluss - im Namen der Europäischen Union - des Abkommens zwischen der Europäischen Union einerseits und der Republik Ecuador andererseits über die Zusammenarbeit zwischen der Agentur der Europäischen Union für die Zusammenarbeit auf dem Gebiet der Strafverfolgung (Europol) und den für die Bekämpfung von schwerer Kriminalität und Terrorismus zuständigen ecuadorianischen Behörden \r\nKOM(2025) 247 endg.; Ratsdok. 9297/25",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "323117",
+      "titel": "Vorschlag für einen Beschluss des Rates über die Unterzeichnung - im Namen der Europäischen Union - des Abkommens zwischen der Europäischen Union einerseits und der Republik Ecuador andererseits über die Zusammenarbeit zwischen der Agentur der Europäischen Union für die Zusammenarbeit auf dem Gebiet der Strafverfolgung (Europol) und den für die Bekämpfung von schwerer Kriminalität und Terrorismus zuständigen ecuadorianischen Behörden \r\nKOM(2025) 248 endg.; Ratsdok. 9295/25",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "324649",
+      "titel": "Dauerduldungen unattraktiver machen durch Abschaffung der Analogleistungen nach § 2 des Asylbewerberleistungsgesetzes",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "324745",
+      "titel": "Gesetz zur Durchführung der Reform und Erweiterung des Schutzes geografischer Angaben (Geoschutzreformgesetz)",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/21/21041.pdf",
+    "id": "5749",
+    "dokumentnummer": "21/41",
+    "datum": "2025-11-14",
+    "verteildatum": "2025-11-17",
+    "xml_url": "https://dserver.bundestag.de/btp/21/21041.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 41. Sitzung des 21. Deutschen Bundestages",
+  "datum": "2025-11-14"
+}

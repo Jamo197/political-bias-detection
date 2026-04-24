@@ -1,0 +1,42 @@
+{
+  "id": "5356",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 93,
+  "dokumentnummer": "19/182",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "4033d38922684a36f6af14ce8c022d2c",
+  "pdf_hash": "bd3d34932d7a36114b20f84c92388ff8",
+  "aktualisiert": "2020-10-08T13:52:03+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "253258",
+      "titel": "... Gesetz zur Änderung des Abgeordnetengesetzes",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "265668",
+      "titel": "Gesetz zur Verbesserung des Vollzugs im Arbeitsschutz (Arbeitsschutzkontrollgesetz)",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "265664",
+      "titel": "Zweites Gesetz zur Änderung des Bundesmeldegesetzes (2. BMGÄndG)",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19182.pdf",
+    "id": "5356",
+    "dokumentnummer": "19/182",
+    "datum": "2020-10-07",
+    "verteildatum": "2020-10-08",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19182.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 182. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2020-10-07"
+}

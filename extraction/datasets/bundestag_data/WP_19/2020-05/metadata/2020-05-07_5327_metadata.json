@@ -1,0 +1,47 @@
+{
+  "id": "5327",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 100,
+  "dokumentnummer": "19/158",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "2402bd3c23f282d8801602d99588c451",
+  "pdf_hash": "cb84e9105dad05cb419700f899a5e761",
+  "aktualisiert": "2020-05-11T08:40:00+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "239511",
+      "titel": "Vierundsechzigstes Gesetz zur Änderung des Grundgesetzes (Gesetz zur Erweiterung der Verwirkungsregelung des Artikels 18 des Grundgesetzes um die ungestörte Religionsausübung des Artikels 4 Absatz 2 des Grundgesetzes)",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "244449",
+      "titel": "Gefährlichen Pseudotherapien mit dem Ziel der Änderung der sexuellen Orientierung ein Ende setzen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "234865",
+      "titel": "Änderung der Geschäftsordnung des Deutschen Bundestages zur Vermeidung von Überschneidungen von Sitzungen des Bundestages mit Sitzungen der Ausschüsse und Gremien",
+      "vorgangstyp": "Geschäftsordnung"
+    },
+    {
+      "id": "248171",
+      "titel": "70 Jahre Grundgesetz - Bewährtes bewahren, an neue Herausforderungen anpassen",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19158.pdf",
+    "id": "5327",
+    "dokumentnummer": "19/158",
+    "datum": "2020-05-07",
+    "verteildatum": "2020-05-11",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19158.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 158. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2020-05-07"
+}

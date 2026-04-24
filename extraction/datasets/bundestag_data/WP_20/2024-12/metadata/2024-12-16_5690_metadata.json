@@ -1,0 +1,43 @@
+{
+  "id": "5690",
+  "sitzungsbemerkung": "Sondersitzung",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 3,
+  "dokumentnummer": "20/205",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "11cc5edfb8a7a4219b3a59e97573af38",
+  "pdf_hash": "c737e780040975660225b5b221b80bb6",
+  "aktualisiert": "2025-10-31T08:05:48+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "318684",
+      "titel": "Erteilung eines Ordnungsrufes an den Abg Sören Pellmann (Die Linke)",
+      "vorgangstyp": "Geschäftsordnung"
+    },
+    {
+      "id": "318685",
+      "titel": "Erteilung eines Ordnungsrufes an den Abg Thomas Seitz (fraktionslos)",
+      "vorgangstyp": "Geschäftsordnung"
+    },
+    {
+      "id": "318527",
+      "titel": "Antrag des Bundeskanzlers Olaf Scholz gemäß Artikel 68 des Grundgesetzes",
+      "vorgangstyp": "Vertrauensantrag des Bundeskanzlers"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20205.pdf",
+    "id": "5690",
+    "dokumentnummer": "20/205",
+    "datum": "2024-12-16",
+    "verteildatum": "2024-12-17",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20205.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 205. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2024-12-16"
+}

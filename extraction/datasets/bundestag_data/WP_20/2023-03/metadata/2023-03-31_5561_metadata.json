@@ -1,0 +1,47 @@
+{
+  "id": "5561",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 34,
+  "dokumentnummer": "20/95",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "91c72a8a0a451bbac84afd1f71711b37",
+  "pdf_hash": "8e7f5b4646433bbef001063b1caeed1b",
+  "aktualisiert": "2023-10-23T08:25:27+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "289019",
+      "titel": "Vorschlag für einen Beschluss des Rates zu Leitlinien für beschäftigungspolitische Maßnahmen der Mitgliedstaaten \r\nKOM(2022)241 endg.; Ratsdok. 9470/22",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "290459",
+      "titel": "Start-up-Strategie der Bundesregierung",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "292018",
+      "titel": "Vorschlag für eine Verordnung des Europäischen Parlaments und des Rates über ein Verbot von in Zwangsarbeit hergestellten Produkten auf dem Unionsmarkt\r\nKOM(2022) 453 endg.; Ratsdok. 12711/22",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "287202",
+      "titel": "Vorschlag für eine Richtlinie des Europäischen Parlaments und des Rates zur Änderung der Richtlinie 2010/75/EU des Europäischen Parlaments und des Rates vom 24. November 2010 über Industrieemissionen (integrierte Vermeidung und Verminderung der Umweltverschmutzung) und der Richtlinie 1999/31/EG des Rates vom 26. April 1999 über Abfalldeponien \r\nKOM(2022)156 endg.; Ratsdok. 8064/22",
+      "vorgangstyp": "EU-Vorlage"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20095.pdf",
+    "id": "5561",
+    "dokumentnummer": "20/95",
+    "datum": "2023-03-31",
+    "verteildatum": "2023-04-03",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20095.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 95. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2023-03-31"
+}

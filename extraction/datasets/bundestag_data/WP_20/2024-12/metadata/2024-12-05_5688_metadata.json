@@ -1,0 +1,47 @@
+{
+  "id": "5688",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 156,
+  "dokumentnummer": "20/203",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "c60acacf0aa1e8b1017d628e38581513",
+  "pdf_hash": "7baa5caabfbae3796282f90245f4fba8",
+  "aktualisiert": "2025-01-20T11:17:14+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "292628",
+      "titel": "Sozialstaatsmagnet sofort abstellen - Ende des Rechtskreiswechsels für Kriegsflüchtlinge aus der Ukraine und Einführung eines strengen Sachleistungsprinzips für Asylbewerber",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "287339",
+      "titel": "Gesetz zur Änderung des Infektionsschutzgesetzes - Gesetz zur Einführung einer Entschädigungsregelung für präventive Betriebsschließungen aufgrund des Infektionsschutzes",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "287338",
+      "titel": "Gesetz zur Änderung des Infektionsschutzgesetzes - Gesetz zur Erfassung der Herkunft von an der Coronavirus-Krankheit-2019-(COVID-19)-Erkrankten",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "292646",
+      "titel": "Erweiterungsbau für das Bundeskanzleramt stoppen",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20203.pdf",
+    "id": "5688",
+    "dokumentnummer": "20/203",
+    "datum": "2024-12-05",
+    "verteildatum": "2024-12-06",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20203.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 203. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2024-12-05"
+}

@@ -1,0 +1,47 @@
+{
+  "id": "5453",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 12,
+  "dokumentnummer": "20/12",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "13232c8fcf509687c81df45608dd53b1",
+  "pdf_hash": "934e26caebf385388fcc225bd43ceef6",
+  "aktualisiert": "2022-01-17T08:32:03+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "283363",
+      "titel": "Haushaltsführung 2021\r\nÜberplanmäßige Ausgabe bei Kapitel 0501 Titel 687 32 - Humanitäre Hilfsmaßnahmen im Ausland - bis zur Höhe von 100 Mio. Euro",
+      "vorgangstyp": "Über- und außerplanmäßige Haushaltsausgaben"
+    },
+    {
+      "id": "282701",
+      "titel": "Solidarität mit den europäischen Partnern - Unterstützung für die Maßnahmen Polens, Ungarns und anderer europäischer Staaten zur Abwehr destabilisierender Migrationsbewegungen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "282696",
+      "titel": "Warme Wohnung statt sozialer Kälte",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "282697",
+      "titel": "Migration ordnen, steuern und begrenzen - Neue Pullfaktoren verhindern - Lukaschenko stoppen",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20012.pdf",
+    "id": "5453",
+    "dokumentnummer": "20/12",
+    "datum": "2022-01-14",
+    "verteildatum": "2022-01-17",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20012.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 12. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2022-01-14"
+}

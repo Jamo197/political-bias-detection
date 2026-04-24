@@ -1,0 +1,47 @@
+{
+  "id": "5451",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 9,
+  "dokumentnummer": "20/10",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "48336fa27005cd3cc444ed475017f56a",
+  "pdf_hash": "fabe6f4756cb2494b2142a249ae2b77d",
+  "aktualisiert": "2022-01-13T08:52:04+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "283629",
+      "titel": "Einleitende Ausführungen und Befragung des Bundeskanzlers, Olaf Scholz",
+      "vorgangstyp": "Befragung der Bundesregierung"
+    },
+    {
+      "id": "283628",
+      "titel": "Feststellung der Tagesordnung der 10. bis 12. Sitzung des Deutschen Bundestages",
+      "vorgangstyp": "Anmerkung zur Plenarsitzung"
+    },
+    {
+      "id": "283748",
+      "titel": "Erteilung eines Ordnungsrufes an den Abg Christian Petry (SPD) ",
+      "vorgangstyp": "Geschäftsordnung"
+    },
+    {
+      "id": "283714",
+      "titel": "Eintritt der Abg Clara Bünger (DIE LINKE) in den Deutschen Bundestag als Nachfolgerin für die ausgeschiedene Abg Katja Kipping (Mandatsbeginn: 05.01.2022)",
+      "vorgangstyp": "Ansprache/Erklärung/Mitteilung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20010.pdf",
+    "id": "5451",
+    "dokumentnummer": "20/10",
+    "datum": "2022-01-12",
+    "verteildatum": "2022-01-13",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20010.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 10. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2022-01-12"
+}

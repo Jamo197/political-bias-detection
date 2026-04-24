@@ -1,0 +1,47 @@
+{
+  "id": "5669",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 75,
+  "dokumentnummer": "20/188",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "4f757cc70f4db359bc8351eadb8fcefb",
+  "pdf_hash": "861dc048c4ed9a18a27403d89f1655c5",
+  "aktualisiert": "2024-10-08T12:37:53+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "287339",
+      "titel": "Gesetz zur Änderung des Infektionsschutzgesetzes - Gesetz zur Einführung einer Entschädigungsregelung für präventive Betriebsschließungen aufgrund des Infektionsschutzes",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "287338",
+      "titel": "Gesetz zur Änderung des Infektionsschutzgesetzes - Gesetz zur Erfassung der Herkunft von an der Coronavirus-Krankheit-2019-(COVID-19)-Erkrankten",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "286295",
+      "titel": "Gesetz zur Änderung des Strafgesetzbuches - Geschlechtsneutrale Ausgestaltung des Exhibitionismustatbestands",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "291468",
+      "titel": "Für unser Land - Bürokratie richtig abbauen und Unternehmen entlasten",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20188.pdf",
+    "id": "5669",
+    "dokumentnummer": "20/188",
+    "datum": "2024-09-26",
+    "verteildatum": "2024-09-27",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20188.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 188. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2024-09-26"
+}

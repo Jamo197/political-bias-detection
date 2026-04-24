@@ -1,0 +1,47 @@
+{
+  "id": "5389",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 97,
+  "dokumentnummer": "19/208",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "47608b46a3090586f0077dcf937bc25d",
+  "pdf_hash": "5997094ab60b52de488d9195b1d1909f",
+  "aktualisiert": "2021-02-11T10:32:04+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "272433",
+      "titel": "Lockdown-Maßnahmen durch Gesetze, nicht durch Verordnungen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "271466",
+      "titel": "Diskriminierung von Menschen mit Behinderung und anderen vulnerablen Gruppen durch Mund-Nasen-Bedeckung beenden",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "273533",
+      "titel": "Abzugstermin der Bundeswehr aus Afghanistan",
+      "vorgangstyp": "Mündliche Frage"
+    },
+    {
+      "id": "272012",
+      "titel": "Zweites Gesetz zur Änderung des Agrarmarktstrukturgesetzes",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19208.pdf",
+    "id": "5389",
+    "dokumentnummer": "19/208",
+    "datum": "2021-02-10",
+    "verteildatum": "2021-02-11",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19208.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 208. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2021-02-10"
+}

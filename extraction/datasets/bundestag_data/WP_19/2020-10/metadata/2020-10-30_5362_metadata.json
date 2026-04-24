@@ -1,0 +1,47 @@
+{
+  "id": "5362",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 113,
+  "dokumentnummer": "19/187",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "b06e3e1eb390a53346b833c843500d2b",
+  "pdf_hash": "4d52c175641c06757a47f34d36276a78",
+  "aktualisiert": "2020-11-02T08:32:02+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "236565",
+      "titel": "Vorschlag für eine Verordnung des Europäischen Parlaments und des Rates zur Aufstellung des Programms \"InvestEU\"\r\nKOM(2018) 439 endg.; Ratsdok. 9980/18",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "257062",
+      "titel": "Mitteilung der Kommission an das Europäische Parlament, den Europäischen Rat, den Rat, den Europäischen Wirtschafts- und Sozialausschuss und den Ausschuss der Regionen: Der europäische Grüne Deal\r\nKOM(2019) 640 endg.; Ratsdok. 15051/19",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "257952",
+      "titel": "Entschließung des Europäischen Parlaments vom 28. November 2019 zum Klima- und Umweltnotstand (2019/2930(RSP)) \r\nEP P9_TA-PROV(2019)0078",
+      "vorgangstyp": "Unterrichtung durch das Europäische Parlament"
+    },
+    {
+      "id": "258203",
+      "titel": "Mitteilung der Kommission an das Europäische Parlament, den Rat, den Europäischen Wirtschafts- und Sozialausschuss und den Ausschuss der Regionen:\r\nInvestitionsplan für ein zukunftsfähiges Europa - Investitionsplan für den europäischen Grünen Deal\r\nKOM(2020) 21 endg.; Ratsdok. 5269/20",
+      "vorgangstyp": "EU-Vorlage"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19187.pdf",
+    "id": "5362",
+    "dokumentnummer": "19/187",
+    "datum": "2020-10-30",
+    "verteildatum": "2020-11-02",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19187.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 187. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2020-10-30"
+}

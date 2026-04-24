@@ -1,0 +1,42 @@
+{
+  "id": "5691",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 58,
+  "dokumentnummer": "20/206",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "946d509586500c1f18cdb423df64af47",
+  "pdf_hash": "33260057a36c054bdf3c7da2bdc4dc71",
+  "aktualisiert": "2025-01-21T14:42:38+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "312309",
+      "titel": "Gesetz über Maßnahmen zur Förderung des deutschen Films (Filmförderungsgesetz - FFG)",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "307253",
+      "titel": "Gesetz über die Digitalisierung des Finanzmarktes (Finanzmarktdigitalisierungsgesetz - FinmadiG)",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "305964",
+      "titel": "Berufstätige Pendler sofort entlasten - Entfernungspauschalen für Kraftfahrzeuge ab dem ersten Kilometer auf 50 Cent erhöhen und an die Preisentwicklung anpassen",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20206.pdf",
+    "id": "5691",
+    "dokumentnummer": "20/206",
+    "datum": "2024-12-18",
+    "verteildatum": "2024-12-19",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20206.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 206. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2024-12-18"
+}

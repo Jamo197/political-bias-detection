@@ -1,0 +1,47 @@
+{
+  "id": "5537",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 29,
+  "dokumentnummer": "20/74",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "b700e809560cb94fd7a068c45f89c4ae",
+  "pdf_hash": "ef6791643ac26c74013707636c6734d8",
+  "aktualisiert": "2023-02-03T12:39:07+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "286006",
+      "titel": "Vorschlag für eine Richtlinie des Europäischen Parlaments und des Rates über die Sorgfaltspflichten von Unternehmen im Hinblick auf Nachhaltigkeit und zur Änderung der Richtlinie (EU) 2019/1937\r\nKOM(2022)71 endg.; Ratsdok. 6533/22",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "287853",
+      "titel": "Gesetz zur Änderung des Aufenthaltsgesetzes - Deutschnachweise beim Ehegattennachzug",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "287553",
+      "titel": "Koalitionsvertrag umsetzen - Pflegepersonalregelung 2.0 einführen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "285870",
+      "titel": "Mitteilung der Kommission an das Europäische Parlament, den Rat und den Europäischen Wirtschafts- und Sozialausschuss\r\nMenschenwürdige Arbeit weltweit für einen globalen gerechten Übergang und eine nachhaltige Erholung \r\nKOM(2022)66 endg.; Ratsdok. 6595/22",
+      "vorgangstyp": "EU-Vorlage"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20074.pdf",
+    "id": "5537",
+    "dokumentnummer": "20/74",
+    "datum": "2022-12-02",
+    "verteildatum": "2022-12-05",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20074.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 74. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2022-12-02"
+}

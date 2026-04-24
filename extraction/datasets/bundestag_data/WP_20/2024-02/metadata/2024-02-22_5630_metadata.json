@@ -1,0 +1,47 @@
+{
+  "id": "5630",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 68,
+  "dokumentnummer": "20/154",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "8f981e587728a2fc594ba1c1f1a9523c",
+  "pdf_hash": "222425ba5219380ec05874e445cca6b5",
+  "aktualisiert": "2024-03-18T12:06:05+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "289627",
+      "titel": "... Strafrechtsänderungsgesetz - Ausweitung und Verschärfung des Straftatbestandes der Abgeordnetenbestechung",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "294023",
+      "titel": "Maßnahmen zur Bekämpfung von Mangelernährung in Krankenhäusern und Pflegeeinrichtungen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "300732",
+      "titel": "Die Deutsche Bahn AG zielgerichtet und wirkungsvoll reformieren",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "301325",
+      "titel": "Gutachten zu Forschung, Innovation und technologischer Leistungsfähigkeit Deutschlands 2023",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20154.pdf",
+    "id": "5630",
+    "dokumentnummer": "20/154",
+    "datum": "2024-02-22",
+    "verteildatum": "2024-02-23",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20154.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 154. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2024-02-22"
+}

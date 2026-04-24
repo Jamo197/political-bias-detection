@@ -1,0 +1,47 @@
+{
+  "id": "5742",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 21,
+  "dokumentnummer": "21/35",
+  "wahlperiode": 21,
+  "herausgeber": "BT",
+  "xml_hash": "f798142549a57c6196c990e90064b22b",
+  "pdf_hash": "32ec4a53b2099444c295ddf3a13b3234",
+  "aktualisiert": "2025-10-21T12:43:57+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "325461",
+      "titel": "Zehnter Bericht zur Finanzstabilität in Deutschland",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "322871",
+      "titel": "Bericht über die vom Expertenrat für Klimafragen festgestellte Überschreitung der Vorgaben der Europäischen Klimaschutzverordnung und Stellungnahme zu möglichen Auswirkungen nach Artikel 8 der Europäischen Klimaschutzverordnung",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "322240",
+      "titel": "Den Achtstundentag erhalten - Wöchentliche Höchstarbeitszeit absenken",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "320946",
+      "titel": "Mitteilung der Kommission an das Europäische Parlament, den Europäischen Rat, den Rat, die Europäische Zentralbank, den Europäischen Wirtschafts- und Sozialausschuss und den Ausschuss der Regionen: Spar- und Investitionsunion: Eine Strategie zur Förderung von Wohlstand und wirtschaftlicher Wettbewerbsfähigkeit in der EU\r\nKOM(2025) 124 endg.; Ratsdok. 7670/25",
+      "vorgangstyp": "EU-Vorlage"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/21/21035.pdf",
+    "id": "5742",
+    "dokumentnummer": "21/35",
+    "datum": "2025-10-17",
+    "verteildatum": "2025-10-20",
+    "xml_url": "https://dserver.bundestag.de/btp/21/21035.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 35. Sitzung des 21. Deutschen Bundestages",
+  "datum": "2025-10-17"
+}

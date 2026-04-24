@@ -1,0 +1,47 @@
+{
+  "id": "5303",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 33,
+  "dokumentnummer": "19/141",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "a53e58ac970027efcdb0066396d493da",
+  "pdf_hash": "f6be05bf326aeb91db70f0edff5417bf",
+  "aktualisiert": "2020-01-20T08:33:30+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "251092",
+      "titel": "Nationaler Aktionsplan der Bundesregierung zur schrittweisen Verringerung von Dentalamalgam",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "247834",
+      "titel": "Die Freisetzungsrichtlinie 2001/18/EG in ihrer Regelungsschärfe auch für neue Gentechnik beibehalten - Regulierung im Einklang mit dem Vorsorgeprinzip auch in Zukunft sichern",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "245697",
+      "titel": "Das Straßenverkehrsrecht reformieren - Straßenverkehrsordnung fahrrad- und fußverkehrsfreundlich anpassen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "249993",
+      "titel": "Gesetz zur Stärkung der Entscheidungsbereitschaft bei der Organspende",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19141.pdf",
+    "id": "5303",
+    "dokumentnummer": "19/141",
+    "datum": "2020-01-17",
+    "verteildatum": "2020-01-20",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19141.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 141. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2020-01-17"
+}

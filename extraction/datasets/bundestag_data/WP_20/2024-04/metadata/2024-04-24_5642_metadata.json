@@ -1,0 +1,47 @@
+{
+  "id": "5642",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 77,
+  "dokumentnummer": "20/165",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "bac5ba9a66d6d6cdbe26fe5c96d7689e",
+  "pdf_hash": "9a7a1bfea74ad07f77423189797c6d71",
+  "aktualisiert": "2024-06-03T08:27:42+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "310645",
+      "titel": "Bericht der Bundesregierung zur Umsetzung der Ziele des Bologna-Prozesses 2021 bis 2024",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "309047",
+      "titel": "Bürgergutachten - Empfehlungen des Bürgerrates \"Ernährung im Wandel: Zwischen Privatangelegenheit und staatlichen Aufgaben\" an den Deutschen Bundestag",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "311257",
+      "titel": "Abgelehnte Asylanträge von Asylsuchenden aus der Türkei seit 2021",
+      "vorgangstyp": "Mündliche Frage"
+    },
+    {
+      "id": "309408",
+      "titel": "Kassenzulassung des nichtinvasiven Pränataltests - Monitoring der Konsequenzen und Einrichtung eines Gremiums",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20165.pdf",
+    "id": "5642",
+    "dokumentnummer": "20/165",
+    "datum": "2024-04-24",
+    "verteildatum": "2024-04-25",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20165.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 165. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2024-04-24"
+}

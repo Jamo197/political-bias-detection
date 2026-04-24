@@ -1,0 +1,47 @@
+{
+  "id": "5681",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 10,
+  "dokumentnummer": "20/197",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "eec458f3aa9db1aff4f2494ea8899eef",
+  "pdf_hash": "959021aa0cd83aac94d1c779fd7e196e",
+  "aktualisiert": "2024-11-12T12:45:26+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "317188",
+      "titel": "Nie wieder ist jetzt - Jüdisches Leben in Deutschland schützen, bewahren und stärken",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "317269",
+      "titel": "Begrüßung des Präsidenten der Deutsch-Israelischen Gesellschaft, Volker Beck",
+      "vorgangstyp": "Ansprache/Erklärung/Mitteilung"
+    },
+    {
+      "id": "317271",
+      "titel": "Begrüßung des ehemaligen Präsidenten des Deutschen Bundestages, Prof. Dr. Norbert Lammert",
+      "vorgangstyp": "Ansprache/Erklärung/Mitteilung"
+    },
+    {
+      "id": "317270",
+      "titel": "Begrüßung des Geschäftsführers des Zentralrates der Juden in Deutschland, Daniel Botmann",
+      "vorgangstyp": "Ansprache/Erklärung/Mitteilung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20197.pdf",
+    "id": "5681",
+    "dokumentnummer": "20/197",
+    "datum": "2024-11-07",
+    "verteildatum": "2024-11-08",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20197.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 197. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2024-11-07"
+}

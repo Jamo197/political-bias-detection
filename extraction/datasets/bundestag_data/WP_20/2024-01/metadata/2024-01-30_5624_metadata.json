@@ -1,0 +1,37 @@
+{
+  "id": "5624",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 3,
+  "dokumentnummer": "20/149",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "789f98b2889a5da1aff0f31011d67b63",
+  "pdf_hash": "2aca87ff76873193659dd6cc4bee5236",
+  "aktualisiert": "2024-03-11T11:52:54+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "302729",
+      "titel": "Gesetz über die Feststellung des Bundeshaushaltsplans für das Haushaltsjahr 2024 (Haushaltsgesetz 2024 - HG 2024)",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "302730",
+      "titel": "Finanzplan des Bundes 2023 bis 2027",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20149.pdf",
+    "id": "5624",
+    "dokumentnummer": "20/149",
+    "datum": "2024-01-30",
+    "verteildatum": "2024-01-31",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20149.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 149. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2024-01-30"
+}

@@ -1,0 +1,47 @@
+{
+  "id": "5503",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 55,
+  "dokumentnummer": "20/46",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "2ebb8821ce2457d4d07f8ca71b479f29",
+  "pdf_hash": "1bd87c06c5c7a3ba336c41b6acc184e3",
+  "aktualisiert": "2023-10-26T12:41:32+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "289197",
+      "titel": "Aktualisierung der Gedenkstättenkonzeption des Bundes",
+      "vorgangstyp": "Mündliche Frage"
+    },
+    {
+      "id": "288706",
+      "titel": "Unterrichtung durch das Bundesministerium der Finanzen gemäß § 9a des Gesetzes über die Zusammenarbeit von Bundesregierung und Deutschem Bundestag in Angelegenheiten der Europäischen Union\r\nBeitritt Kroatien zum Euroraum",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "289057",
+      "titel": "Bundesbericht Forschung und Innovation 2022",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "287396",
+      "titel": "Gutachten zu Forschung, Innovation und technologischer Leistungsfähigkeit Deutschlands 2022",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20046.pdf",
+    "id": "5503",
+    "dokumentnummer": "20/46",
+    "datum": "2022-07-06",
+    "verteildatum": "2022-07-07",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20046.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 46. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2022-07-06"
+}

@@ -1,0 +1,47 @@
+{
+  "id": "5484",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 69,
+  "dokumentnummer": "20/30",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "7a5f0619df42a458689ed3a107f2c828",
+  "pdf_hash": "9dfe03d914c07cf58b4887a8b624fc12",
+  "aktualisiert": "2022-04-28T09:22:03+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "285555",
+      "titel": "Gesetz zur Änderung des Grundgesetzes (Artikel 87a)",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "285556",
+      "titel": "Gesetz zur Finanzierung der Bundeswehr und zur Errichtung eines \"Sondervermögens Bundeswehr\" und zur Änderung der Bundeshaushaltsordnung",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "285359",
+      "titel": "Digitalisierungskosten bei steuergesetzlichen Vorhaben darlegen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "286890",
+      "titel": "Abstimmung türkischer Militäreinsätze im Irak mit der dortigen Zentralregierung",
+      "vorgangstyp": "Mündliche Frage"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20030.pdf",
+    "id": "5484",
+    "dokumentnummer": "20/30",
+    "datum": "2022-04-27",
+    "verteildatum": "2022-04-28",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20030.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 30. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2022-04-27"
+}

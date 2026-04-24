@@ -1,0 +1,42 @@
+{
+  "id": "5530",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 9,
+  "dokumentnummer": "20/68",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "d9f35cc43dcc7a53f5eb08595878d7ab",
+  "pdf_hash": "16f92ddbfc6fd1fd89027cb2051e97f8",
+  "aktualisiert": "2023-10-23T08:25:04+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "288061",
+      "titel": "Fünftes Gesetz zur Änderung des Bundesfernstraßenmautgesetzes",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "290228",
+      "titel": "Finanzplan des Bundes 2022 bis 2026",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "290223",
+      "titel": "Gesetz über die Feststellung des Bundeshaushaltsplans für das Haushaltsjahr 2023 (Haushaltsgesetz 2023)",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20068.pdf",
+    "id": "5530",
+    "dokumentnummer": "20/68",
+    "datum": "2022-11-22",
+    "verteildatum": "2022-11-23",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20068.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 68. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2022-11-22"
+}

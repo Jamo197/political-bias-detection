@@ -1,0 +1,47 @@
+{
+  "id": "5574",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 49,
+  "dokumentnummer": "20/106",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "caee8c79f778a1c6b3472f0c6750217e",
+  "pdf_hash": "2f543653c0a35f836fba5fb1e566974e",
+  "aktualisiert": "2023-06-15T12:12:37+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "298213",
+      "titel": "Elftes Gesetz zur Änderung des Weingesetzes",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "297473",
+      "titel": "zu der legislativen Entschließung des Europäischen Parlaments vom 3. Mai 2022 zu dem Vorschlag für eine Verordnung des Rates über die allgemeine unmittelbare Wahl der Mitglieder des Europäischen Parlaments sowie zur Aufhebung des Beschlusses (76/787/EGKS, EWG, Euratom) des Rates und des diesem Beschluss beigefügten Akts zur Einführung allgemeiner unmittelbarer Wahlen der Mitglieder des Europäischen Parlaments (2020/2220(INL) - 2022/0902(APP))",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "297317",
+      "titel": "Gesetz zu dem Beschluss (EU, Euratom) 2018/994 des Rates der Europäischen Union vom 13. Juli 2018 zur Änderung des dem Beschluss 76/787/EGKS, EWG, Euratom des Rates vom 20. September 1976 beigefügten Akts zur Einführung allgemeiner unmittelbarer Wahlen der Mitglieder des Europäischen Parlaments",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "293751",
+      "titel": "Interessen der deutschen Minderheit in Polen schützen - Gute Freundschaft mit Polen pflegen",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20106.pdf",
+    "id": "5574",
+    "dokumentnummer": "20/106",
+    "datum": "2023-05-25",
+    "verteildatum": "2023-05-26",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20106.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 106. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2023-05-25"
+}

@@ -1,0 +1,47 @@
+{
+  "id": "5536",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 76,
+  "dokumentnummer": "20/73",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "f6a7cbe7e0f4aa9d855ff22bf98c2bc8",
+  "pdf_hash": "9971b30d450a818e681be087459f59f4",
+  "aktualisiert": "2022-12-12T16:04:50+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "287391",
+      "titel": "Bericht des Ausschusses für Bildung, Forschung und Technikfolgenabschätzung (18. Ausschuss) gemäß § 56a der Geschäftsordnung\r\nTechnikfolgenabschätzung (TA)\r\nDigitalisierung der Landwirtschaft: gesellschaftliche Voraussetzungen, Rahmenbedingungen und Effekte\r\nEndbericht Teil II",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "285362",
+      "titel": "Europas Wettbewerbsfähigkeit erhalten - Die wirtschafts- und handelspolitischen Beziehungen im atlantischen Raum stärken",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "287388",
+      "titel": "Bericht des Ausschusses für Bildung, Forschung und Technikfolgenabschätzung (18. Ausschuss) gemäß § 56a der Geschäftsordnung\r\nTechnikfolgenabschätzung (TA)\r\nDigitalisierung der Landwirtschaft: technologischer Stand und Perspektiven\r\nEndbericht Teil I",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "285354",
+      "titel": "Gesetz zum umfassenden Wirtschafts- und Handelsabkommen (CETA) vom 30. Oktober 2016 zwischen Kanada einerseits und der Europäischen Union und ihren Mitgliedstaaten andererseits",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20073.pdf",
+    "id": "5536",
+    "dokumentnummer": "20/73",
+    "datum": "2022-12-01",
+    "verteildatum": "2022-12-02",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20073.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 73. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2022-12-01"
+}

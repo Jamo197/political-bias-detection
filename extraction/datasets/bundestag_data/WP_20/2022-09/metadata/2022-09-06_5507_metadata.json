@@ -1,0 +1,42 @@
+{
+  "id": "5507",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 3,
+  "dokumentnummer": "20/49",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "2856480b31e503c14fb778e735a7b29a",
+  "pdf_hash": "da14a318a472fe347ffa391121288b52",
+  "aktualisiert": "2022-09-20T14:06:13+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "289280",
+      "titel": "Gesetz zur Stärkung des Schutzes der Bevölkerung und insbesondere vulnerabler Personengruppen vor COVID-19",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "290228",
+      "titel": "Finanzplan des Bundes 2022 bis 2026",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "290223",
+      "titel": "Gesetz über die Feststellung des Bundeshaushaltsplans für das Haushaltsjahr 2023 (Haushaltsgesetz 2023)",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20049.pdf",
+    "id": "5507",
+    "dokumentnummer": "20/49",
+    "datum": "2022-09-06",
+    "verteildatum": "2022-09-07",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20049.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 49. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2022-09-06"
+}

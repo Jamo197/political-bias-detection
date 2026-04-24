@@ -1,0 +1,47 @@
+{
+  "id": "5610",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 32,
+  "dokumentnummer": "20/138",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "90ed6c500b507176a9c2be0a64d884c2",
+  "pdf_hash": "583804eaff1d492d0296acb90620723d",
+  "aktualisiert": "2023-11-27T10:12:51+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "295750",
+      "titel": "Vorschlag für eine Verordnung des Europäischen Parlaments und des Rates zur Schaffung eines Unionsrahmens für die Zertifizierung von CO2-Entnahmen\r\nKOM(2022) 672 endg.; Ratsdok. 15557/22",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "296414",
+      "titel": "Entschließung des Europäischen Parlaments vom 19. Januar 2023 zur Reaktion der EU auf die Proteste und Hinrichtungen in Iran (2023/2511(RSP)) \r\nEP P9_TA(2023)0016",
+      "vorgangstyp": "Unterrichtung durch das Europäische Parlament"
+    },
+    {
+      "id": "295652",
+      "titel": "Entschließung des Europäischen Parlaments vom 15. Dezember 2022 zum Fall des Menschenrechtsverteidigers Abdulhadi al-Chawadscha in Bahrain (2022/2994(RSP)) \r\nEP P9_TA(2022)0447",
+      "vorgangstyp": "Unterrichtung durch das Europäische Parlament"
+    },
+    {
+      "id": "295653",
+      "titel": "Entschließung des Europäischen Parlaments vom 15. Dezember 2022 zu dem Thema \"90 Jahre nach dem Holodomor: Anerkennung der Massentötung durch Hunger als Völkermord\" (2022/3001(RSP)) \r\nEP P9_TA(2022)0449",
+      "vorgangstyp": "Unterrichtung durch das Europäische Parlament"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20138.pdf",
+    "id": "5610",
+    "dokumentnummer": "20/138",
+    "datum": "2023-11-17",
+    "verteildatum": "2023-11-20",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20138.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 138. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2023-11-17"
+}

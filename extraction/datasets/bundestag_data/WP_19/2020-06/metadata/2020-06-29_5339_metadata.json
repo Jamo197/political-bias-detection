@@ -1,0 +1,42 @@
+{
+  "id": "5339",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 7,
+  "dokumentnummer": "19/168",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "db6ac9089a7834b5b769a12eff8811da",
+  "pdf_hash": "ae2764c4e8ff16644e6d96b9c987b0a7",
+  "aktualisiert": "2020-07-01T08:45:04+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "263612",
+      "titel": "Zweites Gesetz zur Umsetzung steuerlicher Hilfsmaßnahmen zur Bewältigung der Corona-Krise (Zweites Corona-Steuerhilfegesetz)",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "263653",
+      "titel": "Steuererklärungsverpflichtung für Kurzarbeit verhindern - Progressionsvorbehalt für 2020 aussetzen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "263649",
+      "titel": "Neustart für Deutschland - Entlasten, investieren und entfesseln",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19168.pdf",
+    "id": "5339",
+    "dokumentnummer": "19/168",
+    "datum": "2020-06-29",
+    "verteildatum": "2020-07-01",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19168.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 168. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2020-06-29"
+}

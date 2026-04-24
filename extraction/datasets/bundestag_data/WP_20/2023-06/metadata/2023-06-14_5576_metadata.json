@@ -1,0 +1,47 @@
+{
+  "id": "5576",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 63,
+  "dokumentnummer": "20/108",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "66aec0c7ac6fd76a0bb2e150723040c5",
+  "pdf_hash": "1b0e657b0695313fd7d7a094a21d3018",
+  "aktualisiert": "2023-10-23T08:25:54+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "298214",
+      "titel": "Gesetz zur Weiterentwicklung der Fachkräfteeinwanderung",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "298212",
+      "titel": "Gesetz zur Stärkung der Aus- und Weiterbildungsförderung",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "298218",
+      "titel": "Gesetz zur Umsetzung der Richtlinie (EU) 2020/1828 über Verbandsklagen zum Schutz der Kollektivinteressen der Verbraucher und zur Aufhebung der Richtlinie 2009/22/EG sowie zur Änderung des Kapitalanleger-Musterverfahrensgesetzes (Verbandsklagenrichtlinienumsetzungsgesetz - VRUG)",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "298668",
+      "titel": "Den 70. Jahrestag des Volksaufstandes in der DDR als Nationalen Gedenktag würdig begehen",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20108.pdf",
+    "id": "5576",
+    "dokumentnummer": "20/108",
+    "datum": "2023-06-14",
+    "verteildatum": "2023-06-15",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20108.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 108. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2023-06-14"
+}

@@ -1,0 +1,47 @@
+{
+  "id": "5581",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 45,
+  "dokumentnummer": "20/112",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "748c59718015b1ccaa38dada26f4e444",
+  "pdf_hash": "5f59681fa88d9a435dc9d66d90282ab4",
+  "aktualisiert": "2025-03-14T09:52:36+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "286190",
+      "titel": "Welthunger ideologiefrei bekämpfen - Stilllegungsflächen und ökologische Vorrangflächen für Nahrungs- und Futtermittelproduktion freigeben",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "291888",
+      "titel": "Pläne der Bundesregierung zur Reform des Wissenschaftszeitvertragsgesetzes",
+      "vorgangstyp": "Große Anfrage"
+    },
+    {
+      "id": "295447",
+      "titel": "Gesetz zur Überarbeitung des Sanktionenrechts - Ersatzfreiheitsstrafe, Strafzumessung, Auflagen und Weisungen sowie  Unterbringung in einer Entziehungsanstalt",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "293278",
+      "titel": "Für eine Abschaffung der Ersatzfreiheitsstrafe und eine Geldstrafe nach dem Einbußeprinzip",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20112.pdf",
+    "id": "5581",
+    "dokumentnummer": "20/112",
+    "datum": "2023-06-22",
+    "verteildatum": "2023-06-23",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20112.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 112. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2023-06-22"
+}

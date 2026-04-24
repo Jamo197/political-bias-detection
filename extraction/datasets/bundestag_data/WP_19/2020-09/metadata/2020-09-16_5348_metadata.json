@@ -1,0 +1,47 @@
+{
+  "id": "5348",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 102,
+  "dokumentnummer": "19/175",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "7ac8a5e5ec17659a0879695cb4a00e01",
+  "pdf_hash": "523d800e920cad5b15ef58fe584bc159",
+  "aktualisiert": "2020-09-17T13:02:04+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "241885",
+      "titel": "Gleichstellung von Fahrzeugen, die mit synthetischen Kraftstoffen oder Biokraftstoffen angetrieben werden, mit Elektrofahrzeugen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "239770",
+      "titel": "Gesetz zum Auskunftsrecht der Presse gegenüber Bundesbehörden (Presseauskunftsgesetz)",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "242043",
+      "titel": "Etablierung eines Presseauskunftsgesetzes auf Bundesebene",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "246340",
+      "titel": "Schutz der liberalen Demokratie in Europa",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19175.pdf",
+    "id": "5348",
+    "dokumentnummer": "19/175",
+    "datum": "2020-09-16",
+    "verteildatum": "2020-09-17",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19175.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 175. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2020-09-16"
+}

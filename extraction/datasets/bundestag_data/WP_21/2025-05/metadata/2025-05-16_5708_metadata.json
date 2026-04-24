@@ -1,0 +1,47 @@
+{
+  "id": "5708",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 18,
+  "dokumentnummer": "21/5",
+  "wahlperiode": 21,
+  "herausgeber": "BT",
+  "xml_hash": "d31211ed8be8737b95b04a5bdf07cdde",
+  "pdf_hash": "87bee4fb095d5168c7a25383ffd5388d",
+  "aktualisiert": "2025-05-26T17:06:31+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "296003",
+      "titel": "Vorschlag für eine Richtlinie des Europäischen Parlaments und des Rates vom [xxxx] zur Änderung der Richtlinien 2009/65/EU, 2013/36/EU und (EU) 2019/2034 hinsichtlich der Behandlung des Konzentrationsrisikos gegenüber zentralen Gegenparteien und des Ausfallrisikos bei zentral geclearten Derivategeschäften\r\nKOM(2022) 698 endg.; Ratsdok. 15874/22",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "282911",
+      "titel": "Vorschlag für eine Richtlinie des Europäischen Parlaments und des Rates zur Festlegung eines Rahmens für die Sanierung und Abwicklung von Versicherungs- und Rückversicherungsunternehmen und zur Änderung der Richtlinien 2002/47/EG, 2004/25/EG, 2009/138/EG, (EU) 2017/1132 und der Verordnungen (EU) Nr. 1094/2010 und (EU) Nr. 648/2012\r\nKOM(2021) 582 endg.; Ratsdok. 11764/21",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "282910",
+      "titel": "Vorschlag für eine Richtlinie des Europäischen Parlaments und des Rates zur Änderung der Richtlinie 2009/138/EG im Hinblick auf die Verhältnismäßigkeit, die Aufsichtsqualität, die Berichterstattung, langfristige Garantien, makroprudenzielle Instrumente, Nachhaltigkeitsrisiken, die Gruppenaufsicht und die grenzüberschreitende Aufsicht\r\nKOM(2021) 581 endg.; Ratsdok. 11763/21",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "284048",
+      "titel": "Mitteilung der Kommission an das Europäische Parlament und den Rat über die Überarbeitung des EU-Aufsichtsrahmens für Versicherer und Rückversicherer vor dem Hintergrund der Erholung der EU nach der Pandemie \r\nKOM(2021) 580 endg.; Ratsdok. 11992/21",
+      "vorgangstyp": "EU-Vorlage"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/21/21005.pdf",
+    "id": "5708",
+    "dokumentnummer": "21/5",
+    "datum": "2025-05-16",
+    "verteildatum": "2025-05-19",
+    "xml_url": "https://dserver.bundestag.de/btp/21/21005.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 5. Sitzung des 21. Deutschen Bundestages",
+  "datum": "2025-05-16"
+}

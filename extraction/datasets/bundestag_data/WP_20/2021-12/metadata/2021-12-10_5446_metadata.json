@@ -1,0 +1,47 @@
+{
+  "id": "5446",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 144,
+  "dokumentnummer": "20/7",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "f4c9bbe893cbeee6f70ac60d6ca1079b",
+  "pdf_hash": "1b6568b1ed7a986f956fab61082c4a45",
+  "aktualisiert": "2021-12-13T08:52:03+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "83959",
+      "titel": "Vorschlag für eine Verordnung des Europäischen Parlaments und des Rates über die Rechte und Pflichten der Fahrgäste im Eisenbahnverkehr (Neufassung)\r\nKOM(2017) 548 endg.; Ratsdok. 12442/17",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "82936",
+      "titel": "Mitteilung der Kommission an den Rat und das Europäische Parlament:\r\nEuropäischer Aktionsplan zur Bekämpfung antimikrobieller Resistenzen im Rahmen des Konzepts \"Eine Gesundheit\"\r\nKOM(2017) 339 endg.; Ratsdok. 11128/17",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "233433",
+      "titel": "Mitteilung der Kommission an das Europäische Parlament, den Rat, den Europäischen Wirtschafts- und Sozialausschuss und den Ausschuss der Regionen\r\nGleichberechtigte Teilhabe von Frauen und Männern an wirtschaftlichen Führungspositionen - ein Beitrag zu intelligentem, nachhaltigem und integrativem Wachstum \r\nKOM(2012) 615 endg.; Ratsdok. 16428/12",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "232428",
+      "titel": "Mitteilung der Kommission an das Europäische Parlament, den Rat, den Europäischen Wirtschafts- und Sozialausschuss und den Ausschuss der Regionen\r\nUmgang mit illegalen Online-Inhalten\r\nMehr Verantwortung für Online-Plattformen \r\nKOM(2017) 555 endg.; Ratsdok. 12879/17",
+      "vorgangstyp": "EU-Vorlage"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20007.pdf",
+    "id": "5446",
+    "dokumentnummer": "20/7",
+    "datum": "2021-12-10",
+    "verteildatum": "2021-12-13",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20007.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 7. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2021-12-10"
+}

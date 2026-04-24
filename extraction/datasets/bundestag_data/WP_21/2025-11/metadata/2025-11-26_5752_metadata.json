@@ -1,0 +1,32 @@
+{
+  "id": "5752",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 9,
+  "dokumentnummer": "21/43",
+  "wahlperiode": 21,
+  "herausgeber": "BT",
+  "xml_hash": "196ad9127df3cd04eac4b75eca8abb2b",
+  "pdf_hash": "aae7d166a817ee7dd4a676a683be1afb",
+  "aktualisiert": "2025-12-09T12:59:39+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "324698",
+      "titel": "Gesetz über die Feststellung des Bundeshaushaltsplans für das Haushaltsjahr 2026 (Haushaltsgesetz 2026 - HG 2026)",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/21/21043.pdf",
+    "id": "5752",
+    "dokumentnummer": "21/43",
+    "datum": "2025-11-26",
+    "verteildatum": "2025-11-27",
+    "xml_url": "https://dserver.bundestag.de/btp/21/21043.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 43. Sitzung des 21. Deutschen Bundestages",
+  "datum": "2025-11-26"
+}

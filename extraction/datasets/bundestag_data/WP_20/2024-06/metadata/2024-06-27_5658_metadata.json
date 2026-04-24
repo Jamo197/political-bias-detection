@@ -1,0 +1,47 @@
+{
+  "id": "5658",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 56,
+  "dokumentnummer": "20/178",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "ee128dafec4d08033928c2cbed0bf3fa",
+  "pdf_hash": "489347d2871edcb8866faf11746d3014",
+  "aktualisiert": "2024-10-08T09:52:00+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "291449",
+      "titel": "Bürgern und Unternehmen eine energiepolitische Perspektive geben - Preise unter Kontrolle bringen - Insolvenzwelle verhindern",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "301498",
+      "titel": "Herkunftskennzeichnung bei Honig verbessern - Verbraucherinformation stärken - Heimische Imker schützen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "301499",
+      "titel": "Folgen des Kohleausstiegs beachten - Wassermanagement für die Spree und deren Nebenflüsse sichern",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "303866",
+      "titel": "Pakt für Wachstum und Wohlstand",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20178.pdf",
+    "id": "5658",
+    "dokumentnummer": "20/178",
+    "datum": "2024-06-27",
+    "verteildatum": "2024-06-28",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20178.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 178. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2024-06-27"
+}

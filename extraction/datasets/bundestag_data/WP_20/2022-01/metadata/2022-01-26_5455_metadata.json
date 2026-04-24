@@ -1,0 +1,47 @@
+{
+  "id": "5455",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 42,
+  "dokumentnummer": "20/13",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "31f929041e1a4a2a13bbd29b53c7f188",
+  "pdf_hash": "68d0c8149529c4f6b7a8b7095dec58ac",
+  "aktualisiert": "2022-01-27T08:42:03+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "283790",
+      "titel": "Ausübung des kommunalen Vorkaufsrechts im Milieuschutzgebiet",
+      "vorgangstyp": "Mündliche Frage"
+    },
+    {
+      "id": "283768",
+      "titel": "Bedeutung technischer Senken für die Erreichung der Klimaziele",
+      "vorgangstyp": "Mündliche Frage"
+    },
+    {
+      "id": "283754",
+      "titel": "Ausgestaltung einer möglichen künftigen Impfpflicht",
+      "vorgangstyp": "Mündliche Frage"
+    },
+    {
+      "id": "283753",
+      "titel": "Aussagen des Bundeskanzlers Olaf Scholz zu einem möglichen Konflikt der Ukraine mit Russland",
+      "vorgangstyp": "Mündliche Frage"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20013.pdf",
+    "id": "5455",
+    "dokumentnummer": "20/13",
+    "datum": "2022-01-26",
+    "verteildatum": "2022-01-27",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20013.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 13. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2022-01-26"
+}

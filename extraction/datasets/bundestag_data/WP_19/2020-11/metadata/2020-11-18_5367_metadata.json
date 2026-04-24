@@ -1,0 +1,47 @@
+{
+  "id": "5367",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 106,
+  "dokumentnummer": "19/191",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "3bcb3bc27fe295b0d10c86a377bca8e6",
+  "pdf_hash": "e2b9c075a7952813303739cef447d7d0",
+  "aktualisiert": "2020-11-19T08:42:03+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "250244",
+      "titel": "Rückwirkende Einbeziehung der DDR-Altübersiedlerinnen und DDR-Altübersiedler in die Gesetzgebung zur Rentenüberleitung",
+      "vorgangstyp": "Große Anfrage"
+    },
+    {
+      "id": "264572",
+      "titel": "Tiefe Grundrechtseingriffe bedürfen der parlamentarischen Kontrolle",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "265684",
+      "titel": "Gesetz zur weiteren Verkürzung des Restschuldbefreiungsverfahrens und zur Anpassung pandemiebedingter Vorschriften im Gesellschafts-, Genossenschafts-, Vereins- und Stiftungsrecht sowie im Miet- und Pachtrecht",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "263580",
+      "titel": "Verlässliche Entschädigungszahlungen auch für Eltern im Homeoffice",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19191.pdf",
+    "id": "5367",
+    "dokumentnummer": "19/191",
+    "datum": "2020-11-18",
+    "verteildatum": "2020-11-19",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19191.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 191. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2020-11-18"
+}

@@ -1,0 +1,42 @@
+{
+  "id": "5764",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 52,
+  "dokumentnummer": "21/53",
+  "wahlperiode": 21,
+  "herausgeber": "BT",
+  "xml_hash": "08c28390d635f828e0dc32b087165dd2",
+  "pdf_hash": "6451a6404dbe60a264db369ef3ffeb79",
+  "aktualisiert": "2026-01-21T10:14:29+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "326600",
+      "titel": "Schlüsselressource Forschungsdaten - Forschungsdatengesetz jetzt vorlegen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "326710",
+      "titel": "Gesetz zur Anpassung von Straftatbeständen und Sanktionen bei Verstößen gegen restriktive Maßnahmen der Europäischen Union",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "324833",
+      "titel": "Gesetz zur beschleunigten Planung und Beschaffung für die Bundeswehr",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/21/21053.pdf",
+    "id": "5764",
+    "dokumentnummer": "21/53",
+    "datum": "2026-01-15",
+    "verteildatum": "2026-01-16",
+    "xml_url": "https://dserver.bundestag.de/btp/21/21053.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 53. Sitzung des 21. Deutschen Bundestages",
+  "datum": "2026-01-15"
+}

@@ -1,0 +1,47 @@
+{
+  "id": "5698",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 11,
+  "dokumentnummer": "20/212",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "27fa4c22ca0ce26f307387bc856f3b5a",
+  "pdf_hash": "ec4afe942f8dee20fddb5cccdacdb09a",
+  "aktualisiert": "2025-04-29T10:20:29+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "320225",
+      "titel": "Eintritt der Abg Ursula Groden-Kranich (CDU/CSU) in den Deutschen Bundestag als Nachfolgerin für den verstorbenen Abg Erwin Rüddel (Mandatsbeginn: 07.02.2025)",
+      "vorgangstyp": "Ansprache/Erklärung/Mitteilung"
+    },
+    {
+      "id": "320233",
+      "titel": "Ansprache der Bundestagsvizepräsidentin Yvonne Magwas anlässlich ihres Ausscheidens aus dem Deutschen Bundestag",
+      "vorgangstyp": "Ansprache/Erklärung/Mitteilung"
+    },
+    {
+      "id": "318567",
+      "titel": "Haushaltsführung 2024\r\nÜberplanmäßige Ausgabe bei Kapitel 3002 Titel 882 01 - Zuweisungen an die Länder zur Förderung von Investitionen in die digitale Infrastruktur für Schulen gemäß § 2 Nummer 3 des Digitalinfrastrukturgesetzes - bis zur Höhe von 310 Mio. Euro",
+      "vorgangstyp": "Über- und außerplanmäßige Haushaltsausgaben"
+    },
+    {
+      "id": "320228",
+      "titel": "Gedenken an Altbundespräsident Horst Köhler",
+      "vorgangstyp": "Ansprache/Erklärung/Mitteilung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20212.pdf",
+    "id": "5698",
+    "dokumentnummer": "20/212",
+    "datum": "2025-02-11",
+    "verteildatum": "2025-02-12",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20212.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 212. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2025-02-11"
+}

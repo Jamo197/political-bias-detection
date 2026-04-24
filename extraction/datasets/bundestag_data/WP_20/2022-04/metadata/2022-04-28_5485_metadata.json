@@ -1,0 +1,42 @@
+{
+  "id": "5485",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 37,
+  "dokumentnummer": "20/31",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "8550229d5c7e0f51a2bb4c6ac1b2191d",
+  "pdf_hash": "e57ac3c4cf8ddaa2f2d51ba87eaffb29",
+  "aktualisiert": "2022-04-29T08:22:03+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "284463",
+      "titel": "Tag der Befreiung als gesetzlicher Gedenktag",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "282804",
+      "titel": "... Gesetz zur Änderung des Rennwett- und Lotteriegesetzes",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "286256",
+      "titel": "Entwurf der Aufgabenplanung 2022 bis 2025",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20031.pdf",
+    "id": "5485",
+    "dokumentnummer": "20/31",
+    "datum": "2022-04-28",
+    "verteildatum": "2022-04-29",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20031.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 31. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2022-04-28"
+}

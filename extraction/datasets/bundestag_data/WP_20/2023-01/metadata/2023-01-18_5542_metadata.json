@@ -1,0 +1,47 @@
+{
+  "id": "5542",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 59,
+  "dokumentnummer": "20/78",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "d38e876d2d01af24c8ca33d7ae032ea6",
+  "pdf_hash": "33c2d0f26e387b9472fe83fe5d755d25",
+  "aktualisiert": "2023-01-20T10:40:25+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "290459",
+      "titel": "Start-up-Strategie der Bundesregierung",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "294714",
+      "titel": "Nationaler Bildungsbericht - Bildung in Deutschland 2022\r\nund Stellungnahme der Bundesregierung",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "295308",
+      "titel": "Altschuldenentlastung für Kommunen und kommunale Wohnungsgesellschaften",
+      "vorgangstyp": "Mündliche Frage"
+    },
+    {
+      "id": "295271",
+      "titel": "\"Nutzung der Ressourcen der Zeitarbeitsunternehmen bei der\r\nFachkräfteeinwanderung\"",
+      "vorgangstyp": "Mündliche Frage"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20078.pdf",
+    "id": "5542",
+    "dokumentnummer": "20/78",
+    "datum": "2023-01-18",
+    "verteildatum": "2023-01-19",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20078.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 78. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2023-01-18"
+}

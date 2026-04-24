@@ -1,0 +1,32 @@
+{
+  "id": "5665",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 4,
+  "dokumentnummer": "20/184",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "7f6f4be81e22dee9f116da2ee6c3df9a",
+  "pdf_hash": "c8f88da6e2b07201f7909c73837f6b92",
+  "aktualisiert": "2024-09-17T17:25:57+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "314872",
+      "titel": "Gesetz über die Feststellung des Bundeshaushaltsplans für das Haushaltsjahr 2025 (Haushaltsgesetz 2025 - HG 2025)",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20184.pdf",
+    "id": "5665",
+    "dokumentnummer": "20/184",
+    "datum": "2024-09-11",
+    "verteildatum": "2024-09-12",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20184.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 184. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2024-09-11"
+}

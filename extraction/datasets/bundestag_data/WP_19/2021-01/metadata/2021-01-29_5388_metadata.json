@@ -1,0 +1,47 @@
+{
+  "id": "5388",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 49,
+  "dokumentnummer": "19/207",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "b8a102672ea889a5f8160ca0d2e68a12",
+  "pdf_hash": "c5ac5d63d4d71e4d24020d1784a54861",
+  "aktualisiert": "2021-02-01T08:32:02+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "251389",
+      "titel": "Bericht der Bundesregierung für die Achte Überprüfungstagung zum Übereinkommen über nukleare Sicherheit im März/April 2020",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "240276",
+      "titel": "Bericht des Ausschusses für Bildung, Forschung und Technikfolgenabschätzung (18. Ausschuss) gemäß § 56a der Geschäftsordnung\r\nTechnikfolgenabschätzung (TA)\r\nDigitale Medien in der Bildung",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "236122",
+      "titel": "Vorschlag für eine Verordnung des Europäischen Parlaments und des Rates über das Programm Kreatives Europa (2021 bis 2027) und zur Aufhebung der Verordnung (EU) Nr. 1295/2013\r\nKOM(2018) 366 endg.; Ratsdok. 9170/18",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "255153",
+      "titel": "Lücken bei der Rüstungsexportkontrolle schließen - Kontrollpflicht für die technische Unterstützung von Rüstungsproduktion erweitern, Rüstungsexportkontrolle auch bei kritischen Unternehmenserwerben und -beteiligungen im Ausland einführen",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19207.pdf",
+    "id": "5388",
+    "dokumentnummer": "19/207",
+    "datum": "2021-01-29",
+    "verteildatum": "2021-02-01",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19207.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 207. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2021-01-29"
+}

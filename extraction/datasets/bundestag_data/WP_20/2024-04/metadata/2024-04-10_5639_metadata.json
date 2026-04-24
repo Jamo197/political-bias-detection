@@ -1,0 +1,47 @@
+{
+  "id": "5639",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 61,
+  "dokumentnummer": "20/162",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "3884b189624274c525efd207e4ac5f81",
+  "pdf_hash": "a8befa7a74f4ef94ddadc6626aa5a0c9",
+  "aktualisiert": "2024-04-16T16:54:34+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "310649",
+      "titel": "Aktueller Zustand der Bundeswehr",
+      "vorgangstyp": "Mündliche Frage"
+    },
+    {
+      "id": "310122",
+      "titel": "Gesetz zur Reform der missbräuchlichen Anerkennung von Vaterschaften",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "308701",
+      "titel": "Zweites Gesetz zur Änderung des Schwangerschaftskonfliktgesetzes",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "309835",
+      "titel": "Gesetz zur weiteren Digitalisierung der Justiz",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20162.pdf",
+    "id": "5639",
+    "dokumentnummer": "20/162",
+    "datum": "2024-04-10",
+    "verteildatum": "2024-04-11",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20162.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 162. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2024-04-10"
+}

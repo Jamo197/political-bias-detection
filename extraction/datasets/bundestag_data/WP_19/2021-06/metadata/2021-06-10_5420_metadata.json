@@ -1,0 +1,47 @@
+{
+  "id": "5420",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 279,
+  "dokumentnummer": "19/233",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "c163bae248084ca235a25c0dc683c67f",
+  "pdf_hash": "ff690be65b059f9c6a9afe57d4dabda2",
+  "aktualisiert": "2021-06-23T15:12:03+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "235348",
+      "titel": "Tschernobyl mahnt - Atomausstieg konsequent umsetzen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "231555",
+      "titel": "40 Stunden sind genug - Gesetzliche wöchentliche Höchstarbeitszeit reduzieren",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "234856",
+      "titel": "Gesetz zur Änderung des Teilzeit- und Befristungsgesetzes",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "232192",
+      "titel": "Sachgrundlose Befristungen verbieten",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19233.pdf",
+    "id": "5420",
+    "dokumentnummer": "19/233",
+    "datum": "2021-06-10",
+    "verteildatum": "2021-06-23",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19233.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 233. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2021-06-10"
+}

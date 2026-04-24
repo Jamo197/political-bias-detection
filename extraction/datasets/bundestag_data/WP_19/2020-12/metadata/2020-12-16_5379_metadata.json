@@ -1,0 +1,47 @@
+{
+  "id": "5379",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 106,
+  "dokumentnummer": "19/201",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "332ad5fc9d08d95b2e8570624da6bb47",
+  "pdf_hash": "14dc1db4dcb6a81fd966d78bc87c4ab7",
+  "aktualisiert": "2020-12-17T10:52:03+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "265668",
+      "titel": "Gesetz zur Verbesserung des Vollzugs im Arbeitsschutz (Arbeitsschutzkontrollgesetz)",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "256026",
+      "titel": "Zivilgesellschaft ist gemeinnützig",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "262836",
+      "titel": "Faire Arbeitsbedingungen und angemessener Gesundheitsschutz für Beschäftigte in der Fleischbranche und Saisonarbeitskräfte in der Landwirtschaft",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "244908",
+      "titel": "Für ein Europa das schützt - Soziale Absicherung europaweit garantieren",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19201.pdf",
+    "id": "5379",
+    "dokumentnummer": "19/201",
+    "datum": "2020-12-16",
+    "verteildatum": "2020-12-17",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19201.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 201. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2020-12-16"
+}

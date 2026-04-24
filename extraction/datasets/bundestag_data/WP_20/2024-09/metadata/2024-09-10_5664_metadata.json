@@ -1,0 +1,37 @@
+{
+  "id": "5664",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 13,
+  "dokumentnummer": "20/183",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "0a9a4ea2692a0cbcd0b234eacff2b1f2",
+  "pdf_hash": "04652ded8891e4e243fa8e682c67aa52",
+  "aktualisiert": "2024-09-11T17:26:53+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "314872",
+      "titel": "Gesetz über die Feststellung des Bundeshaushaltsplans für das Haushaltsjahr 2025 (Haushaltsgesetz 2025 - HG 2025)",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "311546",
+      "titel": "Gesetz zur Stärkung der frühen Öffentlichkeitsbeteiligung in Planungs- und Genehmigungsverfahren",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20183.pdf",
+    "id": "5664",
+    "dokumentnummer": "20/183",
+    "datum": "2024-09-10",
+    "verteildatum": "2024-09-11",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20183.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 183. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2024-09-10"
+}

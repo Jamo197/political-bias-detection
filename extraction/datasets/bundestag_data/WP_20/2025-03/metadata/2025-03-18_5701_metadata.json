@@ -1,0 +1,38 @@
+{
+  "id": "5701",
+  "sitzungsbemerkung": "Sondersitzung",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 12,
+  "dokumentnummer": "20/214",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "6e1e62918ae23f99e075c58803b1b183",
+  "pdf_hash": "adbabad803cbf3ca32661d5336d8281e",
+  "aktualisiert": "2025-10-31T08:04:42+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "320785",
+      "titel": "Gesetz zur Errichtung eines Verteidigungsfonds für Deutschland und zur Änderung des Grundgesetzes (Artikel 87a)",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "320784",
+      "titel": "Gesetz zur Änderung des Grundgesetzes (Artikel 109, 115 und 143h)",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20214.pdf",
+    "id": "5701",
+    "dokumentnummer": "20/214",
+    "datum": "2025-03-18",
+    "verteildatum": "2025-03-19",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20214.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 214. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2025-03-18"
+}

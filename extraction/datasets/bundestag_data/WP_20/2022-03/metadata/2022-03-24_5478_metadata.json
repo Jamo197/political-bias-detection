@@ -1,0 +1,47 @@
+{
+  "id": "5478",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 24,
+  "dokumentnummer": "20/25",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "ddfea4609772af134a857476894dbc39",
+  "pdf_hash": "0639a2ed23cc0ec1903dede16a19bf13",
+  "aktualisiert": "2022-03-25T09:12:04+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "285688",
+      "titel": "Finanzplan des Bundes 2021 bis 2025",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "285391",
+      "titel": "Sammelübersicht 51 des Petitionsausschusses (2. Ausschuss) über Anträge zu Petitionen",
+      "vorgangstyp": "Petition"
+    },
+    {
+      "id": "285392",
+      "titel": "Sammelübersicht 52 des Petitionsausschusses (2. Ausschuss) über Anträge zu Petitionen",
+      "vorgangstyp": "Petition"
+    },
+    {
+      "id": "283135",
+      "titel": "Entlastung der Bundesregierung für das Haushaltsjahr 2020\r\n- Haushalts- und Vermögensrechnung des Bundes für das Haushaltsjahr 2020 -",
+      "vorgangstyp": "Entlastung der Bundesregierung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20025.pdf",
+    "id": "5478",
+    "dokumentnummer": "20/25",
+    "datum": "2022-03-24",
+    "verteildatum": "2022-03-25",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20025.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 25. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2022-03-24"
+}

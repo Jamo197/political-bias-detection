@@ -1,0 +1,47 @@
+{
+  "id": "5409",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 51,
+  "dokumentnummer": "19/225",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "69fd9a3c0327cd3e7a7ed1589c5e7f4f",
+  "pdf_hash": "109d8a14090200ed8c9c199deea9e971",
+  "aktualisiert": "2021-04-26T08:42:03+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "263962",
+      "titel": "Vorschlag für eine Verordnung des Europäischen Parlaments und des Rates zur Änderung der Verordnung (EU) 2017/1601 zur Einrichtung des Europäischen Fonds für nachhaltige Entwicklung (EFSD), der EFSD-Garantie und des EFSD-Garantiefonds\r\nKOM(2020)407 endg.; Ratsdok.-Nr. 8505/20",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "256979",
+      "titel": "Maßnahmen zur Gewährleistung der Integrität digitaler Infrastrukturen, Geräte und Komponenten - Für eine größere digitale Souveränität Deutschlands und Europas",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "233629",
+      "titel": "IT-Sicherheit stärken, Freiheit erhalten, Frieden sichern",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "259653",
+      "titel": "Europäische Bildungsmobilität stärken - Erasmus ausbauen und Großbritannien als Programmland halten",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19225.pdf",
+    "id": "5409",
+    "dokumentnummer": "19/225",
+    "datum": "2021-04-23",
+    "verteildatum": "2021-04-26",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19225.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 225. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2021-04-23"
+}

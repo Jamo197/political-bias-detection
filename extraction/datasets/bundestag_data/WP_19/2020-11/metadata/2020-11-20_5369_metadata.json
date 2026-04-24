@@ -1,0 +1,47 @@
+{
+  "id": "5369",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 59,
+  "dokumentnummer": "19/193",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "ebf9e8e36ba144fb978f14977e7fd0aa",
+  "pdf_hash": "0cc2a5d845d549732c15f0340adaf86f",
+  "aktualisiert": "2025-03-19T13:42:09+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "244273",
+      "titel": "Sondergutachten des Sachverständigenrates für Umweltfragen\r\nFluglärm reduzieren: Reformbedarf bei der Planung von Flughäfen und Flugrouten",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "238090",
+      "titel": "Vorschlag für einen Beschluss des Rates zur Änderung der Entscheidung 2007/198/Euratom über die Errichtung des europäischen gemeinsamen Unternehmens für den ITER und die Entwicklung der Fusionsenergie sowie die Gewährung von Vergünstigungen dafür\r\nKOM(2018) 445 endg.; Ratsdok. 9868/18",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "243339",
+      "titel": "Erster Bericht der Bundesregierung zur Evaluierung des Gesetzes zum Schutz gegen Fluglärm",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "243256",
+      "titel": "Die Organisation für Sicherheit und Zusammenarbeit in Europa für Frieden und Abrüstung stärken",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19193.pdf",
+    "id": "5369",
+    "dokumentnummer": "19/193",
+    "datum": "2020-11-20",
+    "verteildatum": "2020-11-23",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19193.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 193. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2020-11-20"
+}

@@ -1,0 +1,47 @@
+{
+  "id": "5603",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 34,
+  "dokumentnummer": "20/132",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "d13c357332851c46e9e6e86ce6d35d20",
+  "pdf_hash": "1de69abfac7c065292f9928249e98608",
+  "aktualisiert": "2023-12-05T09:57:00+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "288547",
+      "titel": "Bericht der Bundesregierung über die deutsche humanitäre Hilfe im Ausland 2018 bis 2021",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "298410",
+      "titel": "Vorschlag für eine Richtlinie des Europäischen Parlaments und des Rates über den Führerschein, zur Änderung der Richtlinie (EU) 2022/2561 des Europäischen Parlaments und des Rates, der Verordnung (EU) 2018/1724 des Europäischen Parlaments und des Rates und zur Aufhebung der Richtlinie 2006/126/EG des Europäischen Parlaments und des Rates und der Verordnung (EU) Nr. 383/2012 der Kommission\r\nKOM(2023) 127 endg.; Ratsdok. 6795/23",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "298482",
+      "titel": "Vorschlag für eine Richtlinie des Europäischen Parlaments und des Rates über die unionsweite Wirkung bestimmter Entscheidungen über den Fahrbefähigungsverlust\r\nKOM(2023) 128 endg.; Ratsdok. 6796/23",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "288263",
+      "titel": "Vorschlag für eine Richtlinie des Europäischen Parlaments und des Rates zur Änderung der Richtlinie (EU) 2018/2001 zur Förderung der Nutzung von Energie aus erneuerbaren Quellen, der Richtlinie 2010/31/EU über die Gesamtenergieeffizienz von Gebäuden sowie der Richtlinie 2012/27/EU zur Energieeffizienz \r\nKOM(2022)222 endg.; Ratsdok. 9363/22",
+      "vorgangstyp": "EU-Vorlage"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20132.pdf",
+    "id": "5603",
+    "dokumentnummer": "20/132",
+    "datum": "2023-10-20",
+    "verteildatum": "2023-10-23",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20132.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 132. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2023-10-20"
+}

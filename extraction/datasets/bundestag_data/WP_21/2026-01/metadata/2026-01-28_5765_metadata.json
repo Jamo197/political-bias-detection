@@ -1,0 +1,47 @@
+{
+  "id": "5765",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 73,
+  "dokumentnummer": "21/55",
+  "wahlperiode": 21,
+  "herausgeber": "BT",
+  "xml_hash": "0375ff70d2c1115f1003f87e20d1b04d",
+  "pdf_hash": "9a6ac5c971b398fd0e80706331e56b1f",
+  "aktualisiert": "2026-04-20T15:23:57+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "330351",
+      "titel": "Die \"vergessenen\" queeren Opfer der nationalsozialistischen Verfolgung",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "330484",
+      "titel": "Arbeitsaufträge der Alterssicherungskommission",
+      "vorgangstyp": "Mündliche Frage"
+    },
+    {
+      "id": "327973",
+      "titel": "Gesetz zum Bürokratierückbau in der Gewerbeordnung und dem Energieverbrauchskennzeichnungsgesetz sowie anderer Rechtsvorschriften zur Aufhebung von Berichtspflichten",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "330518",
+      "titel": "Ausgaben für Migranten und Flüchtlinge seit 2015",
+      "vorgangstyp": "Mündliche Frage"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/21/21055.pdf",
+    "id": "5765",
+    "dokumentnummer": "21/55",
+    "datum": "2026-01-28",
+    "verteildatum": "2026-01-29",
+    "xml_url": "https://dserver.bundestag.de/btp/21/21055.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 55. Sitzung des 21. Deutschen Bundestages",
+  "datum": "2026-01-28"
+}

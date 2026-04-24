@@ -1,0 +1,47 @@
+{
+  "id": "5333",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 82,
+  "dokumentnummer": "19/163",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "9f882741b7a4143c75f66680678add05",
+  "pdf_hash": "441a80092fb63bdbc395fa53f7fdda8b",
+  "aktualisiert": "2020-05-29T08:40:00+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "242539",
+      "titel": "Gesunde Ernährung im Alltag einfach machen - Ernährungswende umsetzen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "243161",
+      "titel": "Für eine zukunftsweisende und soziale Ernährungspolitik - Besonders für Kinder",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "245208",
+      "titel": "Solidarische Mindestrente einführen - Altersarmut wirksam bekämpfen und das Rentenniveau anheben",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "230130",
+      "titel": "Drittes Gesetz zur Änderung des Staatsangehörigkeitsgesetzes (Staatsangehörigkeitsänderungsgesetz)",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19163.pdf",
+    "id": "5333",
+    "dokumentnummer": "19/163",
+    "datum": "2020-05-28",
+    "verteildatum": "2020-05-29",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19163.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 163. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2020-05-28"
+}

@@ -1,0 +1,42 @@
+{
+  "id": "5352",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 4,
+  "dokumentnummer": "19/178",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "1e525dccbffaff7073d260ce48359294",
+  "pdf_hash": "49725c954c22f363c2f627680f4f65ec",
+  "aktualisiert": "2020-09-30T08:22:02+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "267642",
+      "titel": "Gesetz über die Feststellung des Bundeshaushaltsplans für das Haushaltsjahr 2021 (Haushaltsgesetz 2021)",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "266732",
+      "titel": "Konsequenzen aus dem Brand in Moria ziehen - Lager auf den griechischen Inseln auflösen und Geflüchtete in Deutschland aufnehmen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "267303",
+      "titel": "Nach dem Brand von Moria - Für schnelle Nothilfe und einen menschenrechtsbasierten Neustart der europäischen Flüchtlingspolitik",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19178.pdf",
+    "id": "5352",
+    "dokumentnummer": "19/178",
+    "datum": "2020-09-29",
+    "verteildatum": "2020-09-30",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19178.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 178. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2020-09-29"
+}

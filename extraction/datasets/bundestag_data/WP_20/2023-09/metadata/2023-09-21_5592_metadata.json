@@ -1,0 +1,47 @@
+{
+  "id": "5592",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 61,
+  "dokumentnummer": "20/122",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "dcac63e167df1370c4f0a76d0d1ab945",
+  "pdf_hash": "411807359678eda05ca01908cdd87b9b",
+  "aktualisiert": "2023-10-04T16:22:41+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "289317",
+      "titel": "Frieden und Freiheit verteidigen - Invasion der Türkei im Nordirak und türkische Einmarschdrohung in Nordsyrien verurteilen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "296949",
+      "titel": "Bezahlbare und klimafreundliche Mobilität fördern - Klimaneutrale Kraftstoffe im Verkehr nutzen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "296941",
+      "titel": "Abgasnorm Euro-7 mit Augenmaß und Realitätssinn weiterentwickeln - Mobilität fördern, nicht verhindern",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "296962",
+      "titel": "Gesetz zur Änderung des Umsatzsteuergesetzes",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20122.pdf",
+    "id": "5592",
+    "dokumentnummer": "20/122",
+    "datum": "2023-09-21",
+    "verteildatum": "2023-09-22",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20122.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 122. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2023-09-21"
+}

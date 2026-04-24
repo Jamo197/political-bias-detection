@@ -1,0 +1,47 @@
+{
+  "id": "5523",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 64,
+  "dokumentnummer": "20/63",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "d36ae681c6f2707058c5c0d05fa221a1",
+  "pdf_hash": "71947022d4a7caa2de1104f6d4ea7522",
+  "aktualisiert": "2022-10-31T11:10:19+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "284450",
+      "titel": "Deutsche Schweinehaltung retten",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "282846",
+      "titel": "Massenmigration über Polen mit grenzpolizeilichen Maßnahmen rechtzeitig verhindern und nachhaltige Abwehrmaßnahmen sicherstellen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "288058",
+      "titel": "Gesetz zur Abschaffung des Güterrechtsregisters und zur Änderung des COVID-19-Insolvenzaussetzungsgesetzes",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "283597",
+      "titel": "Gesetz zur Sicherung der Zahlungsfähigkeit der gesetzlichen Rentenversicherung (RV-Mindestrücklagengesetz)",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20063.pdf",
+    "id": "5523",
+    "dokumentnummer": "20/63",
+    "datum": "2022-10-20",
+    "verteildatum": "2022-10-21",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20063.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 63. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2022-10-20"
+}

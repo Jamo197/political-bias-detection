@@ -1,0 +1,42 @@
+{
+  "id": "5601",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 69,
+  "dokumentnummer": "20/130",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "5e87bc6100ae54403fefd76fb674a3af",
+  "pdf_hash": "497823f1587703630baaf99b1cf5a567",
+  "aktualisiert": "2025-03-14T09:52:56+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "302817",
+      "titel": "Zweites Gesetz zur Änderung des Bundes-Klimaschutzgesetzes",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "303401",
+      "titel": "Fortsetzung des Einsatzes bewaffneter deutscher Streitkräfte - Stabilisierung sichern, Wiedererstarken des IS verhindern, Versöhnung in Irak fördern",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "302864",
+      "titel": "Gesetz zum kontrollierten Umgang mit Cannabis und zur Änderung weiterer Vorschriften (Cannabisgesetz - CanG)",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20130.pdf",
+    "id": "5601",
+    "dokumentnummer": "20/130",
+    "datum": "2023-10-18",
+    "verteildatum": "2023-10-19",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20130.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 130. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2023-10-18"
+}

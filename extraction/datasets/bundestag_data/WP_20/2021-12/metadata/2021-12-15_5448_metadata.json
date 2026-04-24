@@ -1,0 +1,37 @@
+{
+  "id": "5448",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 2,
+  "dokumentnummer": "20/8",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "57f14bfe89764121403d2bc204f7dce9",
+  "pdf_hash": "4e64eac14c8f1d0356815a030fa2102f",
+  "aktualisiert": "2021-12-16T08:42:02+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "283210",
+      "titel": "Regierungsprogramm",
+      "vorgangstyp": "Regierungserklärung"
+    },
+    {
+      "id": "283214",
+      "titel": "Feststellung der Tagesordnung der 8. und 9. Sitzung des Deutschen Bundestages",
+      "vorgangstyp": "Anmerkung zur Plenarsitzung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20008.pdf",
+    "id": "5448",
+    "dokumentnummer": "20/8",
+    "datum": "2021-12-15",
+    "verteildatum": "2021-12-16",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20008.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 8. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2021-12-15"
+}

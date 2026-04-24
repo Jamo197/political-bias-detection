@@ -1,0 +1,47 @@
+{
+  "id": "5702",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 10,
+  "dokumentnummer": "21/1",
+  "wahlperiode": 21,
+  "herausgeber": "BT",
+  "xml_hash": "83ad63117cdf720b2dd97af933e11ed0",
+  "pdf_hash": "bd948e730258bf12a7de0c5c284cf2a8",
+  "aktualisiert": "2025-03-26T09:52:31+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "321014",
+      "titel": "Weitergeltung von Geschäftsordnungsrecht",
+      "vorgangstyp": "Geschäftsordnung"
+    },
+    {
+      "id": "321012",
+      "titel": "Festlegung der Zahl der Stellvertreterinnen und Stellvertreter der Präsidentin",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "321011",
+      "titel": "Leitung der konstituierenden Sitzung des Bundestages bis zur Wahl des Präsidenten des Bundestages durch das an Jahren älteste Mitglied des Bundestages",
+      "vorgangstyp": "Geschäftsordnung"
+    },
+    {
+      "id": "326863",
+      "titel": "Änderung der Geschäftsordnung des Deutschen Bundestages\r\nhier: Besetzung des Präsidiums in § 5 GO-BT",
+      "vorgangstyp": "Geschäftsordnung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/21/21001.pdf",
+    "id": "5702",
+    "dokumentnummer": "21/1",
+    "datum": "2025-03-25",
+    "verteildatum": "2025-03-26",
+    "xml_url": "https://dserver.bundestag.de/btp/21/21001.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 1. Sitzung des 21. Deutschen Bundestages",
+  "datum": "2025-03-25"
+}

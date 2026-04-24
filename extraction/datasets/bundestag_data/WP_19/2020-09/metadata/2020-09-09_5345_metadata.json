@@ -1,0 +1,47 @@
+{
+  "id": "5345",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 83,
+  "dokumentnummer": "19/172",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "54662b170ceb3a8c6d3b2a032a27fdb7",
+  "pdf_hash": "51a18d0d0a3343d4e47241c9f7b5bd90",
+  "aktualisiert": "2020-09-10T08:32:02+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "264439",
+      "titel": "Gesetz zur finanziellen Entlastung der Kommunen und der neuen Länder",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "263817",
+      "titel": "Siebtes Gesetz zur Änderung des Kraftfahrzeugsteuergesetzes",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "259843",
+      "titel": "Weg zu einer gemeinsamen wertebasierten und realistischen China-Politik der EU",
+      "vorgangstyp": "Große Anfrage"
+    },
+    {
+      "id": "263199",
+      "titel": "Gesetz zu dem Mehrseitigen Übereinkommen vom 24. November 2016 zur Umsetzung steuerabkommensbezogener Maßnahmen zur Verhinderung der Gewinnverkürzung und Gewinnverlagerung",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19172.pdf",
+    "id": "5345",
+    "dokumentnummer": "19/172",
+    "datum": "2020-09-09",
+    "verteildatum": "2020-09-10",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19172.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 172. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2020-09-09"
+}

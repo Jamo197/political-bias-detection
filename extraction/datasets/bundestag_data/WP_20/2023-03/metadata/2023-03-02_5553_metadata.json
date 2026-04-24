@@ -1,0 +1,47 @@
+{
+  "id": "5553",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 45,
+  "dokumentnummer": "20/88",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "cce729c02a384f6b9c400d7737a7459a",
+  "pdf_hash": "89ff316d98abe9c2204ae40b3d0880b8",
+  "aktualisiert": "2024-06-12T08:16:29+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "285378",
+      "titel": "Meinungsfreiheit schützen - Keine Zensur von Telegram",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "290902",
+      "titel": "Verordnung zur Sicherstellung der Versorgung der Bevölkerung mit Produkten des medizinischen Bedarfs bei der durch das Coronavirus SARS-CoV-2 verursachten Epidemie sofort außer Kraft setzen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "289274",
+      "titel": "Caravaning-Tourismus fördern",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "289315",
+      "titel": "Digitalisierung der öffentlichen Verwaltung beschleunigen - Anforderungen an ein Onlinezugangsgesetz 2.0 berücksichtigen",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20088.pdf",
+    "id": "5553",
+    "dokumentnummer": "20/88",
+    "datum": "2023-03-02",
+    "verteildatum": "2023-03-03",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20088.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 88. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2023-03-02"
+}

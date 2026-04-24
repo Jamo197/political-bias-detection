@@ -1,0 +1,37 @@
+{
+  "id": "5495",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 6,
+  "dokumentnummer": "20/39",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "e9fe7baaf1876b968b8e42c9f7a3e22d",
+  "pdf_hash": "674fab5a07afb2509dd91e77569762ca",
+  "aktualisiert": "2022-06-01T08:32:04+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "285688",
+      "titel": "Finanzplan des Bundes 2021 bis 2025",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "285457",
+      "titel": "Gesetz über die Feststellung des Bundeshaushaltsplans für das Haushaltsjahr 2022 (Haushaltsgesetz 2022)",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20039.pdf",
+    "id": "5495",
+    "dokumentnummer": "20/39",
+    "datum": "2022-05-31",
+    "verteildatum": "2022-06-01",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20039.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 39. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2022-05-31"
+}

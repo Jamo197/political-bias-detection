@@ -1,0 +1,47 @@
+{
+  "id": "5573",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 66,
+  "dokumentnummer": "20/105",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "6db461eebbc4c1948d40e7f30d2f4be3",
+  "pdf_hash": "a0d7307d87ec62e0241c1e5177b061d1",
+  "aktualisiert": "2023-10-23T08:25:43+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "298210",
+      "titel": "Gesetz zur Regelung der Entsendung von Kraftfahrern und Kraftfahrerinnen im Straßenverkehrssektor und zur grenzüberschreitenden Durchsetzung des Entsenderechts",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "299729",
+      "titel": "Berufsbildungsbericht 2023",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "298716",
+      "titel": "Gesetz zur Bekämpfung von Lieferengpässen bei patentfreien Arzneimitteln und zur Verbesserung der Versorgung mit Kinderarzneimitteln (Arzneimittel-Lieferengpassbekämpfungs- und Versorgungsverbesserungsgesetz - ALBVVG)",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "298715",
+      "titel": "Gesetz zur Unterstützung und Entlastung in der Pflege (Pflegeunterstützungs- und -entlastungsgesetz - PUEG)",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20105.pdf",
+    "id": "5573",
+    "dokumentnummer": "20/105",
+    "datum": "2023-05-24",
+    "verteildatum": "2023-05-25",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20105.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 105. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2023-05-24"
+}

@@ -1,0 +1,42 @@
+{
+  "id": "5554",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 14,
+  "dokumentnummer": "20/89",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "a10ab5156d72fd14f7bb70bfd5f9be2b",
+  "pdf_hash": "ccc23d1ef43fe0e179f92ba332fb546e",
+  "aktualisiert": "2023-03-13T12:26:24+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "292384",
+      "titel": "Gesetz zur Änderung des Raumordnungsgesetzes und anderer Vorschriften (ROGÄndG)",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "292625",
+      "titel": "Deutsche Strategie zum Umgang mit Russlands wachsendem Einfluss in Afrika",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "289057",
+      "titel": "Bundesbericht Forschung und Innovation 2022",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20089.pdf",
+    "id": "5554",
+    "dokumentnummer": "20/89",
+    "datum": "2023-03-03",
+    "verteildatum": "2023-03-06",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20089.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 89. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2023-03-03"
+}

@@ -1,0 +1,47 @@
+{
+  "id": "5557",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 55,
+  "dokumentnummer": "20/91",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "39eb3ef4a33c87f5d20603cf24184bd3",
+  "pdf_hash": "acf17f0dcd2b9245bc3b8e70ca673dd0",
+  "aktualisiert": "2023-04-05T15:30:47+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "285357",
+      "titel": "Finanzierung des politischen Islamismus in Deutschland offenlegen und unterbinden",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "289320",
+      "titel": "Preiserhöhung im öffentlichen Personennahverkehr verhindern - Neun-Euro-Ticket verlängern - Anschlussregelung ab 2023 sicherstellen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "288785",
+      "titel": "Landwirtschaftliche Produktion zukunftsfähig gestalten - Innovationsrahmen für neue genomische Techniken schaffen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "285365",
+      "titel": "Finanzierung des Islamismus austrocknen",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20091.pdf",
+    "id": "5557",
+    "dokumentnummer": "20/91",
+    "datum": "2023-03-16",
+    "verteildatum": "2023-03-17",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20091.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 91. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2023-03-16"
+}

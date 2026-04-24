@@ -1,0 +1,47 @@
+{
+  "id": "5380",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 117,
+  "dokumentnummer": "19/202",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "5ec472d0387bde17e87471cb21edb02e",
+  "pdf_hash": "c08ec2800ddd903e89d79cd9b10b4ca7",
+  "aktualisiert": "2020-12-18T10:12:03+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "248193",
+      "titel": "Freiheit im Internet - Bürgerrechte stärken",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "243773",
+      "titel": "Freie Meinungsäußerung sicherstellen - Rechtssicherheit der Datenschutz-Grundverordnung - Erweiterung des Medienprivilegs auf Blogger, Fotografen und Tätige im Bereich Öffentlichkeitsarbeit",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "255223",
+      "titel": "Gesetz zur Verbesserung der Hilfen für Familien bei Adoption (Adoptionshilfe-Gesetz)",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "259578",
+      "titel": "Gesetz zur Verbesserung der Strafverfolgung hinsichtlich des Handels mit inkriminierten Gütern unter Nutzung von Postdienstleistern sowie zur Änderung weiterer Vorschriften",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19202.pdf",
+    "id": "5380",
+    "dokumentnummer": "19/202",
+    "datum": "2020-12-17",
+    "verteildatum": "2020-12-18",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19202.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 202. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2020-12-17"
+}

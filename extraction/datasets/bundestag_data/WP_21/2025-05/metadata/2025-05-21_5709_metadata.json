@@ -1,0 +1,47 @@
+{
+  "id": "5709",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 73,
+  "dokumentnummer": "21/6",
+  "wahlperiode": 21,
+  "herausgeber": "BT",
+  "xml_hash": "d3ddf483855fd46e1fdf200bc9282b10",
+  "pdf_hash": "cccffddb1b70e150b89affdd7af02471",
+  "aktualisiert": "2025-06-06T11:05:21+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "321890",
+      "titel": "Abschaffung bzw. Einschränkung von anwaltlichen Pflichtbeiordnungen in Haft- oder Gewahrsamssachen",
+      "vorgangstyp": "Mündliche Frage"
+    },
+    {
+      "id": "321828",
+      "titel": "Ablauf von Grenzkontrollen",
+      "vorgangstyp": "Mündliche Frage"
+    },
+    {
+      "id": "321979",
+      "titel": "Jahresbericht 2024 (66. Bericht)",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "321846",
+      "titel": "Ausgabe von Reisepässen und Visa an afghanische Staatsangehörige in Islamabad mit Aufnahmezusage für Deutschland",
+      "vorgangstyp": "Mündliche Frage"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/21/21006.pdf",
+    "id": "5709",
+    "dokumentnummer": "21/6",
+    "datum": "2025-05-21",
+    "verteildatum": "2025-05-22",
+    "xml_url": "https://dserver.bundestag.de/btp/21/21006.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 6. Sitzung des 21. Deutschen Bundestages",
+  "datum": "2025-05-21"
+}

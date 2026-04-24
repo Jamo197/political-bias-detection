@@ -1,0 +1,47 @@
+{
+  "id": "5565",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 16,
+  "dokumentnummer": "20/98",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "e6fbeb4b84f48744b24cf1595d39cd6f",
+  "pdf_hash": "01e9b085be8e27987c569201e5ed16d3",
+  "aktualisiert": "2023-10-23T08:25:34+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "259053",
+      "titel": "Bericht der Kommission an das Europäische Parlament und den Rat\r\nJahresbericht über die 2018 finanzierten humanitären Hilfsmaßnahmen der Europäischen Union \r\nKOM(2020)6 endg.; Ratsdok. 5668/20",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "254258",
+      "titel": "Mitteilung der Kommission an das Europäische Parlament und den Rat\r\nBericht über die Umsetzung der nationalen Strategien zur Integration der Roma 2019\r\nKOM(2019) 406 endg.; Ratsdok. 12201/19",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "263960",
+      "titel": "Vorschlag für eine Verordnung des Europäischen Parlaments und des Rates zur Änderung der Verordnung (EG) Nr. 1257/96 vom 20. Juni 1996 über die humanitäre Hilfe\r\nKOM(2020)461 endg.; Ratsdok. 8292/20",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "267341",
+      "titel": "Bericht der Kommission an das Europäische Parlament und den Rat \r\nJahresbericht über die 2019 finanzierten humanitären Hilfsmaßnahmen der Europäischen Union\r\nKOM(2020) 358 endg.; Ratsdok. 10544/20",
+      "vorgangstyp": "EU-Vorlage"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20098.pdf",
+    "id": "5565",
+    "dokumentnummer": "20/98",
+    "datum": "2023-04-21",
+    "verteildatum": "2023-04-24",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20098.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 98. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2023-04-21"
+}

@@ -1,0 +1,47 @@
+{
+  "id": "5647",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 63,
+  "dokumentnummer": "20/169",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "fd90576eea8edee66177764bd43666f7",
+  "pdf_hash": "3e1f963c6807db5384bfe3a9dd09caea",
+  "aktualisiert": "2024-10-08T09:51:51+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "299903",
+      "titel": "Verfassung und Patriotismus als verbindendes Band stärken - Tag des Grundgesetzes am 23. Mai als Gedenktag aufwerten",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "294800",
+      "titel": "15. Bericht der Bundesregierung über ihre Menschenrechtspolitik",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "304944",
+      "titel": "Arbeitende Mitte stärken - Steuerbelastung senken",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "299324",
+      "titel": "Für starke Quartiere, ein attraktives Lebensumfeld und ein gutes Leben in der Nachbarschaft - Die Städtebauförderung",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20169.pdf",
+    "id": "5647",
+    "dokumentnummer": "20/169",
+    "datum": "2024-05-16",
+    "verteildatum": "2024-05-17",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20169.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 169. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2024-05-16"
+}

@@ -1,0 +1,47 @@
+{
+  "id": "5606",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 79,
+  "dokumentnummer": "20/134",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "babbe716044e8630083f894900dcb123",
+  "pdf_hash": "31a9afd56e99f7655532277b3e7991c3",
+  "aktualisiert": "2023-11-29T16:45:01+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "292560",
+      "titel": "Unterstützung für die Schließung des Gefangenenlagers in Guantánamo Bay nach 20 Jahren",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "283858",
+      "titel": "20 Jahre Guantánamo - Gefangenenlager umgehend schließen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "295786",
+      "titel": "Sichere digitale Identitäten schnellstmöglich in Deutschland einführen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "283103",
+      "titel": "Vermarktung regionaler Lebensmittel stärken - Agrarexporte ausbauen",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20134.pdf",
+    "id": "5606",
+    "dokumentnummer": "20/134",
+    "datum": "2023-11-09",
+    "verteildatum": "2023-11-10",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20134.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 134. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2023-11-09"
+}

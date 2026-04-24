@@ -1,0 +1,47 @@
+{
+  "id": "5593",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 21,
+  "dokumentnummer": "20/123",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "c6a64aa5a6c9e5eb5f6d95e1842b6fcb",
+  "pdf_hash": "e8759cc6c5b0a92d5108d30ae6a4a607",
+  "aktualisiert": "2023-09-28T17:56:09+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "298131",
+      "titel": "Lebensleistung anerkennen - Vermögensfreibetrag bei Sozialhilfe und Bürgergeld angleichen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "300150",
+      "titel": "Bericht der Kommission an das Europäische Parlament und den Rat über die Ausübung der der Kommission übertragenen Befugnis zum Erlass delegierter Rechtsakte gemäß der Verordnung (EU) 2016/425 des Europäischen Parlaments und des Rates über persönliche Schutzausrüstungen \r\nKOM(2023)196 endg.; Ratsdok. 9302/23",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "295821",
+      "titel": "Bericht über das Ergebnis der Vorplanung und der frühen Öffentlichkeitsbeteiligung zur Ausbaustrecke/Neubaustrecke Hamburg - Lübeck - Puttgarden",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "288204",
+      "titel": "Tätigkeitsbericht der Bundesnetzagentur - Post 2020/2021 mit 12. Sektorgutachten Post (2021) der Monopolkommission - Wettbewerb mit neuem Schwung!",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20123.pdf",
+    "id": "5593",
+    "dokumentnummer": "20/123",
+    "datum": "2023-09-22",
+    "verteildatum": "2023-09-25",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20123.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 123. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2023-09-22"
+}

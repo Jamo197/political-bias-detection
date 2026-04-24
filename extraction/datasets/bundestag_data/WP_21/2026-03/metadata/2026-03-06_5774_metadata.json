@@ -1,0 +1,47 @@
+{
+  "id": "5774",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 31,
+  "dokumentnummer": "21/63",
+  "wahlperiode": 21,
+  "herausgeber": "BT",
+  "pdf_hash": "9231ac8a9db9a746efd1b468b876b4b7",
+  "xml_hash": "4c534719b654d483ae087703021ecc04",
+  "aktualisiert": "2026-04-23T13:35:34+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "325519",
+      "titel": "Arbeitsbericht der Bundesstiftung Gleichstellung für die 20. Legislaturperiode mit Stellungnahme der Bundesregierung",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "325216",
+      "titel": "Bericht des Stabilitätsrates gemäß § 9 des Stabilitätsratsgesetzes",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "325503",
+      "titel": "Dritter Gleichstellungsbericht der Bundesregierung",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "323427",
+      "titel": "Bericht des Stabilitätsrates gemäß § 9 des Stabilitätsratsgesetzes",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/21/21063.pdf",
+    "id": "5774",
+    "dokumentnummer": "21/63",
+    "datum": "2026-03-06",
+    "verteildatum": "2026-03-09",
+    "xml_url": "https://dserver.bundestag.de/btp/21/21063.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 63. Sitzung des 21. Deutschen Bundestages",
+  "datum": "2026-03-06"
+}

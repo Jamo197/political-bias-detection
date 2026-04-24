@@ -1,0 +1,47 @@
+{
+  "id": "5395",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 48,
+  "dokumentnummer": "19/213",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "c7a0f961ad45dfa5d6192d68188da0a3",
+  "pdf_hash": "bdbe65edad30bef22b0a637fc40883ef",
+  "aktualisiert": "2021-03-01T08:32:02+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "238169",
+      "titel": "Haushaltsführung 2018\r\nÜber- und außerplanmäßige Ausgaben und Verpflichtungsermächtigungen im zweiten Vierteljahr des Haushaltsjahres 2018",
+      "vorgangstyp": "Über- und außerplanmäßige Haushaltsausgaben"
+    },
+    {
+      "id": "241988",
+      "titel": "Haushaltsführung 2018\r\nÜber- und außerplanmäßige Ausgaben und Verpflichtungsermächtigungen im dritten Vierteljahr des Haushaltsjahres 2018",
+      "vorgangstyp": "Über- und außerplanmäßige Haushaltsausgaben"
+    },
+    {
+      "id": "235666",
+      "titel": "Haushaltsführung 2018\r\nÜber- und außerplanmäßige Ausgaben und Verpflichtungsermächtigungen im ersten Vierteljahr des Haushaltsjahres 2018",
+      "vorgangstyp": "Über- und außerplanmäßige Haushaltsausgaben"
+    },
+    {
+      "id": "244235",
+      "titel": "Zur kulturpolitischen Aufarbeitung unseres kolonialen Erbes",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19213.pdf",
+    "id": "5395",
+    "dokumentnummer": "19/213",
+    "datum": "2021-02-26",
+    "verteildatum": "2021-03-01",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19213.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 213. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2021-02-26"
+}

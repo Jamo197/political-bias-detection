@@ -1,0 +1,47 @@
+{
+  "id": "5739",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 43,
+  "dokumentnummer": "21/32",
+  "wahlperiode": 21,
+  "herausgeber": "BT",
+  "xml_hash": "16766d58117a368daacae0fceb49cab5",
+  "pdf_hash": "9a7e54a22f0d8579ad5abe8e23af2492",
+  "aktualisiert": "2025-10-21T14:49:29+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "325471",
+      "titel": "Haushaltsführung 2024\r\nÜberplanmäßige Ausgabe bei Kapitel 1102 Titel 632 01 - Erstattungen des Bundes für die Grundsicherung im Alter und bei Erwerbsminderung - bis zur Höhe von 150 Mio. Euro",
+      "vorgangstyp": "Über- und außerplanmäßige Haushaltsausgaben"
+    },
+    {
+      "id": "325475",
+      "titel": "Haushaltsführung 2024\r\nÜberplanmäßige Ausgabe bei Kapitel 1101 Titel 68112 - Bürgergeld - bis zu 3,2 Mrd. Euro",
+      "vorgangstyp": "Über- und außerplanmäßige Haushaltsausgaben"
+    },
+    {
+      "id": "325466",
+      "titel": "Bericht des Stabilitätsrates gemäß § 9 des Stabilitätsratsgesetzes",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "325467",
+      "titel": "Bericht der Bundesregierung über Maßnahmen des Bundes zur Unterstützung von Ländern und Kommunen im Bereich der Flüchtlings- und Integrationskosten und die Mittelverwendung durch die Länder im Jahr 2023",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/21/21032.pdf",
+    "id": "5739",
+    "dokumentnummer": "21/32",
+    "datum": "2025-10-10",
+    "verteildatum": "2025-10-13",
+    "xml_url": "https://dserver.bundestag.de/btp/21/21032.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 32. Sitzung des 21. Deutschen Bundestages",
+  "datum": "2025-10-10"
+}

@@ -1,0 +1,47 @@
+{
+  "id": "5394",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 73,
+  "dokumentnummer": "19/212",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "4e5c9c8aa406edf44215d8fbc20b185b",
+  "pdf_hash": "92222c9ab6c0094c3cf9fc75cfe63aec",
+  "aktualisiert": "2021-02-26T08:32:03+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "262768",
+      "titel": "Globale Gesundheit - Gesundheitssysteme und Grundversorgung nicht vernachlässigen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "254999",
+      "titel": "Gesetz zur Änderung des Grundgesetzes zum Schutz der Bargeldnutzung (Artikel 14)",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "255388",
+      "titel": "Wirtschaftliche Zusammenarbeit mit Eritrea aufnehmen und forcieren",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "262792",
+      "titel": "Für den Schutz der Menschenrechte in Zeiten der Corona-Pandemie",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19212.pdf",
+    "id": "5394",
+    "dokumentnummer": "19/212",
+    "datum": "2021-02-25",
+    "verteildatum": "2021-02-26",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19212.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 212. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2021-02-25"
+}

@@ -1,0 +1,47 @@
+{
+  "id": "5735",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 14,
+  "dokumentnummer": "21/29",
+  "wahlperiode": 21,
+  "herausgeber": "BT",
+  "xml_hash": "cc7e40198b6b430f5b3bc37efc92b661",
+  "pdf_hash": "891a0782a0324855c21e6510fb2e917a",
+  "aktualisiert": "2025-09-30T17:31:33+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "321796",
+      "titel": "Mitteilung der Kommission an das Europäische Parlament, den Rat, den Europäischen Wirtschafts- und Sozialausschuss und den Ausschuss der Regionen: Aktionsplan für den KI-Kontinent\r\nKOM(2025) 165 endg.; Ratsdok. 7955/25",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "322109",
+      "titel": "Vorschlag für eine Richtlinie des Europäischen Parlaments und des Rates zur Änderung der Richtlinie 2014/45/EU über die regelmäßige technische Überwachung von Kraftfahrzeugen und Kraftfahrzeuganhängern und der Richtlinie 2014/47/EU über die technische Unterwegskontrolle der Verkehrs- und Betriebssicherheit von Nutzfahrzeugen, die in der Union am Straßenverkehr teilnehmen\r\nKOM(2025) 180 endg.; Ratsdok. 8255/25",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "322108",
+      "titel": "Vorschlag für eine Richtlinie des Europäischen Parlaments und des Rates über Zulassungsdokumente für Fahrzeuge und die in den nationalen Fahrzeugregistern erfassten Zulassungsdaten von Fahrzeugen sowie zur Aufhebung der Richtlinie 1999/37/EG des Rates\r\nKOM(2025) 179 endg.; Ratsdok. 8259/25",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "321190",
+      "titel": "Vorschlag für eine Verordnung des Europäischen Parlaments und des Rates zur Änderung der Verordnungen (EU) Nr. 1308/2013, (EU) 2021/2115 und (EU) Nr. 251/2014 in Bezug auf bestimmte Marktvorschriften und sektorbezogene Unterstützungsmaßnahmen im Weinsektor und für aromatisierte Weinerzeugnisse\r\nKOM(2025) 137 endg.; Ratsdok. 7550/25",
+      "vorgangstyp": "EU-Vorlage"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/21/21029.pdf",
+    "id": "5735",
+    "dokumentnummer": "21/29",
+    "datum": "2025-09-26",
+    "verteildatum": "2025-09-29",
+    "xml_url": "https://dserver.bundestag.de/btp/21/21029.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 29. Sitzung des 21. Deutschen Bundestages",
+  "datum": "2025-09-26"
+}

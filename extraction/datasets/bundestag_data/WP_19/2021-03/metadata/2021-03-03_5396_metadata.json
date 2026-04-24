@@ -1,0 +1,47 @@
+{
+  "id": "5396",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 79,
+  "dokumentnummer": "19/214",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "a9f610764d8e15a35b84e647f3f18cd4",
+  "pdf_hash": "7ba76f957bfdeec1b7cbb6adf4a740c2",
+  "aktualisiert": "2021-03-04T08:32:03+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "266690",
+      "titel": "Deutschlands Automobilindustrie unterstützen - Gleichstellung von Wasserstofffahrzeugen mit von synthetischen Kraftstoffen oder Biokraftstoffen angetriebenen Fahrzeugen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "273635",
+      "titel": "Fortsetzung der Beteiligung bewaffneter deutscher Streitkräfte an der NATO-geführten Maritimen Sicherheitsoperation SEA GUARDIAN im Mittelmeer",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "273626",
+      "titel": "Fortsetzung der Beteiligung bewaffneter deutscher Streitkräfte an der Mission der Vereinten Nationen in der Republik Südsudan (UNMISS)",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "272121",
+      "titel": "Gesetz zur Modernisierung des notariellen Berufsrechts und zur Änderung weiterer Vorschriften",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19214.pdf",
+    "id": "5396",
+    "dokumentnummer": "19/214",
+    "datum": "2021-03-03",
+    "verteildatum": "2021-03-04",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19214.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 214. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2021-03-03"
+}

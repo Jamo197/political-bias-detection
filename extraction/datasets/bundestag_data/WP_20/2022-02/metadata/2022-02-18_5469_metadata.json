@@ -1,0 +1,47 @@
+{
+  "id": "5469",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 18,
+  "dokumentnummer": "20/18",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "7aff8504643977acd5ec4481de3aed41",
+  "pdf_hash": "6f198e614ed7cb345e84eaed9b167f5d",
+  "aktualisiert": "2022-02-21T08:32:03+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "284262",
+      "titel": "Bericht der Kommission an das Europäische Parlament und den Rat über das Funktionieren des CO2-Marktes der EU gemäß Artikel 10 Absatz 5 und Artikel 21 Absatz 2 der Richtlinie 2003/87/EG (geändert durch Richtlinie 2009/29/EG und Richtlinie (EU) 2018/410) \r\nKOM(2021) 962 endg.; Ratsdok. 13268/21",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "281778",
+      "titel": "Vorschlag für eine Richtlinie des Europäischen Parlaments und des Rates zur Änderung der Richtlinie (EU) 2018/2001 des Europäischen Parlaments und des Rates, der Verordnung (EU) 2018/1999 des Europäischen Parlaments und des Rates und der Richtlinie 98/70/EG des Europäischen Parlaments und des Rates im Hinblick auf die Förderung von Energie aus erneuerbaren Quellen und zur Aufhebung der Richtlinie (EU) 2015/652 des Rates\r\nKOM(2021) 557 endg.; Ratsdok. 10746/21",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "284228",
+      "titel": "Entschließung des Europäischen Parlaments vom 21. Oktober 2021 zur Klimakonferenz der Vereinten Nationen 2021 in Glasgow (Vereinigtes Königreich) (COP 26) (2021/2667(RSP)) \r\nEP P9_TA(2021)0437",
+      "vorgangstyp": "Unterrichtung durch das Europäische Parlament"
+    },
+    {
+      "id": "281709",
+      "titel": "Vorschlag für eine Verordnung des Europäischen Parlaments und des Rates zur Änderung der Verordnung (EU) 2018/842 zur Festlegung verbindlicher nationaler Jahresziele für die Reduzierung der Treibhausgasemissionen im Zeitraum 2021 bis 2030 als Beitrag zu Klimaschutzmaßnahmen zwecks Erfüllung der Verpflichtungen aus dem Übereinkommen von Paris\r\nKOM(2021) 555 endg.; Ratsdok. 10867/21",
+      "vorgangstyp": "EU-Vorlage"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20018.pdf",
+    "id": "5469",
+    "dokumentnummer": "20/18",
+    "datum": "2022-02-18",
+    "verteildatum": "2022-02-21",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20018.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 18. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2022-02-18"
+}

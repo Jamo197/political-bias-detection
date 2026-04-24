@@ -1,0 +1,47 @@
+{
+  "id": "5615",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 37,
+  "dokumentnummer": "20/142",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "93a666d1e74e1bda20fd5d26e1cc7fd6",
+  "pdf_hash": "a0fc40fc8f0b4e8b22dda202a610574e",
+  "aktualisiert": "2024-01-29T10:26:24+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "286028",
+      "titel": "Bericht der Bundesregierung über die Entwicklung der Finanzhilfen des Bundes und der Steuervergünstigungen für die Jahre 2019 bis 2022 (28. Subventionsbericht)",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "294429",
+      "titel": "Global Gateway der Europäischen Union zu einem Erfolg machen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "284225",
+      "titel": "Bericht der Kommission an das Europäische Parlament und den Rat über die Bewertung der Verordnung (EU) Nr. 910/2014 über elektronische Identifizierung und Vertrauensdienste für elektronische Transaktionen im Binnenmarkt (eIDAS) \r\nKOM(2021) 290 endg.; Ratsdok. 9492/21",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "286015",
+      "titel": "Bericht der Bundesregierung über Struktur und Höhe des Finanzkraftausgleichs sowie der Zuweisungen gemäß § 11 im Ausgleichsjahr 2020",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20142.pdf",
+    "id": "5615",
+    "dokumentnummer": "20/142",
+    "datum": "2023-12-01",
+    "verteildatum": "2023-12-04",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20142.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 142. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2023-12-01"
+}

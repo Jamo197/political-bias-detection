@@ -1,0 +1,47 @@
+{
+  "id": "5758",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 82,
+  "dokumentnummer": "21/49",
+  "wahlperiode": 21,
+  "herausgeber": "BT",
+  "pdf_hash": "b7a8f1aceaf97da4de4df4efd0c9cd8c",
+  "xml_hash": "dccfbbe41b2c8e9cf8f7257fabcff29a",
+  "aktualisiert": "2026-01-27T08:56:12+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "329276",
+      "titel": "Altersgrenze für die Vermittlung von Inhalten zu Sexualität und geschlechtlicher Identität in Kindertageseinrichtungen",
+      "vorgangstyp": "Mündliche Frage"
+    },
+    {
+      "id": "327001",
+      "titel": "28 Tage Elternschutz für den zweiten Elternteil ab Geburt des Kindes einführen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "329114",
+      "titel": "Fortsetzung des Einsatzes bewaffneter deutscher Streitkräfte - Stabilisierung sichern, Wiedererstarken des IS verhindern, Versöhnung in Irak fördern",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "328517",
+      "titel": "Paketzustellerinnen und Paketzusteller wirksam vor Überlastung und Ausbeutung schützen",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/21/21049.pdf",
+    "id": "5758",
+    "dokumentnummer": "21/49",
+    "datum": "2025-12-17",
+    "verteildatum": "2025-12-18",
+    "xml_url": "https://dserver.bundestag.de/btp/21/21049.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 49. Sitzung des 21. Deutschen Bundestages",
+  "datum": "2025-12-17"
+}

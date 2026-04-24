@@ -1,0 +1,47 @@
+{
+  "id": "5767",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 33,
+  "dokumentnummer": "21/57",
+  "wahlperiode": 21,
+  "herausgeber": "BT",
+  "xml_hash": "8bfff8e17b02ae75a7baae4afae04417",
+  "pdf_hash": "c962e39e436b7e6a01e4a432c3f4588d",
+  "aktualisiert": "2026-04-20T15:23:50+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "320742",
+      "titel": "Mitteilung der Kommission an das Europäische Parlament, den Rat, den Europäischen Wirtschafts- und Sozialausschuss und den Ausschuss der Regionen: Eine Vision für Landwirtschaft und Ernährung - Gemeinsam einen attraktiven EU-Agrar- und Lebensmittelsektor für künftige Generationen gestalten\r\nKOM(2025) 75 endg.; Ratsdok. 6385/25",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "321586",
+      "titel": "Vorschlag für eine Verordnung des Europäischen Parlaments und des Rates zur Änderung der Verordnung (EU) 2021/1057 zur Einrichtung des Europäischen Sozialfonds Plus (ESF+) in Bezug auf spezifische Maßnahmen zur Bewältigung strategischer Herausforderungen\r\nKOM(2025) 164 endg.; Ratsdok. 7690/25",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "325543",
+      "titel": "Eckpunkte der Bundesregierung zur Mobilisierung des Privatsektors für den Wiederaufbau der Ukraine",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "323380",
+      "titel": "Bericht der Kommission an das Europäische Parlament und den Rat\r\nLangfristige Prognose der Zu- und Abflüsse des EU-Haushalts (2025-2029) \r\nKOM(2024) 276 endg.; Ratsdok. 11657/24",
+      "vorgangstyp": "EU-Vorlage"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/21/21057.pdf",
+    "id": "5767",
+    "dokumentnummer": "21/57",
+    "datum": "2026-01-30",
+    "verteildatum": "2026-02-02",
+    "xml_url": "https://dserver.bundestag.de/btp/21/21057.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 57. Sitzung des 21. Deutschen Bundestages",
+  "datum": "2026-01-30"
+}

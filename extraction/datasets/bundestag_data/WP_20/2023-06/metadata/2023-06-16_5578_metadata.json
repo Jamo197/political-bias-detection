@@ -1,0 +1,42 @@
+{
+  "id": "5578",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 16,
+  "dokumentnummer": "20/110",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "a0221d7ab3eaff33acceb8dc2cd4cfa2",
+  "pdf_hash": "7b3590fa6efbbc5954494db2383700f4",
+  "aktualisiert": "2025-03-14T09:52:27+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "294430",
+      "titel": "Eine transparente Herkunftskennzeichnung als Voraussetzung für eine freie und mündige Kaufentscheidung",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "296276",
+      "titel": "Handlungsempfehlungen der Bundesregierung zur Gewährleistung der Versorgungssicherheit mit Elektrizität",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "292499",
+      "titel": "Gesetz zur Kennzeichnung von Lebensmitteln mit der Haltungsform der Tiere, von denen die Lebensmittel gewonnen wurden (Tierhaltungskennzeichnungsgesetz - TierHaltKennzG)",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20110.pdf",
+    "id": "5578",
+    "dokumentnummer": "20/110",
+    "datum": "2023-06-16",
+    "verteildatum": "2023-06-19",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20110.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 110. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2023-06-16"
+}

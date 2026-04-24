@@ -1,0 +1,32 @@
+{
+  "id": "5753",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 18,
+  "dokumentnummer": "21/44",
+  "wahlperiode": 21,
+  "herausgeber": "BT",
+  "xml_hash": "83acd786f15d47a48c79ab66b67bef07",
+  "pdf_hash": "23118c62aa8c72e7cfcd017a117eb1cc",
+  "aktualisiert": "2025-12-05T11:02:31+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "324698",
+      "titel": "Gesetz über die Feststellung des Bundeshaushaltsplans für das Haushaltsjahr 2026 (Haushaltsgesetz 2026 - HG 2026)",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/21/21044.pdf",
+    "id": "5753",
+    "dokumentnummer": "21/44",
+    "datum": "2025-11-27",
+    "verteildatum": "2025-11-28",
+    "xml_url": "https://dserver.bundestag.de/btp/21/21044.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 44. Sitzung des 21. Deutschen Bundestages",
+  "datum": "2025-11-27"
+}

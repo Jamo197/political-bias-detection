@@ -1,0 +1,47 @@
+{
+  "id": "5357",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 83,
+  "dokumentnummer": "19/183",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "74eef905546ac08e6f99a905a42d188b",
+  "pdf_hash": "90c41e40f51d7d702b1605980ef4f296",
+  "aktualisiert": "2020-10-13T08:52:03+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "246535",
+      "titel": "Restitution von NS-Raubkunst gesetzlich regeln",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "246536",
+      "titel": "Restitution von Kulturgut aus kolonialen Kontexten gesetzlich regeln",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "255076",
+      "titel": "... Gesetz zur Änderung des Bundeswahlgesetzes",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "255054",
+      "titel": "Bundeseinheitliche geringe Drogenmengen festlegen und Harm Reduction erleichtern",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19183.pdf",
+    "id": "5357",
+    "dokumentnummer": "19/183",
+    "datum": "2020-10-08",
+    "verteildatum": "2020-10-13",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19183.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 183. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2020-10-08"
+}

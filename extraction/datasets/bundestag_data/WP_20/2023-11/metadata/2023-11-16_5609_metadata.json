@@ -1,0 +1,47 @@
+{
+  "id": "5609",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 74,
+  "dokumentnummer": "20/137",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "4c6d64024bd8c5e7558242c5897cf867",
+  "pdf_hash": "0da9e4ebf25e589bdb75d86e82eeff5d",
+  "aktualisiert": "2023-12-05T09:56:45+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "287913",
+      "titel": "Tempolimit einführen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "287912",
+      "titel": "A 100 qualifiziert beenden",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "288075",
+      "titel": "Keine Privatadressen im Impressum",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "287621",
+      "titel": "Recht auf schnelles Internet für alle",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20137.pdf",
+    "id": "5609",
+    "dokumentnummer": "20/137",
+    "datum": "2023-11-16",
+    "verteildatum": "2023-11-17",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20137.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 137. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2023-11-16"
+}

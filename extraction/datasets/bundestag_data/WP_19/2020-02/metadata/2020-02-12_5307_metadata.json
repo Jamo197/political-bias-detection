@@ -1,0 +1,47 @@
+{
+  "id": "5307",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 75,
+  "dokumentnummer": "19/145",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "422a4b6e5eb87816b0783bd6c4102d95",
+  "pdf_hash": "0da9b3bc26483cd7f88397908bda6f2b",
+  "aktualisiert": "2020-02-18T08:40:01+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "258292",
+      "titel": "Sparer schützen, Vermögensaufbau und Altersvorsorge fördern",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "255346",
+      "titel": "Gesetz zur Anpassung des Medizinprodukterechts an die Verordnung (EU) 2017/745 und die Verordnung (EU) 2017/746 (Medizinprodukte-EU-Anpassungsgesetz - MPEUAnpG)",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "258767",
+      "titel": "Fortsetzung der Beteiligung bewaffneter deutscher Streitkräfte an der Mission der Vereinten Nationen in der Republik Südsudan (UNMISS)",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "258820",
+      "titel": "Abfrage von Vielfaltsmerkmalen bei den vom Bund bestimmten Mitgliedern in Gremien nach dem Bundesgremienbesetzungsgesetz",
+      "vorgangstyp": "Mündliche Frage"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19145.pdf",
+    "id": "5307",
+    "dokumentnummer": "19/145",
+    "datum": "2020-02-12",
+    "verteildatum": "2020-02-18",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19145.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 145. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2020-02-12"
+}

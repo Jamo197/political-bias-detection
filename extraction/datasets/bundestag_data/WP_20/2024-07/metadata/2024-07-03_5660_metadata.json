@@ -1,0 +1,47 @@
+{
+  "id": "5660",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 62,
+  "dokumentnummer": "20/180",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "c9f3b75bb8b9ff1f7ebe4936948ee017",
+  "pdf_hash": "3e10836aa56c0b73d12edd1f533cb99e",
+  "aktualisiert": "2024-08-12T15:45:04+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "313571",
+      "titel": "Abschluss des Projekts \"Unterstützung des BASE bei der Prozessanalyse des Standortauswahlverfahrens (PaSta)\"\r\n",
+      "vorgangstyp": "Mündliche Frage"
+    },
+    {
+      "id": "312871",
+      "titel": "Für mehr Anerkennung und Wertschätzung - Pflegende Angehörige weiter unterstützen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "312312",
+      "titel": "Gesetz zur Änderung des Gesetzes über Energiedienstleistungen und andere Effizienzmaßnahmen, zur Änderung des Energieeffizienzgesetzes und zur Änderung des Energieverbrauchskennzeichnungsgesetzes",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "313569",
+      "titel": "Absichtserklärung von Bundesminister Volker Wissing mit der chinesischen Staatsführung zum grenzüberschreitenden Datenverkehr",
+      "vorgangstyp": "Mündliche Frage"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20180.pdf",
+    "id": "5660",
+    "dokumentnummer": "20/180",
+    "datum": "2024-07-03",
+    "verteildatum": "2024-07-04",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20180.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 180. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2024-07-03"
+}

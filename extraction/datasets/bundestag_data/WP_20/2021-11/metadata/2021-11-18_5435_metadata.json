@@ -1,0 +1,42 @@
+{
+  "id": "5435",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 16,
+  "dokumentnummer": "20/3",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "eecb90ae527bb3225ed323fedd882397",
+  "pdf_hash": "0394d491d5315af7912f9cb74a283355",
+  "aktualisiert": "2021-11-19T08:32:03+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "282839",
+      "titel": "Erste Verordnung zur Änderung des Außenwirtschaftsgesetzes und der Außenwirtschaftsverordnung - aufhebbare Verordnung",
+      "vorgangstyp": "Rechtsverordnung (Außenwirtschaftsrecht)"
+    },
+    {
+      "id": "282604",
+      "titel": "Verordnung zur Festsetzung des ergänzenden Bundeszuschusses nach § 221a Absatz 3 Satz 3 des Fünften Buches Sozialgesetzbuch für das Jahr 2022 (Bundeszuschussverordnung 2022)",
+      "vorgangstyp": "Rechtsverordnung"
+    },
+    {
+      "id": "282595",
+      "titel": "Gesetz zur Umsetzung unionsrechtlicher Vorgaben im Umsatzsteuerrecht",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20003.pdf",
+    "id": "5435",
+    "dokumentnummer": "20/3",
+    "datum": "2021-11-18",
+    "verteildatum": "2021-11-19",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20003.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 3. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2021-11-18"
+}

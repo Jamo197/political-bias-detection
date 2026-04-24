@@ -1,0 +1,42 @@
+{
+  "id": "5520",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 59,
+  "dokumentnummer": "20/60",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "6cc166ddbdf1ac5392a9578c6d3f7791",
+  "pdf_hash": "e34691559b6fe64aa859ad3b92d5e111",
+  "aktualisiert": "2022-10-18T16:34:41+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "287868",
+      "titel": "Düngemittelversorgung und Bezahlbarkeit gewährleisten - Ukrainekriegsfolgen abmildern",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "288055",
+      "titel": "Gesetz zur Änderung des Infektionsschutzgesetzes",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "286210",
+      "titel": "Alleinerziehende in der aktuellen hohen Inflation nicht allein lassen",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20060.pdf",
+    "id": "5520",
+    "dokumentnummer": "20/60",
+    "datum": "2022-10-13",
+    "verteildatum": "2022-10-14",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20060.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 60. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2022-10-13"
+}

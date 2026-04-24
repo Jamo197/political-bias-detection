@@ -1,0 +1,47 @@
+{
+  "id": "5474",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 40,
+  "dokumentnummer": "20/22",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "21d1c61a25f00213381a35b58536b696",
+  "pdf_hash": "2ada3aadc9483e71145353b8c0c2229a",
+  "aktualisiert": "2022-03-21T08:52:03+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "280259",
+      "titel": "Mitteilung der Kommission an das Europäische Parlament, den Rat, den Europäischen Wirtschafts- und Sozialausschuss und den Ausschuss der Regionen:\r\nBestandsaufnahme und Aktualisierung der Reformempfehlungen für die Berufsreglementierung von 2017\r\nKOM(2021) 385 endg.; Ratsdok. 10880/21",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "282953",
+      "titel": "Bericht über die Programme zur Innovations- und Technologieförderung im Mittelstand, insbesondere über die Entwicklung des Zentralen Innovationsprogramms Mittelstand (ZIM) \r\nFortschrittsbericht für das Jahr 2020",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "283116",
+      "titel": "Evaluationsbericht 2021",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "283597",
+      "titel": "Gesetz zur Sicherung der Zahlungsfähigkeit der gesetzlichen Rentenversicherung (RV-Mindestrücklagengesetz)",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20022.pdf",
+    "id": "5474",
+    "dokumentnummer": "20/22",
+    "datum": "2022-03-18",
+    "verteildatum": "2022-03-21",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20022.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 22. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2022-03-18"
+}

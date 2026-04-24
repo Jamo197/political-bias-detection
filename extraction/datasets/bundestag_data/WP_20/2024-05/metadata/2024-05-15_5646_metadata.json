@@ -1,0 +1,47 @@
+{
+  "id": "5646",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 71,
+  "dokumentnummer": "20/168",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "5abbcfcf0c6c692a01277aa247feb049",
+  "pdf_hash": "4e665673e7d502a98eed59167a3f28b8",
+  "aktualisiert": "2024-06-13T10:08:15+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "308776",
+      "titel": "Gesetz zu dem Abkommen vom 21. Juli 2023 zwischen der Regierung der Bundesrepublik Deutschland und der Regierung der Französischen Republik über die grenzüberschreitende Berufsausbildung",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "308702",
+      "titel": "Erstes Gesetz zur Änderung des Bundesdatenschutzgesetzes",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "308109",
+      "titel": "Fußball-EM 2024 - Volle Unterstützung für ein neues Sommermärchen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "309835",
+      "titel": "Gesetz zur weiteren Digitalisierung der Justiz",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20168.pdf",
+    "id": "5646",
+    "dokumentnummer": "20/168",
+    "datum": "2024-05-15",
+    "verteildatum": "2024-05-16",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20168.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 168. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2024-05-15"
+}

@@ -1,0 +1,42 @@
+{
+  "id": "5549",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 44,
+  "dokumentnummer": "20/85",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "47d2afa1ce59cdb4263e0b20ef416df0",
+  "pdf_hash": "e5605939652698e78f15c4dd986e3157",
+  "aktualisiert": "2023-02-21T15:52:00+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "287336",
+      "titel": "Gesetz zur Ermöglichung hybrider und virtueller Mitgliederversammlungen im Vereinsrecht",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "287544",
+      "titel": "Eine nationale sicherheitspolitische Gesamtstrategie für realpolitisches Handeln im deutschen Interesse \r\ninsbesondere vor dem Hintergrund des Krieges in der Ukraine",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "289301",
+      "titel": "Apotheken-Botendienste sichern und ausbauen, Versorgung verbessern",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20085.pdf",
+    "id": "5549",
+    "dokumentnummer": "20/85",
+    "datum": "2023-02-09",
+    "verteildatum": "2023-02-10",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20085.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 85. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2023-02-09"
+}

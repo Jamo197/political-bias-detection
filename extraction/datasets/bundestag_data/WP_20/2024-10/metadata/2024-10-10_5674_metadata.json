@@ -1,0 +1,47 @@
+{
+  "id": "5674",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 57,
+  "dokumentnummer": "20/191",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "9771c4617051750814560c609f9bc78e",
+  "pdf_hash": "0f69189f543aa147be1938321e438cf5",
+  "aktualisiert": "2024-10-28T11:29:16+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "304881",
+      "titel": "Eine krisenfeste, verlässliche und kostengünstige Energieversorgung Deutschlands ermöglichen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "287911",
+      "titel": "Gesetz zur Änderung des Gesetzes zur Kooperation und Information im Kinderschutz",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "292624",
+      "titel": "Entlastungspaket und Notfallfonds einrichten, um Schaden vom deutschen Wissenschaftssystem abzuwenden",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "291472",
+      "titel": "Bestehende Rechtsunsicherheit und negative Auswirkungen durch das Schrems II Urteil auf die deutsche Wirtschaft beenden",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20191.pdf",
+    "id": "5674",
+    "dokumentnummer": "20/191",
+    "datum": "2024-10-10",
+    "verteildatum": "2024-10-11",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20191.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 191. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2024-10-10"
+}

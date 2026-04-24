@@ -1,0 +1,42 @@
+{
+  "id": "5377",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 33,
+  "dokumentnummer": "19/199",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "dc5206adcece4cd3a504fcb90d77c4c3",
+  "pdf_hash": "d60b3dcdd5786189ddb31b41ba2cf3f7",
+  "aktualisiert": "2020-12-11T08:22:02+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "267180",
+      "titel": "Mindestlohn erhöhen, durchsetzen und die Mindestlohnkommission reformieren",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "267642",
+      "titel": "Gesetz über die Feststellung des Bundeshaushaltsplans für das Haushaltsjahr 2021 (Haushaltsgesetz 2021)",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "259720",
+      "titel": "Gute Gesundheitsversorgung auch für Menschen ohne Krankenversicherung oder mit Beitragsschulden und Geflüchtete",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19199.pdf",
+    "id": "5377",
+    "dokumentnummer": "19/199",
+    "datum": "2020-12-10",
+    "verteildatum": "2020-12-11",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19199.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 199. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2020-12-10"
+}

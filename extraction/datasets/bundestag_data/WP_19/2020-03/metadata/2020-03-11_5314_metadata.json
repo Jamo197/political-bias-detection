@@ -1,0 +1,47 @@
+{
+  "id": "5314",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 84,
+  "dokumentnummer": "19/151",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "6357a1c9f5711d921ea7811a97c30abf",
+  "pdf_hash": "0ef999fa94716802fb8b1b71c059d4b8",
+  "aktualisiert": "2020-03-12T09:20:01+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "257087",
+      "titel": "Bericht zum Anerkennungsgesetz 2019",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "243074",
+      "titel": "Bericht zum Stand und zu den Ergebnissen der Maßnahmen nach Artikel 25 Absatz 2 bis 4 des Bundesteilhabegesetzes",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "260048",
+      "titel": "Bericht zum Anerkennungsgesetz 2017",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "257239",
+      "titel": "Gesetz zur Änderung des EG-Verbraucherschutzdurchsetzungsgesetzes sowie des Gesetzes über die Errichtung des Bundesamts für Justiz",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19151.pdf",
+    "id": "5314",
+    "dokumentnummer": "19/151",
+    "datum": "2020-03-11",
+    "verteildatum": "2020-03-12",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19151.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 151. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2020-03-11"
+}

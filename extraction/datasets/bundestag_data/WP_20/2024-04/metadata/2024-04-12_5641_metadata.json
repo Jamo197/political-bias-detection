@@ -1,0 +1,47 @@
+{
+  "id": "5641",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 41,
+  "dokumentnummer": "20/164",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "c692efee57dc294d83928cb7e1c90315",
+  "pdf_hash": "a67fb735f060c7e43db55db2deefb017",
+  "aktualisiert": "2024-12-11T09:55:23+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "285619",
+      "titel": "Entschließung des Europäischen Parlaments vom 17. Februar 2022 zum Thema \"Menschenrechte und Demokratie in der Welt und die Politik der Europäischen Union in diesem Bereich - Jahresbericht 2021\" (2021/2181(INI)) \r\nEP P9_TA(2022)0041",
+      "vorgangstyp": "Unterrichtung durch das Europäische Parlament"
+    },
+    {
+      "id": "282730",
+      "titel": "Bericht der Bundesregierung zur internationalen Kooperation in Bildung, Wissenschaft und Forschung 2019 bis 2020",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "296413",
+      "titel": "Entschließung des Europäischen Parlaments vom 18. Januar 2023 zu Menschenrechten und Demokratie in der Welt und der Politik der Europäischen Union in diesem Bereich - Jahresbericht 2022 (2022/2049(INI)) \r\nEP P9_TA(2023)0011",
+      "vorgangstyp": "Unterrichtung durch das Europäische Parlament"
+    },
+    {
+      "id": "294159",
+      "titel": "Vorschlag für eine Richtlinie des Europäischen Parlaments und des Rates über Luftqualität und saubere Luft für Europa (Neufassung)\r\nKOM(2022) 542 endg.; Ratsdok. 14217/22",
+      "vorgangstyp": "EU-Vorlage"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20164.pdf",
+    "id": "5641",
+    "dokumentnummer": "20/164",
+    "datum": "2024-04-12",
+    "verteildatum": "2024-04-15",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20164.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 164. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2024-04-12"
+}

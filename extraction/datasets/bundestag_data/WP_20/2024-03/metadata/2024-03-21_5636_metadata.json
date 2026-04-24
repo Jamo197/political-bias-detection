@@ -1,0 +1,47 @@
+{
+  "id": "5636",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 58,
+  "dokumentnummer": "20/160",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "d100b720789ac6ac2ebfded00f942f0c",
+  "pdf_hash": "bcc76d583656ed0dab012a54ec5b351d",
+  "aktualisiert": "2024-06-03T08:27:37+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "301043",
+      "titel": "Schiene in die Zukunft führen - Deutsche Bahn AG neu aufstellen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "300479",
+      "titel": "Voraussetzungen und Folgen der sogenannten sozial-ökologischen Transformation",
+      "vorgangstyp": "Große Anfrage"
+    },
+    {
+      "id": "303108",
+      "titel": "Bericht über das Ergebnis der Vorplanung und der frühen Öffentlichkeitsbeteiligung ABS Paderborn - Halle (Kurve Mönchehof - Ihringshausen) \"Kurve Kassel\"",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "300103",
+      "titel": "Die Abwanderung hochqualifizierter deutscher Wissenschaftler statistisch erfassen und gegensteuernd tätig werden",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20160.pdf",
+    "id": "5636",
+    "dokumentnummer": "20/160",
+    "datum": "2024-03-21",
+    "verteildatum": "2024-03-22",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20160.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 160. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2024-03-21"
+}

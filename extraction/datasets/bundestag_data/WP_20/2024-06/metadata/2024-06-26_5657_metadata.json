@@ -1,0 +1,47 @@
+{
+  "id": "5657",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 77,
+  "dokumentnummer": "20/177",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "b5d94621325612fea240f23f34f6a60b",
+  "pdf_hash": "52fcd93eea610545bf484e487f4fedd0",
+  "aktualisiert": "2025-01-06T09:01:29+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "310260",
+      "titel": "32. Tätigkeitsbericht für den Datenschutz und die Informationsfreiheit \r\n(Tätigkeitsbericht für das Jahr 2023)",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "311242",
+      "titel": "Stabilität und Nachhaltigkeit der Finanzierung der Sozialversicherung",
+      "vorgangstyp": "Große Anfrage"
+    },
+    {
+      "id": "313214",
+      "titel": "Entschließungsantrag zur Regierungserklärung zum Europäischen Rat am 27. und 28. Juni 2024 in Brüssel und zum NATO-Gipfeltreffen vom 9. bis 11. Juli in Washington, D.C.",
+      "vorgangstyp": "Entschließungsantrag BT"
+    },
+    {
+      "id": "312634",
+      "titel": "Strategie der Bundesregierung für eine starke, wehrhafte Demokratie und eine offene und vielfältige Gesellschaft - Gemeinsam für Demokratie und gegen Extremismus",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20177.pdf",
+    "id": "5657",
+    "dokumentnummer": "20/177",
+    "datum": "2024-06-26",
+    "verteildatum": "2024-06-27",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20177.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 177. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2024-06-26"
+}

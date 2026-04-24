@@ -1,0 +1,47 @@
+{
+  "id": "5607",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 32,
+  "dokumentnummer": "20/135",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "d403daed280d2d456c398cedf69765e2",
+  "pdf_hash": "35a23b15049676d16f3a372e7ad3e385",
+  "aktualisiert": "2023-11-17T12:03:22+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "285658",
+      "titel": "Vorschlag für eine Verordnung des Europäischen Parlaments und des Rates zur Einführung eines gemeinsamen Verfahrens zur Gewährung internationalen Schutzes in der Union und zur Aufhebung der Richtlinie 2013/32/EU\r\nKOM(2016) 467 endg.; Ratsdok. 11317/16",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "285659",
+      "titel": "Vorschlag für eine Richtlinie des Europäischen Parlaments und des Rates zur Festlegung von Normen für die Aufnahme von Personen, die internationalen Schutz beantragen (Neufassung)\r\nKOM(2016) 465 endg.; Ratsdok. 11318/16",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "285649",
+      "titel": "Vorschlag für eine Verordnung des Europäischen Parlaments und des Rates zur Bewältigung von Krisensituationen und Situationen höherer Gewalt im Bereich Migration und Asyl\r\nKOM(2020) 613 endg.; Ratsdok. 11207/20",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "285660",
+      "titel": "Vorschlag für eine Richtlinie des Europäischen Parlaments und des Rates über gemeinsame Normen und Verfahren in den Mitgliedstaaten zur Rückführung illegal aufhältiger Drittstaatsangehöriger (Neufassung)\r\nEin Beitrag der Europäischen Kommission zum Treffen der EU-Führungsspitzen in Salzburg am 19./20. September 2018- \r\nKOM(2018) 634 endg.; Ratsdok. 12099/18",
+      "vorgangstyp": "EU-Vorlage"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20135.pdf",
+    "id": "5607",
+    "dokumentnummer": "20/135",
+    "datum": "2023-11-10",
+    "verteildatum": "2023-11-13",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20135.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 135. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2023-11-10"
+}

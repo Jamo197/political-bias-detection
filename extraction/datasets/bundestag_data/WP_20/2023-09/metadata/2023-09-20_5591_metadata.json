@@ -1,0 +1,47 @@
+{
+  "id": "5591",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 54,
+  "dokumentnummer": "20/121",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "25d485441dfabafa8c40ccc1e0dd4d16",
+  "pdf_hash": "1ca1d3e482bd8359ab3459ad78a9aa96",
+  "aktualisiert": "2023-09-29T12:40:54+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "303695",
+      "titel": "Absenkung der Kappungsgrenze auf angespannten Wohnungsmärkten",
+      "vorgangstyp": "Mündliche Frage"
+    },
+    {
+      "id": "303709",
+      "titel": "Aktueller und geplanter Mitteleinsatz für Kampagnen zur Cannabislegalisierung",
+      "vorgangstyp": "Mündliche Frage"
+    },
+    {
+      "id": "300144",
+      "titel": "Gesetz zur Änderung des Onlinezugangsgesetzes sowie weiterer Vorschriften zur Digitalisierung der Verwaltung (OZG-Änderungsgesetz - OZGÄndG)",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "291782",
+      "titel": "IP-Adressen rechtssicher speichern und Kinder vor sexuellem Missbrauch schützen",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20121.pdf",
+    "id": "5591",
+    "dokumentnummer": "20/121",
+    "datum": "2023-09-20",
+    "verteildatum": "2023-09-21",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20121.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 121. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2023-09-20"
+}

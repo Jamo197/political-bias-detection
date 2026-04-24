@@ -1,0 +1,47 @@
+{
+  "id": "5662",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 42,
+  "dokumentnummer": "20/182",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "8395d8477a7f6e8b48d5328ce652bd68",
+  "pdf_hash": "0091cbd22d97602acaeccf3449cd9583",
+  "aktualisiert": "2024-07-11T13:46:50+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "290517",
+      "titel": "Haushaltsführung 2022\r\nÜber- und außerplanmäßige Ausgaben und Verpflichtungsermächtigungen im ersten Vierteljahr des Haushaltsjahres 2022",
+      "vorgangstyp": "Über- und außerplanmäßige Haushaltsausgaben"
+    },
+    {
+      "id": "299172",
+      "titel": "Haushaltsführung 2022 \r\nÜber- und außerplanmäßige Ausgaben und Verpflichtungsermächtigungen im vierten Vierteljahr des Haushaltsjahres 2022",
+      "vorgangstyp": "Über- und außerplanmäßige Haushaltsausgaben"
+    },
+    {
+      "id": "296270",
+      "titel": "Haushaltsführung 2022\r\nÜber- und außerplanmäßige Ausgaben und Verpflichtungsermächtigungen im zweiten Vierteljahr des Haushaltsjahres 2022",
+      "vorgangstyp": "Über- und außerplanmäßige Haushaltsausgaben"
+    },
+    {
+      "id": "296724",
+      "titel": "Haushaltsführung 2022\r\nÜber- und außerplanmäßige Ausgaben und Verpflichtungsermächtigungen im dritten Vierteljahr des Haushaltsjahres 2022",
+      "vorgangstyp": "Über- und außerplanmäßige Haushaltsausgaben"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20182.pdf",
+    "id": "5662",
+    "dokumentnummer": "20/182",
+    "datum": "2024-07-05",
+    "verteildatum": "2024-07-08",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20182.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 182. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2024-07-05"
+}

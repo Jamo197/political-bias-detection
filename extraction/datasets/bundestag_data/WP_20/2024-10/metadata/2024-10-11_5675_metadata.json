@@ -1,0 +1,47 @@
+{
+  "id": "5675",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 30,
+  "dokumentnummer": "20/192",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "305afcd71b867e812674904207444514",
+  "pdf_hash": "18a5aada87f1e2c8853c1a4779eb41a6",
+  "aktualisiert": "2024-11-05T11:08:03+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "303391",
+      "titel": "Vorschlag für eine Verordnung des Europäischen Parlaments und des Rates über die Erzeugung und das Inverkehrbringen forstlichen Vermehrungsguts, zur Änderung der Verordnungen (EU) 2016/2031 und (EU) 2017/625 des Europäischen Parlaments und des Rates und zur Aufhebung der Richtlinie 1999/105/EG des Rates\r\n(Verordnung über forstliches Vermehrungsgut)\r\nKOM(2023) 415 endg.; Ratsdok. 11503/23",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "307456",
+      "titel": "Alphabetisierung von Asylsuchern, Asylantragstellern, Schutzberechtigten oder Bleibeberechtigten und Integrationsarbeit",
+      "vorgangstyp": "Große Anfrage"
+    },
+    {
+      "id": "308140",
+      "titel": "Vorschlag für eine Verordnung des Europäischen Parlaments und des Rates über das Wohlergehen von Hunden und Katzen und ihre Rückverfolgbarkeit\r\nKOM(2023) 769 endg.; Ratsdok. 16406/23",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "312764",
+      "titel": "Transformationsbericht der Bundesregierung zu nachhaltigen Agrar- und Ernährungssystemen - Herausforderungen und Wege der Transformation",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20192.pdf",
+    "id": "5675",
+    "dokumentnummer": "20/192",
+    "datum": "2024-10-11",
+    "verteildatum": "2024-10-14",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20192.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 192. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2024-10-11"
+}

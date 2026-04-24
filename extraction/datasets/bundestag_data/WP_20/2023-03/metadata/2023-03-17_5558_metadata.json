@@ -1,0 +1,47 @@
+{
+  "id": "5558",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 20,
+  "dokumentnummer": "20/92",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "6f3c26c7de4f95dc680ac857570d2da9",
+  "pdf_hash": "ba838190832d76b0f7da8763800f96c1",
+  "aktualisiert": "2023-03-21T12:09:47+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "284098",
+      "titel": "Entschließung des Europäischen Parlaments vom 25. November 2021 zur Einführung eines europäischen Sozialversicherungsausweises zur Verbesserung der digitalen Durchsetzung von Ansprüchen auf Sozialleistungen und einer fairen Mobilität (2021/2620 (RSP)) \r\nEP P9_TA(2021)0473",
+      "vorgangstyp": "Unterrichtung durch das Europäische Parlament"
+    },
+    {
+      "id": "295747",
+      "titel": "Bericht der Kommission an das Europäische Parlament und den Rat\r\nFortschritte bei der Wettbewerbsfähigkeit im Bereich der Technologien für saubere Energie \r\nKOM(2022) 643 endg.; Ratsdok. 14916/22",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "287396",
+      "titel": "Gutachten zu Forschung, Innovation und technologischer Leistungsfähigkeit Deutschlands 2022",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "291782",
+      "titel": "IP-Adressen rechtssicher speichern und Kinder vor sexuellem Missbrauch schützen",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20092.pdf",
+    "id": "5558",
+    "dokumentnummer": "20/92",
+    "datum": "2023-03-17",
+    "verteildatum": "2023-03-20",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20092.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 92. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2023-03-17"
+}

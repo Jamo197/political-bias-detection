@@ -1,0 +1,47 @@
+{
+  "id": "5618",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 53,
+  "dokumentnummer": "20/144",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "e34866c708156985b89623494f367aa7",
+  "pdf_hash": "6243193d09def3e3958c89507b7f2a63",
+  "aktualisiert": "2024-01-05T14:47:14+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "294021",
+      "titel": "Medizinbürokratismus stoppen - Behandeln statt verwalten",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "296253",
+      "titel": "Maschinen- und Betriebshilfsringen in der Landwirtschaft die Förderung von Maschinen und Geräten ermöglichen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "285929",
+      "titel": "Bericht der Unabhängigen Kommission Antiziganismus\r\nPerspektivwechsel - Nachholende Gerechtigkeit - Partizipation",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "296501",
+      "titel": "Die erheblichen Steuermehreinnahmen Deutschlands richtig einsetzen - Die Bürger nicht für ausländische Staaten mit einer Vermögensteuer oder Vermögensabgabe belasten",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20144.pdf",
+    "id": "5618",
+    "dokumentnummer": "20/144",
+    "datum": "2023-12-14",
+    "verteildatum": "2023-12-15",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20144.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 144. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2023-12-14"
+}

@@ -1,0 +1,47 @@
+{
+  "id": "5498",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 40,
+  "dokumentnummer": "20/42",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "daa1aef367a883d19bf143c59f73a63f",
+  "pdf_hash": "ec09747047bed1dc21639e162a53edaf",
+  "aktualisiert": "2022-06-07T08:32:03+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "285688",
+      "titel": "Finanzplan des Bundes 2021 bis 2025",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "283108",
+      "titel": "Sondergutachten 82 der Monopolkommission gemäß § 44 Absatz 1 Satz 4 des Gesetzes gegen Wettbewerbsbeschränkungen\r\nEmpfehlungen für einen effektiven und effizienten Digital Markets Act",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "285926",
+      "titel": "Bericht des Koordinators der Bundesregierung für die Deutsche Luft- und Raumfahrt für die 19. Legislaturperiode",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "286013",
+      "titel": "Bericht der Bundesregierung über ihre Exportpolitik für konventionelle Rüstungsgüter im Jahr 2020 (Rüstungsexportbericht 2020)",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20042.pdf",
+    "id": "5498",
+    "dokumentnummer": "20/42",
+    "datum": "2022-06-03",
+    "verteildatum": "2022-06-07",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20042.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 42. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2022-06-03"
+}

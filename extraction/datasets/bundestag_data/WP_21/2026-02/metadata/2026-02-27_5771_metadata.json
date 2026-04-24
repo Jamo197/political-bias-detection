@@ -1,0 +1,47 @@
+{
+  "id": "5771",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 35,
+  "dokumentnummer": "21/60",
+  "wahlperiode": 21,
+  "herausgeber": "BT",
+  "pdf_hash": "94bb40613d25fe38d2f74291e4aefa40",
+  "xml_hash": "744ed13bc6d9ca8f988790f883aa7789",
+  "aktualisiert": "2026-03-04T12:02:50+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "325539",
+      "titel": "Jahresbericht 2023",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "325198",
+      "titel": "Bericht über die Entwicklung der Menschenrechtssituation in Deutschland \r\n(Berichtszeitraum Juli 2023 bis Juni 2024)",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "323572",
+      "titel": "Jahresbericht 2024",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "325538",
+      "titel": "Jahresbericht 2023",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/21/21060.pdf",
+    "id": "5771",
+    "dokumentnummer": "21/60",
+    "datum": "2026-02-27",
+    "verteildatum": "2026-03-02",
+    "xml_url": "https://dserver.bundestag.de/btp/21/21060.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 60. Sitzung des 21. Deutschen Bundestages",
+  "datum": "2026-02-27"
+}

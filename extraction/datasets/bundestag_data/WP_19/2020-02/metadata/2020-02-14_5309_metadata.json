@@ -1,0 +1,47 @@
+{
+  "id": "5309",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 31,
+  "dokumentnummer": "19/147",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "a108b402dc1c1f5fe640740cd053445d",
+  "pdf_hash": "a6d7132f674f21719c3f4afd3f165c61",
+  "aktualisiert": "2020-02-17T08:50:00+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "251742",
+      "titel": "7. Sektorgutachten Bahn der Monopolkommission gemäß § 78 Absatz 1 des Eisenbahnregulierungsgesetzes \r\nMehr Qualität und Wettbewerb auf die Schiene",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "252930",
+      "titel": "Mitteilung der Kommission an das Europäische Parlament, den Rat und den Rechnungshof\r\nJahresrechnungen des Europäischen Entwicklungsfonds 2018 \r\nKOM(2019) 317 endg.; Ratsdok. 10799/19",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "257329",
+      "titel": "Bericht des Stabilitätsrates gemäß § 8 des Stabilitätsratsgesetzes",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "236280",
+      "titel": "Parlamentarische Beratung des JEFTA-Abkommens ermöglichen",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19147.pdf",
+    "id": "5309",
+    "dokumentnummer": "19/147",
+    "datum": "2020-02-14",
+    "verteildatum": "2020-02-17",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19147.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 147. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2020-02-14"
+}

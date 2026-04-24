@@ -1,0 +1,47 @@
+{
+  "id": "5305",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 59,
+  "dokumentnummer": "19/143",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "b6b476bd6dbe6428cebf738459538fb1",
+  "pdf_hash": "7fbb26819c0786448defb9cd3f69f1b5",
+  "aktualisiert": "2020-01-31T08:30:00+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "236554",
+      "titel": "Erstes Gesetz zur Änderung des Gemeindeverkehrsfinanzierungsgesetzes (1. VerkehrswendeG-ÄndG-GVFG)",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "240228",
+      "titel": "Europäische Finanztransaktionsteuer vorantreiben und nationale Einführung vorbereiten",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "253256",
+      "titel": "... Gesetz zur Änderung des Staatsangehörigkeitsgesetzes",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "251706",
+      "titel": "Gesetz zur Wiedergutmachung im Staatsangehörigkeitsrecht",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19143.pdf",
+    "id": "5305",
+    "dokumentnummer": "19/143",
+    "datum": "2020-01-30",
+    "verteildatum": "2020-01-31",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19143.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 143. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2020-01-30"
+}

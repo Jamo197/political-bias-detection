@@ -1,0 +1,47 @@
+{
+  "id": "5502",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 43,
+  "dokumentnummer": "20/45",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "3d209ccceeadc73f421c058b4c049f04",
+  "pdf_hash": "fdddc8dcea9434db40844e77f49a227e",
+  "aktualisiert": "2022-10-26T16:05:20+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "284010",
+      "titel": "Mitteilung der Kommission an das Europäische Parlament und den Rat\r\n\"Strategie für einen reibungslos funktionierenden und resilienten Schengen-Raum\" \r\nKOM(2021) 277 endg.; Ratsdok. 9441/21",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "286031",
+      "titel": "Bericht der Bundesregierung zur Umsetzung der Nationalen Wasserstoffstrategie",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "284006",
+      "titel": "Entschließung des Europäischen Parlaments vom 8. Juli 2021 zu dem Jahresbericht über das Funktionieren des Schengen-Raums (2019/2196(INI)) \r\nEP P9_TA(2021)0350",
+      "vorgangstyp": "Unterrichtung durch das Europäische Parlament"
+    },
+    {
+      "id": "280167",
+      "titel": "Vorschlag für eine Verordnung des Rates über die Einführung und Anwendung eines Evaluierungs- und Überwachungsmechanismus für die Überprüfung der Anwendung des Schengen-Besitzstands und zur Aufhebung der Verordnung (EU) Nr. 1053/2013\r\nKOM(2021) 278 endg.; Ratsdok. 9442/21",
+      "vorgangstyp": "EU-Vorlage"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20045.pdf",
+    "id": "5502",
+    "dokumentnummer": "20/45",
+    "datum": "2022-06-24",
+    "verteildatum": "2022-06-28",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20045.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 45. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2022-06-24"
+}

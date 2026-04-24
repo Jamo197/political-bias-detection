@@ -1,0 +1,47 @@
+{
+  "id": "5514",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 34,
+  "dokumentnummer": "20/55",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "fd2714899496934f895b821e05edc531",
+  "pdf_hash": "1725977b447bb2bb57b2cc2a9dab2e44",
+  "aktualisiert": "2022-10-07T10:44:55+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "279816",
+      "titel": "Mitteilung der Kommission an das Europäische Parlament und den Rat\r\nLeitlinien zu Artikel 17 der Richtlinie (EU) 2019/790 über das Urheberrecht im digitalen Binnenmarkt\r\nKOM(2021) 288 endg.; Ratsdok. 9525/21",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "283164",
+      "titel": "Siebzehnte Tagung der Konferenz am 28. September 2021 in Ljubljana",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "291602",
+      "titel": "Bericht über die Lage junger Menschen und die Bestrebungen und Leistungen der Kinder- und Jugendhilfe\r\n- 16. Kinder- und Jugendbericht -\r\nFörderung demokratischer Bildung im Kindes- und Jugendalter\r\nund Stellungnahme der Bundesregierung",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "286010",
+      "titel": "Bericht der Bundesregierung über Maßnahmen des Bundes zur Unterstützung von Ländern und Kommunen im Bereich der Flüchtlings- und Integrationskosten und die Mittelverwendung durch die Länder im Jahr 2020",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20055.pdf",
+    "id": "5514",
+    "dokumentnummer": "20/55",
+    "datum": "2022-09-23",
+    "verteildatum": "2022-09-26",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20055.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 55. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2022-09-23"
+}

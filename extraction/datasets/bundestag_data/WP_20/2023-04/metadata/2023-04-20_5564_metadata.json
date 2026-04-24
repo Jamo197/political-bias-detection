@@ -1,0 +1,47 @@
+{
+  "id": "5564",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 53,
+  "dokumentnummer": "20/97",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "488d8ec300906f7b0492cc47bc2226c6",
+  "pdf_hash": "0c44c5124e59ff17b0b51dccc04b3791",
+  "aktualisiert": "2023-04-26T15:17:51+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "291797",
+      "titel": "Einsetzung des 2. Untersuchungsausschusses der 20. Wahlperiode (Bekämpfung des Corona-Virus)",
+      "vorgangstyp": "Untersuchungsausschuss"
+    },
+    {
+      "id": "293217",
+      "titel": "Rückforderungslücken bei Cum-Ex und Cum-Cum schließen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "291781",
+      "titel": "Im Tourismus digital durchstarten - Deutschland für modernes Reisen fit machen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "293265",
+      "titel": "Die strategische Bedeutung Lateinamerikas und der Karibik als Partner für die Stärkung der regelbasierten Ordnung erkennen und Chinas Präsenz in Lateinamerika strategisch entgegenwirken",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20097.pdf",
+    "id": "5564",
+    "dokumentnummer": "20/97",
+    "datum": "2023-04-20",
+    "verteildatum": "2023-04-21",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20097.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 97. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2023-04-20"
+}

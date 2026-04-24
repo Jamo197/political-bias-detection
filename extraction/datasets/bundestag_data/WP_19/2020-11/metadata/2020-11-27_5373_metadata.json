@@ -1,0 +1,47 @@
+{
+  "id": "5373",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 47,
+  "dokumentnummer": "19/196",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "f0a9ef28e8ce40483352af1c2f5aa394",
+  "pdf_hash": "a7512cabd70ffe93a829e73e6cc21202",
+  "aktualisiert": "2020-11-30T08:02:03+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "256519",
+      "titel": "PISA-Sofortprogramm - Reformagenda für eine Bildungsnation",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "244879",
+      "titel": "Gesetz zur Änderung des Bürgerlichen Gesetzbuches - Gesetz zum Schutz von Verbrauchern vor unverhältnismäßigen Inkassoforderungen",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "258516",
+      "titel": "Anwaltliches Berufsrecht zukunftsfest machen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "241894",
+      "titel": "Unseriöses und überteuertes Inkasso eindämmen",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19196.pdf",
+    "id": "5373",
+    "dokumentnummer": "19/196",
+    "datum": "2020-11-27",
+    "verteildatum": "2020-11-30",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19196.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 196. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2020-11-27"
+}

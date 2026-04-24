@@ -1,0 +1,47 @@
+{
+  "id": "5545",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 71,
+  "dokumentnummer": "20/81",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "945bd7e4bb101d6ae85a826511887580",
+  "pdf_hash": "afa701c63896155a079ea58d85f4eeaf",
+  "aktualisiert": "2023-01-26T13:06:05+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "293086",
+      "titel": "Zweites Gesetz zur Änderung schifffahrtsrechtlicher Vorschriften",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "295680",
+      "titel": "Als politisch motivierte Kriminalität erfasste Tötungsdelikte im Jahr 2022",
+      "vorgangstyp": "Mündliche Frage"
+    },
+    {
+      "id": "294108",
+      "titel": "Gesetz zur Beschleunigung von verwaltungsgerichtlichen Verfahren im Infrastrukturbereich",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "295008",
+      "titel": "25. Bericht der Bundesregierung zur Auswärtigen Kultur- und Bildungspolitik für das Jahr 2021",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20081.pdf",
+    "id": "5545",
+    "dokumentnummer": "20/81",
+    "datum": "2023-01-25",
+    "verteildatum": "2023-01-26",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20081.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 81. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2023-01-25"
+}

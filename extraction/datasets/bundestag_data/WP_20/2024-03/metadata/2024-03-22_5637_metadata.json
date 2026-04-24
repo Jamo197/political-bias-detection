@@ -1,0 +1,47 @@
+{
+  "id": "5637",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 23,
+  "dokumentnummer": "20/161",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "b4230b7960ba5203205502d6d7844b4d",
+  "pdf_hash": "e8f14a3107a468cd3556ca50f86ca074",
+  "aktualisiert": "2024-04-03T12:02:24+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "294581",
+      "titel": "Mitteilung der Kommission an das Europäische Parlament, den Rat, den Europäischen Wirtschafts- und Sozialausschuss und den Ausschuss der Regionen über den Fortschritt bei der Vollendung des Europäischen Bildungsraums\r\nKOM(2022) 700 endg.; Ratsdok. 15013/22",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "299185",
+      "titel": "Vorschlag für eine Empfehlung des Rates zu den Schlüsselfaktoren für eine erfolgreiche allgemeine und berufliche digitale Bildung\r\nKOM(2023) 205 endg.; Ratsdok. 8465/23",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "299186",
+      "titel": "Vorschlag für eine Empfehlung des Rates für eine bessere Vermittlung digitaler Kompetenzen in der allgemeinen und beruflichen Bildung\r\nKOM(2023) 206 endg.; Ratsdok. 8467/23",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "299609",
+      "titel": "Entschließung des Europäischen Parlaments vom 20. April 2023 zu dem Rückschlag bei dem Recht auf Bildung und dem harten Vorgehen in Afghanistan gegen Aktivisten, die sich für das Recht auf Bildung einsetzen, einschließlich des Falls Matiullah Wesa (2023/2648(RSP)) \r\nEP P9_TA(2023)0114",
+      "vorgangstyp": "Unterrichtung durch das Europäische Parlament"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20161.pdf",
+    "id": "5637",
+    "dokumentnummer": "20/161",
+    "datum": "2024-03-22",
+    "verteildatum": "2024-03-25",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20161.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 161. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2024-03-22"
+}

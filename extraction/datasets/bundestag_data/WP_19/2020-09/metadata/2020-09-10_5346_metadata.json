@@ -1,0 +1,42 @@
+{
+  "id": "5346",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 81,
+  "dokumentnummer": "19/173",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "8a189ca0c1e372589b68882a8d798787",
+  "pdf_hash": "f29e2a7f6887be49a60beb99377c5441",
+  "aktualisiert": "2020-09-15T09:02:04+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "240686",
+      "titel": "... Gesetz zur Änderung des Gesetzes über die Bundespolizei - Einführung einer Kennzeichnungspflicht",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "242536",
+      "titel": "Abmahnungen - Transparenz und Rechtssicherheit gegen Missbrauch",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "234848",
+      "titel": "... Gesetz zur Änderung des Gesetzes über die Entschädigung für Strafverfolgungsmaßnahmen (StrEG)",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19173.pdf",
+    "id": "5346",
+    "dokumentnummer": "19/173",
+    "datum": "2020-09-10",
+    "verteildatum": "2020-09-15",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19173.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 173. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2020-09-10"
+}

@@ -1,0 +1,47 @@
+{
+  "id": "5311",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 76,
+  "dokumentnummer": "19/148",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "ec333ea6ea6352ff6b7046c9606a53ce",
+  "pdf_hash": "0e6c12e0a70131f63196a5dd2f1eec45",
+  "aktualisiert": "2020-03-06T10:50:00+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "246379",
+      "titel": "Regionale und kommunale Flüchtlingsaufnahme stärken",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "253314",
+      "titel": "30 Jahre UN-Kinderrechtskonvention - Kinderrechte weltweit schützen und verwirklichen sowie internationales Engagement verstärken",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "241243",
+      "titel": "Rekrutierung und Einsatz von Minderjährigen in bewaffneten Konflikten ächten",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "245277",
+      "titel": "Solidarische Städte und kommunale Initiativen zur Flüchtlingsaufnahme unterstützen",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19148.pdf",
+    "id": "5311",
+    "dokumentnummer": "19/148",
+    "datum": "2020-03-04",
+    "verteildatum": "2020-03-06",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19148.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 148. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2020-03-04"
+}

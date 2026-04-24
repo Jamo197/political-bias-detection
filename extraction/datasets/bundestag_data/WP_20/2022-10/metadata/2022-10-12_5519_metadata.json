@@ -1,0 +1,47 @@
+{
+  "id": "5519",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 65,
+  "dokumentnummer": "20/59",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "f46f5bf3d757c3632b60e5fd8e941584",
+  "pdf_hash": "bbe165b2c49bc68103ae4dab43d37386",
+  "aktualisiert": "2022-11-24T09:49:53+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "288060",
+      "titel": "Gesetz zur Modernisierung des Verkündungs- und Bekanntmachungswesens",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "290336",
+      "titel": "Gesetz zur finanziellen Stabilisierung der gesetzlichen Krankenversicherung (GKV-Finanzstabilisierungsgesetz)",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "290299",
+      "titel": "Gesetz zur weiteren Umsetzung der Richtlinie (EU) 2019/1158 des Europäischen Parlaments und des Rates vom 20. Juni 2019 zur Vereinbarkeit von Beruf und Privatleben für Eltern und pflegende Angehörige und zur Aufhebung der Richtlinie 2010/18/EU des Rates",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "290302",
+      "titel": "Gesetz zur Umsetzung der Bestimmungen der Umwandlungsrichtlinie über die Mitbestimmung der Arbeitnehmer bei grenzüberschreitenden Umwandlungen, Verschmelzungen und Spaltungen",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20059.pdf",
+    "id": "5519",
+    "dokumentnummer": "20/59",
+    "datum": "2022-10-12",
+    "verteildatum": "2022-10-13",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20059.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 59. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2022-10-12"
+}

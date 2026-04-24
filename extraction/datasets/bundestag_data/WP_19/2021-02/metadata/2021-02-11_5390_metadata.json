@@ -1,0 +1,47 @@
+{
+  "id": "5390",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 64,
+  "dokumentnummer": "19/209",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "0c1496c6e5dfe83ca9427171bb3e8fef",
+  "pdf_hash": "a47f666f8a66636bd5b326b1da7dd162",
+  "aktualisiert": "2021-02-16T07:52:02+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "241868",
+      "titel": "Technologischen Fortschritt nicht aufhalten - Neue Verfahren in der Gentherapie einsetzen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "251842",
+      "titel": "Hotelmeldepflicht abschaffen - Risiken für Datenmissbrauch verringern",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "246295",
+      "titel": "Digitale Signatur von Meldescheinen in Beherbergungsstätten - Bürokratie abbauen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "249079",
+      "titel": "Ausstattung von Angehörigen der Bundessicherheitsbehörden mit Naloxon",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19209.pdf",
+    "id": "5390",
+    "dokumentnummer": "19/209",
+    "datum": "2021-02-11",
+    "verteildatum": "2021-02-16",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19209.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 209. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2021-02-11"
+}

@@ -1,0 +1,47 @@
+{
+  "id": "5360",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 87,
+  "dokumentnummer": "19/185",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "bd9071a763931e2aaf3f9cb0f5b421d2",
+  "pdf_hash": "b7e7a4ac06d0e063f268a51f3fbe005a",
+  "aktualisiert": "2020-10-29T11:52:04+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "265765",
+      "titel": "Familienpolitik krisensicher und verlässlich gestalten",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "244467",
+      "titel": "Feministische Außenpolitik konsequent umsetzen - Gewalt und Diskriminierung überwinden, Geschlechtergerechtigkeit und Menschenrechte weltweit verwirklichen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "259723",
+      "titel": "Für eine friedliche feministische Außenpolitik",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "265719",
+      "titel": "Gesetz zur Änderung soldatenrechtlicher Vorschriften",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19185.pdf",
+    "id": "5360",
+    "dokumentnummer": "19/185",
+    "datum": "2020-10-28",
+    "verteildatum": "2020-10-29",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19185.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 185. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2020-10-28"
+}

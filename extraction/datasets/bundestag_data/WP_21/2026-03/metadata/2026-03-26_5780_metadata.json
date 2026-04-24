@@ -1,0 +1,47 @@
+{
+  "id": "5780",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 56,
+  "dokumentnummer": "21/68",
+  "wahlperiode": 21,
+  "herausgeber": "BT",
+  "pdf_hash": "46f8a1278088a8a0bed1df4611637a70",
+  "xml_hash": "5288367c6f383d149eb45096c1711419",
+  "aktualisiert": "2026-04-13T11:49:08+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "326691",
+      "titel": "Gesetz zur Beschleunigung der Anerkennungsverfahren ausländischer Berufsqualifikationen in Heilberufen",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "325586",
+      "titel": "Verbesserung der Überprüfungsverfahren zur Approbation von Ärzten aus Drittstaaten zur Gewährleistung der öffentlichen Sicherheit und Qualität der medizinischen Versorgung",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "325555",
+      "titel": "Überlebenschancen von Dialysepatienten verbessern - Cross-over-Lebendspende als Leistung der gesetzlichen Krankenversicherung erlauben",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "322913",
+      "titel": "Förderung sowie Unterstützung von LGBTIQ- und Gender-Projekten sowie Abtreibung im Ausland",
+      "vorgangstyp": "Große Anfrage"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/21/21068.pdf",
+    "id": "5780",
+    "dokumentnummer": "21/68",
+    "datum": "2026-03-26",
+    "verteildatum": "2026-03-27",
+    "xml_url": "https://dserver.bundestag.de/btp/21/21068.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 68. Sitzung des 21. Deutschen Bundestages",
+  "datum": "2026-03-26"
+}

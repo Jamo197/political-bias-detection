@@ -1,0 +1,47 @@
+{
+  "id": "5659",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 72,
+  "dokumentnummer": "20/179",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "6510cd83267e4bee6de618b626b02816",
+  "pdf_hash": "aa00f246bdb71733529316409591b67d",
+  "aktualisiert": "2024-07-10T11:16:03+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "285128",
+      "titel": "Mitteilung der Kommission an den Europäischen Rat, das Europäische Parlament und den Rat\r\nMehr Gewicht auf der internationalen Bühne: eine effizientere Beschlussfassung für die Gemeinsame Außen- und Sicherheitspolitik \r\nKOM(2018) 647 endg.; Ratsdok. 12425/18",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "283713",
+      "titel": "Vorschlag für eine Richtlinie des Rates über die Einzelheiten der Ausübung des aktiven und passiven Wahlrechts bei den Wahlen zum Europäischen Parlament für Unionsbürger mit Wohnsitz in einem Mitgliedstaat, dessen Staatsangehörigkeit sie nicht besitzen (Neufassung)\r\nKOM(2021)732 endg.; Ratsdok. 14376/21",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "283712",
+      "titel": "Vorschlag für eine Richtlinie des Rates über die Einzelheiten der Ausübung des aktiven und passiven Wahlrechts bei den Kommunalwahlen für Unionsbürger mit Wohnsitz in einem Mitgliedstaat, dessen Staatsangehörigkeit sie nicht besitzen (Neufassung)\r\nKOM(2021)733 endg.; Ratsdok. 14379/21\r\n",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "283127",
+      "titel": "Vorschlag für eine Verordnung des Europäischen Parlaments und des Rates über die Transparenz und das Targeting politischer Werbung\r\nKOM(2021) 731 endg.; Ratsdok. 14374/21",
+      "vorgangstyp": "EU-Vorlage"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20179.pdf",
+    "id": "5659",
+    "dokumentnummer": "20/179",
+    "datum": "2024-06-28",
+    "verteildatum": "2024-07-01",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20179.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 179. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2024-06-28"
+}

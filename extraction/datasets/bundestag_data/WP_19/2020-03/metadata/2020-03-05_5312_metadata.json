@@ -1,0 +1,47 @@
+{
+  "id": "5312",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 76,
+  "dokumentnummer": "19/149",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "11aa127b095925fc54ddda648c254851",
+  "pdf_hash": "829a75ab6b92e01c0b8dc2ca1514ffa2",
+  "aktualisiert": "2020-03-06T08:40:00+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "246346",
+      "titel": "Keine Elektromobilität zu Lasten von Mensch und Umwelt in rohstoffreichen Entwicklungsländern - Rohstoffförderung für Elektromobilität strenger kontrollieren",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "245477",
+      "titel": "Gesetz zur Änderung des Asylgesetzes\r\n(Asylgesetz - AsylG)",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "247340",
+      "titel": "Ausbau der Solarenergie beschleunigen, dezentrale Bürgerenergie und Mieterstrom unterstützen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "249025",
+      "titel": "Umweltschutz ernst nehmen - Das Erneuerbare-Energien-Gesetz abschaffen",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19149.pdf",
+    "id": "5312",
+    "dokumentnummer": "19/149",
+    "datum": "2020-03-05",
+    "verteildatum": "2020-03-06",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19149.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 149. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2020-03-05"
+}

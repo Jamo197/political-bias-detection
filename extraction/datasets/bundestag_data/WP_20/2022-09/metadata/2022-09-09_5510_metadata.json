@@ -1,0 +1,47 @@
+{
+  "id": "5510",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 8,
+  "dokumentnummer": "20/52",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "38f2c4ac661cf6caa4dad3c34b515506",
+  "pdf_hash": "fdde78c2ca784bc5b588830ea6ccbf2f",
+  "aktualisiert": "2022-09-12T13:19:07+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "285973",
+      "titel": "Bericht der Bundesregierung über den Bürgerdialog zur Zukunft Europas",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "289013",
+      "titel": "Mitteilung der Kommission an das Europäische Parlament und den Rat\r\nAuf dem Weg zu einer nachhaltigeren Fischerei in der EU: Sachstand und Orientierungslinien für 2023 \r\nKOM(2022)253 endg.; Ratsdok. 9483/22",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "284148",
+      "titel": "Vorschlag für einen Beschluss des Rates über die Unterzeichnung - im Namen der Europäischen Union - und die vorläufige Anwendung des Partnerschaftsabkommens zwischen der Europäischen Union einerseits und den Mitgliedern der Organisation afrikanischer, karibischer und pazifischer Staaten (OAKPS) andererseits \r\nKOM(2021) 312 endg.; Ratsdok. 9752/21",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "289026",
+      "titel": "Mitteilung der Kommission an das Europäische Parlament, den Rat, den Europäischen Wirtschafts- und Sozialausschuss und den Ausschuss der Regionen\r\nEin Aktionsplan für Solidaritätskorridore zwischen der EU und der Ukraine zur Erleichterung der Agrarexporte der Ukraine und ihres bilateralen Handels mit der EU \r\nKOM(2022)217 endg.; Ratsdok. 9098/22",
+      "vorgangstyp": "EU-Vorlage"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20052.pdf",
+    "id": "5510",
+    "dokumentnummer": "20/52",
+    "datum": "2022-09-09",
+    "verteildatum": "2022-09-12",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20052.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 52. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2022-09-09"
+}

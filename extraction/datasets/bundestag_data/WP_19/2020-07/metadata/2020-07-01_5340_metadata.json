@@ -1,0 +1,47 @@
+{
+  "id": "5340",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 104,
+  "dokumentnummer": "19/169",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "75f658964814ad76441dc056c4015704",
+  "pdf_hash": "90f35dd78fb6f5541d2bc0df7a026c13",
+  "aktualisiert": "2020-07-03T08:45:04+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "255438",
+      "titel": "Kriegerische Eskalationen im Nahen Osten vermeiden - Über eine Konferenz für Sicherheit und Zusammenarbeit im Vorderen Orient Stabilität schaffen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "262910",
+      "titel": "Bericht über das Ergebnis der Vorplanung und der frühen Öffentlichkeitsbeteiligung zur Ausbaustrecke/Neubaustrecke Hamburg - Lübeck - Puttgarden",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "260967",
+      "titel": "Gesetz zu dem Übereinkommen vom 30. November 1999 zur Errichtung des Beratungszentrums für das Recht der WTO",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "261560",
+      "titel": "Gesetz zur Verbesserung des Verbraucherschutzes im Inkassorecht und zur Änderung weiterer Vorschriften",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19169.pdf",
+    "id": "5340",
+    "dokumentnummer": "19/169",
+    "datum": "2020-07-01",
+    "verteildatum": "2020-07-03",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19169.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 169. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2020-07-01"
+}

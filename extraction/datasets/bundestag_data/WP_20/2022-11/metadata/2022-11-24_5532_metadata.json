@@ -1,0 +1,42 @@
+{
+  "id": "5532",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 21,
+  "dokumentnummer": "20/70",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "e9f553762aac8591be038c6cabbddb65",
+  "pdf_hash": "f2cc731327e70140b44c473aecddf572",
+  "aktualisiert": "2022-12-12T10:31:58+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "288061",
+      "titel": "Fünftes Gesetz zur Änderung des Bundesfernstraßenmautgesetzes",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "290228",
+      "titel": "Finanzplan des Bundes 2022 bis 2026",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "287198",
+      "titel": "Gesetz über die Amtsausstattung des Bundeskanzlers nach der Beendigung seiner Amtszeit",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20070.pdf",
+    "id": "5532",
+    "dokumentnummer": "20/70",
+    "datum": "2022-11-24",
+    "verteildatum": "2022-11-25",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20070.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 70. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2022-11-24"
+}

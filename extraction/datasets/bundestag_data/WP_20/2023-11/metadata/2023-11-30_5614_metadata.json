@@ -1,0 +1,47 @@
+{
+  "id": "5614",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 56,
+  "dokumentnummer": "20/141",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "9bdb1bd9da8aee2913e47b88604668f3",
+  "pdf_hash": "83cb21cf5cd3b5505370c0f7692d9ddf",
+  "aktualisiert": "2023-12-15T13:12:00+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "288290",
+      "titel": "Ausnutzung von IT-Sicherheitslücken durch Bundesbehörden verbieten",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "288075",
+      "titel": "Keine Privatadressen im Impressum",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "284423",
+      "titel": "Kein Kauf und Einsatz von Spähsoftware durch Bundesbehörden",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "287621",
+      "titel": "Recht auf schnelles Internet für alle",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20141.pdf",
+    "id": "5614",
+    "dokumentnummer": "20/141",
+    "datum": "2023-11-30",
+    "verteildatum": "2023-12-01",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20141.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 141. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2023-11-30"
+}

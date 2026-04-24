@@ -1,0 +1,47 @@
+{
+  "id": "5769",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 75,
+  "dokumentnummer": "21/58",
+  "wahlperiode": 21,
+  "herausgeber": "BT",
+  "pdf_hash": "20b7694c20d27c2f40612d5e086f4e13",
+  "xml_hash": "c873d10ba19b928801c980b4a1b7035b",
+  "aktualisiert": "2026-02-27T15:11:17+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "327973",
+      "titel": "Gesetz zum Bürokratierückbau in der Gewerbeordnung und dem Energieverbrauchskennzeichnungsgesetz sowie anderer Rechtsvorschriften zur Aufhebung von Berichtspflichten",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "329481",
+      "titel": "Gesetz zur besseren Verhinderung missbräuchlicher Anerkennungen der Vaterschaft",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "329392",
+      "titel": "Für einen Neubeginn in den deutsch-amerikanischen Beziehungen - Zusammen für Sicherheit, Stabilität und Frieden in der Ukraine",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "331526",
+      "titel": "Altersbeschränkungen für die Nutzung von Social-Media-Angeboten",
+      "vorgangstyp": "Mündliche Frage"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/21/21058.pdf",
+    "id": "5769",
+    "dokumentnummer": "21/58",
+    "datum": "2026-02-25",
+    "verteildatum": "2026-02-26",
+    "xml_url": "https://dserver.bundestag.de/btp/21/21058.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 58. Sitzung des 21. Deutschen Bundestages",
+  "datum": "2026-02-25"
+}

@@ -1,0 +1,42 @@
+{
+  "id": "5719",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 77,
+  "dokumentnummer": "21/14",
+  "wahlperiode": 21,
+  "herausgeber": "BT",
+  "xml_hash": "5cdf94b95a4b2bb38bf23b5d53101861",
+  "pdf_hash": "b4b02b51a9470aa3c12c0858c18e5ea4",
+  "aktualisiert": "2025-07-08T17:44:10+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "321952",
+      "titel": "Faire-Mieten-Gesetz",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "321950",
+      "titel": "Erstes Gesetz zur Änderung des Kulturgutschutzgesetzes (1. KGSGÄndG)",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "322919",
+      "titel": "16. Bericht der Bundesregierung über ihre Menschenrechtspolitik",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/21/21014.pdf",
+    "id": "5719",
+    "dokumentnummer": "21/14",
+    "datum": "2025-06-26",
+    "verteildatum": "2025-06-27",
+    "xml_url": "https://dserver.bundestag.de/btp/21/21014.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 14. Sitzung des 21. Deutschen Bundestages",
+  "datum": "2025-06-26"
+}

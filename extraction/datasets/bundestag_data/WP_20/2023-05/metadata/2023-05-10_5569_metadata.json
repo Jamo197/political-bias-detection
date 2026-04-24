@@ -1,0 +1,47 @@
+{
+  "id": "5569",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 58,
+  "dokumentnummer": "20/102",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "d5eeb72d22f6debe7ef8dd09ddb733aa",
+  "pdf_hash": "44206f790fa2fee6836eda3139ad5b6f",
+  "aktualisiert": "2023-11-17T15:50:37+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "299184",
+      "titel": "Letztmalige Fortsetzung der Beteiligung bewaffneter deutscher Streitkräfte an der Multidimensionalen Integrierten Stabilisierungsmission der Vereinten Nationen in Mali (MINUSMA)",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "293215",
+      "titel": "Technologieagenda Neue Energien - Rolle der Wissenschaft in der Bundesregierung stärken",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "296612",
+      "titel": "Drittes Gesetz zur Änderung des Tabakerzeugnisgesetzes",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "285971",
+      "titel": "Fortsetzung der Beteiligung bewaffneter deutscher Streitkräfte an der durch die Europäische Union geführten Operation EUNAVFOR MED IRINI",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20102.pdf",
+    "id": "5569",
+    "dokumentnummer": "20/102",
+    "datum": "2023-05-10",
+    "verteildatum": "2023-05-11",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20102.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 102. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2023-05-10"
+}

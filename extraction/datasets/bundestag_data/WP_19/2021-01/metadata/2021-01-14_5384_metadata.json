@@ -1,0 +1,47 @@
+{
+  "id": "5384",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 74,
+  "dokumentnummer": "19/204",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "b00df02bffb9cb80df996405863db944",
+  "pdf_hash": "d9117e0d8ec2bd535e8ff95de615de8c",
+  "aktualisiert": "2025-03-19T13:42:35+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "235662",
+      "titel": "Vorschlag für eine Empfehlung des Rates zu einem umfassenden Ansatz für das Lehren und Lernen von Sprachen \r\nKOM(2018) 272 endg.; Ratsdok. 9229/18",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "260048",
+      "titel": "Bericht zum Anerkennungsgesetz 2017",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "240276",
+      "titel": "Bericht des Ausschusses für Bildung, Forschung und Technikfolgenabschätzung (18. Ausschuss) gemäß § 56a der Geschäftsordnung\r\nTechnikfolgenabschätzung (TA)\r\nDigitale Medien in der Bildung",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "236154",
+      "titel": "Bericht über die Verwendung der 2017 in den Landeshaushalten freigewordenen BAföG-Mittel",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19204.pdf",
+    "id": "5384",
+    "dokumentnummer": "19/204",
+    "datum": "2021-01-14",
+    "verteildatum": "2021-01-15",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19204.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 204. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2021-01-14"
+}

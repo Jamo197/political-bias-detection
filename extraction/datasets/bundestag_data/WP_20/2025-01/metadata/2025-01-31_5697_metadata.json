@@ -1,0 +1,47 @@
+{
+  "id": "5697",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 96,
+  "dokumentnummer": "20/211",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "dc66ab6d2ae9774d71942a1014edef64",
+  "pdf_hash": "198df99f5c6eff1ce9627cd9ccafb434",
+  "aktualisiert": "2025-04-09T16:11:39+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "285935",
+      "titel": "Vorschlag für eine Verordnung des Europäischen Parlaments und des Rates zur Festlegung harmonisierter Vorschriften für Künstliche Intelligenz (Gesetz über Künstliche Intelligenz) und zur Änderung bestimmter Rechtsakte der Union\r\nKOM(2021) 206 endg.; Ratsdok. 8115/21",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "288693",
+      "titel": "Jahresbericht 2022 \r\nDie Unterstützung der Opfer der SED-Diktatur - unsere gemeinsame gesamtdeutsche Verantwortung",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "282665",
+      "titel": "Dringende Handlungsbedarfe für die Opfer der SED-Diktatur",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "285919",
+      "titel": "Beschluss der Deutsch-Französischen Parlamentarischen Versammlung zu Impulsen für die Europäische Wirtschafts- und Währungsunion",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20211.pdf",
+    "id": "5697",
+    "dokumentnummer": "20/211",
+    "datum": "2025-01-31",
+    "verteildatum": "2025-02-03",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20211.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 211. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2025-01-31"
+}

@@ -1,0 +1,47 @@
+{
+  "id": "5661",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 82,
+  "dokumentnummer": "20/181",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "b4d59be9dbdb47ebc02d08c59e5fdf3f",
+  "pdf_hash": "ea3c97c8360aa32781ae455574c20c7c",
+  "aktualisiert": "2025-01-31T16:50:45+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "293262",
+      "titel": "Stärkung der Ziviljustiz in internationalen Wirtschaftsstreitigkeiten durch Einrichtung von Commercial Courts",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "295824",
+      "titel": "Medizinische Notfallversorgung schnell, qualitativ hochwertig und bezahlbar gestalten",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "299960",
+      "titel": "Gesetz zum beschleunigten Ausbau von Balkonkraftwerken (BalKraftBeschG)",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "302009",
+      "titel": "Die Wiederaufbauleistung der Trümmerfrauen mit einer Gedenkstätte würdigen",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20181.pdf",
+    "id": "5661",
+    "dokumentnummer": "20/181",
+    "datum": "2024-07-04",
+    "verteildatum": "2024-07-05",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20181.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 181. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2024-07-04"
+}

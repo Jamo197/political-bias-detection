@@ -1,0 +1,47 @@
+{
+  "id": "5324",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 99,
+  "dokumentnummer": "19/156",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "96ccd4ec3a58ab30abf6877e63843a42",
+  "pdf_hash": "e8c52a993de6d8916e46ed0de1be1690",
+  "aktualisiert": "2020-04-24T08:30:01+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "233197",
+      "titel": "Mitteilung der Kommission an das Europäische Parlament, den Rat, die Europäische Zentralbank, den Europäischen Wirtschafts- und Sozialausschuss und den Ausschuss der Regionen:\r\nFinTech-Aktionsplan - Für einen wettbewerbsfähigeren und innovativeren EU-Finanzsektor\r\nKOM(2018) 109 endg.; Ratsdok. 7217/18",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "231556",
+      "titel": "Für eine offene, menschenrechtsbasierte und solidarische Asylpolitik der Europäischen Union",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "233208",
+      "titel": "Vorschlag für eine Verordnung des Europäischen Parlaments und des Rates über Europäische Crowdfunding-Dienstleister für Unternehmen\r\nKOM(2018) 113 endg.; Ratsdok. 7049/18",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "233196",
+      "titel": "Mitteilung der Kommission an das Europäische Parlament, den Europäischen Rat, den Rat, die Europäische Zentralbank, den Europäischen Wirtschafts- und Sozialausschuss und den Ausschuss der Regionen:\r\nAktionsplan - Finanzierung nachhaltigen Wachstums\r\nKOM(2018) 97 endg.; Ratsdok. 7216/18",
+      "vorgangstyp": "EU-Vorlage"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19156.pdf",
+    "id": "5324",
+    "dokumentnummer": "19/156",
+    "datum": "2020-04-23",
+    "verteildatum": "2020-04-24",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19156.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 156. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2020-04-23"
+}

@@ -1,0 +1,47 @@
+{
+  "id": "5762",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 40,
+  "dokumentnummer": "21/54",
+  "wahlperiode": 21,
+  "herausgeber": "BT",
+  "xml_hash": "7bddd6c605be9bb82fdb4bd21549e5c0",
+  "pdf_hash": "0a38e30e7cf67154cc1fd485e51054c0",
+  "aktualisiert": "2026-04-20T15:24:02+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "319374",
+      "titel": "Vorschlag für eine Verordnung des Europäischen Parlaments und des Rates zur Änderung der Verordnungen (EU) Nr. 1308/2013, (EU) 2021/2115 und (EU) 2021/2116 hinsichtlich der Stärkung der Position der Landwirtinnen und Landwirte in der Lebensmittelversorgungskette\r\nKOM(2024) 577 endg.; Ratsdok. 16779/24",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "322035",
+      "titel": "Vorschlag für eine Verordnung des Europäischen Parlaments und des Rates über mit bestimmten neuen genomischen Techniken gewonnene Pflanzen und die aus ihnen gewonnenen Lebens- und Futtermittel sowie zur Änderung der Verordnung (EU) 2017/625\r\nKOM(2023) 411 endg.; Ratsdok. 11592/23",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "319376",
+      "titel": "Vorschlag für eine Verordnung des Europäischen Parlaments und des Rates über die Zusammenarbeit zwischen den Durchsetzungsbehörden, die für die Durchsetzung der Richtlinie (EU) 2019/633 über unlautere Handelspraktiken in den Geschäftsbeziehungen zwischen Unternehmen in der Agrar- und Lebensmittelversorgungskette zuständig sind\r\nKOM(2024) 576 endg.; Ratsdok. 16776/24",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "325178",
+      "titel": "Open-Data-Strategie der Bundesregierung",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/21/21054.pdf",
+    "id": "5762",
+    "dokumentnummer": "21/54",
+    "datum": "2026-01-16",
+    "verteildatum": "2026-01-19",
+    "xml_url": "https://dserver.bundestag.de/btp/21/21054.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 54. Sitzung des 21. Deutschen Bundestages",
+  "datum": "2026-01-16"
+}

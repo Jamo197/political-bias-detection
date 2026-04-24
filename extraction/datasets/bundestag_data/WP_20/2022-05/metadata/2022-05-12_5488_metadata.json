@@ -1,0 +1,42 @@
+{
+  "id": "5488",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 63,
+  "dokumentnummer": "20/34",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "a99353b90ab5042025a3a489ba21c392",
+  "pdf_hash": "f6cadb57d5a3ae97d8cfd2a70e17f26f",
+  "aktualisiert": "2022-05-13T08:22:02+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "283670",
+      "titel": "Zweites Gesetz zur Änderung des Gesetzes zur Einsetzung eines Nationalen Normenkontrollrates",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "283838",
+      "titel": "Saatgutvielfalt als Grundlage einer ausreichenden Welternährung sichern",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "283934",
+      "titel": "Gesetz zum Übergang des Bewacherregisters vom Bundesamt für Wirtschaft und Ausfuhrkontrolle auf das Statistische Bundesamt",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20034.pdf",
+    "id": "5488",
+    "dokumentnummer": "20/34",
+    "datum": "2022-05-12",
+    "verteildatum": "2022-05-13",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20034.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 34. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2022-05-12"
+}

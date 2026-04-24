@@ -1,0 +1,42 @@
+{
+  "id": "5770",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 57,
+  "dokumentnummer": "21/59",
+  "wahlperiode": 21,
+  "herausgeber": "BT",
+  "pdf_hash": "6c66fd27ed8c023cd9407216ac9a7d6c",
+  "xml_hash": "6fb43c73f0e4d09c21e2c57bdbc2e586",
+  "aktualisiert": "2026-03-03T12:55:18+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "324929",
+      "titel": "Gesetz zur Stärkung der Tarifautonomie durch die Sicherung von Tariftreue bei der Vergabe öffentlicher Aufträge des Bundes (Tariftreuegesetz)",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "321693",
+      "titel": "Entlastung der Bundesregierung für das Haushaltsjahr 2023\r\n- Haushalts- und Vermögensrechnung des Bundes für das Haushaltsjahr 2023 -",
+      "vorgangstyp": "Entlastung der Bundesregierung"
+    },
+    {
+      "id": "322516",
+      "titel": "Rechnung des Bundesrechnungshofes für das Haushaltsjahr 2024\r\n- Einzelplan 20 -",
+      "vorgangstyp": "Entlastung des Bundesrechnungshofes"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/21/21059.pdf",
+    "id": "5770",
+    "dokumentnummer": "21/59",
+    "datum": "2026-02-26",
+    "verteildatum": "2026-02-27",
+    "xml_url": "https://dserver.bundestag.de/btp/21/21059.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 59. Sitzung des 21. Deutschen Bundestages",
+  "datum": "2026-02-26"
+}

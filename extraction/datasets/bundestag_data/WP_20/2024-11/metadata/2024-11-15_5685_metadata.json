@@ -1,0 +1,47 @@
+{
+  "id": "5685",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 57,
+  "dokumentnummer": "20/201",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "601276b8893dce509ca5179ad6692c7b",
+  "pdf_hash": "4b1407753bfa4282dd0b3211b52bf298",
+  "aktualisiert": "2024-11-19T14:04:40+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "283423",
+      "titel": "Vorschlag für eine Richtlinie des Europäischen Parlaments und des Rates zur Änderung der Richtlinie 2013/36/EU im Hinblick auf Aufsichtsbefugnisse, Sanktionen, Zweigstellen aus Drittländern sowie Umwelt-, Sozial- und Unternehmensführungsrisiken und zur Änderung der Richtlinie 2014/59/EU\r\nKOM(2021) 663 endg.; Ratsdok. 13245/21",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "282034",
+      "titel": "Vorschlag für eine Richtlinie des Europäischen Parlaments und des Rates über die von den Mitgliedstaaten einzurichtenden Mechanismen zur Verhinderung der Nutzung des Finanzsystems zum Zwecke der Geldwäsche und der Terrorismusfinanzierung und zur Aufhebung der Richtlinie (EU) 2015/849\r\nKOM(2021) 423 endg.; Ratsdok. 10289/21",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "282287",
+      "titel": "Vorschlag für eine Verordnung des Europäischen Parlaments und des Rates zur Errichtung der Behörde zur Bekämpfung der Geldwäsche und Terrorismusfinanzierung und zur Änderung der Verordnungen (EU) Nr. 1093/2010, (EU) Nr. 1094/2010 und (EU) Nr. 1095/2010\r\nKOM(2021) 421 endg.; Ratsdok. 10287/21",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "282035",
+      "titel": "Vorschlag für eine Verordnung des Europäischen Parlaments und des Rates zur Verhinderung der Nutzung des Finanzsystems für Zwecke der Geldwäsche oder der Terrorismusfinanzierung\r\nKOM(2021) 420 endg.; Ratsdok. 10286/21",
+      "vorgangstyp": "EU-Vorlage"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20201.pdf",
+    "id": "5685",
+    "dokumentnummer": "20/201",
+    "datum": "2024-11-15",
+    "verteildatum": "2024-11-18",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20201.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 201. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2024-11-15"
+}

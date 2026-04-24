@@ -1,0 +1,42 @@
+{
+  "id": "5626",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 16,
+  "dokumentnummer": "20/151",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "3d1c864b83bbb489da9934124a5cf801",
+  "pdf_hash": "e26ac76fafc07f1bd34bec680e224aae",
+  "aktualisiert": "2025-09-30T09:25:25+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "292230",
+      "titel": "Gesetz zur Auflösung der \"Stiftung Forum Recht\" (Forum-Recht-Abwicklungsgesetz)",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "302729",
+      "titel": "Gesetz über die Feststellung des Bundeshaushaltsplans für das Haushaltsjahr 2024 (Haushaltsgesetz 2024 - HG 2024)",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "302730",
+      "titel": "Finanzplan des Bundes 2023 bis 2027",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20151.pdf",
+    "id": "5626",
+    "dokumentnummer": "20/151",
+    "datum": "2024-02-01",
+    "verteildatum": "2024-02-02",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20151.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 151. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2024-02-01"
+}

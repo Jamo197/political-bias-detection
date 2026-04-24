@@ -1,0 +1,47 @@
+{
+  "id": "5683",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 60,
+  "dokumentnummer": "20/199",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "292decb7a36f470820e118778d81f4a2",
+  "pdf_hash": "2458362317d154162b421c0f4ca3f87e",
+  "aktualisiert": "2024-11-26T15:31:33+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "315277",
+      "titel": "Gesetz über die Feststellung eines Nachtrags zum Bundeshaushaltsplan für das Haushaltsjahr 2024 (Nachtragshaushaltsgesetz 2024)",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "316662",
+      "titel": "Griechenland: Vorzeitige Teilrückzahlung bilateraler europäischer Kredite des ersten Hilfsprogramms\r\n1. Antrag auf Einholung eines zustimmenden Beschlusses des Deutschen Bundestages nach § 3 Absatz 2 Nummer 2 des Stabilisierungsmechanismusgesetzes\r\n2. Antrag auf Einholung eines zustimmenden Beschlusses des Deutschen Bundestages gemäß § 5 Absatz 2 Nummer 1 des ESM-Finanzierungsgesetzes",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "314875",
+      "titel": "Gesetz zur Änderung der Höfeordnung, zur Änderung der Verfahrensordnung für Höfesachen und zur Änderung des Gesetzes zur Modernisierung des Strafverfahrens",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "315192",
+      "titel": "Einundzwanzigste Verordnung zur Änderung der Außenwirtschaftsverordnung - aufhebbare Verordnung",
+      "vorgangstyp": "Rechtsverordnung (Außenwirtschaftsrecht)"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20199.pdf",
+    "id": "5683",
+    "dokumentnummer": "20/199",
+    "datum": "2024-11-13",
+    "verteildatum": "2024-11-14",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20199.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 199. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2024-11-13"
+}

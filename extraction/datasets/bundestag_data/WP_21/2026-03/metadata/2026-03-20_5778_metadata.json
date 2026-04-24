@@ -1,0 +1,47 @@
+{
+  "id": "5778",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 38,
+  "dokumentnummer": "21/66",
+  "wahlperiode": 21,
+  "herausgeber": "BT",
+  "pdf_hash": "4811f4d35143382c3fb21e9b86cf47d8",
+  "xml_hash": "9a8c175f013e704a8071a7d2c0839296",
+  "aktualisiert": "2026-04-23T12:16:49+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "322348",
+      "titel": "Bericht der Bundesregierung über Maßnahmen des Bundes zur Unterstützung von Ländern und Kommunen im Bereich der Flüchtlings- und Integrationskosten und die Mittelverwendung durch die Länder im Jahr 2024",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "323155",
+      "titel": "Bericht der Kommission an das Europäische Parlament, den Rat, den Europäischen Wirtschafts- und Sozialausschuss und den Ausschuss der Regionen\r\nBericht über Energiesubventionen in der EU 2024 \r\nKOM(2025) 17 endg.; Ratsdok. 5732/25",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "325247",
+      "titel": "Vorläufige Haushaltsführung 2025\r\nÜberplanmäßige Verpflichtungsermächtigung bei Kapitel 0903 Titel 683 01 - Energieforschung - in Höhe von bis zu 105 Mio. Euro",
+      "vorgangstyp": "Über- und außerplanmäßige Haushaltsausgaben"
+    },
+    {
+      "id": "325229",
+      "titel": "Vorläufige Haushaltsführung 2025\r\nÜberplanmäßige Verpflichtungsermächtigung bei Kapitel 1703 Titel 684 14 - Bundesfreiwilligendienst - in Höhe von insgesamt 100 Mio. Euro",
+      "vorgangstyp": "Über- und außerplanmäßige Haushaltsausgaben"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/21/21066.pdf",
+    "id": "5778",
+    "dokumentnummer": "21/66",
+    "datum": "2026-03-20",
+    "verteildatum": "2026-03-23",
+    "xml_url": "https://dserver.bundestag.de/btp/21/21066.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 66. Sitzung des 21. Deutschen Bundestages",
+  "datum": "2026-03-20"
+}

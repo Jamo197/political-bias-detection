@@ -1,0 +1,47 @@
+{
+  "id": "5504",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 113,
+  "dokumentnummer": "20/47",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "2de994ff7bfade6efbbee4c27ea11cd7",
+  "pdf_hash": "1c9ad3c499b2cccdaa3b16b8e6ac6dc7",
+  "aktualisiert": "2023-10-26T11:28:45+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "283221",
+      "titel": "Änderung der Geschäftsordnung des Deutschen Bundestages\r\nhier: Ausschussöffentlichkeit und Zugang zu Dokumenten",
+      "vorgangstyp": "Geschäftsordnung"
+    },
+    {
+      "id": "282705",
+      "titel": "Energiewende rückgängig machen - Wirtschaft und private Haushalte entlasten",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "282704",
+      "titel": "Blackout und Brownout verhindern - Energieversorgung sicherstellen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "283556",
+      "titel": "Bericht über die Entwicklung der Menschenrechtssituation in Deutschland im Zeitraum Juli 2020 bis Juni 2021",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20047.pdf",
+    "id": "5504",
+    "dokumentnummer": "20/47",
+    "datum": "2022-07-07",
+    "verteildatum": "2022-07-08",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20047.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 47. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2022-07-07"
+}

@@ -1,0 +1,47 @@
+{
+  "id": "5383",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 88,
+  "dokumentnummer": "19/203",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "fd43835c929b71911d65be265cf84e3f",
+  "pdf_hash": "aa699697d37c69edd34f6cdee990c1e4",
+  "aktualisiert": "2021-01-14T14:52:04+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "254633",
+      "titel": "Agroforstwirtschaft möglich machen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "268977",
+      "titel": "Agroforstsysteme als ein nachhaltiges Anbausystem anerkennen und fördern",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "267059",
+      "titel": "Modernste Kernenergie für Deutschland - Sicher, sauber und bezahlbar",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "260041",
+      "titel": "Teilhabe von Frauen in der Landwirtschaft und den ländlichen Räumen",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19203.pdf",
+    "id": "5383",
+    "dokumentnummer": "19/203",
+    "datum": "2021-01-13",
+    "verteildatum": "2021-01-14",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19203.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 203. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2021-01-13"
+}

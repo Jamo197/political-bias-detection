@@ -1,0 +1,47 @@
+{
+  "id": "5602",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 64,
+  "dokumentnummer": "20/131",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "f7fc68b225dd011ecff0d444f1b8a4a5",
+  "pdf_hash": "8ba2a2ba24f5ec12134f5e850eb95724",
+  "aktualisiert": "2024-03-12T16:02:48+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "293230",
+      "titel": "Hochschulische Pflegeausbildung stärken - Pflegerische Versorgung von morgen absichern",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "286297",
+      "titel": "... Gesetz zur Änderung des Gesetzes zur Einführung eines Lobbyregisters für die Interessenvertretung gegenüber dem Deutschen Bundestag und gegenüber der Bundesregierung (Lobbyregistergesetz)",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "283225",
+      "titel": "Unabhängige Prüfinstanz für Lobbytransparenz und Offenlegung von Lobbykontakten",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "287873",
+      "titel": "Realisierungsvorschlag zur Errichtung eines Dokumentationszentrums \"Zweiter Weltkrieg und deutsche Besatzungsherrschaft in Europa\"",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20131.pdf",
+    "id": "5602",
+    "dokumentnummer": "20/131",
+    "datum": "2023-10-19",
+    "verteildatum": "2023-10-20",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20131.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 131. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2023-10-19"
+}

@@ -1,0 +1,47 @@
+{
+  "id": "5489",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 55,
+  "dokumentnummer": "20/35",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "52da01c97fa29235c5cb94e4551b3790",
+  "pdf_hash": "69f71675c729ec1810547764f4c8ec69",
+  "aktualisiert": "2022-05-16T08:52:03+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "285931",
+      "titel": "Gutachten zu Forschung, Innovation und technologischer Leistungsfähigkeit Deutschlands 2021",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "281004",
+      "titel": "Vorschlag für eine Verordnung des Europäischen Parlaments und des Rates über die allgemeine Produktsicherheit, zur Änderung der Verordnung (EU) Nr. 1025/2012 des Europäischen Parlaments und des Rates sowie zur Aufhebung der Richtlinie 87/357/EWG des Rates und der Richtlinie 2001/95/EG des Europäischen Parlaments und des Rates\r\nKOM(2021) 346 endg.; Ratsdok. 10381/21",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "285981",
+      "titel": "Bericht des Ausschusses für Bildung, Forschung und Technikfolgenabschätzung (18. Ausschuss) gemäß § 56a der Geschäftsordnung\r\nTechnikfolgenabschätzung (TA)\r\nAutonome Waffensysteme",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "284487",
+      "titel": "Dreiundzwanzigstes Hauptgutachten der Monopolkommission\r\nWettbewerb 2020",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20035.pdf",
+    "id": "5489",
+    "dokumentnummer": "20/35",
+    "datum": "2022-05-13",
+    "verteildatum": "2022-05-16",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20035.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 35. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2022-05-13"
+}

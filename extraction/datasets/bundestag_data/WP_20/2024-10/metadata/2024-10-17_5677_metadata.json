@@ -1,0 +1,47 @@
+{
+  "id": "5677",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 67,
+  "dokumentnummer": "20/194",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "55b17477a7fd60b0ff92f7cd02cf3baa",
+  "pdf_hash": "59fd011f624cf6d25c087bb536a70646",
+  "aktualisiert": "2024-11-05T15:34:18+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "296255",
+      "titel": "Fachübergreifende Frührehabilitation flächendeckend einrichten - Nahtlose Rehabilitationskette herstellen, Krankenhausstandorte erhalten und stärken",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "297563",
+      "titel": "Wirtschaft stärken - Nationales Raumfahrtgesetz für Deutschland",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "296254",
+      "titel": "Abteilungen für Kurzzeitpflege in Krankenhäusern bundesweit einrichten - Krankenhausstandorte erhalten und stärken",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "296248",
+      "titel": "Geburtshilfe in Deutschland flächendeckend sicherstellen - Fehlanreize beseitigen",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20194.pdf",
+    "id": "5677",
+    "dokumentnummer": "20/194",
+    "datum": "2024-10-17",
+    "verteildatum": "2024-10-18",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20194.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 194. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2024-10-17"
+}

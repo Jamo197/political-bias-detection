@@ -1,0 +1,47 @@
+{
+  "id": "5727",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 135,
+  "dokumentnummer": "21/21",
+  "wahlperiode": 21,
+  "herausgeber": "BT",
+  "xml_hash": "9855211ce913a87cfc474cf7e5d0e994",
+  "pdf_hash": "2849a74eab385d818eba9f055301967b",
+  "aktualisiert": "2025-10-06T11:12:02+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "325497",
+      "titel": "Bericht der Bundesregierung über die Wirkungen der Reform des Unterhaltsvorschussgesetzes ein Jahr nach dem Inkrafttreten zum 1. Juli 2017",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "325498",
+      "titel": "Abschlussbericht der Lenkungsausschüsse der Fonds \"Heimerziehung in der Bundesrepublik Deutschland in den Jahren 1949 bis 1975\" und \"Heimerziehung in der DDR in den Jahren 1949 bis 1990\"\r\nmit Stellungnahme der Bundesregierung",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "325499",
+      "titel": "Abschlussbericht der Arbeitsgruppe \"Kinder psychisch- und suchterkrankter Eltern\"",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "325500",
+      "titel": "Achter Bericht zur Lage der älteren Generation in der Bundesrepublik Deutschland\r\nÄltere Menschen und Digitalisierung\r\nund Stellungnahme der Bundesregierung",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/21/21021.pdf",
+    "id": "5727",
+    "dokumentnummer": "21/21",
+    "datum": "2025-09-11",
+    "verteildatum": "2025-09-12",
+    "xml_url": "https://dserver.bundestag.de/btp/21/21021.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 21. Sitzung des 21. Deutschen Bundestages",
+  "datum": "2025-09-11"
+}

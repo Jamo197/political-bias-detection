@@ -1,0 +1,47 @@
+{
+  "id": "5747",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 81,
+  "dokumentnummer": "21/39",
+  "wahlperiode": 21,
+  "herausgeber": "BT",
+  "xml_hash": "a9f51e3e11a57c6d1adbe832c78d6dbd",
+  "pdf_hash": "2376865b46b0890e260f28469031f20b",
+  "aktualisiert": "2025-11-18T17:39:47+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "326717",
+      "titel": "Gesetz zur Anpassung der Krankenhausreform (Krankenhausreformanpassungsgesetz - KHAG)",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "328058",
+      "titel": "Abschaffung von Hotelmeldescheinen und Bürokratieabbau im Beherbergungswesen",
+      "vorgangstyp": "Mündliche Frage"
+    },
+    {
+      "id": "327837",
+      "titel": "Queeres Leben stärken - Christopher-Street-Days schützen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "328062",
+      "titel": "Ablehnung der Aufnahme verletzter Kinder aus Gaza und Israel in Deutschland",
+      "vorgangstyp": "Mündliche Frage"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/21/21039.pdf",
+    "id": "5747",
+    "dokumentnummer": "21/39",
+    "datum": "2025-11-12",
+    "verteildatum": "2025-11-13",
+    "xml_url": "https://dserver.bundestag.de/btp/21/21039.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 39. Sitzung des 21. Deutschen Bundestages",
+  "datum": "2025-11-12"
+}

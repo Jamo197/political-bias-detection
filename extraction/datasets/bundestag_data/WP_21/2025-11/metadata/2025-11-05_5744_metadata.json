@@ -1,0 +1,42 @@
+{
+  "id": "5744",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 73,
+  "dokumentnummer": "21/36",
+  "wahlperiode": 21,
+  "herausgeber": "BT",
+  "xml_hash": "934418d41388d2d6b072e69cf951a571",
+  "pdf_hash": "5572dbfbbe1ad0d4c62344a8e591d143",
+  "aktualisiert": "2026-01-27T08:56:21+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "324825",
+      "titel": "Gesetz zur effektiveren Ahndung und Bekämpfung von Straftaten im Zusammenhang mit explosionsgefährlichen Stoffen",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "325335",
+      "titel": "Gesetz zu dem Vertrag vom 24. Oktober 2024 zwischen der Bundesrepublik Deutschland und der Republik Indien über die Rechtshilfe in Strafsachen",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "325338",
+      "titel": "Gesetz zur Anpassung des Sechsten Buches Sozialgesetzbuch und anderer Gesetze (SGB VI-Anpassungsgesetz - SGB VI-AnpG)",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/21/21036.pdf",
+    "id": "5744",
+    "dokumentnummer": "21/36",
+    "datum": "2025-11-05",
+    "verteildatum": "2025-11-06",
+    "xml_url": "https://dserver.bundestag.de/btp/21/21036.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 36. Sitzung des 21. Deutschen Bundestages",
+  "datum": "2025-11-05"
+}

@@ -1,0 +1,47 @@
+{
+  "id": "5612",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 4,
+  "dokumentnummer": "20/139",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "a570ae82671444ecd2c0c13939c58644",
+  "pdf_hash": "f4ab646d509344c7d0b006778d0d4c3f",
+  "aktualisiert": "2023-12-06T11:15:37+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "306343",
+      "titel": "Entschließungsantrag zur Regierungserklärung zur Haushaltslage",
+      "vorgangstyp": "Entschließungsantrag BT"
+    },
+    {
+      "id": "306442",
+      "titel": "Erteilung eines Ordnungsrufes an den Abg Ralf Stegner (SPD)",
+      "vorgangstyp": "Geschäftsordnung"
+    },
+    {
+      "id": "306344",
+      "titel": "Entschließungsantrag zur Regierungserklärung zur Haushaltslage",
+      "vorgangstyp": "Entschließungsantrag BT"
+    },
+    {
+      "id": "306413",
+      "titel": "Regierungserklärung zur Haushaltslage",
+      "vorgangstyp": "Regierungserklärung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20139.pdf",
+    "id": "5612",
+    "dokumentnummer": "20/139",
+    "datum": "2023-11-28",
+    "verteildatum": "2023-11-29",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20139.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 139. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2023-11-28"
+}

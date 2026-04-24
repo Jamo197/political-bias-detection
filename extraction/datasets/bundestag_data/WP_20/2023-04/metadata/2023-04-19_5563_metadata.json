@@ -1,0 +1,47 @@
+{
+  "id": "5563",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 58,
+  "dokumentnummer": "20/96",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "fde105c07c0bf679b076544244166c78",
+  "pdf_hash": "64a962500b23107b19af8c8eccf823c4",
+  "aktualisiert": "2023-04-28T08:11:40+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "298079",
+      "titel": "Beteiligung bewaffneter deutscher Streitkräfte an der durch die Europäische Union geführten militärischen Partnerschaftsmission zur Unterstützung des Kapazitätsaufbaus der nigrischen Streitkräfte in Niger (EUMPM Niger)",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "298508",
+      "titel": "Abhängigkeit der Durchführung von Digitalprojekten von einem Digitalbudget",
+      "vorgangstyp": "Mündliche Frage"
+    },
+    {
+      "id": "291797",
+      "titel": "Einsetzung des 2. Untersuchungsausschusses der 20. Wahlperiode (Bekämpfung des Corona-Virus)",
+      "vorgangstyp": "Untersuchungsausschuss"
+    },
+    {
+      "id": "297776",
+      "titel": "Nationale Wasserstrategie",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20096.pdf",
+    "id": "5563",
+    "dokumentnummer": "20/96",
+    "datum": "2023-04-19",
+    "verteildatum": "2023-04-20",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20096.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 96. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2023-04-19"
+}

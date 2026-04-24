@@ -1,0 +1,47 @@
+{
+  "id": "5517",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 27,
+  "dokumentnummer": "20/58",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "1e856151b7cb3169bbc9edc1bd334675",
+  "pdf_hash": "aa1b947340fc9d03020cd87da5f92fdd",
+  "aktualisiert": "2025-07-08T13:28:55+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "283556",
+      "titel": "Bericht über die Entwicklung der Menschenrechtssituation in Deutschland im Zeitraum Juli 2020 bis Juni 2021",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "285362",
+      "titel": "Europas Wettbewerbsfähigkeit erhalten - Die wirtschafts- und handelspolitischen Beziehungen im atlantischen Raum stärken",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "283555",
+      "titel": "Jahresbericht 2020",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "285354",
+      "titel": "Gesetz zum umfassenden Wirtschafts- und Handelsabkommen (CETA) vom 30. Oktober 2016 zwischen Kanada einerseits und der Europäischen Union und ihren Mitgliedstaaten andererseits",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20058.pdf",
+    "id": "5517",
+    "dokumentnummer": "20/58",
+    "datum": "2022-09-30",
+    "verteildatum": "2022-10-04",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20058.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 58. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2022-09-30"
+}

@@ -1,0 +1,47 @@
+{
+  "id": "5559",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 65,
+  "dokumentnummer": "20/93",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "c60199e4228cef6a6d2790fb3dc53e86",
+  "pdf_hash": "f03a30bade62487160bebe507d745ad5",
+  "aktualisiert": "2023-04-06T10:56:31+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "296553",
+      "titel": "Fortsetzung der Beteiligung bewaffneter deutscher Streitkräfte an der NATO-geführten Maritimen Sicherheitsoperation SEA GUARDIAN im Mittelmeer",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "297991",
+      "titel": "Anzahl der Nutzer des Nutzerkontos Bund",
+      "vorgangstyp": "Mündliche Frage"
+    },
+    {
+      "id": "297945",
+      "titel": "Auftragsvergabe der Corona-Impfkampagne \"Ich schütze mich\"",
+      "vorgangstyp": "Mündliche Frage"
+    },
+    {
+      "id": "297941",
+      "titel": "Anerkennung des sogenannten Triage-Beschlusses des Bundesverfassungsgerichts zum Schutz behinderter Menschen in einer Pandemie",
+      "vorgangstyp": "Mündliche Frage"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20093.pdf",
+    "id": "5559",
+    "dokumentnummer": "20/93",
+    "datum": "2023-03-29",
+    "verteildatum": "2023-03-30",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20093.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 93. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2023-03-29"
+}

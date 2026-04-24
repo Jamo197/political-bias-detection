@@ -1,0 +1,47 @@
+{
+  "id": "5417",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 72,
+  "dokumentnummer": "19/231",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "bb07c18a18ce64e3035ba543f5a3c9f5",
+  "pdf_hash": "5748b483d94d7a6181cc503f3d15b272",
+  "aktualisiert": "2021-05-25T08:22:04+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "241679",
+      "titel": "Umsetzungsstrategie der Bundesregierung - Digitalisierung gestalten",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "232199",
+      "titel": "Betriebsratswahlen erleichtern und Betriebsräte besser schützen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "234596",
+      "titel": "Betriebsratswahlen erleichtern - Aktive Beschäftigte besser schützen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "242156",
+      "titel": "Political declaration setting out the framework for the future relationship between the European Union and the United Kingdom\r\n(Dokument liegt nicht in deutscher Sprache vor) \r\nRatsdok. XT 21095/18",
+      "vorgangstyp": "EU-Vorlage"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19231.pdf",
+    "id": "5417",
+    "dokumentnummer": "19/231",
+    "datum": "2021-05-21",
+    "verteildatum": "2021-05-25",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19231.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 231. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2021-05-21"
+}

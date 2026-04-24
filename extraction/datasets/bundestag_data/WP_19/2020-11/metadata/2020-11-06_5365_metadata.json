@@ -1,0 +1,47 @@
+{
+  "id": "5365",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 37,
+  "dokumentnummer": "19/190",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "e148e80658448de3b4756425e7be55ed",
+  "pdf_hash": "b7c1f16e43caf4251d5dc771fd718c61",
+  "aktualisiert": "2020-11-09T08:32:03+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "262731",
+      "titel": "Mitteilung der Kommission an das Europäische Parlament, den Rat, den Europäischen Wirtschafts- und Sozialausschuss und den Ausschuss der Regionen \r\nEU-Biodiversitätsstrategie für 2030 \r\nMehr Raum für die Natur in unserem Leben\r\nKOM(2020)380 endg.; Ratsdok. 8219/20",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "258944",
+      "titel": "Verstärktes und effektiveres Vorgehen gegen die Ausbreitung des Islamismus in Deutschland",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "262152",
+      "titel": "Vitale Innenstädte durch starken Einzelhandel - Auch in Zeiten von Corona",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "261380",
+      "titel": "Soforthilfen für Vermieter gewerblich genutzter Räume und Flächen",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19190.pdf",
+    "id": "5365",
+    "dokumentnummer": "19/190",
+    "datum": "2020-11-06",
+    "verteildatum": "2020-11-09",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19190.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 190. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2020-11-06"
+}

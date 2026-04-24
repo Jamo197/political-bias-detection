@@ -1,0 +1,42 @@
+{
+  "id": "5583",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 61,
+  "dokumentnummer": "20/114",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "a5dc3da80be40573b4bcb2bfcd7f9838",
+  "pdf_hash": "32703ade2237fa99d69139d44894c22b",
+  "aktualisiert": "2023-07-07T09:31:04+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "292259",
+      "titel": "Güterverkehrs- und Logistikbranche aus der Krise führen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "298614",
+      "titel": "Transportlogistik für Deutschland sichern - Mit fairen Arbeits- und Wettbewerbsbedingungen im Straßengüterverkehr",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "298667",
+      "titel": "Einsetzung des 2. Untersuchungsausschusses der 20. Wahlperiode",
+      "vorgangstyp": "Untersuchungsausschuss"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20114.pdf",
+    "id": "5583",
+    "dokumentnummer": "20/114",
+    "datum": "2023-07-05",
+    "verteildatum": "2023-07-06",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20114.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 114. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2023-07-05"
+}

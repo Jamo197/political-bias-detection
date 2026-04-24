@@ -1,0 +1,47 @@
+{
+  "id": "5400",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 93,
+  "dokumentnummer": "19/217",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "0fb348282d2a17622d3d3d20ef756b0f",
+  "pdf_hash": "a37c3f9d7d6a5882e18153c3be322bc4",
+  "aktualisiert": "2021-03-25T08:22:03+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "262157",
+      "titel": "Corona-Sofortprogramm für eine digitale und flexible Hochschullehre",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "266706",
+      "titel": "Strategiewechsel in der Entwicklungszusammenarbeit - Förderung kultureller Identitäten zur Stärkung des gesellschaftlichen Zusammenhalts in Entwicklungsländern",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "266707",
+      "titel": "Strategiewechsel in der Entwicklungszusammenarbeit - Deutsche Sprache und Bildung für Frieden und Wohlstand in Entwicklungsländern",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "269720",
+      "titel": "Mobile Luftfilter für Schulen zur Minimierung eines Ansteckungsrisikos mit dem Coronavirus",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19217.pdf",
+    "id": "5400",
+    "dokumentnummer": "19/217",
+    "datum": "2021-03-24",
+    "verteildatum": "2021-03-25",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19217.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 217. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2021-03-24"
+}

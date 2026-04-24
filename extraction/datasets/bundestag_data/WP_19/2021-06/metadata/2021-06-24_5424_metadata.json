@@ -1,0 +1,47 @@
+{
+  "id": "5424",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 341,
+  "dokumentnummer": "19/236",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "2404cd7229f2e98efea927304f72dfee",
+  "pdf_hash": "3f3950b962c903fcc896b644e369b4ee",
+  "aktualisiert": "2021-06-29T08:42:03+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "234583",
+      "titel": "Luftreinhaltung im Straßenverkehr - Ökonomisch, ökologisch und sozial",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "232485",
+      "titel": "1. Untersuchungsausschuss der 19. Wahlperiode \r\n[Terroranschlag Breitscheidplatz]",
+      "vorgangstyp": "Untersuchungsausschuss"
+    },
+    {
+      "id": "230522",
+      "titel": "Gesetz zum Verbot von Massenentlassungen in profitablen Unternehmen und zur Stärkung der Mitbestimmungsrechte der Beschäftigten bei strategischen Unternehmensentscheidungen",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "231213",
+      "titel": "Fracking in Deutschland ohne Ausnahmen verbieten",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19236.pdf",
+    "id": "5424",
+    "dokumentnummer": "19/236",
+    "datum": "2021-06-24",
+    "verteildatum": "2021-06-29",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19236.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 236. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2021-06-24"
+}

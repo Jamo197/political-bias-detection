@@ -1,0 +1,47 @@
+{
+  "id": "5560",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 41,
+  "dokumentnummer": "20/94",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "2019e202b0fa100e59892bf7e3a2589b",
+  "pdf_hash": "a8409e914206b15408732860fac689ff",
+  "aktualisiert": "2023-07-04T15:04:18+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "291470",
+      "titel": "Pflanzenschutz sichert Ernten - Verfügbarkeit von Pflanzenschutzmittelwirkstoffen gewährleisten und gute fachliche Praxis im Pflanzenschutz erhalten",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "291471",
+      "titel": "zu den Verhandlungen über einen Vorschlag für eine Verordnung des Europäischen Parlamentes und des Rates über die nachhaltige Verwendung von Pflanzenschutzmitteln und zur Änderung der Verordnung (EU) 2021/2115",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "293269",
+      "titel": "Sicherheit und Klarheit beim Strukturwandel in der Lausitz",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "294427",
+      "titel": "Planungssicherheit und Vertrauen beim Umweltbonus herstellen",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20094.pdf",
+    "id": "5560",
+    "dokumentnummer": "20/94",
+    "datum": "2023-03-30",
+    "verteildatum": "2023-03-31",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20094.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 94. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2023-03-30"
+}

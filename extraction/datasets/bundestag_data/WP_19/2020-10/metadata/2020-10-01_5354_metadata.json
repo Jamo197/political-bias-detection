@@ -1,0 +1,47 @@
+{
+  "id": "5354",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 40,
+  "dokumentnummer": "19/180",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "6ded2b82c4515ea2ca67fac65a332785",
+  "pdf_hash": "ead182ea2c6711ff56b226d8805284a7",
+  "aktualisiert": "2020-10-02T08:42:01+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "249963",
+      "titel": "Entlastung der Bundesregierung für das Haushaltsjahr 2018\r\n- Haushaltsrechnung und Vermögensrechnung des Bundes für das Haushaltsjahr 2018 -",
+      "vorgangstyp": "Entlastung der Bundesregierung"
+    },
+    {
+      "id": "263063",
+      "titel": "Rechnung des Bundesrechnungshofes für das Haushaltsjahr 2019 - Einzelplan 20 -",
+      "vorgangstyp": "Entlastung des Bundesrechnungshofes"
+    },
+    {
+      "id": "245695",
+      "titel": "25 Jahre Völkermord in Ruanda - Unabhängige historische Aufarbeitung in Deutschland",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "245650",
+      "titel": "25. Jahrestag des Genozids in Ruanda - Krisenprävention stärken",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19180.pdf",
+    "id": "5354",
+    "dokumentnummer": "19/180",
+    "datum": "2020-10-01",
+    "verteildatum": "2020-10-02",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19180.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 180. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2020-10-01"
+}

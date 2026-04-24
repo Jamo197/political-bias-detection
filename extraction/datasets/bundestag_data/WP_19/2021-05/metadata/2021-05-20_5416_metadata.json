@@ -1,0 +1,47 @@
+{
+  "id": "5416",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 217,
+  "dokumentnummer": "19/230",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "d29009a52d3d37c9a7b18ddf3fd83ea3",
+  "pdf_hash": "6d5c084770f9c7e1ce38a20322d6049e",
+  "aktualisiert": "2021-05-26T09:02:03+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "240547",
+      "titel": "Entwicklungshilfe für bei Abschiebungen nicht kooperierende Staaten beschränken",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "233232",
+      "titel": "Getrennt leben - Gemeinsam erziehen: Familienrechtliches Wechselmodell als Regelfall einführen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "242090",
+      "titel": "Beschäftigte vor Mobbing am Arbeitsplatz schützen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "244236",
+      "titel": "Filmförderung geschlechtergerecht vergeben",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19230.pdf",
+    "id": "5416",
+    "dokumentnummer": "19/230",
+    "datum": "2021-05-20",
+    "verteildatum": "2021-05-26",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19230.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 230. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2021-05-20"
+}

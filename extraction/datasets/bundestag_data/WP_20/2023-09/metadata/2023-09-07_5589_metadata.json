@@ -1,0 +1,47 @@
+{
+  "id": "5589",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 11,
+  "dokumentnummer": "20/119",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "2a9eb0f03a5956e48223bb60c75b6382",
+  "pdf_hash": "c7554177fdb1de52746d205bfe545e96",
+  "aktualisiert": "2023-09-12T11:57:16+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "300824",
+      "titel": "Wahl eines Mitglieds des Parlamentarischen Kontrollgremiums gemäß Artikel 45d des Grundgesetzes",
+      "vorgangstyp": "Besetzung interner Gremien des BT"
+    },
+    {
+      "id": "289636",
+      "titel": "Entlastung der Bundesregierung für das Haushaltsjahr 2021\r\n- Haushalts- und Vermögensrechnung des Bundes für das Haushaltsjahr 2021 -",
+      "vorgangstyp": "Entlastung der Bundesregierung"
+    },
+    {
+      "id": "299737",
+      "titel": "Rechnung des Bundesrechnungshofes für das Haushaltsjahr 2022\r\n- Einzelplan 20 -",
+      "vorgangstyp": "Entlastung des Bundesrechnungshofes"
+    },
+    {
+      "id": "298954",
+      "titel": "Stabilität für Ägypten - Deutsch-ägyptische strategische Partnerschaft stärken",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20119.pdf",
+    "id": "5589",
+    "dokumentnummer": "20/119",
+    "datum": "2023-09-07",
+    "verteildatum": "2023-09-08",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20119.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 119. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2023-09-07"
+}

@@ -1,0 +1,47 @@
+{
+  "id": "5445",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 21,
+  "dokumentnummer": "20/6",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "46628827051193539cbf2fa72a4ab43c",
+  "pdf_hash": "3f87e5fd15007aea034f716c2fbbe46d",
+  "aktualisiert": "2021-12-10T08:12:02+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "282918",
+      "titel": "Sammelübersicht 3 des Petitionsausschusses (2. Ausschuss) über Anträge zu Petitionen",
+      "vorgangstyp": "Petition"
+    },
+    {
+      "id": "282624",
+      "titel": "Wahl eines Stellvertreters der Präsidentin",
+      "vorgangstyp": "Wahl im BT"
+    },
+    {
+      "id": "282596",
+      "titel": "Gesetz zum Vorschlag für eine Verordnung des Rates zur Änderung der Verordnung (EG) Nr. 168/2007 zur Errichtung einer Agentur der Europäischen Union für Grundrechte und zur Inbetriebnahme der elektronischen Urkundensammlung",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "282919",
+      "titel": "Sammelübersicht 4 des Petitionsausschusses (2. Ausschuss) über Anträge zu Petitionen",
+      "vorgangstyp": "Petition"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20006.pdf",
+    "id": "5445",
+    "dokumentnummer": "20/6",
+    "datum": "2021-12-09",
+    "verteildatum": "2021-12-10",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20006.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 6. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2021-12-09"
+}

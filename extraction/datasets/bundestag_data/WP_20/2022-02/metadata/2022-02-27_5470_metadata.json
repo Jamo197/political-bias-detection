@@ -1,0 +1,48 @@
+{
+  "id": "5470",
+  "sitzungsbemerkung": "Sondersitzung",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 9,
+  "dokumentnummer": "20/19",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "7896ec5119ec78014c5b5c9acfc6379a",
+  "pdf_hash": "8ada5e026fe698c61692ba0672c839e7",
+  "aktualisiert": "2023-07-06T09:33:45+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "284807",
+      "titel": "Entschließungsantrag zur Regierungserklärung zur aktuellen Lage",
+      "vorgangstyp": "Entschließungsantrag BT"
+    },
+    {
+      "id": "284806",
+      "titel": "Entschließungsantrag zur Regierungserklärung zur aktuellen Lage",
+      "vorgangstyp": "Entschließungsantrag BT"
+    },
+    {
+      "id": "284838",
+      "titel": "Begrüßung des Botschafters der Ukraine, Dr. Andrij Melnyk",
+      "vorgangstyp": "Ansprache/Erklärung/Mitteilung"
+    },
+    {
+      "id": "284836",
+      "titel": "Begrüßung des Bundespräsidenten Joachim Gauck",
+      "vorgangstyp": "Ansprache/Erklärung/Mitteilung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20019.pdf",
+    "id": "5470",
+    "dokumentnummer": "20/19",
+    "datum": "2022-02-27",
+    "verteildatum": "2022-02-28",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20019.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 19. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2022-02-27"
+}

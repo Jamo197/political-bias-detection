@@ -1,0 +1,47 @@
+{
+  "id": "5653",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 72,
+  "dokumentnummer": "20/174",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "2b2e4185c12ec167623e0adbbd3b825c",
+  "pdf_hash": "517ae9f172ed7ed40ede882e22a96a85",
+  "aktualisiert": "2024-06-13T14:28:41+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "312725",
+      "titel": "Abschaffung des Genehmigungsvorbehalts bei Medizinalcannabis\r\n",
+      "vorgangstyp": "Mündliche Frage"
+    },
+    {
+      "id": "307095",
+      "titel": "Leistungen für Asylbewerber senken - Rechtliche Spielräume nutzen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "294002",
+      "titel": "Aktionsplan der Bundesregierung für Akzeptanz und Schutz sexueller und geschlechtlicher Vielfalt - Queer leben",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "311885",
+      "titel": "Umweltbericht 2023",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20174.pdf",
+    "id": "5653",
+    "dokumentnummer": "20/174",
+    "datum": "2024-06-12",
+    "verteildatum": "2024-06-13",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20174.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 174. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2024-06-12"
+}

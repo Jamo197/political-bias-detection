@@ -1,0 +1,47 @@
+{
+  "id": "5546",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 51,
+  "dokumentnummer": "20/82",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "bc6b3fb1dfb3a158b4238e505f975c32",
+  "pdf_hash": "1724a89cab1aa8f49dd560084d67c640",
+  "aktualisiert": "2023-01-30T18:43:07+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "288777",
+      "titel": "Ausbildungsplätze schaffen und gute Ausbildungsqualität sichern",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "289241",
+      "titel": "Die wertvollen ökologischen Leistungen unserer Wälder anerkennen und ein entsprechendes Vergütungssystem für Waldbewirtschaftung schaffen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "288660",
+      "titel": "Gesetz zur Änderung des Strafgesetzbuchs - Straffreiheit für Fahren ohne Fahrschein",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "288782",
+      "titel": "Stärkung der beruflichen Bildung - Strukturierte Berufsorientierung ermöglichen und gleichwertige Qualifikationen konsequent sicherstellen",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20082.pdf",
+    "id": "5546",
+    "dokumentnummer": "20/82",
+    "datum": "2023-01-26",
+    "verteildatum": "2023-01-27",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20082.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 82. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2023-01-26"
+}

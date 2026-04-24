@@ -1,0 +1,47 @@
+{
+  "id": "5632",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 66,
+  "dokumentnummer": "20/156",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "8fc8796fe1a4fcde201275c30001ebf0",
+  "pdf_hash": "99a8146ee5ddb71a5121cf04659f4c55",
+  "aktualisiert": "2024-06-03T08:27:32+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "298132",
+      "titel": "Vetorecht des Bundestages bei Waffenexporten in Konflikt- und Kriegsgebiete",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "301542",
+      "titel": "Strategie der Bundesregierung zur Stärkung des Holzbaus als ein wichtiger Beitrag für ein klimagerechtes und ressourceneffizientes Bauen (Holzbauinitiative)",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "296874",
+      "titel": "Nationaler Aktionsplan zur intelligenten Stadt",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "298644",
+      "titel": "Potentiale der Digitalisierung jetzt nutzen - Smart Cities und Smarte.Land.Regionen voranbringen",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20156.pdf",
+    "id": "5632",
+    "dokumentnummer": "20/156",
+    "datum": "2024-03-13",
+    "verteildatum": "2024-03-14",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20156.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 156. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2024-03-13"
+}

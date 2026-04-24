@@ -1,0 +1,47 @@
+{
+  "id": "5726",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 66,
+  "dokumentnummer": "21/20",
+  "wahlperiode": 21,
+  "herausgeber": "BT",
+  "xml_hash": "71c4da8a391b091ba5072db1462424c9",
+  "pdf_hash": "c3476cf3eab86c2c32809945a748298d",
+  "aktualisiert": "2025-09-16T15:24:20+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "322622",
+      "titel": "Gesetz zur Anpassung des Batterierechts an die Verordnung (EU) 2023/1542 (Batterierecht-EU-Anpassungsgesetz - Batt-EU-AnpG)",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "325091",
+      "titel": "Fortsetzung der Beteiligung bewaffneter deutscher Streitkräfte an der Mission der Vereinten Nationen in Südsudan (UNMISS)",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "325092",
+      "titel": "Fortsetzung der Beteiligung bewaffneter deutscher Streitkräfte an der durch die Europäische Union geführten Operation EUNAVFOR ASPIDES",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "323515",
+      "titel": "Klimageld - Sofort und sozial gerecht",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/21/21020.pdf",
+    "id": "5726",
+    "dokumentnummer": "21/20",
+    "datum": "2025-09-10",
+    "verteildatum": "2025-09-11",
+    "xml_url": "https://dserver.bundestag.de/btp/21/21020.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 20. Sitzung des 21. Deutschen Bundestages",
+  "datum": "2025-09-10"
+}

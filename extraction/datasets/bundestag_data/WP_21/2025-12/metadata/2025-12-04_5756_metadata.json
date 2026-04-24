@@ -1,0 +1,42 @@
+{
+  "id": "5756",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 53,
+  "dokumentnummer": "21/47",
+  "wahlperiode": 21,
+  "herausgeber": "BT",
+  "xml_hash": "1805c16ce07d91e2a085919bb2627c17",
+  "pdf_hash": "b4dae67bb264a63d31064068ffdf0534",
+  "aktualisiert": "2025-12-09T19:04:06+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "322246",
+      "titel": "Gesetz zur Einführung der Haftung von Bundesministern bei Amtspflichtverletzungen",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "324806",
+      "titel": "Gesetz zur Beschleunigung des Ausbaus von Geothermieanlagen, Wärmepumpen und Wärmespeichern und zur Änderung weiterer rechtlicher Rahmenbedingungen für den klimaneutralen Ausbau der Wärmeversorgung sowie zur Änderung des Baugesetzbuchs und zur Änderung des Bundes-Immissionsschutzgesetzes",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "321947",
+      "titel": "Kein Heizungsgesetz durch die Hintertür - CO2-Bepreisung abschaffen",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/21/21047.pdf",
+    "id": "5756",
+    "dokumentnummer": "21/47",
+    "datum": "2025-12-04",
+    "verteildatum": "2025-12-05",
+    "xml_url": "https://dserver.bundestag.de/btp/21/21047.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 47. Sitzung des 21. Deutschen Bundestages",
+  "datum": "2025-12-04"
+}

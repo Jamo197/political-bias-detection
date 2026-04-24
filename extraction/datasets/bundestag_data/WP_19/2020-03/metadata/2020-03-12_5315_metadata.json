@@ -1,0 +1,47 @@
+{
+  "id": "5315",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 58,
+  "dokumentnummer": "19/152",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "ca4c2c32c659416001f8d1fc441739c3",
+  "pdf_hash": "b9a39a89b71c2f6df93da306757f0fdb",
+  "aktualisiert": "2020-03-13T08:30:00+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "252852",
+      "titel": "Recht auf Homeoffice einführen - Mobiles Arbeiten erleichtern",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "257236",
+      "titel": "Gesetz zur Entlastung bei den Heizkosten im Wohngeld im Kontext der CO2-Bepreisung (Wohngeld-CO2-Bepreisungsentlastungsgesetz - WoGCO2BeprEntlG)",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "255367",
+      "titel": "... Gesetz zur Änderung des Bundeswahlgesetzes",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "250660",
+      "titel": "Bericht der Bundesregierung zur Wirksamkeit des Gesetzes zur Förderung der Entgelttransparenz zwischen Frauen und Männern sowie zum Stand der Umsetzung des Entgeltgleichheitsgebots in Betrieben mit weniger als 200 Beschäftigten",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19152.pdf",
+    "id": "5315",
+    "dokumentnummer": "19/152",
+    "datum": "2020-03-12",
+    "verteildatum": "2020-03-13",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19152.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 152. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2020-03-12"
+}

@@ -1,0 +1,42 @@
+{
+  "id": "5527",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 76,
+  "dokumentnummer": "20/66",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "7856f19b0ce59e29e328f2dbebf809a1",
+  "pdf_hash": "9abb91c3d2abc0423826bab53ca01240",
+  "aktualisiert": "2022-11-17T16:24:14+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "284442",
+      "titel": "Inflationsgetriebene kalte Progression verlässlich stoppen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "288062",
+      "titel": "Gesetz zur Aufteilung der Kohlendioxidkosten (Kohlendioxidkostenaufteilungsgesetz - CO2KostAufG)",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "286296",
+      "titel": "CO2-Preis nicht den Mieterinnen und Mietern aufbürden",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20066.pdf",
+    "id": "5527",
+    "dokumentnummer": "20/66",
+    "datum": "2022-11-10",
+    "verteildatum": "2022-11-11",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20066.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 66. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2022-11-10"
+}

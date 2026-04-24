@@ -1,0 +1,47 @@
+{
+  "id": "5715",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 35,
+  "dokumentnummer": "21/11",
+  "wahlperiode": 21,
+  "herausgeber": "BT",
+  "xml_hash": "70e656f1cb99de7562bdf719cbeb2138",
+  "pdf_hash": "25051b94069d1917abcdb34cb99b836c",
+  "aktualisiert": "2025-06-11T14:59:08+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "321188",
+      "titel": "9. Sektorgutachten Bahn der Monopolkommission gemäß § 78 Absatz 1 des Eisenbahnregulierungsgesetzes\r\nBahn 2023: Time to GO. Endlich qualitätswirksam in den Wettbewerb!",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "321089",
+      "titel": "Vorläufige Haushaltsführung und Wirtschaftsführung des Klima- und Transformationsfonds 2025\r\nÜberplanmäßige Verpflichtungsermächtigung bis zur Höhe von insgesamt 1,220791 Mrd. Euro bei Kapitel 6092 Titel 893 10 \"Förderung von Maßnahmen der Energieeffizienz und erneuerbarer Energien im Gebäudebereich\"",
+      "vorgangstyp": "Über- und außerplanmäßige Haushaltsausgaben"
+    },
+    {
+      "id": "321063",
+      "titel": "Vorläufige Haushaltsführung 2025\r\nÜberplanmäßige Verpflichtungsermächtigung bei Kapitel 0512 Titel 518 21 - Mieten und Pachten - bis zur Höhe von 53,795 Mio. Euro",
+      "vorgangstyp": "Über- und außerplanmäßige Haushaltsausgaben"
+    },
+    {
+      "id": "321062",
+      "titel": "Vorläufige Haushaltsführung 2025\r\nÜberplanmäßige Verpflichtungsermächtigung bei Kapitel 0902 Titel 882 01 - Zuweisungen für betriebliche Investitionen und wirtschaftsnahe Infrastrukturmaßnahmen im Rahmen der Gemeinschaftsaufgabe \"Verbesserung der regionalen Wirtschaftsstruktur\" - bis zur Höhe von 172,924 Mio. Euro",
+      "vorgangstyp": "Über- und außerplanmäßige Haushaltsausgaben"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/21/21011.pdf",
+    "id": "5715",
+    "dokumentnummer": "21/11",
+    "datum": "2025-06-06",
+    "verteildatum": "2025-06-10",
+    "xml_url": "https://dserver.bundestag.de/btp/21/21011.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 11. Sitzung des 21. Deutschen Bundestages",
+  "datum": "2025-06-06"
+}

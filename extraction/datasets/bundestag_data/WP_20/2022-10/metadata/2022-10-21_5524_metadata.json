@@ -1,0 +1,47 @@
+{
+  "id": "5524",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 28,
+  "dokumentnummer": "20/64",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "a456f11ed80f9a303c6c7dc4f2b175ac",
+  "pdf_hash": "b4bf2675ed252b56e97ef6836c314bc0",
+  "aktualisiert": "2022-11-24T09:50:00+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "284277",
+      "titel": "Bericht nach § 99 der Bundeshaushaltsordnung über den Einsatz von Bundesmitteln für den Öffentlichen Personennahverkehr",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "284190",
+      "titel": "Vorschlag für einen Durchführungsbeschluss des Rates zur Billigung der Bewertung des Aufbau- und Resilienzplans Irlands \r\nKOM(2021) 419 endg.; Ratsdok. 10941/21",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "287242",
+      "titel": "Empfehlung für einen Beschluss des Rates zur Ermächtigung zur Aufnahme von Verhandlungen über ein umfassendes internationales Übereinkommen zur Bekämpfung der Nutzung von Informations- und Kommunikationstechnologien für kriminelle Zwecke \r\nKOM(2022)132 endg.; Ratsdok. 7860/22",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "284677",
+      "titel": "Bericht der Kommission an das Europäische Parlament, den Rat, den Europäischen Wirtschafts- und Sozialausschuss und den Ausschuss der Regionen\r\nSchutz der Grundrechte im digitalen Zeitalter - Jährlicher Bericht über die Anwendung der Charta der Grundrechte der Europäischen Union 2021 \r\nKOM(2021)819 endg.; Ratsdok. 14910/21",
+      "vorgangstyp": "EU-Vorlage"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20064.pdf",
+    "id": "5524",
+    "dokumentnummer": "20/64",
+    "datum": "2022-10-21",
+    "verteildatum": "2022-10-24",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20064.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 64. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2022-10-21"
+}

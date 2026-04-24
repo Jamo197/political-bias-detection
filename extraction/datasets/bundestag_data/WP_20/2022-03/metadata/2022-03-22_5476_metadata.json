@@ -1,0 +1,37 @@
+{
+  "id": "5476",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 3,
+  "dokumentnummer": "20/23",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "78091113037f7639dd784983f519feda",
+  "pdf_hash": "4c5b5a97d40f50f44adc006e44da4b34",
+  "aktualisiert": "2022-03-23T08:22:03+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "285688",
+      "titel": "Finanzplan des Bundes 2021 bis 2025",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "285457",
+      "titel": "Gesetz über die Feststellung des Bundeshaushaltsplans für das Haushaltsjahr 2022 (Haushaltsgesetz 2022)",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20023.pdf",
+    "id": "5476",
+    "dokumentnummer": "20/23",
+    "datum": "2022-03-22",
+    "verteildatum": "2022-03-23",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20023.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 23. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2022-03-22"
+}

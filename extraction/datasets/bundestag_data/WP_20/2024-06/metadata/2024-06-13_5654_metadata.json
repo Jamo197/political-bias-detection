@@ -1,0 +1,47 @@
+{
+  "id": "5654",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 56,
+  "dokumentnummer": "20/175",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "579a3e5cb02834148b6b17a4d9c973c9",
+  "pdf_hash": "f5091370e0ae41374bf9ba1a3398ebd3",
+  "aktualisiert": "2024-06-27T13:16:38+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "306398",
+      "titel": "Zinsen beim Studienkredit der Kreditanstalt für Wiederaufbau deckeln - Kostenfalle stoppen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "306893",
+      "titel": "Deutschlands Postmärkte der Zukunft - Zuverlässig, erschwinglich, digital",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "307097",
+      "titel": "Situation der Trainer und Schiedsrichter in Deutschland",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "301259",
+      "titel": "Übersterblichkeit untersuchen - Ursachen aufklären",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20175.pdf",
+    "id": "5654",
+    "dokumentnummer": "20/175",
+    "datum": "2024-06-13",
+    "verteildatum": "2024-06-14",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20175.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 175. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2024-06-13"
+}

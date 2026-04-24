@@ -1,0 +1,47 @@
+{
+  "id": "5316",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 34,
+  "dokumentnummer": "19/153",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "fff734b5ae8d50934e7230764d14202c",
+  "pdf_hash": "e2d5ab1099835f338e9eb0b613cfc11c",
+  "aktualisiert": "2020-03-16T08:35:20+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "245120",
+      "titel": "14. Bericht der Bundesregierung über die Aktivitäten des Gemeinsamen Fonds für Rohstoffe und der einzelnen Rohstoffabkommen",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "247049",
+      "titel": "Bericht zur Risikoanalyse im Bevölkerungsschutz 2017",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "245205",
+      "titel": "Vorsorgestrukturen ausbauen - Ehrenamt in Bevölkerungsschutz und Katastrophenhilfe stärken",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "247050",
+      "titel": "Bericht zur Risikoanalyse im Bevölkerungsschutz 2018",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19153.pdf",
+    "id": "5316",
+    "dokumentnummer": "19/153",
+    "datum": "2020-03-13",
+    "verteildatum": "2020-03-16",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19153.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 153. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2020-03-13"
+}

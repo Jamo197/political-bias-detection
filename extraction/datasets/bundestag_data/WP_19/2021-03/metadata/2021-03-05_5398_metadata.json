@@ -1,0 +1,47 @@
+{
+  "id": "5398",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 65,
+  "dokumentnummer": "19/216",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "f2f0175940ff04c387aab8d6d703f957",
+  "pdf_hash": "b481eeea7d09da244d90a26a1cece847",
+  "aktualisiert": "2021-03-09T08:32:03+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "234630",
+      "titel": "Berufsbildungsbericht 2018",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "236300",
+      "titel": "Vorschlag für eine Verordnung des Europäischen Parlaments und des Rates zur Aufstellung des Reformhilfeprogramms \r\nKOM(2018) 391 endg.; Ratsdok. 9606/18",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "236348",
+      "titel": "Vorschlag für eine Verordnung des Europäischen Parlaments und des Rates über die Finanzierung, Verwaltung und Überwachung der Gemeinsamen Agrarpolitik und zur Aufhebung der Verordnung (EU) Nr. 1306/2013\r\nKOM(2018) 393 endg.; Ratsdok. 9634/18",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "243793",
+      "titel": "Vorschlag für eine Verordnung des Europäischen Parlaments und des Rates zur Änderung der Verordnung (EU) Nr. 508/2014 hinsichtlich bestimmter Vorschriften für den Europäischen Meeres- und Fischereifonds aufgrund des Austritts des Vereinigten Königreichs aus der Union \r\nKOM(2019) 48 endg.; Ratsdok. 5668/19",
+      "vorgangstyp": "EU-Vorlage"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19216.pdf",
+    "id": "5398",
+    "dokumentnummer": "19/216",
+    "datum": "2021-03-05",
+    "verteildatum": "2021-03-09",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19216.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 216. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2021-03-05"
+}

@@ -1,0 +1,47 @@
+{
+  "id": "5423",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 234,
+  "dokumentnummer": "19/235",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "2b667f686d95da634cb2c1739c71e7ee",
+  "pdf_hash": "52f1f6202783f976addeac3f095194c8",
+  "aktualisiert": "2021-06-25T08:52:04+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "233198",
+      "titel": "Gesetz zur Änderung des Strafgesetzbuchs - Straffreiheit für Fahren ohne Fahrschein",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "233652",
+      "titel": "Gesetz zur Änderung des Asylgesetzes zur Beschleunigung von Verfahren durch erweiterte Möglichkeit der Zulassung von Rechtsmitteln",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "233224",
+      "titel": "Gesetz zur Änderung des Arbeitszeitgesetzes",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "230471",
+      "titel": "Gesetz zur Stärkung der Bürgerrechte (Bürgerrechtestärkungs-Gesetz - BüStärG)",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19235.pdf",
+    "id": "5423",
+    "dokumentnummer": "19/235",
+    "datum": "2021-06-23",
+    "verteildatum": "2021-06-25",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19235.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 235. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2021-06-23"
+}

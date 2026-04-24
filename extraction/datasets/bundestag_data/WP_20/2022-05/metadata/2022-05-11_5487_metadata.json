@@ -1,0 +1,47 @@
+{
+  "id": "5487",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 65,
+  "dokumentnummer": "20/33",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "7d9f51d7b67c62e14fa9bd9169d24132",
+  "pdf_hash": "53d18197a3e9b910566e1de9c895e988",
+  "aktualisiert": "2022-05-12T08:32:03+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "286180",
+      "titel": "Masterplan Hilfe, Sicherheit und Integration für ukrainische Frauen, Kinder und Jugendliche",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "287417",
+      "titel": "Aufnahme des Begriffs \"Sport\" in den Namen des für die Sportpolitik zuständigen Bundesministeriums",
+      "vorgangstyp": "Mündliche Frage"
+    },
+    {
+      "id": "287412",
+      "titel": "Anzahl angezeigter Gewaltdelikte im Amt gegen Angehörige der Bundespolizei seit 2018",
+      "vorgangstyp": "Mündliche Frage"
+    },
+    {
+      "id": "287401",
+      "titel": "Anzahl der Übernahmen von durch andere Länder gebuchten LNG-Tankern oder schwimmenden Flüssiggasterminals durch Deutschland seit Beginn des Ukrainekriegs",
+      "vorgangstyp": "Mündliche Frage"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20033.pdf",
+    "id": "5487",
+    "dokumentnummer": "20/33",
+    "datum": "2022-05-11",
+    "verteildatum": "2022-05-12",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20033.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 33. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2022-05-11"
+}

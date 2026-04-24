@@ -1,0 +1,47 @@
+{
+  "id": "5486",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 54,
+  "dokumentnummer": "20/32",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "8376342a69fedeb440e1d95f30b9949f",
+  "pdf_hash": "412b67e8598306cf3cb3d39f5d4da859",
+  "aktualisiert": "2022-05-02T08:22:03+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "285978",
+      "titel": "Umweltbericht 2019\r\nUmwelt und Natur als Fundament des sozialen Zusammenhaltes",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "280895",
+      "titel": "Mitteilung der Kommission an das Europäische Parlament, den Rat, den Europäischen Wirtschafts- und Sozialausschuss und den Ausschuss der Regionen\r\nStrategie zur Finanzierung einer nachhaltigen Wirtschaft\r\nKOM(2021) 390 endg.; Ratsdok. 10029/21",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "286035",
+      "titel": "Beschluss der Deutsch-Französischen Parlamentarischen Versammlung vom 28. Juni 2021 zum European Green Deal",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "283422",
+      "titel": "Vorschlag für eine Richtlinie des Europäischen Parlaments und des Rates zur Verbesserung der Arbeitsbedingungen in der Plattformarbeit\r\nKOM(2021)762 endg.; Ratsdok. 14450/21",
+      "vorgangstyp": "EU-Vorlage"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20032.pdf",
+    "id": "5486",
+    "dokumentnummer": "20/32",
+    "datum": "2022-04-29",
+    "verteildatum": "2022-05-02",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20032.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 32. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2022-04-29"
+}

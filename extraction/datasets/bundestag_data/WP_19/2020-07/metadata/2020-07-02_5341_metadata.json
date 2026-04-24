@@ -1,0 +1,47 @@
+{
+  "id": "5341",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 173,
+  "dokumentnummer": "19/170",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "48738ff3b2cbe15dcd297eef28d29aa7",
+  "pdf_hash": "975b5e2d58cef8dd5756032174b5a9c5",
+  "aktualisiert": "2020-07-08T08:52:03+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "257238",
+      "titel": "... Gesetz zur Änderung des Strafgesetzbuches - Verbesserung des Persönlichkeitsschutzes bei Bildaufnahmen",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "236320",
+      "titel": "Ein umfassendes Tabakwerbeverbot schaffen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "244177",
+      "titel": "Altersarmut zielgenau bekämpfen - Neue Basis-Rente schaffen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "253087",
+      "titel": "... Gesetz zur Änderung des Strafgesetzbuchs - Strafbarkeit der Bildaufnahme des Intimbereichs (sog. Upskirting)",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19170.pdf",
+    "id": "5341",
+    "dokumentnummer": "19/170",
+    "datum": "2020-07-02",
+    "verteildatum": "2020-07-08",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19170.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 170. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2020-07-02"
+}

@@ -1,0 +1,47 @@
+{
+  "id": "5330",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 35,
+  "dokumentnummer": "19/161",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "e5103d2d86f9fc54e3e9f3e684e0b12b",
+  "pdf_hash": "22e33abac60820f7614e11cb6e7719d7",
+  "aktualisiert": "2020-05-18T08:40:00+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "252911",
+      "titel": "Bericht der Kommission an das Europäische Parlament und den Rat über das Abkommen zwischen der Europäischen Union und den Vereinigten Staaten über die Verarbeitung von Zahlungsverkehrsdaten und deren Übermittlung aus der Europäischen Union an die Vereinigten Staaten für die Zwecke des Programms zum Aufspüren der Finanzierung des Terrorismus (TFTP) \r\nKOM(2019) 342 endg.; Ratsdok. 11454/19",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "254703",
+      "titel": "Empfehlung für einen Beschluss des Rates über die Ermächtigung zur Aufnahme von Verhandlungen über ein Abkommen zwischen der Europäischen Union und\r\nJapan über die Übermittlung und Verwendung von Fluggastdatensätzen (PNR-Daten) zur Verhütung und Bekämpfung von Terrorismus und anderer grenzübergreifender schwerer Kriminalität\r\nKOM(2019) 420 endg.; Ratsdok. 12759/19",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "253346",
+      "titel": "Gesetz zur Änderung des Versorgungsausgleichsgesetzes",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "245229",
+      "titel": "Fortbildung von Richterinnen und Richtern sowie Qualitätssicherung im familiengerichtlichen Verfahren",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19161.pdf",
+    "id": "5330",
+    "dokumentnummer": "19/161",
+    "datum": "2020-05-15",
+    "verteildatum": "2020-05-18",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19161.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 161. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2020-05-15"
+}

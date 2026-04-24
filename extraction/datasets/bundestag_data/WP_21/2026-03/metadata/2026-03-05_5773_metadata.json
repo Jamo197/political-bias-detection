@@ -1,0 +1,47 @@
+{
+  "id": "5773",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 45,
+  "dokumentnummer": "21/62",
+  "wahlperiode": 21,
+  "herausgeber": "BT",
+  "pdf_hash": "62c6a4963fe6cc092ec6e04d1a05652e",
+  "xml_hash": "a33b47c55fa32300ccd87bb03bb22618",
+  "aktualisiert": "2026-03-17T16:16:07+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "329487",
+      "titel": "Baukulturbericht 2024/25 der Bundesstiftung Baukultur mit Stellungnahme der Bundesregierung",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "326920",
+      "titel": "Bürgergeldleistungen stoppen bei Haftbefehlen - Keine Unterstützung für gesuchte Straftäter",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "325647",
+      "titel": "Keine Kooperation zwischen Bundeswehr und Schulen - Einsatz von Jugendoffizieren beenden - Zivilschutz fördern",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "327969",
+      "titel": "Gesetz zur Begrenzung der Risiken durch Investmentfonds und zur Umsetzung der Richtlinie (EU) 2024/927 im Hinblick auf Übertragungsvereinbarungen, Liquiditätsrisikomanagement, die aufsichtliche Berichterstattung, die Erbringung von Verwahr- und Hinterlegungsdienstleistungen und die Kreditvergabe durch alternative Investmentfonds sowie zur Umsetzung der Richtlinie (EU) 2024/2994 im Hinblick auf die Behandlung des Konzentrationsrisikos, das aus Risikopositionen gegenüber zentralen Gegenparteien erwächst, und des Ausfallrisikos bei zentral geclearten Derivategeschäften und zur Änderung weiterer Vorschriften (Fondsrisikobegrenzungsgesetz)",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/21/21062.pdf",
+    "id": "5773",
+    "dokumentnummer": "21/62",
+    "datum": "2026-03-05",
+    "verteildatum": "2026-03-06",
+    "xml_url": "https://dserver.bundestag.de/btp/21/21062.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 62. Sitzung des 21. Deutschen Bundestages",
+  "datum": "2026-03-05"
+}

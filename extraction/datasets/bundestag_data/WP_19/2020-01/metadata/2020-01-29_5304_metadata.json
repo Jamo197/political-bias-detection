@@ -1,0 +1,42 @@
+{
+  "id": "5304",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 80,
+  "dokumentnummer": "19/142",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "f52c0296683473a46c4de61fe9c02318",
+  "pdf_hash": "7f3512f0c47f154e4dcf177ae37e3f43",
+  "aktualisiert": "2020-01-30T08:20:00+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "241425",
+      "titel": "Cum/Ex-Steuerskandal unverzüglich beenden",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "254116",
+      "titel": "Für eine schnelle Aufnahme unbegleiteter Flüchtlingskinder aus den EU-Hotspots in Griechenland",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "243754",
+      "titel": "Kultur in ländlichen Räumen stärken - Teilhabe ermöglichen",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19142.pdf",
+    "id": "5304",
+    "dokumentnummer": "19/142",
+    "datum": "2020-01-29",
+    "verteildatum": "2020-01-30",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19142.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 142. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2020-01-29"
+}

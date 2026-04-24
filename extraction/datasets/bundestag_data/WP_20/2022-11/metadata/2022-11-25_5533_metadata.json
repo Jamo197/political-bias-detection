@@ -1,0 +1,47 @@
+{
+  "id": "5533",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 26,
+  "dokumentnummer": "20/71",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "a2f8215e1ae4b30fceb6b360838aeb14",
+  "pdf_hash": "f7ea4a9bdeaf04b2a48a30b83c42be24",
+  "aktualisiert": "2022-12-14T11:46:19+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "292370",
+      "titel": "Jahresbericht der Bundesregierung zum Stand der Deutschen Einheit 2021",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "284152",
+      "titel": "Sonderbericht des Europäischen Rechnungshofs Nr. 24/2021\r\nLeistungsbasierte Finanzierung in der Kohäsionspolitik: lobenswerte Ambitionen, doch blieben im Zeitraum 2014-2020 Hindernisse bestehen\r\nERH 24/2021",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "283846",
+      "titel": "Vorschlag für eine Richtlinie des Europäischen Parlaments und des Rates zur Änderung der Richtlinie 2010/40/EU zur Festlegung eines Rahmens für die Einführung intelligenter Verkehrssysteme im Straßenverkehr und für Schnittstellen zu anderen Verkehrsträgern\r\nKOM(2021)813 endg.; Ratsdok. 15114/21",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "288204",
+      "titel": "Tätigkeitsbericht der Bundesnetzagentur - Post 2020/2021 mit 12. Sektorgutachten Post (2021) der Monopolkommission - Wettbewerb mit neuem Schwung!",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20071.pdf",
+    "id": "5533",
+    "dokumentnummer": "20/71",
+    "datum": "2022-11-25",
+    "verteildatum": "2022-11-28",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20071.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 71. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2022-11-25"
+}

@@ -1,0 +1,47 @@
+{
+  "id": "5342",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 78,
+  "dokumentnummer": "19/171",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "2c26f61ff5d8796b67d67337c2167f8e",
+  "pdf_hash": "c9f545d7110e8cbe8709ea9898275faf",
+  "aktualisiert": "2020-07-06T08:52:02+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "238136",
+      "titel": "Mitteilung der Kommission an das Europäische Parlament, den Europäischen Rat, den Rat, die Europäische Zentralbank, den Europäischen Wirtschafts- und Sozialausschuss, den Ausschuss der Regionen und die Europäische Investitionsbank: Vorbereitung auf den Austritt des Vereinigten Königreichs aus der Europäischen Union am 30. März 2019\r\nKOM(2018) 556 endg.; Ratsdok. 11169/18",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "235933",
+      "titel": "Entschließung des Europäischen Parlaments vom 19. April 2018 zu der notwendigen Schaffung eines Instruments für europäische Werte zur Unterstützung zivilgesellschaftlicher Organisationen, die die Grundwerte in der Europäischen Union auf lokaler und nationaler Ebene fördern (2018/2619(RSP)) \r\nEP P8_TA-PROV(2018)0184",
+      "vorgangstyp": "Unterrichtung durch das Europäische Parlament"
+    },
+    {
+      "id": "233429",
+      "titel": "Vorschlag für eine Richtlinie des Europäischen Parlaments und des Rates über präventive Restrukturierungsrahmen, die zweite Chance und Maßnahmen zur Steigerung der Effizienz von Restrukturierungs-, Insolvenz- und Entschuldungsverfahren und zur Änderung der Richtlinie 2012/30/EU\r\nKOM(2016) 723 endg.; Ratsdok. 14875/16",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "234729",
+      "titel": "Entschließung des Europäischen Parlaments vom 14. März 2018 zu dem Rahmen für die künftigen Beziehungen zwischen der EU und dem Vereinigten Königreich (2018/2573(RSP)) \r\nEP P8_TA-PROV(2018)0069",
+      "vorgangstyp": "Unterrichtung durch das Europäische Parlament"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19171.pdf",
+    "id": "5342",
+    "dokumentnummer": "19/171",
+    "datum": "2020-07-03",
+    "verteildatum": "2020-07-06",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19171.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 171. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2020-07-03"
+}

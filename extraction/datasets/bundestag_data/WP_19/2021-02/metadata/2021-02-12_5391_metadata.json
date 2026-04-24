@@ -1,0 +1,47 @@
+{
+  "id": "5391",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 39,
+  "dokumentnummer": "19/210",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "689501200d883b5ab69cbe047954b498",
+  "pdf_hash": "b2c70826531211b46dfd964dc480e52f",
+  "aktualisiert": "2021-02-15T08:42:04+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "254901",
+      "titel": "Postreform vollenden - Für mehr Qualität und fairen Wettbewerb",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "255447",
+      "titel": "Jahresgutachten 2019/20 des Sachverständigenrates zur Begutachtung der gesamtwirtschaftlichen Entwicklung\r\nDen Strukturwandel meistern",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "237638",
+      "titel": "Zweiundzwanzigstes Hauptgutachten der Monopolkommission\r\nWettbewerb 2018",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "253253",
+      "titel": "7. Sektorgutachten Energie der Monopolkommission gemäß § 62 des Energiewirtschaftsgesetzes\r\nWettbewerb mit neuer Energie",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19210.pdf",
+    "id": "5391",
+    "dokumentnummer": "19/210",
+    "datum": "2021-02-12",
+    "verteildatum": "2021-02-15",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19210.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 210. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2021-02-12"
+}

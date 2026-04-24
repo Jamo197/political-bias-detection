@@ -1,0 +1,47 @@
+{
+  "id": "5621",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 65,
+  "dokumentnummer": "20/146",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "b91d9d659effd1c4f955d42e66c63387",
+  "pdf_hash": "7fd384154a663a165aad566d75c73658",
+  "aktualisiert": "2024-02-09T14:54:08+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "307621",
+      "titel": "Zweites Haushaltsfinanzierungsgesetz 2024",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "307094",
+      "titel": "Bioenergie eine klare Zukunftsperspektive geben und bestehende Hemmnisse beseitigen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "297428",
+      "titel": "Jahresbericht 2022 (64. Bericht)",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "307900",
+      "titel": "Angebliche Einmischung Deutschlands in die serbischen Parlamentswahlen im Dezember 2023",
+      "vorgangstyp": "Mündliche Frage"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20146.pdf",
+    "id": "5621",
+    "dokumentnummer": "20/146",
+    "datum": "2024-01-17",
+    "verteildatum": "2024-01-18",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20146.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 146. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2024-01-17"
+}

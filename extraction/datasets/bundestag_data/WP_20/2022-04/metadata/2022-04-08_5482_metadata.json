@@ -1,0 +1,47 @@
+{
+  "id": "5482",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 27,
+  "dokumentnummer": "20/29",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "c3d034f6f9965287d4f91db589ac41e0",
+  "pdf_hash": "ba563948f044b2d9dddc0ccf05728d74",
+  "aktualisiert": "2022-04-11T08:42:03+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "281708",
+      "titel": "Vorschlag für eine Verordnung des Europäischen Parlaments und des Rates über den Aufbau der Infrastruktur für alternative Kraftstoffe und zur Aufhebung der Richtlinie 2014/94/EU des Europäischen Parlaments und des Rates\r\nKOM(2021) 559 endg.; Ratsdok. 10877/21",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "282062",
+      "titel": "Mitteilung der Kommission an das Europäische Parlament, den Rat, den Europäischen Wirtschafts- und Sozialausschuss und den Ausschuss der Regionen - \"Fit für 55\": auf dem Weg zur Klimaneutralität - Umsetzung des EU-Klimaziels für 2030\r\nKOM(2021) 550 endg.; Ratsdok. 10849/21",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "281625",
+      "titel": "Vorschlag für eine Verordnung des Europäischen Parlaments und des Rates zur Gewährleistung gleicher Wettbewerbsbedingungen für einen nachhaltigen Luftverkehr\r\nKOM(2021) 561 endg.; Ratsdok. 10884/21",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "281793",
+      "titel": "Vorschlag für eine Verordnung des Europäischen Parlaments und des Rates über die Nutzung erneuerbarer und kohlenstoffarmer Kraftstoffe im Seeverkehr und zur Änderung der Richtlinie 2009/16/EG\r\nKOM(2021) 562 endg.; Ratsdok. 10327/21",
+      "vorgangstyp": "EU-Vorlage"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20029.pdf",
+    "id": "5482",
+    "dokumentnummer": "20/29",
+    "datum": "2022-04-08",
+    "verteildatum": "2022-04-11",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20029.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 29. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2022-04-08"
+}

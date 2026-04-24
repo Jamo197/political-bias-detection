@@ -1,0 +1,47 @@
+{
+  "id": "5705",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 5,
+  "dokumentnummer": "21/2",
+  "wahlperiode": 21,
+  "herausgeber": "BT",
+  "xml_hash": "72ee87fccd852531203b460d6cd938eb",
+  "pdf_hash": "dfae9fc05220388c4bd255c30239edae",
+  "aktualisiert": "2025-05-07T09:54:40+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "321599",
+      "titel": "Wahl des Bundeskanzlers gemäß Artikel 63 Absatz 1 des Grundgesetzes",
+      "vorgangstyp": "Wahl im BT"
+    },
+    {
+      "id": "321597",
+      "titel": "Verabschiedung des Direktors beim Deutschen Bundestag, Dr. Michael Schäfer",
+      "vorgangstyp": "Ansprache/Erklärung/Mitteilung"
+    },
+    {
+      "id": "321598",
+      "titel": "Begrüßung des neuen Direktors beim Deutschen Bundestag, Paul Göttke",
+      "vorgangstyp": "Ansprache/Erklärung/Mitteilung"
+    },
+    {
+      "id": "321604",
+      "titel": "Bekanntgabe der Bildung der Bundesregierung und Eidesleistung der Bundesministerinnen und Bundesminister",
+      "vorgangstyp": "Ansprache/Erklärung/Mitteilung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/21/21002.pdf",
+    "id": "5705",
+    "dokumentnummer": "21/2",
+    "datum": "2025-05-06",
+    "verteildatum": "2025-05-07",
+    "xml_url": "https://dserver.bundestag.de/btp/21/21002.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 2. Sitzung des 21. Deutschen Bundestages",
+  "datum": "2025-05-06"
+}

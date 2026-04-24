@@ -1,0 +1,47 @@
+{
+  "id": "5599",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 57,
+  "dokumentnummer": "20/128",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "aa11847dd1702ffb6c75021b28cf285f",
+  "pdf_hash": "0f84bab56cb35321b55ba8909eaf1001",
+  "aktualisiert": "2025-03-14T09:52:49+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "291799",
+      "titel": "Nachhaltige Entwicklung krisenfest machen - Rückkehr zur soliden Haushaltspolitik, Infrastruktur stärken, erneuerbare Energien ausbauen, Ernährung sicherstellen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "294534",
+      "titel": "Geschäftsbeziehungen im Bankenverkehr auch in Zukunft rechtssicher gestalten",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "295777",
+      "titel": "CO2-Abscheidung und -Speicherung, CO2-Nutzung sowie Negativemissionen - Chancen für Klima, Industrie und Wohlstand",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "297503",
+      "titel": "Berufung eines deutschen Beauftragten für die Arktis im Range eines Botschafters durch die Bundesregierung",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20128.pdf",
+    "id": "5599",
+    "dokumentnummer": "20/128",
+    "datum": "2023-10-12",
+    "verteildatum": "2023-10-13",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20128.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 128. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2023-10-12"
+}

@@ -1,0 +1,47 @@
+{
+  "id": "5550",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 30,
+  "dokumentnummer": "20/86",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "131b4b415b0afb172042a0f921331efe",
+  "pdf_hash": "1e03575d52b775c6b0c92f591ff0b698",
+  "aktualisiert": "2023-02-16T11:59:35+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "291568",
+      "titel": "Vorschlag für einen Beschluss des Rates über den Abschluss - im Namen der Europäischen Union - des Rahmenabkommens über eine umfassende Partnerschaft und Zusammenarbeit zwischen der Europäischen Union und ihren Mitgliedstaaten einerseits und dem Königreich Thailand andererseits \r\nKOM(2022) 425 endg.; Ratsdok. 11896/22",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "289891",
+      "titel": "Vorschlag für eine Verordnung des Europäischen Parlaments und des Rates zur Einrichtung des Instruments zur Stärkung der Europäischen Verteidigungsindustrie durch Gemeinsame Beschaffung\r\nKOM(2022) 349 endg.; Ratsdok. 11531/22",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "289479",
+      "titel": "Entschließung des Europäischen Parlaments vom 9. Juni 2022 zur Instrumentalisierung der Justiz in Nicaragua zu Repressionszwecken (2022/2701(RSP)) \r\nEP P9_TA(2022)0238",
+      "vorgangstyp": "Unterrichtung durch das Europäische Parlament"
+    },
+    {
+      "id": "285452",
+      "titel": "Vorschlag für eine Verordnung des Europäischen Parlaments und des Rates zur Änderung der Verordnung (EU) 2015/1017 und zur Schaffung eines Solvenzhilfeinstruments\r\nKOM(2020)404 endg.; Ratsdok. 8567/20",
+      "vorgangstyp": "EU-Vorlage"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20086.pdf",
+    "id": "5550",
+    "dokumentnummer": "20/86",
+    "datum": "2023-02-10",
+    "verteildatum": "2023-02-13",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20086.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 86. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2023-02-10"
+}

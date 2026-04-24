@@ -1,0 +1,47 @@
+{
+  "id": "5378",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 34,
+  "dokumentnummer": "19/200",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "50f3631e08fb6acbf89a03619f84e4fe",
+  "pdf_hash": "ff6924f4f8058976b3fb5f531e687bce",
+  "aktualisiert": "2020-12-14T08:12:03+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "262932",
+      "titel": "Bundesbericht Forschung und Innovation 2020",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "258636",
+      "titel": "Mitteilung der Kommission an das Europäische Parlament, den Rat, die Europäische Zentralbank, den Europäischen Wirtschafts- und Sozialausschuss, den Ausschuss der Regionen und die Europäische Investitionsbank\r\nJährliche Strategie für nachhaltiges Wachstum 2020 \r\nKOM(2019) 650 endg.; Ratsdok. 15321/19",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "263068",
+      "titel": "Mitteilung der Kommission an das Europäische Parlament, den Rat, den Europäischen Wirtschafts- und Sozialausschuss und den Ausschuss der Regionen \r\nAngepasstes Arbeitsprogramm 2020 der Kommission\r\nKOM(2020)440 endg.; Ratsdok.-Nr. 7065/20\r\n",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "267909",
+      "titel": "Gutachten zu Forschung, Innovation und technologischer Leistungsfähigkeit Deutschlands 2020",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19200.pdf",
+    "id": "5378",
+    "dokumentnummer": "19/200",
+    "datum": "2020-12-11",
+    "verteildatum": "2020-12-14",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19200.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 200. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2020-12-11"
+}

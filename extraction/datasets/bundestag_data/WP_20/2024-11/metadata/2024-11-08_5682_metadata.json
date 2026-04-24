@@ -1,0 +1,47 @@
+{
+  "id": "5682",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 25,
+  "dokumentnummer": "20/198",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "84765d32d8be85bf704ff160a67af1ef",
+  "pdf_hash": "62e7251a7c3e264889d6e4b2226a6753",
+  "aktualisiert": "2024-11-12T11:46:03+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "285643",
+      "titel": "Europäische Erklärung zu den digitalen Rechten und Grundsätzen für die digitale Dekade \r\nKOM(2022) 28 endg.; Ratsdok. 5783/22",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "285449",
+      "titel": "Vorschlag für eine Verordnung des Europäischen Parlaments und des Rates zur Änderung der Verordnung (EG) Nr. 851/2004 zur Errichtung eines Europäischen Zentrums für die Prävention und die Kontrolle von Krankheiten \r\nKOM(2020)726 endg.; Ratsdok. 12972/20",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "285450",
+      "titel": "Vorschlag für eine Verordnung des Europäischen Parlaments und des Rates zu schwerwiegenden grenzüberschreitenden Gesundheitsgefahren und zur Aufhebung des Beschlusses Nr. 1082/2013/EU\r\nKOM(2020)727 endg.; Ratsdok. 12973/20",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "291573",
+      "titel": "Empfehlung für einen Beschluss des Rates über die Ermächtigung zur Aufnahme von Verhandlungen im Namen der Europäischen Union über ein Übereinkommen des Europarats über künstliche Intelligenz, Menschenrechte, Demokratie und Rechtsstaatlichkeit \r\nKOM(2022) 414 endg.; Ratsdok. 11818/22",
+      "vorgangstyp": "EU-Vorlage"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20198.pdf",
+    "id": "5682",
+    "dokumentnummer": "20/198",
+    "datum": "2024-11-08",
+    "verteildatum": "2024-11-11",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20198.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 198. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2024-11-08"
+}

@@ -1,0 +1,47 @@
+{
+  "id": "5571",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 29,
+  "dokumentnummer": "20/104",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "64543c00944773cbdd85d7001bf0bd7d",
+  "pdf_hash": "d60ea2151abcf9666be3fc959a41d83b",
+  "aktualisiert": "2023-05-23T10:14:05+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "288220",
+      "titel": "Legislative Entschließung des Europäischen Parlaments und Vorschlag für eine Verordnung des Rates über die allgemeine unmittelbare Wahl der Mitglieder des Europäischen Parlaments sowie zur Aufhebung des Beschlusses 76/787/EGKS, EWG, Euratom des Rates und des diesem Beschluss beigefügten Akts zur Einführung allgemeiner unmittelbarer Wahlen der Mitglieder des Europäischen Parlaments\r\nP9_TA(2022)0129; Ratsdok. 9333/22",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "292810",
+      "titel": "Vorschlag für einen Beschluss des Europäischen Parlaments und des Rates über ein Europäisches Jahr der Kompetenzen 2023\r\nKOM(2022) 526 endg.; Ratsdok. 13365/22",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "285650",
+      "titel": "Vorschlag für eine Verordnung des Europäischen Parlaments und des Rates über Asyl- und Migrationsmanagement und zur Änderung der Richtlinie (EG) 2003/109 des Rates und der vorgeschlagenen Verordnung (EU) XXX/XXX [Asyl- und Migrationsfonds]\r\nKOM(2020) 610 endg.; Ratsdok. 11213/20",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "292709",
+      "titel": "Vorschlag für eine Empfehlung des Rates für eine koordinierte Vorgehensweise der Union zur Stärkung der Resilienz kritischer Infrastruktur\r\nKOM(2022) 551 endg.; Ratsdok. 13713/22",
+      "vorgangstyp": "EU-Vorlage"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20104.pdf",
+    "id": "5571",
+    "dokumentnummer": "20/104",
+    "datum": "2023-05-12",
+    "verteildatum": "2023-05-15",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20104.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 104. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2023-05-12"
+}

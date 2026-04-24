@@ -1,0 +1,32 @@
+{
+  "id": "5751",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 5,
+  "dokumentnummer": "21/42",
+  "wahlperiode": 21,
+  "herausgeber": "BT",
+  "xml_hash": "523d0612cee5fd40b83a5945fd2cbf16",
+  "pdf_hash": "6b6540cc0a59b714d2206a073df54478",
+  "aktualisiert": "2025-12-03T10:34:46+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "324698",
+      "titel": "Gesetz über die Feststellung des Bundeshaushaltsplans für das Haushaltsjahr 2026 (Haushaltsgesetz 2026 - HG 2026)",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/21/21042.pdf",
+    "id": "5751",
+    "dokumentnummer": "21/42",
+    "datum": "2025-11-25",
+    "verteildatum": "2025-11-26",
+    "xml_url": "https://dserver.bundestag.de/btp/21/21042.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 42. Sitzung des 21. Deutschen Bundestages",
+  "datum": "2025-11-25"
+}

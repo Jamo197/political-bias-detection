@@ -1,0 +1,47 @@
+{
+  "id": "5479",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 13,
+  "dokumentnummer": "20/26",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "d0098c9fc42ea71767e0ee44fa7ab96e",
+  "pdf_hash": "305cb0e66321f3f81aa5a9c8e36ad271",
+  "aktualisiert": "2022-03-28T09:02:04+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "285688",
+      "titel": "Finanzplan des Bundes 2021 bis 2025",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "284086",
+      "titel": "Vorschlag für eine Verordnung des Europäischen Parlaments und des Rates zur Änderung der Verordnung (EU) 2018/1091 im Hinblick auf den Beitrag der Union für integrierte Statistiken zu landwirtschaftlichen Betrieben im Rahmen des Finanzrahmens für den Zeitraum 2021-2027\r\nKOM(2021) 477 endg.; Ratsdok. 11271/21",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "284227",
+      "titel": "Mitteilung der Kommission an das Europäische Parlament, den Rat, den Europäischen Wirtschafts- und Sozialausschuss und den Ausschuss der Regionen\r\nNeues Europäisches Bauhaus: attraktiv - nachhaltig - gemeinsam \r\nKOM(2021) 573 endg.; Ratsdok. 11892/21",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "283742",
+      "titel": "Vorschlag für eine Verordnung des Europäischen Parlaments und des Rates über den Schutz der Union und ihrer Mitgliedstaaten vor wirtschaftlichem Zwang durch Drittländer\r\nKOM(2021) 775 endg.; Ratsdok. 14943/21",
+      "vorgangstyp": "EU-Vorlage"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20026.pdf",
+    "id": "5479",
+    "dokumentnummer": "20/26",
+    "datum": "2022-03-25",
+    "verteildatum": "2022-03-28",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20026.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 26. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2022-03-25"
+}

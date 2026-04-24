@@ -1,0 +1,48 @@
+{
+  "id": "5427",
+  "sitzungsbemerkung": "Sondersitzung",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 36,
+  "dokumentnummer": "19/238",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "2072ac12d774585848f6ab52cbca803d",
+  "pdf_hash": "c95edfc95aac463f45088db46d06640c",
+  "aktualisiert": "2023-07-06T09:25:58+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "280591",
+      "titel": "Gesetz zur Änderung des Gesetzes zur Errichtung eines Sondervermögens \"Aufbauhilfe\" - Schnelle Hilfe für Betroffene der Hochwasserkatastrophe\r\n(Aufbauhilfefonds-Errichtungsgesetz - AufbhG)",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "277029",
+      "titel": "Bericht der Bundesregierung zur Bildung für nachhaltige Entwicklung\r\n- 19. Legislaturperiode -",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    },
+    {
+      "id": "273943",
+      "titel": "Gesetz zur Vereinheitlichung des Stiftungsrechts und zur Änderung des Infektionsschutzgesetzes",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "278456",
+      "titel": "Bericht der Bundesregierung über die Verwendung der 2020 in den Landeshaushalten freigewordenen BAföG-Mittel",
+      "vorgangstyp": "Bericht, Gutachten, Programm"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19238.pdf",
+    "id": "5427",
+    "dokumentnummer": "19/238",
+    "datum": "2021-08-25",
+    "verteildatum": "2021-08-26",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19238.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 238. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2021-08-25"
+}

@@ -1,0 +1,47 @@
+{
+  "id": "5329",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 99,
+  "dokumentnummer": "19/160",
+  "wahlperiode": 19,
+  "herausgeber": "BT",
+  "xml_hash": "72ecaddd6d72e4695b0387da209c7977",
+  "pdf_hash": "f4c20e585fa515850e068e0e0e0d1dda",
+  "aktualisiert": "2020-06-02T14:00:00+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "243759",
+      "titel": "Für eine europäische Grundwerteinitiative",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "243778",
+      "titel": "Für wehrhafte Demokratien in Europa - Rechtsstaatlichkeit und Grundrechte in den Mitgliedsländern der EU stärken",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "239736",
+      "titel": "Gesetz zur Entlastung von Verbrauchern beim Kauf und Verkauf von Wohnimmobilien (Makler-Bestellerprinzip- und Preisdeckelgesetz)",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "244252",
+      "titel": "Sofortmaßnahme Armutsbekämpfung bei Rentnern",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/19/19160.pdf",
+    "id": "5329",
+    "dokumentnummer": "19/160",
+    "datum": "2020-05-14",
+    "verteildatum": "2020-06-02",
+    "xml_url": "https://dserver.bundestag.de/btp/19/19160.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 160. Sitzung des 19. Deutschen Bundestages",
+  "datum": "2020-05-14"
+}

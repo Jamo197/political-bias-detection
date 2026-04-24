@@ -1,0 +1,47 @@
+{
+  "id": "5598",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 58,
+  "dokumentnummer": "20/127",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "0bd4dba3cda1bf579d4ce7e56e4b12aa",
+  "pdf_hash": "db910f36a469053f76a1014644df4359",
+  "aktualisiert": "2023-10-13T11:13:49+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "302881",
+      "titel": "Gesetz zur Umsetzung der Richtlinie (EU) 2022/2523 des Rates zur Gewährleistung einer globalen Mindestbesteuerung und weiterer Begleitmaßnahmen",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "302751",
+      "titel": "Gesetz zur Einführung einer langfristigen Pauschalentlastung der Länder im Zusammenhang mit Fluchtmigration und zur Änderung des Mauergrundstücksgesetzes (Pauschalentlastungsgesetz)",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "302750",
+      "titel": "Gesetz zur Stärkung der risikobasierten Arbeitsweise der Zentralstelle für Finanztransaktionsuntersuchungen",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "302754",
+      "titel": "Fünftes Gesetz zur Änderung verwaltungsverfahrensrechtlicher Vorschriften sowie zur Änderung des Sechsten Buches Sozialgesetzbuch (5. VwVfÄndG)",
+      "vorgangstyp": "Gesetzgebung"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20127.pdf",
+    "id": "5598",
+    "dokumentnummer": "20/127",
+    "datum": "2023-10-11",
+    "verteildatum": "2023-10-12",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20127.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 127. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2023-10-11"
+}

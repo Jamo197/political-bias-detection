@@ -1,0 +1,47 @@
+{
+  "id": "5434",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 19,
+  "dokumentnummer": "20/2",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "41f8d1dade17b568dfa2c8aee2d9b20a",
+  "pdf_hash": "2379803f7ff722169126fe92b953801c",
+  "aktualisiert": "2021-11-12T08:52:02+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "282704",
+      "titel": "Blackout und Brownout verhindern - Energieversorgung sicherstellen",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "282657",
+      "titel": "Gesetz zur Änderung des Infektionsschutzgesetzes und weiterer Gesetze anlässlich der Aufhebung der Feststellung der epidemischen Lage von nationaler Tragweite",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "282595",
+      "titel": "Gesetz zur Umsetzung unionsrechtlicher Vorgaben im Umsatzsteuerrecht",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "282694",
+      "titel": "Bestimmung des Verfahrens für die Berechnung der Stellenanteile der Fraktionen",
+      "vorgangstyp": "Antrag"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20002.pdf",
+    "id": "5434",
+    "dokumentnummer": "20/2",
+    "datum": "2021-11-11",
+    "verteildatum": "2021-11-12",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20002.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 2. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2021-11-11"
+}

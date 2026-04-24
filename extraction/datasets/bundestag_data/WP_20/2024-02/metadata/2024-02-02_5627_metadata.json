@@ -1,0 +1,47 @@
+{
+  "id": "5627",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 36,
+  "dokumentnummer": "20/152",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "c914fd1165fef721dac6522160e12b12",
+  "pdf_hash": "1db0887456567c2b1e42faf32f4aa7a0",
+  "aktualisiert": "2025-09-30T17:31:22+02:00",
+  "vorgangsbezug": [
+    {
+      "id": "285598",
+      "titel": "Vorschlag für eine Verordnung des Rates zur Änderung der Verordnung (EU) 2021/2085 zur Gründung der Gemeinsamen Unternehmen im Rahmen von \"Horizont Europa\" hinsichtlich des Gemeinsamen Unternehmens für Chips \r\nKOM(2022) 47 endg.; Ratsdok. 6171/22",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "285591",
+      "titel": "Empfehlung der Kommission vom 8.2.2022 über ein gemeinsames Instrumentarium der Union zur Behebung von Lieferengpässen bei Halbleitern und einen EU-Mechanismus zur Überwachung des Halbleiter-Ökosystems \r\nK(2022) 782 endg.",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "284433",
+      "titel": "Vorschlag für eine Verordnung des Europäischen Parlaments und des Rates zur Schaffung eines Rahmens für Maßnahmen zur Stärkung des europäischen Halbleiter-Ökosystems (Chip-Gesetz)\r\nKOM(2022) 46 endg.; Ratsdok. 6170/22",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "285596",
+      "titel": "Mitteilung der Kommission an das Europäische Parlament, den Rat, den Europäischen Wirtschafts- und Sozialausschuss und den Ausschuss der Regionen\r\nEin Chip-Gesetz für Europa \r\nKOM(2022) 45 endg.; Ratsdok. 6169/22",
+      "vorgangstyp": "EU-Vorlage"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20152.pdf",
+    "id": "5627",
+    "dokumentnummer": "20/152",
+    "datum": "2024-02-02",
+    "verteildatum": "2024-02-05",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20152.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 152. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2024-02-02"
+}

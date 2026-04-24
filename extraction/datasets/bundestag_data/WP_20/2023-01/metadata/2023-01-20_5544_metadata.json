@@ -1,0 +1,47 @@
+{
+  "id": "5544",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 186,
+  "dokumentnummer": "20/80",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "41c8777aba9475558da9823a61a6b64b",
+  "pdf_hash": "bd986be8067c71d0cd3d15f31fab60dc",
+  "aktualisiert": "2023-01-25T15:57:34+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "284193",
+      "titel": "Empfehlung der Kommission vom 16.9.2021 zur Gewährleistung des Schutzes, der Sicherheit und der Handlungskompetenz von Journalisten und anderen Medienschaffenden in der Europäischen Union \r\nK(2021) 6650 endg.; Ratsdok. 11812/21",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "282036",
+      "titel": "Mitteilung der Kommission an das Europäische Parlament und den Rat \r\nStrategische Vorausschau 2021\r\nDie Handlungsfähigkeit und Handlungsfreiheit der EU\r\nKOM(2021) 750 endg.; Ratsdok. 11601/21",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "283445",
+      "titel": "Mitteilung der Kommission an das Europäische Parlament, den Rat, den Europäischen Wirtschafts- und Sozialausschuss und den Ausschuss der Regionen\r\nAufbau einer Wirtschaft im Dienste der Menschen: ein Aktionsplan für die Sozialwirtschaft\r\nKOM(2021) 778 endg.; Ratsdok. 14890/21",
+      "vorgangstyp": "EU-Vorlage"
+    },
+    {
+      "id": "273397",
+      "titel": "Vorschlag für eine Verordnung des Europäischen Parlaments und des Rates über einen Binnenmarkt für digitale Dienste (Gesetz über digitale Dienste) und zur Änderung der Richtlinie 2000/31/EG\r\nKOM(2020) 825 endg.; Ratsdok. 14124/20",
+      "vorgangstyp": "EU-Vorlage"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20080.pdf",
+    "id": "5544",
+    "dokumentnummer": "20/80",
+    "datum": "2023-01-20",
+    "verteildatum": "2023-01-23",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20080.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 80. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2023-01-20"
+}

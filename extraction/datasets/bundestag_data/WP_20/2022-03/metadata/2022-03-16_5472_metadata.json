@@ -1,0 +1,47 @@
+{
+  "id": "5472",
+  "dokumentart": "Plenarprotokoll",
+  "typ": "Dokument",
+  "vorgangsbezug_anzahl": 56,
+  "dokumentnummer": "20/20",
+  "wahlperiode": 20,
+  "herausgeber": "BT",
+  "xml_hash": "11911c235b845928744b4682fd32a03d",
+  "pdf_hash": "979d302e8a2fa54e25e4f75bc37544ac",
+  "aktualisiert": "2023-01-17T16:14:57+01:00",
+  "vorgangsbezug": [
+    {
+      "id": "285169",
+      "titel": "Gesetz zur Änderung des Infektionsschutzgesetzes und anderer Vorschriften",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "285173",
+      "titel": "Gesetz zur Verlängerung des Sozialdienstleister-Einsatzgesetzes und weiterer Regelungen",
+      "vorgangstyp": "Gesetzgebung"
+    },
+    {
+      "id": "284457",
+      "titel": "Einsetzung eines Parlamentarischen Beirats für gleichwertige Lebensverhältnisse",
+      "vorgangstyp": "Antrag"
+    },
+    {
+      "id": "285310",
+      "titel": "Aktivitäten im Rahmen des Bundesprogramms \"Demokratie leben!\" gegen den Krieg in der Ukraine",
+      "vorgangstyp": "Mündliche Frage"
+    }
+  ],
+  "fundstelle": {
+    "pdf_url": "https://dserver.bundestag.de/btp/20/20020.pdf",
+    "id": "5472",
+    "dokumentnummer": "20/20",
+    "datum": "2022-03-16",
+    "verteildatum": "2022-03-17",
+    "xml_url": "https://dserver.bundestag.de/btp/20/20020.xml",
+    "dokumentart": "Plenarprotokoll",
+    "herausgeber": "BT",
+    "urheber": []
+  },
+  "titel": "Protokoll der 20. Sitzung des 20. Deutschen Bundestages",
+  "datum": "2022-03-16"
+}
