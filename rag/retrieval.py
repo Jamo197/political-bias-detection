@@ -8,6 +8,7 @@ from qdrant_client import QdrantClient
 from qdrant_client.http import models
 
 load_dotenv(Path(".env.local"))
+# FIXME: setup token correctly
 os.environ["HF_TOKEN"] = ""
 
 
@@ -30,15 +31,13 @@ class PoliticalRAGRetriever:
         Führt eine semantische Suche durch, optional mit hartem Filter auf eine Partei.
         Nutzt den modernen query_points Endpunkt von Qdrant.
         """
-        print(f"Suche nach: '{query}'")
+        # print(f"Suche nach: '{query}'")
 
-        # 1. Query vektorisieren (erzeugt list[float])
         query_vector = self.embeddings.embed_query(query)
 
-        # 2. Filter definieren (Payload-Filtering)
         query_filter = None
         if party_filter:
-            print(f"Aktiver Filter: Partei = {party_filter}")
+            # print(f"Aktiver Filter: Partei = {party_filter}")
             query_filter = models.Filter(
                 must=[
                     models.FieldCondition(
@@ -47,8 +46,6 @@ class PoliticalRAGRetriever:
                 ]
             )
 
-        # 3. Suche in Qdrant ausführen via query_points
-        # query_vector wird direkt an 'query' übergeben
         response = self.client.query_points(
             collection_name=self.collection_name,
             query=query_vector,
@@ -57,33 +54,8 @@ class PoliticalRAGRetriever:
             with_payload=True,
         )
 
-        # 4. Ergebnisse formatiert ausgeben (response.points enthält die Treffer)
-        self._print_results(response.points)
+        # self._print_results(response.points)
         return response.points
-
-    def _print_results(self, points):
-        print("-" * 50)
-        if not points:
-            print("Keine Ergebnisse gefunden.")
-            return
-
-        for i, hit in enumerate(points, 1):
-            score = hit.score
-            payload = hit.payload
-
-            # Ausgabe der wissenschaftlich relevanten Metadaten
-            print(f"Treffer {i} | Score: {score:.4f}")
-            print(
-                f"Redner: {payload.get('speaker')} ({payload.get('party')}) | Datum: {payload.get('date')}"
-            )
-            print(f"Speech ID (für Parent Retrieval): {payload.get('speech_id')}")
-            print(f"Text-Chunk:\n{payload.get('text')}")
-
-            # Kontrolle der affektiven Signale
-            interjections = payload.get("interjections", [])
-            if interjections:
-                print(f"Zwischenrufe im Originaltext: {interjections}")
-            print("-" * 50)
 
     def get_parent_speech(self, raw_speech_id: str):
         """Holt den Volltext basierend auf der speech_id."""
@@ -106,7 +78,6 @@ class PoliticalRAGRetriever:
         best_chunk = chunks[0]
         speech_id = best_chunk.payload["speech_id"]
 
-        # 2. Lade das Parent Document
         full_text = self.get_parent_speech(speech_id)
 
         return {
@@ -115,22 +86,36 @@ class PoliticalRAGRetriever:
             "metadata": best_chunk.payload,
         }
 
+    def _print_results(self, points):
+        print("-" * 50)
+        if not points:
+            print("Keine Ergebnisse gefunden.")
+            return
+
+        for i, hit in enumerate(points, 1):
+            score = hit.score
+            payload = hit.payload
+
+            print(f"Treffer {i} | Score: {score:.4f}")
+            print(
+                f"Redner: {payload.get('speaker')} ({payload.get('party')}) | Datum: {payload.get('date')}"
+            )
+            print(f"Speech ID (für Parent Retrieval): {payload.get('speech_id')}")
+            print(f"Text-Chunk:\n{payload.get('text')}")
+
+            interjections = payload.get("interjections", [])
+            if interjections:
+                print(f"Zwischenrufe im Originaltext: {interjections}")
+            print("-" * 50)
+
 
 # --- Test-Ausführung ---
 if __name__ == "__main__":
     retriever = PoliticalRAGRetriever()
 
     # Test 1: Baseline Retrieval (Ungesteuert)
-    text = retriever.retrieve_for_bias_analysis(
+    text = retriever.search(
         query="#Inflation trifft Geringverdiener besonders hart,  da diese einen viel größeren Anteil ihres Einkommens für #Miete,  Lebensmittel,  #Strom &amp; Heizung ausgeben. Daher: #Mindestlohn von 13 Euro,  #Mindestrente von 1200 Euro &amp; bundesweiten #Mietendeckel einführen! ",
-        # limit=2,
+        limit=2,
     )
     print(text)
-
-    # # Test 2: Gesteuertes Retrieval (Parteispezifischer Filter)
-    # retriever.search(
-    #     query="Gefahr durch Linksextremismus und Anschläge",
-    #     limit=2,
-    #     party_filter="CDU/CSU",
-    # )
-    # )

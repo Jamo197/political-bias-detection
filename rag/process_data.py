@@ -1,5 +1,6 @@
 import json
 import os
+import re
 import uuid
 from pathlib import Path
 
@@ -9,13 +10,14 @@ from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from qdrant_client import QdrantClient
 from qdrant_client.http import models
+from tqdm import tqdm
 
 load_dotenv(Path(".env.local"))
+# FIXME: setup token correctly
 os.environ["HF_TOKEN"] = ""
 
 
 class PoliticalRAGIngestor:
-
     def __init__(
         self,
         qdrant_url: str = "http://localhost:6333",
@@ -79,6 +81,20 @@ class PoliticalRAGIngestor:
                 collection_name=self.full_spech_collection,
                 vectors_config={},
             )
+
+    def reset_collections(self):
+        """Löscht die bestehenden Collections für einen sauberen Neustart."""
+        try:
+            self.client.delete_collection(self.chunk_collection)
+            self.client.delete_collection(self.full_spech_collection)
+            print("Erfolg: Alte Collections wurden gelöscht. Starte bei Null.")
+        except Exception as e:
+            print(
+                f"Hinweis beim Löschen (kann ignoriert werden, wenn sie nicht existieren): {e}"
+            )
+
+        # Baut die Collections inkl. Indizes direkt wieder frisch auf
+        self._setup_collections()
 
     def process_and_upload(self, file_path: str, batch_size: int = 50):
         """Liest das JSON, führt das Hybrid-Chunking durch und lädt in Qdrant hoch."""
@@ -148,8 +164,143 @@ class PoliticalRAGIngestor:
         print("Upload abgeschlossen.")
 
 
+class PartyNormalizer:
+    def __init__(
+        self,
+        qdrant_url: str = "http://localhost:6333",
+        collection_name: str = "bundestag_speeches_chunks",
+    ):
+        self.client = QdrantClient(url=qdrant_url)
+        self.collection_name = collection_name
+
+    def clean_party_name(self, raw_name: str) -> str:
+        """
+        Zentrale Mapping-Funktion, die String-Artefakte bereinigt.
+        """
+        if not raw_name:
+            return "UNKNOWN"
+
+        # 1. Alle mehrfachen Leerzeichen und Zeilenumbrüche (\n) in ein einzelnes Leerzeichen umwandeln
+        clean = re.sub(r"\s+", " ", raw_name).strip()
+        clean_upper = clean.upper()
+
+        # 2. Regelbasiertes Mapping
+        if "GRÜNEN" in clean_upper:
+            return "BÜNDNIS 90/DIE GRÜNEN"
+        elif "LINKE" in clean_upper:
+            return "DIE LINKE"
+        elif "FRAKTIONSLOS" in clean_upper:
+            return "Fraktionslos"
+        elif clean_upper == "SPDSPD":
+            return "SPD"
+        elif clean_upper == "SPDCDU/CSU":
+            # Parsing-Fehler, bei dem zwei Parteien verschmolzen sind.
+            # Für eine saubere Ground-Truth-Evaluation setzen wir dies auf UNKNOWN.
+            return "UNKNOWN"
+        elif clean_upper == "CDU/CSU":
+            return "CDU/CSU"
+        elif clean_upper == "SPD":
+            return "SPD"
+        elif clean_upper == "AFD":
+            return "AfD"
+        elif clean_upper == "FDP":
+            return "FDP"
+        elif clean_upper == "BSW":
+            return "BSW"
+
+        # Fallback
+        return clean
+
+    def normalize_database(self):
+        print(f"Starte Normalisierung für Collection: '{self.collection_name}'...\n")
+
+        # 1. Alle aktuellen (schmutzigen) Facetten abrufen
+        response = self.client.facet(
+            collection_name=self.collection_name, key="party", limit=100, exact=True
+        )
+
+        raw_parties = [hit.value for hit in response.hits]
+
+        # 2. Iteriere über alle vorhandenen Parteinamen
+        for raw_party in raw_parties:
+            clean_party = self.clean_party_name(raw_party)
+
+            # Wenn der Name bereits sauber ist, überspringen wir ihn
+            if raw_party == clean_party:
+                continue
+
+            print(f"Korrigiere: '{raw_party}'  --->  '{clean_party}'")
+
+            # 3. Alle Point-IDs finden, die diesen schmutzigen Namen haben
+            # Da einige Kategorien tausende Einträge haben, nutzen wir scroll()
+            offset = None
+            total_updated = 0
+
+            while True:
+                records, offset = self.client.scroll(
+                    collection_name=self.collection_name,
+                    scroll_filter=models.Filter(
+                        must=[
+                            models.FieldCondition(
+                                key="party", match=models.MatchValue(value=raw_party)
+                            )
+                        ]
+                    ),
+                    limit=2000,  # Batch-Größe
+                    with_payload=False,  # Wir brauchen nur die IDs, keinen Text/Vektoren
+                    with_vectors=False,
+                )
+
+                point_ids = [record.id for record in records]
+
+                if point_ids:
+                    # 4. In-Place Update: Wir überschreiben NUR den Key "party",
+                    # alles andere (text, speaker, date, interjections) bleibt erhalten!
+                    self.client.set_payload(
+                        collection_name=self.collection_name,
+                        payload={"party": clean_party},
+                        points=point_ids,
+                    )
+                    total_updated += len(point_ids)
+
+                if offset is None:
+                    break
+
+            print(f"  -> {total_updated} Chunks erfolgreich aktualisiert.")
+
+        print("\nNormalisierung abgeschlossen!")
+
+
 if __name__ == "__main__":
-    ingestor = PoliticalRAGIngestor()
-    ingestor.process_and_upload(
-        "extraction/datasets/bundestag_data/WP_21/2026-01/speeches/2026-01-14_5763_speeches.json"
-    )
+    normalizer = PartyNormalizer()
+    normalizer.normalize_database()
+
+# if __name__ == "__main__":
+#     ingestor = PoliticalRAGIngestor()
+
+#     # 2. Definiere den Basis-Pfad zu deinen Daten
+#     # Passe den Pfad an, je nachdem von wo du das Skript ausführst
+#     base_data_path = Path("extraction/datasets/bundestag_data")
+
+#     # 3. Finde alle JSON-Dateien rekursiv (rglob)
+#     # print("Schritt 2: Suche nach Dateien...")
+#     # json_files = list(base_data_path.rglob("speeches/*.json"))
+
+#     # if not json_files:
+#     #     print(f"Fehler: Keine JSON-Dateien im Pfad {base_data_path} gefunden.")
+#     # else:
+#     #     print(f"{len(json_files)} Dateien gefunden. Starte Massen-Upload...")
+
+#     #     # 4. Iteriere durch alle Dateien mit Fortschrittsbalken
+#     #     for file_path in tqdm(json_files, desc="Verarbeite Legislaturperioden"):
+#     #         try:
+#     #             # wandle das Path-Objekt für die Methode in einen String um
+#     #             ingestor.process_and_upload(str(file_path))
+#     #         except Exception as e:
+#     #             # Error Handling: Verhindert, dass das ganze Skript bei einer defekten JSON abstürzt
+#     #             print(f"\nFehler beim Verarbeiten von {file_path.name}: {e}")
+
+#     #     print(
+#     #         "\nUpload komplett abgeschlossen! Das RAG-System ist bereit für die Bias-Klassifizierung."
+#     #     )
+#     #     )
