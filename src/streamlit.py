@@ -1,29 +1,56 @@
-import time
+"""
+Political RAG Bias Detector — Streamlit Application
+=====================================================
+Pipeline:
+  1. Provide / load text  (+ optional metadata from DB)
+  2. Choose retrieval method (Simple / TwoStage / HyDE)
+  3. Inspect retrieved chunks with metadata
+  4. LLM predicts bias score (0-10) with optional justification
+  5. Compare against CHES ground truth
+  6. Results are logged to disk
+"""
+
+import sys
+from pathlib import Path
+from typing import Any, Dict, List, Optional
 
 import pandas as pd
-
 import streamlit as st
 
-from .logging.log_run import log_evaluation_run
-from .prediction.bias_prediction import BaselineEvaluator
+# Make project root importable when launched via `streamlit run src/streamlit.py`
+_ROOT = Path(__file__).resolve().parents[1]
+if str(_ROOT) not in sys.path:
+    sys.path.insert(0, str(_ROOT))
 
-LLM_MODELS = {
-    "openai": "ChatGPT",
-    "gemini": "Gemini",
-    "mistral": "Mistral",
-}
+from src.logging.log_run import log_evaluation_run
+from src.prediction.bias_prediction import BaselineEvaluator
 
+# ---------------------------------------------------------------------------
+# Constants
+# ---------------------------------------------------------------------------
+
+RETRIEVAL_MODES = ["Simple", "TwoStage", "HyDE"]
+
+LLM_MODELS = ["Mistral", "OpenAI", "Gemini"]
+
+DATA_PATH = (
+    "src/datasets/dataset_final_merged_with_mbfc_labels_without_duplicates_index_reset"
+    "_anonymized_5_party_labels_media_labels_author_labels_stance_labels.csv"
+)
+
+QDRANT_URL = "http://localhost:6333"
+COLLECTION_NAME = "bundestag_speeches_chunks"
+
+
+# ---------------------------------------------------------------------------
+# Helpers
+# ---------------------------------------------------------------------------
 
 def get_bias_label(score: float) -> str:
-    """
-    Maps a continuous political bias score (0.0 - 10.0) to a categorical label.
-    Handles None types gracefully if the API or CHES lookup fails.
-    """
-    if not score:
+    """Maps a continuous 0-10 bias score to a human-readable category."""
+    if score is None:
         return "Unknown"
-
     score = max(0.0, min(10.0, float(score)))
-
     if score < 1.5:
         return "Extreme Left"
     elif score < 3.5:
@@ -41,138 +68,343 @@ def get_bias_label(score: float) -> str:
 
 
 @st.cache_data
-def load_test_dataset():
-    """Caches the dataset so it doesn't reload on every UI interaction."""
-    data_path = "src/datasets/dataset_final_merged_with_mbfc_labels_without_duplicates_index_reset_anonymized_5_party_labels_media_labels_author_labels_stance_labels.csv"
+def load_test_dataset() -> pd.DataFrame:
+    """Loads and caches the evaluation dataset."""
     try:
-        return pd.read_csv(data_path)
+        df = pd.read_csv(DATA_PATH)
+        df["full_text"] = df["full_text"].astype(str).str.replace("/comma", ",", regex=False)
+        return df
     except FileNotFoundError:
-        st.error(f"Test dataset not found at `{data_path}`")
+        st.error(f"Test dataset not found at `{DATA_PATH}`")
         return pd.DataFrame()
 
 
-def run_streamlit_app():
-    st.set_page_config(page_title="LLM Bias Evaluator", layout="wide")
-    st.title("Political Bias Detection")
+@st.cache_resource
+def get_evaluator() -> BaselineEvaluator:
+    """Singleton evaluator (holds API clients + CHES DB)."""
+    return BaselineEvaluator()
 
-    evaluator = BaselineEvaluator()
+
+@st.cache_resource
+def get_retriever(mode: str):
+    """
+    Lazily constructs a PoliticalRAGRetriever for the chosen mode.
+    Normalises the UI label to the internal key expected by PoliticalRAGRetriever.
+    Returns None if Qdrant is unavailable.
+    """
+    # Map UI labels → internal retrieval_mode keys
+    _MODE_MAP = {
+        "simple": "simple",
+        "twostage": "two_stage",
+        "hyde": "hyde",
+    }
+    internal_mode = _MODE_MAP.get(mode.lower().replace(" ", ""), mode.lower())
+
+    try:
+        from rag.retrieval import PoliticalRAGRetriever
+        return PoliticalRAGRetriever(
+            qdrant_url=QDRANT_URL,
+            chunk_collection=COLLECTION_NAME,
+            retrieval_mode=internal_mode,
+        )
+    except Exception as e:
+        st.warning(f"Could not connect to Qdrant ({e}). RAG disabled.")
+        return None
+
+
+def chunks_to_context_dicts(points) -> List[Dict[str, Any]]:
+    """Converts raw Qdrant PointStruct list to plain dicts for the LLM context."""
+    result = []
+    for p in points:
+        payload = p.payload or {}
+        result.append(
+            {
+                "text": payload.get("text", ""),
+                "party": payload.get("party", ""),
+                "speaker": payload.get("speaker", ""),
+                "date": payload.get("date", ""),
+                "speech_id": payload.get("speech_id", ""),
+                "score": round(float(p.score), 4),
+            }
+        )
+    return result
+
+
+# ---------------------------------------------------------------------------
+# Main App
+# ---------------------------------------------------------------------------
+
+def run_streamlit_app():
+    st.set_page_config(page_title="Political RAG Bias Detector", layout="wide")
+    st.title("Political Bias Detection")
+    st.caption("RAG-augmented LLM pipeline validated against CHES expert scores.")
+
+    evaluator = get_evaluator()
     df = load_test_dataset()
 
-    # --- Sidebar Configuration ---
-    st.sidebar.header("Pipeline Configuration")
-    llm_choice = st.sidebar.selectbox("Select LLM", ["Mistral", "OpenAI", "Gemini"])
+    # -----------------------------------------------------------------------
+    # Sidebar
+    # -----------------------------------------------------------------------
+    with st.sidebar:
+        st.header("Pipeline Configuration")
 
-    use_rag = st.sidebar.toggle(
-        "Enable RAG (Retrieval-Augmented Generation)", value=False
-    )
+        llm_choice = st.selectbox("LLM", LLM_MODELS)
 
-    # Conditional UI: Only show RAG parameters if RAG is enabled
-    db_choice = None
-    k_chunks = 0
-    if use_rag:
-        st.sidebar.subheader("RAG Parameters")
-        db_choice = st.sidebar.selectbox(
-            "Select Vector Database / Embedding",
-            [
-                "ChromaDB + MPNet-Multilingual",
-                "ChromaDB + OpenAI-Small",
-                "Qdrant + GESIS-German",
-            ],
-        )
-        k_chunks = st.sidebar.slider(
-            "Top-K Chunks to Retrieve", min_value=1, max_value=10, value=3
-        )
+        st.divider()
+        st.subheader("RAG Parameters")
+        retrieval_mode = st.selectbox("Retrieval Method", RETRIEVAL_MODES)
+        k_chunks = st.slider("Top-K Chunks", min_value=1, max_value=10, value=3)
 
-    # --- Dataset Integration ---
-    st.subheader("1. Data Input")
-    col1, col2 = st.columns([1, 3])
+    # -----------------------------------------------------------------------
+    # Step 1 — Text Input
+    # -----------------------------------------------------------------------
+    st.subheader("1. Text Input")
 
-    with col1:
-        if st.button("🎲 Load Random Row from Dataset", disabled=df.empty):
-            if not df.empty:
-                sample = df.sample(1).iloc[0]
-                st.session_state["current_text"] = str(
-                    sample.get("full_text", "")
-                ).replace("/comma", ",")
-                st.session_state["current_party"] = str(sample.get("party", ""))
+    col_btn, col_info = st.columns([1, 4])
+    with col_btn:
+        if st.button("Load Random Row", disabled=df.empty):
+            sample = df.sample(1).iloc[0]
+            st.session_state["input_text"] = str(sample.get("full_text", ""))
+            st.session_state["meta_party"] = str(sample.get("party", ""))
+            st.session_state["meta_speaker"] = str(sample.get("twitter_handle", sample.get("author", "")))
+            raw_year = sample.get("year", sample.get("date", "2021"))
+            try:
+                st.session_state["meta_year"] = int(str(raw_year)[:4])
+            except (ValueError, TypeError):
+                st.session_state["meta_year"] = 2021
+
+    # Default must be set before the widget is first rendered so Streamlit
+    # can pick it up via the key — never pass both value= and key= together.
+    if "input_text" not in st.session_state:
+        st.session_state["input_text"] = ""
 
     input_text = st.text_area(
-        "Text to Analyze", value=st.session_state.get("current_text", ""), height=150
+        "Text to Analyse",
+        height=160,
+        key="input_text",
     )
 
-    # TODO: Make optional; if clicked then show
-    # --- Metadata & Ground Truth ---
-    st.subheader("2. Metadata & CHES Ground Truth")
-    st.markdown(
-        "Ensure inputs match CHES formatting (e.g., proper country abbreviations) to successfully map the ground truth."
+    # -----------------------------------------------------------------------
+    # Step 1a — Metadata (party / speaker / year)
+    # -----------------------------------------------------------------------
+    st.subheader("1a. Metadata")
+    st.caption(
+        "Pre-filled when loading from dataset or retrieved from the vector DB. "
+        "Used for CHES ground truth lookup."
+    )
+    # Initialise metadata defaults once — widgets read from session state via key
+    if "meta_party" not in st.session_state:
+        st.session_state["meta_party"] = ""
+    if "meta_speaker" not in st.session_state:
+        st.session_state["meta_speaker"] = ""
+    if "meta_year" not in st.session_state:
+        st.session_state["meta_year"] = 2021
+
+    m1, m2, m3 = st.columns(3)
+    meta_party = m1.text_input("Party", key="meta_party")
+    meta_speaker = m2.text_input("Speaker", key="meta_speaker")
+    meta_year = m3.number_input(
+        "Year",
+        min_value=1990,
+        max_value=2030,
+        step=1,
+        key="meta_year",
     )
 
-    m_col1, m_col2, m_col3 = st.columns(3)
-    party = m_col1.text_input("Party", value=st.session_state.get("current_party", ""))
-    country = m_col2.text_input("Country")
-    year = m_col3.number_input("Year", step=1)
+    # -----------------------------------------------------------------------
+    # Step 2 — Retrieval
+    # -----------------------------------------------------------------------
+    st.subheader("2. Retrieval")
 
-    # --- Execution ---
-    if st.button("Run Classification", type="primary"):
-        if not input_text.strip():
-            st.warning("Please provide text to analyze.")
-            return
+    retrieved_chunks: List[Dict[str, Any]] = []
+    hyde_docs: List[str] = []
 
-        with st.spinner(f"Analyzing with {llm_choice}..."):
-            # Step 0: Retrieval (if enabled)
-            # TODO: Implement database with RAG (use different dbs?, ...)
-            context = None
-            if use_rag:
-                context = "Not implemented"  # mock_retrieve_context(input_text, db_choice, k_chunks)
-                st.info(f"**Retrieved Context:**\n{context}")
+    if st.button("Retrieve Chunks", disabled=not input_text.strip()):
+        retriever = get_retriever(retrieval_mode)
+        if retriever is None:
+            st.error("Retriever unavailable — check Qdrant connection.")
+        else:
+            # Warn if HyDE mode was selected but Ollama is not available
+            if retrieval_mode == "HyDE":
+                strategy = retriever.retrieval_strategy
+                if getattr(strategy, "llm", None) is None:
+                    st.warning(
+                        "HyDE selected but Ollama is unavailable "
+                        "(is `ollama serve` running with the `gemma3` model?). "
+                        "Falling back to plain vector search without hypothetical documents."
+                    )
 
-            # 1. Get LLM Prediction
-            # TODO: Predict is pretty slow, can maybe optimized
-            prediction = evaluator.predict_bias(input_text, llm_choice)
+            with st.spinner(f"Running {retrieval_mode} retrieval..."):
+                try:
+                    # For HyDE we want to surface the generated hypothetical docs
+                    if retrieval_mode == "HyDE":
+                        strategy = retriever.retrieval_strategy
+                        hyde_docs = strategy._generate_hypothetical_docs(input_text, num_docs=3)
 
-            # 2. Get Ground Truth
-            # TODO: Get Ground truth from CHES; Map Party and country and year if exist, else use mean from latest three?
-            ground_truth = (
-                None  # evaluator.get_ches_ground_truth(party, country, int(year))
+                    points = retriever.search(
+                        query=input_text,
+                        limit=k_chunks,
+                    )
+                    retrieved_chunks = chunks_to_context_dicts(points)
+                    st.session_state["retrieved_chunks"] = retrieved_chunks
+                    st.session_state["hyde_docs"] = hyde_docs
+
+                    # Attempt to back-fill metadata from top-1 chunk if not yet set
+                    if retrieved_chunks and not st.session_state.get("meta_party"):
+                        top = retrieved_chunks[0]
+                        st.session_state["meta_party"] = top.get("party", "")
+                        st.session_state["meta_speaker"] = top.get("speaker", "")
+                        date_str = top.get("date", "")
+                        if date_str:
+                            try:
+                                st.session_state["meta_year"] = int(date_str[:4])
+                            except ValueError:
+                                pass
+                        st.rerun()
+
+                except Exception as e:
+                    st.error(f"Retrieval failed: {e}")
+
+    # Persist chunks across reruns
+    retrieved_chunks = st.session_state.get("retrieved_chunks", retrieved_chunks)
+    hyde_docs = st.session_state.get("hyde_docs", hyde_docs)
+
+    # 2a — Show HyDE generated docs
+    if retrieval_mode == "HyDE" and hyde_docs:
+        with st.expander("HyDE: Generated Hypothetical Documents", expanded=False):
+            for i, doc in enumerate(hyde_docs, 1):
+                st.markdown(f"**Excerpt {i}:** {doc}")
+
+    # Step 3 — Display retrieved chunks
+    if retrieved_chunks:
+        st.subheader("3. Retrieved Chunks")
+        for i, chunk in enumerate(retrieved_chunks, 1):
+            with st.expander(
+                f"Chunk {i} — {chunk.get('party', 'Unknown Party')} | "
+                f"{chunk.get('speaker', 'Unknown Speaker')} | "
+                f"{chunk.get('date', '')[:10]}  (score: {chunk.get('score', 0):.4f})",
+                expanded=(i == 1),
+            ):
+                st.write(chunk.get("text", ""))
+                meta_cols = st.columns(3)
+                meta_cols[0].caption(f"Party: **{chunk.get('party', '—')}**")
+                meta_cols[1].caption(f"Speaker: **{chunk.get('speaker', '—')}**")
+                meta_cols[2].caption(f"Date: **{chunk.get('date', '—')}**")
+
+    # -----------------------------------------------------------------------
+    # Step 4 — LLM Prediction
+    # -----------------------------------------------------------------------
+    st.subheader("4. Bias Prediction")
+
+    if st.button("Run Prediction", type="primary", disabled=not input_text.strip()):
+        context_for_llm = retrieved_chunks if retrieved_chunks else None
+
+        with st.spinner(f"Predicting with {llm_choice}..."):
+            prediction = evaluator.predict_bias(
+                text=input_text,
+                model_provider=llm_choice,
+                context_chunks=context_for_llm,
             )
 
-            # 3. Display Metrics
-            st.markdown("---")
-            st.markdown("### Results")
-            res_col1, res_col2 = st.columns(2)
+        st.session_state["prediction"] = prediction
 
-            predicted_score = prediction.get("bias_score")
-            res_col1.metric(
+    prediction = st.session_state.get("prediction")
+
+    if prediction:
+        predicted_score = prediction.get("bias_score")
+
+        p_col, _ = st.columns([2, 3])
+        if isinstance(predicted_score, (int, float)):
+            p_col.metric(
                 label=f"{llm_choice} Predicted Bias",
-                value=(
-                    f"{predicted_score:.1f} ({get_bias_label(predicted_score)})"
-                    if isinstance(predicted_score, (int, float))
-                    else "Error"
-                ),
+                value=f"{predicted_score:.1f} / 10",
+                delta=get_bias_label(predicted_score),
+                delta_color="off",
             )
+        else:
+            p_col.error("Prediction failed — see justification below.")
 
-            if ground_truth is not None:
-                res_col2.metric(
-                    label="CHES Ground Truth (lrgen)", value=f"{ground_truth:.1f}"
+        # 4a — Explanation (optional toggle)
+        with st.expander("Show Justification", expanded=False):
+            st.info(prediction.get("justification", "No justification returned."))
+
+        # -------------------------------------------------------------------
+        # Step 5 — CHES Ground Truth Comparison
+        # -------------------------------------------------------------------
+        st.subheader("5. CHES Ground Truth Comparison")
+
+        current_party = st.session_state.get("meta_party", "")
+        current_year = int(st.session_state.get("meta_year", 2021))
+
+        lrecon, galtan, lrgen = evaluator._get_closest_ches_score(
+            current_party, current_year
+        )
+
+        # Input text ground truth
+        gt_col1, gt_col2, gt_col3, gt_col4 = st.columns(4)
+        gt_col1.metric("CHES lrgen (input text)", f"{lrgen:.2f}" if lrgen is not None else "N/A")
+        gt_col2.metric("CHES lrecon", f"{lrecon:.2f}" if lrecon is not None else "N/A")
+        gt_col3.metric("CHES galtan", f"{galtan:.2f}" if galtan is not None else "N/A")
+
+        if isinstance(predicted_score, (int, float)) and lrgen is not None:
+            # Rescale lrgen (CHES 0-10 scale) for direct comparison
+            delta = abs(predicted_score - lrgen)
+            gt_col4.metric("Absolute Error (lrgen)", f"{delta:.2f}")
+
+        # Retrieved chunks — CHES scores per chunk
+        if retrieved_chunks:
+            st.markdown("**CHES scores of retrieved chunk parties:**")
+            chunk_ches_rows = []
+            for i, chunk in enumerate(retrieved_chunks, 1):
+                c_party = chunk.get("party", "")
+                date_str = chunk.get("date", "")
+                c_year = int(date_str[:4]) if date_str and len(date_str) >= 4 else current_year
+                c_lrecon, c_galtan, c_lrgen = evaluator._get_closest_ches_score(c_party, c_year)
+                chunk_ches_rows.append(
+                    {
+                        "Chunk": i,
+                        "Party": c_party,
+                        "Speaker": chunk.get("speaker", ""),
+                        "Year": c_year,
+                        "lrgen": round(c_lrgen, 2) if c_lrgen is not None else None,
+                        "lrecon": round(c_lrecon, 2) if c_lrecon is not None else None,
+                        "galtan": round(c_galtan, 2) if c_galtan is not None else None,
+                        "Sim Score": chunk.get("score", 0),
+                    }
                 )
-
-                # Calculate delta if both exist
-                if isinstance(predicted_score, (int, float)):
-                    delta = abs(predicted_score - ground_truth)
-                    st.caption(f"**Absolute Error:** {delta:.2f}")
-            else:
-                res_col2.metric(label="CHES Ground Truth", value="Not implemented")
-
-            st.info(f"**Justification:** {prediction.get('justification')}")
-
-            log_evaluation_run(
-                input_text=input_text,
-                llm_choice=llm_choice,
-                use_rag=use_rag,
-                db_choice=db_choice,
-                k_chunks=k_chunks,
-                retrieved_context=context,
-                output_score=prediction.get("bias_score"),
-                output_justification=prediction.get("justification"),
-                ches_ground_truth=ground_truth,
+            st.dataframe(
+                pd.DataFrame(chunk_ches_rows),
+                use_container_width=True,
+                hide_index=True,
             )
+
+        # -------------------------------------------------------------------
+        # Step 6 — Logging
+        # -------------------------------------------------------------------
+        log_evaluation_run(
+            input_text=input_text,
+            llm_choice=llm_choice,
+            retrieval_mode=retrieval_mode,
+            k_chunks=k_chunks,
+            hyde_docs=hyde_docs,
+            retrieved_chunks=retrieved_chunks,
+            meta_party=current_party,
+            meta_speaker=st.session_state.get("meta_speaker", ""),
+            meta_year=current_year,
+            output_score=predicted_score,
+            output_justification=prediction.get("justification"),
+            ches_lrgen=lrgen,
+            ches_lrecon=lrecon,
+            ches_galtan=galtan,
+        )
+        st.success("Run logged to `logs/evaluation_logs.jsonl`.")
+
+
+# ---------------------------------------------------------------------------
+# Entry point
+# ---------------------------------------------------------------------------
+
+if __name__ == "__main__":
+    run_streamlit_app()
+else:
+    run_streamlit_app()

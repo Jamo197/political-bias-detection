@@ -1,5 +1,6 @@
 import json
 import logging
+import sys
 from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
@@ -7,10 +8,13 @@ from typing import Any, Dict, List, Optional, Tuple
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-from retrieval import PoliticalRAGRetriever
 from scipy.stats import spearmanr
 from sklearn.metrics import f1_score, mean_absolute_error, mean_squared_error
 from tqdm import tqdm
+from retrieval import PoliticalRAGRetriever 
+
+
+_PROJECT_ROOT = Path(__file__).resolve().parent.parent
 
 # Setup logging
 logging.basicConfig(
@@ -18,7 +22,7 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-LOG_DIR = Path("logs")
+LOG_DIR = _PROJECT_ROOT / "logs"
 LOG_DIR.mkdir(exist_ok=True)
 
 
@@ -303,20 +307,24 @@ class RAGRetrievalEvaluator:
         logger.info(f"Evaluation metrics saved to storage path: {output_path}")
 
 
-if __name__ == "__main__":
-    test_data_path = "src/datasets/dataset_final_merged_with_mbfc_labels_without_duplicates_index_reset_anonymized_5_party_labels_media_labels_author_labels_stance_labels.csv"
-    ches_path = "src/datasets/ground_truth/1999-2024_CHES.csv"
+# if __name__ == "__main__":
+#     test_data_path = str(
+#         _PROJECT_ROOT
+#         / "src/datasets/dataset_final_merged_with_mbfc_labels_without_duplicates_index_reset"
+#           "_anonymized_5_party_labels_media_labels_author_labels_stance_labels.csv"
+#     )
+#     ches_path = str(_PROJECT_ROOT / "src/datasets/ground_truth/1999-2024_CHES.csv")
 
-    retriever_simple = PoliticalRAGRetriever(retrieval_mode="hyde")
+#     retriever_simple = PoliticalRAGRetriever(retrieval_mode="hyde")
 
-    eval_simple = RAGRetrievalEvaluator(
-        retriever=retriever_simple,
-        test_data_path=test_data_path,
-        ches_data_path=ches_path,
-        sample_size=50,
-        run_name="hyde_baseline_run",
-    )
+#     eval_simple = RAGRetrievalEvaluator(
+#         retriever=retriever_simple,
+#         test_data_path=test_data_path,
+#         ches_data_path=ches_path,
+#         sample_size=50,
+#         run_name="hyde_baseline_run",
+#     )
 
-    metrics_report = eval_simple.run_evaluation(k=5)
+#     metrics_report = eval_simple.run_evaluation(k=5)
 
-    print(json.dumps(metrics_report, indent=2))
+#     print(json.dumps(metrics_report, indent=2))

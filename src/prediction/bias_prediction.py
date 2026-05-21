@@ -1,7 +1,10 @@
 import json
 import os
+import sys
 from pathlib import Path
+from typing import Any, Dict, List, Optional, Tuple
 
+import numpy as np
 import pandas as pd
 from dotenv import load_dotenv
 from google import genai
@@ -11,8 +14,13 @@ from pydantic import BaseModel, Field
 
 import streamlit as st
 
-# Load environment variables
-load_dotenv(Path(".env.local"))
+# ---------------------------------------------------------------------------
+# Path anchoring — src/prediction/bias_prediction.py → project root is 2 levels up
+# ---------------------------------------------------------------------------
+_PROJECT_ROOT = Path(__file__).resolve().parents[2]
+
+# Load environment variables from project root
+load_dotenv(_PROJECT_ROOT / ".env.local")
 
 
 # --- 1. Schema Definition ---
@@ -29,6 +37,18 @@ class BiasPrediction(BaseModel):
 
 # --- 2. Backend Evaluator Class ---
 class BaselineEvaluator:
+    # CHES party_id -> standardized display name mapping
+    CHES_PARTY_ID_MAP = {
+        301: "CDU/CSU",
+        308: "CDU/CSU",
+        302: "SPD",
+        303: "FDP",
+        304: "BÜNDNIS 90/DIE GRÜNEN",
+        306: "DIE LINKE",
+        310: "AfD",
+        313: "BSW",
+    }
+
     def __init__(self):
         """Initializes API clients and loads the CHES ground truth database."""
         # Initialize API Clients
@@ -37,24 +57,88 @@ class BaselineEvaluator:
         self.gemini_client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 
         # Load CHES Database
-        ches_path = "src/datasets/ground_truth/1999-2024_CHES.csv"
+        ches_path = str(_PROJECT_ROOT / "src/datasets/ground_truth/1999-2024_CHES.csv")
         try:
-            self.ches_db = pd.read_csv(ches_path)
+            ches_raw = pd.read_csv(ches_path)
+            self.ches_df = ches_raw[
+                ches_raw["party_id"].isin(self.CHES_PARTY_ID_MAP.keys())
+            ].copy()
+            self.ches_df["std_party"] = self.ches_df["party_id"].map(
+                self.CHES_PARTY_ID_MAP
+            )
+            self.ches_df = self.ches_df[
+                ["std_party", "year", "lrecon", "galtan", "lrgen"]
+            ].dropna()
         except FileNotFoundError:
             st.warning(
-                f"⚠️ CHES database not found at `{ches_path}`. Ground truth lookups will fail."
+                f"CHES database not found at `{ches_path}`. Ground truth lookups will fail."
             )
-            self.ches_db = pd.DataFrame()
+            self.ches_df = pd.DataFrame()
 
-    def predict_bias(self, text: str, model_provider: str) -> dict:
-        """Routes the text to the selected LLM and enforces structured JSON output."""
+    def _get_closest_ches_score(
+        self, party: str, year: int
+    ) -> Tuple[Optional[float], Optional[float], Optional[float]]:
+        """
+        Finds the CHES lrecon / galtan / lrgen scores from the wave closest to
+        the document's year.  Returns (lrecon, galtan, lrgen) or (None, None, None).
+        """
+        if self.ches_df.empty:
+            return None, None, None
+
+        # CDU and CSU are merged in CHES under CDU/CSU
+        normalized = "CDU/CSU" if party in ["CDU", "CSU"] else party
+
+        if pd.isna(year) or normalized not in self.ches_df["std_party"].values:
+            return None, None, None
+
+        party_ches = self.ches_df[self.ches_df["std_party"] == normalized]
+        if party_ches.empty:
+            return None, None, None
+
+        closest_idx = (party_ches["year"] - year).abs().idxmin()
+        row = party_ches.loc[closest_idx]
+        return float(row["lrecon"]), float(row["galtan"]), float(row["lrgen"])
+
+    def predict_bias(
+        self,
+        text: str,
+        model_provider: str,
+        context_chunks: Optional[List[Dict[str, Any]]] = None,
+    ) -> dict:
+        """
+        Routes the text to the selected LLM and enforces structured JSON output.
+
+        If ``context_chunks`` is provided the chunks are injected into the prompt
+        so the model can use retrieved parliamentary speech excerpts as grounding.
+        """
+        context_block = ""
+        if context_chunks:
+            excerpts = []
+            for i, chunk in enumerate(context_chunks, 1):
+                party = chunk.get("party", "Unknown")
+                speaker = chunk.get("speaker", "Unknown")
+                text_snippet = chunk.get("text", "")[:500]
+                excerpts.append(
+                    f"[{i}] Party: {party} | Speaker: {speaker}\n{text_snippet}"
+                )
+            context_block = (
+                "\n\nRelevant parliamentary speech excerpts for context:\n"
+                + "\n\n".join(excerpts)
+                + "\n\n"
+            )
+
         system_prompt = (
-            "You are an expert political scientist. Analyze the text and assign a "
-            "continuous political bias score from 0.0 (Extreme Left) to 10.0 (Extreme Right). "
-            "Also add an analytical justification for the score based strictly on the text provided."
+            "You are an expert political scientist specializing in German parliamentary politics. "
+            "Analyze the provided text and assign a continuous political bias score "
+            "from 0.0 (Extreme Left) to 10.0 (Extreme Right) on the standard left-right scale "
+            "used by the Chapel Hill Expert Survey (CHES). "
+            "Also provide a concise analytical justification for the score based strictly on "
+            "the text (and any provided context). "
             "Respond strictly in JSON format matching this schema: "
             "{'bias_score': float (0.0 to 10.0), 'justification': string}"
         )
+
+        user_message = f"{context_block}Text to analyse:\n{text}"
 
         try:
             if model_provider == "Mistral":
@@ -62,7 +146,7 @@ class BaselineEvaluator:
                     model="mistral-small-latest",
                     messages=[
                         {"role": "system", "content": system_prompt},
-                        {"role": "user", "content": text},
+                        {"role": "user", "content": user_message},
                     ],
                     response_format={"type": "json_object"},
                     temperature=0.0,
@@ -74,7 +158,7 @@ class BaselineEvaluator:
                     model="gpt-4o-mini",
                     messages=[
                         {"role": "system", "content": system_prompt},
-                        {"role": "user", "content": text},
+                        {"role": "user", "content": user_message},
                     ],
                     response_format=BiasPrediction,
                     temperature=0.0,
@@ -83,8 +167,8 @@ class BaselineEvaluator:
 
             elif model_provider == "Gemini":
                 res = self.gemini_client.models.generate_content(
-                    model="gemini-3-flash-preview",
-                    contents=f"{system_prompt}\n\nText: {text}",
+                    model="gemini-2.0-flash",
+                    contents=f"{system_prompt}\n\n{user_message}",
                     config={
                         "response_mime_type": "application/json",
                         "response_schema": BiasPrediction,
@@ -96,28 +180,13 @@ class BaselineEvaluator:
         except Exception as e:
             return {"bias_score": None, "justification": f"API Error: {str(e)}"}
 
-    def get_ches_ground_truth(self, party: str, country: str, year: int) -> float:
+        return {"bias_score": None, "justification": "Unknown model provider."}
+
+    def get_ches_ground_truth(self, party: str, country: str, year: int) -> Optional[float]:
         """
-        Retrieves ground truth bias score from CHES metadata.
-        Note: CHES typically uses 'lrgen' for the general Left-Right scale.
+        Retrieves the lrgen ground truth bias score from CHES metadata.
+        Kept for backwards compatibility; delegates to _get_closest_ches_score.
         """
-        if self.ches_db.empty:
-            return None
+        _, _, lrgen = self._get_closest_ches_score(party, year)
+        return lrgen
 
-        try:
-            match = self.ches_db[
-                (self.ches_db["party"].astype(str).str.lower() == party.lower())
-                & (self.ches_db["country"].astype(str).str.lower() == country.lower())
-                & (self.ches_db["year"] == year)
-            ]
-            return float(match.iloc[0]["lrgen"]) if not match.empty else None
-        except KeyError as e:
-            st.error(f"CHES Lookup Error: Missing expected column {e} in CHES dataset.")
-            return None
-
-
-if __name__ == "__main__":
-    evaluator = BaselineEvaluator()
-    test_text = "In Praxis verhindert Astra Impfstoff fast alle tödlichen Fälle. Nach 12 Wochen 2. Dosis verhindert er 80% aller Fälle. Dass er als Ladenhüter in Impfzentren liegt ist echt absurd. Er sollte allen &lt;65 J in den 3 Prioritätsgruppen sofort angeboten werden "
-    prediction = evaluator.predict_bias(text=test_text, model_provider="Mistral")
-    print(prediction)

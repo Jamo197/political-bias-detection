@@ -228,7 +228,7 @@ class PoliticalRAGRetriever:
                 self.country_context,
             )
 
-        elif mode == "two_stage":
+        elif mode in ("two_stage", "twostage"):
             try:
                 from sentence_transformers import CrossEncoder
 
@@ -243,6 +243,19 @@ class PoliticalRAGRetriever:
                 )
 
         return SimpleRetrieval(self.client, self.collection_name, self.embeddings)
+
+    @staticmethod
+    def _extract_year(date_str: Optional[str]) -> Optional[int]:
+        """
+        Extracts a 4-digit year from a date string (e.g. '2021-11-03').
+        Returns None if parsing fails or the string is empty/None.
+        """
+        if not date_str:
+            return None
+        try:
+            return int(str(date_str)[:4])
+        except (ValueError, TypeError):
+            return None
 
     def search(
         self,
