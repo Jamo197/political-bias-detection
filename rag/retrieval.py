@@ -1,8 +1,6 @@
 import logging
 import os
-import uuid
 from abc import ABC, abstractmethod
-from functools import lru_cache
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
@@ -13,15 +11,19 @@ from langchain_ollama import OllamaLLM
 from qdrant_client import QdrantClient
 from qdrant_client.http import models
 
+# Environment Setup
 load_dotenv(Path(".env.local"))
-os.environ["HF_TOKEN"] = os.getenv("HT_TOKEN")
+os.environ["HF_TOKEN"] = os.getenv("HT_TOKEN", "")
 
+# Logging configuration prioritized for pipeline tracking
+logging.basicConfig(
+    level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+)
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
 
 
 class RetrievalStrategy(ABC):
-    """Abstract base class for retrieval strategies."""
+    """Abstract base class enforcing a standard interface for all retrieval strategies."""
 
     @abstractmethod
     def retrieve(
@@ -30,44 +32,13 @@ class RetrievalStrategy(ABC):
         limit: int = 3,
         party_filter: Optional[str] = None,
     ) -> List[models.PointStruct]:
-        """Retrieve relevant points based on query."""
         pass
 
-
-class SimpleRetrieval(RetrievalStrategy):
-    """Basic semantic similarity retrieval."""
-
-    def __init__(self, client: QdrantClient, collection_name: str, embeddings):
-        self.client = client
-        self.collection_name = collection_name
-        self.embeddings = embeddings
-
-    def retrieve(
-        self,
-        query: str,
-        limit: int = 3,
-        party_filter: Optional[str] = None,
-    ) -> List[models.PointStruct]:
-        """Retrieve using simple semantic similarity."""
-        query_vector = self.embeddings.embed_query(query)
-        query_filter = self._build_filter(party_filter)
-
-        response = self.client.query_points(
-            collection_name=self.collection_name,
-            query=query_vector,
-            query_filter=query_filter,
-            limit=limit,
-            with_payload=True,
-        )
-
-        return response.points
-
     @staticmethod
-    def _build_filter(party_filter: Optional[str]) -> Optional[models.Filter]:
-        """Build Qdrant filter for party if provided."""
+    def _build_party_filter(party_filter: Optional[str]) -> Optional[models.Filter]:
+        """Centralized Qdrant filter construction for academic subsets."""
         if not party_filter:
             return None
-
         return models.Filter(
             must=[
                 models.FieldCondition(
@@ -77,11 +48,33 @@ class SimpleRetrieval(RetrievalStrategy):
         )
 
 
-class HyDERetrieval(RetrievalStrategy):
-    """Hypothetical Document Embeddings (HyDE) retrieval.
+class SimpleRetrieval(RetrievalStrategy):
+    """Baseline Bi-Encoder retrieval"""
 
-    Generates hypothetical documents related to the query
-    and uses their embeddings for retrieval, which can improve recall.
+    def __init__(self, client: QdrantClient, collection_name: str, embeddings):
+        self.client = client
+        self.collection_name = collection_name
+        self.embeddings = embeddings
+
+    def retrieve(
+        self, query: str, limit: int = 3, party_filter: Optional[str] = None
+    ) -> List[models.PointStruct]:
+        query_vector = self.embeddings.embed_query(query)
+
+        response = self.client.query_points(
+            collection_name=self.collection_name,
+            query=query_vector,
+            query_filter=self._build_party_filter(party_filter),
+            limit=limit,
+            with_payload=True,
+        )
+        return response.points
+
+
+class HyDERetrieval(RetrievalStrategy):
+    """
+    Hypothetical Document Embeddings (HyDE).
+    Optimized for cross-cultural prompt adaptation (RQ2.1).
     """
 
     def __init__(
@@ -90,11 +83,13 @@ class HyDERetrieval(RetrievalStrategy):
         collection_name: str,
         embeddings,
         llm=None,
+        country_context: str = "Germany",
     ):
         self.client = client
         self.collection_name = collection_name
         self.embeddings = embeddings
         self.llm = llm
+        self.country_context = country_context
 
     def retrieve(
         self,
@@ -103,101 +98,55 @@ class HyDERetrieval(RetrievalStrategy):
         party_filter: Optional[str] = None,
         num_hypothetical: int = 3,
     ) -> List[models.PointStruct]:
-        """Retrieve using HyDE approach."""
-        # Generate hypothetical documents
         hypothetical_docs = self._generate_hypothetical_docs(query, num_hypothetical)
-        logger.debug(
-            f"Generated {len(hypothetical_docs)} hypothetical documents for query"
-        )
 
-        # Embed all queries (original + hypothetical)
         all_queries = [query] + hypothetical_docs
-        query_vectors = [self.embeddings.embed_query(q) for q in all_queries]
-
-        # average the query_vectors
+        query_vectors = self.embeddings.embed_documents(all_queries)
         avg_vector = np.mean(query_vectors, axis=0).tolist()
-
-        # Retrieve using averaged embedding
-        query_filter = SimpleRetrieval._build_filter(party_filter)
 
         response = self.client.query_points(
             collection_name=self.collection_name,
             query=avg_vector,
-            query_filter=query_filter,
+            query_filter=self._build_party_filter(party_filter),
             limit=limit,
             with_payload=True,
         )
-
         return response.points
 
-    def _generate_hypothetical_docs(self, query: str, num_docs: int = 3) -> List[str]:
-        """Generate hypothetical documents related to the query.
+    def _generate_hypothetical_docs(self, query: str, num_docs: int) -> List[str]:
+        if not self.llm:
+            return []
 
-        If LLM is available, uses it to generate realistic documents.
-        Otherwise, uses simple heuristic-based approach.
+        # Prompt parameterized for cross-cultural ideological variances
+        prompt = f"""
+            You are a political assistant in {self.country_context}. Generate {num_docs} short hypothetical 
+            parliamentary speech excerpts regarding: "{query}"
+
+            Rules:
+            - 1-3 sentences maximum.
+            - Mirror the authentic rhetorical style of the {self.country_context} parliament.
+            - Return ONLY the excerpts, one per line.
         """
-        if self.llm:
-            prompt = f"""
-                You are a German parliamentary assistant. Generate {num_docs} short hypothetical 
-                parliamentary speech excerpts that might contain information about: "{query}"
+        try:
+            response = self.llm.invoke(prompt)
+            text = response.content if hasattr(response, "content") else str(response)
 
-                Rules:
-                - Keep each excerpt concise (1-3 sentences)
-                - Make them sound like real parliamentary speeches
-                - Use German political terminology where appropriate
-
-                Return ONLY the speech excerpts, one per line. No numbering, no extra text.
-            """
-            try:
-                response = self.llm.invoke(prompt)
-                # Handle different response types
-                if hasattr(response, "content"):
-                    text = response.content
-                else:
-                    text = str(response)
-
-                docs = text.strip().split("\n")
-                cleaned_docs = [
-                    d.strip() for d in docs if d.strip() and len(d.strip()) > 10
-                ][:num_docs]
-
-                if cleaned_docs:
-                    logger.debug(
-                        f"Generated {len(cleaned_docs)} hypothetical docs from LLM"
-                    )
-                    return cleaned_docs
-                else:
-                    logger.warning(
-                        "LLM generated no valid hypothetical docs, using fallback"
-                    )
-            except Exception as e:
-                logger.warning(
-                    f"Failed to generate hypothetical docs from LLM: {e}, using fallback"
-                )
-
-        # Fallback: simple heuristic approach
-        fallback_docs = [
-            f"speech addressing {query} in the Bundestag",
-            f"parliamentary debate about {query} policies",
-            f"discussion on {query} implementation and effects",
-        ][:num_docs]
-        logger.debug("Using fallback hypothetical documents")
-        return fallback_docs
+            cleaned_docs = [
+                d.strip() for d in text.strip().split("\n") if len(d.strip()) > 10
+            ][:num_docs]
+            return cleaned_docs
+        except Exception as e:
+            logger.error(
+                f"HyDE LLM Generation failed: {e}. Defaulting to standard retrieval."
+            )
+            return []
 
 
 class TwoStageRetrieval(RetrievalStrategy):
-    """Two-stage retrieval: Bi-Encoder (fast) + Cross-Encoder (reranking).
-
-    First retrieves candidates using fast bi-encoder embeddings,
-    then reranks them using a cross-encoder for better precision.
-    """
+    """Bi-Encoder Retrieval + Cross-Encoder Reranking for high-precision alignment."""
 
     def __init__(
-        self,
-        client: QdrantClient,
-        collection_name: str,
-        bi_encoder,
-        cross_encoder=None,
+        self, client: QdrantClient, collection_name: str, bi_encoder, cross_encoder
     ):
         self.client = client
         self.collection_name = collection_name
@@ -209,78 +158,35 @@ class TwoStageRetrieval(RetrievalStrategy):
         query: str,
         limit: int = 3,
         party_filter: Optional[str] = None,
-        rerank_top_k: int = 10,
+        rerank_top_k: int = 15,
     ) -> List[models.PointStruct]:
-        """Retrieve using two-stage approach."""
-        # Stage 1: Fast retrieval with bi-encoder
-        candidates = self._bi_encoder_retrieval(
-            query, limit=rerank_top_k, party_filter=party_filter
-        )
-
-        if not candidates:
-            return []
-
-        # Stage 2: Rerank with cross-encoder if available
-        if self.cross_encoder:
-            candidates = self._cross_encoder_rerank(query, candidates)
-
-        return candidates[:limit]
-
-    def _bi_encoder_retrieval(
-        self,
-        query: str,
-        limit: int,
-        party_filter: Optional[str] = None,
-    ) -> List[models.PointStruct]:
-        """Stage 1: Fast retrieval using bi-encoder embeddings."""
+        # Stage 1: Fast Vector Search
         query_vector = self.bi_encoder.embed_query(query)
-        query_filter = SimpleRetrieval._build_filter(party_filter)
-
         response = self.client.query_points(
             collection_name=self.collection_name,
             query=query_vector,
-            query_filter=query_filter,
-            limit=limit,
+            query_filter=self._build_party_filter(party_filter),
+            limit=rerank_top_k,
             with_payload=True,
         )
 
-        return response.points
+        candidates = response.points
+        if not candidates or not self.cross_encoder:
+            return candidates[:limit]
 
-    def _cross_encoder_rerank(
-        self, query: str, candidates: List[models.PointStruct]
-    ) -> List[models.PointStruct]:
-        """Stage 2: Rerank candidates using cross-encoder."""
-        if not candidates:
-            return []
-
-        # Prepare pairs: (query, document_text)
-        pairs = [[query, candidate.payload.get("text", "")] for candidate in candidates]
-
-        # Get cross-encoder scores
+        # Stage 2: Cross-Encoder Reranking
+        pairs = [[query, c.payload.get("text", "")] for c in candidates]
         scores = self.cross_encoder.predict(pairs)
 
-        # Sort by cross-encoder scores
-        scored_candidates = [
-            (candidate, score) for candidate, score in zip(candidates, scores)
-        ]
-        scored_candidates.sort(key=lambda x: x[1], reverse=True)
-
-        # Update scores in candidates
-        reranked = []
-        for candidate, score in scored_candidates:
+        for candidate, score in zip(candidates, scores):
             candidate.score = float(score)
-            reranked.append(candidate)
 
-        return reranked
+        return sorted(candidates, key=lambda x: x.score, reverse=True)[:limit]
 
 
 class PoliticalRAGRetriever:
-    """Main retriever for political bias detection using RAG.
-
-    Supports multiple retrieval strategies:
-    - Simple: Basic semantic similarity
-    - HyDE: Hypothetical Document Embeddings
-    - TwoStage: Bi-Encoder + Cross-Encoder reranking
+    """
+    Main RAG orchestrator optimized for CHES validation and bias classification.
     """
 
     EMBEDDING_MODEL = "paraphrase-multilingual-MiniLM-L12-v2"
@@ -291,69 +197,52 @@ class PoliticalRAGRetriever:
         qdrant_url: str = "http://localhost:6333",
         chunk_collection: str = "bundestag_speeches_chunks",
         retrieval_mode: str = "simple",
+        country_context: str = "Germany",
         llm=None,
     ):
-        """Initialize Political RAG Retriever.
-
-        Args:
-            qdrant_url: URL to Qdrant instance
-            chunk_collection: Name of collection with speech chunks
-            retrieval_mode: 'simple', 'hyde', or 'two_stage'
-            llm: Optional LLM for HyDE document generation
-        """
         self.client = QdrantClient(url=qdrant_url)
         self.collection_name = chunk_collection
+        self.country_context = country_context
+
+        logger.info(f"Loading Bi-Encoder: {self.EMBEDDING_MODEL}")
         self.embeddings = HuggingFaceEmbeddings(model_name=self.EMBEDDING_MODEL)
 
-        # Initialize retrieval strategy
         self.retrieval_strategy = self._init_retrieval_strategy(retrieval_mode, llm)
 
-    def _init_retrieval_strategy(
-        self, retrieval_mode: str, llm=None
-    ) -> RetrievalStrategy:
-        """Initialize the appropriate retrieval strategy."""
-        mode = retrieval_mode.lower()
-
+    def _init_retrieval_strategy(self, mode: str, llm) -> RetrievalStrategy:
+        mode = mode.lower()
         if mode == "hyde":
-            # If no LLM provided, initialize Ollama Gemma3
-            if llm is None:
+            if not llm:
                 try:
-                    logger.info("Initializing Ollama Gemma3 LLM for HyDE...")
+                    logger.info("Initializing local Ollama LLM for HyDE...")
                     llm = OllamaLLM(model="gemma3", base_url="http://localhost:11434")
-                    # Test connection
-                    _ = llm.invoke("test")
-                    logger.info("Successfully connected to Ollama Gemma3")
                 except Exception as e:
                     logger.warning(
-                        f"Failed to connect to Ollama: {e}. "
-                        "HyDE will use fallback mode."
+                        f"Ollama connection failed: {e}. HyDE will operate in fallback mode."
                     )
-                    llm = None
-
             return HyDERetrieval(
-                self.client, self.collection_name, self.embeddings, llm
+                self.client,
+                self.collection_name,
+                self.embeddings,
+                llm,
+                self.country_context,
             )
+
         elif mode == "two_stage":
             try:
                 from sentence_transformers import CrossEncoder
 
+                logger.info(f"Loading Cross-Encoder: {self.CROSS_ENCODER_MODEL}")
                 cross_encoder = CrossEncoder(self.CROSS_ENCODER_MODEL)
                 return TwoStageRetrieval(
-                    self.client,
-                    self.collection_name,
-                    self.embeddings,
-                    cross_encoder,
+                    self.client, self.collection_name, self.embeddings, cross_encoder
                 )
             except ImportError:
-                logger.warning(
-                    "sentence-transformers not available. "
-                    "Falling back to simple retrieval."
+                logger.error(
+                    "sentence-transformers missing. Falling back to simple retrieval."
                 )
-                return SimpleRetrieval(
-                    self.client, self.collection_name, self.embeddings
-                )
-        else:  # default to simple
-            return SimpleRetrieval(self.client, self.collection_name, self.embeddings)
+
+        return SimpleRetrieval(self.client, self.collection_name, self.embeddings)
 
     def search(
         self,
@@ -361,118 +250,54 @@ class PoliticalRAGRetriever:
         limit: int = 3,
         party_filter: Optional[str] = None,
     ) -> List[models.PointStruct]:
-        """Execute search using configured retrieval strategy."""
+        """
+        Executes a standard Top-K search using the active retrieval strategy.
+        Returns raw Qdrant PointStructs.
+        """
         return self.retrieval_strategy.retrieve(
-            query, limit=limit, party_filter=party_filter
+            query=query, limit=limit, party_filter=party_filter
         )
 
-    @lru_cache(maxsize=128)
-    def _get_cached_speech_uuid(self, raw_speech_id: str) -> str:
-        """Cache UUID generation for performance."""
-        return str(uuid.uuid5(uuid.NAMESPACE_DNS, raw_speech_id))
-
-    def get_parent_speech(self, raw_speech_id: str) -> Optional[str]:
-        """Retrieve full speech text by speech_id."""
-        speech_uuid = self._get_cached_speech_uuid(raw_speech_id)
-
-        try:
-            result = self.client.retrieve(
-                collection_name="bundestag_speeches",
-                ids=[speech_uuid],
-                with_payload=True,
-            )
-            return result[0].payload["full_text"] if result else None
-        except Exception as e:
-            print(f"Error retrieving speech {raw_speech_id}: {e}")
-            return None
-
-    def retrieve_for_bias_analysis(
-        self,
-        query: str,
-        party_filter: Optional[str] = None,
-        include_metadata: bool = True,
+    def retrieve_for_validation(
+        self, query: str, party_filter: Optional[str] = None
     ) -> Optional[Dict[str, Any]]:
-        """Retrieve relevant context for bias analysis.
-
-        Args:
-            query: Query text
-            party_filter: Optional filter for specific party
-            include_metadata: Whether to include full metadata
-
-        Returns:
-            Dictionary with relevant chunk, full context, and metadata
         """
-        chunks = self.search(query, limit=1, party_filter=party_filter)
-
+        Retrieves context formatted explicitly for the CHES validation pipeline.
+        Ensures `year`, `country`, and `party` exist for accurate cross-walking.
+        """
+        chunks = self.retrieval_strategy.retrieve(
+            query, limit=1, party_filter=party_filter
+        )
         if not chunks:
             return None
 
-        best_chunk = chunks[0]
-        payload = best_chunk.payload
+        chunk = chunks[0]
+        payload = chunk.payload
+        date_str = payload.get("date")
 
-        speech_id = payload.get("speech_id")
-        full_text = self.get_parent_speech(speech_id) if speech_id else None
-
-        result = {
-            "relevant_chunk": payload.get("text"),
-            "full_context": full_text,
-            "similarity_score": best_chunk.score,
+        return {
+            "query": query,
+            "text_chunk": payload.get("text"),
+            "similarity_score": chunk.score,
+            # CRITICAL METADATA FOR CHES MERGING
+            "party_id": payload.get("party"),
+            "country": self.country_context,
+            "year": self._extract_year(date_str),
+            "date": date_str,
+            "speaker": payload.get("speaker"),
+            "speech_id": payload.get("speech_id"),
         }
 
-        if include_metadata:
-            result["metadata"] = {
-                "speech_id": speech_id,
-                "speaker": payload.get("speaker"),
-                "party": payload.get("party"),
-                "date": payload.get("date"),
-                "interjections": payload.get("interjections", []),
-            }
-
-        return result
-
-    def batch_retrieve(
-        self,
-        queries: List[str],
-        limit: int = 3,
-        party_filter: Optional[str] = None,
-    ) -> List[List[models.PointStruct]]:
-        """Retrieve for multiple queries efficiently."""
-        return [
-            self.search(query, limit=limit, party_filter=party_filter)
-            for query in queries
-        ]
-
-    def print_results(
-        self, points: List[models.PointStruct], verbose: bool = False
-    ) -> None:
-        """Print formatted retrieval results."""
-        print("-" * 70)
-        if not points:
-            print("No results found.")
-            return
-
-        for i, hit in enumerate(points, 1):
-            payload = hit.payload
-            self._print_hit(i, hit, verbose)
-
-        print("-" * 70)
-
-    @staticmethod
-    def _print_hit(index: int, hit: models.PointStruct, verbose: bool = False) -> None:
-        """Print a single hit result."""
-        payload = hit.payload
-
-        print(f"\nResult {index} | Similarity Score: {hit.score:.4f}")
-        print(
-            f"Speaker: {payload.get('speaker')} ({payload.get('party')}) | "
-            f"Date: {payload.get('date')}"
-        )
-        print(f"Speech ID: {payload.get('speech_id')}")
-        print(f"Text:\n{payload.get('text')[:500]}...")  # First 500 chars
-
-        interjections = payload.get("interjections", [])
-        if interjections:
-            print(f"Interjections: {interjections}")
-
-        if verbose:
-            print(f"Full Payload: {payload}")
+    def batch_retrieve_for_validation(
+        self, queries: List[str], party_filter: Optional[str] = None
+    ) -> List[Dict[str, Any]]:
+        """
+        Yields a list of dictionaries ready to be converted into a Pandas DataFrame
+        and fed directly into the `RAGPoliticalValidator.evaluate()` method.
+        """
+        results = []
+        for query in queries:
+            res = self.retrieve_for_validation(query, party_filter)
+            if res:
+                results.append(res)
+        return results

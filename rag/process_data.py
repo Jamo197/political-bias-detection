@@ -13,8 +13,7 @@ from qdrant_client.http import models
 from tqdm import tqdm
 
 load_dotenv(Path(".env.local"))
-# FIXME: setup token correctly
-os.environ["HF_TOKEN"] = ""
+os.environ["HF_TOKEN"] = os.getenv("HT_TOKEN")
 
 
 class PoliticalRAGIngestor:
