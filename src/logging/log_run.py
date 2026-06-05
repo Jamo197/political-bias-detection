@@ -7,6 +7,7 @@ from typing import Any, Dict, List, Optional
 def log_evaluation_run(
     input_text: str,
     llm_choice: str,
+    llm_region: str,
     retrieval_mode: str,
     k_chunks: int,
     hyde_docs: List[str],
@@ -27,7 +28,8 @@ def log_evaluation_run(
     Parameters
     ----------
     input_text        : The raw text that was analysed.
-    llm_choice        : LLM provider used (Mistral / OpenAI / Gemini).
+    llm_choice        : LLM provider string slug path.
+    llm_region        : Sovereign origin region of the model deployment target.
     retrieval_mode    : RAG strategy used (Simple / TwoStage / HyDE).
     k_chunks          : Number of chunks retrieved (top-K).
     hyde_docs         : List of HyDE-generated hypothetical documents (empty if not HyDE).
@@ -46,6 +48,7 @@ def log_evaluation_run(
         "timestamp": datetime.datetime.now().isoformat(),
         "parameters": {
             "llm": llm_choice,
+            "llm_region": llm_region, 
             "retrieval_mode": retrieval_mode,
             "k_chunks": k_chunks,
         },

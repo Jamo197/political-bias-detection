@@ -17,11 +17,23 @@ from rag.retrieval import PoliticalRAGRetriever
 # Global Configurations & Constants
 # ---------------------------------------------------------------------------
 RETRIEVAL_MODES = ["Simple", "TwoStage", "HyDE"]
+
 LLM_MODELS = {
-    "GPT-4o Mini": "openai/gpt-4o-mini",
-    "Llama 3.1 70b": "meta-llama/llama-3.1-70b-instruct",
-    "Mistral Small": "mistralai/mistral-small-latest"
+    # --- European Model ---
+    "Mistral Small 2603": {"id": "mistralai/mistral-small-2603", "region": "Europe"},
+    
+    # --- American Models ---
+    "GPT-5.4 Mini": {"id": "openai/gpt-5.4-mini", "region": "Americas"},
+    "Claude Sonnet 4.6": {"id": "anthropic/claude-sonnet-4.6", "region": "Americas"},
+    "Grok 4.3": {"id": "x-ai/grok-4.3", "region": "Americas"},
+    "Gemini 3.5 Flash": {"id": "google/gemini-3.5-flash", "region": "Americas"},
+    "Llama 4 Maverick": {"id": "meta-llama/llama-4-maverick", "region": "Americas"},
+    
+    # --- Chinese Models ---
+    "DeepSeek V4 Flash": {"id": "deepseek/deepseek-v4-flash", "region": "China"},
+    "Qwen 3.7 Plus": {"id": "qwen/qwen3.7-plus", "region": "China"}
 }
+
 DATA_PATH = (
     "src/datasets/dataset_final_merged_with_mbfc_labels_without_duplicates_index_reset"
     "_anonymized_5_party_labels_media_labels_author_labels_stance_labels.csv"
@@ -38,6 +50,7 @@ SESSION_STATE_DEFAULTS = {
     "hyde_docs": [],
     "prediction": None,
     "active_model_id": "",
+    "active_model_region": "",
     "active_retrieval_mode": "",
 }
 
@@ -141,19 +154,26 @@ def init_session_state():
             st.session_state[key] = value
 
 
-def render_sidebar() -> Tuple[str, str, int]:
+def render_sidebar() -> Tuple[str, str, str, int]:
     """Renders layout selection bars and manages configuration state variables."""
     with st.sidebar:
         st.header("Pipeline Configuration")
-        llm_label = st.selectbox("LLM Provider Target", list(LLM_MODELS.keys()))
-        selected_model_id = LLM_MODELS[llm_label]
+        
+        # Display regional badges inside the dropdown selections for better clarity
+        llm_label = st.selectbox(
+            "LLM Provider Target", 
+            list(LLM_MODELS.keys()),
+            format_func=lambda x: f"{x} ({LLM_MODELS[x]['region']})"
+        )
+        selected_model_id = LLM_MODELS[llm_label]["id"]
+        selected_model_region = LLM_MODELS[llm_label]["region"]
 
         st.divider()
         st.subheader("RAG Parameters")
         retrieval_mode = st.selectbox("Retrieval Method", RETRIEVAL_MODES)
         k_chunks = st.slider("Top-K Chunks", min_value=1, max_value=10, value=3)
         
-    return selected_model_id, retrieval_mode, k_chunks
+    return selected_model_id, selected_model_region, retrieval_mode, k_chunks
 
 
 def render_input_section(df: pd.DataFrame):
@@ -234,7 +254,7 @@ def render_retrieval_section(retriever: Optional[PoliticalRAGRetriever], mode: s
                 meta_cols[2].caption(f"Date: **{chunk.get('date', '—')}**")
 
 
-def render_prediction_section(evaluator: BiasPredictor, retriever: Optional[PoliticalRAGRetriever], model_id: str, mode: str, k: int):
+def render_prediction_section(evaluator: BiasPredictor, retriever: Optional[PoliticalRAGRetriever], model_id: str, model_region: str, mode: str, k: int):
     """Dispatches processing frames directly out to OpenRouter endpoints and evaluates variance against CHES tables."""
     st.subheader("4. Bias Prediction")
     input_text = st.session_state["input_text"]
@@ -256,6 +276,7 @@ def render_prediction_section(evaluator: BiasPredictor, retriever: Optional[Poli
             
             st.session_state["prediction"] = prediction
             st.session_state["active_model_id"] = model_id
+            st.session_state["active_model_region"] = model_region
             st.session_state["active_retrieval_mode"] = mode
             
             lrecon, galtan, lrgen = evaluator._get_closest_ches_score(current_party, current_year)
@@ -263,6 +284,7 @@ def render_prediction_section(evaluator: BiasPredictor, retriever: Optional[Poli
             log_evaluation_run(
                 input_text=input_text,
                 llm_choice=model_id,
+                llm_region=model_region,
                 retrieval_mode=mode,
                 k_chunks=k,
                 hyde_docs=st.session_state["hyde_docs"],
@@ -284,18 +306,23 @@ def render_prediction_section(evaluator: BiasPredictor, retriever: Optional[Poli
         return
 
     predicted_score = prediction.get("bias_score")
-    p_col, _ = st.columns([2, 3])
+    p_col, region_col = st.columns([3, 2])
     
     if isinstance(predicted_score, (int, float)):
-        # CRITICAL FIX: Reference the frozen snapshot model, NOT the fluctuating sidebar selection
         actual_model_id = st.session_state.get("active_model_id", model_id)
-        friendly_name = next((k for k, v in LLM_MODELS.items() if v == actual_model_id), actual_model_id)
+        actual_region = st.session_state.get("active_model_region", model_region)
+        friendly_name = next((k for k, v in LLM_MODELS.items() if v["id"] == actual_model_id), actual_model_id)
         
         p_col.metric(
             label=f"{friendly_name} Predicted Bias",
             value=f"{predicted_score:.1f} / 10",
             delta=get_bias_label(predicted_score),
             delta_color="off",
+        )
+
+        region_col.metric(
+            label="Model Sovereign Origin",
+            value=actual_region
         )
     else:
         p_col.error("Prediction failed — see justification below.")
@@ -346,17 +373,15 @@ def run_streamlit_app():
 
     init_session_state()
     
-    # Persistent resource extraction layers
     evaluator = get_evaluator()
     df = load_test_dataset()
 
-    # Layout Rendering Flow
-    model_id, retrieval_mode, k_chunks = render_sidebar()
+    model_id, model_region, retrieval_mode, k_chunks = render_sidebar()
     retriever = get_retriever(retrieval_mode)
 
     render_input_section(df)
     render_retrieval_section(retriever, retrieval_mode, k_chunks)
-    render_prediction_section(evaluator, retriever, model_id, retrieval_mode, k_chunks)
+    render_prediction_section(evaluator, retriever, model_id, model_region, retrieval_mode, k_chunks)
 
 
 if __name__ == "__main__":
