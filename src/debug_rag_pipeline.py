@@ -28,7 +28,7 @@ if str(_ROOT) not in sys.path:
     sys.path.insert(0, str(_ROOT))
 
 from src.logging.log_run import log_evaluation_run
-from rag.evaluator import BaselineEvaluator
+from rag.evaluator import BiasPredictor
 from rag.retrieval import PoliticalRAGRetriever
 
 # ---------------------------------------------------------------------------
@@ -86,9 +86,9 @@ def load_test_dataset() -> pd.DataFrame:
         raise FileNotFoundError(f"Test dataset not found at `{DATA_PATH}`")
 
 
-def get_evaluator() -> BaselineEvaluator:
+def get_evaluator() -> BiasPredictor:
     """Singleton evaluator (holds API clients + CHES DB)."""
-    return BaselineEvaluator()
+    return BiasPredictor()
 
 
 def get_retriever(mode: str) -> Optional[PoliticalRAGRetriever]:

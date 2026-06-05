@@ -74,5 +74,9 @@ def log_evaluation_run(
     os.makedirs(logs_dir, exist_ok=True)
     filepath_full = os.path.join(logs_dir, filepath)
 
+    if not os.path.exists(filepath_full):
+        with open(filepath_full, "w", encoding="utf-8"):
+            pass
+
     with open(filepath_full, "a", encoding="utf-8") as f:
         f.write(json.dumps(log_entry, ensure_ascii=False) + "\n")
