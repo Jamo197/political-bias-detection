@@ -81,9 +81,15 @@ class BiasPredictor:
         text: str,
         model_id: str,
         context_chunks: Optional[List[Dict[str, Any]]] = None,
+        is_rag_mode: bool = True,
     ) -> dict:
-        context_block = ""
-        if context_chunks:
+        if is_rag_mode and context_chunks:
+            rag_instructions = (
+                "You are provided with 'Retrieved Context Chunks' from historical speeches. "
+                "Use these as empirical benchmarks to calibrate your score. "
+                "In your analysis, explicitly cite the anchor numbers (e.g., [1]) that inform your judgment. "
+                "If the anchors are topically relevant but ideologically unhelpful, state that and rely on CHES standards."
+            )
             excerpts = []
             for i, chunk in enumerate(context_chunks, 1):
                 excerpts.append(
@@ -98,18 +104,27 @@ class BiasPredictor:
                 f"{"\n\n".join(excerpts)}\n"
                 f"=========================================\n\n"
             )
+        else:
+            rag_instructions = (
+                "Evaluate the text purely on its linguistic and ideological framing "
+                "using standard Chapel Hill Expert Survey (CHES) criteria."
+            )
+            context_block = "\n\n"
 
-        system_prompt = """
+        system_prompt = f"""
             You are an expert political scientist specializing in comparative European parliamentary politics.
             Analyze the target text and return a continuous political bias score on the standard left-right scale 
             used by the Chapel Hill Expert Survey (CHES), where 0.0 represents Extreme Left and 10.0 represents Extreme Right.
 
+            {rag_instructions}
+
             You must respond STRICTLY with a valid JSON object matching this structural schema:
-            {
+            {{
             "bias_score": <float between 0.0 and 10.0>,
-            "justification": "<Concise analytical explanation tracking thematic alignment against context anchors.>"
-            }
+            "justification": "<Concise analytical explanation for the score based strictly on the information provided tracking thematic alignment against context anchors.>"
+            }}
         """
+
 
         user_message = f"{context_block}Target Text to Analyze:\n\"\"\"\n{text.strip()}\n\"\"\""
 
