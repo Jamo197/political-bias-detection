@@ -3,11 +3,15 @@ Political RAG Bias Detector — Streamlit Application
 =====================================================
 Pipeline:
   1. Provide / load text  (+ optional metadata from DB)
-  2. Choose retrieval method (Simple / TwoStage / HyDE)
-  3. Inspect retrieved chunks with metadata
-  4. LLM predicts bias score (0-10) with optional justification
-  5. Compare against CHES ground truth
-  6. Results are logged to disk
+  2. Choose retrieval method (Simple / TwoStage / HyDE) — retriever is
+     initialised eagerly at sidebar render time so HF model downloads
+     happen once on startup, not on first button click.
+  3. Click "Retrieve Chunks" to fetch and inspect relevant excerpts.
+  4. Click "Run Prediction" — auto-retrieves first if step 3 was skipped,
+     then asks the LLM to predict the bias score (0-10) with justification.
+  5. Compare against CHES ground truth.
+  6. Results are logged to disk.
+  Use "Start New" to reset and analyse a different text.
 """
 
 import sys
@@ -23,7 +27,7 @@ if str(_ROOT) not in sys.path:
     sys.path.insert(0, str(_ROOT))
 
 from src.logging.log_run import log_evaluation_run
-from src.prediction.bias_prediction import BaselineEvaluator
+from rag.evaluator import BaselineEvaluator
 
 # ---------------------------------------------------------------------------
 # Constants
@@ -41,6 +45,15 @@ DATA_PATH = (
 QDRANT_URL = "http://localhost:6333"
 COLLECTION_NAME = "bundestag_speeches_chunks"
 
+_SESSION_RESET_KEYS = [
+    "input_text",
+    "meta_party",
+    "meta_speaker",
+    "meta_year",
+    "retrieved_chunks",
+    "hyde_docs",
+    "prediction",
+]
 
 # ---------------------------------------------------------------------------
 # Helpers
@@ -73,6 +86,11 @@ def load_test_dataset() -> pd.DataFrame:
     try:
         df = pd.read_csv(DATA_PATH)
         df["full_text"] = df["full_text"].astype(str).str.replace("/comma", ",", regex=False)
+        rename_dict = {
+            "B90Grune": "BÜNDNIS 90/DIE GRÜNEN",
+            "Linke": "DIE LINKE"
+        }
+        df["party"] = df["party"].replace(rename_dict)
         return df
     except FileNotFoundError:
         st.error(f"Test dataset not found at `{DATA_PATH}`")
@@ -88,11 +106,11 @@ def get_evaluator() -> BaselineEvaluator:
 @st.cache_resource
 def get_retriever(mode: str):
     """
-    Lazily constructs a PoliticalRAGRetriever for the chosen mode.
-    Normalises the UI label to the internal key expected by PoliticalRAGRetriever.
+    Constructs and caches a PoliticalRAGRetriever for the chosen mode.
+    Called eagerly after the sidebar selectbox so HF model downloads happen
+    at app init rather than on first button click.
     Returns None if Qdrant is unavailable.
     """
-    # Map UI labels → internal retrieval_mode keys
     _MODE_MAP = {
         "simple": "simple",
         "twostage": "two_stage",
@@ -121,6 +139,7 @@ def chunks_to_context_dicts(points) -> List[Dict[str, Any]]:
             {
                 "text": payload.get("text", ""),
                 "party": payload.get("party", ""),
+                "country": payload.get("country", ""),
                 "speaker": payload.get("speaker", ""),
                 "date": payload.get("date", ""),
                 "speech_id": payload.get("speech_id", ""),
@@ -128,6 +147,12 @@ def chunks_to_context_dicts(points) -> List[Dict[str, Any]]:
             }
         )
     return result
+
+
+def reset_session():
+    """Clears all run-specific session state keys and triggers a rerun."""
+    for key in _SESSION_RESET_KEYS:
+        st.session_state.pop(key, None)
 
 
 # ---------------------------------------------------------------------------
@@ -155,26 +180,38 @@ def run_streamlit_app():
         retrieval_mode = st.selectbox("Retrieval Method", RETRIEVAL_MODES)
         k_chunks = st.slider("Top-K Chunks", min_value=1, max_value=10, value=3)
 
+    # Eagerly init retriever for the selected mode — this warms up HF model
+    # downloads on app start (and on mode switch) rather than on first click.
+    retriever = get_retriever(retrieval_mode)
+
     # -----------------------------------------------------------------------
     # Step 1 — Text Input
     # -----------------------------------------------------------------------
     st.subheader("1. Text Input")
 
-    col_btn, col_info = st.columns([1, 4])
-    with col_btn:
+    col_load, col_reset, col_info = st.columns([1, 1, 4])
+    with col_load:
         if st.button("Load Random Row", disabled=df.empty):
             sample = df.sample(1).iloc[0]
             st.session_state["input_text"] = str(sample.get("full_text", ""))
             st.session_state["meta_party"] = str(sample.get("party", ""))
-            st.session_state["meta_speaker"] = str(sample.get("twitter_handle", sample.get("author", "")))
+            st.session_state["meta_speaker"] = str(
+                sample.get("twitter_handle", sample.get("author", ""))
+            )
             raw_year = sample.get("year", sample.get("date", "2021"))
             try:
                 st.session_state["meta_year"] = int(str(raw_year)[:4])
             except (ValueError, TypeError):
                 st.session_state["meta_year"] = 2021
+            # Clear stale results from a previous run
+            for key in ("retrieved_chunks", "hyde_docs", "prediction"):
+                st.session_state.pop(key, None)
 
-    # Default must be set before the widget is first rendered so Streamlit
-    # can pick it up via the key — never pass both value= and key= together.
+    with col_reset:
+        if st.button("Start New"):
+            reset_session()
+            st.rerun()
+
     if "input_text" not in st.session_state:
         st.session_state["input_text"] = ""
 
@@ -192,7 +229,6 @@ def run_streamlit_app():
         "Pre-filled when loading from dataset or retrieved from the vector DB. "
         "Used for CHES ground truth lookup."
     )
-    # Initialise metadata defaults once — widgets read from session state via key
     if "meta_party" not in st.session_state:
         st.session_state["meta_party"] = ""
     if "meta_speaker" not in st.session_state:
@@ -216,66 +252,69 @@ def run_streamlit_app():
     # -----------------------------------------------------------------------
     st.subheader("2. Retrieval")
 
-    retrieved_chunks: List[Dict[str, Any]] = []
-    hyde_docs: List[str] = []
+    def _do_retrieve() -> tuple:
+        """Run retrieval and return (retrieved_chunks, hyde_docs). Writes to session state."""
+        chunks: List[Dict[str, Any]] = []
+        docs: List[str] = []
 
-    if st.button("Retrieve Chunks", disabled=not input_text.strip()):
-        retriever = get_retriever(retrieval_mode)
         if retriever is None:
             st.error("Retriever unavailable — check Qdrant connection.")
-        else:
-            # Warn if HyDE mode was selected but Ollama is not available
-            if retrieval_mode == "HyDE":
-                strategy = retriever.retrieval_strategy
-                if getattr(strategy, "llm", None) is None:
-                    st.warning(
-                        "HyDE selected but Ollama is unavailable "
-                        "(is `ollama serve` running with the `gemma3` model?). "
-                        "Falling back to plain vector search without hypothetical documents."
-                    )
+            return chunks, docs
 
-            with st.spinner(f"Running {retrieval_mode} retrieval..."):
-                try:
-                    # For HyDE we want to surface the generated hypothetical docs
-                    if retrieval_mode == "HyDE":
-                        strategy = retriever.retrieval_strategy
-                        hyde_docs = strategy._generate_hypothetical_docs(input_text, num_docs=3)
+        if retrieval_mode == "HyDE":
+            strategy = retriever.retrieval_strategy
+            if getattr(strategy, "llm", None) is None:
+                st.warning(
+                    "HyDE selected but Ollama is unavailable "
+                    "(is `ollama serve` running with the `gemma3` model?). "
+                    "Falling back to plain vector search without hypothetical documents."
+                )
 
-                    points = retriever.search(
-                        query=input_text,
-                        limit=k_chunks,
-                    )
-                    retrieved_chunks = chunks_to_context_dicts(points)
-                    st.session_state["retrieved_chunks"] = retrieved_chunks
-                    st.session_state["hyde_docs"] = hyde_docs
+        with st.spinner(f"Running {retrieval_mode} retrieval..."):
+            try:
+                if retrieval_mode == "HyDE":
+                    strategy = retriever.retrieval_strategy
+                    docs = strategy._generate_hypothetical_docs(input_text, num_docs=3)
 
-                    # Attempt to back-fill metadata from top-1 chunk if not yet set
-                    if retrieved_chunks and not st.session_state.get("meta_party"):
-                        top = retrieved_chunks[0]
-                        st.session_state["meta_party"] = top.get("party", "")
-                        st.session_state["meta_speaker"] = top.get("speaker", "")
-                        date_str = top.get("date", "")
-                        if date_str:
-                            try:
-                                st.session_state["meta_year"] = int(date_str[:4])
-                            except ValueError:
-                                pass
-                        st.rerun()
+                points = retriever.search(query=input_text, limit=k_chunks)
+                chunks = chunks_to_context_dicts(points)
 
-                except Exception as e:
-                    st.error(f"Retrieval failed: {e}")
+                # Back-fill metadata from top-1 chunk if not yet set
+                if chunks and not st.session_state.get("meta_party"):
+                    top = chunks[0]
+                    st.session_state["meta_party"] = top.get("party", "")
+                    st.session_state["meta_speaker"] = top.get("speaker", "")
+                    date_str = top.get("date", "")
+                    if date_str:
+                        try:
+                            st.session_state["meta_year"] = int(date_str[:4])
+                        except ValueError:
+                            pass
 
-    # Persist chunks across reruns
-    retrieved_chunks = st.session_state.get("retrieved_chunks", retrieved_chunks)
-    hyde_docs = st.session_state.get("hyde_docs", hyde_docs)
+            except Exception as e:
+                st.error(f"Retrieval failed: {e}")
 
-    # 2a — Show HyDE generated docs
+        st.session_state["retrieved_chunks"] = chunks
+        st.session_state["hyde_docs"] = docs
+        return chunks, docs
+
+    if st.button("Retrieve Chunks", disabled=not input_text.strip() or retriever is None):
+        _do_retrieve()
+        st.rerun()
+
+    # Persist state across reruns
+    retrieved_chunks: List[Dict[str, Any]] = st.session_state.get("retrieved_chunks", [])
+    hyde_docs: List[str] = st.session_state.get("hyde_docs", [])
+
+    # 2a — HyDE hypothetical docs
     if retrieval_mode == "HyDE" and hyde_docs:
         with st.expander("HyDE: Generated Hypothetical Documents", expanded=False):
             for i, doc in enumerate(hyde_docs, 1):
                 st.markdown(f"**Excerpt {i}:** {doc}")
 
-    # Step 3 — Display retrieved chunks
+    # -----------------------------------------------------------------------
+    # Step 3 — Retrieved Chunks
+    # -----------------------------------------------------------------------
     if retrieved_chunks:
         st.subheader("3. Retrieved Chunks")
         for i, chunk in enumerate(retrieved_chunks, 1):
@@ -292,21 +331,23 @@ def run_streamlit_app():
                 meta_cols[2].caption(f"Date: **{chunk.get('date', '—')}**")
 
     # -----------------------------------------------------------------------
-    # Step 4 — LLM Prediction
+    # Step 4 — Bias Prediction
     # -----------------------------------------------------------------------
     st.subheader("4. Bias Prediction")
 
     if st.button("Run Prediction", type="primary", disabled=not input_text.strip()):
-        context_for_llm = retrieved_chunks if retrieved_chunks else None
+        # Auto-retrieve if the user skipped step 2
+        if not retrieved_chunks:
+            retrieved_chunks, hyde_docs = _do_retrieve()
 
         with st.spinner(f"Predicting with {llm_choice}..."):
             prediction = evaluator.predict_bias(
                 text=input_text,
                 model_provider=llm_choice,
-                context_chunks=context_for_llm,
+                context_chunks=retrieved_chunks if retrieved_chunks else None,
             )
-
         st.session_state["prediction"] = prediction
+        st.rerun()
 
     prediction = st.session_state.get("prediction")
 
@@ -324,7 +365,6 @@ def run_streamlit_app():
         else:
             p_col.error("Prediction failed — see justification below.")
 
-        # 4a — Explanation (optional toggle)
         with st.expander("Show Justification", expanded=False):
             st.info(prediction.get("justification", "No justification returned."))
 
@@ -340,18 +380,15 @@ def run_streamlit_app():
             current_party, current_year
         )
 
-        # Input text ground truth
         gt_col1, gt_col2, gt_col3, gt_col4 = st.columns(4)
         gt_col1.metric("CHES lrgen (input text)", f"{lrgen:.2f}" if lrgen is not None else "N/A")
         gt_col2.metric("CHES lrecon", f"{lrecon:.2f}" if lrecon is not None else "N/A")
         gt_col3.metric("CHES galtan", f"{galtan:.2f}" if galtan is not None else "N/A")
 
         if isinstance(predicted_score, (int, float)) and lrgen is not None:
-            # Rescale lrgen (CHES 0-10 scale) for direct comparison
             delta = abs(predicted_score - lrgen)
             gt_col4.metric("Absolute Error (lrgen)", f"{delta:.2f}")
 
-        # Retrieved chunks — CHES scores per chunk
         if retrieved_chunks:
             st.markdown("**CHES scores of retrieved chunk parties:**")
             chunk_ches_rows = []
@@ -400,11 +437,21 @@ def run_streamlit_app():
         st.success("Run logged to `logs/evaluation_logs.jsonl`.")
 
 
-# ---------------------------------------------------------------------------
-# Entry point
-# ---------------------------------------------------------------------------
-
 if __name__ == "__main__":
     run_streamlit_app()
 else:
     run_streamlit_app()
+
+
+# TODO:
+# Check if the process is running correctly with the evaluator and retriever 
+# Check if the parties are mapped correctly for the CHES lookup
+# Check the score, it looked weird for HyDE
+# Also add that the process can run without streamlit, e.g. via a CLI interface or as a pure function call, for easier testing and integration into other pipelines.
+
+# HyDE retrieval are in german and english:
+# Excerpt 1: Here are three hypothetical parliamentary speech excerpts, mirroring the style of the German parliament, responding to the provided statement:
+
+# Excerpt 2: “Meine Damen und Herren, diese Rhetorik der Ausgrenzung ist nicht nur moralisch verwerflich, sondern eine katastrophale Strategie. To blame Eastern Europeans for logistical challenges is a deliberate attempt to deflect responsibility from systemic failures – a dangerous game indeed.”
+
+# Excerpt 3: “Wir dürfen uns nicht von nationalistischen Simplizitäten blenden lassen. The consequences of such policies are precisely those we now witness: shortages, soaring prices, and a destabilized economy. This demands a sober and pragmatic response, not inflammatory accusations.”
