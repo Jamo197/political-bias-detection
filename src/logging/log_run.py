@@ -63,7 +63,7 @@ def log_evaluation_run(
             "retrieved_chunks": retrieved_chunks,
         },
         "output": {
-            "score": output_score,
+            "bias": output_score,
             "justification": output_justification,
         },
         "ches_ground_truth": {
@@ -73,7 +73,8 @@ def log_evaluation_run(
         },
     }
 
-    logs_dir = "logs"
+    current_date = datetime.datetime.now().strftime("%Y-%m-%d")
+    logs_dir = f"logs/batch_runs/{current_date}/{retrieval_mode}"
     os.makedirs(logs_dir, exist_ok=True)
     filepath_full = os.path.join(logs_dir, filepath)
 

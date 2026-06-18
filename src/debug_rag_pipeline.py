@@ -339,7 +339,7 @@ def main():
     parser.add_argument(
         "--mode",
         choices=[m.lower() for m in RETRIEVAL_MODES],
-        default="simple",
+        default="twostage",
         help="Retrieval mode (default: simple)",
     )
     parser.add_argument(

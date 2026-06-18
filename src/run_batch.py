@@ -6,42 +6,86 @@ from pathlib import Path
 import pandas as pd
 from tqdm import tqdm
 
-# Adjust local workspace resolution paths
-_ROOT = Path(__file__).resolve().parent
+# Adjust local workspace resolution paths to match root configuration
+# Streamlit uses parents[1] assuming it runs inside a subdirectory (e.g., src/ or app/)
+# Adjust this path depth if your batch script is placed elsewhere.
+_ROOT = Path(__file__).resolve().parents[1] if Path(__file__).resolve().parent.name in ["src", "scripts", "app"] else Path(__file__).resolve().parent
 if str(_ROOT) not in sys.path:
     sys.path.insert(0, str(_ROOT))
 
 from rag.retrieval import PoliticalRAGRetriever
 from rag.evaluator import BiasPredictor
-# Import your custom logging implementation
 from src.logging.log_run import log_evaluation_run
 
-# Execution Tuning Configurations
+# ---------------------------------------------------------------------------
+# Execution Tuning Configurations & Parameter Mappings
+# ---------------------------------------------------------------------------
 DATA_PATH = _ROOT / "src/datasets/dataset_final_merged_with_mbfc_labels_without_duplicates_index_reset_anonymized_5_party_labels_media_labels_author_labels_stance_labels.csv"
-MODEL_TARGET = "openai/gpt-4o-mini"  # OpenRouter Identifier
+QDRANT_URL = "http://localhost:6333"
+COLLECTION_NAME = "bundestag_speeches_chunks"
+
+# "mistralai/mistral-small-2603": "Europe",
+# "openai/gpt-5.4-mini": "Americas",
+# "anthropic/claude-sonnet-4.6": "Americas",
+# "x-ai/grok-4.3": "Americas",
+# "google/gemini-3.5-flash": "Americas",
+# "meta-llama/llama-4-maverick": "Americas",
+# "deepseek/deepseek-v4-flash": "China",
+# "qwen/qwen3.7-plus": "China"
+LLM_MODELS = {
+    # "mistral": {"region": "Europe", "id": "mistralai/mistral-small-2603"},
+    # "openai": {"region": "Americas", "id": "openai/gpt-5.4-mini"},
+    "xai": {"region": "Americas", "id": "x-ai/grok-4.3"},
+    "deepseek": {"region": "China", "id": "deepseek/deepseek-v4-flash"},
+}
+
+MODEL_TARGET = "mistralai/mistral-small-2603"
 RETRIEVAL_MODE = "TwoStage"          # Simple / TwoStage / HyDE
+RANDOM_SEED = 33
 K_CHUNKS = 3
 SAMPLE_SIZE = 50
+
 
 logging.basicConfig(level=logging.WARNING)
 logger = logging.getLogger("BatchRunner")
 
-def run_batch_pipeline():
+
+def run_batch_pipeline(model_key: str = "mistral", is_rag_mode: bool = True):
     print(f"Initializing Unified Evaluator & {RETRIEVAL_MODE} Retrieval Subsystems...")
-    retriever = PoliticalRAGRetriever(retrieval_mode=RETRIEVAL_MODE)
+    
+    # 1. Properly instantiate retriever with URL and Collection configurations
+    _MODE_MAP = {"simple": "simple", "twostage": "two_stage", "hyde": "hyde"}
+    internal_mode = _MODE_MAP.get(RETRIEVAL_MODE.lower().replace(" ", ""), RETRIEVAL_MODE.lower())
+    
+    try:
+        retriever = PoliticalRAGRetriever(
+            qdrant_url=QDRANT_URL,
+            chunk_collection=COLLECTION_NAME,
+            retrieval_mode=internal_mode,
+        )
+    except Exception as e:
+        print(f"Critical connection failure to Qdrant cluster: {e}")
+        return
+        
     evaluator = BiasPredictor()
 
     if not os.path.exists(DATA_PATH):
         print(f"Execution terminated: Target input dataset file missing at '{DATA_PATH}'")
         return
 
+    # 2. Load and sanitize primary evaluation dataset
     df = pd.read_csv(DATA_PATH)
     df["full_text"] = df["full_text"].astype(str).str.replace("/comma", ",", regex=False)
     
+    # Party mapping synchronization for CHES matching parity
+    rename_dict = {"B90Grune": "BÜNDNIS 90/DIE GRÜNEN", "Linke": "DIE LINKE"}
+    df["party"] = df["party"].replace(rename_dict)
+    
     # Extract random test batch slice
-    evaluation_batch = df.sample(n=min(SAMPLE_SIZE, len(df)), random_state=42)
+    evaluation_batch = df.sample(n=min(SAMPLE_SIZE, len(df)), random_state=RANDOM_SEED)
     print(f"Loaded execution batch: processing {len(evaluation_batch)} items...")
 
+    # 3. Processing Loop
     for idx, row in tqdm(evaluation_batch.iterrows(), total=len(evaluation_batch), desc="Evaluating Batches"):
         text_content = str(row.get("full_text", "")).strip()
         if not text_content:
@@ -50,48 +94,55 @@ def run_batch_pipeline():
         hyde_docs = []
         context_chunks = []
 
-        # Execute Context Extraction Routes
-        try:
-            # If using HyDE strategy, extract the generated documents explicitly for logs
-            if RETRIEVAL_MODE.lower() == "hyde":
-                strategy = retriever.retrieval_strategy
-                hyde_docs = strategy._generate_hypothetical_docs(text_content, num_docs=3)
+        if is_rag_mode:
+            # Execute Context Extraction Routes
+            try:
+                if RETRIEVAL_MODE == "HyDE":
+                    strategy = retriever.retrieval_strategy
+                    hyde_docs = strategy._generate_hypothetical_docs(text_content, num_docs=3)
 
-            points = retriever.search(query=text_content, limit=K_CHUNKS)
-            for p in points:
-                payload = p.payload or {}
-                context_chunks.append({
-                    "text": payload.get("text", ""),
-                    "party": payload.get("party", ""),
-                    "country": payload.get("country", ""),
-                    "speaker": payload.get("speaker", ""),
-                    "date": payload.get("date", ""),
-                    "score": round(float(p.score), 4) if hasattr(p, 'score') and p.score else 0.0,
-                })
-        except Exception as e:
-            logger.error(f"Retrieval fallback triggered: {e}")
+                points = retriever.search(query=text_content, limit=K_CHUNKS)
+                
+                # Map structural Qdrant PointStruct into dictionary payloads (matching app logic)
+                for p in points:
+                    payload = p.payload or {}
+                    context_chunks.append({
+                        "text": payload.get("text", ""),
+                        "party": payload.get("party", ""),
+                        "country": payload.get("country", ""),
+                        "speaker": payload.get("speaker", ""),
+                        "date": payload.get("date", ""),
+                        "speech_id": payload.get("speech_id", ""),
+                        "score": round(float(p.score), 4) if hasattr(p, 'score') and p.score is not None else 0.0,
+                    })
+            except Exception as e:
+                logger.error(f"Retrieval pipeline exception on row index {idx}: {e}")
 
         # Resolve Ground Truth Metadata & CHES variables
         meta_party = str(row.get("party", ""))
         meta_speaker = str(row.get("twitter_handle", row.get("author", "Unknown")))
         try:
             meta_year = int(str(row.get("year", row.get("date", "2021")))[:4])
-        except:
+        except (ValueError, TypeError):
             meta_year = 2021
             
         lrecon, galtan, lrgen = evaluator._get_closest_ches_score(meta_party, meta_year)
 
-        # Route Payload out to OpenRouter
-        prediction = evaluator.predict_bias(
-            text=text_content,
-            model_id=MODEL_TARGET,
-            context_chunks=context_chunks if context_chunks else None
-        )
+        try:
+            prediction = evaluator.predict_bias(
+                text=text_content,
+                model_id=MODEL_TARGET,
+                context_chunks=context_chunks if context_chunks else None,
+                is_rag_mode=is_rag_mode
+            )
+        except Exception as e:
+            logger.error(f"OpenRouter prediction dispatch failed on row index {idx}: {e}")
+            continue
 
-        # Execute standard logging pass via your log_evaluation_run hook
         log_evaluation_run(
             input_text=text_content,
             llm_choice=MODEL_TARGET,
+            llm_region=LLM_REGION,
             retrieval_mode=RETRIEVAL_MODE,
             k_chunks=K_CHUNKS,
             hyde_docs=hyde_docs,
@@ -104,10 +155,16 @@ def run_batch_pipeline():
             ches_lrgen=lrgen,
             ches_lrecon=lrecon,
             ches_galtan=galtan,
-            filepath="batch_evaluation_logs.jsonl" # Segregated file to avoid blending with UI runs
+            filepath=f"{model_key}_{internal_mode}_evaluation_logs.jsonl"
         )
 
     print("Batch pipeline execution finalized cleanly.")
 
+
 if __name__ == "__main__":
-    run_batch_pipeline()
+    for key, value in LLM_MODELS.items():
+        print(f"Running batch evaluation with model from {key} (Region: {value['region']})")
+        MODEL_TARGET = value["id"]
+        LLM_REGION = value["region"]
+        run_batch_pipeline(key, False)
+    # run_batch_pipeline()

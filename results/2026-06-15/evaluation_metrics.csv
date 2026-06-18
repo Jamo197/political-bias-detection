@@ -1,0 +1,13 @@
+Model,Condition,N_samples,MAE,RMSE,Pearson_r,Spearman_rho
+Deepseek,Baseline (No RAG),50,1.5872,2.0303,0.6353,0.5784
+Deepseek,RAG (Simple),50,1.8232,2.3429,0.5496,0.4793
+Deepseek,RAG (TwoStage),50,1.6805,2.1904,0.5748,0.509
+Mistral,Baseline (No RAG),50,1.9338,2.4727,0.5031,0.4804
+Mistral,RAG (Simple),50,2.0237,2.6779,0.4114,0.347
+Mistral,RAG (TwoStage),50,1.8097,2.4036,0.5271,0.483
+Openai,Baseline (No RAG),50,1.6305,2.096,0.5819,0.5462
+Openai,RAG (Simple),50,1.7319,2.2482,0.5142,0.3944
+Openai,RAG (TwoStage),50,1.7925,2.3684,0.4414,0.4733
+Xai,Baseline (No RAG),50,1.4788,1.9066,0.6855,0.6769
+Xai,RAG (Simple),50,1.64,2.0599,0.635,0.614
+Xai,RAG (TwoStage),50,1.4761,1.8795,0.6927,0.6494
