@@ -20,7 +20,9 @@ def log_evaluation_run(
     ches_lrgen: Optional[float],
     ches_lrecon: Optional[float],
     ches_galtan: Optional[float],
-    filepath: str = "evaluation_logs.jsonl",
+    run_dir: str,
+    run_id: str,
+    filename: str = "evaluation_logs.jsonl",
 ):
     """
     Appends a structured JSONL log entry for a single prediction run.
@@ -42,13 +44,16 @@ def log_evaluation_run(
     ches_lrgen        : CHES ground truth lrgen score for the input party/year.
     ches_lrecon       : CHES ground truth lrecon score for the input party/year.
     ches_galtan       : CHES ground truth galtan score for the input party/year.
-    filepath          : Filename within the logs/ directory.
+    run_dir           : Pre-computed base log directory for this run (e.g. logs/batch_runs/2026-06-18_a3f9c12b).
+    run_id            : Short unique identifier for this run (8-char hex).
+    filename          : JSONL filename within the retrieval-mode subdirectory.
     """
     log_entry = {
+        "run_id": run_id,
         "timestamp": datetime.datetime.now().isoformat(),
         "parameters": {
             "llm": llm_choice,
-            "llm_region": llm_region, 
+            "llm_region": llm_region,
             "retrieval_mode": retrieval_mode,
             "k_chunks": k_chunks,
         },
@@ -73,10 +78,9 @@ def log_evaluation_run(
         },
     }
 
-    current_date = datetime.datetime.now().strftime("%Y-%m-%d")
-    logs_dir = f"logs/batch_runs/{current_date}/{retrieval_mode}"
+    logs_dir = os.path.join(run_dir, retrieval_mode)
     os.makedirs(logs_dir, exist_ok=True)
-    filepath_full = os.path.join(logs_dir, filepath)
+    filepath_full = os.path.join(logs_dir, filename)
 
     if not os.path.exists(filepath_full):
         with open(filepath_full, "w", encoding="utf-8"):

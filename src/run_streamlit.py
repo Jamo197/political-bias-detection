@@ -1,4 +1,7 @@
+import datetime
+import os
 import sys
+import uuid
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
@@ -52,6 +55,10 @@ SESSION_STATE_DEFAULTS = {
     "active_model_id": "",
     "active_model_region": "",
     "active_retrieval_mode": "",
+    # Run tracking — reset when config changes mid-session
+    "run_id": None,
+    "run_dir": None,
+    "run_last_config": None,   # tuple: (model_id, retrieval_mode, k_chunks)
 }
 
 # ---------------------------------------------------------------------------
@@ -273,13 +280,54 @@ def render_prediction_section(evaluator: BiasPredictor, retriever: Optional[Poli
                 model_id=model_id,
                 context_chunks=st.session_state["retrieved_chunks"] or None,
             )
-            
+
             st.session_state["prediction"] = prediction
             st.session_state["active_model_id"] = model_id
             st.session_state["active_model_region"] = model_region
             st.session_state["active_retrieval_mode"] = mode
-            
+
             lrecon, galtan, lrgen = evaluator._get_closest_ches_score(current_party, current_year)
+
+            # --- Run ID / directory management ---
+            current_config = (model_id, mode, k)
+            if (
+                st.session_state["run_id"] is None
+                or st.session_state["run_last_config"] != current_config
+            ):
+                new_run_id = uuid.uuid4().hex[:8]
+                run_date = datetime.date.today().strftime("%Y-%m-%d")
+                new_run_dir = f"logs/batch_runs/{run_date}_{new_run_id}"
+                st.session_state["run_id"] = new_run_id
+                st.session_state["run_dir"] = new_run_dir
+                st.session_state["run_last_config"] = current_config
+
+            active_run_id: str = st.session_state["run_id"]
+            active_run_dir: str = st.session_state["run_dir"]
+
+            # Write / overwrite logs_info.md to reflect current config
+            os.makedirs(active_run_dir, exist_ok=True)
+            friendly_name = next(
+                (name for name, v in LLM_MODELS.items() if v["id"] == model_id),
+                model_id,
+            )
+            logs_info_content = f"""# Test Run Info
+
+                - **Run ID:** {active_run_id}
+                - **Start Time:** {datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")}
+
+                ## Parameters
+                - **Retrieval Mode:** {mode}
+                - **K Chunks:** {k}
+
+                ## Model
+                | Name | Model ID | Region |
+                |------|----------|--------|
+                | {friendly_name} | {model_id} | {model_region} |
+                """
+            with open(
+                os.path.join(active_run_dir, "logs_info.md"), "w", encoding="utf-8"
+            ) as _f:
+                _f.write(logs_info_content)
 
             log_evaluation_run(
                 input_text=input_text,
@@ -297,8 +345,11 @@ def render_prediction_section(evaluator: BiasPredictor, retriever: Optional[Poli
                 ches_lrgen=lrgen,
                 ches_lrecon=lrecon,
                 ches_galtan=galtan,
+                run_dir=active_run_dir,
+                run_id=active_run_id,
+                filename="streamlit_evaluation_logs.jsonl",
             )
-            st.toast("Pipeline execution logged successfully!")
+            st.toast(f"Logged  ·  run {active_run_id}")
         st.rerun()
 
     prediction = st.session_state["prediction"]

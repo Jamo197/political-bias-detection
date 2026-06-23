@@ -15,4 +15,4 @@ wheels/
 
 .DS_Store
 
-logs/*
+logs/archive

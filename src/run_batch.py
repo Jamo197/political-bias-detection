@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
+import datetime
 import logging
 import os
 import sys
+import uuid
 from pathlib import Path
 import pandas as pd
 from tqdm import tqdm
@@ -42,15 +44,42 @@ LLM_MODELS = {
 MODEL_TARGET = "mistralai/mistral-small-2603"
 RETRIEVAL_MODE = "TwoStage"          # Simple / TwoStage / HyDE
 RANDOM_SEED = 33
-K_CHUNKS = 3
-SAMPLE_SIZE = 50
+K_CHUNKS = 5
+SAMPLE_SIZE = 5
 
 
 logging.basicConfig(level=logging.WARNING)
 logger = logging.getLogger("BatchRunner")
 
 
-def run_batch_pipeline(model_key: str = "mistral", is_rag_mode: bool = True):
+def write_batch_logs_info(run_dir: str, run_id: str, run_start: datetime.datetime) -> None:
+    """Writes a human-readable logs_info.md into the run directory."""
+    os.makedirs(run_dir, exist_ok=True)
+    model_rows = "\n".join(
+        f"| {key} | {val['id']} | {val['region']} |"
+        for key, val in LLM_MODELS.items()
+    )
+    content = f"""# Test Run Info
+
+- **Run ID:** {run_id}
+- **Start Time:** {run_start.strftime("%Y-%m-%d %H:%M:%S")}
+
+## Parameters
+- **Retrieval Mode:** {RETRIEVAL_MODE}
+- **K Chunks:** {K_CHUNKS}
+- **Random Seed:** {RANDOM_SEED}
+- **Sample Size:** {SAMPLE_SIZE}
+
+## Models
+| Key | Model ID | Region |
+|-----|----------|--------|
+{model_rows}
+"""
+    with open(os.path.join(run_dir, "logs_info.md"), "w", encoding="utf-8") as f:
+        f.write(content)
+
+
+def run_batch_pipeline(model_key: str = "mistral", is_rag_mode: bool = True, run_dir: str = "", run_id: str = ""):
     print(f"Initializing Unified Evaluator & {RETRIEVAL_MODE} Retrieval Subsystems...")
     
     # 1. Properly instantiate retriever with URL and Collection configurations
@@ -155,16 +184,26 @@ def run_batch_pipeline(model_key: str = "mistral", is_rag_mode: bool = True):
             ches_lrgen=lrgen,
             ches_lrecon=lrecon,
             ches_galtan=galtan,
-            filepath=f"{model_key}_{internal_mode}_evaluation_logs.jsonl"
+            run_dir=run_dir,
+            run_id=run_id,
+            filename=f"{model_key}_{internal_mode}_evaluation_logs.jsonl",
         )
 
     print("Batch pipeline execution finalized cleanly.")
 
 
 if __name__ == "__main__":
+    _run_id = uuid.uuid4().hex[:8]
+    _run_start = datetime.datetime.now()
+    _run_date = _run_start.strftime("%Y-%m-%d")
+    _run_dir = f"logs/batch_runs/{_run_date}_{_run_id}"
+
+    write_batch_logs_info(_run_dir, _run_id, _run_start)
+    print(f"Run ID: {_run_id}  |  Logs directory: {_run_dir}")
+
     for key, value in LLM_MODELS.items():
         print(f"Running batch evaluation with model from {key} (Region: {value['region']})")
         MODEL_TARGET = value["id"]
         LLM_REGION = value["region"]
-        run_batch_pipeline(key, False)
-    # run_batch_pipeline()
+        run_batch_pipeline(key, False, run_dir=_run_dir, run_id=_run_id)
+    # run_batch_pipeline(run_dir=_run_dir, run_id=_run_id)
