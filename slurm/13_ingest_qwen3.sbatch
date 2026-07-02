@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --job-name=ingest_qwen3
-#SBATCH --partition=cpu            # <-- ADJUST: client is light; vLLM job holds the GPU
+#SBATCH --partition=standard
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=32G
 #SBATCH --time=12:00:00

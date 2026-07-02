@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=vllm_qwen3_embed
-#SBATCH --partition=gpu            # <-- ADJUST: your GPU partition
-#SBATCH --gres=gpu:1              # Qwen3-Embedding-8B fits on 1 modern GPU (bf16 ~16-20GB)
+#SBATCH --partition=gpu
+#SBATCH --gres=gpu:1              # Qwen3-Embedding-8B: bf16 ~16GB weights + KV cache; needs >=24GB VRAM -> avoid P100/V100-16GB, prefer A100-40G/V100-32GB/H100
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=64G
 #SBATCH --time=12:00:00

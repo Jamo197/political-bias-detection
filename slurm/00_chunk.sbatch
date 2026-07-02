@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --job-name=chunk_corpus
-#SBATCH --partition=cpu            # <-- ADJUST: your CPU partition
+#SBATCH --partition=standard
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=32G
 #SBATCH --time=04:00:00

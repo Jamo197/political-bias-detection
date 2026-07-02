@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --job-name=qdrant
-#SBATCH --partition=cpu            # <-- ADJUST: a long-lived CPU partition
+#SBATCH --partition=standard
 #SBATCH --cpus-per-task=4
 #SBATCH --mem=32G
 #SBATCH --time=24:00:00
