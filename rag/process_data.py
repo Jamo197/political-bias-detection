@@ -5,7 +5,7 @@ import uuid
 from pathlib import Path
 
 from dotenv import load_dotenv
-from langchain_experimental.text_splitter import SemanticChunker
+from rag.ingest._semantic_chunker import SemanticChunker
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from qdrant_client import QdrantClient
@@ -13,7 +13,7 @@ from qdrant_client.http import models
 from tqdm import tqdm
 
 load_dotenv(Path(".env.local"))
-os.environ["HF_TOKEN"] = os.getenv("HT_TOKEN")
+os.environ["HF_TOKEN"] = os.getenv("HF_TOKEN", "")
 
 
 class PoliticalRAGIngestor:

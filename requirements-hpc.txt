@@ -1,0 +1,39 @@
+# HPC ingestion environment.
+#
+# Target: Python 3.12 (recommended for vLLM CUDA wheels; vLLM supports 3.10-3.13
+# but 3.12 has the broadest wheel coverage). FlagEmbedding + sentence-transformers
+# work fine on 3.12. Create with e.g.:
+#
+#   python3.12 -m venv .venv-hpc && source .venv-hpc/bin/activate
+#   pip install -U pip
+#   pip install -r requirements-hpc.txt
+#
+# Install torch matching your cluster CUDA first if needed, e.g.:
+#   pip install torch --index-url https://download.pytorch.org/whl/cu124
+
+# --- Core ingestion ---
+qdrant-client>=1.18.0
+numpy>=1.26,<3.0
+tqdm>=4.68.3
+python-dotenv>=1.0.0
+
+# --- Chunking (Stage 1) ---
+langchain-huggingface>=1.2.2
+langchain-text-splitters>=1.1.2
+# SemanticChunker vendored locally → no langchain-experimental needed.
+
+# --- Encoders: e5 + jina (SentenceTransformers / PyTorch) ---
+sentence-transformers>=3.0.0
+transformers>=4.45.0
+
+# --- bge-m3 hybrid (dense + sparse) ---
+FlagEmbedding>=1.4.0
+
+# --- Qwen3-Embedding-8B served via vLLM (latest; supports task=embed) ---
+vllm>=0.24.0
+# OpenAI client used to talk to the vLLM /v1/embeddings endpoint.
+openai>=2.0.0
+
+# --- Optional speedups (uncomment if your toolchain supports them) ---
+# flash-attn>=2.6.0          # faster jina/qwen attention; needs CUDA build tools
+# einops>=0.8.0              # required by some jina remote-code paths

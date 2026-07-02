@@ -16,3 +16,10 @@ wheels/
 .DS_Store
 
 logs/archive
+
+# HPC ingestion artifacts / runtime
+.venv-hpc
+rag/ingest/artifacts/
+qdrant_storage/
+logs/slurm/
+*.sif

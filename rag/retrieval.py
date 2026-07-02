@@ -12,7 +12,7 @@ from qdrant_client import QdrantClient
 from qdrant_client.http import models
 
 load_dotenv(Path(".env.local"))
-os.environ["HF_TOKEN"] = os.getenv("HT_TOKEN", "")
+os.environ["HF_TOKEN"] = os.getenv("HF_TOKEN", "")
 
 logging.basicConfig(
     level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
@@ -22,7 +22,7 @@ logger = logging.getLogger(__name__)
 
 class RetrievalStrategy(ABC):
     """Abstract Base Class establishing structural interface for all retrieval strategies."""
-    
+
     @abstractmethod
     def retrieve(self, query: str, limit: int = 3) -> List[models.PointStruct]:
         pass
@@ -97,22 +97,30 @@ class HyDERetrieval(RetrievalStrategy):
         try:
             response = self.llm.invoke(prompt)
             text = response.content if hasattr(response, "content") else str(response)
-            return [d.strip() for d in text.strip().split("\n") if len(d.strip()) > 10][:num_docs]
+            return [d.strip() for d in text.strip().split("\n") if len(d.strip()) > 10][
+                :num_docs
+            ]
         except Exception as e:
-            logger.error(f"HyDE LLM Generation failed: {e}. Defaulting to standard vector path.")
+            logger.error(
+                f"HyDE LLM Generation failed: {e}. Defaulting to standard vector path."
+            )
             return []
 
 
 class TwoStageRetrieval(RetrievalStrategy):
     """Bi-Encoder Retrieval coupled with Cross-Encoder Reranking."""
 
-    def __init__(self, client: QdrantClient, collection_name: str, bi_encoder, cross_encoder):
+    def __init__(
+        self, client: QdrantClient, collection_name: str, bi_encoder, cross_encoder
+    ):
         self.client = client
         self.collection_name = collection_name
         self.bi_encoder = bi_encoder
         self.cross_encoder = cross_encoder
 
-    def retrieve(self, query: str, limit: int = 3, rerank_top_k: int = 15) -> List[models.PointStruct]:
+    def retrieve(
+        self, query: str, limit: int = 3, rerank_top_k: int = 15
+    ) -> List[models.PointStruct]:
         query_vector = self.bi_encoder.embed_query(query)
         response = self.client.query_points(
             collection_name=self.collection_name,
@@ -134,6 +142,20 @@ class TwoStageRetrieval(RetrievalStrategy):
         return sorted(candidates, key=lambda x: x.score, reverse=True)[:limit]
 
 
+# TODO(retrieval): Multi-model query-side encoding follow-up.
+# The HPC ingestion pipeline (rag/ingest/) now populates four separate Qdrant
+# collections — chunks_e5, chunks_bge, chunks_jina, chunks_qwen3 — each with
+# 1024-dim dense vectors (bge additionally stores a sparse IDF vector). This
+# retriever must be made model-aware so queries are encoded with the SAME model
+# (and the SAME quirks) used at ingestion. Specifically:
+#   * e5    : query = f"Instruct: {instruction}\nQuery: {query}", normalize.
+#   * qwen3 : prepend ENGLISH instruction (Qwen recommendation), slice [:1024],
+#             then L2-renormalize (mirror rag/ingest/embedders.py).
+#   * jina  : encode(task="retrieval", prompt_name="query", truncate_dim=1024).
+#   * bge   : dense + sparse hybrid query (Qdrant prefetch + RRF/DBSF fusion).
+# Reuse rag.ingest.embedders + rag.ingest.config (MODELS, default instruction)
+# so ingestion and retrieval stay consistent. Until then, the legacy MiniLM
+# baseline below remains for the old single-collection setup.
 class PoliticalRAGRetriever:
     """Main RAG orchestrator optimized for CHES validation execution."""
 
@@ -162,17 +184,32 @@ class PoliticalRAGRetriever:
                     logger.info("Initializing local Ollama instance for HyDE...")
                     llm = OllamaLLM(model="gemma3", base_url="http://localhost:11434")
                 except Exception as e:
-                    logger.warning(f"Ollama offline: {e}. Running HyDE in fallback mode.")
-            return HyDERetrieval(self.client, self.collection_name, self.embeddings, llm, self.country_context)
+                    logger.warning(
+                        f"Ollama offline: {e}. Running HyDE in fallback mode."
+                    )
+            return HyDERetrieval(
+                self.client,
+                self.collection_name,
+                self.embeddings,
+                llm,
+                self.country_context,
+            )
 
         elif mode == "twostage":
             try:
                 from sentence_transformers import CrossEncoder
-                logger.info(f"Loading Cross-Encoder sequence-transformer: {self.CROSS_ENCODER_MODEL}")
+
+                logger.info(
+                    f"Loading Cross-Encoder sequence-transformer: {self.CROSS_ENCODER_MODEL}"
+                )
                 cross_encoder = CrossEncoder(self.CROSS_ENCODER_MODEL)
-                return TwoStageRetrieval(self.client, self.collection_name, self.embeddings, cross_encoder)
+                return TwoStageRetrieval(
+                    self.client, self.collection_name, self.embeddings, cross_encoder
+                )
             except ImportError:
-                logger.error("sentence-transformers dependency missing. Defaulting to Simple.")
+                logger.error(
+                    "sentence-transformers dependency missing. Defaulting to Simple."
+                )
 
         return SimpleRetrieval(self.client, self.collection_name, self.embeddings)
 

@@ -1,0 +1,25 @@
+Bootstrap: docker
+From: python:3.12-slim
+
+%files
+    # Copy your requirements file from your local machine into the container
+    requirements-hpc.txt /opt/requirements-hpc.txt
+
+%post
+    # Update system packages and install git/build-essential just in case
+    # compiling is needed for any sub-dependencies
+    apt-get update && apt-get install -y build-essential git
+
+    # Upgrade pip
+    pip install --no-cache-dir -U pip
+
+    # 1. Install PyTorch matching the cluster CUDA (cu124) first
+    pip install --no-cache-dir torch --index-url https://download.pytorch.org/whl/cu124
+
+    # 2. Install the rest of the ingestion environment
+    pip install --no-cache-dir -r /opt/requirements-hpc.txt
+
+%environment
+    # Ensure Python commands point to the correct environment
+    export LC_ALL=C
+    export PATH=/usr/local/bin:$PATH
