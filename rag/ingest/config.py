@@ -12,7 +12,6 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Literal
 
-# Unified target dimensionality for ALL models (fair comparison baseline).
 TARGET_DIM: int = 1024
 
 ModelKey = Literal["e5", "bge", "jina", "qwen3"]
@@ -83,8 +82,6 @@ MODELS: dict[str, ModelConfig] = {
 # Parent-document (full speech) collection. Vectorless, shared across models.
 PARENT_COLLECTION = "bundestag_speeches"
 
-# Payload fields indexed for ground-truth filtering + parent-doc retrieval.
-# (field_name, is_integer)
 PAYLOAD_INDEX_FIELDS: list[tuple[str, bool]] = [
     ("party", False),
     ("speaker", False),
@@ -95,13 +92,11 @@ PAYLOAD_INDEX_FIELDS: list[tuple[str, bool]] = [
 
 # Model used ONLY to detect semantic breakpoints during chunking. It does not
 # influence the stored comparison vectors, only where the text is split.
-CHUNKER_BREAKPOINT_MODEL = "paraphrase-multilingual-MiniLM-L12-v2"
+CHUNKER_BREAKPOINT_MODEL = "intfloat/multilingual-e5-small"
 
-# Hard cap enforced after semantic chunking (chars) before fallback splitting.
-MAX_CHUNK_CHARS = 1000
-# Minimum chars for a semantic chunk; smaller ones merge into the next chunk.
+MAX_CHUNK_CHARS = 2000
 MIN_CHUNK_CHARS = 200
-FALLBACK_CHUNK_SIZE = 1000
+FALLBACK_CHUNK_SIZE = 2000
 FALLBACK_CHUNK_OVERLAP = 150
 
 

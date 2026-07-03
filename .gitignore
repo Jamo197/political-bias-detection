@@ -23,3 +23,4 @@ rag/ingest/artifacts/
 qdrant_storage/
 logs/slurm/
 *.sif
+tmp/

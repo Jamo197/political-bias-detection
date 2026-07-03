@@ -13,6 +13,13 @@ Outputs (JSON Lines):
 The SemanticChunker needs *an* embedder only to detect breakpoints; this does
 NOT affect the stored comparison vectors. We keep the original MiniLM model used
 on the local machine so chunk boundaries match the prior methodology.
+
+CHUNKING TEST STRATEGY:
+    Configuration A: MiniLM + MAX=1000
+    Configuration B: e5-small + MAX=1000
+    Configuration C: e5-small + MAX=1500
+    Configuration D: e5-small + MAX=2000
+    Configuration F: MiniLM + MAX=2000
 """
 
 from __future__ import annotations
@@ -52,7 +59,9 @@ def speech_uuid(speech_id: str) -> str:
 
 class CorpusChunker:
     def __init__(self) -> None:
-        self.embeddings = HuggingFaceEmbeddings(model_name=CHUNKER_BREAKPOINT_MODEL)
+        model_name = CHUNKER_BREAKPOINT_MODEL
+        self.max_chunk_chars = MAX_CHUNK_CHARS
+        self.embeddings = HuggingFaceEmbeddings(model_name=model_name)
         self.semantic_splitter = SemanticChunker(
             self.embeddings,
             breakpoint_threshold_type="percentile",
@@ -60,42 +69,42 @@ class CorpusChunker:
             add_start_index=True,
         )
         self.fallback_splitter = RecursiveCharacterTextSplitter(
-            chunk_size=FALLBACK_CHUNK_SIZE,
+            chunk_size=self.max_chunk_chars,
             chunk_overlap=FALLBACK_CHUNK_OVERLAP,
             add_start_index=True,
         )
 
     def _split_text(self, text: str) -> list[dict]:
-        """Semantic chunking with a hard char-cap fallback.
-
-        Returns a list of {"text": str, "start_index": int} dicts so chunk
-        provenance (absolute char offset within the speech) is preserved.
-        Fallback sub-chunk offsets are added to the semantic chunk's offset
-        to yield an absolute index into the original speech text.
-        """
         semantic_chunks = self.semantic_splitter.create_documents([text])
         final: list[dict] = []
         for chunk in semantic_chunks:
             content = chunk.page_content
             base_offset = chunk.metadata.get("start_index", 0)
-            if len(content) > MAX_CHUNK_CHARS:
+            if len(content) > self.max_chunk_chars:
                 for d in self.fallback_splitter.create_documents([content]):
                     sub_offset = d.metadata.get("start_index", 0)
                     final.append(
                         {
                             "text": d.page_content,
                             "start_index": base_offset + sub_offset,
+                            "from_fallback": True,
                         }
                     )
             else:
-                final.append({"text": content, "start_index": base_offset})
+                final.append(
+                    {
+                        "text": content,
+                        "start_index": base_offset,
+                        "from_fallback": False,
+                    }
+                )
         return final
 
     def iter_files(self, base_path: Path) -> list[Path]:
-        files = sorted(base_path.rglob("speeches/*.json"))
+        files = sorted(base_path.rglob("speeches/*_cleaned.json"))
         if not files:
-            # Fallback: any *_speeches.json under the tree.
-            files = sorted(base_path.rglob("*_speeches.json"))
+            # Fallback: any *_cleaned.json under the tree.
+            files = sorted(base_path.rglob("*_cleaned.json"))
         return files
 
     def process(
@@ -124,6 +133,7 @@ class CorpusChunker:
                 for entry in data:
                     text = entry.get("text", "") or ""
                     metadata = entry.get("metadata", {}) or {}
+                    interjections = entry.get("interjections", []) or []
                     raw_speech_id = metadata.get("speech_id")
                     if not raw_speech_id or not text.strip():
                         continue
@@ -137,6 +147,7 @@ class CorpusChunker:
                                     "id": speech_uuid(raw_speech_id),
                                     "speech_id": raw_speech_id,
                                     "full_text": text,
+                                    "interjections": interjections,
                                     **metadata,
                                 },
                                 ensure_ascii=False,
@@ -151,7 +162,9 @@ class CorpusChunker:
                             "speech_id": raw_speech_id,
                             "chunk_index": idx,
                             "start_index": chunk["start_index"],
+                            "from_fallback": chunk["from_fallback"],
                             "text": chunk["text"],
+                            "interjections": interjections,
                             **metadata,
                         }
                         cf.write(json.dumps(record, ensure_ascii=False) + "\n")
@@ -174,7 +187,7 @@ def main() -> None:
         "--data-dir",
         type=Path,
         default=_PROJECT_ROOT / "extraction/datasets/bundestag_data",
-        help="Root directory containing speeches/*.json files.",
+        help="Root directory containing speeches/*_cleaned.json files.",
     )
     parser.add_argument(
         "--chunks-out",

@@ -471,15 +471,19 @@ dependencies = [
     { name = "langchain-text-splitters" },
     { name = "matplotlib" },
     { name = "mistralai" },
+    { name = "numpy" },
     { name = "openai" },
     { name = "pandas" },
     { name = "pydantic" },
     { name = "qdrant-client" },
     { name = "requests" },
+    { name = "scikit-learn" },
+    { name = "scipy" },
     { name = "seaborn" },
     { name = "sentence-transformers" },
     { name = "streamlit" },
     { name = "tenacity" },
+    { name = "tqdm" },
 ]
 
 [package.metadata]
@@ -492,15 +496,19 @@ requires-dist = [
     { name = "langchain-text-splitters", specifier = ">=1.1.2" },
     { name = "matplotlib", specifier = ">=3.10.9" },
     { name = "mistralai", specifier = ">=2.3.2" },
+    { name = "numpy", specifier = ">=2.0.0" },
     { name = "openai", specifier = ">=2.31.0" },
     { name = "pandas", specifier = ">=3.0.2" },
     { name = "pydantic", specifier = ">=2.13.0" },
     { name = "qdrant-client", specifier = ">=1.17.1" },
     { name = "requests", specifier = ">=2.33.1" },
+    { name = "scikit-learn", specifier = ">=1.5.0" },
+    { name = "scipy", specifier = ">=1.13.0" },
     { name = "seaborn", specifier = ">=0.13.2" },
     { name = "sentence-transformers", specifier = ">=5.4.1" },
     { name = "streamlit", specifier = ">=1.56.0" },
     { name = "tenacity", specifier = ">=9.1.4" },
+    { name = "tqdm", specifier = ">=4.66.0" },
 ]
 
 [[package]]
