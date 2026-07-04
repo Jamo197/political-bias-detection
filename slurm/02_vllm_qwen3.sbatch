@@ -17,7 +17,7 @@ module load singularity || module load apptainer || true
 cd "${PROJECT_ROOT:-$PWD}"
 mkdir -p logs/slurm
 
-VLLM_SIF="${VLLM_SIF:-$PWD/vllm.sif}"
+VLLM_SIF="${VLLM_SIF:-/home/users/j/$USER/hpc-images/vllm.sif}"
 VLLM_PORT="${VLLM_PORT:-8000}"
 
 # Cache HF weights on scratch so they are not re-downloaded each run.

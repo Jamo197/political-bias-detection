@@ -16,7 +16,7 @@ module load singularity || module load apptainer || true
 cd "${PROJECT_ROOT:-$PWD}"
 mkdir -p logs/slurm
 
-VLLM_SIF="${VLLM_SIF:-$PWD/vllm.sif}"
+VLLM_SIF="${VLLM_SIF:-/home/users/j/$USER/hpc-images/vllm.sif}"
 
 if [[ -z "${QDRANT_URL:-}" && -f logs/slurm/qdrant_host.txt ]]; then
     export QDRANT_URL="http://$(cat logs/slurm/qdrant_host.txt)"

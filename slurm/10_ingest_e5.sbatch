@@ -16,7 +16,7 @@ module load singularity || module load apptainer || true
 cd "${PROJECT_ROOT:-$PWD}"
 mkdir -p logs/slurm
 
-VLLM_SIF="${VLLM_SIF:-$PWD/vllm.sif}"
+VLLM_SIF="${VLLM_SIF:-/home/users/j/$USER/hpc-images/vllm.sif}"
 export HF_HOME="${HF_HOME:-$PWD/.hf_cache}"; mkdir -p "$HF_HOME"
 
 # Point at the Qdrant server job (auto-resolve from its host file, or override).

@@ -24,3 +24,4 @@ qdrant_storage/
 logs/slurm/
 *.sif
 tmp/
+.hf_cache/

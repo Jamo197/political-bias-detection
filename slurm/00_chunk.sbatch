@@ -17,7 +17,7 @@ module load singularity || module load apptainer || true
 cd "${PROJECT_ROOT:-$PWD}"
 mkdir -p logs/slurm rag/ingest/artifacts
 
-VLLM_SIF="${VLLM_SIF:-$PWD/vllm.sif}"
+VLLM_SIF="${VLLM_SIF:-/home/users/j/$USER/hpc-images/vllm.sif}"
 
 # --bind $PWD so the container sees the repo; --pwd sets the working dir inside.
 singularity exec \

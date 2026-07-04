@@ -18,7 +18,7 @@ cd "${PROJECT_ROOT:-$PWD}"
 mkdir -p logs/slurm
 
 # Persisted storage on BeeGFS scratch (reproducible data). Survives restarts.
-QDRANT_SIF="${QDRANT_SIF:-$PWD/qdrant.sif}"
+QDRANT_SIF="${QDRANT_SIF:-/home/users/j/$USER/hpc-images/qdrant.sif}"
 QDRANT_STORAGE="${QDRANT_STORAGE:-$PWD/qdrant_storage}"
 QDRANT_PORT="${QDRANT_PORT:-6333}"
 mkdir -p "$QDRANT_STORAGE"
@@ -30,5 +30,7 @@ echo "Image       -> $QDRANT_SIF"
 
 # Bind a writable storage dir into the container's /qdrant/storage.
 exec singularity run \
+    --pwd /qdrant \
+    --writable-tmpfs \
     --bind "${QDRANT_STORAGE}:/qdrant/storage" \
     "${QDRANT_SIF}"
