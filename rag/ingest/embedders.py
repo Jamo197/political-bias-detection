@@ -61,6 +61,34 @@ def _patch_jina_rope_compat() -> None:
         _rope.ROPE_INIT_FUNCTIONS["default"] = _default_rope_init
 
 
+def _resolve_device(device: Optional[str]) -> Optional[str]:
+    """Return *device* unless CUDA is requested but unavailable.
+
+    If the user passes ``--device cuda`` but the installed torch was compiled
+    for a newer CUDA than the HPC driver, ``torch.cuda.is_available()`` returns
+    False.  Rather than crashing inside SentenceTransformer / FlagEmbedding, we
+    fall back to ``None`` (auto-detect -> CPU) and print a warning pointing at
+    ``slurm/setup_torch_compat.sh``.
+    """
+    if device is None:
+        return None
+    if device.startswith("cuda"):
+        try:
+            import torch
+
+            if not torch.cuda.is_available():
+                print(
+                    "[warn] CUDA requested (--device cuda) but "
+                    "torch.cuda.is_available() is False. "
+                    "Falling back to CPU. "
+                    "Run slurm/setup_torch_compat.sh to enable GPU."
+                )
+                return None
+        except ImportError:
+            pass
+    return device
+
+
 def l2_normalize(vectors: np.ndarray) -> np.ndarray:
     """Row-wise L2 normalization. Critical after MRL slicing so cosine is valid."""
     vectors = np.asarray(vectors, dtype=np.float32)
@@ -105,6 +133,7 @@ class E5Embedder(BaseEmbedder):
 
     def __init__(self, cfg: ModelConfig, device: Optional[str] = None) -> None:
         super().__init__(cfg)
+        device = _resolve_device(device)
         from sentence_transformers import SentenceTransformer
 
         self.model = SentenceTransformer(cfg.hf_model_id, device=device)
@@ -134,11 +163,15 @@ class BGEEmbedder(BaseEmbedder):
         self, cfg: ModelConfig, device: Optional[str] = None, use_fp16: bool = True
     ) -> None:
         super().__init__(cfg)
+        device = _resolve_device(device)
         from FlagEmbedding import BGEM3FlagModel
 
-        kwargs: dict = {"use_fp16": use_fp16}
+        kwargs: dict = {}
         if device:
             kwargs["devices"] = device
+            kwargs["use_fp16"] = use_fp16
+        else:
+            kwargs["use_fp16"] = False
         self.model = BGEM3FlagModel(cfg.hf_model_id, **kwargs)
 
     def embed_passages(self, texts: list[str]) -> EmbedResult:
@@ -170,6 +203,7 @@ class JinaEmbedder(BaseEmbedder):
 
     def __init__(self, cfg: ModelConfig, device: Optional[str] = None) -> None:
         super().__init__(cfg)
+        device = _resolve_device(device)
         _patch_jina_rope_compat()
         from sentence_transformers import SentenceTransformer
 
