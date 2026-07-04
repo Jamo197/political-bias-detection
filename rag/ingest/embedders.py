@@ -81,7 +81,7 @@ def _resolve_device(device: Optional[str]) -> Optional[str]:
                     "[warn] CUDA requested (--device cuda) but "
                     "torch.cuda.is_available() is False. "
                     "Falling back to CPU. "
-                    "Run slurm/setup_torch_compat.sh to enable GPU."
+                    "Run: bash slurm/setup_venv.sh  (one-time, on a login node)"
                 )
                 return None
         except ImportError:

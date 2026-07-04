@@ -9,14 +9,23 @@
 #SBATCH --error=logs/slurm/ingest_jina_%j.err
 
 # Embed chunks with jina-embeddings-v4 (SentenceTransformers, MRL truncate 1024),
-# running Python inside vllm.sif.
+# using the HPC venv (.venv-hpc) with CUDA-12.8-compatible torch.
+#
+# Prerequisites:
+#   1. Run: bash slurm/setup_venv.sh   (one-time, on a login node)
+#   2. Start: sbatch slurm/01_qdrant.sbatch   (Qdrant server must be running)
 set -euo pipefail
 
-module load singularity || module load apptainer || true
 cd "${PROJECT_ROOT:-$PWD}"
 mkdir -p logs/slurm
 
-VLLM_SIF="${VLLM_SIF:-/home/users/j/$USER/hpc-images/vllm.sif}"
+VENV_PY="${VENV_PY:-$PWD/.venv-hpc/bin/python}"
+if [[ ! -f "$VENV_PY" ]]; then
+    echo "ERROR: venv not found at $VENV_PY"
+    echo "  Run: bash slurm/setup_venv.sh"
+    exit 1
+fi
+
 export HF_HOME="${HF_HOME:-$PWD/.hf_cache}"; mkdir -p "$HF_HOME"
 
 if [[ -z "${QDRANT_URL:-}" && -f logs/slurm/qdrant_host.txt ]]; then
@@ -24,31 +33,15 @@ if [[ -z "${QDRANT_URL:-}" && -f logs/slurm/qdrant_host.txt ]]; then
 fi
 export QDRANT_URL="${QDRANT_URL:-http://localhost:6333}"
 echo "Qdrant -> $QDRANT_URL"
+echo "Python -> $VENV_PY ($($VENV_PY --version 2>&1))"
 
-# Use CUDA-compatible torch if installed (see slurm/setup_torch_compat.sh).
-PIP_COMPAT="${PIP_COMPAT:-$PWD/.pip_compat}"
-SING_PYTHONPATH=""
-if [[ -d "$PIP_COMPAT/torch" ]]; then
-    export PYTHONPATH="$PIP_COMPAT:${PYTHONPATH:-}"
-    SING_PYTHONPATH="--env PYTHONPATH=$PYTHONPATH"
-    echo "Using CUDA-compatible torch from $PIP_COMPAT"
-else
-    echo "No CUDA-compatible torch at $PIP_COMPAT — will fall back to CPU."
-    echo "  For GPU: srun --partition=gpu --gres=gpu:1 --time=30:00 --mem=16G bash slurm/setup_torch_compat.sh"
-fi
-
-singularity exec --nv \
-    --bind "$PWD:$PWD" --pwd "$PWD" \
-    --env HF_HOME="$HF_HOME" --env QDRANT_URL="$QDRANT_URL" \
-    $SING_PYTHONPATH \
-    "$VLLM_SIF" \
-    python -m rag.ingest.ingest \
-        --model jina \
-        --chunks rag/ingest/artifacts/chunks.jsonl \
-        --speeches rag/ingest/artifacts/full_speeches.jsonl \
-        --qdrant-url "$QDRANT_URL" \
-        --qdrant-timeout 300 \
-        --device cuda \
-        --batch-size 16 \
-        --reset \
-        --skip-parents
+"$VENV_PY" -m rag.ingest.ingest \
+    --model jina \
+    --chunks rag/ingest/artifacts/chunks.jsonl \
+    --speeches rag/ingest/artifacts/full_speeches.jsonl \
+    --qdrant-url "$QDRANT_URL" \
+    --qdrant-timeout 300 \
+    --device cuda \
+    --batch-size 16 \
+    --reset \
+    --skip-parents

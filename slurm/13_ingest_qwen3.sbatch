@@ -12,11 +12,15 @@
 # Start 02_vllm_qwen3.sbatch FIRST and wait until it is healthy.
 set -euo pipefail
 
-module load singularity || module load apptainer || true
 cd "${PROJECT_ROOT:-$PWD}"
 mkdir -p logs/slurm
 
-VLLM_SIF="${VLLM_SIF:-/home/users/j/$USER/hpc-images/vllm.sif}"
+VENV_PY="${VENV_PY:-$PWD/.venv-hpc/bin/python}"
+if [[ ! -f "$VENV_PY" ]]; then
+    echo "ERROR: venv not found at $VENV_PY"
+    echo "  Run: bash slurm/setup_venv.sh"
+    exit 1
+fi
 
 if [[ -z "${QDRANT_URL:-}" && -f logs/slurm/qdrant_host.txt ]]; then
     export QDRANT_URL="http://$(cat logs/slurm/qdrant_host.txt)"
@@ -38,18 +42,14 @@ for i in $(seq 1 60); do
     echo "Waiting for vLLM server... ($i)"; sleep 5
 done
 
-# The client only needs qdrant-client + openai (both inside vllm.sif). No GPU.
-singularity exec \
-    --bind "$PWD:$PWD" --pwd "$PWD" \
-    --env QDRANT_URL="$QDRANT_URL" --env VLLM_BASE_URL="$VLLM_BASE_URL" \
-    "$VLLM_SIF" \
-    python -m rag.ingest.ingest \
-        --model qwen3 \
-        --chunks rag/ingest/artifacts/chunks.jsonl \
-        --speeches rag/ingest/artifacts/full_speeches.jsonl \
-        --qdrant-url "$QDRANT_URL" \
-        --qdrant-timeout 300 \
-        --vllm-base-url "$VLLM_BASE_URL" \
-        --batch-size 64 \
-        --reset \
-        --skip-parents
+# Client only needs qdrant-client + openai (both in the venv). No GPU, no container.
+"$VENV_PY" -m rag.ingest.ingest \
+    --model qwen3 \
+    --chunks rag/ingest/artifacts/chunks.jsonl \
+    --speeches rag/ingest/artifacts/full_speeches.jsonl \
+    --qdrant-url "$QDRANT_URL" \
+    --qdrant-timeout 300 \
+    --vllm-base-url "$VLLM_BASE_URL" \
+    --batch-size 64 \
+    --reset \
+    --skip-parents
