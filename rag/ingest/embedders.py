@@ -26,6 +26,41 @@ import numpy as np
 from .config import TARGET_DIM, ModelConfig
 
 
+def _patch_jina_rope_compat() -> None:
+    """Add 'default' rope init back for jina-embeddings-v4 compatibility.
+
+    transformers 5.x removed the 'default' key from ROPE_INIT_FUNCTIONS, but
+    jina-embeddings-v4's custom Qwen2.5-VL code (loaded via trust_remote_code)
+    still references ``ROPE_INIT_FUNCTIONS['default']``.  We restore the mapping
+    so model loading does not crash with ``KeyError: 'default'``.
+    """
+    try:
+        import transformers.modeling_rope_utils as _rope
+    except ImportError:
+        return
+
+    if "default" in _rope.ROPE_INIT_FUNCTIONS:
+        return
+
+    import torch
+
+    if hasattr(_rope, "_compute_default_rope_parameters"):
+        _rope.ROPE_INIT_FUNCTIONS["default"] = _rope._compute_default_rope_parameters
+    else:
+
+        def _default_rope_init(config, device, **kwargs):
+            base = getattr(config, "rope_theta", 1_000_000.0)
+            head_dim = getattr(
+                config, "head_dim", config.hidden_size // config.num_attention_heads
+            )
+            inv_freq = 1.0 / (
+                base ** (torch.arange(0, head_dim, 2, device=device).float() / head_dim)
+            )
+            return inv_freq, 1.0
+
+        _rope.ROPE_INIT_FUNCTIONS["default"] = _default_rope_init
+
+
 def l2_normalize(vectors: np.ndarray) -> np.ndarray:
     """Row-wise L2 normalization. Critical after MRL slicing so cosine is valid."""
     vectors = np.asarray(vectors, dtype=np.float32)
@@ -95,11 +130,16 @@ class BGEEmbedder(BaseEmbedder):
     ColBERT vectors are intentionally NOT produced (return_colbert_vecs=False).
     """
 
-    def __init__(self, cfg: ModelConfig, use_fp16: bool = True) -> None:
+    def __init__(
+        self, cfg: ModelConfig, device: Optional[str] = None, use_fp16: bool = True
+    ) -> None:
         super().__init__(cfg)
         from FlagEmbedding import BGEM3FlagModel
 
-        self.model = BGEM3FlagModel(cfg.hf_model_id, use_fp16=use_fp16)
+        kwargs: dict = {"use_fp16": use_fp16}
+        if device:
+            kwargs["devices"] = device
+        self.model = BGEM3FlagModel(cfg.hf_model_id, **kwargs)
 
     def embed_passages(self, texts: list[str]) -> EmbedResult:
         out = self.model.encode(
@@ -130,6 +170,7 @@ class JinaEmbedder(BaseEmbedder):
 
     def __init__(self, cfg: ModelConfig, device: Optional[str] = None) -> None:
         super().__init__(cfg)
+        _patch_jina_rope_compat()
         from sentence_transformers import SentenceTransformer
 
         self.model = SentenceTransformer(
@@ -200,7 +241,7 @@ def build_embedder(
     if cfg.backend == "sentence_transformers" and cfg.key == "jina":
         return JinaEmbedder(cfg, device=device)
     if cfg.backend == "flag_embedding":
-        return BGEEmbedder(cfg)
+        return BGEEmbedder(cfg, device=device)
     if cfg.backend == "vllm_server":
         return Qwen3VLLMEmbedder(cfg, base_url=vllm_base_url)
     raise ValueError(f"No embedder wiring for model '{cfg.key}'")

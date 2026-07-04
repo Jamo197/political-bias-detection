@@ -15,6 +15,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import time
 from pathlib import Path
 
 from dotenv import load_dotenv
@@ -37,6 +38,39 @@ load_dotenv(_PROJECT_ROOT / ".env.local")
 
 # Payload keys that are NOT part of the stored metadata payload.
 _NON_PAYLOAD_KEYS = {"chunk_id"}
+
+# Retry configuration for Qdrant upsert operations.
+_UPSERT_MAX_RETRIES = 5
+_UPSERT_BASE_DELAY = 2.0  # seconds, doubled each retry
+
+
+def _upsert_with_retry(
+    client: QdrantClient,
+    collection_name: str,
+    points: list[models.PointStruct],
+) -> None:
+    """Wrap client.upsert with exponential-backoff retry.
+
+    Qdrant upserts are idempotent (same point ID = overwrite), so retrying
+    after a timeout is safe.  This guards against transient ReadTimeouts
+    when multiple ingest jobs hit the same Qdrant server concurrently.
+    """
+    last_exc: Exception | None = None
+    for attempt in range(_UPSERT_MAX_RETRIES):
+        try:
+            client.upsert(collection_name=collection_name, points=points)
+            return
+        except Exception as exc:
+            last_exc = exc
+            if attempt < _UPSERT_MAX_RETRIES - 1:
+                delay = _UPSERT_BASE_DELAY * (2 ** attempt)
+                print(
+                    f"[retry] upsert to '{collection_name}' failed "
+                    f"(attempt {attempt + 1}/{_UPSERT_MAX_RETRIES}): {exc}. "
+                    f"Retrying in {delay:.0f}s ..."
+                )
+                time.sleep(delay)
+    raise last_exc  # type: ignore[misc]
 
 
 def _read_jsonl(path: Path):
@@ -82,11 +116,11 @@ def upload_parents(client: QdrantClient, speeches_path: Path, batch_size: int) -
     for rec in tqdm(_read_jsonl(speeches_path), desc="Parents"):
         buffer.append(models.PointStruct(id=rec["id"], vector={}, payload=rec))
         if len(buffer) >= batch_size:
-            client.upsert(collection_name=PARENT_COLLECTION, points=buffer)
+            _upsert_with_retry(client, PARENT_COLLECTION, buffer)
             total += len(buffer)
             buffer = []
     if buffer:
-        client.upsert(collection_name=PARENT_COLLECTION, points=buffer)
+        _upsert_with_retry(client, PARENT_COLLECTION, buffer)
         total += len(buffer)
     print(f"[parents] Upserted {total} full speeches.")
     return total
@@ -114,7 +148,7 @@ def run(args: argparse.Namespace) -> None:
         texts = [r["text"] for r in batch]
         result = embedder.embed_passages(texts)
         points = _build_points(cfg, batch, result)
-        client.upsert(collection_name=cfg.collection, points=points)
+        _upsert_with_retry(client, cfg.collection, points)
         return len(points)
 
     for record in tqdm(_read_jsonl(args.chunks), desc=f"Embedding [{cfg.key}]"):
@@ -146,7 +180,7 @@ def main() -> None:
         "--qdrant-url",
         default=os.getenv("QDRANT_URL", "http://localhost:6333"),
     )
-    parser.add_argument("--qdrant-timeout", type=float, default=120.0)
+    parser.add_argument("--qdrant-timeout", type=float, default=300.0)
     parser.add_argument(
         "--vllm-base-url",
         default=os.getenv("VLLM_BASE_URL", "http://localhost:8000/v1"),

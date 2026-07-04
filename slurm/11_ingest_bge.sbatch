@@ -35,6 +35,7 @@ singularity exec --nv \
         --chunks rag/ingest/artifacts/chunks.jsonl \
         --speeches rag/ingest/artifacts/full_speeches.jsonl \
         --qdrant-url "$QDRANT_URL" \
+        --qdrant-timeout 300 \
         --device cuda \
         --batch-size 32 \
         --reset \
