@@ -13,7 +13,7 @@
 #
 # Prerequisites:
 #   1. Run: bash slurm/setup_venv.sh   (one-time, on a login node)
-#   2. Start: sbatch slurm/01_qdrant.sbatch   (Qdrant server must be running)
+#   2. Qdrant server is auto-started if not already running (01_qdrant.sbatch).
 set -euo pipefail
 
 cd "${PROJECT_ROOT:-$PWD}"
@@ -28,11 +28,9 @@ fi
 
 export HF_HOME="${HF_HOME:-$PWD/.hf_cache}"; mkdir -p "$HF_HOME"
 
-# Point at the Qdrant server job (auto-resolve from its host file, or override).
-if [[ -z "${QDRANT_URL:-}" && -f logs/slurm/qdrant_host.txt ]]; then
-    export QDRANT_URL="http://$(cat logs/slurm/qdrant_host.txt)"
-fi
-export QDRANT_URL="${QDRANT_URL:-http://localhost:6333}"
+# Ensure the Qdrant server is running (auto-starts 01_qdrant.sbatch if needed).
+source slurm/qdrant_ensure.sh
+ensure_qdrant
 echo "Qdrant -> $QDRANT_URL"
 echo "Python -> $VENV_PY ($($VENV_PY --version 2>&1))"
 

@@ -22,10 +22,9 @@ if [[ ! -f "$VENV_PY" ]]; then
     exit 1
 fi
 
-if [[ -z "${QDRANT_URL:-}" && -f logs/slurm/qdrant_host.txt ]]; then
-    export QDRANT_URL="http://$(cat logs/slurm/qdrant_host.txt)"
-fi
-export QDRANT_URL="${QDRANT_URL:-http://localhost:6333}"
+# Ensure the Qdrant server is running (auto-starts 01_qdrant.sbatch if needed).
+source slurm/qdrant_ensure.sh
+ensure_qdrant
 
 # Resolve the vLLM endpoint written by the server job (override with VLLM_BASE_URL).
 if [[ -z "${VLLM_BASE_URL:-}" && -f logs/slurm/vllm_qwen3_host.txt ]]; then
