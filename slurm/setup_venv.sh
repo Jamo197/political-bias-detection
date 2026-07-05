@@ -1,5 +1,5 @@
 #!/bin/bash
-# One-time setup: create a Python 3.12 venv with CUDA-12.8-compatible torch.
+# One-time setup: create a Python 3.13.5 venv with CUDA-12.8-compatible torch.
 #
 # The vllm.sif container ships torch compiled for CUDA >=12.9, but the HPC
 # driver only supports 12.8.  Instead of fighting the container, we create a
@@ -20,55 +20,11 @@ echo " Creating HPC venv at: $VENV_DIR"
 echo " torch: $TORCH_VERSION+cu128  (matches driver 12.8)"
 echo "=========================================================="
 
-# --- 1. Find Python 3.12 ----------------------------------------------------
-PY_BIN=""
-for candidate in python3.12 python3 python; do
-    if command -v "$candidate" >/dev/null 2>&1; then
-        VER=$("$candidate" -c 'import sys; print(".".join(map(str, sys.version_info[:2])))' 2>/dev/null || echo "0")
-        if [[ "$VER" == "3.12" ]]; then
-            PY_BIN="$candidate"
-            break
-        fi
-    fi
-done
-
-# Try module system if no system Python 3.12.
-if [[ -z "$PY_BIN" ]]; then
-    echo "  No system python3.12 found. Trying module system..."
-    module load python/3.12 2>/dev/null \
-        || module load python3/3.12 2>/dev/null \
-        || module load python 2>/dev/null \
-        || true
-    for candidate in python3.12 python3; do
-        if command -v "$candidate" >/dev/null 2>&1; then
-            VER=$("$candidate" -c 'import sys; print(".".join(map(str, sys.version_info[:2])))' 2>/dev/null || echo "0")
-            if [[ "$VER" == "3.12" ]]; then
-                PY_BIN="$candidate"
-                break
-            fi
-        fi
-    done
-fi
-
-if [[ -z "$PY_BIN" ]]; then
-    echo ""
-    echo "ERROR: Python 3.12 not found."
-    echo "  Available pythons:"
-    for p in python3.12 python3 python; do
-        command -v "$p" >/dev/null 2>&1 && echo "    $p -> $($p --version 2>&1)"
-    done
-    echo ""
-    echo "  Try: module load python/3.12  (or whatever your HPC names it)"
-    exit 1
-fi
-
-echo "  Python: $PY_BIN ($($PY_BIN --version 2>&1))"
-
 # --- 2. Create venv ---------------------------------------------------------
 if [[ -d "$VENV_DIR" && -f "$VENV_DIR/bin/python" ]]; then
     echo "  venv already exists at $VENV_DIR — reusing."
 else
-    "$PY_BIN" -m venv "$VENV_DIR"
+    python3 -m venv "$VENV_DIR"
 fi
 
 # --- 3. Install torch from cu128 index (WITH deps -> nvidia-* libs) ---------

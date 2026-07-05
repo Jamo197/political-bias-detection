@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=ingest_e5
 #SBATCH --partition=gpu
-#SBATCH --gres=gpu:1
+#SBATCH --gres=gpu:a100:1
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=48G
 #SBATCH --time=08:00:00
