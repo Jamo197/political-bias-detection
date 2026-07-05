@@ -9,7 +9,7 @@
 
 # Embed chunks with Qwen3-Embedding-8B by calling the vLLM server (02_vllm_qwen3).
 # Vectors are sliced 4096 -> 1024 (MRL) + L2-renormalized inside the embedder.
-# Start 02_vllm_qwen3.sbatch FIRST and wait until it is healthy.
+# The vLLM server is auto-started if not already running (02_vllm_qwen3.sbatch).
 set -euo pipefail
 
 cd "${PROJECT_ROOT:-$PWD}"
@@ -26,20 +26,10 @@ fi
 source slurm/qdrant_ensure.sh
 ensure_qdrant
 
-# Resolve the vLLM endpoint written by the server job (override with VLLM_BASE_URL).
-if [[ -z "${VLLM_BASE_URL:-}" && -f logs/slurm/vllm_qwen3_host.txt ]]; then
-    export VLLM_BASE_URL="http://$(cat logs/slurm/vllm_qwen3_host.txt)/v1"
-fi
-export VLLM_BASE_URL="${VLLM_BASE_URL:-http://localhost:8000/v1}"
+# Ensure the vLLM server is running (auto-starts 02_vllm_qwen3.sbatch if needed).
+source slurm/vllm_ensure.sh
+ensure_vllm
 echo "Qdrant -> $QDRANT_URL | vLLM -> $VLLM_BASE_URL"
-
-# Wait for the server to become reachable (max ~5 min).
-for i in $(seq 1 60); do
-    if curl -sf "${VLLM_BASE_URL%/v1}/health" >/dev/null 2>&1; then
-        echo "vLLM server is healthy."; break
-    fi
-    echo "Waiting for vLLM server... ($i)"; sleep 5
-done
 
 # Client only needs qdrant-client + openai (both in the venv). No GPU, no container.
 "$VENV_PY" -m rag.ingest.ingest \
