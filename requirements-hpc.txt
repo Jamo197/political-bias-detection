@@ -25,6 +25,8 @@ langchain-text-splitters>=1.1.2
 # --- Encoders: e5 + jina (SentenceTransformers / PyTorch) ---
 sentence-transformers>=3.0.0
 transformers>=4.45.0
+# jina-embeddings-v4 modeling code imports PIL at load time.
+Pillow>=10.0.0
 
 # --- bge-m3 hybrid (dense + sparse) ---
 FlagEmbedding>=1.4.0
