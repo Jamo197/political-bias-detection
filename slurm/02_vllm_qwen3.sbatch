@@ -28,14 +28,12 @@ echo "$(hostname):${VLLM_PORT}" > logs/slurm/vllm_qwen3_host.txt
 echo "vLLM host -> $(cat logs/slurm/vllm_qwen3_host.txt)"
 
 # --nv exposes the GPU drivers to the container.
-# --task embed enables the embeddings endpoint; vLLM handles left-padding.
 exec singularity exec --nv \
     --bind "$PWD:$PWD" \
     --pwd "$PWD" \
     --env HF_HOME="$HF_HOME" \
     "$VLLM_SIF" \
     vllm serve Qwen/Qwen3-Embedding-8B \
-        --task embed \
         --host 0.0.0.0 \
         --port "${VLLM_PORT}" \
         --dtype bfloat16 \

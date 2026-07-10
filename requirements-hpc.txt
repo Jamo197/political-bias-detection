@@ -22,9 +22,9 @@ python-dotenv>=1.0.0
 langchain-huggingface>=1.2.2
 langchain-text-splitters>=1.1.2
 
-# --- Encoders: e5 + jina (SentenceTransformers / PyTorch) ---
+# --- Encoders: e5 + jina (SentenceTransformers / PyTorch) transformers>=4.45.0 ---
 sentence-transformers>=3.0.0
-transformers>=4.45.0
+transformers==4.46.3
 # jina-embeddings-v4 modeling code imports PIL at load time.
 Pillow>=10.0.0
 
