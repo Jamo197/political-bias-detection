@@ -7,10 +7,16 @@
 #   python3.12 -m venv .venv-hpc
 #   source .venv-hpc/bin/activate
 #   pip install -U pip
-#   pip install torch==2.7.0 torchvision --index-url https://download.pytorch.org/whl/cu128
 #   pip install -r requirements-hpc.txt
 #
 # Or just run:  bash slurm/setup_venv.sh
+
+# Tell pip to look for CUDA 12.8 optimized wheels first
+--extra-index-url https://download.pytorch.org/whl/cu128
+
+# --- Core PyTorch (CUDA 12.8) ---
+torch==2.7.0
+torchvision
 
 # --- Core ingestion ---
 qdrant-client>=1.18.0
@@ -22,10 +28,11 @@ python-dotenv>=1.0.0
 langchain-huggingface>=1.2.2
 langchain-text-splitters>=1.1.2
 
-# --- Encoders: e5 + jina (SentenceTransformers / PyTorch) transformers>=4.45.0 ---
+# --- Encoders: e5 + jina (SentenceTransformers / PyTorch) ---
 sentence-transformers>=3.0.0
-transformers==4.46.3
-# jina-embeddings-v4 modeling code imports PIL at load time.
+transformers==4.52.3
+
+# jina-embeddings-v4 modeling code requires vision tools
 Pillow>=10.0.0
 
 # --- bge-m3 hybrid (dense + sparse) ---
