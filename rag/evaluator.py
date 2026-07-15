@@ -95,11 +95,13 @@ class BiasPredictor:
 
             {rag_instructions}
 
-            You must respond STRICTLY with a valid JSON object matching this structural schema:
+            CRITICAL FORMATTING RULE: You must respond STRICTLY with a valid JSON object matching this structural schema:
             {{
             "bias_score": <float between 1.0 and 7.0>,
             "justification": "<Concise analytical explanation for the score based strictly on the information provided tracking thematic alignment against context anchors.>"
             }}
+            Do NOT use double quotes (\") anywhere inside your justification text. 
+            If you need to quote a word or phrase, you MUST use single quotes (') instead.
         """
 
         user_message = (
@@ -108,25 +110,62 @@ class BiasPredictor:
 
         try:
             response = self.client.chat.completions.create(
-                model=model_id,
-                messages=[
-                    {"role": "system", "content": system_prompt},
-                    {"role": "user", "content": user_message},
-                ],
-                response_format={"type": "json_object"},
-                temperature=0.0,
-                extra_headers=(
-                    {
-                        "HTTP-Referer": "https://github.com/Jamo197/political-bias-detection",
-                        "X-Title": "Political RAG Pipeline Engine",
+            model=model_id,
+            messages=[
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": user_message},
+            ],
+            max_tokens=800, 
+            temperature=0.0,
+            response_format={
+                "type": "json_schema",
+                "json_schema": {
+                    "name": "bias_prediction",
+                    "strict": True,
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "bias_score": {
+                                "type": "number", 
+                                "description": "The calculated bias score"
+                            },
+                            "justification": {
+                                "type": "string", 
+                                "description": "Explanation for the score"
+                            }
+                        },
+                        "required": ["bias_score", "justification"],
+                        "additionalProperties": False
                     }
-                    if "openrouter.ai" in self.base_url
-                    else None
-                ),
-            )
+                }
+            },
+            extra_headers=(
+                {
+                    "HTTP-Referer": "https://github.com/Jamo197/political-bias-detection",
+                    "X-Title": "Political RAG Pipeline Engine",
+                }
+                if "openrouter.ai" in self.base_url
+                else None
+            ),
+        )
 
-            raw_content = response.choices[0].message.content
-            return json.loads(raw_content)
+            raw_content = response.choices[0].message.content.strip()
+            if raw_content.startswith("```"):
+                raw_content = raw_content.split("\n", 1)[-1]
+                if raw_content.endswith("```"):
+                    raw_content = raw_content.rsplit("\n", 1)[0]
+            
+            start_idx = raw_content.find('{')
+            end_idx = raw_content.rfind('}')
+            
+            if start_idx != -1 and end_idx != -1:
+                raw_content = raw_content[start_idx:end_idx + 1]
+                
+            try:
+                return json.loads(raw_content)
+            except json.JSONDecodeError as e:
+                logger.error(f"Failed to parse JSON. Raw LLM output was:\n{raw_content}")
+                raise e
         except Exception as e:
             logger.error(f"LLM prediction failure on model {model_id}: {e}")
             return {

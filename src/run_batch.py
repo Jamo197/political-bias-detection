@@ -310,7 +310,7 @@ def run_condition_norag(
             continue
 
         log_evaluation_run(
-            text_index=test_idx,
+            text_index=text_idx,
             input_text=text_content,
             llm_choice=llm_val["id"],
             llm_region=llm_val["region"],

@@ -47,8 +47,9 @@ echo "vLLM server: $VLLM_HOST"
 
 "$VENV_PY" -m src.run_batch \
     --no_rag \
-    --sample_size "$SAMPLE_SIZE" \
-    --random_seed "$RANDOM_SEED" \
     --llm_base_url "http://${VLLM_HOST}/v1" \
     --run_id "$RUN_ID" \
     --run_dir "$RUN_DIR"
+
+# NEXT STEPS:
+# Run for different LLM
