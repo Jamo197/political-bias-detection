@@ -24,8 +24,8 @@ VLLM_PORT="${VLLM_PORT:-8000}"
 export HF_HOME="${HF_HOME:-$PWD/.hf_cache}"
 mkdir -p "$HF_HOME"
 
-echo "$(hostname):${VLLM_PORT}" > logs/slurm/vllm_ministral_host.txt
-echo "vLLM host -> $(cat logs/slurm/vllm_ministral_host.txt)"
+echo "$(hostname):${VLLM_PORT}" > logs/slurm/vllm_serve_host.txt
+echo "vLLM host -> $(cat logs/slurm/vllm_serve_host.txt)"
 
 # --nv exposes the GPU drivers to the container.
 exec singularity exec --nv \
