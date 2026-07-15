@@ -60,8 +60,7 @@ from src.logging.log_run import log_evaluation_run
 DATA_PATH = _ROOT / "src/datasets/political_bias_articles_dataset.csv"
 
 LLM_MODELS = {
-    "xai": {"region": "Americas", "id": "x-ai/grok-4.3"},
-    "deepseek": {"region": "China", "id": "deepseek/deepseek-v4-flash"},
+    "ministral": {"region": "Europe", "id": "mistralai/Ministral-3-8B-Instruct-2512"},
 }
 
 STRATEGY_MAP = {
@@ -113,6 +112,14 @@ def load_and_prepare_data() -> pd.DataFrame:
         print(f"Execution terminated: Target input dataset missing at '{DATA_PATH}'")
         sys.exit(1)
     df = pd.read_csv(DATA_PATH)
+    # REMOVE data if media label is 0.0 or 1.0 (these are not valid labels for evaluation)
+    before = len(df)
+    df = df[~df["media_label"].isin([0.0, 1.0])]
+    after = len(df)
+    if before != after:
+        print(
+            f"Filtered out {before - after} rows with media_label 0.0 or 1.0 ({after} remaining)"
+        )
     df["post_content"] = df["post_content"].astype(str)
     rename_dict = {
         "B90Grune": "BÜNDNIS 90/DIE GRÜNEN",
@@ -131,12 +138,14 @@ def resolve_metadata(row) -> Tuple[str, str, str]:
     return meta_party, meta_speaker, meta_source
 
 
-def resolve_ground_truth(row) -> Tuple[Optional[float], Optional[float], Optional[float]]:
+def resolve_ground_truth(
+    row,
+) -> Tuple[Optional[float], Optional[float], Optional[float]]:
     def _safe_float(val) -> Optional[float]:
         try:
             f = float(val)
             return f if not pd.isna(f) else None
-        except (ValueError, TypeError):
+        except ValueError, TypeError:
             return None
 
     return (
@@ -196,7 +205,9 @@ def run_condition_rag(
             embedder=embedder,
         )
     except Exception as e:
-        print(f"  [SKIP] Could not initialize retriever for {embedding_model}/{strategy_label}: {e}")
+        print(
+            f"  [SKIP] Could not initialize retriever for {embedding_model}/{strategy_label}: {e}"
+        )
         return
 
     desc = f"{embedding_model}/{strategy_label}/{llm_key}"
