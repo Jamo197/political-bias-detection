@@ -47,6 +47,13 @@ K_CHUNKS="${K_CHUNKS:-5}"
 RANDOM_SEED="${RANDOM_SEED:-33}"
 HYDE_MODEL="${HYDE_MODEL:-Qwen/Qwen2.5-0.5B-Instruct}"
 
+VLLM_HOST=$(cat logs/slurm/vllm_ministral_host.txt 2>/dev/null || echo "")
+if [[ -z "$VLLM_HOST" ]]; then
+    echo "ERROR: vLLM host not found in logs/slurm/vllm_ministral_host.txt"
+    exit 1
+fi
+echo "vLLM server: $VLLM_HOST"
+
 "$VENV_PY" -m src.run_batch \
     --embedding_model e5 \
     --strategies simple,hyde,twostage \
@@ -56,5 +63,6 @@ HYDE_MODEL="${HYDE_MODEL:-Qwen/Qwen2.5-0.5B-Instruct}"
     --sample_size "$SAMPLE_SIZE" \
     --random_seed "$RANDOM_SEED" \
     --hyde_model "$HYDE_MODEL" \
+    --llm_base_url "${VLLM_HOST}/v1" \
     --run_id "$RUN_ID" \
     --run_dir "$RUN_DIR"
