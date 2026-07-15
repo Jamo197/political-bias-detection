@@ -227,6 +227,7 @@ def render_retrieval_section(retriever: Optional[PoliticalRAGRetriever], mode: s
 
 def render_prediction_section(evaluator: BiasPredictor, retriever: Optional[PoliticalRAGRetriever], model_id: str, model_region: str, embedding_model: str, mode: str, k: int):
     st.subheader("4. Bias Prediction")
+    text_index = st.session_state["index"] if "index" in st.session_state else ""
     input_text = st.session_state["input_text"]
     current_party = st.session_state["meta_party"]
     current_speaker = st.session_state["meta_speaker"]
@@ -268,6 +269,7 @@ def render_prediction_section(evaluator: BiasPredictor, retriever: Optional[Poli
             os.makedirs(active_run_dir, exist_ok=True)
 
             log_evaluation_run(
+                text_index=text_index,
                 input_text=input_text,
                 llm_choice=model_id,
                 llm_region=model_region,

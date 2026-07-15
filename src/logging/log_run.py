@@ -5,6 +5,7 @@ from typing import Any, Dict, List, Optional
 
 
 def log_evaluation_run(
+    text_index: str,
     input_text: str,
     llm_choice: str,
     llm_region: str,
@@ -31,6 +32,7 @@ def log_evaluation_run(
 
     Parameters
     ----------
+    text_index        : Unique identifier for the input text (e.g., row index).
     input_text        : The raw text that was analysed.
     llm_choice        : LLM provider string slug path.
     llm_region        : Sovereign origin region of the model deployment target.
@@ -66,6 +68,7 @@ def log_evaluation_run(
             "k_chunks": k_chunks,
         },
         "input_metadata": {
+            "text_index": text_index,
             "party": meta_party,
             "speaker": meta_speaker,
             "source": meta_source,

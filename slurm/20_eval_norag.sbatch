@@ -49,6 +49,6 @@ echo "vLLM server: $VLLM_HOST"
     --no_rag \
     --sample_size "$SAMPLE_SIZE" \
     --random_seed "$RANDOM_SEED" \
-    --llm_base_url "$VLLM_HOST" \
+    --llm_base_url "http://${VLLM_HOST}/v1" \
     --run_id "$RUN_ID" \
     --run_dir "$RUN_DIR"

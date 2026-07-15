@@ -145,7 +145,7 @@ def resolve_ground_truth(
         try:
             f = float(val)
             return f if not pd.isna(f) else None
-        except ValueError, TypeError:
+        except (ValueError, TypeError):
             return None
 
     return (
@@ -216,6 +216,7 @@ def run_condition_rag(
         total=len(evaluation_batch),
         desc=desc,
     ):
+        text_idx = str(row.get("index", "")).strip()
         text_content = str(row.get("post_content", "")).strip()
         if not text_content:
             continue
@@ -250,6 +251,7 @@ def run_condition_rag(
             continue
 
         log_evaluation_run(
+            text_index=text_idx,
             input_text=text_content,
             llm_choice=llm_val["id"],
             llm_region=llm_val["region"],
@@ -288,6 +290,7 @@ def run_condition_norag(
         total=len(evaluation_batch),
         desc=desc,
     ):
+        text_idx = str(row.get("index", "")).strip()
         text_content = str(row.get("post_content", "")).strip()
         if not text_content:
             continue
@@ -307,6 +310,7 @@ def run_condition_norag(
             continue
 
         log_evaluation_run(
+            text_index=test_idx,
             input_text=text_content,
             llm_choice=llm_val["id"],
             llm_region=llm_val["region"],
