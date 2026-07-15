@@ -25,3 +25,4 @@ logs/slurm/
 *.sif
 tmp/
 .hf_cache/
+HOWTO_HPC.md

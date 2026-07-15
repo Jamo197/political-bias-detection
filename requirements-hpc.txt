@@ -41,6 +41,15 @@ FlagEmbedding>=1.4.0
 # --- Qwen3-Embedding-8B served via vLLM (latest; supports task=embed) ---
 openai>=2.0.0
 
+# --- Evaluation (src/run_batch.py, src/evaluate_metrics.py, rag/evaluator.py) ---
+pandas>=2.0.0,<3.0
+scipy>=1.13.0
+scikit-learn>=1.5.0
+seaborn>=0.13.2
+matplotlib>=3.10.9
+pydantic>=2.13.0
+tqdm>=4.66.0
+
 # --- Optional speedups (uncomment if your toolchain supports them) ---
 # flash-attn>=2.6.0          # faster jina/qwen attention; needs CUDA build tools
 # einops>=0.8.0              # required by some jina remote-code paths

@@ -1,18 +1,23 @@
-"""Model-specific embedding backends with a unified ingestion interface.
+"""Model-specific embedding backends with a unified interface.
 
-Every embedder exposes ``embed_passages(texts) -> EmbedResult`` for ingestion.
-Query-side encoding (instruction prompting, prompt_name="query", etc.) is a
-FOLLOW-UP task handled in rag/retrieval.py; the hooks are marked with
-``TODO(retrieval)`` below so the model-specific query logic is not forgotten.
+Every embedder exposes two methods:
+  * ``embed_passages(texts) -> EmbedResult``  — for ingestion (document side).
+  * ``embed_query(text, instruction) -> EmbedResult``  — for retrieval (query side).
+  * ``embed_queries(texts, instruction) -> EmbedResult``  — batch query side (HyDE).
 
-Model quirks handled here:
-  * e5     : passages prefixed with "passage: ", L2-normalized.
-  * bge-m3 : FlagEmbedding produces dense + sparse (lexical) weights. No ColBERT
-             (dropped by design). Sparse stored alongside dense for hybrid search.
+Query-side encoding mirrors the passage-side quirks so that ingestion and
+retrieval stay consistent:
+
+  * e5     : passages prefixed "passage: "; queries formatted as
+             f"Instruct: {instruction}\\nQuery: {query}", normalize_embeddings=True.
+  * bge-m3 : FlagEmbedding produces dense + sparse (lexical) weights for both
+             passages and queries. No ColBERT (dropped by design). No instruction
+             prefix needed.
   * jina   : Matryoshka truncate_dim=1024 (native, internally renormalized);
-             task="retrieval", prompt_name="passage".
+             task="retrieval", prompt_name="passage" / "query".
   * qwen3  : 8B decoder served by vLLM; raw 4096 vectors are sliced to [:1024]
              (MRL) and **re-normalized with L2** — required for correct cosine.
+             Queries prepend an ENGLISH instruction (Qwen team recommendation).
 """
 
 from __future__ import annotations
@@ -119,13 +124,16 @@ class BaseEmbedder:
     def embed_passages(self, texts: list[str]) -> EmbedResult:  # pragma: no cover
         raise NotImplementedError
 
-    # TODO(retrieval): implement embed_query() per model with the instruction /
-    # prompt_name logic. Ingestion only needs passages, so query encoding is
-    # deferred to the retrieval follow-up (see rag/retrieval.py).
-    def embed_query(self, text: str, instruction: Optional[str] = None) -> np.ndarray:
-        raise NotImplementedError(
-            "Query encoding is a retrieval-side follow-up; see TODO(retrieval)."
-        )
+    def embed_query(self, text: str, instruction: Optional[str] = None) -> EmbedResult:
+        raise NotImplementedError
+
+    def embed_queries(
+        self, texts: list[str], instruction: Optional[str] = None
+    ) -> EmbedResult:
+        raise NotImplementedError
+
+    def _resolve_instruction(self, instruction: Optional[str]) -> str:
+        return instruction or self.cfg.default_query_instruction
 
 
 class E5Embedder(BaseEmbedder):
@@ -139,7 +147,6 @@ class E5Embedder(BaseEmbedder):
         self.model = SentenceTransformer(cfg.hf_model_id, device=device)
 
     def embed_passages(self, texts: list[str]) -> EmbedResult:
-        # e5 convention: documents are prefixed with "passage: ".
         prefixed = [f"passage: {t}" for t in texts]
         vecs = self.model.encode(
             prefixed,
@@ -149,8 +156,28 @@ class E5Embedder(BaseEmbedder):
         )
         return EmbedResult(dense=l2_normalize(vecs))
 
-    # TODO(retrieval): e5 queries MUST be formatted as
-    #   f"Instruct: {instruction}\nQuery: {query}"  (then normalize_embeddings=True)
+    def embed_query(self, text: str, instruction: Optional[str] = None) -> EmbedResult:
+        formatted = f"Instruct: {self._resolve_instruction(instruction)}\nQuery: {text}"
+        vec = self.model.encode(
+            [formatted],
+            normalize_embeddings=True,
+            convert_to_numpy=True,
+            show_progress_bar=False,
+        )
+        return EmbedResult(dense=l2_normalize(vec[0]))
+
+    def embed_queries(
+        self, texts: list[str], instruction: Optional[str] = None
+    ) -> EmbedResult:
+        inst = self._resolve_instruction(instruction)
+        formatted = [f"Instruct: {inst}\nQuery: {t}" for t in texts]
+        vecs = self.model.encode(
+            formatted,
+            normalize_embeddings=True,
+            convert_to_numpy=True,
+            show_progress_bar=False,
+        )
+        return EmbedResult(dense=l2_normalize(vecs))
 
 
 class BGEEmbedder(BaseEmbedder):
@@ -190,8 +217,33 @@ class BGEEmbedder(BaseEmbedder):
 
         return EmbedResult(dense=dense, sparse=sparse)
 
-    # TODO(retrieval): bge-m3 hybrid query = dense + sparse; fuse via Qdrant
-    # prefetch + RRF/DBSF. No instruction prefix needed for bge-m3.
+    def embed_query(self, text: str, instruction: Optional[str] = None) -> EmbedResult:
+        out = self.model.encode(
+            [text],
+            return_dense=True,
+            return_sparse=True,
+            return_colbert_vecs=False,
+        )
+        dense = l2_normalize(
+            np.asarray(out["dense_vecs"][0], dtype=np.float32)
+        )
+        sparse = [{int(k): float(v) for k, v in out["lexical_weights"][0].items()}]
+        return EmbedResult(dense=dense, sparse=sparse)
+
+    def embed_queries(
+        self, texts: list[str], instruction: Optional[str] = None
+    ) -> EmbedResult:
+        out = self.model.encode(
+            texts,
+            return_dense=True,
+            return_sparse=True,
+            return_colbert_vecs=False,
+        )
+        dense = l2_normalize(np.asarray(out["dense_vecs"], dtype=np.float32))
+        sparse = [
+            {int(k): float(v) for k, v in lw.items()} for lw in out["lexical_weights"]
+        ]
+        return EmbedResult(dense=dense, sparse=sparse)
 
 
 class JinaEmbedder(BaseEmbedder):
@@ -222,8 +274,29 @@ class JinaEmbedder(BaseEmbedder):
         )
         return EmbedResult(dense=l2_normalize(vecs))
 
-    # TODO(retrieval): jina queries use prompt_name="query" (same task=
-    # "retrieval", truncate_dim=1024).
+    def embed_query(self, text: str, instruction: Optional[str] = None) -> EmbedResult:
+        vec = self.model.encode(
+            [text],
+            task="retrieval",
+            prompt_name="query",
+            truncate_dim=TARGET_DIM,
+            convert_to_numpy=True,
+            show_progress_bar=False,
+        )
+        return EmbedResult(dense=l2_normalize(vec[0]))
+
+    def embed_queries(
+        self, texts: list[str], instruction: Optional[str] = None
+    ) -> EmbedResult:
+        vecs = self.model.encode(
+            texts,
+            task="retrieval",
+            prompt_name="query",
+            truncate_dim=TARGET_DIM,
+            convert_to_numpy=True,
+            show_progress_bar=False,
+        )
+        return EmbedResult(dense=l2_normalize(vecs))
 
 
 class Qwen3VLLMEmbedder(BaseEmbedder):
@@ -249,27 +322,112 @@ class Qwen3VLLMEmbedder(BaseEmbedder):
         self.client = OpenAI(base_url=base_url, api_key=api_key, timeout=timeout)
 
     def embed_passages(self, texts: list[str]) -> EmbedResult:
-        # Passages are embedded raw (no instruction prefix on the document side).
         resp = self.client.embeddings.create(model=self.model_id, input=texts)
-        # Preserve request order.
         ordered = sorted(resp.data, key=lambda d: d.index)
         raw = np.asarray([d.embedding for d in ordered], dtype=np.float32)
 
-        # MRL truncation: slice to target dim, THEN L2-renormalize.
         sliced = raw[:, : self.cfg.target_dim]
         return EmbedResult(dense=l2_normalize(sliced))
 
-    # TODO(retrieval): Qwen3 queries prepend an ENGLISH instruction even for
-    # German/French text (Qwen team recommendation):
-    #   f"Instruct: {instruction}\nQuery: {query}"
-    # Ensure padding_side='left' if you ever swap vLLM for raw PyTorch.
+    def embed_query(self, text: str, instruction: Optional[str] = None) -> EmbedResult:
+        formatted = f"Instruct: {self._resolve_instruction(instruction)}\nQuery: {text}"
+        resp = self.client.embeddings.create(model=self.model_id, input=[formatted])
+        ordered = sorted(resp.data, key=lambda d: d.index)
+        raw = np.asarray([d.embedding for d in ordered], dtype=np.float32)
+        sliced = raw[0, : self.cfg.target_dim]
+        return EmbedResult(dense=l2_normalize(sliced))
+
+    def embed_queries(
+        self, texts: list[str], instruction: Optional[str] = None
+    ) -> EmbedResult:
+        inst = self._resolve_instruction(instruction)
+        formatted = [f"Instruct: {inst}\nQuery: {t}" for t in texts]
+        resp = self.client.embeddings.create(model=self.model_id, input=formatted)
+        ordered = sorted(resp.data, key=lambda d: d.index)
+        raw = np.asarray([d.embedding for d in ordered], dtype=np.float32)
+        sliced = raw[:, : self.cfg.target_dim]
+        return EmbedResult(dense=l2_normalize(sliced))
+
+
+class OpenRouterEmbedder(BaseEmbedder):
+    """Query-only embedder that calls the OpenRouter embeddings API.
+
+    Supports bge-m3 and qwen3-embedding-8b via OpenRouter, eliminating the need
+    for a local GPU or vLLM server during evaluation. Sparse vectors are NOT
+    available from OpenRouter — hybrid retrieval is automatically disabled.
+
+    Dimension handling: we request native-dim vectors and apply the same MRL
+    slicing + L2 renorm locally, guaranteeing consistency with ingestion.
+    """
+
+    def __init__(
+        self,
+        cfg: ModelConfig,
+        api_key: Optional[str] = None,
+        timeout: float = 120.0,
+    ):
+        super().__init__(cfg)
+        import os
+
+        from openai import OpenAI
+
+        api_key = api_key or os.getenv("OPENROUTER_API_KEY", "")
+        self.client = OpenAI(
+            base_url="https://openrouter.ai/api/v1",
+            api_key=api_key,
+            timeout=timeout,
+        )
+        self.model_id = cfg.openrouter_model_id
+
+    def embed_passages(self, texts: list[str]) -> EmbedResult:
+        raise NotImplementedError("OpenRouterEmbedder is query-only.")
+
+    def _embed_one(self, text: str) -> EmbedResult:
+        resp = self.client.embeddings.create(model=self.model_id, input=[text])
+        ordered = sorted(resp.data, key=lambda d: d.index)
+        raw = np.asarray([d.embedding for d in ordered], dtype=np.float32)
+        sliced = raw[0, : self.cfg.target_dim]
+        return EmbedResult(dense=l2_normalize(sliced))
+
+    def _embed_batch(self, texts: list[str]) -> EmbedResult:
+        resp = self.client.embeddings.create(model=self.model_id, input=texts)
+        ordered = sorted(resp.data, key=lambda d: d.index)
+        raw = np.asarray([d.embedding for d in ordered], dtype=np.float32)
+        sliced = raw[:, : self.cfg.target_dim]
+        return EmbedResult(dense=l2_normalize(sliced))
+
+    def embed_query(self, text: str, instruction: Optional[str] = None) -> EmbedResult:
+        if self.cfg.key == "qwen3":
+            formatted = f"Instruct: {self._resolve_instruction(instruction)}\nQuery: {text}"
+        else:
+            formatted = text
+        return self._embed_one(formatted)
+
+    def embed_queries(
+        self, texts: list[str], instruction: Optional[str] = None
+    ) -> EmbedResult:
+        if self.cfg.key == "qwen3":
+            inst = self._resolve_instruction(instruction)
+            formatted = [f"Instruct: {inst}\nQuery: {t}" for t in texts]
+        else:
+            formatted = texts
+        return self._embed_batch(formatted)
 
 
 def build_embedder(
     cfg: ModelConfig,
     device: Optional[str] = None,
     vllm_base_url: Optional[str] = None,
+    query_backend: str = "local",
+    openrouter_api_key: Optional[str] = None,
 ) -> BaseEmbedder:
+    if query_backend == "openrouter":
+        if not cfg.openrouter_model_id:
+            raise ValueError(
+                f"Model '{cfg.key}' is not available on OpenRouter. "
+                f"Use --query_backend local (requires GPU)."
+            )
+        return OpenRouterEmbedder(cfg, api_key=openrouter_api_key)
     if cfg.backend == "sentence_transformers" and cfg.key == "e5":
         return E5Embedder(cfg, device=device)
     if cfg.backend == "sentence_transformers" and cfg.key == "jina":

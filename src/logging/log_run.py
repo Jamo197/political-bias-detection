@@ -14,39 +14,44 @@ def log_evaluation_run(
     retrieved_chunks: List[Dict[str, Any]],
     meta_party: str,
     meta_speaker: str,
-    meta_year: int,
+    meta_source: str,
     output_score: Optional[float],
     output_justification: Optional[str],
-    ches_lrgen: Optional[float],
-    ches_lrecon: Optional[float],
-    ches_galtan: Optional[float],
+    label_ideology: Optional[float],
+    label_economic: Optional[float],
+    label_galtan: Optional[float],
     run_dir: str,
     run_id: str,
+    embedding_model: str = "none",
+    hybrid: bool = False,
+    is_rag: bool = True,
     filename: str = "evaluation_logs.jsonl",
 ):
-    """
-    Appends a structured JSONL log entry for a single prediction run.
+    """Appends a structured JSONL log entry for a single prediction run.
 
     Parameters
     ----------
     input_text        : The raw text that was analysed.
     llm_choice        : LLM provider string slug path.
     llm_region        : Sovereign origin region of the model deployment target.
-    retrieval_mode    : RAG strategy used (Simple / TwoStage / HyDE).
+    retrieval_mode    : RAG strategy used (simple / twostage / hyde / no_rag).
     k_chunks          : Number of chunks retrieved (top-K).
-    hyde_docs         : List of HyDE-generated hypothetical documents (empty if not HyDE).
+    embedding_model   : Embedding model key (e5 / bge / jina / qwen3 / none).
+    hybrid            : Whether bge hybrid (dense+sparse+RRF) was used.
+    is_rag            : Whether RAG retrieval was performed at all.
+    hyde_docs         : List of HyDE-generated hypothetical documents.
     retrieved_chunks  : List of retrieved chunk dicts with text + metadata.
-    meta_party        : Party label of the input text (from dataset or DB).
-    meta_speaker      : Speaker name of the input text.
-    meta_year         : Year of the input text.
-    output_score      : Predicted bias score (0–10) or None on error.
+    meta_party        : Party label of the input text.
+    meta_speaker      : Social media handle of the input text author.
+    meta_source       : Article source / media outlet.
+    output_score      : Predicted bias score (0-7) or None on error.
     output_justification : LLM justification string or None on error.
-    ches_lrgen        : CHES ground truth lrgen score for the input party/year.
-    ches_lrecon       : CHES ground truth lrecon score for the input party/year.
-    ches_galtan       : CHES ground truth galtan score for the input party/year.
-    run_dir           : Pre-computed base log directory for this run (e.g. logs/batch_runs/2026-06-18_a3f9c12b).
-    run_id            : Short unique identifier for this run (8-char hex).
-    filename          : JSONL filename within the retrieval-mode subdirectory.
+    label_ideology    : Ground truth ideology label (1.2-6.0).
+    label_economic    : Ground truth economic label (1.2-6.0).
+    label_galtan      : Ground truth GAL-TAN label (1.2-5.9).
+    run_dir           : Pre-computed base log directory for this run.
+    run_id            : Short unique identifier for this run.
+    filename          : JSONL filename within the condition subdirectory.
     """
     log_entry = {
         "run_id": run_id,
@@ -54,13 +59,16 @@ def log_evaluation_run(
         "parameters": {
             "llm": llm_choice,
             "llm_region": llm_region,
+            "embedding_model": embedding_model,
             "retrieval_mode": retrieval_mode,
+            "hybrid": hybrid,
+            "is_rag": is_rag,
             "k_chunks": k_chunks,
         },
         "input_metadata": {
             "party": meta_party,
             "speaker": meta_speaker,
-            "year": meta_year,
+            "source": meta_source,
         },
         "inputs": {
             "text": input_text,
@@ -71,14 +79,15 @@ def log_evaluation_run(
             "bias": output_score,
             "justification": output_justification,
         },
-        "ches_ground_truth": {
-            "lrgen": ches_lrgen,
-            "lrecon": ches_lrecon,
-            "galtan": ches_galtan,
+        "ground_truth": {
+            "label_ideology": label_ideology,
+            "label_economic": label_economic,
+            "label_galtan": label_galtan,
         },
     }
 
-    logs_dir = os.path.join(run_dir, retrieval_mode)
+    condition = "no_rag" if not is_rag else retrieval_mode
+    logs_dir = os.path.join(run_dir, embedding_model, condition)
     os.makedirs(logs_dir, exist_ok=True)
     filepath_full = os.path.join(logs_dir, filename)
 

@@ -1,15 +1,40 @@
+"""Model-aware retrieval strategies for the multi-embedding RAG pipeline.
+
+The retriever is now model-aware: query-side encoding uses the SAME embedding
+model (and the SAME quirks) that produced the vectors at ingestion time. This
+module reuses ``rag.ingest.embedders`` and ``rag.ingest.config`` so ingestion
+and retrieval stay consistent.
+
+Supported strategies:
+  * Simple      — Bi-encoder dense vector retrieval (baseline).
+  * SimpleHybrid — BGE-m3 only: dense + sparse RRF fusion via Qdrant prefetch.
+  * HyDE        — Hypothetical Document Embeddings (generates fake parliamentary
+                  speeches via a small LLM, averages embeddings with the query).
+  * TwoStage    — Bi-encoder retrieval + Cross-Encoder reranking.
+
+HyDE LLM backends:
+  * InProcessHyDELLM  — Qwen2.5-0.5B-Instruct loaded via transformers (HPC).
+  * OpenAIHyDELLM     — Any OpenAI-compatible endpoint (Ollama, vLLM server).
+"""
+
 import logging
 import os
 from abc import ABC, abstractmethod
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import List, Optional
 
 import numpy as np
 from dotenv import load_dotenv
-from langchain_huggingface import HuggingFaceEmbeddings
-from langchain_ollama import OllamaLLM
 from qdrant_client import QdrantClient
 from qdrant_client.http import models
+
+from rag.ingest.config import (
+    BGE_DENSE_VECTOR_NAME,
+    BGE_SPARSE_VECTOR_NAME,
+    ModelConfig,
+    get_model_config,
+)
+from rag.ingest.embedders import BaseEmbedder, EmbedResult, build_embedder, l2_normalize
 
 load_dotenv(Path(".env.local"))
 os.environ["HF_TOKEN"] = os.getenv("HF_TOKEN", "")
@@ -19,9 +44,97 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
+CROSS_ENCODER_MODEL = "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+
+
+# ---------------------------------------------------------------------------
+# HyDE LLM abstraction
+# ---------------------------------------------------------------------------
+
+class HyDELLM(ABC):
+    """Abstract interface for HyDE hypothetical-document generation."""
+
+    @abstractmethod
+    def generate(self, prompt: str) -> str:
+        pass
+
+
+class InProcessHyDELLM(HyDELLM):
+    """Small chat model loaded in-process via transformers.
+
+    Shares the eval job's GPU alongside the embedding model. A 0.5B model
+    uses ~1 GB VRAM and loads in seconds, making it practical for HPC
+    without a dedicated server allocation.
+    """
+
+    def __init__(self, model_id: str = "Qwen/Qwen2.5-0.5B-Instruct", device: str = "auto"):
+        import torch
+        from transformers import AutoModelForCausalLM, AutoTokenizer
+
+        self.tokenizer = AutoTokenizer.from_pretrained(model_id)
+        if device == "auto":
+            device = "cuda" if torch.cuda.is_available() else "cpu"
+        self.device = device
+        dtype = torch.float16 if "cuda" in str(device) else torch.float32
+        self.model = AutoModelForCausalLM.from_pretrained(
+            model_id, torch_dtype=dtype
+        ).to(device)
+        self.model.eval()
+        logger.info(f"InProcessHyDELLM loaded '{model_id}' on {device}")
+
+    def generate(self, prompt: str) -> str:
+        import torch
+
+        messages = [{"role": "user", "content": prompt}]
+        text = self.tokenizer.apply_chat_template(
+            messages, tokenize=False, add_generation_prompt=True
+        )
+        inputs = self.tokenizer(text, return_tensors="pt").to(self.device)
+        with torch.no_grad():
+            outputs = self.model.generate(
+                **inputs,
+                max_new_tokens=200,
+                temperature=0.7,
+                do_sample=True,
+                pad_token_id=self.tokenizer.eos_token_id,
+            )
+        generated = outputs[0][inputs["input_ids"].shape[1] :]
+        return self.tokenizer.decode(generated, skip_special_tokens=True)
+
+
+class OpenAIHyDELLM(HyDELLM):
+    """Any OpenAI-compatible endpoint (Ollama local, vLLM server, etc.).
+
+    For local testing with Ollama: base_url="http://localhost:11434/v1"
+    """
+
+    def __init__(
+        self,
+        base_url: str = "http://localhost:11434/v1",
+        model_id: str = "gemma3",
+        api_key: str = "EMPTY",
+    ):
+        from openai import OpenAI
+
+        self.client = OpenAI(base_url=base_url, api_key=api_key)
+        self.model_id = model_id
+
+    def generate(self, prompt: str) -> str:
+        response = self.client.chat.completions.create(
+            model=self.model_id,
+            messages=[{"role": "user", "content": prompt}],
+            temperature=0.7,
+            max_tokens=200,
+        )
+        return response.choices[0].message.content
+
+
+# ---------------------------------------------------------------------------
+# Retrieval strategies
+# ---------------------------------------------------------------------------
 
 class RetrievalStrategy(ABC):
-    """Abstract Base Class establishing structural interface for all retrieval strategies."""
+    """Abstract base class for all retrieval strategies."""
 
     @abstractmethod
     def retrieve(self, query: str, limit: int = 3) -> List[models.PointStruct]:
@@ -29,63 +142,130 @@ class RetrievalStrategy(ABC):
 
 
 class SimpleRetrieval(RetrievalStrategy):
-    """Baseline Bi-Encoder dense vector retrieval."""
+    """Bi-encoder dense vector retrieval.
 
-    def __init__(self, client: QdrantClient, collection_name: str, embeddings):
-        self.client = client
-        self.collection_name = collection_name
-        self.embeddings = embeddings
-
-    def retrieve(self, query: str, limit: int = 3) -> List[models.PointStruct]:
-        query_vector = self.embeddings.embed_query(query)
-        response = self.client.query_points(
-            collection_name=self.collection_name,
-            query=query_vector,
-            limit=limit,
-            with_payload=True,
-        )
-        return response.points
-
-
-class HyDERetrieval(RetrievalStrategy):
-    """Hypothetical Document Embeddings (HyDE) contextual retrieval."""
+    For bge-m3 with hybrid=True, performs dense + sparse RRF fusion via
+    Qdrant prefetch. For bge-m3 with hybrid=False, queries only the named
+    dense vector. Other models use the default unnamed vector.
+    """
 
     def __init__(
         self,
         client: QdrantClient,
-        collection_name: str,
-        embeddings,
-        llm=None,
+        cfg: ModelConfig,
+        embedder: BaseEmbedder,
+        hybrid: bool = False,
+    ):
+        self.client = client
+        self.cfg = cfg
+        self.embedder = embedder
+        self.hybrid = hybrid
+
+    def retrieve(self, query: str, limit: int = 3) -> List[models.PointStruct]:
+        result = self.embedder.embed_query(query)
+        dense_vec = result.dense.tolist()
+
+        if self.cfg.hybrid_sparse and self.hybrid and result.sparse:
+            sparse_dict = result.sparse[0]
+            sparse_vec = models.SparseVector(
+                indices=list(sparse_dict.keys()),
+                values=list(sparse_dict.values()),
+            )
+            prefetch_limit = max(limit * 5, 20)
+            response = self.client.query_points(
+                collection_name=self.cfg.collection,
+                prefetch=[
+                    models.Prefetch(
+                        query=dense_vec,
+                        using=BGE_DENSE_VECTOR_NAME,
+                        limit=prefetch_limit,
+                    ),
+                    models.Prefetch(
+                        query=sparse_vec,
+                        using=BGE_SPARSE_VECTOR_NAME,
+                        limit=prefetch_limit,
+                    ),
+                ],
+                query=models.FusionQuery(fusion=models.Fusion.RRF),
+                limit=limit,
+                with_payload=True,
+            )
+        elif self.cfg.hybrid_sparse:
+            response = self.client.query_points(
+                collection_name=self.cfg.collection,
+                query=dense_vec,
+                using=BGE_DENSE_VECTOR_NAME,
+                limit=limit,
+                with_payload=True,
+            )
+        else:
+            response = self.client.query_points(
+                collection_name=self.cfg.collection,
+                query=dense_vec,
+                limit=limit,
+                with_payload=True,
+            )
+
+        return response.points
+
+
+class HyDERetrieval(RetrievalStrategy):
+    """Hypothetical Document Embeddings (HyDE) contextual retrieval.
+
+    Generates hypothetical parliamentary speech excerpts via a small LLM,
+    embeds them alongside the original query, averages the dense vectors,
+    and queries the collection. For bge-m3, only the dense vector is used
+    (averaging sparse vectors across hypothetical docs is not meaningful).
+    """
+
+    def __init__(
+        self,
+        client: QdrantClient,
+        cfg: ModelConfig,
+        embedder: BaseEmbedder,
+        hyde_llm: Optional[HyDELLM] = None,
         country_context: str = "Germany",
     ):
         self.client = client
-        self.collection_name = collection_name
-        self.embeddings = embeddings
-        self.llm = llm
+        self.cfg = cfg
+        self.embedder = embedder
+        self.hyde_llm = hyde_llm
         self.country_context = country_context
 
     def retrieve(
         self, query: str, limit: int = 3, num_hypothetical: int = 3
     ) -> List[models.PointStruct]:
         hypothetical_docs = self._generate_hypothetical_docs(query, num_hypothetical)
-        all_queries = [query] + hypothetical_docs
-        query_vectors = self.embeddings.embed_documents(all_queries)
-        avg_vector = np.mean(query_vectors, axis=0).tolist()
+        all_texts = [query] + hypothetical_docs
+        result = self.embedder.embed_queries(all_texts)
+        avg_vector = np.mean(result.dense, axis=0)
+        avg_vector = l2_normalize(avg_vector)
+        avg_list = avg_vector.tolist()
 
-        response = self.client.query_points(
-            collection_name=self.collection_name,
-            query=avg_vector,
-            limit=limit,
-            with_payload=True,
-        )
+        if self.cfg.hybrid_sparse:
+            response = self.client.query_points(
+                collection_name=self.cfg.collection,
+                query=avg_list,
+                using=BGE_DENSE_VECTOR_NAME,
+                limit=limit,
+                with_payload=True,
+            )
+        else:
+            response = self.client.query_points(
+                collection_name=self.cfg.collection,
+                query=avg_list,
+                limit=limit,
+                with_payload=True,
+            )
+
         return response.points
 
     def _generate_hypothetical_docs(self, query: str, num_docs: int) -> List[str]:
-        if not self.llm:
+        if not self.hyde_llm:
             return []
 
         prompt = f"""
-            You are a political assistant in {self.country_context}. Generate {num_docs} short hypothetical 
+            You are a political assistant in {self.country_context}. Generate {num_docs} short hypothetical
             parliamentary speech excerpts regarding: "{query}"
 
             Rules:
@@ -95,8 +275,7 @@ class HyDERetrieval(RetrievalStrategy):
             IMPORTANT: Return ONLY the excerpts, one per line, no additional text or information, like "Here are the hypothetical documents: ...".
         """
         try:
-            response = self.llm.invoke(prompt)
-            text = response.content if hasattr(response, "content") else str(response)
+            text = self.hyde_llm.generate(prompt)
             return [d.strip() for d in text.strip().split("\n") if len(d.strip()) > 10][
                 :num_docs
             ]
@@ -108,28 +287,34 @@ class HyDERetrieval(RetrievalStrategy):
 
 
 class TwoStageRetrieval(RetrievalStrategy):
-    """Bi-Encoder Retrieval coupled with Cross-Encoder Reranking."""
+    """Bi-encoder retrieval coupled with Cross-Encoder reranking.
+
+    The first stage uses SimpleRetrieval (including BGE hybrid if enabled)
+    to over-fetch candidates. The second stage reranks with a cross-encoder.
+    """
 
     def __init__(
-        self, client: QdrantClient, collection_name: str, bi_encoder, cross_encoder
+        self,
+        client: QdrantClient,
+        cfg: ModelConfig,
+        embedder: BaseEmbedder,
+        cross_encoder,
+        hybrid: bool = False,
     ):
         self.client = client
-        self.collection_name = collection_name
-        self.bi_encoder = bi_encoder
+        self.cfg = cfg
+        self.embedder = embedder
         self.cross_encoder = cross_encoder
+        self.hybrid = hybrid
 
     def retrieve(
         self, query: str, limit: int = 3, rerank_top_k: int = 15
     ) -> List[models.PointStruct]:
-        query_vector = self.bi_encoder.embed_query(query)
-        response = self.client.query_points(
-            collection_name=self.collection_name,
-            query=query_vector,
-            limit=rerank_top_k,
-            with_payload=True,
+        simple = SimpleRetrieval(
+            self.client, self.cfg, self.embedder, self.hybrid
         )
+        candidates = simple.retrieve(query, limit=rerank_top_k)
 
-        candidates = response.points
         if not candidates or not self.cross_encoder:
             return candidates[:limit]
 
@@ -142,76 +327,96 @@ class TwoStageRetrieval(RetrievalStrategy):
         return sorted(candidates, key=lambda x: x.score, reverse=True)[:limit]
 
 
-# TODO(retrieval): Multi-model query-side encoding follow-up.
-# The HPC ingestion pipeline (rag/ingest/) now populates four separate Qdrant
-# collections — chunks_e5, chunks_bge, chunks_jina, chunks_qwen3 — each with
-# 1024-dim dense vectors (bge additionally stores a sparse IDF vector). This
-# retriever must be made model-aware so queries are encoded with the SAME model
-# (and the SAME quirks) used at ingestion. Specifically:
-#   * e5    : query = f"Instruct: {instruction}\nQuery: {query}", normalize.
-#   * qwen3 : prepend ENGLISH instruction (Qwen recommendation), slice [:1024],
-#             then L2-renormalize (mirror rag/ingest/embedders.py).
-#   * jina  : encode(task="retrieval", prompt_name="query", truncate_dim=1024).
-#   * bge   : dense + sparse hybrid query (Qdrant prefetch + RRF/DBSF fusion).
-# Reuse rag.ingest.embedders + rag.ingest.config (MODELS, default instruction)
-# so ingestion and retrieval stay consistent. Until then, the legacy MiniLM
-# baseline below remains for the old single-collection setup.
-class PoliticalRAGRetriever:
-    """Main RAG orchestrator optimized for CHES validation execution."""
+# ---------------------------------------------------------------------------
+# Main orchestrator
+# ---------------------------------------------------------------------------
 
-    EMBEDDING_MODEL = "paraphrase-multilingual-MiniLM-L12-v2"
-    CROSS_ENCODER_MODEL = "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+class PoliticalRAGRetriever:
+    """Model-aware RAG orchestrator.
+
+    Query encoding uses the same embedding model that produced the vectors
+    at ingestion time, ensuring cosine similarity is meaningful. Pre-built
+    components (embedder, cross_encoder, hyde_llm) can be passed in to avoid
+    reloading models across multiple strategy runs.
+    """
 
     def __init__(
         self,
         qdrant_url: str = "http://localhost:6333",
-        chunk_collection: str = "bundestag_speeches_chunks",
+        model_key: str = "e5",
         retrieval_mode: str = "simple",
         country_context: str = "Germany",
-        llm=None,
+        device: Optional[str] = None,
+        vllm_base_url: Optional[str] = None,
+        hybrid: bool = False,
+        cross_encoder=None,
+        hyde_llm: Optional[HyDELLM] = None,
+        embedder: Optional[BaseEmbedder] = None,
     ):
         self.client = QdrantClient(url=qdrant_url)
-        self.collection_name = chunk_collection
+        self.cfg = get_model_config(model_key)
+        self.collection_name = self.cfg.collection
         self.country_context = country_context
-        self.embeddings = HuggingFaceEmbeddings(model_name=self.EMBEDDING_MODEL)
-        self.retrieval_strategy = self._init_retrieval_strategy(retrieval_mode, llm)
+        self.hybrid = hybrid
 
-    def _init_retrieval_strategy(self, mode: str, llm) -> RetrievalStrategy:
+        if embedder is not None:
+            self.embedder = embedder
+        else:
+            self.embedder = build_embedder(
+                self.cfg, device=device, vllm_base_url=vllm_base_url
+            )
+
+        self.retrieval_strategy = self._init_retrieval_strategy(
+            retrieval_mode, cross_encoder, hyde_llm, device
+        )
+
+    def _init_retrieval_strategy(
+        self, mode: str, cross_encoder, hyde_llm: Optional[HyDELLM], device: Optional[str]
+    ) -> RetrievalStrategy:
         mode = mode.lower().replace(" ", "").replace("_", "")
+
         if mode == "hyde":
-            if not llm:
+            if hyde_llm is None:
                 try:
-                    logger.info("Initializing local Ollama instance for HyDE...")
-                    llm = OllamaLLM(model="gemma3", base_url="http://localhost:11434")
+                    logger.info("Initializing in-process HyDE LLM...")
+                    hyde_llm = InProcessHyDELLM(device=device or "auto")
                 except Exception as e:
                     logger.warning(
-                        f"Ollama offline: {e}. Running HyDE in fallback mode."
+                        f"Could not load HyDE LLM: {e}. Running HyDE in fallback mode."
                     )
             return HyDERetrieval(
                 self.client,
-                self.collection_name,
-                self.embeddings,
-                llm,
+                self.cfg,
+                self.embedder,
+                hyde_llm,
                 self.country_context,
             )
 
         elif mode == "twostage":
-            try:
-                from sentence_transformers import CrossEncoder
+            if cross_encoder is None:
+                try:
+                    from sentence_transformers import CrossEncoder
 
-                logger.info(
-                    f"Loading Cross-Encoder sequence-transformer: {self.CROSS_ENCODER_MODEL}"
-                )
-                cross_encoder = CrossEncoder(self.CROSS_ENCODER_MODEL)
-                return TwoStageRetrieval(
-                    self.client, self.collection_name, self.embeddings, cross_encoder
-                )
-            except ImportError:
-                logger.error(
-                    "sentence-transformers dependency missing. Defaulting to Simple."
-                )
+                    logger.info(f"Loading Cross-Encoder: {CROSS_ENCODER_MODEL}")
+                    cross_encoder = CrossEncoder(CROSS_ENCODER_MODEL)
+                except ImportError:
+                    logger.error(
+                        "sentence-transformers dependency missing. Defaulting to Simple."
+                    )
+                    return SimpleRetrieval(
+                        self.client, self.cfg, self.embedder, self.hybrid
+                    )
+            return TwoStageRetrieval(
+                self.client,
+                self.cfg,
+                self.embedder,
+                cross_encoder,
+                self.hybrid,
+            )
 
-        return SimpleRetrieval(self.client, self.collection_name, self.embeddings)
+        return SimpleRetrieval(
+            self.client, self.cfg, self.embedder, self.hybrid
+        )
 
     def search(self, query: str, limit: int = 3) -> List[models.PointStruct]:
         return self.retrieval_strategy.retrieve(query=query, limit=limit)

@@ -9,8 +9,8 @@ dense vectors so cosine similarity is comparable across models.
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
-from typing import Literal
+from dataclasses import dataclass
+from typing import Literal, Optional
 
 TARGET_DIM: int = 1024
 
@@ -24,13 +24,15 @@ class ModelConfig:
     native_dim: int
     target_dim: int
     collection: str
-    # Backend used to produce embeddings.
+    # Backend used to produce embeddings at ingestion time.
     backend: Literal["sentence_transformers", "flag_embedding", "vllm_server"]
     # Whether bge-style sparse (lexical) vectors are produced/stored.
     hybrid_sparse: bool = False
+    # OpenRouter model ID for query-side embeddings (if available on OpenRouter).
+    # When set, the retriever can use OpenRouter instead of loading the model locally.
+    openrouter_model_id: Optional[str] = None
     # Default English instruction used on the QUERY side for instruction-tuned
-    # models. NOTE: only consumed by retrieval (follow-up task), not ingestion.
-    # The Qwen team recommends English instructions even for German/French text.
+    # models. The Qwen team recommends English instructions even for German/French text.
     default_query_instruction: str = (
         "Given a political statement, retrieve relevant parliamentary speech "
         "excerpts that express a similar ideological position."
@@ -60,6 +62,7 @@ MODELS: dict[str, ModelConfig] = {
         collection="chunks_bge",
         backend="flag_embedding",
         hybrid_sparse=True,
+        openrouter_model_id="baai/bge-m3",
     ),
     "jina": ModelConfig(
         key="jina",
@@ -76,6 +79,7 @@ MODELS: dict[str, ModelConfig] = {
         target_dim=1024,
         collection="chunks_qwen3",
         backend="vllm_server",
+        openrouter_model_id="qwen/qwen3-embedding-8b",
     ),
 }
 
