@@ -24,6 +24,8 @@ VLLM_PORT="${VLLM_PORT:-8000}"
 export HF_HOME="${HF_HOME:-$PWD/.hf_cache}"
 mkdir -p "$HF_HOME"
 
+export HF_TOKEN="${HF_TOKEN:-your_actual_hf_token_here}"
+
 echo "$(hostname):${VLLM_PORT}" > logs/slurm/vllm_serve_host.txt
 echo "vLLM host -> $(cat logs/slurm/vllm_serve_host.txt)"
 
@@ -32,9 +34,14 @@ exec singularity exec --nv \
     --bind "$PWD:$PWD" \
     --pwd "$PWD" \
     --env HF_HOME="$HF_HOME" \
+    --env HF_TOKEN="$HF_TOKEN" \
     "$VLLM_SIF" \
     vllm serve mistralai/Ministral-3-8B-Instruct-2512 \
         --host 0.0.0.0 \
         --port "${VLLM_PORT}" \
         --dtype bfloat16 \
-        --trust-remote-code
+        --trust-remote-code \
+        --tokenizer_mode mistral \
+        --config_format mistral \
+        --load_format mistral \
+        --max-model-len 32768
