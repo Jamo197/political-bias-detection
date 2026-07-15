@@ -359,8 +359,8 @@ if __name__ == "__main__":
         help="Run no-RAG baseline only (skips all retrieval)",
     )
     parser.add_argument("--k_chunks", type=int, default=5)
-    parser.add_argument("--sample_size", type=int, default=5)
-    parser.add_argument("--random_seed", type=int, default=33)
+    parser.add_argument("--sample_size", type=int, default=None)
+    parser.add_argument("--random_seed", type=int, default=None)
     parser.add_argument(
         "--qdrant_url",
         type=str,
@@ -422,10 +422,14 @@ if __name__ == "__main__":
     print(f"Run ID: {run_id}  |  Logs directory: {run_dir}")
 
     df = load_and_prepare_data()
-    evaluation_batch = df.sample(
-        n=min(args.sample_size, len(df)), random_state=args.random_seed
-    )
-    print(f"Loaded execution batch: {len(evaluation_batch)} items")
+    if args.sample_size is not None:
+        evaluation_batch = df.sample(
+            n=min(args.sample_size, len(df)), random_state=args.random_seed
+        )
+        print(f"Loaded sample: {len(evaluation_batch)} items (seed={args.random_seed})")
+    else:
+        evaluation_batch = df
+        print(f"Loaded full dataset: {len(evaluation_batch)} items")
 
     evaluator = BiasPredictor(
         base_url=args.llm_base_url or "https://openrouter.ai/api/v1"
