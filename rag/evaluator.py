@@ -19,23 +19,11 @@ except ImportError:
 logger = logging.getLogger(__name__)
 
 
-class BiasPrediction(BaseModel):
-    bias_score: float = Field(
-        ...,
-        description="Continuous political bias score from 1.0 (Extreme Left) to 7.0 (Extreme Right).",
-    )
-    justification: str = Field(
-        ...,
-        description="Analytical justification for the score based strictly on the text provided.",
-    )
-
-
 class BiasPredictor:
     """Unified political bias evaluator with configurable LLM backend.
 
-    By default uses OpenRouter (https://openrouter.ai/api/v1) which routes to
-    hundreds of models via a single API key. For HPC clusters without internet,
-    set ``base_url`` to a local vLLM server and ``api_key`` to "EMPTY".
+    By default uses OpenRouter (https://openrouter.ai/api/v1).
+    For HPC clusters without internet, set ``base_url`` to a local vLLM server and ``api_key`` to "EMPTY".
     """
 
     def __init__(
@@ -110,61 +98,63 @@ class BiasPredictor:
 
         try:
             response = self.client.chat.completions.create(
-            model=model_id,
-            messages=[
-                {"role": "system", "content": system_prompt},
-                {"role": "user", "content": user_message},
-            ],
-            max_tokens=800, 
-            temperature=0.0,
-            response_format={
-                "type": "json_schema",
-                "json_schema": {
-                    "name": "bias_prediction",
-                    "strict": True,
-                    "schema": {
-                        "type": "object",
-                        "properties": {
-                            "bias_score": {
-                                "type": "number", 
-                                "description": "The calculated bias score"
+                model=model_id,
+                messages=[
+                    {"role": "system", "content": system_prompt},
+                    {"role": "user", "content": user_message},
+                ],
+                max_tokens=800,
+                temperature=0.0,
+                response_format={
+                    "type": "json_schema",
+                    "json_schema": {
+                        "name": "bias_prediction",
+                        "strict": True,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "bias_score": {
+                                    "type": "number",
+                                    "description": "The calculated bias score",
+                                },
+                                "justification": {
+                                    "type": "string",
+                                    "description": "Explanation for the score",
+                                },
                             },
-                            "justification": {
-                                "type": "string", 
-                                "description": "Explanation for the score"
-                            }
+                            "required": ["bias_score", "justification"],
+                            "additionalProperties": False,
                         },
-                        "required": ["bias_score", "justification"],
-                        "additionalProperties": False
+                    },
+                },
+                extra_headers=(
+                    {
+                        "HTTP-Referer": "https://github.com/Jamo197/political-bias-detection",
+                        "X-Title": "Political RAG Pipeline Engine",
                     }
-                }
-            },
-            extra_headers=(
-                {
-                    "HTTP-Referer": "https://github.com/Jamo197/political-bias-detection",
-                    "X-Title": "Political RAG Pipeline Engine",
-                }
-                if "openrouter.ai" in self.base_url
-                else None
-            ),
-        )
+                    if "openrouter.ai" in self.base_url
+                    else None
+                ),
+            )
 
             raw_content = response.choices[0].message.content.strip()
             if raw_content.startswith("```"):
                 raw_content = raw_content.split("\n", 1)[-1]
                 if raw_content.endswith("```"):
                     raw_content = raw_content.rsplit("\n", 1)[0]
-            
-            start_idx = raw_content.find('{')
-            end_idx = raw_content.rfind('}')
-            
+
+            start_idx = raw_content.find("{")
+            end_idx = raw_content.rfind("}")
+
             if start_idx != -1 and end_idx != -1:
-                raw_content = raw_content[start_idx:end_idx + 1]
-                
+                raw_content = raw_content[start_idx : end_idx + 1]
+
             try:
                 return json.loads(raw_content)
             except json.JSONDecodeError as e:
-                logger.error(f"Failed to parse JSON. Raw LLM output was:\n{raw_content}")
+                logger.error(
+                    f"Failed to parse JSON. Raw LLM output was:\n{raw_content}"
+                )
                 raise e
         except Exception as e:
             logger.error(f"LLM prediction failure on model {model_id}: {e}")

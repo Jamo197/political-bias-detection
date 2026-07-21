@@ -224,9 +224,7 @@ class BGEEmbedder(BaseEmbedder):
             return_sparse=True,
             return_colbert_vecs=False,
         )
-        dense = l2_normalize(
-            np.asarray(out["dense_vecs"][0], dtype=np.float32)
-        )
+        dense = l2_normalize(np.asarray(out["dense_vecs"][0], dtype=np.float32))
         sparse = [{int(k): float(v) for k, v in out["lexical_weights"][0].items()}]
         return EmbedResult(dense=dense, sparse=sparse)
 
@@ -302,8 +300,8 @@ class JinaEmbedder(BaseEmbedder):
 class Qwen3VLLMEmbedder(BaseEmbedder):
     """Qwen/Qwen3-Embedding-8B served by a vLLM OpenAI-compatible server.
 
-    The server is launched separately (slurm/02_vllm_qwen3.sbatch) with
-    ``--task embed``. We hit POST {base_url}/embeddings, then apply MRL:
+    The server is launched separately (slurm/02_vllm_qwen3.sbatch).
+    We hit POST {base_url}/embeddings, then apply MRL:
     slice 4096 -> 1024 and **re-normalize** (the crucial correctness step).
     """
 
@@ -398,7 +396,9 @@ class OpenRouterEmbedder(BaseEmbedder):
 
     def embed_query(self, text: str, instruction: Optional[str] = None) -> EmbedResult:
         if self.cfg.key == "qwen3":
-            formatted = f"Instruct: {self._resolve_instruction(instruction)}\nQuery: {text}"
+            formatted = (
+                f"Instruct: {self._resolve_instruction(instruction)}\nQuery: {text}"
+            )
         else:
             formatted = text
         return self._embed_one(formatted)

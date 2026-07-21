@@ -145,7 +145,7 @@ def resolve_ground_truth(
         try:
             f = float(val)
             return f if not pd.isna(f) else None
-        except (ValueError, TypeError):
+        except ValueError, TypeError:
             return None
 
     return (
@@ -464,6 +464,7 @@ if __name__ == "__main__":
 
     strategies = [s.strip() for s in args.strategies.split(",") if s.strip()]
 
+    # FIXME: use prediction LLM for HyDE generation
     hyde_llm = None
     if "hyde" in strategies:
         print(f"Loading HyDE LLM: {args.hyde_model}...")
