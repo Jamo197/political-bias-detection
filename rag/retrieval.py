@@ -13,7 +13,6 @@ Supported strategies:
   * TwoStage    — Bi-encoder retrieval + Cross-Encoder reranking.
 
 HyDE LLM backends:
-  * InProcessHyDELLM  — Qwen2.5-0.5B-Instruct loaded via transformers (HPC).
   * OpenAIHyDELLM     — Any OpenAI-compatible endpoint (Ollama, vLLM server).
 """
 
@@ -48,82 +47,40 @@ CROSS_ENCODER_MODEL = "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
 
 
 # ---------------------------------------------------------------------------
-# HyDE LLM abstraction
+# HyDE LLM
 # ---------------------------------------------------------------------------
 
-class HyDELLM(ABC):
-    """Abstract interface for HyDE hypothetical-document generation."""
 
-    @abstractmethod
-    def generate(self, prompt: str) -> str:
-        pass
-
-
-class InProcessHyDELLM(HyDELLM):
-    """Small chat model loaded in-process via transformers.
-
-    Shares the eval job's GPU alongside the embedding model. A 0.5B model
-    uses ~1 GB VRAM and loads in seconds, making it practical for HPC
-    without a dedicated server allocation.
-    """
-
-    def __init__(self, model_id: str = "Qwen/Qwen2.5-0.5B-Instruct", device: str = "auto"):
-        import torch
-        from transformers import AutoModelForCausalLM, AutoTokenizer
-
-        self.tokenizer = AutoTokenizer.from_pretrained(model_id)
-        if device == "auto":
-            device = "cuda" if torch.cuda.is_available() else "cpu"
-        self.device = device
-        dtype = torch.float16 if "cuda" in str(device) else torch.float32
-        self.model = AutoModelForCausalLM.from_pretrained(
-            model_id, torch_dtype=dtype
-        ).to(device)
-        self.model.eval()
-        logger.info(f"InProcessHyDELLM loaded '{model_id}' on {device}")
-
-    def generate(self, prompt: str) -> str:
-        import torch
-
-        messages = [{"role": "user", "content": prompt}]
-        text = self.tokenizer.apply_chat_template(
-            messages, tokenize=False, add_generation_prompt=True
-        )
-        inputs = self.tokenizer(text, return_tensors="pt").to(self.device)
-        with torch.no_grad():
-            outputs = self.model.generate(
-                **inputs,
-                max_new_tokens=200,
-                temperature=0.7,
-                do_sample=True,
-                pad_token_id=self.tokenizer.eos_token_id,
-            )
-        generated = outputs[0][inputs["input_ids"].shape[1] :]
-        return self.tokenizer.decode(generated, skip_special_tokens=True)
-
-
-class OpenAIHyDELLM(HyDELLM):
-    """Any OpenAI-compatible endpoint (Ollama local, vLLM server, etc.).
-
-    For local testing with Ollama: base_url="http://localhost:11434/v1"
-    """
+class OpenAIHyDELLM:
+    """Any OpenAI-compatible endpoint (vLLM server or OpenRouter)."""
 
     def __init__(
         self,
-        base_url: str = "http://localhost:11434/v1",
-        model_id: str = "gemma3",
-        api_key: str = "EMPTY",
+        base_url: str = "https://openrouter.ai/api/v1",
+        model_id: str = "qwen/qwen-2.5-7b-instruct",
+        api_key: Optional[str] = None,
     ):
         from openai import OpenAI
 
-        self.client = OpenAI(base_url=base_url, api_key=api_key)
+        resolved_key = api_key or os.getenv("OPENROUTER_API_KEY", "EMPTY")
+        headers = {}
+        if "openrouter.ai" in base_url:
+            headers.update(
+                {
+                    "HTTP-Referer": "https://github.com/Jamo197/political-bias-detection",
+                    "X-Title": "Political RAG Pipeline Engine",
+                }
+            )
+        self.client = OpenAI(
+            base_url=base_url, api_key=resolved_key, default_headers=headers
+        )
         self.model_id = model_id
 
     def generate(self, prompt: str) -> str:
         response = self.client.chat.completions.create(
             model=self.model_id,
             messages=[{"role": "user", "content": prompt}],
-            temperature=0.7,
+            temperature=0.5,
             max_tokens=200,
         )
         return response.choices[0].message.content
@@ -132,6 +89,7 @@ class OpenAIHyDELLM(HyDELLM):
 # ---------------------------------------------------------------------------
 # Retrieval strategies
 # ---------------------------------------------------------------------------
+
 
 class RetrievalStrategy(ABC):
     """Abstract base class for all retrieval strategies."""
@@ -223,7 +181,7 @@ class HyDERetrieval(RetrievalStrategy):
         client: QdrantClient,
         cfg: ModelConfig,
         embedder: BaseEmbedder,
-        hyde_llm: Optional[HyDELLM] = None,
+        hyde_llm: Optional[OpenAIHyDELLM] = None,
         country_context: str = "Germany",
     ):
         self.client = client
@@ -310,9 +268,7 @@ class TwoStageRetrieval(RetrievalStrategy):
     def retrieve(
         self, query: str, limit: int = 3, rerank_top_k: int = 15
     ) -> List[models.PointStruct]:
-        simple = SimpleRetrieval(
-            self.client, self.cfg, self.embedder, self.hybrid
-        )
+        simple = SimpleRetrieval(self.client, self.cfg, self.embedder, self.hybrid)
         candidates = simple.retrieve(query, limit=rerank_top_k)
 
         if not candidates or not self.cross_encoder:
@@ -330,6 +286,7 @@ class TwoStageRetrieval(RetrievalStrategy):
 # ---------------------------------------------------------------------------
 # Main orchestrator
 # ---------------------------------------------------------------------------
+
 
 class PoliticalRAGRetriever:
     """Model-aware RAG orchestrator.
@@ -350,7 +307,7 @@ class PoliticalRAGRetriever:
         vllm_base_url: Optional[str] = None,
         hybrid: bool = False,
         cross_encoder=None,
-        hyde_llm: Optional[HyDELLM] = None,
+        hyde_llm: Optional[OpenAIHyDELLM] = None,
         embedder: Optional[BaseEmbedder] = None,
     ):
         self.client = QdrantClient(url=qdrant_url)
@@ -371,19 +328,15 @@ class PoliticalRAGRetriever:
         )
 
     def _init_retrieval_strategy(
-        self, mode: str, cross_encoder, hyde_llm: Optional[HyDELLM], device: Optional[str]
+        self,
+        mode: str,
+        cross_encoder,
+        hyde_llm: Optional[OpenAIHyDELLM],
+        device: Optional[str],
     ) -> RetrievalStrategy:
         mode = mode.lower().replace(" ", "").replace("_", "")
 
         if mode == "hyde":
-            if hyde_llm is None:
-                try:
-                    logger.info("Initializing in-process HyDE LLM...")
-                    hyde_llm = InProcessHyDELLM(device=device or "auto")
-                except Exception as e:
-                    logger.warning(
-                        f"Could not load HyDE LLM: {e}. Running HyDE in fallback mode."
-                    )
             return HyDERetrieval(
                 self.client,
                 self.cfg,
@@ -414,9 +367,7 @@ class PoliticalRAGRetriever:
                 self.hybrid,
             )
 
-        return SimpleRetrieval(
-            self.client, self.cfg, self.embedder, self.hybrid
-        )
+        return SimpleRetrieval(self.client, self.cfg, self.embedder, self.hybrid)
 
     def search(self, query: str, limit: int = 3) -> List[models.PointStruct]:
         return self.retrieval_strategy.retrieve(query=query, limit=limit)

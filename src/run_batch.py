@@ -51,7 +51,7 @@ _ROOT = (
 if str(_ROOT) not in sys.path:
     sys.path.insert(0, str(_ROOT))
 
-from rag.retrieval import PoliticalRAGRetriever, InProcessHyDELLM, CROSS_ENCODER_MODEL
+from rag.retrieval import PoliticalRAGRetriever, OpenAIHyDELLM, CROSS_ENCODER_MODEL
 from rag.evaluator import BiasPredictor
 from rag.ingest.config import get_model_config
 from rag.ingest.embedders import build_embedder
@@ -388,12 +388,6 @@ if __name__ == "__main__":
         help="Device for local model loading: cuda, cpu, or auto (default: auto)",
     )
     parser.add_argument(
-        "--hyde_model",
-        type=str,
-        default="Qwen/Qwen2.5-0.5B-Instruct",
-        help="In-process HyDE LLM model (default: Qwen/Qwen2.5-0.5B-Instruct)",
-    )
-    parser.add_argument(
         "--llm_base_url",
         type=str,
         default=None,
@@ -466,14 +460,6 @@ if __name__ == "__main__":
 
     strategies = [s.strip() for s in args.strategies.split(",") if s.strip()]
 
-    # FIXME: use prediction LLM for HyDE generation
-    hyde_llm = None
-    if "hyde" in strategies:
-        print(f"Loading HyDE LLM: {args.hyde_model}...")
-        hyde_llm = InProcessHyDELLM(
-            model_id=args.hyde_model, device=args.device or "auto"
-        )
-
     cross_encoder = None
     if "twostage" in strategies:
         print(f"Loading Cross-Encoder: {CROSS_ENCODER_MODEL}...")
@@ -505,6 +491,12 @@ if __name__ == "__main__":
                 continue
 
         for llm_key, llm_val in LLM_MODELS.items():
+            hyde_llm = None
+            if strategy_mode == "hyde":
+                hyde_llm = OpenAIHyDELLM(
+                    base_url=args.llm_base_url or "https://openrouter.ai/api/v1",
+                    model_id=llm_val["id"],
+                )
             print(f"Running {args.embedding_model}/{strategy_name}/{llm_key}...")
             run_condition_rag(
                 evaluation_batch,
