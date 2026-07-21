@@ -138,6 +138,7 @@ def resolve_metadata(row) -> Tuple[str, str, str]:
     return meta_party, meta_speaker, meta_source
 
 
+# fmt: off
 def resolve_ground_truth(
     row,
 ) -> Tuple[Optional[float], Optional[float], Optional[float]]:
@@ -145,7 +146,7 @@ def resolve_ground_truth(
         try:
             f = float(val)
             return f if not pd.isna(f) else None
-        except ValueError, TypeError:
+        except (ValueError, TypeError):
             return None
 
     return (
@@ -153,6 +154,7 @@ def resolve_ground_truth(
         _safe_float(row.get("final_label_economic")),
         _safe_float(row.get("final_label_galtan")),
     )
+# fmt: on
 
 
 def chunks_to_context_dicts(points) -> List[Dict[str, Any]]:
