@@ -44,20 +44,13 @@ export RUN_ID RUN_DIR
 echo "Run ID: $RUN_ID  |  Run dir: $RUN_DIR"
 echo "Python -> $VENV_PY ($($VENV_PY --version 2>&1))"
 
-SAMPLE_SIZE="${SAMPLE_SIZE:-50}"
 K_CHUNKS="${K_CHUNKS:-5}"
-RANDOM_SEED="${RANDOM_SEED:-33}"
-HYDE_MODEL="${HYDE_MODEL:-Qwen/Qwen2.5-0.5B-Instruct}"
 
 "$VENV_PY" -m src.run_batch \
     --embedding_model bge \
     --strategies simple,hyde,twostage \
-    --query_backend openrouter \
     --device cpu \
     --qdrant_url "$QDRANT_URL" \
     --k_chunks "$K_CHUNKS" \
-    --sample_size "$SAMPLE_SIZE" \
-    --random_seed "$RANDOM_SEED" \
-    --hyde_model "$HYDE_MODEL" \
     --run_id "$RUN_ID" \
     --run_dir "$RUN_DIR"

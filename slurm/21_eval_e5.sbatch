@@ -44,9 +44,8 @@ echo "Python -> $VENV_PY ($($VENV_PY --version 2>&1))"
 SAMPLE_SIZE="${SAMPLE_SIZE:-50}"
 K_CHUNKS="${K_CHUNKS:-5}"
 RANDOM_SEED="${RANDOM_SEED:-33}"
-HYDE_MODEL="${HYDE_MODEL:-Qwen/Qwen2.5-0.5B-Instruct}"
 
-VLLM_HOST=$(cat logs/slurm/vllm_ministral_host.txt 2>/dev/null || echo "")
+VLLM_HOST="http://$(cat logs/slurm/vllm_ministral_host.txt 2>/dev/null || echo "")"
 if [[ -z "$VLLM_HOST" ]]; then
     echo "ERROR: vLLM host not found in logs/slurm/vllm_ministral_host.txt"
     exit 1
@@ -59,9 +58,6 @@ echo "vLLM server: $VLLM_HOST"
     --device cuda \
     --qdrant_url "$QDRANT_URL" \
     --k_chunks "$K_CHUNKS" \
-    --sample_size "$SAMPLE_SIZE" \
-    --random_seed "$RANDOM_SEED" \
-    --hyde_model "$HYDE_MODEL" \
     --llm_base_url "${VLLM_HOST}/v1" \
     --run_id "$RUN_ID" \
     --run_dir "$RUN_DIR"

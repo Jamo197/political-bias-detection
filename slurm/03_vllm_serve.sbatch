@@ -1,15 +1,13 @@
 #!/bin/bash
-#SBATCH --job-name=vllm_llama_instruct
+#SBATCH --job-name=vllm_ministral
 #SBATCH --partition=gpu
 #SBATCH --gres=gpu:a100:1
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=64G
 #SBATCH --time=12:00:00
-#SBATCH --output=logs/slurm/vllm_llama_%j.out
-#SBATCH --error=logs/slurm/vllm_llama_%j.err
+#SBATCH --output=logs/slurm/vllm_ministral_%j.out
+#SBATCH --error=logs/slurm/vllm_ministral_%j.err
 
-# Launch the vLLM OpenAI-compatible chat server for Llama-3.1-8B-Instruct,
-# from vllm.sif. Keep this job RUNNING while evaluation scripts query it.
 set -euo pipefail
 
 module load singularity || module load apptainer || true
@@ -26,11 +24,9 @@ mkdir -p "$HF_HOME"
 
 export HF_TOKEN="${HF_TOKEN:-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}"
 
-echo "$(hostname):${VLLM_PORT}" > logs/slurm/vllm_llama_host.txt
-echo "vLLM host -> $(cat logs/slurm/vllm_llama_host.txt)"
+echo "$(hostname):${VLLM_PORT}" > logs/slurm/vllm_ministral_host.txt
+echo "vLLM host -> $(cat logs/slurm/vllm_ministral_host.txt)"
 
-# --nv exposes the GPU drivers to the container.
-# NEXT: Llama-3.1-8B-Instruct
 exec singularity exec --nv \
     --bind "$PWD:$PWD" \
     --pwd "$PWD" \
@@ -38,7 +34,7 @@ exec singularity exec --nv \
     --env HF_TOKEN="$HF_TOKEN" \
     --env VLLM_USE_FLASHINFER_SAMPLER="0" \
     "$VLLM_SIF" \
-    vllm serve meta-llama/Llama-3.1-8B-Instruct \
+    vllm serve mistralai/Ministral-3-8B-Instruct-2512 \
         --host 0.0.0.0 \
         --port "${VLLM_PORT}" \
         --dtype bfloat16 \

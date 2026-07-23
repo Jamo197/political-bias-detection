@@ -3,14 +3,13 @@
 #SBATCH --partition=gpu
 #SBATCH --gres=gpu:a100:1
 #SBATCH --cpus-per-task=8
-#SBATCH --mem=48G
-#SBATCH --time=06:00:00
+#SBATCH --mem=24G
+#SBATCH --time=04:00:00
 #SBATCH --output=logs/slurm/eval_jina_%j.out
 #SBATCH --error=logs/slurm/eval_jina_%j.err
 
 # Evaluate jina-embeddings-v4 with all retrieval strategies (simple, hyde, twostage).
 # Loads jina-v4 (~6GB, heaviest model) + cross-encoder (~0.5GB) +
-# HyDE LLM Qwen2.5-0.5B-Instruct (~1GB) on one GPU. Needs more memory than e5/bge.
 #
 # Prerequisites:
 #   1. Qdrant server running with chunks_jina collection populated.
@@ -45,16 +44,20 @@ echo "Python -> $VENV_PY ($($VENV_PY --version 2>&1))"
 SAMPLE_SIZE="${SAMPLE_SIZE:-50}"
 K_CHUNKS="${K_CHUNKS:-5}"
 RANDOM_SEED="${RANDOM_SEED:-33}"
-HYDE_MODEL="${HYDE_MODEL:-Qwen/Qwen2.5-0.5B-Instruct}"
+
+VLLM_HOST="http://$(cat logs/slurm/vllm_ministral_host.txt 2>/dev/null || echo "")"
+if [[ -z "$VLLM_HOST" ]]; then
+    echo "ERROR: vLLM host not found in logs/slurm/vllm_ministral_host.txt"
+    exit 1
+fi
+echo "vLLM server: $VLLM_HOST"
 
 "$VENV_PY" -m src.run_batch \
     --embedding_model jina \
     --strategies simple,hyde,twostage \
     --device cuda \
     --qdrant_url "$QDRANT_URL" \
+    --llm_base_url "${VLLM_HOST}/v1" \
     --k_chunks "$K_CHUNKS" \
-    --sample_size "$SAMPLE_SIZE" \
-    --random_seed "$RANDOM_SEED" \
-    --hyde_model "$HYDE_MODEL" \
     --run_id "$RUN_ID" \
     --run_dir "$RUN_DIR"

@@ -2,9 +2,9 @@
 #SBATCH --job-name=eval_test_all
 #SBATCH --partition=gpu
 #SBATCH --gres=gpu:a100:1
-#SBATCH --cpus-per-task=4
-#SBATCH --mem=16G
-#SBATCH --time=00:30:00
+#SBATCH --cpus-per-task=8
+#SBATCH --mem=32G
+#SBATCH --time=01:00:00
 #SBATCH --output=logs/slurm/eval_test_all_%j.out
 #SBATCH --error=logs/slurm/eval_test_all_%j.err
 
@@ -34,7 +34,7 @@ source slurm/qdrant_ensure.sh
 ensure_qdrant
 echo "Qdrant -> $QDRANT_URL"
 
-VLLM_HOST=$(cat logs/slurm/vllm_ministral_host.txt 2>/dev/null || echo "")
+VLLM_HOST="http://$(cat logs/slurm/vllm_ministral_host.txt 2>/dev/null || echo "")"
 if [[ -z "$VLLM_HOST" ]]; then
     echo "ERROR: vLLM host not found in logs/slurm/vllm_ministral_host.txt"
     exit 1
@@ -66,7 +66,7 @@ echo "=== 1/2 No-RAG baseline ==="
 echo "=== 2/2 RAG strategies ==="
 "$VENV_PY" -m src.run_batch \
     --embedding_model e5 \
-    --strategies simple,simple_hybrid,hyde,twostage \
+    --strategies simple,hyde,twostage \
     --device cuda \
     --qdrant_url "$QDRANT_URL" \
     --k_chunks "$K_CHUNKS" \

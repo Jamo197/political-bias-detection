@@ -1,19 +1,18 @@
 #!/bin/bash
 #SBATCH --job-name=eval_qwen3
-#SBATCH --partition=standard
+#SBATCH --partition=gpu
+#SBATCH --gres=gpu:a100:1
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=32G
-#SBATCH --time=06:00:00
+#SBATCH --time=04:00:00
 #SBATCH --output=logs/slurm/eval_qwen3_%j.out
 #SBATCH --error=logs/slurm/eval_qwen3_%j.err
 
-# Evaluate Qwen3-Embedding-8B via OpenRouter API (CPU only, no GPU, no vLLM).
 # Strategies: simple, hyde, twostage.
 #
 # Prerequisites:
 #   1. Qdrant server running with chunks_qwen3 collection populated.
 #   2. Run: bash slurm/setup_venv.sh   (one-time, on a login node)
-#   3. OPENROUTER_API_KEY set in .env.local
 #
 # All eval jobs share the same RUN_ID and RUN_DIR so logs land together.
 set -euo pipefail
@@ -44,17 +43,20 @@ echo "Python -> $VENV_PY ($($VENV_PY --version 2>&1))"
 SAMPLE_SIZE="${SAMPLE_SIZE:-50}"
 K_CHUNKS="${K_CHUNKS:-5}"
 RANDOM_SEED="${RANDOM_SEED:-33}"
-HYDE_MODEL="${HYDE_MODEL:-Qwen/Qwen2.5-0.5B-Instruct}"
+
+VLLM_HOST="http://$(cat logs/slurm/vllm_ministral_host.txt 2>/dev/null || echo "")"
+if [[ -z "$VLLM_HOST" ]]; then
+    echo "ERROR: vLLM host not found in logs/slurm/vllm_ministral_host.txt"
+    exit 1
+fi
+echo "vLLM server: $VLLM_HOST"
 
 "$VENV_PY" -m src.run_batch \
     --embedding_model qwen3 \
     --strategies simple,hyde,twostage \
-    --query_backend openrouter \
-    --device cpu \
+    --device cuda \
     --qdrant_url "$QDRANT_URL" \
+    --llm_base_url "${VLLM_HOST}/v1" \
     --k_chunks "$K_CHUNKS" \
-    --sample_size "$SAMPLE_SIZE" \
-    --random_seed "$RANDOM_SEED" \
-    --hyde_model "$HYDE_MODEL" \
     --run_id "$RUN_ID" \
     --run_dir "$RUN_DIR"
