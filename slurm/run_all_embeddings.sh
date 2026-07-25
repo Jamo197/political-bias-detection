@@ -71,11 +71,12 @@ for EMB in "${EMBEDDING_MODELS[@]}"; do
 
     EXTRA_ARGS=()
     if [[ "$EMB" == "qwen3" ]]; then
-        if [[ -z "$VLLM_EMBED_HOST" ]]; then
-            echo "ERROR: qwen3 requires a vLLM embedding server, but $VLLM_EMBED_HOST_FILE is missing or empty."
-            exit 1
+        if [[ -n "$VLLM_EMBED_HOST" ]]; then
+            EXTRA_ARGS+=(--vllm_base_url "$VLLM_EMBED_HOST")
+        else
+            echo "WARNING: qwen3 vLLM embed server not found; falling back to OpenRouter."
+            EXTRA_ARGS+=(--query_backend openrouter)
         fi
-        EXTRA_ARGS+=(--vllm_base_url "$VLLM_EMBED_HOST")
     fi
 
     "$VENV_PY" -m src.run_batch \
