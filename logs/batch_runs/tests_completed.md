@@ -3,18 +3,20 @@
 ## Models
 | Model ID | Region | RAG | Embedding Model | Retrieval Strategy | Questions | Status | Folder | Ground Truth |
 |----------|--------|--------|--------|--------|--------|--------|--------|--------|
-| mistralai/Ministral-3-8B-Instruct-2512 | Europe | No | None | no_rag | 775 | Complete | 2026-07-15_eval_20260715_182937 | final_label_ideology |
 | Qwen/Qwen2.5-7B-Instruct | China | No | None | no_rag | 775 | Complete | 2026-07-15_eval_20260715_211414 | final_label_ideology |
 | meta-llama/Llama-3.1-8B-Instruct | USA | No | None | no_rag | 775 | Complete | 2026-07-15_eval_20260715_222803 | final_label_ideology |
-| mistralai/Ministral-3-8B-Instruct-2512 | Europe | Yes | e5 | simple | 775 | Complete | 2026-07-22_eval_20260722_233914 | final_label_ideology |
+| meta-llama/llama-3.1-70b-instruct | Americas | No | None | no_rag | 775 | Complete | 2026-07-24_eval_20260724_192028 | final_label_ideology |
+| mistralai/Ministral-3-8B-Instruct-2512 | Europe | No | None | no_rag | 775 | Complete | 2026-07-15_eval_20260715_182937 | final_label_ideology |
 | mistralai/Ministral-3-8B-Instruct-2512 | Europe | Yes | e5 | hyde | 775 | Complete | 2026-07-22_eval_20260722_233914 | final_label_ideology |
+| mistralai/Ministral-3-8B-Instruct-2512 | Europe | Yes | e5 | simple | 775 | Complete | 2026-07-22_eval_20260722_233914 | final_label_ideology |
 | mistralai/Ministral-3-8B-Instruct-2512 | Europe | Yes | e5 | twostage | 775 | Complete | 2026-07-22_eval_20260722_233914 | final_label_ideology |
-| mistralai/Ministral-3-8B-Instruct-2512 | Europe | Yes | jina | simple | 775 | Complete | 2026-07-23_eval_20260723_115807 | final_label_ideology |
 | mistralai/Ministral-3-8B-Instruct-2512 | Europe | Yes | jina | hyde | 775 | Complete | 2026-07-23_eval_20260723_115807 | final_label_ideology |
+| mistralai/Ministral-3-8B-Instruct-2512 | Europe | Yes | jina | simple | 775 | Complete | 2026-07-23_eval_20260723_115807 | final_label_ideology |
 | mistralai/Ministral-3-8B-Instruct-2512 | Europe | Yes | jina | twostage | 775 | Complete | 2026-07-23_eval_20260723_115807 | final_label_ideology |
-| mistralai/Ministral-3-8B-Instruct-2512 | Europe | Yes | qwen3 | simple | 775 | Complete | 2026-07-23_eval_20260723_143404 | final_label_ideology |
 | mistralai/Ministral-3-8B-Instruct-2512 | Europe | Yes | qwen3 | hyde | 775 | Complete | 2026-07-23_eval_20260723_143404 | final_label_ideology |
+| mistralai/Ministral-3-8B-Instruct-2512 | Europe | Yes | qwen3 | simple | 775 | Complete | 2026-07-23_eval_20260723_143404 | final_label_ideology |
 | mistralai/Ministral-3-8B-Instruct-2512 | Europe | Yes | qwen3 | twostage | 655 | Partial (stopped at 655/775) | 2026-07-23_eval_20260723_143404 | final_label_ideology |
+| mistralai/mistral-large-2512 | Europe | No | None | no_rag | 775 | Complete | 2026-07-24_eval_20260724_192028 | final_label_ideology |
 
 
 ## Remaining Tests
@@ -25,7 +27,6 @@
 | meta-llama/Llama-3.1-8B-Instruct | USA | Yes | jina | simple, hyde, twostage | Local |
 | meta-llama/Llama-3.1-8B-Instruct | USA | Yes | qwen3 | simple, hyde, twostage | Local |
 | meta-llama/Llama-3.1-8B-Instruct | USA | Yes | bge | simple, hyde, twostage | Local |
-| meta-llama/llama-3.1-70b-instruct | USA | No | None | no_rag | OpenRouter |
 | meta-llama/llama-3.1-70b-instruct | USA | Yes | e5 | simple, hyde, twostage | OpenRouter |
 | meta-llama/llama-3.1-70b-instruct | USA | Yes | jina | simple, hyde, twostage | OpenRouter |
 | meta-llama/llama-3.1-70b-instruct | USA | Yes | qwen3 | simple, hyde, twostage | OpenRouter |
@@ -40,7 +41,6 @@
 | mistralai/Ministral-3-14B-Instruct-2512 | Europe | Yes | jina | simple, hyde, twostage | local |
 | mistralai/Ministral-3-14B-Instruct-2512 | Europe | Yes | qwen3 | simple, hyde, twostage | local |
 | mistralai/Ministral-3-14B-Instruct-2512 | Europe | Yes | bge | simple, hyde, twostage | local |
-| mistralai/mistral-large-2512 | Europe | No | None | no_rag | OpenRouter |
 | mistralai/mistral-large-2512 | Europe | Yes | e5 | simple, hyde, twostage | OpenRouter |
 | mistralai/mistral-large-2512 | Europe | Yes | jina | simple, hyde, twostage | OpenRouter |
 | mistralai/mistral-large-2512 | Europe | Yes | qwen3 | simple, hyde, twostage | OpenRouter |
