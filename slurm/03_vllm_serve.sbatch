@@ -4,7 +4,7 @@
 #SBATCH --gres=gpu:a100:1
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=64G
-#SBATCH --time=12:00:00
+#SBATCH --time=6:00:00
 #SBATCH --output=logs/slurm/vllm_ministral_%j.out
 #SBATCH --error=logs/slurm/vllm_ministral_%j.err
 

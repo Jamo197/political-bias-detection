@@ -6,29 +6,12 @@ retrieval strategies (simple, simple_hybrid, hyde, twostage) + a no-RAG
 baseline. Ground truth labels are read directly from the dataset.
 
 Query-side embeddings:
-  - e5, jina  : loaded locally (requires GPU)
-  - bge, qwen3: use OpenRouter API via --query_backend openrouter (CPU only)
+  - e5, jina, bge, qwen3  : loaded locally (requires GPU)
 
 Bias prediction LLM:
   - OpenRouter (default, requires internet + OPENROUTER_API_KEY)
   - Local vLLM via --llm_base_url (HPC without internet)
 
-Usage examples
---------------
-  # No-RAG baseline only (CPU, no Qdrant needed)
-  python -m src.run_batch --no_rag --sample_size 50
-
-  # e5 with all strategies (GPU, local embeddings)
-  python -m src.run_batch --embedding_model e5 \
-      --strategies simple,hyde,twostage --device cuda
-
-  # bge via OpenRouter (CPU, no GPU needed)
-  python -m src.run_batch --embedding_model bge \
-      --strategies simple,hyde,twostage --query_backend openrouter
-
-  # qwen3 via OpenRouter (CPU, no vLLM server needed)
-  python -m src.run_batch --embedding_model qwen3 \
-      --strategies simple,hyde,twostage --query_backend openrouter
 """
 
 import argparse
@@ -60,15 +43,18 @@ from src.logging.log_run import log_evaluation_run
 DATA_PATH = _ROOT / "src/datasets/political_bias_articles_dataset.csv"
 
 LLM_MODELS = {
-    "ministral": {"region": "Europe", "id": "mistralai/Ministral-3-8B-Instruct-2512"},
+    # "mistral-large": {"region": "Europe", "id": "mistralai/mistral-large-2512"},
+    "qwen-2.5-72b": {"region": "China", "id": "qwen/qwen-2.5-72b-instruct"},
+    # "llama-3.1-70b": {"region": "Americas", "id": "meta-llama/llama-3.1-70b-instruct"}
 }
 
 STRATEGY_MAP = {
     "simple": {"mode": "simple", "hybrid": False},
-    "simple_dense": {"mode": "simple", "hybrid": False},
     "simple_hybrid": {"mode": "simple", "hybrid": True},
     "hyde": {"mode": "hyde", "hybrid": False},
+    "hyde_hybrid": {"mode": "hyde", "hybrid": True},
     "twostage": {"mode": "twostage", "hybrid": False},
+    "twostage_hybrid": {"mode": "twostage", "hybrid": True},
 }
 
 logging.basicConfig(level=logging.WARNING)

@@ -27,7 +27,7 @@ _qdrant_is_healthy() {
 _ensure_qdrant_impl() {
     local root="${PROJECT_ROOT:-$PWD}"
     local qdrant_sbatch="${QDRANT_SBATCH:-$root/slurm/01_qdrant.sbatch}"
-    local host_file="$root/logs/slurm/qdrant_host.txt"
+    local host_file="$root/logs/qdrant_host.txt"
     local max_wait="${QDRANT_WAIT_MAX:-900}"
     local poll="${QDRANT_POLL:-5}"
     local waited=0

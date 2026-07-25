@@ -38,16 +38,17 @@ SAMPLE_SIZE="${SAMPLE_SIZE:-50}"
 K_CHUNKS="${K_CHUNKS:-5}"
 RANDOM_SEED="${RANDOM_SEED:-33}"
 
-VLLM_HOST=$(cat logs/slurm/vllm_ministral_host.txt 2>/dev/null || echo "")
-if [[ -z "$VLLM_HOST" ]]; then
-    echo "ERROR: vLLM host not found in logs/slurm/vllm_ministral_host.txt"
-    exit 1
-fi
-echo "vLLM server: $VLLM_HOST"
+# VLLM_HOST=$(cat logs/slurm/vllm_ministral_host.txt 2>/dev/null || echo "")
+# if [[ -z "$VLLM_HOST" ]]; then
+#     echo "ERROR: vLLM host not found in logs/slurm/vllm_ministral_host.txt"
+#     exit 1
+# fi
+# echo "vLLM server: $VLLM_HOST"
 
+echo "=== 1/2 No-RAG baseline ==="
 "$VENV_PY" -m src.run_batch \
     --no_rag \
-    --llm_base_url "http://${VLLM_HOST}/v1" \
+    --query_backend openrouter \
     --run_id "$RUN_ID" \
     --run_dir "$RUN_DIR"
 

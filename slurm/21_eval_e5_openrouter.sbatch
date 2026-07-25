@@ -1,24 +1,26 @@
 #!/bin/bash
-#SBATCH --job-name=eval_qwen3
+#SBATCH --job-name=eval_openrouter
 #SBATCH --partition=gpu
 #SBATCH --gres=gpu:a100:1
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=32G
-#SBATCH --time=02:00:00
-#SBATCH --output=logs/slurm/eval_qwen3_%j.out
-#SBATCH --error=logs/slurm/eval_qwen3_%j.err
+#SBATCH --time=04:00:00
+#SBATCH --output=logs/slurm/eval_openrouter_%j.out
+#SBATCH --error=logs/slurm/eval_openrouter_%j.err
 
-# Strategies: simple, hyde, twostage.
+# no-RAG baseline + e5 RAG via OpenRouter
+# Embeddings (e5) and LLM (mistral-large) both go through OpenRouter —
+# no vLLM server needed. GPU is only used for the cross-encoder (twostage).
 #
 # Prerequisites:
-#   1. Qdrant server running with chunks_qwen3 collection populated.
+#   1. Qdrant server running with chunks_e5 collection populated.
 #   2. Run: bash slurm/setup_venv.sh   (one-time, on a login node)
+#   3. OPENROUTER_API_KEY set in environment
 #
-# All eval jobs share the same RUN_ID and RUN_DIR so logs land together.
 set -euo pipefail
 
 cd "${PROJECT_ROOT:-$PWD}"
-mkdir -p logs/slurm
+mkdir -p logs/slurm logs/tmp
 
 VENV_PY="${VENV_PY:-$PWD/.venv-hpc/bin/python}"
 if [[ ! -f "$VENV_PY" ]]; then
@@ -40,23 +42,17 @@ export RUN_ID RUN_DIR
 echo "Run ID: $RUN_ID  |  Run dir: $RUN_DIR"
 echo "Python -> $VENV_PY ($($VENV_PY --version 2>&1))"
 
-SAMPLE_SIZE="${SAMPLE_SIZE:-50}"
-K_CHUNKS="${K_CHUNKS:-5}"
-RANDOM_SEED="${RANDOM_SEED:-33}"
+SAMPLE_SIZE=2
+K_CHUNKS=5
+RANDOM_SEED=33
 
-VLLM_HOST="http://$(cat logs/slurm/vllm_ministral_host.txt 2>/dev/null || echo "")"
-if [[ -z "$VLLM_HOST" ]]; then
-    echo "ERROR: vLLM host not found in logs/slurm/vllm_ministral_host.txt"
-    exit 1
-fi
-echo "vLLM server: $VLLM_HOST"
-
+echo "=== 2/2 e5 RAG strategies (OpenRouter) ==="
 "$VENV_PY" -m src.run_batch \
-    --embedding_model qwen3 \
+    --embedding_model e5 \
     --strategies simple,hyde,twostage \
-    --device cuda \
     --qdrant_url "$QDRANT_URL" \
-    --llm_base_url "${VLLM_HOST}/v1" \
     --k_chunks "$K_CHUNKS" \
     --run_id "$RUN_ID" \
     --run_dir "$RUN_DIR"
+
+echo "Test run complete. Logs in: $RUN_DIR"

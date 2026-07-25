@@ -1,9 +1,9 @@
 #!/bin/bash
 #SBATCH --job-name=eval_bge
-#SBATCH --partition=standard
+#SBATCH --partition=gpu
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=32G
-#SBATCH --time=04:00:00
+#SBATCH --time=06:00:00
 #SBATCH --output=logs/slurm/eval_bge_%j.out
 #SBATCH --error=logs/slurm/eval_bge_%j.err
 
@@ -14,7 +14,6 @@
 # Prerequisites:
 #   1. Qdrant server running with chunks_bge collection populated.
 #   2. Run: bash slurm/setup_venv.sh   (one-time, on a login node)
-#   3. OPENROUTER_API_KEY set in .env.local
 #
 # For bge hybrid (dense+sparse+RRF), use 22b_eval_bge_hybrid.sbatch (GPU).
 #
@@ -46,11 +45,19 @@ echo "Python -> $VENV_PY ($($VENV_PY --version 2>&1))"
 
 K_CHUNKS="${K_CHUNKS:-5}"
 
+VLLM_HOST="http://$(cat logs/slurm/vllm_ministral_host.txt 2>/dev/null || echo "")"
+if [[ -z "$VLLM_HOST" ]]; then
+    echo "ERROR: vLLM host not found in logs/slurm/vllm_ministral_host.txt"
+    exit 1
+fi
+echo "vLLM server: $VLLM_HOST"
+
 "$VENV_PY" -m src.run_batch \
     --embedding_model bge \
-    --strategies simple,hyde,twostage \
+    --strategies simple,hyde,twostage,simple_hybrid,hyde_hybrid,twostage_hybrid \
     --device cpu \
     --qdrant_url "$QDRANT_URL" \
+    --llm_base_url "${VLLM_HOST}/v1" \
     --k_chunks "$K_CHUNKS" \
     --run_id "$RUN_ID" \
     --run_dir "$RUN_DIR"

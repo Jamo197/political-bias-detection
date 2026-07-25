@@ -15,7 +15,7 @@ module load singularity || module load apptainer || true
 # --- Configuration ---
 LOCAL_STORAGE="$TMPDIR/qdrant_storage"
 BEEGFS_STORAGE="$PWD/qdrant_storage"
-HOST_FILE="$PWD/qdrant_host.txt"
+HOST_FILE="$PWD/logs/qdrant_host.txt"
 
 QDRANT_SIF="${QDRANT_SIF:-/home/users/j/$USER/hpc-images/qdrant.sif}"
 
@@ -31,7 +31,7 @@ if [ -d "$BEEGFS_STORAGE" ]; then
 fi
 
 # 2. Expose the compute node's hostname for your other jobs
-hostname -f > "$HOST_FILE"
+hostname -f > "$HOST_FILE:6333"
 echo "Qdrant will be available at: $(cat $HOST_FILE)"
 
 # 3. Define cleanup function for graceful shutdown and data safety
