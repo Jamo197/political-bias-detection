@@ -43,9 +43,7 @@ from src.logging.log_run import log_evaluation_run
 DATA_PATH = _ROOT / "src/datasets/political_bias_articles_dataset.csv"
 
 LLM_MODELS = {
-    # "mistral-large": {"region": "Europe", "id": "mistralai/mistral-large-2512"},
-    "qwen-2.5-72b": {"region": "China", "id": "qwen/qwen-2.5-72b-instruct"},
-    # "llama-3.1-70b": {"region": "Americas", "id": "meta-llama/llama-3.1-70b-instruct"}
+    "ministral-3b": {"region": "Europe", "id": "mistralai/Ministral-3-3B-Instruct-2512"},
 }
 
 STRATEGY_MAP = {
