@@ -43,8 +43,18 @@ from src.logging.log_run import log_evaluation_run
 DATA_PATH = _ROOT / "src/datasets/political_bias_articles_dataset.csv"
 
 LLM_MODELS = {
-    "ministral-3b": {"region": "Europe", "id": "mistralai/Ministral-3-3B-Instruct-2512"},
+    "ministral-3b": {
+        "region": "Europe",
+        "id": "mistralai/Ministral-3-3B-Instruct-2512",
+        "openrouter_id": "mistralai/ministral-3b-2512",
+    },
 }
+
+
+def _resolve_llm_model_id(llm_val: dict, base_url: str) -> str:
+    if "openrouter.ai" in base_url:
+        return llm_val.get("openrouter_id", llm_val["id"])
+    return llm_val["id"]
 
 STRATEGY_MAP = {
     "simple": {"mode": "simple", "hybrid": False},
@@ -228,7 +238,7 @@ def run_condition_rag(
         try:
             prediction = evaluator.predict_bias(
                 text=text_content,
-                model_id=llm_val["id"],
+                model_id=_resolve_llm_model_id(llm_val, evaluator.base_url),
                 context_chunks=context_chunks if context_chunks else None,
                 is_rag_mode=True,
             )
@@ -239,7 +249,7 @@ def run_condition_rag(
         log_evaluation_run(
             text_index=text_idx,
             input_text=text_content,
-            llm_choice=llm_val["id"],
+            llm_choice=_resolve_llm_model_id(llm_val, evaluator.base_url),
             llm_region=llm_val["region"],
             retrieval_mode=strategy_label,
             k_chunks=k_chunks,
@@ -287,7 +297,7 @@ def run_condition_norag(
         try:
             prediction = evaluator.predict_bias(
                 text=text_content,
-                model_id=llm_val["id"],
+                model_id=_resolve_llm_model_id(llm_val, evaluator.base_url),
                 context_chunks=None,
                 is_rag_mode=False,
             )
@@ -298,7 +308,7 @@ def run_condition_norag(
         log_evaluation_run(
             text_index=text_idx,
             input_text=text_content,
-            llm_choice=llm_val["id"],
+            llm_choice=_resolve_llm_model_id(llm_val, evaluator.base_url),
             llm_region=llm_val["region"],
             retrieval_mode="no_rag",
             k_chunks=0,
@@ -479,7 +489,7 @@ if __name__ == "__main__":
             if strategy_mode == "hyde":
                 hyde_llm = OpenAIHyDELLM(
                     base_url=args.llm_base_url or "https://openrouter.ai/api/v1",
-                    model_id=llm_val["id"],
+                    model_id=_resolve_llm_model_id(llm_val, evaluator.base_url),
                 )
             print(f"Running {args.embedding_model}/{strategy_name}/{llm_key}...")
             run_condition_rag(
