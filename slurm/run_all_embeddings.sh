@@ -30,12 +30,13 @@ RUN_DIR="${RUN_DIR:-logs/batch_runs/$(date +%Y-%m-%d)_${RUN_ID}}"
 export RUN_ID RUN_DIR
 
 VLLM_HOST_FILE="logs/slurm/vllm_active_host.txt"
-if [[ ! -s "$VLLM_HOST_FILE" ]]; then
-    echo "ERROR: vLLM host file missing or empty: $VLLM_HOST_FILE"
-    exit 1
+VLLM_HOST=""
+if [[ -s "$VLLM_HOST_FILE" ]]; then
+    VLLM_HOST="http://$(cat "$VLLM_HOST_FILE")"
+    echo "vLLM server target: $VLLM_HOST"
+else
+    echo "WARNING: vLLM host file missing or empty: $VLLM_HOST_FILE; using OpenRouter as LLM provider."
 fi
-VLLM_HOST="http://$(cat "$VLLM_HOST_FILE")"
-echo "vLLM server target: $VLLM_HOST"
 
 # Pre-read qwen3 embedding server host (required for qwen3 model)
 VLLM_EMBED_HOST_FILE="logs/slurm/vllm_qwen3_host.txt"
@@ -46,6 +47,11 @@ fi
 
 K_CHUNKS="${K_CHUNKS:-5}"
 
+LLM_ARGS=()
+if [[ -n "$VLLM_HOST" ]]; then
+    LLM_ARGS+=(--llm_base_url "${VLLM_HOST}/v1")
+fi
+
 # --- Test 1: no-RAG baseline (no embedding model needed) ------------------
 echo "--------------------------------------------------"
 echo "Starting evaluation batch: no_rag (baseline)"
@@ -53,9 +59,9 @@ echo "--------------------------------------------------"
 
 "$VENV_PY" -m src.run_batch \
     --no_rag \
-    --llm_base_url "${VLLM_HOST}/v1" \
     --run_id "${RUN_ID}_norag" \
-    --run_dir "$RUN_DIR"
+    --run_dir "$RUN_DIR" \
+    "${LLM_ARGS[@]}"
 
 echo "Finished no_rag baseline"
 echo ""
@@ -65,6 +71,12 @@ EMBEDDING_MODELS=("e5" "bge" "jina" "qwen3")
 STRATEGIES="simple,hyde,twostage"
 
 for EMB in "${EMBEDDING_MODELS[@]}"; do
+    if [[ "$EMB" == "bge" ]]; then
+        STRATEGIES="simple,simple_hybrid,hyde,hyde_hybrid,twostage,twostage_hybrid"
+    else
+        STRATEGIES="simple,hyde,twostage"
+    fi
+
     echo "--------------------------------------------------"
     echo "Starting evaluation batch: Embedding=$EMB"
     echo "--------------------------------------------------"
@@ -85,13 +97,14 @@ for EMB in "${EMBEDDING_MODELS[@]}"; do
         --device cuda \
         --qdrant_url "$QDRANT_URL" \
         --k_chunks "$K_CHUNKS" \
-        --llm_base_url "${VLLM_HOST}/v1" \
         --run_id "${RUN_ID}_${EMB}" \
         --run_dir "$RUN_DIR" \
-        "${EXTRA_ARGS[@]}"
+        "${EXTRA_ARGS[@]}" \
+        "${LLM_ARGS[@]}"
 
     echo "Finished embedding model: $EMB"
     echo ""
 done
 
 echo "=== All 5 tests completed successfully! ==="
+# TODO: add Openrouter fallback

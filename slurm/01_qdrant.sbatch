@@ -31,29 +31,30 @@ if [ -d "$BEEGFS_STORAGE" ]; then
 fi
 
 # 2. Expose the compute node's hostname for your other jobs
-hostname -f > "$HOST_FILE:6333"
+echo "$(hostname -f):6333" > "$HOST_FILE"
 echo "Qdrant will be available at: $(cat $HOST_FILE)"
 
 # 3. Define cleanup function for graceful shutdown and data safety
-cleanup() {
-    echo "Signal received or job ending. Stopping Qdrant safely..."
-    
-    # 3a. Send SIGTERM to Qdrant and WAIT for it to exit
-    # This is critical to prevent data loss: it forces Qdrant to flush memory/WAL to disk.
-    if kill -0 "$QDRANT_PID" 2>/dev/null; then
-        kill -TERM "$QDRANT_PID"
-        wait "$QDRANT_PID" 2>/dev/null || true
-    fi
+QDRANT_PID=""
 
-    echo "Qdrant flushed and stopped. Syncing database back to BeeGFS..."
-    # 3b. Sync the safe state back to shared storage
-    rsync -ah --delete "$LOCAL_STORAGE/" "$BEEGFS_STORAGE/"
-    
-    # Clean up the host file so other jobs don't try to connect to a dead node
-    rm -f "$HOST_FILE"
-    
-    echo "Sync complete. Exiting."
-}
+cleanup() { 
+  # Disable traps so cleanup doesn't run twice on EXIT
+  trap - EXIT SIGTERM
+
+  echo "Signal received or job ending. Stopping Qdrant safely..." 
+  
+  if [ -n "${QDRANT_PID:-}" ] && kill -0 "$QDRANT_PID" 2>/dev/null; then 
+    kill -TERM "$QDRANT_PID" 
+    wait "$QDRANT_PID" 2>/dev/null || true 
+  fi 
+
+  echo "Qdrant flushed and stopped. Syncing database back to BeeGFS..." 
+  rsync -ah --delete "$LOCAL_STORAGE/" "$BEEGFS_STORAGE/" 
+  rm -f "$HOST_FILE" 
+  echo "Sync complete. Exiting." 
+} 
+
+trap cleanup EXIT SIGTERM
 
 # Catch normal exits and the SIGTERM sent by SLURM's --signal command
 trap cleanup EXIT SIGTERM
@@ -71,4 +72,4 @@ QDRANT_PID=$!
 
 wait "$QDRANT_PID" 2>/dev/null || true
 
-# Kill job with scancel --signal=B:TERM <job_id>
+# safely kill job scancel --batch --signal=TERM <JOBID>

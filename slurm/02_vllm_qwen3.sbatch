@@ -1,10 +1,10 @@
 #!/bin/bash
 #SBATCH --job-name=vllm_qwen3_embed
 #SBATCH --partition=gpu
-#SBATCH --gres=gpu:a100:1
-#SBATCH --cpus-per-task=8
-#SBATCH --mem=64G
-#SBATCH --time=12:00:00
+#SBATCH --gres=gpu:1
+#SBATCH --cpus-per-task=4
+#SBATCH --mem=32G
+#SBATCH --time=2:00:00
 #SBATCH --output=logs/slurm/vllm_qwen3_%j.out
 #SBATCH --error=logs/slurm/vllm_qwen3_%j.err
 
