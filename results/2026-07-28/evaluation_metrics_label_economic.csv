@@ -1,0 +1,16 @@
+Target,Model,Condition,N_samples,MAE,RMSE,Pearson_r,Spearman_rho
+label_economic,Llama-3.1-8B-Instruct,no_rag,775,1.8831,2.1952,0.1407,0.1942
+label_economic,Ministral-3-8B-Instruct-2512,e5/hyde,755,1.6481,2.0637,0.135,0.1693
+label_economic,Ministral-3-8B-Instruct-2512,e5/simple,760,1.7091,2.1244,0.1005,0.146
+label_economic,Ministral-3-8B-Instruct-2512,e5/twostage,757,1.7196,2.1385,0.1353,0.1834
+label_economic,Ministral-3-8B-Instruct-2512,jina/hyde,763,1.7228,2.1452,0.0992,0.1374
+label_economic,Ministral-3-8B-Instruct-2512,jina/simple,759,1.7896,2.1831,0.0903,0.127
+label_economic,Ministral-3-8B-Instruct-2512,jina/twostage,752,1.7009,2.119,0.1232,0.164
+label_economic,Ministral-3-8B-Instruct-2512,no_rag,775,1.4394,1.816,0.1382,0.1917
+label_economic,Ministral-3-8B-Instruct-2512,qwen3/hyde,775,1.436,1.8136,0.1394,0.1924
+label_economic,Ministral-3-8B-Instruct-2512,qwen3/simple,775,1.4369,1.8151,0.1389,0.1922
+label_economic,Ministral-3-8B-Instruct-2512,qwen3/twostage,655,1.4052,1.7765,0.1483,0.2015
+label_economic,Qwen2.5-7B-Instruct,no_rag,774,0.9699,1.2148,0.1094,0.1309
+label_economic,llama-3.1-70b-instruct,no_rag,775,1.2365,1.5599,0.128,0.171
+label_economic,mistral-large-2512,no_rag,775,1.1015,1.4212,0.1296,0.1804
+label_economic,qwen-2.5-72b-instruct,no_rag,440,1.0305,1.3066,0.1682,0.2208

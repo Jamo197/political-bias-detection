@@ -1,0 +1,16 @@
+Target,Model,Condition,N_samples,MAE,RMSE,Pearson_r,Spearman_rho
+label_galtan,Llama-3.1-8B-Instruct,no_rag,775,1.949,2.3128,0.0779,0.1165
+label_galtan,Ministral-3-8B-Instruct-2512,e5/hyde,755,1.7334,2.1664,0.0681,0.0779
+label_galtan,Ministral-3-8B-Instruct-2512,e5/simple,760,1.7904,2.2283,0.0331,0.0587
+label_galtan,Ministral-3-8B-Instruct-2512,e5/twostage,757,1.7822,2.2241,0.0897,0.1102
+label_galtan,Ministral-3-8B-Instruct-2512,jina/hyde,763,1.7775,2.2253,0.0606,0.0789
+label_galtan,Ministral-3-8B-Instruct-2512,jina/simple,759,1.8676,2.2832,0.0311,0.0423
+label_galtan,Ministral-3-8B-Instruct-2512,jina/twostage,752,1.7662,2.2177,0.0604,0.0772
+label_galtan,Ministral-3-8B-Instruct-2512,no_rag,775,1.5435,1.945,0.0503,0.0879
+label_galtan,Ministral-3-8B-Instruct-2512,qwen3/hyde,775,1.5404,1.9421,0.0519,0.0918
+label_galtan,Ministral-3-8B-Instruct-2512,qwen3/simple,775,1.5413,1.9434,0.0518,0.0917
+label_galtan,Ministral-3-8B-Instruct-2512,qwen3/twostage,655,1.514,1.9168,0.0423,0.0885
+label_galtan,Qwen2.5-7B-Instruct,no_rag,774,1.0286,1.2997,0.069,0.08
+label_galtan,llama-3.1-70b-instruct,no_rag,775,1.2519,1.6494,0.0598,0.1071
+label_galtan,mistral-large-2512,no_rag,775,1.1724,1.5358,0.0501,0.1051
+label_galtan,qwen-2.5-72b-instruct,no_rag,440,1.1534,1.456,0.0825,0.1078

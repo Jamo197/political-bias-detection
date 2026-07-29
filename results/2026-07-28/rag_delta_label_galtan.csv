@@ -1,0 +1,10 @@
+Target,Model,Condition,ΔMAE (RAG-Base),ΔRMSE (RAG-Base),ΔPearson_r (RAG-Base),ΔSpearman_rho (RAG-Base)
+label_galtan,Ministral-3-8B-Instruct-2512,e5/hyde,0.1899,0.2214,0.0178,-0.01
+label_galtan,Ministral-3-8B-Instruct-2512,e5/simple,0.2469,0.2833,-0.0172,-0.0292
+label_galtan,Ministral-3-8B-Instruct-2512,e5/twostage,0.2387,0.2791,0.0394,0.0223
+label_galtan,Ministral-3-8B-Instruct-2512,jina/hyde,0.234,0.2803,0.0103,-0.009
+label_galtan,Ministral-3-8B-Instruct-2512,jina/simple,0.3241,0.3382,-0.0192,-0.0456
+label_galtan,Ministral-3-8B-Instruct-2512,jina/twostage,0.2227,0.2727,0.0101,-0.0107
+label_galtan,Ministral-3-8B-Instruct-2512,qwen3/hyde,-0.0031,-0.0029,0.0016,0.0039
+label_galtan,Ministral-3-8B-Instruct-2512,qwen3/simple,-0.0022,-0.0016,0.0015,0.0038
+label_galtan,Ministral-3-8B-Instruct-2512,qwen3/twostage,-0.0295,-0.0282,-0.008,0.0006
