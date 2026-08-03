@@ -7,10 +7,10 @@ from batch-run JSONL logs.
 Loads party_label_*.jsonl files from logs/batch_runs, computes per-query
 retrieval-score statistics (range, variance, mean), and correlates them
 with prediction error (MAE). Generates box plots and calibration scatter
-plots saved to src/results/qualitative/.
+plots saved to src/results/analysis/qualitative/.
 
 Usage:
-    python src/results/analyze_retrieval_scores.py
+    python src/results/analysis/analyze_retrieval_scores.py
 """
 
 import argparse
@@ -31,7 +31,7 @@ from scipy.stats import pearsonr, spearmanr
 # ---------------------------------------------------------------------------
 
 BASE_DIR = Path("logs/batch_runs")
-OUTPUT_DIR = Path("src/results/qualitative")
+OUTPUT_DIR = Path("src/results/analysis/qualitative")
 EMBEDDING_MODELS = {"e5", "jina", "qwen3"}
 
 # ---------------------------------------------------------------------------
