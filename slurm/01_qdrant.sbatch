@@ -72,4 +72,5 @@ QDRANT_PID=$!
 
 wait "$QDRANT_PID" 2>/dev/null || true
 
-# safely kill job scancel --batch --signal=TERM <JOBID>
+# safely kill job:
+# scancel --batch --signal=TERM <JOBID>

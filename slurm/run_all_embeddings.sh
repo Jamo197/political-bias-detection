@@ -1,14 +1,17 @@
 #!/bin/bash
-#SBATCH --job-name=eval_matrix
-#SBATCH --partition=gpu
-#SBATCH --gres=gpu:a100:1
-#SBATCH --cpus-per-task=8
+#SBATCH --job-name=eval_matrix_cpu
+#SBATCH --partition=standard            # Adjust to your cluster's CPU partition name
+#SBATCH --cpus-per-task=16         # 16 CPU threads for fast PyTorch CPU inference
 #SBATCH --mem=32G
-#SBATCH --time=04:00:00
+#SBATCH --time=08:00:00
 #SBATCH --output=logs/slurm/eval_matrix_%j.out
 #SBATCH --error=logs/slurm/eval_matrix_%j.err
 
 set -euo pipefail
+
+# Optimize CPU thread allocation for PyTorch & SentenceTransformers
+export OMP_NUM_THREADS=${SLURM_CPUS_PER_TASK:-16}
+export MKL_NUM_THREADS=${SLURM_CPUS_PER_TASK:-16}
 
 cd "${PROJECT_ROOT:-$PWD}"
 mkdir -p logs/slurm
@@ -52,33 +55,32 @@ if [[ -n "$VLLM_HOST" ]]; then
     LLM_ARGS+=(--llm_base_url "${VLLM_HOST}/v1")
 fi
 
-# --- Test 1: no-RAG baseline (no embedding model needed) ------------------
-echo "--------------------------------------------------"
-echo "Starting evaluation batch: no_rag (baseline)"
-echo "--------------------------------------------------"
+# # --- Test 1: no-RAG baseline (no embedding model needed) ------------------
+# echo "--------------------------------------------------"
+# echo "Starting evaluation batch: no_rag (baseline)"
+# echo "--------------------------------------------------"
 
-"$VENV_PY" -m src.run_batch \
-    --no_rag \
-    --run_id "${RUN_ID}_norag" \
-    --run_dir "$RUN_DIR" \
-    "${LLM_ARGS[@]}"
+# "$VENV_PY" -m src.run_batch \
+#     --no_rag \
+#     --run_id "${RUN_ID}_norag" \
+#     --run_dir "$RUN_DIR" \
+#     "${LLM_ARGS[@]}"
 
-echo "Finished no_rag baseline"
-echo ""
+# echo "Finished no_rag baseline"
+# echo ""
 
 # --- Tests 2-5: RAG with each embedding model -------------------------------
-EMBEDDING_MODELS=("e5" "bge" "jina" "qwen3")
-STRATEGIES="simple,hyde,twostage"
+EMBEDDING_MODELS=("bge" "jina" "qwen3") # "e5" 
 
 for EMB in "${EMBEDDING_MODELS[@]}"; do
     if [[ "$EMB" == "bge" ]]; then
-        STRATEGIES="simple,simple_hybrid,hyde,hyde_hybrid,twostage,twostage_hybrid"
+        STRATEGIES="hyde_hybrid,twostage,twostage_hybrid" # simple,simple_hybrid,hyde,
     else
         STRATEGIES="simple,hyde,twostage"
     fi
 
     echo "--------------------------------------------------"
-    echo "Starting evaluation batch: Embedding=$EMB"
+    echo "Starting evaluation batch: Embedding=$EMB (CPU)"
     echo "--------------------------------------------------"
 
     EXTRA_ARGS=()
@@ -94,7 +96,7 @@ for EMB in "${EMBEDDING_MODELS[@]}"; do
     "$VENV_PY" -m src.run_batch \
         --embedding_model "$EMB" \
         --strategies "$STRATEGIES" \
-        --device cuda \
+        --device cpu \
         --qdrant_url "$QDRANT_URL" \
         --k_chunks "$K_CHUNKS" \
         --run_id "${RUN_ID}_${EMB}" \
@@ -106,5 +108,4 @@ for EMB in "${EMBEDDING_MODELS[@]}"; do
     echo ""
 done
 
-echo "=== All 5 tests completed successfully! ==="
-# TODO: add Openrouter fallback
+echo "=== All 5 tests completed successfully on CPU! ==="
