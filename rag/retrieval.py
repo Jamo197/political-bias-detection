@@ -304,7 +304,7 @@ class PoliticalRAGRetriever:
         retrieval_mode: str = "simple",
         country_context: str = "Germany",
         device: Optional[str] = None,
-        vllm_base_url: Optional[str] = None,
+        vllm_embed_url: Optional[str] = None,
         hybrid: bool = False,
         cross_encoder=None,
         hyde_llm: Optional[OpenAIHyDELLM] = None,
@@ -320,7 +320,7 @@ class PoliticalRAGRetriever:
             self.embedder = embedder
         else:
             self.embedder = build_embedder(
-                self.cfg, device=device, vllm_base_url=vllm_base_url
+                self.cfg, device=device, vllm_embed_url=vllm_embed_url
             )
 
         self.retrieval_strategy = self._init_retrieval_strategy(

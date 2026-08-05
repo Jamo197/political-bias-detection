@@ -137,7 +137,7 @@ def run(args: argparse.Namespace) -> None:
     if not args.skip_parents:
         upload_parents(client, args.speeches, args.batch_size)
 
-    embedder = build_embedder(cfg, device=args.device, vllm_base_url=args.vllm_base_url)
+    embedder = build_embedder(cfg, device=args.device, vllm_embed_url=args.vllm_embed_url)
 
     batch: list[dict] = []
     total = 0
@@ -182,8 +182,8 @@ def main() -> None:
     )
     parser.add_argument("--qdrant-timeout", type=float, default=300.0)
     parser.add_argument(
-        "--vllm-base-url",
-        default=os.getenv("VLLM_BASE_URL", "http://localhost:8000/v1"),
+        "--vllm-embed-url",
+        default=os.getenv("VLLM_EMBED_URL", "http://localhost:8000/v1"),
         help="vLLM OpenAI endpoint (qwen3 only).",
     )
     parser.add_argument("--device", default=None, help="cuda / cpu (ST/Flag models).")

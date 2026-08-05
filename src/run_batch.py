@@ -44,9 +44,9 @@ DATA_PATH = _ROOT / "src/datasets/political_bias_articles_dataset.csv"
 
 LLM_MODELS = {
     "llama-8B": {
-        "region": "Americas",
-        "id": "meta-llama/Llama-3.1-8B-Instruct",
-        "openrouter_id": "meta-llama/llama-3.1-8b-instruct",
+        "region": "China",
+        "id": "Qwen/Qwen2.5-7B-Instruct",
+        "openrouter_id": "qwen/qwen-2.5-7b-instruct",
     },
 }
 
@@ -363,7 +363,7 @@ if __name__ == "__main__":
         default="http://localhost:6333",
     )
     parser.add_argument(
-        "--vllm_base_url",
+        "--vllm_embed_url",
         type=str,
         default=None,
         help="vLLM server URL for qwen3 embeddings when --query_backend=local",
@@ -442,14 +442,14 @@ if __name__ == "__main__":
         embedder = build_embedder(
             cfg,
             device=args.device,
-            vllm_base_url=args.vllm_base_url,
+            vllm_embed_url=args.vllm_embed_url,
             query_backend=args.query_backend,
         )
     except ValueError as e:
         print(f"[ERROR] {e}")
         print(f"  Falling back to local backend for {args.embedding_model}.")
         embedder = build_embedder(
-            cfg, device=args.device, vllm_base_url=args.vllm_base_url
+            cfg, device=args.device, vllm_embed_url=args.vllm_embed_url
         )
 
     strategies = [s.strip() for s in args.strategies.split(",") if s.strip()]

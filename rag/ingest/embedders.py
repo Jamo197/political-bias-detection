@@ -25,10 +25,15 @@ from __future__ import annotations
 import os
 from dataclasses import dataclass, field
 from typing import Optional
-
+from dotenv import load_dotenv
+from pathlib import Path
 import numpy as np
 
 from .config import TARGET_DIM, ModelConfig
+
+load_dotenv(Path(".env.local"))
+os.environ["HF_TOKEN"] = os.getenv("HF_TOKEN", "")
+os.environ["OPENROUTER_API_KEY"] = os.getenv("OPENROUTER_API_KEY", "")
 
 
 def _patch_jina_rope_compat() -> None:
@@ -315,7 +320,8 @@ class Qwen3VLLMEmbedder(BaseEmbedder):
         super().__init__(cfg)
         from openai import OpenAI
 
-        base_url = base_url or os.getenv("VLLM_BASE_URL", "http://localhost:8000/v1")
+        base_url = base_url or "https://openrouter.ai/api/v1"
+        api_key = api_key or os.getenv("OPENROUTER_API_KEY", "")
         self.model_id = cfg.hf_model_id
         self.client = OpenAI(base_url=base_url, api_key=api_key, timeout=timeout)
 
@@ -417,7 +423,7 @@ class OpenRouterEmbedder(BaseEmbedder):
 def build_embedder(
     cfg: ModelConfig,
     device: Optional[str] = None,
-    vllm_base_url: Optional[str] = None,
+    vllm_embed_url: Optional[str] = None,
     query_backend: str = "local",
     openrouter_api_key: Optional[str] = None,
 ) -> BaseEmbedder:
@@ -435,5 +441,5 @@ def build_embedder(
     if cfg.backend == "flag_embedding":
         return BGEEmbedder(cfg, device=device)
     if cfg.backend == "vllm_server":
-        return Qwen3VLLMEmbedder(cfg, base_url=vllm_base_url)
+        return Qwen3VLLMEmbedder(cfg, base_url=vllm_embed_url)
     raise ValueError(f"No embedder wiring for model '{cfg.key}'")

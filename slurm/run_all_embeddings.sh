@@ -3,7 +3,7 @@
 #SBATCH --partition=standard            # Adjust to your cluster's CPU partition name
 #SBATCH --cpus-per-task=16         # 16 CPU threads for fast PyTorch CPU inference
 #SBATCH --mem=32G
-#SBATCH --time=08:00:00
+#SBATCH --time=12:00:00
 #SBATCH --output=logs/slurm/eval_matrix_%j.out
 #SBATCH --error=logs/slurm/eval_matrix_%j.err
 
@@ -70,11 +70,11 @@ fi
 # echo ""
 
 # --- Tests 2-5: RAG with each embedding model -------------------------------
-EMBEDDING_MODELS=("bge" "jina" "qwen3") # "e5" 
+EMBEDDING_MODELS=("jina" "qwen3") # "e5" "bge" "jina" 
 
 for EMB in "${EMBEDDING_MODELS[@]}"; do
-    if [[ "$EMB" == "bge" ]]; then
-        STRATEGIES="hyde_hybrid,twostage,twostage_hybrid" # simple,simple_hybrid,hyde,
+    if [[ "$EMB" == "jina" ]]; then
+        STRATEGIES="twostage" # simple,simple_hybrid,hyde,hyde_hybrid,twostage,twostage_hybrid
     else
         STRATEGIES="simple,hyde,twostage"
     fi
@@ -86,7 +86,7 @@ for EMB in "${EMBEDDING_MODELS[@]}"; do
     EXTRA_ARGS=()
     if [[ "$EMB" == "qwen3" ]]; then
         if [[ -n "$VLLM_EMBED_HOST" ]]; then
-            EXTRA_ARGS+=(--vllm_base_url "$VLLM_EMBED_HOST")
+            EXTRA_ARGS+=(--vllm_embed_url "$VLLM_EMBED_HOST/v1")
         else
             echo "WARNING: qwen3 vLLM embed server not found; falling back to OpenRouter."
             EXTRA_ARGS+=(--query_backend openrouter)

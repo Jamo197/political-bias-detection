@@ -38,7 +38,7 @@ echo "Qdrant -> $QDRANT_URL | vLLM -> $VLLM_BASE_URL"
     --speeches rag/ingest/artifacts/full_speeches.jsonl \
     --qdrant-url "$QDRANT_URL" \
     --qdrant-timeout 300 \
-    --vllm-base-url "$VLLM_BASE_URL" \
+    --vllm-embed-url "$VLLM_BASE_URL" \
     --batch-size 64 \
     --reset \
     --skip-parents
