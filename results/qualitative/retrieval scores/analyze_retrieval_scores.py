@@ -32,7 +32,7 @@ from scipy.stats import pearsonr, spearmanr
 
 BASE_DIR = Path("logs/batch_runs")
 OUTPUT_DIR = Path("src/results/analysis/qualitative")
-EMBEDDING_MODELS = {"e5", "jina", "qwen3"}
+EMBEDDING_MODELS = {"e5", "jina", "qwen3", "bge"}
 
 # ---------------------------------------------------------------------------
 # Data Loading
