@@ -4,6 +4,21 @@
 | Model ID | Region | RAG | Embedding Model | Retrieval Strategy | Questions | Status | Folder | Ground Truth |
 |----------|--------|--------|--------|--------|--------|--------|--------|--------|
 | Qwen/Qwen2.5-7B-Instruct | China | No | None | no_rag | 775 | Complete | 2026-07-15_eval_20260715_211414 | final_label_ideology |
+| Qwen/Qwen2.5-7B-Instruct | China | Yes | bge | hyde | 775 | Complete | 2026-08-04_eval_matrix_20260804_191413 | final_label_ideology |
+| Qwen/Qwen2.5-7B-Instruct | China | Yes | bge | hyde_hybrid | 775 | Complete | 2026-08-04_eval_matrix_20260804_191413 | final_label_ideology |
+| Qwen/Qwen2.5-7B-Instruct | China | Yes | bge | simple | 775 | Complete | 2026-08-04_eval_matrix_20260804_191413 | final_label_ideology |
+| Qwen/Qwen2.5-7B-Instruct | China | Yes | bge | simple_hybrid | 775 | Complete | 2026-08-04_eval_matrix_20260804_191413 | final_label_ideology |
+| Qwen/Qwen2.5-7B-Instruct | China | Yes | bge | twostage | 775 | Complete | 2026-08-04_eval_matrix_20260804_191413 | final_label_ideology |
+| Qwen/Qwen2.5-7B-Instruct | China | Yes | bge | twostage_hybrid | 775 | Complete | 2026-08-04_eval_matrix_20260804_191413 | final_label_ideology |
+| Qwen/Qwen2.5-7B-Instruct | China | Yes | e5 | hyde | 775 | Complete | 2026-08-04_eval_matrix_20260804_191413 | final_label_ideology |
+| Qwen/Qwen2.5-7B-Instruct | China | Yes | e5 | simple | 775 | Complete | 2026-08-04_eval_matrix_20260804_191413 | final_label_ideology |
+| Qwen/Qwen2.5-7B-Instruct | China | Yes | e5 | twostage | 775 | Complete | 2026-08-04_eval_matrix_20260804_191413 | final_label_ideology |
+| Qwen/Qwen2.5-7B-Instruct | China | Yes | jina | hyde | 483 | Partial (stopped at 483/775) | 2026-08-04_eval_matrix_20260804_191413 | final_label_ideology |
+| Qwen/Qwen2.5-7B-Instruct | China | Yes | jina | simple | 775 | Complete | 2026-08-04_eval_matrix_20260804_191413 | final_label_ideology |
+| Qwen/Qwen2.5-7B-Instruct | China | Yes | jina | twostage | 775 | Complete | 2026-08-04_eval_matrix_20260804_191413 | final_label_ideology |
+| Qwen/Qwen2.5-7B-Instruct | China | Yes | qwen3 | hyde | 775 | Complete | 2026-08-04_eval_matrix_20260804_191413 | final_label_ideology |
+| Qwen/Qwen2.5-7B-Instruct | China | Yes | qwen3 | simple | 775 | Complete | 2026-08-04_eval_matrix_20260804_191413 | final_label_ideology |
+| Qwen/Qwen2.5-7B-Instruct | China | Yes | qwen3 | twostage | 775 | Complete | 2026-08-04_eval_matrix_20260804_191413 | final_label_ideology |
 | meta-llama/Llama-3.1-8B-Instruct | Americas | Yes | bge | hyde | 513 | Partial (stopped at 513/775) | 2026-08-03_eval_matrix_20260803_224143 | final_label_ideology |
 | meta-llama/Llama-3.1-8B-Instruct | Americas | Yes | bge | hyde_hybrid | 775 | Complete | 2026-08-04_eval_matrix_20260804_082443 | final_label_ideology |
 | meta-llama/Llama-3.1-8B-Instruct | Americas | Yes | bge | simple | 775 | Complete | 2026-08-03_eval_matrix_20260803_224143 | final_label_ideology |
@@ -33,10 +48,8 @@
 | mistralai/Ministral-3-8B-Instruct-2512 | Europe | Yes | jina | hyde | 775 | Complete | 2026-07-23_eval_20260723_115807 | final_label_ideology |
 | mistralai/Ministral-3-8B-Instruct-2512 | Europe | Yes | jina | simple | 775 | Complete | 2026-07-23_eval_20260723_115807 | final_label_ideology |
 | mistralai/Ministral-3-8B-Instruct-2512 | Europe | Yes | jina | twostage | 775 | Complete | 2026-07-23_eval_20260723_115807 | final_label_ideology |
-| mistralai/Ministral-3-8B-Instruct-2512 | Europe | Yes | qwen3 | hyde | 775 | Complete | 2026-07-23_eval_20260723_143404 | final_label_ideology |
-| mistralai/Ministral-3-8B-Instruct-2512 | Europe | Yes | qwen3 | simple | 775 | Complete | 2026-07-23_eval_20260723_143404 | final_label_ideology |
-| mistralai/Ministral-3-8B-Instruct-2512 | Europe | Yes | qwen3 | twostage | 655 | Partial (stopped at 655/775) | 2026-07-23_eval_20260723_143404 | final_label_ideology |
 | mistralai/mistral-large-2512 | Europe | No | None | no_rag | 775 | Complete | 2026-07-24_eval_20260724_192028 | final_label_ideology |
+| qwen/qwen-2.5-72b-instruct | China | No | None | no_rag | 775 | Complete | 2026-07-25_eval_20260725_133532 | final_label_ideology |
 | qwen/qwen-2.5-72b-instruct | China | No | None | no_rag | 775 | Complete | 2026-07-25_eval_20260725_133532 | final_label_ideology |
 
 
@@ -44,7 +57,8 @@
 | Model ID | Region | RAG | Embedding Model | Retrieval Strategy | Hosting |
 |----------|--------|--------|--------|--------|--------|
 | mistralai/Ministral-3-8B-Instruct-2512 | Europe | Yes | bge | simple, hyde, twostage | 775 |
-| meta-llama/Llama-3.1-8B-Instruct | Americas | Yes | jina | simple, hyde, twostage | Local |
+| mistralai/Ministral-3-8B-Instruct-2512 | Europe | Yes | qwen3 | simple, hyde, twostage | local |
+| meta-llama/Llama-3.1-8B-Instruct | Americas | Yes | jina | hyde, twostage | Local |
 | meta-llama/Llama-3.1-8B-Instruct | Americas | Yes | qwen3 | simple, hyde, twostage | Local |
 | meta-llama/Llama-3.1-8B-Instruct | Americas | Yes | bge | simple, hyde, twostage | Local |
 | meta-llama/llama-3.1-70b-instruct | Americas | Yes | e5 | simple, hyde, twostage | OpenRouter |
@@ -68,10 +82,7 @@
 | Qwen/Qwen2.5-3B-Instruct | China | Yes | jina | simple, hyde, twostage | Local |
 | Qwen/Qwen2.5-3B-Instruct | China | Yes | qwen3 | simple, hyde, twostage | Local |
 | Qwen/Qwen2.5-3B-Instruct | China | Yes | bge | simple, hyde, twostage | Local |
-| Qwen/Qwen2.5-7B-Instruct | China | Yes | e5 | simple, hyde, twostage | Local |
 | Qwen/Qwen2.5-7B-Instruct | China | Yes | jina | simple, hyde, twostage | Local |
-| Qwen/Qwen2.5-7B-Instruct | China | Yes | qwen3 | simple, hyde, twostage | Local |
-| Qwen/Qwen2.5-7B-Instruct | China | Yes | bge | simple, hyde, twostage | Local |
 | Qwen/Qwen2.5-32B-Instruct | China | No | None | no_rag | OpenRouter or Local |
 | Qwen/Qwen2.5-32B-Instruct | China | Yes | e5 | simple, hyde, twostage | OpenRouter or Local |
 | Qwen/Qwen2.5-32B-Instruct | China | Yes | jina | simple, hyde, twostage | OpenRouter or Local |
