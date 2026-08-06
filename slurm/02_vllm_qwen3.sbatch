@@ -18,11 +18,12 @@ cd "${PROJECT_ROOT:-$PWD}"
 mkdir -p logs/slurm
 
 VLLM_SIF="${VLLM_SIF:-/home/users/j/$USER/hpc-images/vllm.sif}"
-VLLM_PORT="${VLLM_PORT:-8000}"
+VLLM_PORT="${VLLM_PORT:-8001}"
 
 # Cache HF weights on scratch so they are not re-downloaded each run.
 export HF_HOME="${HF_HOME:-$PWD/.hf_cache}"
 mkdir -p "$HF_HOME"
+export HF_TOKEN="${HF_TOKEN:-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}"
 
 echo "$(hostname):${VLLM_PORT}" > logs/slurm/vllm_qwen3_host.txt
 echo "vLLM host -> $(cat logs/slurm/vllm_qwen3_host.txt)"

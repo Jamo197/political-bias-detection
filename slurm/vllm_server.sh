@@ -27,7 +27,7 @@ if [[ -z "$HF_TOKEN" ]]; then
 fi
 
 # Pass the model ID as a variable so you can reuse this script for any LLM
-TARGET_LLM="${1:-Qwen/Qwen2.5-7B-Instruct}"
+TARGET_LLM="${1:-meta-llama/Llama-3.1-8B-Instruct}"
 
 echo "$(hostname):${VLLM_PORT}" > logs/slurm/vllm_active_host.txt
 echo "Starting vLLM for $TARGET_LLM on host -> $(cat logs/slurm/vllm_active_host.txt)"

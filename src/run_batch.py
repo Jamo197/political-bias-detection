@@ -45,8 +45,8 @@ DATA_PATH = _ROOT / "src/datasets/political_bias_articles_dataset.csv"
 LLM_MODELS = {
     "llama-8B": {
         "region": "China",
-        "id": "Qwen/Qwen2.5-7B-Instruct",
-        "openrouter_id": "qwen/qwen-2.5-7b-instruct",
+        "id": "meta-llama/Llama-3.1-8B-Instruct",
+        "openrouter_id": "meta-llama/llama-3.1-8b-instruct",
     },
 }
 
