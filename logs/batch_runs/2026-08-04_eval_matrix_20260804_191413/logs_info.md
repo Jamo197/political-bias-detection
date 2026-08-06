@@ -4,7 +4,7 @@
 - **Start Time:** 2026-08-05 04:24:46
 
 ## Parameters
-- **Embedding Model:** jina,bge,e5
+- **Embedding Model:** jina,bge,e5,qwen3
 - **Query Backend:** local
 - **Strategies:** simple,hyde,twostage
 - **K Chunks:** 5
