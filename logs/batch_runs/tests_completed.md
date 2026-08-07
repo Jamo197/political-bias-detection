@@ -65,7 +65,6 @@
 | mistralai/Ministral-3-14B-Instruct-2512 | Europe | No | None | no_rag | 775 | Complete | 2026-08-06_eval_matrix_20260806_210845 | final_label_ideology |
 | mistralai/Ministral-3-14B-Instruct-2512 | Europe | Yes | e5 | simple | 770 | Complete | 2026-08-06_eval_matrix_20260806_210845 | final_label_ideology |
 | mistralai/Ministral-3-14B-Instruct-2512 | Europe | Yes | e5 | hyde | 764 | Complete | 2026-08-06_eval_matrix_20260806_210845 | final_label_ideology |
-| mistralai/Ministral-3-14B-Instruct-2512 | Europe | Yes | e5 | twostage | - | Logs exist, missing from eval CSV | 2026-08-06_eval_matrix_20260806_210845 | final_label_ideology |
 | mistralai/Ministral-3-14B-Instruct-2512 | Europe | Yes | bge | simple | 772 | Complete | 2026-08-06_eval_matrix_20260806_211059 | final_label_ideology |
 | mistralai/Ministral-3-14B-Instruct-2512 | Europe | Yes | bge | hyde | 773 | Complete | 2026-08-06_eval_matrix_20260806_211059 | final_label_ideology |
 | mistralai/Ministral-3-14B-Instruct-2512 | Europe | Yes | bge | twostage | 770 | Complete | 2026-08-06_eval_matrix_20260806_211059 | final_label_ideology |
