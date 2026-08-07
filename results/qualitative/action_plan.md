@@ -177,7 +177,57 @@ categories:
 
 ---
 
-## Module 4 (Planned): Topical vs. Ideological Alignment
+## Module 4: Evaluation Metrics (All Conditions)
+
+**Script:** `src/evaluate_metrics.py`
+
+**What we measure:** This is the top-level summary — how well does each
+(LLM model × retrieval condition) combination predict ideology scores overall?
+It computes four standard regression metrics per group and compares every RAG
+condition against a non-RAG baseline.
+
+Unlike the other modules which analyze *why* retrieval helps or hurts, this
+module answers the basic question: *Does RAG improve predictions compared to
+no retrieval at all, and by how much?*
+
+**Key design feature:** Non-RAG baseline records (`is_rag=False`) are included
+as a `no_rag` condition and sorted to the top of every output — the first row
+for each model is always the baseline, making it easy to compare.
+
+**The four metrics:**
+
+| Metric | Direction | What it tells you |
+|---|---|---|
+| **MAE** | lower = better | Average absolute error in ideology score (1–10 scale) |
+| **RMSE** | lower = better | Like MAE but penalizes large errors more heavily |
+| **Pearson r** | higher = better | Linear correlation between predicted and true scores |
+| **Spearman ρ** | higher = better | Rank correlation — robust to non-linear relationships |
+
+**Outputs (inside `results/evaluation/<run_id>/`):**
+
+| File | What it contains |
+|---|---|
+| `evaluation_metrics_{target}.csv` | MAE, RMSE, Pearson r, Spearman ρ per (Model, Condition) — `no_rag` first within each model |
+| `rag_delta_{target}.csv` | Delta from `no_rag` baseline for every RAG condition (ΔMAE, ΔRMSE, ΔPearson, ΔSpearman) |
+| `mae_comparison_{target}.png` | Horizontal bar chart: MAE per condition, colored by model |
+| `rmse_comparison_{target}.png` | Same for RMSE |
+| `all_metrics_{target}.png` | 2×2 grid showing all four metrics side by side |
+| `rag_delta_heatmap_{target}.png` | Heatmap per model: RAG improvement (green) vs. regression (red) |
+| `scatter_predicted_vs_actual_{target}.png` | Per-condition scatter plot with identity line |
+
+Each plot uses `(lower = better)` / `(higher = better)` labels on the x-axis
+so the direction is immediately clear.
+
+**Run:**
+```
+python src/evaluate_metrics.py
+python src/evaluate_metrics.py --target label_economic
+python src/evaluate_metrics.py --batch-run 2026-08-04_eval_matrix_20260804_191413
+```
+
+---
+
+## Module 6 (Planned): Topical vs. Ideological Alignment
 
 **Not yet implemented.** The hypothesis is that RAG primarily retrieves *topical
 matches* rather than *ideological matches*. To test this:
@@ -192,7 +242,7 @@ matches* rather than *ideological matches*. To test this:
 
 ---
 
-## Module 5 (Planned): LLM-as-a-Judge Evaluation
+## Module 7 (Planned): LLM-as-a-Judge Evaluation
 
 **Not yet implemented.** Use a larger LLM (e.g., Llama-3.1-70B or Mistral-Large)
 to score the quality of retrieved chunks in the extreme-cases sample:
@@ -210,10 +260,11 @@ relevance but low on ideological utility.
 
 ## Quick-Start Command Reference
 
-All three scripts share the same CLI interface:
+All four scripts share the same CLI interface:
 
 ```
 python src/results/analyze_{retrieval_scores,retrieval_party_alignment,error_taxonomy}.py [options]
+python src/evaluate_metrics.py [options]
 ```
 
 | Option | Default | Effect |
@@ -236,45 +287,60 @@ conditions.
 Every script creates a single timestamped folder per execution:
 
 ```
-results/qualitative/
-  retrieval_scores/
-    20260806_151455/
-      retrieval_score_per_query.csv
-      retrieval_score_summary.csv
-      ...
-  retrieval_party_alignment/
-    20260806_151455/
-      party_alignment_per_query.csv
-      party_distribution_stacked.png
-      ...
-  error_taxonomy/
-    20260806_153128/
-      error_taxonomy_per_query.csv
-      extreme_cases.jsonl
-      extreme_cases.csv
-      summary.json
-      ...
+results/
+  evaluation/                      ← overall prediction metrics
+    20260807_110403/
+      evaluation_metrics_label_ideology.csv
+      rag_delta_label_ideology.csv
+      mae_comparison_label_ideology.png
+      all_metrics_label_ideology.png
+      rag_delta_heatmap_label_ideology.png
+      scatter_predicted_vs_actual_label_ideology.png
+  qualitative/
+    retrieval_scores/               ← score dynamics & variance
+      20260806_151455/
+        retrieval_score_per_query.csv
+        retrieval_score_summary.csv
+        ...
+    retrieval_party_alignment/      ← party composition & alignment
+      20260806_151455/
+        party_alignment_per_query.csv
+        party_distribution_stacked.png
+        ...
+    error_taxonomy/                 ← extreme cases for manual coding
+      20260806_153128/
+        error_taxonomy_per_query.csv
+        extreme_cases.jsonl
+        extreme_cases.csv
+        summary.json
+        ...
 ```
 
 Use `--run-id my-descriptive-name` to override the auto-timestamp.
+
+Note: `evaluate_metrics.py` is at `src/evaluate_metrics.py` (top-level src/, not src/results/), while the other three are under `src/results/`.
 
 ---
 
 ## Common Data Sources
 
-All three scripts read the same `party_label_*.jsonl` files under
+All scripts read the same `party_label_*.jsonl` files under
 `logs/batch_runs/<folder>/`. Each file records one evaluation run for a specific
-`(model, embedding_model, retrieval_mode)` combination. The scripts filter
-`is_rag: true` records and skip records without retrieved chunks or missing
-ground-truth/prediction values.
+`(model, embedding_model, retrieval_mode)` combination. The analysis scripts
+filter `is_rag: true` records and skip those without retrieved chunks. The
+evaluation script (`evaluate_metrics.py`) keeps non-RAG baseline records as a
+`no_rag` condition.
 
 Current data inventory (as of August 2026):
-- **6 batch runs** covering 15 conditions
+- **11 batch runs** covering 16 conditions (15 RAG + no_rag baseline)
 - **4 embedding models:** bge, e5, jina, qwen3
 - **6 retrieval modes:** simple, hyde, simple_hybrid, hyde_hybrid, twostage,
   twostage_hybrid (bge uses all 6; e5/jina/qwen3 use simple, hyde, twostage)
-- **~29,000–30,000 RAG records** per script (slight variation due to different
-  null-value handling)
+- **7 LLM models:** Ministral-3-8B, Ministral-3-3B, Llama-3.1-8B, Qwen2.5-7B,
+  llama-3.1-70b, mistral-large-2512, qwen-2.5-72b (last three only have no_rag
+  baseline data in the current logs)
+- **~35,000 total records** including baseline (evaluate_metrics); ~29,000–30,000
+  RAG-specific records for the analysis scripts
 
 ---
 

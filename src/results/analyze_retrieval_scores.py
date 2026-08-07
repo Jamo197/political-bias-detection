@@ -353,9 +353,7 @@ def _save(fig: plt.Figure, path: Path):
 def flatten_scores(df: pd.DataFrame, normalized: bool = False) -> pd.DataFrame:
     """Long-format DataFrame with one row per individual chunk score."""
     rows = []
-    for (emb, mode), g in df.groupby(
-        ["embedding_model", "retrieval_mode"], sort=False
-    ):
+    for (emb, mode), g in df.groupby(["embedding_model", "retrieval_mode"], sort=False):
         cond = f"{emb}/{mode}"
         score_type = g["score_type"].iloc[0]
         if normalized:
@@ -372,15 +370,11 @@ def flatten_scores(df: pd.DataFrame, normalized: bool = False) -> pd.DataFrame:
             else:
                 vals = scores
             for v in vals:
-                rows.append(
-                    {"condition": cond, "score_type": score_type, "score": v}
-                )
+                rows.append({"condition": cond, "score_type": score_type, "score": v})
     return pd.DataFrame(rows)
 
 
-def plot_boxplot_scores(
-    plot_df: pd.DataFrame, title: str, xlabel: str, out_path: Path
-):
+def plot_boxplot_scores(plot_df: pd.DataFrame, title: str, xlabel: str, out_path: Path):
     """Box plot of individual chunk scores across conditions."""
     sns.set_theme(style="whitegrid")
     fig, ax = plt.subplots(
@@ -509,7 +503,7 @@ def main(
     embedding_models: Optional[List[str]] = None,
     retrieval_modes: Optional[List[str]] = None,
 ):
-    run_id = run_id or datetime.now().strftime("%Y%m%d_%H%M%S")
+    run_id = run_id or datetime.now().strftime("%Y-%m-%d_%H%M%S")
     output_dir = output_root / run_id
     output_dir.mkdir(parents=True, exist_ok=True)
 

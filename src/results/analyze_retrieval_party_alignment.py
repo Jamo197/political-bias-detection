@@ -236,12 +236,16 @@ def _explode_parties(df_main: pd.DataFrame) -> pd.DataFrame:
     long = df_main[["condition", "target_party", "retrieved_parties"]].explode(
         "retrieved_parties"
     )
-    return long.rename(columns={"retrieved_parties": "retrieved_party"}).reset_index(drop=True)
+    return long.rename(columns={"retrieved_parties": "retrieved_party"}).reset_index(
+        drop=True
+    )
 
 
 def _crosstab_party(long_df: pd.DataFrame) -> pd.DataFrame:
     """Cross-tabulation of target_party x retrieved_party (row-normalized)."""
-    ct = pd.crosstab(long_df["target_party"], long_df["retrieved_party"], normalize="index")
+    ct = pd.crosstab(
+        long_df["target_party"], long_df["retrieved_party"], normalize="index"
+    )
     ct = ct.reindex(columns=PARTY_ORDER, fill_value=0)
     ct = ct.reindex(index=MAIN_PARTIES, fill_value=0)
     return ct
@@ -365,7 +369,12 @@ def _plot_inparty_ratio_by_condition(df_main: pd.DataFrame, output_dir: Path):
         .sort_values("inparty_ratio", ascending=False)
     )
 
-    emb_colors = {"e5": "#1f77b4", "jina": "#ff7f0e", "qwen3": "#2ca02c", "bge": "#d62728"}
+    emb_colors = {
+        "e5": "#1f77b4",
+        "jina": "#ff7f0e",
+        "qwen3": "#2ca02c",
+        "bge": "#d62728",
+    }
     bar_colors = [
         emb_colors.get(c.split("/")[0], "#7f7f7f") for c in cond_ratio["condition"]
     ]
@@ -416,7 +425,11 @@ def _compute_metrics(sub_df: pd.DataFrame) -> Dict:
     mae = float(valid["abs_error"].mean())
     pr = np.nan
     sr = np.nan
-    if n >= 3 and valid["predicted_bias"].std() > 0 and valid["label_ideology"].std() > 0:
+    if (
+        n >= 3
+        and valid["predicted_bias"].std() > 0
+        and valid["label_ideology"].std() > 0
+    ):
         pr, _ = pearsonr(valid["predicted_bias"], valid["label_ideology"])
         sr, _ = spearmanr(valid["predicted_bias"], valid["label_ideology"])
 
@@ -695,7 +708,7 @@ def main(
     embedding_models: Optional[List[str]] = None,
     retrieval_modes: Optional[List[str]] = None,
 ):
-    run_id = run_id or datetime.now().strftime("%Y%m%d_%H%M%S")
+    run_id = run_id or datetime.now().strftime("%Y-%m-%d_%H%M%S")
     output_dir = output_root / run_id
     output_dir.mkdir(parents=True, exist_ok=True)
 

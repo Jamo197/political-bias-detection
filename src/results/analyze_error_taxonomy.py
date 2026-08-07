@@ -221,7 +221,9 @@ def bin_residuals_per_run(df: pd.DataFrame) -> pd.DataFrame:
     df = df.copy()
     df["bin"] = None
 
-    run_keys = df[["run_id", "model", "embedding_model", "retrieval_mode"]].drop_duplicates()
+    run_keys = df[
+        ["run_id", "model", "embedding_model", "retrieval_mode"]
+    ].drop_duplicates()
     for _, run in run_keys.iterrows():
         mask = (
             (df["run_id"] == run["run_id"])
@@ -301,7 +303,9 @@ def export_extreme_csv(extreme_df: pd.DataFrame, out_path: Path) -> None:
 
 def build_summary(df: pd.DataFrame, extreme_df: pd.DataFrame) -> Dict[str, Any]:
     summary = {}
-    run_keys = df[["run_id", "model", "embedding_model", "retrieval_mode"]].drop_duplicates()
+    run_keys = df[
+        ["run_id", "model", "embedding_model", "retrieval_mode"]
+    ].drop_duplicates()
     for _, run in run_keys.iterrows():
         mask = (
             (df["run_id"] == run["run_id"])
@@ -351,21 +355,43 @@ def plot_residual_distribution(df: pd.DataFrame, output_dir: Path):
     fig, ax = plt.subplots(figsize=(10, 5))
     bins = np.linspace(0, valid["residual"].max() + 0.1, 60)
     ax.hist(valid["residual"], bins=bins, color="#3498db", edgecolor="white", alpha=0.8)
-    ax.axvline(BEST_THRESHOLD, color="#2ecc71", linestyle="--", linewidth=1.5,
-               label=f"Best threshold ({BEST_THRESHOLD})")
-    ax.axvline(WORST_THRESHOLD, color="#e74c3c", linestyle="--", linewidth=1.5,
-               label=f"Worst threshold ({WORST_THRESHOLD})")
+    ax.axvline(
+        BEST_THRESHOLD,
+        color="#2ecc71",
+        linestyle="--",
+        linewidth=1.5,
+        label=f"Best threshold ({BEST_THRESHOLD})",
+    )
+    ax.axvline(
+        WORST_THRESHOLD,
+        color="#e74c3c",
+        linestyle="--",
+        linewidth=1.5,
+        label=f"Worst threshold ({WORST_THRESHOLD})",
+    )
 
     pct90 = valid["residual"].quantile(0.90)
     pct10 = valid["residual"].quantile(0.10)
-    ax.axvline(pct90, color="#c0392b", linestyle=":", linewidth=1,
-               label=f"90th pctl ({pct90:.2f})")
-    ax.axvline(pct10, color="#27ae60", linestyle=":", linewidth=1,
-               label=f"10th pctl ({pct10:.2f})")
+    ax.axvline(
+        pct90,
+        color="#c0392b",
+        linestyle=":",
+        linewidth=1,
+        label=f"90th pctl ({pct90:.2f})",
+    )
+    ax.axvline(
+        pct10,
+        color="#27ae60",
+        linestyle=":",
+        linewidth=1,
+        label=f"10th pctl ({pct10:.2f})",
+    )
 
     ax.set_xlabel("Absolute Residual |predicted − ground truth|", fontsize=12)
     ax.set_ylabel("Number of Queries", fontsize=12)
-    ax.set_title("Residual Distribution (All Conditions)", fontsize=14, fontweight="bold")
+    ax.set_title(
+        "Residual Distribution (All Conditions)", fontsize=14, fontweight="bold"
+    )
     ax.legend(fontsize=9)
     sns.despine(ax=ax)
     fig.tight_layout()
@@ -375,12 +401,16 @@ def plot_residual_distribution(df: pd.DataFrame, output_dir: Path):
     conditions = sorted(valid["condition"].unique())
     n_cols = 3
     n_rows = (len(conditions) + n_cols - 1) // n_cols
-    fig, axes = plt.subplots(n_rows, n_cols, figsize=(5 * n_cols, 4 * n_rows), squeeze=False)
+    fig, axes = plt.subplots(
+        n_rows, n_cols, figsize=(5 * n_cols, 4 * n_rows), squeeze=False
+    )
 
     for idx, cond in enumerate(conditions):
         ax = axes[idx // n_cols][idx % n_cols]
         sub = valid[valid["condition"] == cond]
-        ax.hist(sub["residual"], bins=bins, color="#3498db", edgecolor="white", alpha=0.8)
+        ax.hist(
+            sub["residual"], bins=bins, color="#3498db", edgecolor="white", alpha=0.8
+        )
         ax.axvline(BEST_THRESHOLD, color="#2ecc71", linestyle="--", linewidth=1)
         ax.axvline(WORST_THRESHOLD, color="#e74c3c", linestyle="--", linewidth=1)
         ax.set_title(cond, fontsize=9, fontweight="bold")
@@ -397,10 +427,7 @@ def plot_residual_distribution(df: pd.DataFrame, output_dir: Path):
 def plot_extreme_cases_by_condition(df: pd.DataFrame, output_dir: Path):
     """Grouped bar chart: worst_10 vs best_10 count per condition."""
     valid = df.dropna(subset=["bin"]).copy()
-    counts = (
-        valid.groupby(["condition", "bin"]).size()
-        .reset_index(name="count")
-    )
+    counts = valid.groupby(["condition", "bin"]).size().reset_index(name="count")
 
     pivot = counts.pivot_table(
         index="condition", columns="bin", values="count", fill_value=0
@@ -414,10 +441,24 @@ def plot_extreme_cases_by_condition(df: pd.DataFrame, output_dir: Path):
     width = 0.35
 
     fig, ax = plt.subplots(figsize=(14, 5))
-    ax.bar(x - width / 2, pivot["worst_10"], width, label="Worst 10%",
-           color="#e74c3c", edgecolor="black", linewidth=0.5)
-    ax.bar(x + width / 2, pivot["best_10"], width, label="Best 10%",
-           color="#2ecc71", edgecolor="black", linewidth=0.5)
+    ax.bar(
+        x - width / 2,
+        pivot["worst_10"],
+        width,
+        label="Worst 10%",
+        color="#e74c3c",
+        edgecolor="black",
+        linewidth=0.5,
+    )
+    ax.bar(
+        x + width / 2,
+        pivot["best_10"],
+        width,
+        label="Best 10%",
+        color="#2ecc71",
+        edgecolor="black",
+        linewidth=0.5,
+    )
 
     for idx, (_, row) in enumerate(pivot.iterrows()):
         total = row["worst_10"] + row["best_10"]
@@ -446,7 +487,12 @@ def plot_mae_by_condition(df: pd.DataFrame, output_dir: Path):
     )
     total_mae = df["residual"].mean()
 
-    emb_colors = {"e5": "#1f77b4", "jina": "#ff7f0e", "qwen3": "#2ca02c", "bge": "#d62728"}
+    emb_colors = {
+        "e5": "#1f77b4",
+        "jina": "#ff7f0e",
+        "qwen3": "#2ca02c",
+        "bge": "#d62728",
+    }
     bar_colors = [
         emb_colors.get(c.split("/")[0], "#7f7f7f") for c in cond_mae["condition"]
     ]
@@ -459,8 +505,13 @@ def plot_mae_by_condition(df: pd.DataFrame, output_dir: Path):
         edgecolor="black",
         linewidth=0.5,
     )
-    ax.axhline(total_mae, color="gray", linestyle="--", linewidth=1,
-               label=f"Overall MAE = {total_mae:.3f}")
+    ax.axhline(
+        total_mae,
+        color="gray",
+        linestyle="--",
+        linewidth=1,
+        label=f"Overall MAE = {total_mae:.3f}",
+    )
 
     for bar, val in zip(bars, cond_mae["residual"]):
         ax.text(
@@ -507,7 +558,7 @@ def main(
     embedding_models: Optional[List[str]] = None,
     retrieval_modes: Optional[List[str]] = None,
 ):
-    run_id = run_id or datetime.now().strftime("%Y%m%d_%H%M%S")
+    run_id = run_id or datetime.now().strftime("%Y-%m-%d_%H%M%S")
     output_dir = output_root / run_id
     output_dir.mkdir(parents=True, exist_ok=True)
 
@@ -523,10 +574,23 @@ def main(
 
     # Per-query CSV (before binning)
     per_query_cols = [
-        "file_path", "run_id", "batch_run", "model", "embedding_model",
-        "retrieval_mode", "condition", "llm_region", "k_chunks",
-        "text_index", "target_party", "target_speaker", "target_source",
-        "n_chunks", "predicted_bias", "label_ideology", "residual",
+        "file_path",
+        "run_id",
+        "batch_run",
+        "model",
+        "embedding_model",
+        "retrieval_mode",
+        "condition",
+        "llm_region",
+        "k_chunks",
+        "text_index",
+        "target_party",
+        "target_speaker",
+        "target_source",
+        "n_chunks",
+        "predicted_bias",
+        "label_ideology",
+        "residual",
     ]
     per_query_path = output_dir / "error_taxonomy_per_query.csv"
     df[per_query_cols].to_csv(per_query_path, index=False)
@@ -536,7 +600,9 @@ def main(
     df = bin_residuals_per_run(df)
 
     bin_counts = df["bin"].value_counts()
-    print(f"       {bin_counts.get('worst_10', 0)} worst, {bin_counts.get('best_10', 0)} best")
+    print(
+        f"       {bin_counts.get('worst_10', 0)} worst, {bin_counts.get('best_10', 0)} best"
+    )
 
     print("[3/6] Extracting extreme cases …")
     extreme_df = build_extreme_cases(df)
