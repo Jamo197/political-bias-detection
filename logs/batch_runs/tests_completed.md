@@ -62,20 +62,20 @@
 | mistralai/Ministral-3-8B-Instruct-2512 | Europe | Yes | jina | twostage | 775 | Complete | 2026-07-23_eval_20260723_115807 | final_label_ideology |
 | mistralai/mistral-large-2512 | Europe | No | None | no_rag | 775 | Complete | 2026-07-24_eval_20260724_192028 | final_label_ideology |
 | qwen/qwen-2.5-72b-instruct | China | No | None | no_rag | 440 | Partial (440/775 - needs redo, < 500) | 2026-07-25_eval_20260725_133532 | final_label_ideology |
-| mistralai/Ministral-3-14B-Instruct-2512 | China | No | None | no_rag | 775 | Complete | 2026-08-06_eval_matrix_20260806_210845 | final_label_ideology |
-| mistralai/Ministral-3-14B-Instruct-2512 | China | Yes | e5 | simple | 775 | Complete | 2026-08-06_eval_matrix_20260806_210845 | final_label_ideology |
-| mistralai/Ministral-3-14B-Instruct-2512 | China | Yes | e5 | hyde | 775 | Complete | 2026-08-06_eval_matrix_20260806_210845 | final_label_ideology |
-| mistralai/Ministral-3-14B-Instruct-2512 | China | Yes | e5 | twostage | 775 | Complete | 2026-08-06_eval_matrix_20260806_210845 | final_label_ideology |
-| mistralai/Ministral-3-14B-Instruct-2512 | China | Yes | bge | simple | 775 | Complete | 2026-08-06_eval_matrix_20260806_211059 | final_label_ideology |
-| mistralai/Ministral-3-14B-Instruct-2512 | China | Yes | bge | hyde | 775 | Complete | 2026-08-06_eval_matrix_20260806_211059 | final_label_ideology |
-| mistralai/Ministral-3-14B-Instruct-2512 | China | Yes | bge | twostage | 775 | Complete | 2026-08-06_eval_matrix_20260806_211059 | final_label_ideology |
-| mistralai/Ministral-3-14B-Instruct-2512 | China | Yes | bge | simple_hybrid | 775 | Complete | 2026-08-06_eval_matrix_20260806_211059 | final_label_ideology |
-| mistralai/Ministral-3-14B-Instruct-2512 | China | Yes | bge | hyde_hybrid | 775 | Complete | 2026-08-06_eval_matrix_20260806_211059 | final_label_ideology |
-| mistralai/Ministral-3-14B-Instruct-2512 | China | Yes | bge | twostage_hybrid | 775 | Complete | 2026-08-07_eval_matrix_20260807_123902 | final_label_ideology |
-| mistralai/Ministral-3-14B-Instruct-2512 | China | Yes | jina | simple | 775 | Complete | 2026-08-07_eval_matrix_20260807_123902 | final_label_ideology |
-| mistralai/Ministral-3-14B-Instruct-2512 | China | Yes | qwen3 | simple | 775 | Complete | 2026-08-07_eval_matrix_20260807_094228 | final_label_ideology |
-| mistralai/Ministral-3-14B-Instruct-2512 | China | Yes | qwen3 | hyde | 775 | Complete | 2026-08-07_eval_matrix_20260807_094228 | final_label_ideology |
-| mistralai/Ministral-3-14B-Instruct-2512 | China | Yes | qwen3 | twostage | 775 | Complete | 2026-08-07_eval_matrix_20260807_094228 | final_label_ideology |
+| mistralai/Ministral-3-14B-Instruct-2512 | Europe | No | None | no_rag | 775 | Complete | 2026-08-06_eval_matrix_20260806_210845 | final_label_ideology |
+| mistralai/Ministral-3-14B-Instruct-2512 | Europe | Yes | e5 | simple | 770 | Complete | 2026-08-06_eval_matrix_20260806_210845 | final_label_ideology |
+| mistralai/Ministral-3-14B-Instruct-2512 | Europe | Yes | e5 | hyde | 764 | Complete | 2026-08-06_eval_matrix_20260806_210845 | final_label_ideology |
+| mistralai/Ministral-3-14B-Instruct-2512 | Europe | Yes | e5 | twostage | - | Logs exist, missing from eval CSV | 2026-08-06_eval_matrix_20260806_210845 | final_label_ideology |
+| mistralai/Ministral-3-14B-Instruct-2512 | Europe | Yes | bge | simple | 772 | Complete | 2026-08-06_eval_matrix_20260806_211059 | final_label_ideology |
+| mistralai/Ministral-3-14B-Instruct-2512 | Europe | Yes | bge | hyde | 773 | Complete | 2026-08-06_eval_matrix_20260806_211059 | final_label_ideology |
+| mistralai/Ministral-3-14B-Instruct-2512 | Europe | Yes | bge | twostage | 770 | Complete | 2026-08-06_eval_matrix_20260806_211059 | final_label_ideology |
+| mistralai/Ministral-3-14B-Instruct-2512 | Europe | Yes | bge | simple_hybrid | 770 | Complete | 2026-08-06_eval_matrix_20260806_211059 | final_label_ideology |
+| mistralai/Ministral-3-14B-Instruct-2512 | Europe | Yes | bge | hyde_hybrid | 771 | Complete | 2026-08-06_eval_matrix_20260806_211059 | final_label_ideology |
+| mistralai/Ministral-3-14B-Instruct-2512 | Europe | Yes | bge | twostage_hybrid | 770 | Complete | 2026-08-07_eval_matrix_20260807_123902 | final_label_ideology |
+| mistralai/Ministral-3-14B-Instruct-2512 | Europe | Yes | jina | simple | 771 | Complete | 2026-08-07_eval_matrix_20260807_123902 | final_label_ideology |
+| mistralai/Ministral-3-14B-Instruct-2512 | Europe | Yes | qwen3 | simple | 773 | Complete | 2026-08-07_eval_matrix_20260807_094228 | final_label_ideology |
+| mistralai/Ministral-3-14B-Instruct-2512 | Europe | Yes | qwen3 | hyde | 770 | Complete | 2026-08-07_eval_matrix_20260807_094228 | final_label_ideology |
+| mistralai/Ministral-3-14B-Instruct-2512 | Europe | Yes | qwen3 | twostage | 772 | Complete | 2026-08-07_eval_matrix_20260807_094228 | final_label_ideology |
 
 
 ## Redo Needed (incomplete runs with < 500 samples)
@@ -97,11 +97,8 @@
 | mistralai/Ministral-3-3B-Instruct-2512 | Europe | Yes | jina | simple, hyde, twostage | local |
 | mistralai/Ministral-3-3B-Instruct-2512 | Europe | Yes | qwen3 | simple, hyde, twostage | local |
 | mistralai/Ministral-3-3B-Instruct-2512 | Europe | Yes | bge | simple, hyde, twostage | local |
-| mistralai/Ministral-3-14B-Instruct-2512 | Europe | No | None | no_rag | local |
-| mistralai/Ministral-3-14B-Instruct-2512 | Europe | Yes | e5 | simple, hyde, twostage | local |
-| mistralai/Ministral-3-14B-Instruct-2512 | Europe | Yes | jina | simple, hyde, twostage | local |
-| mistralai/Ministral-3-14B-Instruct-2512 | Europe | Yes | qwen3 | simple, hyde, twostage | local |
-| mistralai/Ministral-3-14B-Instruct-2512 | Europe | Yes | bge | simple, hyde, twostage | local |
+| mistralai/Ministral-3-14B-Instruct-2512 | Europe | Yes | e5 | twostage (redo eval) | local |
+| mistralai/Ministral-3-14B-Instruct-2512 | Europe | Yes | jina | hyde, twostage | local |
 | mistralai/mistral-large-2512 | Europe | Yes | e5 | simple, hyde, twostage | OpenRouter |
 | mistralai/mistral-large-2512 | Europe | Yes | jina | simple, hyde, twostage | OpenRouter |
 | mistralai/mistral-large-2512 | Europe | Yes | qwen3 | simple, hyde, twostage | OpenRouter |

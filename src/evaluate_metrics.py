@@ -22,6 +22,7 @@ Usage:
     python src/evaluate_metrics.py --embedding-models bge,jina
 """
 
+# FIXME: HEATMAP Generation is broken when there are multiple models (subplots) and some models have no RAG conditions (no data for that model). Need to handle missing data gracefully.
 import argparse
 import json
 from datetime import datetime
