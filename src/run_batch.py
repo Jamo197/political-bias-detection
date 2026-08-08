@@ -43,10 +43,10 @@ from src.logging.log_run import log_evaluation_run
 DATA_PATH = _ROOT / "src/datasets/political_bias_articles_dataset.csv"
 
 LLM_MODELS = {
-    "mistral-3B": {
+    "mistral-8B": {
         "region": "Europe",
-        "id": "mistralai/Ministral-3-3B-Instruct-2512",
-        "openrouter_id": "mistralai/ministral-3b-2512",
+        "id": "mistralai/Ministral-3-8B-Instruct-2512",
+        "openrouter_id": "mistralai/ministral-8b-2512",
     },
 }
 
