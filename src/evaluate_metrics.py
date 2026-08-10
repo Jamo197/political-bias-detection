@@ -1,33 +1,19 @@
 """evaluate_metrics.py
 
-Loads batch-run JSONL logs, computes evaluation metrics
-(MAE, RMSE, Pearson r, Spearman rho) per LLM model x embedding model x retrieval
-strategy, and produces CSV summary tables and plot figures.
+Loads batch-run JSONL logs, deduplicates records, computes evaluation metrics
+(MAE, RMSE, Pearson r, Spearman rho) per condition, and calculates pairwise
+deltas against the no_rag baseline on matching text samples.
 
-Non-RAG records (is_rag=False or retrieval_mode="no_rag") are included as a
-"no_rag" baseline condition and flagged at the top of every output for easy
-comparison. A RAG-vs-baseline delta table and heatmap quantify the improvement
-(or regression) from adding retrieval.
-
-Outputs
--------
-Every execution creates a new timestamped folder:
-
-  results/evaluation/<YYYYMMDD_HHMMSS>/
-
-Usage:
-    python src/evaluate_metrics.py
-    python src/evaluate_metrics.py --target label_economic
-    python src/evaluate_metrics.py --batch-run 2026-08-04_eval_matrix_20260804_191413
-    python src/evaluate_metrics.py --embedding-models bge,jina
+Outputs CSV summary tables and visualization plots.
 """
 
 # FIXME: HEATMAP Generation is broken when there are multiple models (subplots) and some models have no RAG conditions (no data for that model). Need to handle missing data gracefully.
 import argparse
 import json
+import re
 from datetime import datetime
 from pathlib import Path
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Tuple
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -44,7 +30,7 @@ BASE_DIR = Path("logs/batch_runs")
 OUTPUT_ROOT = Path("results/evaluation")
 
 # ---------------------------------------------------------------------------
-# Data Loading & Preprocessing
+# Helper Functions & Utilities
 # ---------------------------------------------------------------------------
 
 
@@ -54,13 +40,72 @@ def _clean_model_name(llm_path: str) -> str:
     return llm_path.split("/")[-1]
 
 
+def _model_family(model_name: str) -> str:
+    name_lower = model_name.lower()
+    if "qwen" in name_lower:
+        return "Qwen"
+    elif "ministral" in name_lower or "mistral" in name_lower:
+        return "Mistral"
+    elif "llama" in name_lower:
+        return "Llama"
+    return "Other"
+
+
+def _model_size_key(model_name: str) -> int:
+    name_lower = model_name.lower()
+    if "large" in name_lower:
+        return 999
+    match = re.search(r"(\d+)b", name_lower)
+    return int(match.group(1)) if match else 999
+
+
+def _condition_order(conditions: List[str]) -> List[str]:
+    """Return conditions sorted with 'no_rag' always first."""
+    others = sorted(c for c in conditions if c != "no_rag")
+    return ["no_rag"] + others
+
+
+def _apply_condition_order(df: pd.DataFrame, col: str = "Condition") -> pd.DataFrame:
+    """Convert condition column to categorical with no_rag first."""
+    if col not in df.columns or df.empty:
+        return df
+    order = _condition_order(df[col].unique().tolist())
+    df = df.copy()
+    df[col] = pd.Categorical(df[col], categories=order, ordered=True)
+    return df
+
+
+def _calculate_array_stats(
+    y_true: np.ndarray, y_pred: np.ndarray
+) -> Tuple[float, float, float, float]:
+    """Computes MAE, RMSE, Pearson r, and Spearman rho safely."""
+    mae = mean_absolute_error(y_true, y_pred)
+    rmse = np.sqrt(mean_squared_error(y_true, y_pred))
+
+    if len(y_true) >= 3 and np.std(y_true) > 0 and np.std(y_pred) > 0:
+        pr, _ = pearsonr(y_true, y_pred)
+        sr, _ = spearmanr(y_true, y_pred)
+    else:
+        pr, sr = np.nan, np.nan
+
+    return float(mae), float(rmse), float(pr), float(sr)
+
+
+# ---------------------------------------------------------------------------
+# Data Loading & Preprocessing
+# ---------------------------------------------------------------------------
+
+
 def load_logs_from_directory(
     base_dir: Path,
     batch_run: Optional[str] = None,
     embedding_models: Optional[List[str]] = None,
     retrieval_modes: Optional[List[str]] = None,
 ) -> pd.DataFrame:
-    """Walk base_dir recursively, read JSONL entries, flatten into a DataFrame."""
+    """Walk base_dir recursively, read JSONL entries, flatten into a DataFrame,
+
+    and deduplicate re-run entries to prevent sample size inflation.
+    """
     records: List[Dict] = []
     jsonl_files = sorted(base_dir.rglob("party_label_*.jsonl"))
 
@@ -75,7 +120,7 @@ def load_logs_from_directory(
             continue
 
         with open(fp, "r", encoding="utf-8") as fh:
-            for line_idx, line in enumerate(fh, 1):
+            for line in fh:
                 line = line.strip()
                 if not line or line.startswith("//"):
                     continue
@@ -90,7 +135,7 @@ def load_logs_from_directory(
                 retrieval_mode = params.get("retrieval_mode", "unknown")
                 is_rag = params.get("is_rag", True)
 
-                # Determine condition
+                # Determine condition name
                 if (
                     not is_rag
                     or emb in (None, "none", "")
@@ -123,7 +168,7 @@ def load_logs_from_directory(
                         "retrieval_mode": retrieval_mode,
                         "is_rag": is_rag,
                         "condition": condition,
-                        "text_index": meta.get("text_index", ""),
+                        "text_index": str(meta.get("text_index", "")),
                         "party": meta.get("party", ""),
                         "speaker": meta.get("speaker", ""),
                         "source": meta.get("source", ""),
@@ -137,7 +182,16 @@ def load_logs_from_directory(
                 )
 
     df = pd.DataFrame(records)
-    print(f"Loaded {len(df)} records from {len(jsonl_files)} JSONL files.")
+    if df.empty:
+        print("Warning: Loaded DataFrame is empty.")
+        return df
+
+    # Deduplicate runs to prevent sample-size inflation from duplicated executions
+    initial_len = len(df)
+    df = df.drop_duplicates(subset=["model", "condition", "text_index"], keep="last")
+    print(
+        f"Loaded {len(df)} unique records (deduplicated from {initial_len}) across {len(jsonl_files)} files."
+    )
     print(f"  Batch runs:       {sorted(df['batch_run'].unique())}")
     print(f"  Embedding models: {sorted(df['embedding_model'].unique())}")
     print(f"  Retrieval modes:  {sorted(df['retrieval_mode'].unique())}")
@@ -173,9 +227,10 @@ def _apply_condition_order(df: pd.DataFrame, col: str = "condition") -> pd.DataF
 def compute_evaluation_metrics(
     df: pd.DataFrame, target_col: str = "label_ideology"
 ) -> pd.DataFrame:
-    """MAE, RMSE, Pearson r, Spearman rho grouped by Model x Condition."""
-    results = []
+    """Computes MAE, RMSE, Pearson r, and Spearman rho on all deduplicated valid
 
+    predictions per condition (maximizes dataset size N per condition).
+    """
     valid_df = df.dropna(subset=["predicted_bias", target_col]).copy()
     valid_df["predicted_bias"] = pd.to_numeric(valid_df["predicted_bias"])
     valid_df[target_col] = pd.to_numeric(valid_df[target_col])
@@ -183,10 +238,11 @@ def compute_evaluation_metrics(
     dropped_count = len(df) - len(valid_df)
     if dropped_count > 0:
         print(
-            f"Note: Omitted {dropped_count} rows with missing predictions/labels "
+            f"Note: Omitted {dropped_count} rows with missing/non-numeric predictions "
             f"for target '{target_col}'."
         )
 
+    results = []
     for (model, condition), group in valid_df.groupby(["model", "condition"]):
         y_true = group[target_col].values
         y_pred = group["predicted_bias"].values
@@ -194,14 +250,7 @@ def compute_evaluation_metrics(
         if len(group) == 0:
             continue
 
-        mae = mean_absolute_error(y_true, y_pred)
-        rmse = np.sqrt(mean_squared_error(y_true, y_pred))
-
-        if len(group) >= 3 and np.std(y_true) > 0 and np.std(y_pred) > 0:
-            pr, _ = pearsonr(y_true, y_pred)
-            sr, _ = spearmanr(y_true, y_pred)
-        else:
-            pr = sr = float("nan")
+        mae, rmse, pr, sr = _calculate_array_stats(y_true, y_pred)
 
         results.append(
             {
@@ -209,62 +258,84 @@ def compute_evaluation_metrics(
                 "Model": model,
                 "Condition": condition,
                 "N_samples": len(group),
-                "MAE": round(float(mae), 4),
-                "RMSE": round(float(rmse), 4),
-                "Pearson_r": (round(float(pr), 4) if not np.isnan(pr) else np.nan),
-                "Spearman_rho": (round(float(sr), 4) if not np.isnan(sr) else np.nan),
+                "MAE": round(mae, 4),
+                "RMSE": round(rmse, 4),
+                "Pearson_r": round(pr, 4) if not np.isnan(pr) else np.nan,
+                "Spearman_rho": round(sr, 4) if not np.isnan(sr) else np.nan,
             }
         )
 
     results_df = pd.DataFrame(results)
-    # Sort: model alphabetically, then no_rag first within each model
     results_df = _apply_condition_order(results_df, "Condition")
-    results_df = results_df.sort_values(["Model", "Condition"]).reset_index(drop=True)
-    return results_df
+    return results_df.sort_values(["Model", "Condition"]).reset_index(drop=True)
 
 
-def compute_rag_delta(metrics_df: pd.DataFrame) -> pd.DataFrame:
-    """Per-model delta relative to 'no_rag' baseline.
-    For MAE/RMSE: negative delta = RAG improvement.
-    For Pearson/Spearman: positive delta = RAG improvement.
+def compute_pairwise_rag_delta(
+    df: pd.DataFrame, target_col: str = "label_ideology"
+) -> pd.DataFrame:
+    """Computes RAG vs no_rag deltas strictly on the paired intersection
+
+    between EACH RAG condition and the no_rag baseline individually.
     """
-    baseline = metrics_df[metrics_df["Condition"] == "no_rag"]
-    rag = metrics_df[metrics_df["Condition"] != "no_rag"]
+    valid_df = df.dropna(subset=["predicted_bias", target_col]).copy()
+    valid_df["predicted_bias"] = pd.to_numeric(valid_df["predicted_bias"])
+    valid_df[target_col] = pd.to_numeric(valid_df[target_col])
 
-    if baseline.empty:
-        print("Warning: No 'no_rag' baseline found — skipping delta calculation.")
-        return pd.DataFrame()
-
-    baseline_map = baseline.set_index("Model")
     deltas = []
 
-    for _, row in rag.iterrows():
-        model = row["Model"]
-        if model not in baseline_map.index:
+    for model, model_df in valid_df.groupby("model"):
+        baseline_df = model_df[model_df["condition"] == "no_rag"]
+        if baseline_df.empty:
             continue
-        base = baseline_map.loc[model]
-        if isinstance(base, pd.DataFrame):
-            base = base.iloc[0]
 
-        deltas.append(
-            {
-                "Target": row.get("Target", "label_ideology"),
-                "Model": model,
-                "Condition": row["Condition"],
-                "ΔMAE (RAG-Base)": round(row["MAE"] - base["MAE"], 4),
-                "ΔRMSE (RAG-Base)": round(row["RMSE"] - base["RMSE"], 4),
-                "ΔPearson_r (RAG-Base)": (
-                    round(row["Pearson_r"] - base["Pearson_r"], 4)
-                    if not np.isnan(row["Pearson_r"])
-                    else np.nan
-                ),
-                "ΔSpearman_rho (RAG-Base)": (
-                    round(row["Spearman_rho"] - base["Spearman_rho"], 4)
-                    if not np.isnan(row["Spearman_rho"])
-                    else np.nan
-                ),
-            }
-        )
+        rag_conditions = [c for c in model_df["condition"].unique() if c != "no_rag"]
+
+        for cond in rag_conditions:
+            cond_df = model_df[model_df["condition"] == cond]
+
+            # Merge strictly on matching text_index items
+            merged = pd.merge(
+                baseline_df[["text_index", target_col, "predicted_bias"]],
+                cond_df[["text_index", "predicted_bias"]],
+                on="text_index",
+                suffixes=("_base", "_rag"),
+            )
+
+            if len(merged) < 3:
+                continue
+
+            y_true = merged[target_col].values
+            y_base = merged["predicted_bias_base"].values
+            y_rag = merged["predicted_bias_rag"].values
+
+            mae_base, rmse_base, pr_base, sr_base = _calculate_array_stats(
+                y_true, y_base
+            )
+            mae_rag, rmse_rag, pr_rag, sr_rag = _calculate_array_stats(y_true, y_rag)
+
+            delta_pr = (
+                round(pr_rag - pr_base, 4)
+                if not (np.isnan(pr_rag) or np.isnan(pr_base))
+                else np.nan
+            )
+            delta_sr = (
+                round(sr_rag - sr_base, 4)
+                if not (np.isnan(sr_rag) or np.isnan(sr_base))
+                else np.nan
+            )
+
+            deltas.append(
+                {
+                    "Target": target_col,
+                    "Model": model,
+                    "Condition": cond,
+                    "N_paired": len(merged),
+                    "ΔMAE (RAG-Base)": round(mae_rag - mae_base, 4),
+                    "ΔRMSE (RAG-Base)": round(rmse_rag - rmse_base, 4),
+                    "ΔPearson_r (RAG-Base)": delta_pr,
+                    "ΔSpearman_rho (RAG-Base)": delta_sr,
+                }
+            )
 
     delta_df = pd.DataFrame(deltas)
     if not delta_df.empty:
@@ -274,7 +345,7 @@ def compute_rag_delta(metrics_df: pd.DataFrame) -> pd.DataFrame:
 
 
 # ---------------------------------------------------------------------------
-# Visualisation
+# Visualization Functions
 # ---------------------------------------------------------------------------
 
 
@@ -296,8 +367,6 @@ def plot_metric_comparison(
     direction = "lower = better" if lower_better else "higher = better"
 
     fig, ax = plt.subplots(figsize=(12, max(6, len(metrics_df) * 0.35)))
-
-    # Use categorical ordering so no_rag sits at top
     plot_df = _apply_condition_order(metrics_df.copy(), "Condition")
 
     sns.barplot(
@@ -307,7 +376,7 @@ def plot_metric_comparison(
         hue="Model",
         ax=ax,
         palette="mako",
-        order=_condition_order(plot_df["Condition"].unique()),
+        order=_condition_order(plot_df["Condition"].unique().tolist()),
     )
 
     ax.set_title(
@@ -329,7 +398,7 @@ def plot_all_metrics_grid(
     sns.set_theme(style="whitegrid")
 
     plot_df = _apply_condition_order(metrics_df.copy(), "Condition")
-    cond_order = _condition_order(plot_df["Condition"].unique())
+    cond_order = _condition_order(plot_df["Condition"].unique().tolist())
 
     metrics = ["MAE", "RMSE", "Pearson_r", "Spearman_rho"]
     titles = [
@@ -375,57 +444,77 @@ def plot_all_metrics_grid(
     _save(fig, output_path)
 
 
-def plot_rag_delta_heatmap(delta_df: pd.DataFrame, output_path: Path):
+def plot_model_family_heatmaps(
+    delta_df: pd.DataFrame, target_name: str, output_dir: Path
+):
+    """Generates heatmaps per model family showing pairwise RAG deltas.
+
+    Green always indicates RAG improvement across all 4 metric tiles.
+    """
     if delta_df.empty:
         print("Skipping RAG delta heatmap — no delta data available.")
         return
 
     sns.set_theme(style="white")
-    plot_df = _apply_condition_order(delta_df.copy(), "Condition")
+    plot_df = delta_df.copy()
+    plot_df["Family"] = plot_df["Model"].apply(_model_family)
 
-    models = sorted(plot_df["Model"].unique())
-    n_models = len(models)
-    fig, axes = plt.subplots(
-        1, n_models, figsize=(9 * n_models, max(6, len(plot_df) * 0.3)), sharey=True
+    delta_metrics = [
+        ("ΔMAE (RAG-Base)", "ΔMAE (Lower is Better)", True),
+        ("ΔRMSE (RAG-Base)", "ΔRMSE (Lower is Better)", True),
+        ("ΔPearson_r (RAG-Base)", "ΔPearson r (Higher is Better)", False),
+        ("ΔSpearman_rho (RAG-Base)", "ΔSpearman ρ (Higher is Better)", False),
+    ]
+
+    families = sorted(
+        f for f in ["Qwen", "Mistral", "Llama"] if f in plot_df["Family"].values
     )
-    if n_models == 1:
-        axes = [axes]
 
-    for ax, model in zip(axes, models):
-        sub = plot_df[plot_df["Model"] == model].set_index("Condition")
-        if sub.empty:
-            continue
-        display = sub[
-            [
-                "ΔMAE (RAG-Base)",
-                "ΔRMSE (RAG-Base)",
-                "ΔPearson_r (RAG-Base)",
-                "ΔSpearman_rho (RAG-Base)",
-            ]
-        ].copy()
-        # Invert MAE & RMSE so positive = improvement across all columns
-        display["ΔMAE (RAG-Base)"] = -display["ΔMAE (RAG-Base)"]
-        display["ΔRMSE (RAG-Base)"] = -display["ΔRMSE (RAG-Base)"]
-        display.columns = [
-            "ΔMAE\n(+good)",
-            "ΔRMSE\n(+good)",
-            "ΔPearson r\n(+good)",
-            "ΔSpearman ρ\n(+good)",
-        ]
+    for family in families:
+        sub = plot_df[plot_df["Family"] == family]
+        model_variants = sorted(sub["Model"].unique(), key=_model_size_key)
+        conditions = sorted(sub["Condition"].unique())
 
-        # Sort so no_rag is not applicable here (it's the baseline, not in delta)
-        sns.heatmap(
-            display,
-            annot=True,
-            fmt=".3f",
-            cmap="RdYlGn",
-            center=0,
-            linewidths=0.5,
-            ax=ax,
+        fig, axes = plt.subplots(
+            2,
+            2,
+            figsize=(
+                max(8, 2.5 * len(model_variants) + 2),
+                max(7, 1.8 * len(conditions) + 1),
+            ),
         )
-        ax.set_title(
-            f"Model: {model}\n(Positive values → RAG outperforms Baseline)",
-            fontsize=11,
+        axes = axes.flatten()
+
+        for ax, (col, title, invert) in zip(axes, delta_metrics):
+            pivot = sub.pivot_table(
+                index="Condition", columns="Model", values=col, aggfunc="first"
+            )
+            pivot = pivot.reindex(index=conditions, columns=model_variants)
+
+            # Invert values for error metrics so negative delta displays green (improvement)
+            display_data = -pivot if invert else pivot
+
+            sns.heatmap(
+                display_data,
+                annot=pivot,
+                fmt=".3f",
+                cmap="RdYlGn",
+                center=0,
+                linewidths=0.5,
+                ax=ax,
+                cbar_kws={"shrink": 0.8},
+            )
+            ax.set_title(title, fontsize=11, fontweight="bold")
+            ax.set_ylabel("Condition", fontsize=10)
+            ax.set_xlabel("Model Variant", fontsize=10)
+            ax.set_xticklabels(
+                ax.get_xticklabels(), rotation=30, ha="right", fontsize=9
+            )
+            ax.set_yticklabels(ax.get_yticklabels(), rotation=0, fontsize=9)
+
+        fig.suptitle(
+            f"{family} Family — Pairwise RAG Delta vs. Baseline\nTarget: {target_name}",
+            fontsize=14,
             fontweight="bold",
         )
         ax.set_ylabel("Condition")
@@ -449,8 +538,7 @@ def plot_scatter_predicted_vs_actual(
     valid_df[target_col] = pd.to_numeric(valid_df[target_col])
 
     sns.set_theme(style="whitegrid")
-    # no_rag first in the grid
-    conditions = _condition_order(sorted(valid_df["condition"].unique()))
+    conditions = _condition_order(sorted(valid_df["condition"].unique().tolist()))
     n_cols = min(len(conditions), 4)
     n_rows = (len(conditions) + n_cols - 1) // n_cols
 
@@ -533,11 +621,12 @@ def main(
         base_dir, batch_run, embedding_models, retrieval_modes
     )
     if df.empty:
+        print("No valid records found. Exiting.")
         return
 
-    print("[2/4] Computing evaluation metrics …")
+    print("[2/4] Computing evaluation metrics & pairwise deltas …")
     metrics_df = compute_evaluation_metrics(df, target_col=target_col)
-    delta_df = compute_rag_delta(metrics_df)
+    delta_df = compute_pairwise_rag_delta(df, target_col=target_col)
 
     print()
     print("=" * 80)
@@ -548,7 +637,7 @@ def main(
 
     if not delta_df.empty:
         print("=" * 80)
-        print("RAG vs. BASELINE DELTA")
+        print("PAIRWISE RAG vs. BASELINE DELTA")
         print("  Note: ΔMAE / ΔRMSE shown as RAG - Baseline (negative = RAG is better)")
         print("        ΔPearson / ΔSpearman (positive = RAG is better)")
         print("=" * 80)
@@ -561,7 +650,7 @@ def main(
     print(f"  → {metrics_csv}")
 
     if not delta_df.empty:
-        delta_csv = output_dir / f"rag_delta_{target_col}.csv"
+        delta_csv = output_dir / f"rag_delta_pairwise_{target_col}.csv"
         delta_df.to_csv(delta_csv, index=False)
         print(f"  → {delta_csv}")
 
@@ -606,39 +695,40 @@ if __name__ == "__main__":
         "--output-root",
         type=Path,
         default=OUTPUT_ROOT,
-        help="Root directory for results; a <run-id> subfolder is created per execution.",
+        help="Root directory for results.",
     )
     parser.add_argument(
         "--run-id",
         type=str,
         default=None,
-        help="Name of the output subfolder (default: current timestamp YYYYMMDD_HHMMSS).",
+        help="Name of output subfolder (default: timestamp).",
     )
     parser.add_argument(
         "--target",
         default="label_ideology",
         choices=["label_ideology", "label_economic", "label_galtan"],
-        help="Ground-truth label to evaluate against (default: label_ideology).",
+        help="Ground-truth label column.",
     )
     parser.add_argument(
         "--batch-run",
         type=str,
         default=None,
-        help="Restrict analysis to a single batch run folder under --base-dir.",
+        help="Restrict analysis to a single batch run folder.",
     )
     parser.add_argument(
         "--embedding-models",
         type=_comma_list,
         default=None,
-        help="Comma-separated embedding models to include (default: all found).",
+        help="Comma-separated embedding models to filter.",
     )
     parser.add_argument(
         "--retrieval-modes",
         type=_comma_list,
         default=None,
-        help="Comma-separated retrieval modes to include (default: all found).",
+        help="Comma-separated retrieval modes to filter.",
     )
     args = parser.parse_args()
+
     main(
         base_dir=args.base_dir,
         output_root=args.output_root,
