@@ -7,7 +7,6 @@ deltas against the no_rag baseline on matching text samples.
 Outputs CSV summary tables and visualization plots.
 """
 
-# FIXME: HEATMAP Generation is broken when there are multiple models (subplots) and some models have no RAG conditions (no data for that model). Need to handle missing data gracefully.
 import argparse
 import json
 import re
@@ -201,25 +200,6 @@ def load_logs_from_directory(
 
 
 # ---------------------------------------------------------------------------
-# Condition ordering (no_rag first for easy comparison)
-# ---------------------------------------------------------------------------
-
-
-def _condition_order(conditions: List[str]) -> List[str]:
-    """Return conditions sorted with 'no_rag' always first."""
-    others = sorted(c for c in conditions if c != "no_rag")
-    return ["no_rag"] + others
-
-
-def _apply_condition_order(df: pd.DataFrame, col: str = "condition") -> pd.DataFrame:
-    """Convert condition column to categorical with no_rag first."""
-    order = _condition_order(df[col].unique().tolist())
-    df = df.copy()
-    df[col] = pd.Categorical(df[col], categories=order, ordered=True)
-    return df
-
-
-# ---------------------------------------------------------------------------
 # Metrics Computation
 # ---------------------------------------------------------------------------
 
@@ -366,8 +346,10 @@ def plot_metric_comparison(
     lower_better = metric in ("MAE", "RMSE")
     direction = "lower = better" if lower_better else "higher = better"
 
-    fig, ax = plt.subplots(figsize=(12, max(6, len(metrics_df) * 0.35)))
     plot_df = _apply_condition_order(metrics_df.copy(), "Condition")
+    cond_order = _condition_order(plot_df["Condition"].unique().tolist())
+
+    fig, ax = plt.subplots(figsize=(12, max(6, len(cond_order) * 0.35)))
 
     sns.barplot(
         data=plot_df,
@@ -376,7 +358,7 @@ def plot_metric_comparison(
         hue="Model",
         ax=ax,
         palette="mako",
-        order=_condition_order(plot_df["Condition"].unique().tolist()),
+        order=cond_order,
     )
 
     ax.set_title(
@@ -387,6 +369,59 @@ def plot_metric_comparison(
     ax.set_xlabel(f"{metric}  ({direction})", fontsize=12)
     ax.set_ylabel("Condition", fontsize=12)
     ax.legend(title="Model", bbox_to_anchor=(1.01, 1), loc="upper left")
+    _save(fig, output_path)
+
+
+def plot_mae_rmse_combined(
+    metrics_df: pd.DataFrame, target_name: str, output_path: Path
+):
+    """Plots MAE and RMSE side-by-side in a single figure for easy error comparison."""
+    if metrics_df.empty:
+        return
+    sns.set_theme(style="whitegrid")
+
+    plot_df = _apply_condition_order(metrics_df.copy(), "Condition")
+    cond_order = _condition_order(plot_df["Condition"].unique().tolist())
+
+    fig, (ax1, ax2) = plt.subplots(
+        1, 2, figsize=(16, max(6, len(cond_order) * 0.45)), sharey=True
+    )
+
+    sns.barplot(
+        data=plot_df,
+        x="MAE",
+        y="Condition",
+        hue="Model",
+        ax=ax1,
+        palette="mako",
+        order=cond_order,
+    )
+    ax1.set_title("Mean Absolute Error (MAE)", fontsize=13, fontweight="bold")
+    ax1.set_xlabel("MAE (lower = better)", fontsize=11)
+    ax1.set_ylabel("Condition", fontsize=11)
+    ax1.legend(title="Model", fontsize=9)
+
+    sns.barplot(
+        data=plot_df,
+        x="RMSE",
+        y="Condition",
+        hue="Model",
+        ax=ax2,
+        palette="mako",
+        order=cond_order,
+    )
+    ax2.set_title("Root Mean Squared Error (RMSE)", fontsize=13, fontweight="bold")
+    ax2.set_xlabel("RMSE (lower = better)", fontsize=11)
+    ax2.set_ylabel("")
+    ax2.legend(title="Model", fontsize=9)
+
+    fig.suptitle(
+        f"Error Metric Comparison (MAE & RMSE)  |  Target: {target_name}",
+        fontsize=15,
+        fontweight="bold",
+        y=1.02,
+    )
+    fig.tight_layout()
     _save(fig, output_path)
 
 
@@ -414,7 +449,7 @@ def plot_all_metrics_grid(
         "Spearman ρ (higher = better)",
     ]
 
-    n_conditions = len(plot_df["Condition"].unique())
+    n_conditions = len(cond_order)
     fig_height = max(10, n_conditions * 0.45)
     fig, axes = plt.subplots(2, 2, figsize=(18, fig_height))
     axes = axes.flatten()
@@ -449,6 +484,7 @@ def plot_model_family_heatmaps(
 ):
     """Generates heatmaps per model family showing pairwise RAG deltas.
 
+    Handles missing models and missing RAG conditions gracefully.
     Green always indicates RAG improvement across all 4 metric tiles.
     """
     if delta_df.empty:
@@ -466,12 +502,13 @@ def plot_model_family_heatmaps(
         ("ΔSpearman_rho (RAG-Base)", "ΔSpearman ρ (Higher is Better)", False),
     ]
 
-    families = sorted(
-        f for f in ["Qwen", "Mistral", "Llama"] if f in plot_df["Family"].values
-    )
+    families = sorted(plot_df["Family"].unique())
 
     for family in families:
         sub = plot_df[plot_df["Family"] == family]
+        if sub.empty:
+            continue
+
         model_variants = sorted(sub["Model"].unique(), key=_model_size_key)
         conditions = sorted(sub["Condition"].unique())
 
@@ -486,6 +523,11 @@ def plot_model_family_heatmaps(
         axes = axes.flatten()
 
         for ax, (col, title, invert) in zip(axes, delta_metrics):
+            if col not in sub.columns or sub[col].dropna().empty:
+                ax.text(0.5, 0.5, "No Data Available", ha="center", va="center")
+                ax.set_title(title, fontsize=11, fontweight="bold")
+                continue
+
             pivot = sub.pivot_table(
                 index="Condition", columns="Model", values=col, aggfunc="first"
             )
@@ -494,16 +536,21 @@ def plot_model_family_heatmaps(
             # Invert values for error metrics so negative delta displays green (improvement)
             display_data = -pivot if invert else pivot
 
+            # Safe formatting for string matrix with NaNs
+            map_func = pivot.map if hasattr(pivot, "map") else pivot.applymap
+            annot_matrix = map_func(lambda x: f"{x:.3f}" if pd.notnull(x) else "N/A")
+
             sns.heatmap(
                 display_data,
-                annot=pivot,
-                fmt=".3f",
+                annot=annot_matrix,
+                fmt="",
                 cmap="RdYlGn",
                 center=0,
                 linewidths=0.5,
                 ax=ax,
                 cbar_kws={"shrink": 0.8},
             )
+            ax.set_facecolor("#f0f0f0")
             ax.set_title(title, fontsize=11, fontweight="bold")
             ax.set_ylabel("Condition", fontsize=10)
             ax.set_xlabel("Model Variant", fontsize=10)
@@ -517,14 +564,9 @@ def plot_model_family_heatmaps(
             fontsize=14,
             fontweight="bold",
         )
-        ax.set_ylabel("Condition")
-        ax.set_xlabel("Metric Delta (positive = RAG is better)")
-
-    fig.suptitle(
-        "RAG Improvement vs. Baseline (no_rag)", fontsize=14, fontweight="bold"
-    )
-    fig.tight_layout()
-    _save(fig, output_path)
+        fig.tight_layout()
+        save_path = output_dir / f"rag_delta_heatmap_{family.lower()}_{target_name}.png"
+        _save(fig, save_path)
 
 
 def plot_scatter_predicted_vs_actual(
@@ -664,10 +706,13 @@ def main(
         target_col,
         output_dir / f"rmse_comparison_{target_col}.png",
     )
+    plot_mae_rmse_combined(
+        metrics_df, target_col, output_dir / f"mae_rmse_combined_{target_col}.png"
+    )
     plot_all_metrics_grid(
         metrics_df, target_col, output_dir / f"all_metrics_{target_col}.png"
     )
-    plot_rag_delta_heatmap(delta_df, output_dir / f"rag_delta_heatmap_{target_col}.png")
+    plot_model_family_heatmaps(delta_df, target_col, output_dir)
     plot_scatter_predicted_vs_actual(
         df, target_col, output_dir / f"scatter_predicted_vs_actual_{target_col}.png"
     )
