@@ -43,10 +43,10 @@ from src.logging.log_run import log_evaluation_run
 DATA_PATH = _ROOT / "src/datasets/political_bias_articles_dataset.csv"
 
 LLM_MODELS = {
-    "mistral-8B": {
-        "region": "Europe",
-        "id": "mistralai/Ministral-3-8B-Instruct-2512",
-        "openrouter_id": "mistralai/ministral-8b-2512",
+    "llama-3B": {
+        "region": "Americas‚",
+        "id": "meta-llama/Llama-3.2-3B-Instruct",
+        "openrouter_id": "meta-llama/Llama-3.2-3B-Instruct",
     },
 }
 
@@ -122,6 +122,7 @@ def load_and_prepare_data() -> pd.DataFrame:
         "Die Linke": "DIE LINKE",
     }
     df["party"] = df["party"].replace(rename_dict)
+    df = df.iloc[177:].reset_index(drop=True)
     return df
 
 

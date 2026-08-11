@@ -4,7 +4,7 @@
 #SBATCH --gres=gpu:a100:1
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=64G
-#SBATCH --time=08:00:00
+#SBATCH --time=12:00:00
 #SBATCH --output=logs/slurm/vllm_server_%j.out
 #SBATCH --error=logs/slurm/vllm_server_%j.err
 
@@ -27,7 +27,7 @@ if [[ -z "$HF_TOKEN" ]]; then
 fi
 
 # Pass the model ID as a variable so you can reuse this script for any LLM
-TARGET_LLM="${1:-mistralai/Ministral-3-8B-Instruct-2512}"
+TARGET_LLM="${1:-meta-llama/Llama-3.2-3B-Instruct}"
 
 echo "$(hostname):${VLLM_PORT}" > logs/slurm/vllm_active_host.txt
 echo "Starting vLLM for $TARGET_LLM on host -> $(cat logs/slurm/vllm_active_host.txt)"
