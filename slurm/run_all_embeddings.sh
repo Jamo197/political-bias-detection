@@ -1,17 +1,17 @@
 #!/bin/bash
 #SBATCH --job-name=eval_matrix_cpu
 #SBATCH --partition=standard            # Adjust to your cluster's CPU partition name
-#SBATCH --cpus-per-task=16         # 16 CPU threads for fast PyTorch CPU inference
+#SBATCH --cpus-per-task=12         # 16 CPU threads for fast PyTorch CPU inference
 #SBATCH --mem=32G
-#SBATCH --time=12:00:00
+#SBATCH --time=6:00:00
 #SBATCH --output=logs/slurm/eval_matrix_%j.out
 #SBATCH --error=logs/slurm/eval_matrix_%j.err
 
 set -euo pipefail
 
 # Optimize CPU thread allocation for PyTorch & SentenceTransformers
-export OMP_NUM_THREADS=${SLURM_CPUS_PER_TASK:-16}
-export MKL_NUM_THREADS=${SLURM_CPUS_PER_TASK:-16}
+export OMP_NUM_THREADS=${SLURM_CPUS_PER_TASK:-12}
+export MKL_NUM_THREADS=${SLURM_CPUS_PER_TASK:-12}
 
 cd "${PROJECT_ROOT:-$PWD}"
 mkdir -p logs/slurm
@@ -70,13 +70,13 @@ fi
 # echo ""
 
 # --- Tests 2-5: RAG with each embedding model -------------------------------
-EMBEDDING_MODELS=("e5" "bge" "jina" "qwen3")  #  "e5" "bge" "jina" "qwen3"
+EMBEDDING_MODELS=("jina")  #  "e5" "bge" "jina" "qwen3"
 
 for EMB in "${EMBEDDING_MODELS[@]}"; do
     if [[ "$EMB" == "bge" ]]; then
         STRATEGIES="simple,simple_hybrid,hyde,hyde_hybrid,twostage,twostage_hybrid"
-    # elif [[ "$EMB" == "jina" ]]; then
-    #     STRATEGIES="simple,hyde,twostage"
+    elif [[ "$EMB" == "jina" ]]; then
+        STRATEGIES="hyde"
     else
         STRATEGIES="simple,hyde,twostage"
     fi
