@@ -118,3 +118,15 @@
 | Qwen/Qwen2.5-72B-Instruct | China | Yes | jina | simple, hyde, twostage | OpenRouter |
 | Qwen/Qwen2.5-72B-Instruct | China | Yes | qwen3 | simple, hyde, twostage | OpenRouter |
 | Qwen/Qwen2.5-72B-Instruct | China | Yes | bge | simple, hyde, twostage | OpenRouter |
+
+
+### Missing qwen32b tests
+```jsonl
+{"llm": "Qwen/Qwen2.5-32B-Instruct", "llm_region": "China", "embedding_model": "bge", "retrieval_mode": "hyde", "hybrid": false, "is_rag": true, "k_chunks": 5}
+{"llm": "Qwen/Qwen2.5-32B-Instruct", "llm_region": "China", "embedding_model": "bge", "retrieval_mode": "hyde_hybrid", "hybrid": true, "is_rag": true, "k_chunks": 5}
+{"llm": "Qwen/Qwen2.5-32B-Instruct", "llm_region": "China", "embedding_model": "bge", "retrieval_mode": "twostage", "hybrid": false, "is_rag": true, "k_chunks": 5}
+{"llm": "Qwen/Qwen2.5-32B-Instruct", "llm_region": "China", "embedding_model": "bge", "retrieval_mode": "simple_hybrid", "hybrid": true, "is_rag": true, "k_chunks": 5}
+```
+```python
+text_indices = [10,102,109,110,111,119,121,132,133,134,136,137,138,140,141,146,149,156,159,165,166,169,175,183,193,194,197,199,2,200,205,209,210,211,212,213,214,216,219,221,224,23,232,236,24,240,245,248,251,255,260,261,265,266,276,28,282,286,287,29,291,292,293,295,297,30,300,301,303,307,31,312,315,317,320,324,327,328,329,33,330,332,333,334,335,336,337,339,343,345,351,352,353,356,357,358,362,363,364,366,369,376,381,382,383,389,39,394,395,396,399,405,406,41,410,421,423,426,427,429,432,434,435,437,440,441,444,445,446,448,45,451,454,457,458,463,465,478,483,487,488,494,495,496,498,50,500,502,507,515,518,519,52,522,523,528,530,532,533,534,535,537,538,539,542,544,545,546,548,55,550,553,558,56,568,569,57,571,577,579,582,583,584,590,598,6,600,603,605,607,609,61,610,614,617,62,621,622,625,634,635,637,64,651,653,658,66,660,663,666,668,67,671,674,678,68,680,683,689,692,7,70,706,708,71,712,713,718,722,73,731,732,734,739,740,741,744,745,749,751,752,754,757,758,759,765,769,77,771,772,775,776,777,778,78,782,783,785,786,80,800,801,804,807,808,816,817,819,82,83,84,85,87,91,97,98]
+```
