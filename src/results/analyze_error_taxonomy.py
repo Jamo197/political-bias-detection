@@ -6,7 +6,6 @@ from collections import defaultdict
 from pathlib import Path
 from typing import Any, Dict, List
 
-
 # ---------------------------------------------------------------------------
 # Constants
 # ---------------------------------------------------------------------------
@@ -116,7 +115,7 @@ def process_eval_logs(logs_dir: Path, output_dir: Path, top_k: int = 25):
     total_parsed = 0
 
     # Find all JSONL files recursively in logs_dir
-    log_files = sorted(logs_dir.rglob("*.jsonl"))
+    log_files = sorted(logs_dir.rglob("party_label_*.jsonl"))
     if not log_files:
         print(f"No JSONL files found in {logs_dir}")
         return
