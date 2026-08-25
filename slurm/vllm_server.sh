@@ -3,8 +3,8 @@
 #SBATCH --partition=h200_short
 #SBATCH --gres=gpu:1
 #SBATCH --cpus-per-task=16
-#SBATCH --mem=128G
-#SBATCH --time=12:00:00
+#SBATCH --mem=64G
+#SBATCH --time=6:00:00
 #SBATCH --output=logs/slurm/vllm_server_%j.out
 #SBATCH --error=logs/slurm/vllm_server_%j.err
 
@@ -27,7 +27,7 @@ if [[ -z "$HF_TOKEN" ]]; then
 fi
 
 # Pass the model ID as a variable so you can reuse this script for any LLM
-TARGET_LLM="${1:-Qwen/Qwen2.5-32B-Instruct}"
+TARGET_LLM="${1:-mistralai/Ministral-3-14B-Instruct-2512}"
 
 echo "$(hostname):${VLLM_PORT}" > logs/slurm/vllm_active_host.txt
 echo "Starting vLLM for $TARGET_LLM on host -> $(cat logs/slurm/vllm_active_host.txt)"
@@ -41,7 +41,8 @@ exec singularity exec --nv \
     "$VLLM_SIF" \
     vllm serve "$TARGET_LLM" \
         --host 0.0.0.0 \
-        --port "${VLLM_PORT}" \
+        --port "$VLLM_PORT" \
         --dtype bfloat16 \
-        --trust-remote-code \
-        --max-model-len 32768
+        --max-model-len 32768 \
+        --gpu-memory-utilization 0.92 \
+        --trust-remote-code

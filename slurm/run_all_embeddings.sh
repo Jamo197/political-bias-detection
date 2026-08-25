@@ -70,13 +70,13 @@ fi
 # echo ""
 
 # --- Tests 2-5: RAG with each embedding model -------------------------------
-EMBEDDING_MODELS=("jina")  #  "e5" "bge" "jina" "qwen3"
+EMBEDDING_MODELS=("e5")  #  "e5" "bge" "jina" "qwen3"
 
 for EMB in "${EMBEDDING_MODELS[@]}"; do
     if [[ "$EMB" == "bge" ]]; then
-        STRATEGIES="simple,simple_hybrid,hyde,hyde_hybrid,twostage,twostage_hybrid"
-    elif [[ "$EMB" == "jina" ]]; then
-        STRATEGIES="hyde"
+        STRATEGIES="hyde_hybrid,twostage,twostage_hybrid" #simple,simple_hybrid,hyde,
+    # elif [[ "$EMB" == "jina" ]]; then
+    #     STRATEGIES="hyde"
     else
         STRATEGIES="simple,hyde,twostage"
     fi
