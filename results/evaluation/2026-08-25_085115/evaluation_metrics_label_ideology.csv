@@ -46,12 +46,15 @@ label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,jina/twostage,775,1.1939,1.6713,0
 label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,qwen3/hyde,775,1.1987,1.695,0.3829,0.4005
 label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,qwen3/simple,775,1.1354,1.6175,0.4541,0.45
 label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,qwen3/twostage,775,1.1963,1.6689,0.4117,0.425
+label_ideology,Ministral-3-14B-Instruct-2512,no_rag,775,0.9347,1.3037,0.6727,0.5774
 label_ideology,Ministral-3-14B-Instruct-2512,bge/hyde,773,0.9749,1.4615,0.6274,0.5708
 label_ideology,Ministral-3-14B-Instruct-2512,bge/hyde_hybrid,771,0.987,1.4654,0.6253,0.5664
 label_ideology,Ministral-3-14B-Instruct-2512,bge/simple,772,0.9237,1.3712,0.6682,0.5995
 label_ideology,Ministral-3-14B-Instruct-2512,bge/simple_hybrid,770,0.9531,1.3845,0.6726,0.6036
 label_ideology,Ministral-3-14B-Instruct-2512,bge/twostage,770,0.9338,1.3792,0.6714,0.6165
 label_ideology,Ministral-3-14B-Instruct-2512,bge/twostage_hybrid,770,0.9318,1.3638,0.6762,0.6017
+label_ideology,Ministral-3-14B-Instruct-2512,e5/hyde,773,0.9613,1.4393,0.6393,0.5924
+label_ideology,Ministral-3-14B-Instruct-2512,e5/simple,770,0.9405,1.3652,0.6843,0.6179
 label_ideology,Ministral-3-14B-Instruct-2512,e5/twostage,768,0.9234,1.3474,0.6826,0.6168
 label_ideology,Ministral-3-14B-Instruct-2512,jina/hyde,773,0.94,1.3893,0.679,0.6374
 label_ideology,Ministral-3-14B-Instruct-2512,jina/simple,771,0.9551,1.4156,0.6588,0.6041
