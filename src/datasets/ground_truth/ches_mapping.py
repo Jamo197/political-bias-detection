@@ -15,6 +15,7 @@ CHES_COUNTRIES = {
     16: {"abbrev": "SV", "name": "Sweden"},
     20: {"abbrev": "BUL", "name": "Bulgaria"},
     21: {"abbrev": "CZ", "name": "Czech Republic"},
+    211: {"abbrev": "CZ", "name": "Czechia"},
     22: {"abbrev": "EST", "name": "Estonia"},
     23: {"abbrev": "HUN", "name": "Hungary"},
     24: {"abbrev": "LAT", "name": "Latvia"},
@@ -76,7 +77,7 @@ CHES_PARTIES = {
     109: {
         "country": "BE",
         "abbrev": "CVP; CD&V",
-        "name_local": "Christelijke Volkspartij; Christen-Democratisch en Vlaams",
+        "name_local": "Christelijke Volkspartij; Christen-Democratisch en Vlaams; Christen-Democratisch & Vlaams",
         "name_english": "Christian People's Party; Christian Democratic & Flemish",
     },
     110: {
@@ -88,7 +89,7 @@ CHES_PARTIES = {
     111: {
         "country": "BE",
         "abbrev": "FDF; DéFl",
-        "name_local": "Front Démocratique des Francophones; Démocrate fédéraliste",
+        "name_local": "Front Démocratique des Francophones; Démocrate fédéraliste; Démocrate Fédéraliste Indépendant",
         "name_english": "Francophone Democratic Front; Independent Christian Democratic & Flemish",
     },
     112: {
@@ -150,7 +151,7 @@ CHES_PARTIES = {
         "country": "DK",
         "abbrev": "RV",
         "name_local": "Det Radikale Venstre",
-        "name_english": "Radical Left-Social Liberal Party",
+        "name_english": "Radical Left-Social Liberal Party; The Social Liberal Party",
     },
     203: {
         "country": "DK",
@@ -246,7 +247,7 @@ CHES_PARTIES = {
     301: {
         "country": "GE",
         "abbrev": "CDU",
-        "name_local": "Christlich Demokratische Union Deutschlands",
+        "name_local": "Christlich Demokratische Union Deutschlands; CDU/CSU",
         "name_english": "Christian Democratic Union of Germany",
     },
     302: {
@@ -276,7 +277,7 @@ CHES_PARTIES = {
     306: {
         "country": "GE",
         "abbrev": "PDS; Linkspartei; Linke",
-        "name_local": "Partei des Demokratischen Sozialismus; Die Linkspartei; Die Linke",
+        "name_local": "Partei des Demokratischen Sozialismus; Die Linkspartei; Die Linke; Die Linke.",
         "name_english": "Party of Democratic Socialism; Left Party; The Left",
     },
     308: {
@@ -331,7 +332,7 @@ CHES_PARTIES = {
     402: {
         "country": "GR",
         "abbrev": "ND",
-        "name_local": "Néa Dimokratía",
+        "name_local": "Néa Dimokratía; Nea Demokratia",
         "name_english": "New Democracy",
     },
     403: {
@@ -445,8 +446,8 @@ CHES_PARTIES = {
     },
     502: {
         "country": "ESP",
-        "abbrev": "PP",
-        "name_local": "Partido Popular; Alianza-Partido Popular",
+        "abbrev": "PP; PPP",
+        "name_local": "Partido Popular; Alianza-Partido Popular; PP - FORO",
         "name_english": "People's Party; People's Alliance Party",
     },
     504: {
@@ -463,7 +464,7 @@ CHES_PARTIES = {
     },
     506: {
         "country": "ESP",
-        "abbrev": "PNV",
+        "abbrev": "PNV; EAJ-PNV",
         "name_local": "Euzko Alderdi Jeltzalea/Partido Nacionalista Vasco",
         "name_english": "Basque Nationalist Party",
     },
@@ -487,7 +488,7 @@ CHES_PARTIES = {
     },
     511: {
         "country": "ESP",
-        "abbrev": "ERC",
+        "abbrev": "ERC; ERC-S; ERC-CATSÍ",
         "name_local": "Esquerra Republicana de Catalunya",
         "name_english": "Republican Left of Catalonia",
     },
@@ -572,7 +573,7 @@ CHES_PARTIES = {
     526: {
         "country": "ESP",
         "abbrev": "Cs",
-        "name_local": "Ciudadanos—Partido de la Ciudadanía",
+        "name_local": "Ciudadanos—Partido de la Ciudadanía;Ciudadanos – Partido de la Ciudadanía",
         "name_english": "Citizens—Party of the Citizenry",
     },
     527: {
@@ -589,8 +590,8 @@ CHES_PARTIES = {
     },
     550: {
         "country": "ESP",
-        "abbrev": "PdeCat",
-        "name_local": "Partit Demócrata Europeu Catalá (Junts per Cataluyna)",
+        "abbrev": "PdeCat; JxCat-JUNTS; CDC",
+        "name_local": "Partit Demócrata Europeu Catalá (Junts per Cataluyna); JxCat-JUNTS",
         "name_english": "Catalan European Democratic Party (Together for Catalonia partner)",
     },
     551: {
@@ -730,7 +731,7 @@ CHES_PARTIES = {
         "country": "FR",
         "abbrev": "RE; LREM",
         "name_local": "Rennaissance; La République en Marche!",
-        "name_english": "Renaissance; The Republic Onwards!",
+        "name_english": "Renaissance; The Republic Onwards!; Liste Renaissance",
     },
     627: {
         "country": "FR",
@@ -766,14 +767,14 @@ CHES_PARTIES = {
     702: {
         "country": "IRL",
         "abbrev": "FG",
-        "name_local": "Fine Gael",
+        "name_local": "Fine Gael; Fine Gael Party",
         "name_english": "Family of the Irish",
     },
     703: {
         "country": "IRL",
         "abbrev": "Lab",
         "name_local": "Páirti Lucht Oibre",
-        "name_english": "Labour",
+        "name_english": "Labour; Labour Party",
     },
     705: {
         "country": "IRL",
@@ -995,7 +996,7 @@ CHES_PARTIES = {
     838: {
         "country": "IT",
         "abbrev": "AVS; SL; SEL",
-        "name_local": "Alleanza Verdi e Sinistra; Sinistra e Libertà; Sinistra Ecologia Libertà; Sinistra Italiana",
+        "name_local": "Alleanza Verdi e Sinistra; Sinistra e Libertà; Sinistra Ecologia Libertà; Sinistra Italiana; LIBERI E UGUALI",
         "name_english": "Green & Left Alliance; Left and Freedom; Left Ecology Freedom; Italian Left—Left Ecology Freedom",
     },
     839: {
@@ -1025,7 +1026,7 @@ CHES_PARTIES = {
     844: {
         "country": "IT",
         "abbrev": "FDL",
-        "name_local": "Fratelli d'Italia",
+        "name_local": "Fratelli d'Italia; FRATELLI DITALIA",
         "name_english": "Brothers of Italy",
     },
     845: {
@@ -1237,7 +1238,7 @@ CHES_PARTIES = {
     1110: {
         "country": "UK",
         "abbrev": "Brexit/Reform",
-        "name_local": "Brexit Party/Reform UK",
+        "name_local": "Brexit Party/Reform UK; The Brexit Party",
         "name_english": "Brexit Party/Reform UK",
     },
     # Portugal (POR)
@@ -1444,7 +1445,7 @@ CHES_PARTIES = {
     },
     1602: {
         "country": "SV",
-        "abbrev": "SAP",
+        "abbrev": "SAP; SocDem",
         "name_local": "Arbetarpartiet-Socialdemokraterna; Sveriges Socialdemokratiska Arbetareparti",
         "name_english": "Worker's Party-Social Democrats; Swedish Social Democratic Party",
     },
@@ -1675,7 +1676,7 @@ CHES_PARTIES = {
     2104: {
         "country": "CZ",
         "abbrev": "KDU-CSL",
-        "name_local": "Kresťanská demokratická unie—Ceskoslovenská strana lidová",
+        "name_local": "Kresťanská demokratická unie—Ceskoslovenská strana lidová; Křesťanská a demokratická unie - Československá strana lidová",
         "name_english": "Christian Democratic Union—Czechoslovak People's Party",
     },
     2105: {
@@ -2243,8 +2244,8 @@ CHES_PARTIES = {
     },
     2606: {
         "country": "POL",
-        "abbrev": "PSL",
-        "name_local": "Polskie Stronnictwo Ludowe",
+        "abbrev": "PSL; Kukiz15",
+        "name_local": "Polskie Stronnictwo Ludowe;Polish People's Party-Kukiz15",
         "name_english": "Polish People's Party",
     },
     2607: {
@@ -2856,7 +2857,7 @@ CHES_PARTIES = {
     3804: {
         "country": "LUX",
         "abbrev": "LSAP",
-        "name_local": "Lëtzebuerger Sozialistesch Aarbechterpartei",
+        "name_local": "Lëtzebuerger Sozialistesch Aarbechterpartei; Parti ouvrier socialiste luxembourgeois",
         "name_english": "Luxembourg Socialist Workers' Party",
     },
     3805: {
