@@ -1,0 +1,41 @@
+{
+  "comparison": "capacity-8b",
+  "baseline_path": "logs/batch_runs/2026-07-15_eval_20260715_222803/none/no_rag/party_label_llama_no_rag_evaluation_logs.jsonl",
+  "rag_path": "logs/batch_runs/2026-08-03_eval_matrix_20260803_224143/e5/simple/party_label_llama-8B_simple_evaluation_logs.jsonl",
+  "model_selector_baseline": "llama-8B",
+  "model_selector_rag": "llama-8B",
+  "embedding": "e5",
+  "strategy": "simple",
+  "seed": 42,
+  "samples_per_quadrant": 25,
+  "target": "label_ideology",
+  "thresholds": {
+    "pass": 0.5,
+    "fail": 1.0
+  },
+  "baseline_records": 775,
+  "rag_records": 775,
+  "inner_join_records": 775,
+  "baseline_only_count": 0,
+  "rag_only_count": 0,
+  "baseline_duplicates": 0,
+  "rag_duplicates": 0,
+  "malformed_lines": 0,
+  "missing_text_index_lines": 0,
+  "ground_truth_mismatches": 0,
+  "invalid_value_ids": 1,
+  "buffer_count": 27,
+  "population_counts": {
+    "Q1_RAG_Win": 134,
+    "Q2_RAG_Distraction": 69,
+    "Q3_Joint_Failure": 324,
+    "Q4_Baseline_Sufficiency": 220
+  },
+  "selected_counts": {
+    "Q1_RAG_Win": 25,
+    "Q2_RAG_Distraction": 25,
+    "Q3_Joint_Failure": 25,
+    "Q4_Baseline_Sufficiency": 25
+  },
+  "valid_paired_records": 774
+}
