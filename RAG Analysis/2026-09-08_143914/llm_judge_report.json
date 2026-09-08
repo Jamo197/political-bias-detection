@@ -1,0 +1,337 @@
+{
+  "model": "google/gemini-2.5-flash-lite",
+  "prompt_hash": "200cce22cba64e88",
+  "timestamp": "2026-09-08T12:40:35.616677+00:00",
+  "total_chunks": 155,
+  "judged_chunks": 155,
+  "per_dimension": {
+    "R_top": {
+      "n": 155,
+      "exact_agreement": 0.2645161290322581,
+      "qwk": 0.2359046003392875,
+      "kappa": null,
+      "mean_diff": 0.3935483870967742,
+      "labels": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "confusion_matrix": [
+        [
+          2,
+          1,
+          11,
+          5,
+          0
+        ],
+        [
+          0,
+          1,
+          35,
+          13,
+          0
+        ],
+        [
+          0,
+          0,
+          18,
+          9,
+          0
+        ],
+        [
+          0,
+          0,
+          19,
+          20,
+          0
+        ],
+        [
+          0,
+          0,
+          7,
+          14,
+          0
+        ]
+      ],
+      "below_threshold": true
+    },
+    "R_ideo": {
+      "n": 155,
+      "exact_agreement": 0.44516129032258067,
+      "qwk": 0.11760834512488072,
+      "kappa": null,
+      "mean_diff": 0.36774193548387096,
+      "labels": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "confusion_matrix": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          2,
+          29,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          21,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          64,
+          5
+        ],
+        [
+          0,
+          0,
+          0,
+          29,
+          5
+        ]
+      ],
+      "below_threshold": true
+    },
+    "N_info": {
+      "n": 155,
+      "exact_agreement": 0.3096774193548387,
+      "qwk": null,
+      "kappa": 0.034014794105655555,
+      "mean_diff": 0.6967741935483871,
+      "labels": [
+        1,
+        2,
+        3
+      ],
+      "confusion_matrix": [
+        [
+          5,
+          1,
+          21
+        ],
+        [
+          5,
+          3,
+          76
+        ],
+        [
+          2,
+          2,
+          40
+        ]
+      ],
+      "below_threshold": true
+    },
+    "A_caus": {
+      "n": 155,
+      "exact_agreement": 0.5806451612903226,
+      "qwk": null,
+      "kappa": 0.18255578093306302,
+      "mean_diff": -0.41935483870967744,
+      "labels": [
+        0,
+        1
+      ],
+      "confusion_matrix": [
+        [
+          75,
+          0
+        ],
+        [
+          65,
+          15
+        ]
+      ],
+      "below_threshold": true
+    }
+  },
+  "worst_disagreements": [
+    {
+      "text_index": "117",
+      "chunk_index": 2,
+      "dimension": "R_top",
+      "human": 1,
+      "judge": 4,
+      "diff": 3,
+      "checks": {
+        "r_top_check": {
+          "macro_domain_match": true,
+          "sub_issue_match": true,
+          "instrument_or_bill_match": true,
+          "identical_clause_or_event": false,
+          "verdict_step": "The input text and chunk both discuss government spending and its financial implications, specifically mentioning 'gigantische Summen' and 'Sozialversicherungsbeiträge'/'globale Mehreinnahmen'/'Sondervermögen Bundeswehr'/'Klima- und Transformationsfonds'. This falls under the same broad domain of fiscal policy and budget. While not citing the exact same clause or event, they address related financial mechanisms and debates. Level 4."
+        },
+        "r_ideo_check": {
+          "is_procedural": false,
+          "is_factual_reporting": false,
+          "contains_partisan_policy_claim": true,
+          "is_formal_motion_or_doctrine": false,
+          "verdict_step": "The chunk criticizes government financial policies, specifically mentioning 'Beitragserhöhungen', 'Steuererhöhungen', 'ungedeckte Schecks', 'Haushaltstricks', and the use of special funds like 'Sondervermögen Bundeswehr' and 'Klima- und Transformationsfonds' for regular expenses. It also quotes the Bundesrechnungshof to support its critique. This represents a clear partisan policy stance against the government's fiscal management. Level 4."
+        },
+        "n_info_check": {
+          "input_self_contained": false,
+          "chunk_resolves_ambiguity": true,
+          "verdict_step": "The input text is ambiguous about who is expected to pay the 'gigantischen Summen' and uses a critical tone ('Wer diese... wohl wieder berappen darf?'). The chunk clarifies that these sums relate to potential 'Beitragserhöhungen' (social security contribution increases) and 'Steuererhöhungen' (tax increases), and criticizes the government's use of special funds and 'Haushaltstricks'. This information is crucial for understanding the specific nature of the criticism and the implied target of the input text's question. Level 3."
+        },
+        "a_caus_check": {
+          "index_cited_directly_or_in_list": false,
+          "verbatim_text_quoted": false,
+          "verdict_step": "The generator justification does not cite Chunk [3] directly, nor does it quote any verbatim text of 5 or more words exclusively from Chunk [3]. Therefore, it cannot be determined if this specific chunk was relied upon. Level 0."
+        }
+      }
+    },
+    {
+      "text_index": "117",
+      "chunk_index": 4,
+      "dimension": "R_top",
+      "human": 1,
+      "judge": 4,
+      "diff": 3,
+      "checks": {
+        "r_top_check": {
+          "macro_domain_match": true,
+          "sub_issue_match": true,
+          "instrument_or_bill_match": false,
+          "identical_clause_or_event": false,
+          "verdict_step": "The input text and chunk both discuss government spending and its financial implications, particularly concerning taxes and the economy. However, they do not refer to the same specific legislative instrument, bill, or parliamentary incident. Level 4."
+        },
+        "r_ideo_check": {
+          "is_procedural": false,
+          "is_factual_reporting": false,
+          "contains_partisan_policy_claim": true,
+          "is_formal_motion_or_doctrine": false,
+          "verdict_step": "The chunk contains explicit criticism of the current government's fiscal policy ('unverantwortliche Politik dieser Ampelregierung'), contrasts past and present state revenues, and questions the necessity of new debt. This represents a clear partisan policy stance. Level 4."
+        },
+        "n_info_check": {
+          "input_self_contained": false,
+          "chunk_resolves_ambiguity": true,
+          "verdict_step": "The input text is ambiguous about who is being criticized for 'gigantische Summen' and who will 'berappen' (pay). The chunk clarifies this by detailing government spending, contrasting state revenues, and explicitly blaming the 'Ampelregierung' for 'unverantwortliche Politik' and new debt, thus resolving the ambiguity and providing crucial context. Level 3."
+        },
+        "a_caus_check": {
+          "index_cited_directly_or_in_list": false,
+          "verbatim_text_quoted": false,
+          "verdict_step": "The generator justification does not cite Chunk [5] directly or indirectly, nor does it quote verbatim text from it. Level 0."
+        }
+      }
+    },
+    {
+      "text_index": "134",
+      "chunk_index": 1,
+      "dimension": "R_top",
+      "human": 1,
+      "judge": 4,
+      "diff": 3,
+      "checks": {
+        "r_top_check": {
+          "macro_domain_match": true,
+          "sub_issue_match": true,
+          "instrument_or_bill_match": false,
+          "identical_clause_or_event": false,
+          "verdict_step": "The input text and chunk both discuss general political discourse and criticism of the government/political establishment. The chunk, however, does not refer to a specific bill, policy, or event mentioned in the input. Level 4."
+        },
+        "r_ideo_check": {
+          "is_procedural": false,
+          "is_factual_reporting": false,
+          "contains_partisan_policy_claim": true,
+          "is_formal_motion_or_doctrine": false,
+          "verdict_step": "The chunk contains strong partisan rhetoric and policy-related criticism, specifically addressing the actions and perceived complicity of other parties (CDU/CSU, Friedrich Merz) in relation to right-wing extremism and democratic erosion. It makes clear normative claims about responsibility and conscience. Level 4."
+        },
+        "n_info_check": {
+          "input_self_contained": false,
+          "chunk_resolves_ambiguity": true,
+          "verdict_step": "The input text is cryptic and uses metaphorical language ('FC-Mainstream', 'System Merkel'). The chunk provides the specific context of a political debate, identifying the speaker's party (implied by the target party BÜNDNIS 90/DIE GRÜNEN and the content) and the specific issues being debated (right-wing extremism, Holocaust remembrance, political blackmail). This information is crucial for understanding the input's stance. Level 3."
+        },
+        "a_caus_check": {
+          "index_cited_directly_or_in_list": false,
+          "verbatim_text_quoted": false,
+          "verdict_step": "The generator justification does not cite Chunk [2] directly or indirectly, nor does it quote verbatim text from it. It references 'AfD reference anchors [3], [4], and [5]' and discusses the input text's tone and language in relation to those anchors, not Chunk [2]. Level 0."
+        }
+      }
+    },
+    {
+      "text_index": "178",
+      "chunk_index": 1,
+      "dimension": "R_top",
+      "human": 1,
+      "judge": 4,
+      "diff": 3,
+      "checks": {
+        "r_top_check": {
+          "macro_domain_match": true,
+          "sub_issue_match": true,
+          "instrument_or_bill_match": true,
+          "identical_clause_or_event": false,
+          "verdict_step": "Both input and chunk discuss the 'Wachstumschancengesetz' (Growth Opportunities Act) and related financial/taxation issues. The input mentions 'Scheuer's Reform' and 'Beraterfirmen', while the chunk details specific aspects of the law like loss carryforward and investment premium. This falls under the same specific sub-issue and legislative instrument. Level 4."
+        },
+        "r_ideo_check": {
+          "is_procedural": false,
+          "is_factual_reporting": false,
+          "contains_partisan_policy_claim": true,
+          "is_formal_motion_or_doctrine": false,
+          "verdict_step": "The chunk contains explicit criticism of the government's handling of the 'Wachstumschancengesetz', detailing how specific provisions were worsened compared to the initial draft and how they negatively impact businesses. This represents a clear partisan policy stance and critique. Level 4."
+        },
+        "n_info_check": {
+          "input_self_contained": false,
+          "chunk_resolves_ambiguity": true,
+          "verdict_step": "The input text is cryptic, mentioning 'Scheuer's Reform' and 'Beraterfirmen' profiting, with an #afd hashtag. The chunk provides the specific context of the 'Wachstumschancengesetz' and details the criticisms, making it necessary to understand the specific policy being attacked and the nature of the critique. Level 3."
+        },
+        "a_caus_check": {
+          "index_cited_directly_or_in_list": false,
+          "verbatim_text_quoted": false,
+          "verdict_step": "The generator justification does not cite Chunk [2] directly or indirectly, nor does it quote verbatim text from it. Level 0."
+        }
+      }
+    },
+    {
+      "text_index": "80",
+      "chunk_index": 4,
+      "dimension": "R_top",
+      "human": 1,
+      "judge": 4,
+      "diff": 3,
+      "checks": {
+        "r_top_check": {
+          "macro_domain_match": true,
+          "sub_issue_match": true,
+          "instrument_or_bill_match": false,
+          "identical_clause_or_event": false,
+          "verdict_step": "The input text and chunk both discuss political debates and party stances within the German Bundestag, specifically concerning the AfD and its perceived proximity to other parties. However, neither text refers to a specific legislative instrument, bill, or budget line. Level 4."
+        },
+        "r_ideo_check": {
+          "is_procedural": false,
+          "is_factual_reporting": false,
+          "contains_partisan_policy_claim": true,
+          "is_formal_motion_or_doctrine": false,
+          "verdict_step": "The chunk contains strong partisan rhetoric and accusations ('schändlich', 'politische Ränkespiele', 'gemein gemacht') and explicitly promotes the AfD as the only party capable of solving problems. This goes beyond generic rhetoric and constitutes a clear policy stance and partisan conflict. Level 4."
+        },
+        "n_info_check": {
+          "input_self_contained": false,
+          "chunk_resolves_ambiguity": true,
+          "verdict_step": "The input text is cryptic and does not explicitly name the parties involved or the specific issue being debated, only mentioning 'Saskia Ludwig' and 'AfD-Führung'. The chunk is crucial for understanding that the debate is about the AfD's role and perceived influence, and that the speaker is defending the AfD against accusations, thus disambiguating the input text's political context. Level 3."
+        },
+        "a_caus_check": {
+          "index_cited_directly_or_in_list": false,
+          "verbatim_text_quoted": false,
+          "verdict_step": "The generator justification does not cite Chunk [5] directly or indirectly, nor does it quote verbatim text from it. It refers to 'reference anchors [1], [2], and [3]' and discusses the 'SPD's stance', which is not directly supported by the provided chunk (Chunk [5] is a speech by Markus Frohnmaier of the AfD). Level 0."
+        }
+      }
+    }
+  ]
+}
