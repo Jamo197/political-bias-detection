@@ -10,6 +10,11 @@ Usage (from the project root):
     python src/run_llm_judge.py --limit 5
     python src/run_llm_judge.py --model openai/gpt-5-mini --concurrency 4
 
+Each run writes a per-run snapshot (annotations JSONL) and the JSON agreement
+report into a timestamped subfolder under ``RAG Analysis/<run_id>/`` (similar to
+how ``evaluate_metrics.py`` organizes results). The append-only log still
+accumulates across runs.
+
 For calibration iterations, edit the JUDGE_SYSTEM_PROMPT constant at the top
 of this file or pass ``--prompt-file``.
 """
@@ -32,11 +37,7 @@ from openai import OpenAI
 from sklearn.metrics import cohen_kappa_score, confusion_matrix
 from tqdm import tqdm
 
-from run_streamlit import (  # same directory; assumes run from project root
-    R_IDEO_OPTIONS,
-    R_TOP_OPTIONS,
-    load_existing_annotations,
-)
+from run_streamlit import load_existing_annotations
 
 # ---------------------------------------------------------------------------
 # Configuration
@@ -45,83 +46,122 @@ from run_streamlit import (  # same directory; assumes run from project root
 _PROJECT_ROOT = Path(__file__).resolve().parent.parent
 load_dotenv(_PROJECT_ROOT / ".env.local")
 
-DEFAULT_MODEL = "openai/gpt-5-mini"
+DEFAULT_MODEL = "deepseek/deepseek-v4-flash-0731"
 DEFAULT_ANNOTATIONS_PATH = "RAG Analysis/qualitative_annotations.jsonl"
+DEFAULT_OUTPUT_ROOT = "RAG Analysis"
 DEFAULT_OUTPUT_LOG = "RAG Analysis/llm_judge_annotations.jsonl"
-DEFAULT_REPORT = "RAG Analysis/llm_judge_report.json"
 
-# Build the rubric text dynamically from the constants so the judge prompt
-# can never drift from the Streamlit UI.
-_RUBRIC_TOP = "\n".join(f"[{k}] {v}" for k, v in R_TOP_OPTIONS.items())
-_RUBRIC_IDEO = "\n".join(f"[{k}] {v}" for k, v in R_IDEO_OPTIONS.items())
+# TODO: Update prompt to get them better understand the task and the dimensions.
+# also maybe add more informations, like the justification of the RAG and the poltical bias and its error
+JUDGE_SYSTEM_PROMPT = """You are an exacting, skeptical political science judge evaluating Information Retrieval (RAG) performance in political stance and bias classification.
 
-JUDGE_SYSTEM_PROMPT = f"""You are an expert annotator in comparative political science and information-retrieval evaluation. Your task is to rate a single retrieved context chunk on four rubric dimensions, given the original input text, the chunk metadata, and the generator's RAG justification.
+You evaluate whether a retrieved text passage provides valid, actionable, and causally utilized evidence for classifying an input text's political bias.
 
---- RUBRIC ---
+--- EVALUATION TARGETS ---
+1. INPUT TEXT: The text to be classified (social media post, speech snippet, quote).
+2. RETRIEVED CHUNK: The contextual passage retrieved from a parliamentary speech.
+3. GENERATOR JUSTIFICATION: The classifier's stated rationale for its assigned bias score.
 
-1. Topical Relevance (R_top) — 1 to 5
-{_RUBRIC_TOP}
+--- SCORING RUBRICS & STRICT BOUNDARIES ---
 
-2. Ideological Specificity (R_ideo) — 1 to 5
-{_RUBRIC_IDEO}
+1. Topical Relevance (R_top) — [Integer 1 to 5]
+Measure topic alignment strictly by specific policy target and legislative mechanism:
+• [1] IRRELEVANT: Completely different topic, domain, or societal sphere.
+• [2] BROAD THEMATIC DOMAIN ONLY: Shares high-level domain (e.g., public finance, social welfare, environment), but targets different policies, different debates, or different eras. 
+  -> NOTE: If Input is a generic complaint about taxes/costs and the Chunk is a debate on a specific federal budget or Schuldenbremse, this is STRICTLY Level 2.
+• [3] RELATED SUB-ISSUE: Same sub-policy domain, but discusses different specific mechanisms, opposing bills, or non-overlapping details.
+• [4] DIRECT POLICY OVERLAP: Both texts debate the EXACT same policy measure, bill, or specific institutional mechanism (e.g., both specifically debate the Schuldenbremse or Bürgergeld rates), differing only in rhetorical framing.
+• [5] IDENTICAL TARGET: Exact identical legislative bill, motion, entity, or specific quote referenced in both texts.
 
-3. Information Delta (N_info) — 1 to 3
-[1] No new information: The chunk largely echoes facts, framing, or policy details already present in the input text.
-[2] Some new context: The chunk adds minor details, broader background, or tangential facts not explicitly in the input.
-[3] High informational delta: The chunk provides substantial new facts, ideological definitions, or empirical context that significantly expands beyond the input.
+2. Ideological Specificity (R_ideo) — [Integer 1 to 5]
+Measure the ideological clarity of the RETRIEVED CHUNK on its own merits:
+• [1] PROCEDURAL / NEUTRAL: Bureaucratic announcements, committee schedules, uncontroversial administrative statements.
+• [2] DESCRIPTIVE REPORTING: Mentions political conflict objectively without taking an ideological stance.
+• [3] VALUE-LADEN RHETORIC: Uses polarized adjectives, general critique, or emotional appeals without clear programmatic ideology.
+• [4] DISTINCT IDEOLOGICAL POSITION: Clear, partisan policy stance (e.g., fiscal hawkishness, deregulation, welfare expansion) expressed in parliamentary debate or public speech.
+• [5] BINDING MANIFESTO / FORMAL PROGRAMME: Explicit reference to official party programmes, election manifestos, formal coalition agreements, or binding roll-call votes.
+  -> NOTE: A speaker shouting "Not with us as CDU/CSU!" on the parliament floor is Level 4 (parliamentary debate rhetoric), NOT Level 5.
 
-4. Attribution / Faithfulness (A_caus) — 0 or 1
-Question: Did the generator explicitly rely on this chunk's unique evidence in its reasoning or classification output?
-Use the RAG Justification provided below. Judge whether the justification cites, paraphrases, or otherwise relies on content from this specific chunk to arrive at its conclusion. If the justification mentions this chunk by its index (e.g., [2]), that counts as evidence of reliance, but you should also consider semantic reliance even when not explicitly indexed.
-[0] No: The generator did not rely on this chunk.
-[1] Yes: The generator relied on this chunk.
+3. Information Delta (N_info) — [Integer 1 to 3]
+Does the chunk provide necessary, actionable knowledge to classify the INPUT TEXT's ideological stance?
+*HARD CONSTRAINT:* If R_top <= 2, N_info MUST be 1. Irrelevant or broadly thematic chunks cannot provide actionable context for the input text.
+• [1] ZERO DELTA / DISTRACTING: Provides no new actionable clues for the input text, repeats what the input already made obvious, or introduces off-topic facts that risk topic drift.
+• [2] SUPPLEMENTARY BACKGROUND: Clarifies contextual details (dates, acronyms, institutional settings) that marginally help interpret the input text.
+• [3] ESSENTIAL GROUNDING: Provides missing contextual facts directly required to identify the input text's stance (e.g., identifies an obscure policy term or decodes dog whistles).
 
---- INSTRUCTIONS ---
-- Be concise and analytical. Base your rating strictly on the provided text and justification.
-- Use only the allowed integer values for each dimension.
-- Respond ONLY with a valid JSON object matching this exact schema:
-{{
+4. Attribution / Faithfulness (A_caus) — [Binary 0 or 1]
+Did the generator justification demonstrably rely on THIS specific chunk?
+• [0] NO / SPURIOUS: The generator does not explicitly cite this chunk index/anchor, or uses generic reasoning that could have been produced from the input text alone or model pre-training.
+• [1] YES: The justification explicitly cites this chunk's index (e.g., [Chunk X], [I-15]) AND derives its arguments from facts, figures, or claims unique to this chunk.
+
+--- EXECUTION INSTRUCTIONS ---
+You must evaluate step-by-step. Return a single valid JSON object. Do not include markdown code fences or conversational text.
+
+Required JSON Structure:
+{
+  "input_core_subject": "<Specific policy or issue debated in the input text>",
+  "chunk_core_subject": "<Specific policy or issue debated in the retrieved chunk>",
+  "topic_overlap_rationale": "<Step-by-step reason distinguishing Level 2 (broad domain) from Level 4 (direct policy overlap)>",
+  "ideological_rationale": "<Step-by-step reason distinguishing Level 4 (parliamentary stance) from Level 5 (formal doctrine)>",
+  "information_utility_rationale": "<Evaluation of whether the chunk clarifies the input text; apply R_top <= 2 constraint>",
+  "attribution_check": "<Verification of explicit citation and unique fact usage in generator justification>",
   "R_top": <int 1-5>,
   "R_ideo": <int 1-5>,
   "N_info": <int 1-3>,
-  "A_caus": <int 0 or 1>,
-}}
-Do not wrap the JSON in markdown code fences. Do not include any text outside the JSON object.
+  "A_caus": <int 0-1>
+}
 """
-
 
 # ---------------------------------------------------------------------------
 # Prompt & message building
 # ---------------------------------------------------------------------------
 
 
-def build_user_message(record: dict, chunk: dict) -> str:
-    """Construct the user message for a single chunk."""
+def build_user_message(record: dict, chunk: dict, include_anchors: bool = True) -> str:
+    """Construct a cleanly delineated, un-biased user message for the LLM judge."""
     meta = chunk.get("chunk_metadata", {})
-    chunk_idx = chunk["chunk_index"]  # 0-based
+    chunk_idx_1based = chunk.get("chunk_index", 0) + 1
     rag = record.get("source_context", {}).get("rag", {})
+    justification = rag.get("justification", "").strip() or "No justification provided."
 
-    lines = [
-        "You are judging the following retrieved chunk. The chunk index is shown in 1-based notation to match the [N] citations in the RAG justification.",
-        "",
-        f"Chunk index: {chunk_idx + 1}",
-        f"Party: {meta.get('party', 'Unknown')}",
-        f"Speaker: {meta.get('speaker', 'Unknown')}",
-        f"Source: {meta.get('source', 'Unknown')}",
-        f"Retrieval score: {meta.get('score', 0):.4f}",
-        "",
-        "=== INPUT TEXT ===",
-        record.get("input_text", ""),
-        "",
-        "=== CHUNK TEXT ===",
-        chunk.get("chunk_text", ""),
-        "",
-        "=== RAG JUSTIFICATION (generator's reasoning) ===",
-        rag.get("justification", "—"),
-        "",
-        "Rate this chunk on all four rubric dimensions. Provide your ratings as JSON.",
+    # Format metadata cleanly without leaking similarity/retrieval scores
+    metadata_lines = [
+        f"- Chunk Identifier: [{chunk_idx_1based}] (or 'Chunk {chunk_idx_1based}')",
+        f"- Target Party: {meta.get('party', 'Unknown')}",
+        f"- Speaker: {meta.get('speaker', 'Unknown')}",
+        f"- Source Document: {meta.get('source', 'Unknown')}",
     ]
-    return "\n".join(lines)
+    if meta.get("date"):
+        metadata_lines.append(f"- Date: {meta.get('date')}")
+
+    metadata_block = "\n".join(metadata_lines)
+
+    user_message = f"""### RETRIEVED CHUNK METADATA
+    {metadata_block}
+
+    ### INPUT TEXT (Target of Bias Classification)
+
+    {record.get("input_text", "").strip()}
+
+    ### RETRIEVED PASSAGE (Chunk [{chunk_idx_1based}])
+
+    {chunk.get("chunk_text", "").strip()}
+
+    ### GENERATOR JUSTIFICATION (To evaluate for A_caus)
+
+    {justification}
+
+    ### SCORING TASK & CRITICAL REMINDERS
+
+    Judge Chunk [{chunk_idx_1based}] against the Input Text using the 4 dimensions.
+
+    * R_top Check: If the chunk debates a different policy, bill, or fiscal year than the input text, R_top MUST NOT exceed 2.
+    * Hard Gating: If R_top <= 2, N_info MUST be 1.
+    * A_caus Check: Assign 1 ONLY if the justification explicitly references [{chunk_idx_1based}] or 'Chunk {chunk_idx_1based}' AND uses facts unique to this passage.
+
+    Output ONLY the raw JSON object conforming to the required schema."""
+
+    return user_message
 
 
 # ---------------------------------------------------------------------------
@@ -261,7 +301,9 @@ def _validate_and_clean(raw: dict) -> dict:
 # ---------------------------------------------------------------------------
 
 
-def run_judging(args: argparse.Namespace) -> tuple[list[dict], int, str]:
+def run_judging(
+    args: argparse.Namespace, run_snapshot_path: Path | None = None
+) -> tuple[list[dict], int, str]:
     """Load annotations, judge chunks, write log, return results."""
     records = load_existing_annotations(args.annotations)
     if not records:
@@ -360,6 +402,13 @@ def run_judging(args: argparse.Namespace) -> tuple[list[dict], int, str]:
         for res in results:
             handle.write(json.dumps(res, ensure_ascii=False) + "\n")
 
+    # Write per-run snapshot into the run output folder
+    if run_snapshot_path:
+        run_snapshot_path.parent.mkdir(parents=True, exist_ok=True)
+        with run_snapshot_path.open("w", encoding="utf-8") as handle:
+            for res in results:
+                handle.write(json.dumps(res, ensure_ascii=False) + "\n")
+
     return results, failed, prompt_hash
 
 
@@ -413,6 +462,8 @@ def compute_metrics(results: list[dict]) -> dict:
         fixed_labels = cfg["labels"]
         cm = confusion_matrix(h_arr, j_arr, labels=fixed_labels)
 
+        qwk = None
+        kappa = None
         if cfg["ordinal"]:
             qwk = _safe_kappa(h_arr, j_arr, weights="quadratic")
             metric_val = qwk
@@ -497,9 +548,10 @@ def print_and_save_report(
         metric_val = d["qwk"] if dim in ("R_top", "R_ideo") else d["kappa"]
         metric_label = "κ_w" if dim in ("R_top", "R_ideo") else "κ"
         flag = " ⚠️ below 0.70" if d.get("below_threshold") else ""
+        metric_str = f"{metric_val:>6.3f}" if metric_val is not None else "   N/A"
         print(
             f"{dim:<12} {d['n']:>6} {d['exact_agreement']*100:>6.1f}% "
-            f"{metric_val:>6.3f} {d['mean_diff']:>+6.2f}{flag}"
+            f"{metric_str} {d['mean_diff']:>+6.2f}{flag}"
         )
 
     print("\nConfusion matrices:")
@@ -551,12 +603,24 @@ def _build_arg_parser() -> argparse.ArgumentParser:
         help="Path to human annotation JSONL",
     )
     parser.add_argument(
+        "--output-root",
+        default=DEFAULT_OUTPUT_ROOT,
+        help="Root folder for per-run results (a run subfolder is created inside).",
+    )
+    parser.add_argument(
+        "--run-id",
+        default=None,
+        help="Name of the output subfolder (default: timestamp).",
+    )
+    parser.add_argument(
         "--output",
         default=DEFAULT_OUTPUT_LOG,
         help="Append-only log for LLM annotations",
     )
     parser.add_argument(
-        "--report", default=DEFAULT_REPORT, help="Path for the JSON agreement report"
+        "--report",
+        default=None,
+        help="Path for the JSON agreement report (default: <output-root>/<run-id>/llm_judge_report.json)",
     )
     parser.add_argument(
         "--prompt-file",
@@ -585,10 +649,20 @@ def main() -> None:
     parser = _build_arg_parser()
     args = parser.parse_args()
 
-    results, failed, prompt_hash = run_judging(args)
+    run_id = args.run_id or datetime.now().strftime("%Y-%m-%d_%H%M%S")
+    output_dir = Path(args.output_root) / run_id
+    output_dir.mkdir(parents=True, exist_ok=True)
+    print(f"Output directory: {output_dir.resolve()}")
+
+    run_snapshot_path = output_dir / "llm_judge_annotations.jsonl"
+    report_path = (
+        Path(args.report) if args.report else output_dir / "llm_judge_report.json"
+    )
+
+    results, failed, prompt_hash = run_judging(args, run_snapshot_path)
     per_dim = compute_metrics(results)
     worst = get_worst_disagreements(results, n=args.show_disagreements)
-    print_and_save_report(results, per_dim, worst, args.model, prompt_hash, args.report)
+    print_and_save_report(results, per_dim, worst, args.model, prompt_hash, report_path)
 
     if failed:
         print(f"\nWarning: {failed} chunk(s) failed judging.")
