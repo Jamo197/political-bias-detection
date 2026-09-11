@@ -7,22 +7,25 @@ from typing import Any, Dict, List, Optional
 
 import streamlit as st
 
-DEFAULT_ANNOTATOR = "Jannes Lampe"
+DEFAULT_ANNOTATOR = "Human Annotator"
+APP_ROOT = Path(__file__).resolve().parent.parent
+QUALITATIVE_SAMPLE_PATH = APP_ROOT / "results/qualitative/qualitative_capacity_8b.jsonl"
+ANNOTATION_LOG_PATH = APP_ROOT / "annotations/qualitative_annotations.jsonl"
+ANNOTATION_SAMPLE_LIMIT = 25
+ANNOTATION_SEED = 42
 
 SESSION_STATE_DEFAULTS = {
     "annotation_samples": [],
     "annotation_index": 0,
-    "annotation_seed": 42,
+    "annotation_seed": ANNOTATION_SEED,
     "annotation_annotator": DEFAULT_ANNOTATOR,
     "annotation_sample_notes": "",
-    "annotation_log_path": "RAG Analysis/qualitative_annotations.jsonl",
-    "chunk_annotations": {},  # Maps chunk_index -> {R_top, R_ideo, N_info, A_caus, notes}
+    "annotation_log_path": ANNOTATION_LOG_PATH,
+    "chunk_annotations": {},  # Maps chunk_index -> {R_top, R_ideo, A_caus, notes}
     "existing_annotations": {},  # Maps text_index -> latest saved annotation record
     "chunk_annotations_loaded_for": None,  # text_index of the sample currently in chunk state
     "acaus_auto_detected": set(),  # Chunk indices where A_caus was auto-set from the RAG justification
 }
-
-QUALITATIVE_SAMPLE_PATH = Path("results/qualitative/qualitative_capacity_8b.jsonl")
 
 # Rubric descriptions from RAG Analysis/RAG Analysis.md
 R_TOP_OPTIONS = {
@@ -47,7 +50,7 @@ def load_qualitative_samples(
     path: str | Path = QUALITATIVE_SAMPLE_PATH,
 ) -> List[Dict[str, Any]]:
     """Load qualitative samples from JSONL file."""
-    sample_path = Path(path)
+    sample_path = Path(path).expanduser().resolve()
     if not sample_path.exists():
         st.error(f"Qualitative sample file not found: {sample_path}")
         return []
@@ -67,10 +70,10 @@ def load_qualitative_samples(
 
 
 def load_existing_annotations(
-    path: str | Path = "RAG Analysis/qualitative_annotations.jsonl",
+    path: str | Path = ANNOTATION_LOG_PATH,
 ) -> Dict[str, Dict[str, Any]]:
     """Load existing annotation records; latest record per text_index wins."""
-    annotations_path = Path(path)
+    annotations_path = Path(path).expanduser().resolve()
     if not annotations_path.exists():
         return {}
 
@@ -119,7 +122,7 @@ def build_annotation_record(
     sample : dict
         The original sample with input_text, metadata, and rag.retrieved_chunks.
     chunk_annotations : list
-        List of dicts, one per chunk, each containing {chunk_index, chunk_text, chunk_metadata, R_top, R_ideo, N_info, A_caus, notes, timestamp}.
+        List of dicts, one per chunk, each containing {chunk_index, chunk_text, chunk_metadata, R_top, R_ideo, A_caus, notes, timestamp}.
     annotator : str
         Name or ID of the annotator.
     sample_notes : str
@@ -144,11 +147,17 @@ def build_annotation_record(
         "baseline": sample.get("baseline", {}),
         "rag": sample.get("rag", {}),
     }
+    sample_manifest = {
+        "seed": ANNOTATION_SEED,
+        "sample_limit": ANNOTATION_SAMPLE_LIMIT,
+        "text_index": sample.get("text_index"),
+    }
 
     return {
         "text_index": sample.get("text_index"),
         "input_text": sample.get("input_text", ""),
         "source_context": source_context,
+        "sample_manifest": sample_manifest,
         "chunk_annotations": chunk_annotations,
         "annotator": annotator or "",
         "sample_notes": sample_notes or "",
@@ -156,15 +165,30 @@ def build_annotation_record(
     }
 
 
-def append_annotation_record(
+def save_annotation_record(
     record: Dict[str, Any],
-    output_path: str | Path = "logs/qualitative_annotations.jsonl",
+    output_path: str | Path = ANNOTATION_LOG_PATH,
 ) -> Path:
-    """Append an annotation record to the output JSONL file."""
-    output_file = Path(output_path)
+    """Save one latest annotation record per text index.
+
+    Existing records are deduplicated by text index and the supplied record
+    replaces the record for its sample. The replacement is atomic so a
+    browser refresh or process interruption does not leave a partial file.
+    """
+    output_file = Path(output_path).expanduser().resolve()
     output_file.parent.mkdir(parents=True, exist_ok=True)
-    with output_file.open("a", encoding="utf-8") as handle:
-        handle.write(json.dumps(record, ensure_ascii=False) + "\n")
+
+    records = load_existing_annotations(output_file)
+    text_index = record.get("text_index")
+    if text_index is None:
+        raise ValueError("Annotation record must contain a text_index")
+    records[text_index] = record
+
+    temporary_file = output_file.with_suffix(f"{output_file.suffix}.tmp")
+    with temporary_file.open("w", encoding="utf-8") as handle:
+        for saved_record in records.values():
+            handle.write(json.dumps(saved_record, ensure_ascii=False) + "\n")
+    temporary_file.replace(output_file)
     return output_file
 
 
@@ -214,7 +238,6 @@ def load_chunk_state_for_sample(sample: Dict[str, Any]):
             state = {
                 "R_top": prev.get("R_top", 3),
                 "R_ideo": prev.get("R_ideo", 3),
-                "N_info": prev.get("N_info", 2),
                 "A_caus": prev.get("A_caus", 0),
                 "notes": prev.get("notes", ""),
             }
@@ -222,7 +245,6 @@ def load_chunk_state_for_sample(sample: Dict[str, Any]):
             state = {
                 "R_top": 3,
                 "R_ideo": 3,
-                "N_info": 2,
                 "A_caus": 1 if chunk_idx in cited else 0,
                 "notes": "",
             }
@@ -233,7 +255,6 @@ def load_chunk_state_for_sample(sample: Dict[str, Any]):
         # Sync widget keys so the pre-filled values render correctly
         st.session_state[f"chunk_{chunk_idx}_rtop"] = state["R_top"]
         st.session_state[f"chunk_{chunk_idx}_rideo"] = state["R_ideo"]
-        st.session_state[f"chunk_{chunk_idx}_ninfo"] = state["N_info"]
         st.session_state[f"chunk_{chunk_idx}_acaus"] = state["A_caus"]
         st.session_state[f"chunk_{chunk_idx}_notes"] = state["notes"]
 
@@ -251,15 +272,15 @@ def init_session_state():
 
     # Always reload annotations from disk so the view stays in sync with the file
     st.session_state["existing_annotations"] = load_existing_annotations(
-        st.session_state.get(
-            "annotation_log_path", "RAG Analysis/qualitative_annotations.jsonl"
-        )
+        st.session_state.get("annotation_log_path", ANNOTATION_LOG_PATH)
     )
 
     if not st.session_state.get("annotation_samples"):
         rows = load_qualitative_samples()
         st.session_state["annotation_samples"] = select_random_samples(
-            rows, limit=25, seed=st.session_state.get("annotation_seed", 42)
+            rows,
+            limit=ANNOTATION_SAMPLE_LIMIT,
+            seed=st.session_state.get("annotation_seed", ANNOTATION_SEED),
         )
 
 
@@ -281,7 +302,6 @@ def render_chunk_form(chunk_index: int, chunk: Dict[str, Any]):
         st.session_state["chunk_annotations"][chunk_index] = {
             "R_top": 3,
             "R_ideo": 3,
-            "N_info": 2,
             "A_caus": 0,
             "notes": "",
         }
@@ -323,19 +343,8 @@ def render_chunk_form(chunk_index: int, chunk: Dict[str, Any]):
     )
     chunk_state["R_ideo"] = r_ideo
 
-    # Rubric form — Row 2: binary/3-point scales
-    radio_cols = st.columns([1, 1])
-
-    n_info = radio_cols[0].radio(
-        "N_info (Information)",
-        options=[1, 2, 3],
-        horizontal=True,
-        help="1=No new info, 3=High informational delta",
-        key=f"chunk_{chunk_index}_ninfo",
-    )
-    chunk_state["N_info"] = n_info
-
-    a_caus = radio_cols[1].radio(
+    # Rubric form — binary attribution scale
+    a_caus = st.radio(
         "A_caus (Attribution)",
         options=[0, 1],
         format_func=lambda x: "No" if x == 0 else "Yes",
@@ -346,7 +355,7 @@ def render_chunk_form(chunk_index: int, chunk: Dict[str, Any]):
     chunk_state["A_caus"] = a_caus
 
     if chunk_index in st.session_state.get("acaus_auto_detected", set()):
-        radio_cols[1].caption(
+        st.caption(
             f"Auto-set: chunk cited as [{chunk_index + 1}] in the RAG justification."
         )
 
@@ -363,7 +372,7 @@ def render_annotation_section():
     """Render the qualitative annotation interface with per-chunk rubric forms."""
     st.title("Qualitative Annotation Workspace")
     st.caption(
-        "Annotate retrieved chunks using the 4-dimensional rubric (R_top, R_ideo, N_info, A_caus)."
+        "Annotate retrieved chunks using the 3-dimensional rubric (R_top, R_ideo, A_caus)."
     )
 
     rows = st.session_state.get("annotation_samples", [])
@@ -403,20 +412,51 @@ def render_annotation_section():
 
     pred_cols = st.columns(6)
     pred_cols[0].metric(
-        "Ground Truth", f"{ground_truth:.1f}" if ground_truth is not None else "—"
+        "Ground Truth",
+        f"{ground_truth:.1f}" if ground_truth is not None else "—",
+        help="The actual value of the party ideological stance.",
     )
-    pred_cols[1].metric("Baseline (No RAG)", f"{metrics.get('base_prediction', 0):.1f}")
-    pred_cols[2].metric("RAG Prediction", f"{metrics.get('rag_prediction', 0):.1f}")
-    pred_cols[3].metric("Base Error", f"{metrics.get('base_error', 0):.1f}")
-    pred_cols[4].metric("RAG Error", f"{metrics.get('rag_error', 0):.1f}")
+    pred_cols[1].metric(
+        "Baseline (No RAG)",
+        f"{metrics.get('base_prediction', 0):.1f}",
+        help="What the LLM predicted without retrieved context.",
+    )
+    pred_cols[2].metric(
+        "RAG Prediction",
+        f"{metrics.get('rag_prediction', 0):.1f}",
+        help="What the LLM predicted with retrieved context.",
+    )
+    pred_cols[3].metric(
+        "Base Error",
+        f"{metrics.get('base_error', 0):.1f}",
+        help="The absolute error of the prediction without RAG.",
+    )
+    pred_cols[4].metric(
+        "RAG Error",
+        f"{metrics.get('rag_error', 0):.1f}",
+        help="The absolute error of the prediction with RAG.",
+    )
     pred_cols[5].metric(
-        "Directional Shift", f"{metrics.get('directional_shift', 0):+.1f}"
+        "Directional Shift",
+        f"{metrics.get('directional_shift', 0):+.1f}",
+        help="How the prediction moved: minus means more left; plus means more right.",
+    )
+    st.info(
+        "**Metric guide:** Ground Truth is the actual party ideological stance value. "
+        "Baseline (No RAG) is what the LLM predicted without retrieved context. "
+        "RAG Prediction is what it predicted with retrieved context. Base Error is "
+        "the absolute error without RAG; RAG Error is the absolute error with RAG."
     )
 
     just_cols = st.columns(2)
     with just_cols[0].expander("Baseline Justification (No RAG)", expanded=False):
+        st.caption("The justification the LLM returned for its prediction without RAG.")
         st.write(sample.get("baseline", {}).get("justification", "—"))
     with just_cols[1].expander("RAG Justification", expanded=False):
+        st.caption(
+            "The justification returned with RAG, including anchor points showing "
+            "which retrieved chunks the LLM used or found helpful."
+        )
         st.write(sample.get("rag", {}).get("justification", "—"))
 
     st.divider()
@@ -455,23 +495,24 @@ def render_annotation_section():
     # ===== NAVIGATION AND SAVE =====
     # Note: chunk state is reloaded automatically by the
     # "chunk_annotations_loaded_for" tracker whenever the displayed sample changes.
-    nav_cols = st.columns([1, 1, 1, 2])
+    nav_cols = st.columns([1, 1, 2])
     if nav_cols[0].button("Previous") and index > 0:
         st.session_state["annotation_index"] = index - 1
         st.rerun()
-    if nav_cols[1].button("Next") and index < len(rows) - 1:
-        st.session_state["annotation_index"] = index + 1
-        st.rerun()
-    if nav_cols[2].button("Reset sample set"):
+    if nav_cols[1].button("Reset sample set"):
         st.session_state["annotation_samples"] = select_random_samples(
             load_qualitative_samples(),
-            limit=25,
-            seed=st.session_state.get("annotation_seed", 42),
+            limit=ANNOTATION_SAMPLE_LIMIT,
+            seed=st.session_state.get("annotation_seed", ANNOTATION_SEED),
         )
         st.session_state["annotation_index"] = 0
         st.rerun()
 
-    if nav_cols[3].button("Save all annotations", type="primary"):
+    can_go_next = index < len(rows) - 1
+    save_button_label = (
+        "Save annotations and go next" if can_go_next else "Save annotations"
+    )
+    if nav_cols[2].button(save_button_label, type="primary"):
         # Convert chunk_annotations dict to list
         chunk_annotations_list = []
         for chunk_idx, chunk_data in sorted(
@@ -491,7 +532,6 @@ def render_annotation_section():
                 },
                 "R_top": chunk_data.get("R_top", 3),
                 "R_ideo": chunk_data.get("R_ideo", 3),
-                "N_info": chunk_data.get("N_info", 2),
                 "A_caus": chunk_data.get("A_caus", 0),
                 "notes": chunk_data.get("notes", ""),
                 "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),
@@ -504,11 +544,9 @@ def render_annotation_section():
             annotator=st.session_state.get("annotation_annotator", DEFAULT_ANNOTATOR),
             sample_notes=st.session_state.get("annotation_sample_notes", ""),
         )
-        append_annotation_record(
+        save_annotation_record(
             record,
-            st.session_state.get(
-                "annotation_log_path", "RAG Analysis/qualitative_annotations.jsonl"
-            ),
+            st.session_state.get("annotation_log_path", ANNOTATION_LOG_PATH),
         )
         # Register the saved record so navigating back shows the saved values
         st.session_state["existing_annotations"][sample.get("text_index")] = record
@@ -516,9 +554,23 @@ def render_annotation_section():
             f"Saved {len(chunk_annotations_list)} chunk annotations for sample {sample.get('text_index')}"
         )
 
-        if index < len(rows) - 1:
+        if can_go_next:
             st.session_state["annotation_index"] = index + 1
             st.rerun()
+
+    annotation_path = (
+        Path(st.session_state.get("annotation_log_path", ANNOTATION_LOG_PATH))
+        .expanduser()
+        .resolve()
+    )
+    if annotation_path.exists():
+        st.download_button(
+            "Download annotations",
+            data=annotation_path.read_bytes(),
+            file_name="qualitative_annotations.jsonl",
+            mime="application/jsonl",
+            help="Download the annotation file and send it back after completing the samples.",
+        )
 
 
 def run_streamlit_app():
