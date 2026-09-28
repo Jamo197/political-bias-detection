@@ -1,17 +1,21 @@
 """Jev (TypeSafe System One) judge calibration script.
 
-Runs the Jev decision model (``typesafe/jev-1.13``) through the OpenRouter
-Decisions API (``POST https://openrouter.ai/api/alpha/decisions``) over the
+Runs the Jev decision model through the TypeSafe Python SDK over the
 human-annotated chunks saved by ``run_streamlit.py``, computes agreement
 metrics (QWK for ordinal R_top/R_ideo, standard Cohen's κ for nominal
-N_info/A_caus), and produces a calibration report.
+A_caus), and produces a calibration report.
 
-Each (record, chunk) pair becomes one Decisions request whose four typed
+By default the SDK talks to the native TypeSafe API using ``TYPESAFE_API_KEY``
+from ``.env.local``. When that key is absent it falls back to the
+OpenRouter-compatible endpoint with ``OPENROUTER_API_KEY_ME``. The model id is
+pinned per transport (see ``TYPESAFE_JEV_MODEL`` / ``OPENROUTER_JEV_MODEL``);
+the response's ``model`` field records the version that actually answered.
+
+Each (record, chunk) pair becomes one System One request whose four typed
 questions are answered in parallel and independently:
 
 * ``R_top``  — Score, 5 ordered levels (topical relevance)
 * ``R_ideo`` — Score, 5 ordered levels (ideological specificity)
-* ``N_info`` — Score, 3 ordered levels (information delta)
 * ``A_caus`` — Noul, probability that the justification relied on this chunk
 
 Jev answers are typed values with probabilities, not generated text, so there
@@ -19,7 +23,11 @@ is no prompt parsing or JSON-repair fallback. The raw answers (per-level
 probabilities, probability-weighted score, confidence, usage/cost) are stored
 alongside the derived integer labels, so thresholds and label derivation can
 be re-tuned offline from a previous run's JSONL with ``--rederive-from``
-without new (paid) API calls.
+without new API calls.
+
+Retries, backoff, and ``Retry-After`` handling are delegated to the SDK's
+``RetryPolicy`` (see ``RETRY_POLICY``), so no hand-rolled HTTP client is
+needed.
 
 Usage (from the project root):
 
@@ -43,19 +51,16 @@ import argparse
 import hashlib
 import json
 import os
-import random
 import sys
-import threading
-import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
 from pathlib import Path
 
 import numpy as np
-import requests
 from dotenv import load_dotenv
 from sklearn.metrics import cohen_kappa_score, confusion_matrix
 from tqdm import tqdm
+from typesafe_sdk import RetryPolicy, TypeSafeClient
 
 from run_streamlit import load_existing_annotations
 
@@ -66,8 +71,14 @@ from run_streamlit import load_existing_annotations
 _PROJECT_ROOT = Path(__file__).resolve().parent.parent
 load_dotenv(_PROJECT_ROOT / ".env.local")
 
-JEV_MODEL = "typesafe/jev-1.13"
-DECISIONS_URL = "https://openrouter.ai/api/alpha/decisions"
+# Native TypeSafe API (TYPESAFE_API_KEY). Pinned to a version id so confidence
+# thresholds stay tuned against one model version; the response's `model` field
+# records the version that actually answered.
+TYPESAFE_JEV_MODEL = os.getenv("TYPESAFE_JEV_MODEL", "jev-1.13.0")
+# OpenRouter-compatible endpoint (OPENROUTER_API_KEY_ME), used only when no
+# TYPESAFE_API_KEY is present.
+OPENROUTER_BASE_URL = "https://openrouter.ai/api"
+OPENROUTER_JEV_MODEL = os.getenv("OPENROUTER_JEV_MODEL", "~typesafe/jev-latest")
 
 DEFAULT_ANNOTATIONS_PATH = "RAG Analysis/qualitative_annotations.jsonl"
 DEFAULT_OUTPUT_ROOT = "RAG Analysis"
@@ -79,6 +90,16 @@ LOW_CONFIDENCE_FLOOR = 0.5
 NEAR_THRESHOLD_MARGIN = 0.15  # |noul - a_caus_threshold| below this is flagged
 MAX_ATTEMPTS = 5
 REQUEST_TIMEOUT_SECONDS = 180  # Jev calls can take ~60s; keep headroom
+
+# The SDK owns backoff, jitter, and Retry-After handling. `timeout=None` keeps
+# the retry budget unbounded so a slow first attempt does not suppress retries;
+# each individual attempt is still capped by the client timeout above.
+RETRY_POLICY = RetryPolicy(
+    max_retries=MAX_ATTEMPTS - 1,
+    backoff_initial=1.0,
+    backoff_max=30.0,
+    timeout=None,
+)
 
 EVALUATION_TASK = (
     "Evaluating evidence quality in a RAG pipeline for political stance and "
@@ -189,8 +210,7 @@ JEV_QUESTIONS = {
                     "statements."
                 ),
                 "examples": [
-                    "A speaker announcing the next agenda item or a vote "
-                    "schedule."
+                    "A speaker announcing the next agenda item or a vote " "schedule."
                 ],
             },
             {
@@ -238,56 +258,6 @@ JEV_QUESTIONS = {
             },
         ],
     },
-    "N_info": {
-        "type": "score",
-        "instructions": {
-            "question": (
-                "How much necessary, actionable knowledge does the retrieved "
-                "chunk provide for classifying the input text's ideological "
-                "stance?"
-            ),
-            "compare": ["`input_text`", "`retrieved_chunk.text`"],
-            "focus": (
-                "Judge the knowledge delta for interpreting the input text; "
-                "chunks without direct policy overlap cannot provide "
-                "actionable context."
-            ),
-        },
-        "criteria": [
-            {
-                "what": (
-                    "ZERO DELTA / DISTRACTING — no new actionable clues: "
-                    "repeats what the input text already made obvious, "
-                    "introduces off-topic facts that risk topic drift, or is "
-                    "at most broadly thematically related to the input text."
-                ),
-                "examples": [
-                    "The chunk restates the same complaint as the input text, "
-                    "or belongs to a different policy debate."
-                ],
-            },
-            {
-                "what": (
-                    "SUPPLEMENTARY BACKGROUND — clarifies contextual details "
-                    "that marginally help interpret the input text."
-                ),
-                "examples": [
-                    "Explains an acronym, a date, or the institutional "
-                    "setting mentioned in the input text."
-                ],
-            },
-            {
-                "what": (
-                    "ESSENTIAL GROUNDING — provides missing contextual facts "
-                    "directly required to identify the input text's stance."
-                ),
-                "examples": [
-                    "Identifies an obscure policy term or decodes a dog "
-                    "whistle the input text relies on."
-                ],
-            },
-        ],
-    },
     "A_caus": {
         "type": "noul",
         "instructions": {
@@ -323,14 +293,11 @@ JEV_QUESTIONS = {
 _EXPECTED_QUESTIONS = {
     "R_top": {"type": "score", "levels": 5},
     "R_ideo": {"type": "score", "levels": 5},
-    "N_info": {"type": "score", "levels": 3},
     "A_caus": {"type": "noul"},
 }
 SCORE_LEVELS = {
     name: cfg["levels"] for name, cfg in _EXPECTED_QUESTIONS.items() if "levels" in cfg
 }
-
-_SESSION_LOCAL = threading.local()
 
 
 # ---------------------------------------------------------------------------
@@ -410,16 +377,19 @@ def build_questions(questions_file: str | None) -> tuple[dict, str | None]:
 
 
 def build_state(record: dict, chunk: dict) -> dict:
-    """Build the Decisions API state for one (record, chunk) pair.
+    """Build the Jev (System One) state for one (record, chunk) pair.
 
-    State is a JSON object of text fields (Jev accepts text only). The rubric
-    lives in the questions; the state carries the material to judge. No
-    similarity/retrieval scores are included.
+    State is a JSON object; each rubric references these fields by backticked
+    path (e.g. ``retrieved_chunk.text``). The rubric lives in the questions;
+    the state carries the material to judge. No similarity/retrieval scores
+    are included.
     """
     meta = chunk.get("chunk_metadata") or {}
     chunk_idx_1based = chunk.get("chunk_index", 0) + 1
     rag = (record.get("source_context") or {}).get("rag") or {}
-    justification = (rag.get("justification") or "").strip() or "No justification provided."
+    justification = (
+        rag.get("justification") or ""
+    ).strip() or "No justification provided."
 
     retrieved_chunk = {
         "chunk_identifier": f"[{chunk_idx_1based}]",
@@ -441,182 +411,75 @@ def build_state(record: dict, chunk: dict) -> dict:
 
 
 # ---------------------------------------------------------------------------
-# Jev client (Decisions API)
+# Jev client (TypeSafe Python SDK)
 # ---------------------------------------------------------------------------
 
 
-class _RetryableDecisionError(Exception):
-    """Transient Decisions API failure worth retrying with backoff."""
+def build_client(model: str | None) -> tuple[TypeSafeClient, str]:
+    """Create the Jev client and resolve the model id to send.
 
-    def __init__(self, message: str, retry_after_ms: float | None = None):
-        super().__init__(message)
-        self.retry_after_ms = retry_after_ms
-
-
-class _SharedPause:
-    """All worker threads wait together when the API asks us to slow down."""
-
-    def __init__(self) -> None:
-        self._lock = threading.Lock()
-        self._until = 0.0
-
-    def wait(self) -> None:
-        while True:
-            with self._lock:
-                remaining = self._until - time.monotonic()
-            if remaining <= 0:
-                return
-            time.sleep(min(remaining, 1.0))
-
-    def pause_for(self, seconds: float) -> None:
-        with self._lock:
-            self._until = max(self._until, time.monotonic() + max(0.0, seconds))
-
-
-_PAUSE = _SharedPause()
-
-
-def _get_session(api_key: str) -> requests.Session:
-    """Per-thread HTTP session (connection reuse without cross-thread state)."""
-    session = getattr(_SESSION_LOCAL, "session", None)
-    if session is None:
-        session = requests.Session()
-        session.headers.update(
-            {
-                "Authorization": f"Bearer {api_key}",
-                "Content-Type": "application/json",
-                "HTTP-Referer": "https://github.com/Jamo197/political-bias-detection",
-                "X-Title": "LLM Judge Calibration",
-            }
+    Prefers the native TypeSafe API (``TYPESAFE_API_KEY``); falls back to the
+    OpenRouter-compatible endpoint (``OPENROUTER_API_KEY_ME``) when no native
+    key is present. Returns the client and the resolved model id so callers can
+    record which model was requested; the response's ``model`` field records
+    the version that actually answered.
+    """
+    typesafe_key = os.getenv("TYPESAFE_API_KEY", "").strip()
+    if typesafe_key:
+        resolved = model or TYPESAFE_JEV_MODEL
+        return (
+            TypeSafeClient(
+                api_key=typesafe_key,
+                model=resolved,
+                timeout=REQUEST_TIMEOUT_SECONDS,
+                retry=RETRY_POLICY,
+            ),
+            resolved,
         )
-        _SESSION_LOCAL.session = session
-    return session
 
-
-def _parse_retry_after_ms(value: str | None) -> float | None:
-    """Use a numeric Retry-After header; ignore HTTP-date values."""
-    if value is None:
-        return None
-    try:
-        seconds = float(value)
-    except (TypeError, ValueError):
-        return None
-    if seconds < 0:
-        return None
-    return seconds * 1000
-
-
-def _is_in_flight_budget_error(body: str) -> bool:
-    """402 is only retryable when the in-flight spending budget is full."""
-    try:
-        payload = json.loads(body)
-    except ValueError:
-        return False
-    if not isinstance(payload, dict):
-        return False
-    error = payload.get("error")
-    if not isinstance(error, dict):
-        return False
-    metadata = error.get("metadata")
-    return (
-        isinstance(metadata, dict)
-        and metadata.get("limit_source") == "openrouter_in_flight_budget"
-    )
-
-
-def _post_decision_once(
-    state: dict,
-    questions: dict,
-    model: str,
-    api_key: str,
-    session_id: str | None = None,
-) -> dict:
-    """Single Decisions API request; raises _RetryableDecisionError for 429 /
-    5xx / in-flight-budget 402, RuntimeError for everything else."""
-    session = _get_session(api_key)
-    payload: dict = {"model": model, "state": state, "questions": questions}
-    if session_id:
-        # Groups this run's requests in OpenRouter observability; never sent
-        # to the provider.
-        payload["session_id"] = session_id
-    try:
-        resp = session.post(
-            DECISIONS_URL,
-            json=payload,
-            timeout=REQUEST_TIMEOUT_SECONDS,
+    openrouter_key = os.getenv("OPENROUTER_API_KEY_ME", "").strip()
+    if openrouter_key:
+        resolved = model or OPENROUTER_JEV_MODEL
+        return (
+            TypeSafeClient(
+                api_key=openrouter_key,
+                base_url=OPENROUTER_BASE_URL,
+                model=resolved,
+                timeout=REQUEST_TIMEOUT_SECONDS,
+                retry=RETRY_POLICY,
+            ),
+            resolved,
         )
-    except requests.RequestException as e:
-        raise _RetryableDecisionError(f"Decisions request failed: {e}") from e
 
-    if resp.status_code != 200:
-        body = resp.text
-        retry_after_ms = _parse_retry_after_ms(resp.headers.get("Retry-After"))
-        transient = (
-            resp.status_code == 429
-            or resp.status_code >= 500
-            or (resp.status_code == 402 and _is_in_flight_budget_error(body))
-        )
-        if transient:
-            raise _RetryableDecisionError(
-                f"Decisions {resp.status_code}: {body[:400]}", retry_after_ms
-            )
-        raise RuntimeError(f"Decisions {resp.status_code}: {body[:400]}")
-
-    try:
-        return resp.json()
-    except ValueError as e:
-        raise _RetryableDecisionError(f"Decisions returned invalid JSON: {e}") from e
-
-
-def call_jev(
-    state: dict,
-    questions: dict,
-    model: str,
-    api_key: str,
-    session_id: str | None = None,
-    max_attempts: int = MAX_ATTEMPTS,
-) -> dict:
-    """Decisions API call with shared backoff for transient failures."""
-    last_error: _RetryableDecisionError | None = None
-    for attempt in range(max_attempts):
-        _PAUSE.wait()
-        try:
-            return _post_decision_once(state, questions, model, api_key, session_id)
-        except _RetryableDecisionError as e:
-            last_error = e
-            if attempt + 1 >= max_attempts:
-                break
-            backoff_ms = e.retry_after_ms
-            if backoff_ms is None:
-                backoff_ms = min(30_000, 1_000 * 2**attempt) + random.uniform(0, 1_000)
-            _PAUSE.pause_for(backoff_ms / 1000)
-    raise (
-        last_error
-        if last_error is not None
-        else RuntimeError("Decisions request failed after retries")
+    raise SystemExit(
+        "Error: set TYPESAFE_API_KEY or OPENROUTER_API_KEY_ME in .env.local"
     )
 
 
 def judge_chunk(
+    client: TypeSafeClient,
     state: dict,
     questions: dict,
     model: str,
-    api_key: str,
-    session_id: str | None = None,
 ) -> dict:
-    """Judge one chunk; returns {'answers', 'usage', 'model'} (validated)."""
-    payload = call_jev(state, questions, model, api_key, session_id)
-    answers = payload.get("answers")
-    if not isinstance(answers, dict):
-        raise RuntimeError(f"Decisions response has no answers object: {str(payload)[:400]}")
+    """Judge one chunk via the SDK; returns {'answers', 'usage', 'model'}.
 
-    validated = {}
+    The SDK already validates the response against its answer schema; the
+    checks below only guard the fields the metrics rely on. Answers are
+    converted to plain dicts so the raw values can be stored in the JSONL and
+    re-derived offline.
+    """
+    response = client.system_one(state=state, questions=questions, model=model)
+
+    validated: dict[str, dict] = {}
     for name, expected in _EXPECTED_QUESTIONS.items():
-        ans = answers.get(name)
-        if not isinstance(ans, dict) or ans.get("type") != expected["type"]:
-            raise RuntimeError(
-                f"Missing or malformed answer for '{name}': {str(ans)[:200]}"
-            )
+        ans = response.answers.get(name)
+        if ans is None or ans.type != expected["type"]:
+            raise RuntimeError(f"Missing or malformed answer for '{name}': {ans!r}")
+        validated[name] = ans.model_dump()
+
+    for name, expected in _EXPECTED_QUESTIONS.items():
+        ans = validated[name]
         if expected["type"] == "score":
             score = ans.get("score")
             if not isinstance(score, (int, float)) or isinstance(score, bool):
@@ -626,20 +489,30 @@ def judge_chunk(
                 if not isinstance(probs, dict):
                     raise RuntimeError(f"Answer '{name}' has malformed probabilities")
                 for key, value in probs.items():
-                    if not isinstance(value, (int, float)) or isinstance(value, bool) or not 0 <= value <= 1:
+                    if (
+                        not isinstance(value, (int, float))
+                        or isinstance(value, bool)
+                        or not 0 <= value <= 1
+                    ):
                         raise RuntimeError(
                             f"Answer '{name}' has invalid probability {key}={value!r}"
                         )
         else:  # noul
             noul = ans.get("noul")
-            if not isinstance(noul, (int, float)) or isinstance(noul, bool) or not 0 <= noul <= 1:
+            if (
+                not isinstance(noul, (int, float))
+                or isinstance(noul, bool)
+                or not 0 <= noul <= 1
+            ):
                 raise RuntimeError(f"Answer '{name}' has no valid noul probability")
-        validated[name] = ans
 
-    usage = payload.get("usage")
-    if not isinstance(usage, dict):
-        usage = {}
-    return {"answers": validated, "usage": usage, "model": payload.get("model")}
+    usage = response.usage.model_dump()
+    # The native TypeSafe API reports tokens only; OpenRouter also reports cost.
+    raw_usage = (response.raw_http_response.json() or {}).get("usage") or {}
+    if raw_usage.get("cost") is not None:
+        usage["cost"] = raw_usage["cost"]
+
+    return {"answers": validated, "usage": usage, "model": response.model}
 
 
 # ---------------------------------------------------------------------------
@@ -658,7 +531,7 @@ def _score_label_from_probabilities(answer: dict, n_levels: int) -> int | None:
         try:
             idx = int(key)
             p = float(value)
-        except (TypeError, ValueError):
+        except TypeError, ValueError:
             continue
         if not 0 <= idx < n_levels:
             continue
@@ -691,8 +564,8 @@ def derive_labels(
 ) -> dict:
     """Turn raw Jev answers into integer labels on the human scales.
 
-    The rubric's hard gating rule (R_top <= 2 -> N_info = 1) is enforced
-    deterministically here, because Decisions questions are answered
+    The rubric's hard gating rule is enforced
+    deterministically here, because System One questions are answered
     independently and cannot see each other's answers.
     """
     labels = {}
@@ -700,8 +573,6 @@ def derive_labels(
         labels[dim] = derive_score_label(raw_answers[dim], score_label_mode, n_levels)
     noul = float(raw_answers["A_caus"].get("noul", 0.0))
     labels["A_caus"] = 1 if noul >= a_caus_threshold else 0
-    if labels["R_top"] <= 2:
-        labels["N_info"] = 1
     return labels
 
 
@@ -734,11 +605,9 @@ def run_judging(
         json.dumps(questions, sort_keys=True, ensure_ascii=False).encode("utf-8")
     ).hexdigest()[:16]
 
-    # OpenRouter API key (Decisions API uses the same key as chat models)
-    api_key = os.getenv("OPENROUTER_API_KEY_ME", "")
-    if not api_key:
-        print("Error: OPENROUTER_API_KEY_ME not set in .env.local", file=sys.stderr)
-        sys.exit(1)
+    # Jev client: the native TypeSafe API when TYPESAFE_API_KEY is set,
+    # otherwise the OpenRouter-compatible endpoint.
+    client, args.model = build_client(args.model)
 
     print(f"Judge model: {args.model}")
     print(
@@ -747,12 +616,8 @@ def run_judging(
     )
     print(f"Judging {len(tasks)} chunk(s) at concurrency {args.concurrency}")
 
-    # Groups this run's Decisions requests in OpenRouter observability
-    # (private logging / Broadcast); never sent to the provider.
-    session_id = f"llm-judge-{getattr(args, 'run_id', None) or 'run'}"
-
     def _human(chunk: dict) -> dict:
-        return {k: chunk.get(k) for k in ("R_top", "R_ideo", "N_info", "A_caus")}
+        return {k: chunk.get(k) for k in ("R_top", "R_ideo", "A_caus")}
 
     def _process(record: dict, chunk: dict) -> dict:
         base = {
@@ -765,7 +630,7 @@ def run_judging(
         }
         try:
             state = build_state(record, chunk)
-            judged = judge_chunk(state, questions, args.model, api_key, session_id)
+            judged = judge_chunk(client, state, questions, args.model)
             labels = derive_labels(
                 judged["answers"], args.score_label_mode, args.a_caus_threshold
             )
@@ -818,6 +683,7 @@ def run_judging(
             for res in results:
                 handle.write(json.dumps(res, ensure_ascii=False) + "\n")
 
+    client.close()
     return results, failed, questions_hash
 
 
@@ -884,7 +750,6 @@ def compute_metrics(results: list[dict]) -> dict:
     dims = {
         "R_top": {"ordinal": True, "labels": [1, 2, 3, 4, 5]},
         "R_ideo": {"ordinal": True, "labels": [1, 2, 3, 4, 5]},
-        "N_info": {"ordinal": False, "labels": [1, 2, 3]},
         "A_caus": {"ordinal": False, "labels": [0, 1]},
     }
     per_dim = {}
@@ -985,12 +850,15 @@ def get_low_confidence(
         if "error" in r or "raw_answers" not in r:
             continue
         issues = []
-        for dim in ("R_top", "R_ideo", "N_info"):
+        for dim in ("R_top", "R_ideo"):
             conf = (r["raw_answers"].get(dim) or {}).get("confidence")
             if conf is not None and conf < floor:
                 issues.append({"dimension": dim, "confidence": float(conf)})
         noul = (r["raw_answers"].get("A_caus") or {}).get("noul")
-        if noul is not None and abs(float(noul) - a_caus_threshold) <= near_threshold_margin:
+        if (
+            noul is not None
+            and abs(float(noul) - a_caus_threshold) <= near_threshold_margin
+        ):
             issues.append(
                 {
                     "dimension": "A_caus",
@@ -1067,7 +935,7 @@ def print_and_save_report(
     header = f"{'Dim':<12} {'n':>6} {'Agree%':>7} {'κ/κ_w':>7} {'MeanΔ':>7} {'Conf':>6}"
     print(header)
     print("-" * len(header))
-    for dim in ["R_top", "R_ideo", "N_info", "A_caus"]:
+    for dim in ["R_top", "R_ideo", "A_caus"]:
         d = per_dim[dim]
         if d is None:
             print(f"{dim:<12} {'—':>6} {'—':>7} {'—':>7} {'—':>7} {'—':>6}")
@@ -1083,7 +951,7 @@ def print_and_save_report(
         )
 
     print("\nConfusion matrices:")
-    for dim in ["R_top", "R_ideo", "N_info", "A_caus"]:
+    for dim in ["R_top", "R_ideo", "A_caus"]:
         d = per_dim[dim]
         if d is None:
             continue
@@ -1155,14 +1023,15 @@ def print_and_save_report(
 
 def _build_arg_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        description="Run the Jev (TypeSafe System One) judge via the OpenRouter "
-        "Decisions API against human chunk annotations and compute agreement metrics."
+        description="Run the Jev (TypeSafe System One) judge via the TypeSafe "
+        "Python SDK against human chunk annotations and compute agreement metrics."
     )
     parser.add_argument(
         "--model",
-        default=JEV_MODEL,
-        help="OpenRouter Decisions model ID (default: typesafe/jev-1.13, pinned "
-        "so thresholds stay tuned against one version)",
+        default=None,
+        help="Model id to send (default: native TypeSafe "
+        f"{TYPESAFE_JEV_MODEL} when TYPESAFE_API_KEY is set, else OpenRouter "
+        f"{OPENROUTER_JEV_MODEL}). The response records the version that answered.",
     )
     parser.add_argument(
         "--annotations",
@@ -1236,7 +1105,7 @@ def main() -> None:
     args = parser.parse_args()
 
     run_id = args.run_id or datetime.now().strftime("%Y-%m-%d_%H%M%S")
-    args.run_id = run_id  # resolved run id, used for the Decisions session_id
+    args.run_id = run_id  # resolved run id, used for per-run output paths
     output_dir = Path(args.output_root) / run_id
     output_dir.mkdir(parents=True, exist_ok=True)
     print(f"Output directory: {output_dir.resolve()}")
@@ -1261,6 +1130,16 @@ def main() -> None:
             (r.get("questions_hash") for r in results if r.get("questions_hash")),
             "unknown",
         )
+        if not args.model:
+            # Recover the model from the stored records when rederiving offline.
+            args.model = next(
+                (
+                    r.get("response_model") or r.get("model")
+                    for r in results
+                    if r.get("response_model") or r.get("model")
+                ),
+                "unknown",
+            )
         rederived_from = args.rederive_from
         print(
             f"Rederiving labels for {len(results)} record(s) from "
