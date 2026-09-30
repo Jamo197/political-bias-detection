@@ -80,7 +80,9 @@ TYPESAFE_JEV_MODEL = os.getenv("TYPESAFE_JEV_MODEL", "jev-1.13.0")
 OPENROUTER_BASE_URL = "https://openrouter.ai/api"
 OPENROUTER_JEV_MODEL = os.getenv("OPENROUTER_JEV_MODEL", "~typesafe/jev-latest")
 
-DEFAULT_ANNOTATIONS_PATH = "RAG Analysis/qualitative_annotations.jsonl"
+DEFAULT_ANNOTATIONS_PATH = (
+    "RAG Analysis/human_annotations/Jannes_qualitative_annotations.jsonl"
+)
 DEFAULT_OUTPUT_ROOT = "RAG Analysis"
 DEFAULT_OUTPUT_LOG = "RAG Analysis/llm_judge_annotations.jsonl"
 
@@ -288,7 +290,7 @@ JEV_QUESTIONS = {
     },
 }
 
-# Expected shape of the four questions (used to validate --questions-file and
+# Expected shape of the three questions (used to validate --questions-file and
 # the answers that come back).
 _EXPECTED_QUESTIONS = {
     "R_top": {"type": "score", "levels": 5},
@@ -1172,3 +1174,14 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+    # results_path = Path(
+    #     "/Users/janneslampe/Desktop/Coding/Master Thesis/Evaluation/RAG Analysis/2026-09-28_135204/llm_judge_annotations.jsonl"
+    # )
+    # if not results_path.is_file():
+    #     raise FileNotFoundError(f"Results file not found: {results_path}")
+
+    # results = load_results_from_jsonl(results_path)
+    # if not results:
+    #     raise ValueError(f"No result records found in: {results_path}")
+
+    # print(json.dumps(compute_metrics(results), indent=2))
