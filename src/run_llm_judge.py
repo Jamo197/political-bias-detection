@@ -41,6 +41,16 @@ report into a timestamped subfolder under ``RAG Analysis/<run_id>/`` (similar
 to how ``evaluate_metrics.py`` organizes results). The append-only log still
 accumulates across runs.
 
+Two snapshots are written per run, both carrying the same judgments:
+
+* ``llm_judge_annotations.jsonl`` — flat, one line per (record, chunk) pair;
+  used for metrics and ``--rederive-from`` (keeps the raw probabilities).
+* ``llm_judge_qualitative_annotations.jsonl`` — grouped into one line per text
+  with a ``chunk_annotations`` list, mirroring the human annotation files, so
+  the judge's ``R_top`` / ``R_ideo`` / ``A_caus`` labels can be compared
+  directly against an annotator's file. ``--rederive-from`` accepts either
+  format.
+
 For calibration iterations, edit the JEV_QUESTIONS constant at the top of
 this file or pass ``--questions-file`` (a JSON file with the same shape).
 """
@@ -85,6 +95,10 @@ DEFAULT_ANNOTATIONS_PATH = (
 )
 DEFAULT_OUTPUT_ROOT = "RAG Analysis"
 DEFAULT_OUTPUT_LOG = "RAG Analysis/llm_judge_annotations.jsonl"
+# Human-annotation-style snapshot: one JSON object per text (matching the
+# files produced by run_streamlit.py), with the judge labels placed in the
+# same R_top / R_ideo / A_caus keys so the two can be diffed directly.
+GROUPED_SNAPSHOT_NAME = "llm_judge_qualitative_annotations.jsonl"
 
 DEFAULT_A_CAUS_THRESHOLD = 0.5
 DEFAULT_SCORE_LABEL_MODE = "argmax"  # "argmax" | "round"
@@ -584,7 +598,9 @@ def derive_labels(
 
 
 def run_judging(
-    args: argparse.Namespace, run_snapshot_path: Path | None = None
+    args: argparse.Namespace,
+    run_snapshot_path: Path | None = None,
+    grouped_snapshot_path: Path | None = None,
 ) -> tuple[list[dict], int, str]:
     """Load annotations, judge chunks with Jev, write log, return results."""
     records = load_existing_annotations(args.annotations)
@@ -684,9 +700,156 @@ def run_judging(
         with run_snapshot_path.open("w", encoding="utf-8") as handle:
             for res in results:
                 handle.write(json.dumps(res, ensure_ascii=False) + "\n")
+        print(f"Flat annotations saved to: {run_snapshot_path}")
+
+    # Write the human-annotation-style snapshot (one line per text) so the
+    # judge labels can be compared against an annotator's file directly.
+    if grouped_snapshot_path:
+        grouped_records = build_judge_annotation_records(
+            results, records, args.model
+        )
+        grouped_snapshot_path.parent.mkdir(parents=True, exist_ok=True)
+        with grouped_snapshot_path.open("w", encoding="utf-8") as handle:
+            for rec in grouped_records:
+                handle.write(json.dumps(rec, ensure_ascii=False) + "\n")
+        print(f"Grouped annotations saved to: {grouped_snapshot_path}")
 
     client.close()
     return results, failed, questions_hash
+
+
+def _chunk_lookup(records: dict) -> dict:
+    """Map (text_index, chunk_index) -> original chunk annotation dict."""
+    lookup = {}
+    for text_index, record in records.items():
+        for chunk in record.get("chunk_annotations", []):
+            lookup[(text_index, chunk.get("chunk_index"))] = chunk
+    return lookup
+
+
+def build_judge_annotation_records(
+    results: list[dict],
+    records: dict,
+    model: str,
+) -> list[dict]:
+    """Group flat per-chunk judge results into human-style per-text records.
+
+    Mirrors the shape written by ``run_streamlit.build_annotation_record`` so a
+    judge run and a human annotator's file can be compared key-for-key. The
+    judge's integer labels live in the same ``R_top`` / ``R_ideo`` / ``A_caus``
+    fields; the original human labels are kept under ``human_labels`` and the
+    raw probabilities under ``raw_answers`` so ``--rederive-from`` still works.
+    """
+    chunk_lookup = _chunk_lookup(records)
+
+    grouped: dict = {}
+    order: list = []
+    for res in results:
+        text_index = res.get("text_index")
+        if text_index not in grouped:
+            grouped[text_index] = []
+            order.append(text_index)
+        grouped[text_index].append(res)
+
+    annotation_records = []
+    for text_index in order:
+        sample = records.get(text_index, {})
+        entries = sorted(
+            grouped[text_index],
+            key=lambda r: (r.get("chunk_index") is None, r.get("chunk_index")),
+        )
+        chunk_annotations = []
+        for res in entries:
+            chunk = chunk_lookup.get(
+                (text_index, res.get("chunk_index")), {}
+            )
+            meta = chunk.get("chunk_metadata") or {}
+            labels = res.get("derived_labels") or {}
+            annotation = {
+                "chunk_index": res.get("chunk_index"),
+                "chunk_text": (chunk.get("chunk_text") or "").strip(),
+                "chunk_metadata": {
+                    "party": meta.get("party", ""),
+                    "speaker": meta.get("speaker", ""),
+                    "source": meta.get("source", ""),
+                    "score": meta.get("score", 0.0),
+                },
+                "R_top": labels.get("R_top"),
+                "R_ideo": labels.get("R_ideo"),
+                "A_caus": labels.get("A_caus"),
+                "notes": "",
+                "timestamp": res.get("timestamp"),
+                # Judge-only extras: not part of the human schema, kept so a
+                # grouped snapshot can be re-derived/audited offline.
+                "human_labels": res.get("human"),
+                "response_model": res.get("response_model"),
+                "raw_answers": res.get("raw_answers"),
+                "label_config": res.get("label_config"),
+                "usage": res.get("usage"),
+            }
+            if "error" in res:
+                annotation["error"] = res["error"]
+            chunk_annotations.append(annotation)
+
+        source_context = sample.get("source_context") or {
+            "text_index": text_index,
+            "quadrant": None,
+            "input_metadata": {},
+            "ground_truth": {},
+            "metrics": {},
+            "baseline": {},
+            "rag": {},
+        }
+        sample_manifest = sample.get("sample_manifest") or {
+            "seed": None,
+            "sample_limit": None,
+            "text_index": text_index,
+        }
+        annotation_records.append(
+            {
+                "text_index": text_index,
+                "input_text": sample.get("input_text", ""),
+                "source_context": source_context,
+                "sample_manifest": sample_manifest,
+                "chunk_annotations": chunk_annotations,
+                "annotator": model,
+                "sample_notes": "",
+                "timestamp": datetime.now(timezone.utc).isoformat(),
+            }
+        )
+    return annotation_records
+
+
+def flatten_annotation_records(records: list[dict]) -> list[dict]:
+    """Flatten human-style grouped records into per-chunk judge results.
+
+    Inverse of ``build_judge_annotation_records``; lets ``--rederive-from``
+    read either the grouped or the flat snapshot.
+    """
+    results = []
+    for record in records:
+        if not isinstance(record.get("chunk_annotations"), list):
+            results.append(record)
+            continue
+        text_index = record.get("text_index")
+        for entry in record.get("chunk_annotations", []):
+            res = {
+                "text_index": text_index,
+                "chunk_index": entry.get("chunk_index"),
+                "response_model": entry.get("response_model"),
+                "raw_answers": entry.get("raw_answers"),
+                "derived_labels": {
+                    k: entry.get(k) for k in ("R_top", "R_ideo", "A_caus")
+                },
+                "label_config": entry.get("label_config"),
+                "usage": entry.get("usage"),
+                "timestamp": entry.get("timestamp"),
+                "human": entry.get("human_labels"),
+            }
+            if "error" in entry:
+                res["error"] = entry["error"]
+            results.append(res)
+    return results
 
 
 # ---------------------------------------------------------------------------
@@ -1097,7 +1260,8 @@ def _build_arg_parser() -> argparse.ArgumentParser:
         "--rederive-from",
         default=None,
         help="Skip the API and recompute metrics from a previous run's JSONL "
-        "(stored raw answers) with the current thresholds and label mode",
+        "(stored raw answers) with the current thresholds and label mode. "
+        "Accepts either the flat or the grouped (human-style) snapshot.",
     )
     return parser
 
@@ -1124,6 +1288,12 @@ def main() -> None:
                 file=sys.stderr,
             )
             sys.exit(1)
+        # Accept either the flat per-chunk snapshot or the grouped
+        # human-annotation-style snapshot.
+        if any(
+            isinstance(r.get("chunk_annotations"), list) for r in results
+        ):
+            results = flatten_annotation_records(results)
         results = rederive_labels_in_place(
             results, args.score_label_mode, args.a_caus_threshold
         )
@@ -1149,7 +1319,10 @@ def main() -> None:
         )
     else:
         run_snapshot_path = output_dir / "llm_judge_annotations.jsonl"
-        results, failed, questions_hash = run_judging(args, run_snapshot_path)
+        grouped_snapshot_path = output_dir / GROUPED_SNAPSHOT_NAME
+        results, failed, questions_hash = run_judging(
+            args, run_snapshot_path, grouped_snapshot_path
+        )
         rederived_from = None
 
     per_dim = compute_metrics(results)
