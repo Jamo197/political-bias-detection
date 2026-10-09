@@ -18,6 +18,27 @@ except ImportError:
 
 logger = logging.getLogger(__name__)
 
+# CHES 2019 codebook definition of LRGEN, shown when the country is stated (RQ2).
+# No party positions are given, only the scale and where the text comes from.
+CHES_LRGEN_DEFINITION = (
+    "Scale definition (Chapel Hill Expert Survey, LRGEN): the overall ideological "
+    "stance of a party, as placed by experts on the party system of its own country. "
+    "Left parties favour economic redistribution and state intervention and/or "
+    "progressive, libertarian social values; right parties favour market liberalism "
+    "and/or traditional, authoritarian or nationalist values. 1.0 = extreme left, "
+    "4.0 = centre, 7.0 = extreme right."
+)
+
+
+def country_instructions(country: str) -> str:
+    """Prompt block for the RQ2 'country stated' conditions (C1-C5)."""
+    return (
+        f"The target text was written by a politician in {country}. "
+        f"Score it relative to the party system of {country}, i.e. where experts on "
+        f"{country} would place this position, not on a generic or foreign scale. "
+        f"{CHES_LRGEN_DEFINITION}"
+    )
+
 
 class BiasPredictor:
     """Unified political bias evaluator with configurable LLM backend.
@@ -47,7 +68,13 @@ class BiasPredictor:
         model_id: str,
         context_chunks: Optional[List[Dict[str, Any]]] = None,
         is_rag_mode: bool = True,
+        country: Optional[str] = None,
     ) -> dict:
+        """Score ``text`` on the 1-7 left-right scale.
+
+        ``country`` (RQ2 C1-C5) adds the country and the CHES scale definition to
+        the system prompt. With ``country=None`` the prompt is exactly the RQ1 one.
+        """
         if is_rag_mode and context_chunks:
             rag_instructions = (
                 "You are provided with 'Retrieved Context Chunks' from historical speeches. "
@@ -75,6 +102,9 @@ class BiasPredictor:
                 "using standard left-right political spectrum criteria."
             )
             context_block = "\n\n"
+
+        if country:
+            rag_instructions += "\n\n            " + country_instructions(country)
 
         system_prompt = f"""
             You are an expert political scientist specializing in comparative European parliamentary politics.

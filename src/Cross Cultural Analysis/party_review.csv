@@ -1,0 +1,266 @@
+country_code,party,party_abbr,party_official,ches_party_id,ches_abbr,ches_last_year,id_matches_country,tweets
+at,OK,OK,OK,1301,SPO,2024,True,455
+at,Social Democratic Party,,Sozialdemokratische Partei Österreichs,1301,SPO,2024,True,3161
+at,Sozialdemokratische Partei Österreichs,,Sozialdemokratische Partei Österreichs,1301,SPO,2024,True,4395
+at,Social Democratic Party,SPÖ,Social Democratic Party,1301,SPO,2024,True,44525
+at,Austrian People's Party ,,Österreichische Volkspartei,1302,OVP,2024,True,492
+at,Austrian People's Party ,ÖVP,Austrian People's Party ,1302,OVP,2024,True,1995
+at,Österreichische Volkspartei,,Österreichische Volkspartei,1302,OVP,2024,True,5060
+at,Freiheitliche Partei Österreichs,,Freiheitliche Partei Österreichs,1303,FPO,2024,True,3700
+at,Freedom Party,FPÖ,Freedom Party,1303,FPO,2024,True,8671
+at,The Greens,GRÜNE,The Greens,1304,Grune,2024,True,24919
+at,The New Austria and Liberal Forum ,NEOS,The New Austria and Liberal Forum ,1306,NEOS,2024,True,43262
+be,Parti Socialiste,,Parti Socialiste,102,PS,2024,True,4034
+be,Parti Socialiste ,PS,Parti Socialiste,102,PS,2024,True,5827
+be,Parti Socialiste,PS,Parti Socialiste,102,PS,2024,True,9020
+be,Socialistische Partij Anders ,SPA,Socialistische Partij Anders ,103,Vooruit,2024,True,1097
+be,Socialistische partij anders,SPA,Socialistische Partij Anders ,103,Vooruit,2024,True,5214
+be,Ecologistes Confédérés pour l'organisation de luttes originales Groen ,ECOLO,Ecologistes Confédérés pour l'organisation de luttes originales Groen,104,Ecolo,2024,True,3674
+be,Ecolo-Groen,ECOLO,Ecolo-Groen,104,Ecolo,2024,True,8056
+be,Ecologistes Confédérés pour l'organisation de luttes originales Groen ,ECOLO,Ecolo-Groen,104,Ecolo,2024,True,8056
+be,Groen,,Groen,105,Groen,2024,True,1608
+be,Mouvement Réformateur,,Mouvement Réformateur,106,MR,2024,True,5248
+be,Mouvement Réformateur ,,Mouvement Réformateur,106,MR,2024,True,12637
+be,Open Vlaamse Liberalen en Democraten ,,Open Vlaamse Liberalen en Democraten,107,Open Vld,2024,True,2934
+be,Open Vlaamse liberalen en democraten,,Open Vlaamse Liberalen en Democraten,107,Open Vld,2024,True,6423
+be,Open Vlaamse Liberalen en Democraten,,Open Vlaamse Liberalen en Democraten,107,Open Vld,2024,True,7824
+be,Centre démocrate humaniste ,cdH,Centre démocrate humaniste ,108,LE,2024,True,249
+be,Centre démocrate humaniste ,,Centre Démocrate Humaniste,108,LE,2024,True,4861
+be,centre démocrate Humaniste,,Centre Démocrate Humaniste,108,LE,2024,True,5204
+be,Christen-Democratisch en Vlaams ,,Christen-Democratisch & Vlaams,109,CD&V,2024,True,4662
+be,Christen-Democratisch & Vlaams,,Christen-Democratisch & Vlaams,109,CD&V,2024,True,8575
+be,New Flemish Alliance ,,Nieuw-Vlaamse Alliantie,110,NVA,2024,True,8189
+be,Nieuw-Vlaamse Alliantie,,Nieuw-Vlaamse Alliantie,110,NVA,2024,True,31821
+be,Démocrate Fédéraliste Indépendant,,Démocrate Fédéraliste Indépendant,111,DeFl,2024,True,4803
+be,Vlaams Belang,,Vlaams Belang,112,VB,2024,True,23745
+be,Parti du Travail de Belgique,,Parti du Travail de Belgique,119,PVDA-PTB,2024,True,2113
+be,Workers' Party of Belgium,PVDA-PTB,Workers' Party of Belgium,119,PVDA-PTB,2024,True,2306
+be,PVDA-PTB,PVDA-PTB,Workers' Party of Belgium,119,PVDA-PTB,2024,True,2306
+be,PVDA-PTB,PVDA-PTB,PVDA-PTB,119,PVDA-PTB,2024,True,3266
+de,CSU,,CDU/CSU,301,CDU,2024,True,7926
+de,CDU,CDU,CDU,301,CDU,2024,True,13633
+de,Christlich Demokratische Union Deutschlands,,Christlich Demokratische Union Deutschlands,301,CDU,2024,True,29665
+de,CDU,,CDU/CSU,301,CDU,2024,True,91847
+de,CDU/CSU,,CDU/CSU,301,CDU,2024,True,98133
+de,SPD,,Sozialdemokratische Partei Deutschlands,302,SPD,2024,True,3264
+de,Sozialdemokratische Partei Deutschlands,,Sozialdemokratische Partei Deutschlands,302,SPD,2024,True,26533
+de,SPD,SPD,SPD,302,SPD,2024,True,193605
+de,FDP,,Freie Demokratische Partei,303,FDP,2024,True,5177
+de,Freie Demokratische Partei,,Freie Demokratische Partei,303,FDP,2024,True,8593
+de,FDP,FDP,FDP,303,FDP,2024,True,97485
+de,Bündnis 90/Die Grünen,,Bündnis 90/Die Grünen,304,Grunen,2024,True,87351
+de,Alliance 90/The Greens,Grunen,Alliance 90/The Greens,304,Grunen,2024,True,185596
+de,The Left Party,,DIE LINKE.,306,LINKE,2024,True,12651
+de,DIE LINKE.,,DIE LINKE.,306,LINKE,2024,True,18893
+de,The Left Party,Linke,The Left Party,306,LINKE,2024,True,140492
+de,CSU,CSU,CSU,308,CSU,2024,True,1330
+de,AfD,,Alternative für Deutschland,310,AfD,2024,True,979
+de,Alternative für Deutschland,,Alternative für Deutschland,310,AfD,2024,True,8264
+de,AfD,AfD,AfD,310,AfD,2024,True,84377
+de,Piratenpartei Deutschland,,Piratenpartei Deutschland,311,Piraten,2019,True,2705
+de,Freie Wähler,,Freie Wähler,314,FW,2024,True,558
+dk,The Social Democratic Party,SD,The Social Democratic Party,201,S,2024,True,53293
+dk,The Social Liberal Party,,Det Radikale Venstre,202,RV,2024,True,361
+dk,Det Radikale Venstre,,Det Radikale Venstre,202,RV,2024,True,19290
+dk,The Social Liberal Party,,The Social Liberal Party,202,RV,2024,True,22286
+dk,The Conservative People's Party,KF,The Conservative Party,203,DKF,2024,True,24928
+dk,Socialistisk Folkeparti,,Socialistisk Folkeparti,206,SF,2024,True,4785
+dk,The Socialist People's Party,SF,The Socialist People's Party,206,SF,2024,True,22913
+dk,The Liberal Party,,"Venstre, Danmarks Liberale Parti",211,V,2024,True,81
+dk,"Venstre, Danmarks Liberale Parti",,"Venstre, Danmarks Liberale Parti",211,V,2024,True,623
+dk,The Liberal Party,V,The Liberal Party,211,V,2024,True,30315
+dk,Enhedslisten,EL,The Red-Green Alliance,213,EL,2024,True,2118
+dk,The Red-Green Alliance,EL,The Red-Green Alliance,213,EL,2024,True,16956
+dk,Dansk Folkeparti,,Dansk Folkeparti,215,DF,2024,True,903
+dk,The Danish People's Party,,Dansk Folkeparti,215,DF,2024,True,903
+dk,The Danish People's Party,DF,The Danish People's Party,215,DF,2024,True,18618
+dk,Liberal Alliance,LA,Liberal Alliance,218,LA,2024,True,12584
+dk,The Alternative,A,The Alternative,218,LA,2024,True,32247
+dk,Nye Borgerlige,NB,Nye Borgerlige,220,NB,2024,True,375
+fr,Parti Communiste Français,PCF,Parti Communiste Français,601,PCF,2024,True,8368
+fr,Gauche républicaine et socialiste,,Parti socialiste,602,PS,2024,True,764
+fr,Parti socialiste,,Parti socialiste,602,PS,2024,True,4860
+fr,Parti Socialiste,PS,Parti Socialiste,602,PS,2024,True,25313
+fr,Parti Radical de Gauche,,Parti Radical de Gauche,603,PRG,2014,True,4564
+fr,Liste Renaissance,,Europe Écologie,605,LE/EELV,2024,True,1812
+fr,Europe Écologie,,Europe Écologie,605,LE/EELV,2024,True,37274
+fr,Les Républicains,,Les Républicains,609,LR,2024,True,14367
+fr,Les Républicains,LR,Les Républicains,609,LR,2024,True,73417
+fr,Rassemblement national,RN,Front National,610,RN,2024,True,2548
+fr,Front national,,Front national,610,RN,2024,True,7404
+fr,Rassemblement national,,Front national,610,RN,2024,True,7404
+fr,Front national,RN,Front National,610,RN,2024,True,12820
+fr,Front National,RN,Front National,610,RN,2024,True,19234
+fr,Rassemblement national,,Rassemblement national,610,RN,2024,True,35278
+fr,Mouvement Démocrate,,Mouvement Démocrate,613,MoDem,2024,True,6626
+fr,Mouvement Démocrate,MoDem,Mouvement Démocrate,613,MoDem,2024,True,46370
+fr,Indépendant,,Indépendant,617,MEI,1999,True,331
+fr,Liste Renaissance,,Liste Renaissance,626,RE,2024,True,11357
+fr,La République en marche,,La République en marche,626,RE,2024,True,11427
+fr,En Marche,LREM,En Marche,626,RE,2024,True,355701
+fr,Front de Gauche,FI,La France Insoumise,627,FI,2024,True,7683
+fr,La France Insoumise,FI,La France Insoumise,627,FI,2024,True,45969
+fr,Debout la France,,Debout la France,628,DLF,2019,True,5080
+gb,Conservative Party,,Conservative Party,1101,CONS,2024,True,17601
+gb,Labour Party,,Labour Party,1102,LAB,2024,True,76570
+gb,Scottish National Party,,Scottish National Party,1105,SNP,2024,True,35894
+gb,Green Party,,Green Party,1107,GREEN,2024,True,40736
+gb,United Kingdom Independence Party,,United Kingdom Independence Party,1108,UKIP,2019,True,4683
+gb,The Brexit Party,,United Kingdom Independence Party,1108,UKIP,2019,True,4683
+gb,The Brexit Party,,The Brexit Party,1110,REF UK,2024,True,127207
+gr,DEMOCRATIC COALITION (Panhellenic Socialist Movement Democratic Left),PASOK,DEMOCRATIC COALITION (Panhellenic Socialist Movement Democratic Left),401,PASOK,2024,True,3751
+gr,Movement For Change,PASOK,DEMOCRATIC COALITION (Panhellenic Socialist Movement Democratic Left),401,PASOK,2024,True,3751
+gr,TO POTAMI (The River),ND,N.D. (New Democracy),402,ND,2024,True,301
+gr,Nea Demokratia,ND,N.D. (New Democracy),402,ND,2024,True,3311
+gr,Nea Demokratia,,Nea Demokratia,402,ND,2024,True,26104
+gr,N.D. (New Democracy),ND,N.D. (New Democracy),402,ND,2024,True,141626
+gr,Coalition of the Radical Left,SYRIZA,SYRIZA (Coalition of the Radical Left),403,SYRIZA,2024,True,1019
+gr,Coalition of the Radical Left,,Coalition of the Radical Left,403,SYRIZA,2024,True,15805
+gr,SYRIZA (Coalition of the Radical Left),SYRIZA,SYRIZA (Coalition of the Radical Left),403,SYRIZA,2024,True,84118
+gr,K.K.E. (Communist Party of Greece),KKE,K.K.E. (Communist Party of Greece),404,KKE,2024,True,20605
+gr,The Greek Solution,EL,The Greek Solution,416,EL,2024,True,35091
+gr,Independent,,Independent,417,MR25,2019,True,6213
+gr,MeRa25,,Independent,417,MR25,2019,True,6213
+gr,MeRa25,MR25,MeRa25,417,MR25,2019,True,20038
+it,MISTO,PD,PARTITO DEMOCRATICO,802,DS,2006,True,141
+it,Lega Nord,LN,LEGA - SALVINI PREMIER,811,Lega,2024,True,2121
+it,LEGA NORD E AUTONOMIE - LEGA DEI POPOLI - NOI CON SALVINI,LN,LEGA - SALVINI PREMIER,811,Lega,2024,True,10421
+it,Lega Nord,,Lega Nord,811,Lega,2024,True,12723
+it,Lega,,Lega Nord,811,Lega,2024,True,12723
+it,Lega,,Lega,811,Lega,2024,True,32530
+it,LEGA - SALVINI PREMIER,LN,LEGA - SALVINI PREMIER,811,Lega,2024,True,94885
+it,FORZA ITALIA - IL POPOLO DELLA LIBERTA - BERLUSCONI PRESIDENTE,,Partito Democratico,815,FI,2024,True,261
+it,Forza Italia,,Forza Italia,815,FI,2024,True,8356
+it,FORZA ITALIA - IL POPOLO DELLA LIBERTA - BERLUSCONI PRESIDENTE,FI,FORZA ITALIA - BERLUSCONI PRESIDENTE,815,FI,2024,True,38982
+it,FORZA ITALIA - BERLUSCONI PRESIDENTE,FI,FORZA ITALIA - BERLUSCONI PRESIDENTE,815,FI,2024,True,82629
+it,Partito Democratico,PD,PARTITO DEMOCRATICO,837,PD,2024,True,898
+it,Partito Democratico,,Partito Democratico,837,PD,2024,True,35425
+it,PARTITO DEMOCRATICO,PD,PARTITO DEMOCRATICO,837,PD,2024,True,131836
+it,MISTO,,LIBERI E UGUALI,838,SI,2024,True,818
+it,ARTICOLO 1-MOVIMENTO DEMOCRATICO E PROGRESSISTA,,LIBERI E UGUALI,838,SI,2024,True,1476
+it,SINISTRA ITALIANA - SINISTRA ECOLOGIA LIBERTA - POSSIBILE,,LIBERI E UGUALI,838,SI,2024,True,16355
+it,LIBERI E UGUALI,,LIBERI E UGUALI,838,SI,2024,True,22666
+it,Fratelli d'Italia,,Fratelli d'Italia,844,FDI,2024,True,11
+it,Fratelli d'Italia,FdI,FRATELLI DITALIA,844,FDI,2024,True,1012
+it,FRATELLI DITALIA-ALLEANZA NAZIONALE,FdI,FRATELLI DITALIA,844,FDI,2024,True,6654
+it,FRATELLI DITALIA,FdI,FRATELLI DITALIA,844,FDI,2024,True,43730
+it,MOVIMENTO 5 STELLE,M5S,MOVIMENTO 5 STELLE,845,MS5,2024,True,69658
+lv,The New UNITY ,V,Unity,2402,LKS,2024,True,1367
+lv,Unity,V,Unity,2402,LKS,2024,True,1367
+lv,The New UNITY ,V,The New UNITY ,2402,LKS,2024,True,2349
+lv,Union of Greens and Farmers ,ZZS,Union of Greens and Farmers ,2405,ZZS,2024,True,5343
+lv,National Alliance “All For Latvia!”–“For Fatherland and Freedom/LNNK” ,TB-LNNK,"National Alliance ""All For Latvia!"""" – """"For Fatherland and Freedom/LNNK""""""",2406,TB-LNNK,2024,True,4079
+lv,"National Alliance \All For Latvia!\"" – \""For Fatherland and Freedom/LNNK\""""",TB-LNNK,"National Alliance ""All For Latvia!"""" – """"For Fatherland and Freedom/LNNK""""""",2406,TB-LNNK,2024,True,9775
+lv,Harmony,SDPS,Harmony,2410,Saskana,2024,True,539
+lv,Social Democratic Party “Concord”,SDPS,Harmony,2410,Saskana,2024,True,539
+lv,Political Party “KPV LV” ,KPV LV,Political Party “KPV LV” ,2415,KPV LV,2019,True,5343
+lv,The New Conservative Party ,JKP,The New Conservative Party ,2416,JKP,2019,True,11601
+lv,Attīstībai/Par!,,Attīstībai/Par!,2417,AP!,2024,True,458
+lv,Movement For!,AP!,Movement For!,2417,AP!,2024,True,1243
+lv,The New UNITY ,AP!,Movement For!,2417,AP!,2024,True,1243
+lv,"Partija \VIENOTĪBA\""""",AP!,For Development/For! ,2417,AP!,2024,True,3066
+lv,For Development/For! ,AP!,For Development/For! ,2417,AP!,2024,True,17913
+nl,CDA,CDA,Christian Democratic Appeal,1001,CDA,2024,True,3329
+nl,Christian Democratic Appeal,CDA,Christian Democratic Appeal,1001,CDA,2024,True,19190
+nl,PvdA,,Partij van de Arbeid,1002,PvdA,2024,True,519
+nl,PvdA,PvdA,Labour Party,1002,PvdA,2024,True,4053
+nl,Labour Party,PvdA,Labour Party,1002,PvdA,2024,True,10127
+nl,Partij van de Arbeid,,Partij van de Arbeid,1002,PvdA,2024,True,12195
+nl,Volkspartij voor Vrijheid en Democratie,VVD,People's Party for Freedom and Democracy,1003,VVD,2024,True,221
+nl,Volkspartij voor Vrijheid en Democratie,,Volkspartij voor Vrijheid en Democratie,1003,VVD,2024,True,1267
+nl,VVD,VVD,People's Party for Freedom and Democracy,1003,VVD,2024,True,4263
+nl,People's Party for Freedom and Democracy,VVD,People's Party for Freedom and Democracy,1003,VVD,2024,True,27220
+nl,Democraten 66,,Democraten 66,1004,D66,2024,True,5294
+nl,D66,D66,Democrats 66,1004,D66,2024,True,6391
+nl,Democrats 66,D66,Democrats 66,1004,D66,2024,True,22213
+nl,GroenLinks,,GroenLinks,1005,GL,2024,True,6802
+nl,GL,GL,GreenLeft,1005,GL,2024,True,7255
+nl,GreenLeft,GL,GreenLeft,1005,GL,2024,True,42327
+nl,SGP,SGP,Reformed Political Party,1006,SGP,2024,True,693
+nl,Staatkundig Gereformeerde Partij,,Staatkundig Gereformeerde Partij,1006,SGP,2024,True,1088
+nl,Reformed Political Party,SGP,Reformed Political Party,1006,SGP,2024,True,1825
+nl,SP,SP,Socialist Party,1014,SP,2024,True,14551
+nl,Socialist Party,SP,Socialist Party,1014,SP,2024,True,40227
+nl,CU,CU,Christian Union,1016,CU,2024,True,1164
+nl,ChristenUnie,,ChristenUnie,1016,CU,2024,True,1856
+nl,Christian Union,CU,Christian Union,1016,CU,2024,True,6118
+nl,PVV,PVV,Party for Freedom,1017,PVV,2024,True,11930
+nl,Party for Freedom,PVV,Party for Freedom,1017,PVV,2024,True,33805
+nl,Partij voor de Dieren,,Partij voor de Dieren,1018,PvdD,2024,True,996
+nl,PvdD,PvdD,Party for the Animals,1018,PvdD,2024,True,2925
+nl,Party for the Animals,PvdD,Party for the Animals,1018,PvdD,2024,True,8830
+nl,50PLUS,50PLUS,50PLUS,1020,50PLUS,2019,True,4555
+nl,DENK,DENK,DENK,1050,DENK,2024,True,5536
+nl,JA21,,Forum voor Democratie,1051,FvD,2024,True,1304
+nl,FVD,FvD,Forum for Democracy,1051,FvD,2024,True,5603
+nl,Forum for Democracy,FvD,Forum for Democracy,1051,FvD,2024,True,9678
+nl,Forum voor Democratie,,Forum voor Democratie,1051,FvD,2024,True,10464
+pl,Sojusz Lewicy Demokratycznej,,Sojusz Lewicy Demokratycznej,2601,Nowa Lewica,2024,True,7864
+pl,United Left, Lewica Razem,United Left,2601,Nowa Lewica,2024,True,120301
+pl,Civic Coalition,,Platforma Obywatelska,2603,PO,2024,True,1653
+pl,Civic Platform,,Platforma Obywatelska,2603,PO,2024,True,13020
+pl,Prawo i Sprawiedliwość,,Platforma Obywatelska,2603,PO,2024,True,18217
+pl,Civic Coalition,KO,Civic Coalition,2603,PO,2024,True,71974
+pl,Platforma Obywatelska,,Platforma Obywatelska,2603,PO,2024,True,81188
+pl,Civic Coalition,PO,Civic Platform,2603,PO,2024,True,174642
+pl,Civic Platform,PO,Civic Platform,2603,PO,2024,True,176722
+pl,Independent,I,Independent,2605,PiS,2024,True,498
+pl,Free and Solidary,PiS,Law and Justice,2605,PiS,2024,True,2090
+pl,Republikanie,PiS,Law and Justice,2605,PiS,2024,True,3438
+pl,Solidarna Polska Zbigniewa Ziobro,PiS,Law and Justice,2605,PiS,2024,True,4257
+pl,Kukiz15,PiS,Law and Justice,2605,PiS,2024,True,5468
+pl,Law and Justice,,Prawo i Sprawiedliwość,2605,PiS,2024,True,5832
+pl,Bezpartyjny,,Prawo i Sprawiedliwość,2605,PiS,2024,True,5961
+pl,Prawo i Sprawiedliwość,,Prawo i Sprawiedliwość,2605,PiS,2024,True,50729
+pl,Law and Justice,PiS,Law and Justice,2605,PiS,2024,True,503209
+pl,Polish People's Party-Kukiz15,,Polskie Stronnictwo Ludowe,2606,PSL,2024,True,2491
+pl,Confederation Liberty and Independence,Kukiz15,Kukiz15,2606,PSL,2024,True,2803
+pl,Polskie Stronnictwo Ludowe,,Polskie Stronnictwo Ludowe,2606,PSL,2024,True,3730
+pl,Polish People's Party-Kukiz15,PSL-Kukiz15,Polish People's Party-Kukiz15 ,2606,PSL,2024,True,12537
+pl,Polish People's Party-Kukiz15,PSL,Polish People's Party,2606,PSL,2024,True,15250
+pl,Polish People's Party,PSL,Polish People's Party,2606,PSL,2024,True,15418
+pl,Polish People's Party-Kukiz15,Kukiz15,Kukiz15,2617,Kukiz,2019,True,3637
+pl,Kukiz15,Kukiz15,Kukiz15,2617,Kukiz,2019,True,7199
+pl,Polish People's Party-Kukiz15,Nowo,Modern,2618,Nowo,2019,True,378
+pl,United Left,Nowo,Modern,2618,Nowo,2019,True,3040
+pl,Civic Coalition,Nowo,Modern,2618,Nowo,2019,True,44411
+pl,Modern,Nowo,Modern,2618,Nowo,2019,True,48158
+pl,Confederation Liberty and Independence,Konfederacia,Confederation Liberty and Independence,2619,Konfederacja,2024,True,23478
+pl,Wiosna,,Wiosna,2621,Wiosnia,2019,True,15831
+pt,Partido Popular,,Partido Popular,1202,CDS-PP,2024,True,1691
+pt,Partido do Centro Democrático Social-Partido Popular,,Partido Popular,1202,CDS-PP,2024,True,1691
+pt,Partido Socialista,,Partido Socialista,1205,PS,2024,True,4229
+pt,Partido Social Democrata,,Partido Social Democrata,1206,PPD/PSD,2024,True,9038
+pt,Bloco de Esquerda,,Bloco de Esquerda,1208,BE,2024,True,5827
+pt,Partido Comunista Português,,Partido Comunista Português,1210,PCP,2019,True,1168
+se,Vänsterpartiet ,,Vänsterpartiet ,1601,V,2024,True,828
+se,Vänsterpartiet,,Vänsterpartiet ,1601,V,2024,True,828
+se,Lft,V,Lft,1601,V,2024,True,99580
+se,Moderaterna,M,Mod,1602,SAP,2024,True,934
+se,Centerpartiet,,Centerpartiet,1603,C,2024,True,391
+se,Cen,C,Cen,1603,C,2024,True,35474
+se,Liberalerna,,Liberalerna,1604,L,2024,True,963
+se,Lib,L,Lib,1604,L,2024,True,22339
+se,Moderaterna,,Moderaterna,1605,M,2024,True,601
+se,Mod,M,Mod,1605,M,2024,True,175913
+se,Kristdemokraterna,KD,ChrDem,1606,KD,2024,True,318
+se,Kristdemokraterna,,Kristdemokraterna,1606,KD,2024,True,872
+se,ChrDem,KD,ChrDem,1606,KD,2024,True,11656
+se,Grn,MP,Grn,1607,MP,2024,True,11719
+se,Mod,SD,SweDem,1610,SD,2024,True,166
+se,Independent,SD,SweDem,1610,SD,2024,True,217
+se,Sverigedemokraterna,,Sverigedemokraterna,1610,SD,2024,True,1955
+se,SweDem,SD,SweDem,1610,SD,2024,True,34813
+si,Slovenska demokratska stranka,,Slovenska demokratska stranka,2902,SDS,2024,True,6396
+si,Social Democrats Deputy Group,SD,Social Democrats Deputy Group,2902,SDS,2024,True,15302
+si,Slovenian Democratic Party Deputy Group,SDS,Slovenian Democratic Party Deputy Group,2902,SDS,2024,True,271333
+si,Socialni demokrati,,Socialni demokrati,2903,SD,2024,True,6942
+si,Nova Slovenija – Krščanski demokrati,NSI,New Slovenia – Christian Democrats Deputy Group,2905,NSi,2024,True,1451
+si,New Slovenia – Christian Democrats Deputy Group,NSI,New Slovenia – Christian Democrats Deputy Group,2905,NSi,2024,True,16385
+si,Democratic Party of Pensioners of Slovenia Deputy Group,DeSUS,Democratic Party of Pensioners of Slovenia Deputy Group,2906,DeSUS,2019,True,28
+si,Slovenian National Party Deputy Group,SNS,Slovenian National Party Deputy Group,2907,SNS,2019,True,849
+si,Party of Modern Centre Deputy Group,SMC,Party of Modern Centre Deputy Group,2911,SMC,2019,True,4652
+si,The Left Deputy Group,Levica,The Left Deputy Group,2912,Levica,2024,True,5304
+si,Marjan Šarec Deputy Group,LMS,Marjan Šarec Deputy Group,2915,LMS,2019,True,2836
+si,Lista Marjana Šarca,,Lista Marjana Šarca,2915,LMS,2019,True,6915
+si,Slovenska ljudska stranka,,Slovenska ljudska stranka,2919,SLS,2024,True,4210

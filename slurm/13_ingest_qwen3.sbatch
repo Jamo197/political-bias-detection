@@ -34,8 +34,8 @@ echo "Qdrant -> $QDRANT_URL | vLLM -> $VLLM_BASE_URL"
 # Client only needs qdrant-client + openai (both in the venv). No GPU, no container.
 "$VENV_PY" -m rag.ingest.ingest \
     --model qwen3 \
-    --chunks rag/ingest/artifacts/chunks.jsonl \
-    --speeches rag/ingest/artifacts/full_speeches.jsonl \
+    --chunks "${CHUNKS_FILE:-${ARTIFACT_DIR:-rag/ingest/artifacts}/chunks.jsonl}" \
+    --speeches "${SPEECHES_FILE:-${ARTIFACT_DIR:-rag/ingest/artifacts}/full_speeches.jsonl}" \
     --qdrant-url "$QDRANT_URL" \
     --qdrant-timeout 300 \
     --vllm-embed-url "$VLLM_BASE_URL" \

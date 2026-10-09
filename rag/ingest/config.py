@@ -9,8 +9,15 @@ dense vectors so cosine similarity is comparable across models.
 
 from __future__ import annotations
 
+import os
 from dataclasses import dataclass
 from typing import Literal, Optional
+
+# Suffix appended to EVERY collection name (chunk + parent collections), e.g.
+# COLLECTION_SUFFIX=_parlamint -> chunks_e5_parlamint, bundestag_speeches_parlamint.
+# Lets a second corpus (cross-cultural ParlaMint data) live next to the Bundestag
+# collections without --reset touching them. Set it for ingestion AND evaluation.
+COLLECTION_SUFFIX: str = os.getenv("COLLECTION_SUFFIX", "")
 
 TARGET_DIM: int = 1024
 
@@ -51,7 +58,7 @@ MODELS: dict[str, ModelConfig] = {
         hf_model_id="intfloat/multilingual-e5-large-instruct",
         native_dim=1024,
         target_dim=1024,
-        collection="chunks_e5",
+        collection="chunks_e5" + COLLECTION_SUFFIX,
         backend="sentence_transformers",
     ),
     "bge": ModelConfig(
@@ -59,7 +66,7 @@ MODELS: dict[str, ModelConfig] = {
         hf_model_id="BAAI/bge-m3",
         native_dim=1024,
         target_dim=1024,
-        collection="chunks_bge",
+        collection="chunks_bge" + COLLECTION_SUFFIX,
         backend="flag_embedding",
         hybrid_sparse=True,
         openrouter_model_id="baai/bge-m3",
@@ -69,7 +76,7 @@ MODELS: dict[str, ModelConfig] = {
         hf_model_id="jinaai/jina-embeddings-v4",
         native_dim=2048,
         target_dim=1024,
-        collection="chunks_jina",
+        collection="chunks_jina" + COLLECTION_SUFFIX,
         backend="sentence_transformers",
     ),
     "qwen3": ModelConfig(
@@ -77,14 +84,14 @@ MODELS: dict[str, ModelConfig] = {
         hf_model_id="Qwen/Qwen3-Embedding-8B",
         native_dim=4096,
         target_dim=1024,
-        collection="chunks_qwen3",
+        collection="chunks_qwen3" + COLLECTION_SUFFIX,
         backend="vllm_server",
         openrouter_model_id="qwen/qwen3-embedding-8b",
     ),
 }
 
 # Parent-document (full speech) collection. Vectorless, shared across models.
-PARENT_COLLECTION = "bundestag_speeches"
+PARENT_COLLECTION = "bundestag_speeches" + COLLECTION_SUFFIX
 
 PAYLOAD_INDEX_FIELDS: list[tuple[str, bool]] = [
     ("party", False),
@@ -92,6 +99,11 @@ PAYLOAD_INDEX_FIELDS: list[tuple[str, bool]] = [
     ("year", True),
     ("legislative_period", True),
     ("speech_id", False),
+    # Cross-cultural (ParlaMint) fields; simply empty for the Bundestag corpus.
+    ("country", False),
+    ("country_code", False),
+    ("party_canonical", False),
+    ("ches_party_id", True),
 ]
 
 # Model used ONLY to detect semantic breakpoints during chunking. It does not

@@ -14,13 +14,18 @@ Supported strategies:
 
 HyDE LLM backends:
   * OpenAIHyDELLM     — Any OpenAI-compatible endpoint (Ollama, vLLM server).
+
+Cross-cultural (RQ2) runs restrict retrieval to one country with a Qdrant
+payload filter on ``country_code`` (see ``build_country_filter``); ``None``
+searches the pooled collection.
 """
 
+import dataclasses
 import logging
 import os
 from abc import ABC, abstractmethod
 from pathlib import Path
-from typing import List, Optional
+from typing import List, Optional, Tuple
 
 import numpy as np
 from dotenv import load_dotenv
@@ -44,6 +49,31 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 CROSS_ENCODER_MODEL = "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+
+
+def build_country_filter(
+    country_code: Optional[str] = None,
+    year_range: Optional[Tuple[int, int]] = None,
+) -> Optional[models.Filter]:
+    """Qdrant filter for one country (and optional inclusive year range).
+
+    Returns ``None`` when neither is given, i.e. the pooled search.
+    """
+    must: List[models.FieldCondition] = []
+    if country_code:
+        must.append(
+            models.FieldCondition(
+                key="country_code", match=models.MatchValue(value=country_code)
+            )
+        )
+    if year_range:
+        must.append(
+            models.FieldCondition(
+                key="year",
+                range=models.Range(gte=year_range[0], lte=year_range[1]),
+            )
+        )
+    return models.Filter(must=must) if must else None
 
 
 # ---------------------------------------------------------------------------
@@ -113,11 +143,13 @@ class SimpleRetrieval(RetrievalStrategy):
         cfg: ModelConfig,
         embedder: BaseEmbedder,
         hybrid: bool = False,
+        query_filter: Optional[models.Filter] = None,
     ):
         self.client = client
         self.cfg = cfg
         self.embedder = embedder
         self.hybrid = hybrid
+        self.query_filter = query_filter
 
     def retrieve(self, query: str, limit: int = 3) -> List[models.PointStruct]:
         result = self.embedder.embed_query(query)
@@ -130,6 +162,8 @@ class SimpleRetrieval(RetrievalStrategy):
                 values=list(sparse_dict.values()),
             )
             prefetch_limit = max(limit * 5, 20)
+            # The filter goes on EACH prefetch: a filter on the outer fusion
+            # query would only drop points after RRF, leaving < limit results.
             response = self.client.query_points(
                 collection_name=self.cfg.collection,
                 prefetch=[
@@ -137,11 +171,13 @@ class SimpleRetrieval(RetrievalStrategy):
                         query=dense_vec,
                         using=BGE_DENSE_VECTOR_NAME,
                         limit=prefetch_limit,
+                        filter=self.query_filter,
                     ),
                     models.Prefetch(
                         query=sparse_vec,
                         using=BGE_SPARSE_VECTOR_NAME,
                         limit=prefetch_limit,
+                        filter=self.query_filter,
                     ),
                 ],
                 query=models.FusionQuery(fusion=models.Fusion.RRF),
@@ -153,6 +189,7 @@ class SimpleRetrieval(RetrievalStrategy):
                 collection_name=self.cfg.collection,
                 query=dense_vec,
                 using=BGE_DENSE_VECTOR_NAME,
+                query_filter=self.query_filter,
                 limit=limit,
                 with_payload=True,
             )
@@ -160,6 +197,7 @@ class SimpleRetrieval(RetrievalStrategy):
             response = self.client.query_points(
                 collection_name=self.cfg.collection,
                 query=dense_vec,
+                query_filter=self.query_filter,
                 limit=limit,
                 with_payload=True,
             )
@@ -183,12 +221,14 @@ class HyDERetrieval(RetrievalStrategy):
         embedder: BaseEmbedder,
         hyde_llm: Optional[OpenAIHyDELLM] = None,
         country_context: str = "Germany",
+        query_filter: Optional[models.Filter] = None,
     ):
         self.client = client
         self.cfg = cfg
         self.embedder = embedder
         self.hyde_llm = hyde_llm
         self.country_context = country_context
+        self.query_filter = query_filter
 
     def retrieve(
         self, query: str, limit: int = 3, num_hypothetical: int = 3
@@ -205,6 +245,7 @@ class HyDERetrieval(RetrievalStrategy):
                 collection_name=self.cfg.collection,
                 query=avg_list,
                 using=BGE_DENSE_VECTOR_NAME,
+                query_filter=self.query_filter,
                 limit=limit,
                 with_payload=True,
             )
@@ -212,6 +253,7 @@ class HyDERetrieval(RetrievalStrategy):
             response = self.client.query_points(
                 collection_name=self.cfg.collection,
                 query=avg_list,
+                query_filter=self.query_filter,
                 limit=limit,
                 with_payload=True,
             )
@@ -258,17 +300,21 @@ class TwoStageRetrieval(RetrievalStrategy):
         embedder: BaseEmbedder,
         cross_encoder,
         hybrid: bool = False,
+        query_filter: Optional[models.Filter] = None,
     ):
         self.client = client
         self.cfg = cfg
         self.embedder = embedder
         self.cross_encoder = cross_encoder
         self.hybrid = hybrid
+        self.query_filter = query_filter
 
     def retrieve(
         self, query: str, limit: int = 3, rerank_top_k: int = 15
     ) -> List[models.PointStruct]:
-        simple = SimpleRetrieval(self.client, self.cfg, self.embedder, self.hybrid)
+        simple = SimpleRetrieval(
+            self.client, self.cfg, self.embedder, self.hybrid, self.query_filter
+        )
         candidates = simple.retrieve(query, limit=rerank_top_k)
 
         if not candidates or not self.cross_encoder:
@@ -295,6 +341,11 @@ class PoliticalRAGRetriever:
     at ingestion time, ensuring cosine similarity is meaningful. Pre-built
     components (embedder, cross_encoder, hyde_llm) can be passed in to avoid
     reloading models across multiple strategy runs.
+
+    ``country_code`` (e.g. ``"at"``) restricts every strategy to that country's
+    chunks; ``None`` searches all countries (pooled). ``country_context`` is the
+    country named in the HyDE prompt. ``collection`` overrides the model's
+    default collection name.
     """
 
     def __init__(
@@ -309,12 +360,20 @@ class PoliticalRAGRetriever:
         cross_encoder=None,
         hyde_llm: Optional[OpenAIHyDELLM] = None,
         embedder: Optional[BaseEmbedder] = None,
+        country_code: Optional[str] = None,
+        year_range: Optional[Tuple[int, int]] = None,
+        collection: Optional[str] = None,
     ):
         self.client = QdrantClient(url=qdrant_url)
         self.cfg = get_model_config(model_key)
+        if collection:
+            # e.g. the translated RQ2 corpus (chunks_<model>_parlamint_en).
+            self.cfg = dataclasses.replace(self.cfg, collection=collection)
         self.collection_name = self.cfg.collection
         self.country_context = country_context
         self.hybrid = hybrid
+        self.country_code = country_code
+        self.query_filter = build_country_filter(country_code, year_range)
 
         if embedder is not None:
             self.embedder = embedder
@@ -343,6 +402,7 @@ class PoliticalRAGRetriever:
                 self.embedder,
                 hyde_llm,
                 self.country_context,
+                self.query_filter,
             )
 
         elif mode == "twostage":
@@ -357,7 +417,11 @@ class PoliticalRAGRetriever:
                         "sentence-transformers dependency missing. Defaulting to Simple."
                     )
                     return SimpleRetrieval(
-                        self.client, self.cfg, self.embedder, self.hybrid
+                        self.client,
+                        self.cfg,
+                        self.embedder,
+                        self.hybrid,
+                        self.query_filter,
                     )
             return TwoStageRetrieval(
                 self.client,
@@ -365,9 +429,12 @@ class PoliticalRAGRetriever:
                 self.embedder,
                 cross_encoder,
                 self.hybrid,
+                self.query_filter,
             )
 
-        return SimpleRetrieval(self.client, self.cfg, self.embedder, self.hybrid)
+        return SimpleRetrieval(
+            self.client, self.cfg, self.embedder, self.hybrid, self.query_filter
+        )
 
     def search(self, query: str, limit: int = 3) -> List[models.PointStruct]:
         return self.retrieval_strategy.retrieve(query=query, limit=limit)

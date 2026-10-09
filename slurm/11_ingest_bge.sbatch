@@ -37,8 +37,8 @@ echo "Python -> $VENV_PY ($($VENV_PY --version 2>&1))"
 # --skip-parents: parents already uploaded by the first model job (idempotent).
 "$VENV_PY" -m rag.ingest.ingest \
     --model bge \
-    --chunks rag/ingest/artifacts/chunks.jsonl \
-    --speeches rag/ingest/artifacts/full_speeches.jsonl \
+    --chunks "${CHUNKS_FILE:-${ARTIFACT_DIR:-rag/ingest/artifacts}/chunks.jsonl}" \
+    --speeches "${SPEECHES_FILE:-${ARTIFACT_DIR:-rag/ingest/artifacts}/full_speeches.jsonl}" \
     --qdrant-url "$QDRANT_URL" \
     --qdrant-timeout 300 \
     --device cuda \

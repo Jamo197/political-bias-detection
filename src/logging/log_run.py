@@ -27,6 +27,7 @@ def log_evaluation_run(
     hybrid: bool = False,
     is_rag: bool = True,
     filename: str = "evaluation_logs.jsonl",
+    extra_metadata: Optional[Dict[str, Any]] = None,
 ):
     """Appends a structured JSONL log entry for a single prediction run.
 
@@ -54,6 +55,10 @@ def log_evaluation_run(
     run_dir           : Pre-computed base log directory for this run.
     run_id            : Short unique identifier for this run.
     filename          : JSONL filename within the condition subdirectory.
+    extra_metadata    : Optional extra fields, stored under ``rq2`` (cross-cultural
+                        runs: condition, target/retrieval country, CHES id, party
+                        family, party_cue). Omitted entirely when None, so RQ1 logs
+                        keep their schema.
     """
     log_entry = {
         "run_id": run_id,
@@ -88,6 +93,8 @@ def log_evaluation_run(
             "label_galtan": label_galtan,
         },
     }
+    if extra_metadata is not None:
+        log_entry["rq2"] = extra_metadata
 
     condition = "no_rag" if not is_rag else retrieval_mode
     logs_dir = os.path.join(run_dir, embedding_model, condition)

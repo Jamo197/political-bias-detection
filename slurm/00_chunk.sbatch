@@ -15,7 +15,10 @@ set -euo pipefail
 module load singularity || module load apptainer || true
 
 cd "${PROJECT_ROOT:-$PWD}"
-mkdir -p logs/slurm rag/ingest/artifacts
+# Override for other corpora, e.g. DATA_DIR=extraction/datasets/parlamint_data
+DATA_DIR="${DATA_DIR:-extraction/datasets/bundestag_data}"
+ARTIFACT_DIR="${ARTIFACT_DIR:-rag/ingest/artifacts}"
+mkdir -p logs/slurm "$ARTIFACT_DIR"
 
 VLLM_SIF="${VLLM_SIF:-/home/users/j/$USER/hpc-images/vllm.sif}"
 
@@ -25,8 +28,8 @@ singularity exec \
     --pwd "$PWD" \
     "$VLLM_SIF" \
     python -m rag.ingest.chunker \
-        --data-dir extraction/datasets/bundestag_data \
-        --chunks-out rag/ingest/artifacts/chunks.jsonl \
-        --speeches-out rag/ingest/artifacts/full_speeches.jsonl
+        --data-dir "$DATA_DIR" \
+        --chunks-out "$ARTIFACT_DIR/chunks.jsonl" \
+        --speeches-out "$ARTIFACT_DIR/full_speeches.jsonl"
 
 echo "Chunking complete."

@@ -1,0 +1,197 @@
+country_code,source,raw_label,canonical_party,ches_party_id,status
+at,tweet,Social Democratic Party,SPO,1301,auto
+at,tweet,Sozialdemokratische Partei Österreichs,SPO,1301,auto
+at,tweet,The New Austria and Liberal Forum,NEOS,1306,auto
+be,tweet,Centre démocrate humaniste,LE,108,auto
+be,tweet,Christen-Democratisch & Vlaams,CD&V,109,auto
+be,tweet,Christen-Democratisch en Vlaams,CD&V,109,auto
+be,tweet,Ecolo-Groen,Ecolo,104,auto
+be,tweet,Ecologistes Confédérés pour l'organisation de luttes originales Groen,Ecolo,104,auto
+be,tweet,Nieuw-Vlaamse Alliantie,NVA,110,auto
+be,tweet,Open Vlaamse Liberalen en Democraten,Open Vld,107,auto
+be,tweet,Parti Socialiste,PS,102,auto
+be,tweet,Parti du Travail de Belgique,PVDA-PTB,119,auto
+be,tweet,Socialistische partij anders,Vooruit,103,auto
+be,tweet,Vlaams Belang,VB,112,auto
+cy,tweet,Democratic Rally,DISY,4001,auto
+cz,tweet,Křesťanská a demokratická unie - Československá strana lidová,KDU-CSL,2104,auto
+de,tweet,AfD,AfD,310,auto
+de,tweet,Alliance 90/The Greens,Grunen,304,auto
+de,tweet,Bündnis 90/Die Grünen,Grunen,304,auto
+de,tweet,CDU,CDU,301,auto
+de,tweet,CDU/CSU,CDU,301,auto
+de,tweet,CSU,CSU,308,auto
+de,tweet,Christlich Demokratische Union Deutschlands,CDU,301,auto
+de,tweet,DIE LINKE.,LINKE,306,auto
+de,tweet,FDP,FDP,303,auto
+de,tweet,Freie Demokratische Partei,FDP,303,auto
+de,tweet,Piratenpartei Deutschland,Piraten,311,auto
+de,tweet,SPD,SPD,302,auto
+de,tweet,Sozialdemokratische Partei Deutschlands,SPD,302,auto
+de,tweet,The Left Party,LINKE,306,auto
+dk,tweet,Liberal Alliance,LA,218,auto
+dk,tweet,The Alternative,LA,218,auto
+dk,tweet,The Conservative Party,DKF,203,auto
+dk,tweet,The Conservative People's Party,DKF,203,auto
+dk,tweet,The Danish People's Party,DF,215,auto
+dk,tweet,The Liberal Party,V,211,auto
+dk,tweet,The Red-Green Alliance,EL,213,auto
+dk,tweet,The Social Democratic Party,S,201,auto
+dk,tweet,The Social Liberal Party,RV,202,auto
+dk,tweet,The Socialist People's Party,SF,206,auto
+ee,tweet,Eesti Reformierakond,ER,2203,auto
+es,tweet,BNG,BNG,513,auto
+es,tweet,Ciudadanos – Partido de la Ciudadanía,Cs,526,auto
+es,tweet,Cs,Cs,526,auto
+es,tweet,EAJ-PNV,EAJ/PNV,506,auto
+es,tweet,ERC-CATSÍ,ERC,511,auto
+es,tweet,ERC-S,ERC,511,auto
+es,tweet,JxCat-JUNTS,Junts,550,auto
+es,tweet,MÁS PAÍS-EQUO,Podemos,525,auto
+es,tweet,PODEMOS,Podemos,525,auto
+es,tweet,PP,PP,502,auto
+es,tweet,PP - FORO,PP,502,auto
+es,tweet,PP-PAR,PP,502,auto
+es,tweet,PSC-PSOE,PSOE,501,auto
+es,tweet,PSOE,PSOE,501,auto
+es,tweet,PSdG-PSOE,PSOE,501,auto
+es,tweet,Partido Popular,PP,502,auto
+es,tweet,Partido Socialista Obrero Español,PSOE,501,auto
+es,tweet,Partit dels Socialistes de Catalunya,PSOE,501,auto
+es,tweet,PsdeG-PSOE,PSOE,501,auto
+es,tweet,UP,Podemos,525,auto
+es,tweet,VOX,Vox,527,auto
+fi,tweet,Centre Party,KESK,1403,auto
+fi,tweet,Centre Party of Finland,KESK,1403,auto
+fi,tweet,Finns Party,PS,1405,auto
+fi,tweet,Green League,VIHR,1408,auto
+fi,tweet,Kansallinen Kokoomus,KOK,1402,auto
+fi,tweet,Left Alliance,VAS,1404,auto
+fi,tweet,National Coalition Party,KOK,1402,auto
+fi,tweet,Social Democratic Party of Finland,SDP,1401,auto
+fi,tweet,Swedish People's Party,SFP/RKP,1406,auto
+fi,tweet,Swedish People's Party in Finland,SFP/RKP,1406,auto
+fi,tweet,The Finnish Social Democratic Party,SDP,1401,auto
+fi,tweet,The Finns Party,PS,1405,auto
+fi,tweet,The Left Alliance,VAS,1404,auto
+fi,tweet,Vihreä liitto,VIHR,1408,auto
+fr,tweet,En Marche,RE,626,auto
+fr,tweet,Europe Écologie,LE/EELV,605,auto
+fr,tweet,Front national,RN,610,auto
+fr,tweet,La France Insoumise,FI,627,auto
+fr,tweet,La République en marche,RE,626,auto
+fr,tweet,Les Républicains,LR,609,auto
+fr,tweet,Liste Renaissance,RE,626,auto
+fr,tweet,Mouvement Démocrate,MoDem,613,auto
+fr,tweet,Parti socialiste,PS,602,auto
+fr,tweet,Rassemblement national,RN,610,auto
+gb,tweet,Conservative Party,CONS,1101,auto
+gb,tweet,Green Party,GREEN,1107,auto
+gb,tweet,Labour Party,LAB,1102,auto
+gb,tweet,Scottish National Party,SNP,1105,auto
+gb,tweet,The Brexit Party,REF UK,1110,auto
+gr,tweet,Coalition of the Radical Left,SYRIZA,403,auto
+gr,tweet,DEMOCRATIC COALITION (Panhellenic Socialist Movement Democratic Left),PASOK,401,auto
+gr,tweet,Independent,MR25,417,auto
+gr,tweet,K.K.E. (Communist Party of Greece),KKE,404,auto
+gr,tweet,MeRa25,MR25,417,auto
+gr,tweet,N.D. (New Democracy),ND,402,auto
+gr,tweet,Nea Demokratia,ND,402,auto
+gr,tweet,SYRIZA (Coalition of the Radical Left),SYRIZA,403,auto
+gr,tweet,The Greek Solution,EL,416,auto
+ie,tweet,Aontú,SF,707,auto
+ie,tweet,Fianna Fáil,FF,701,auto
+ie,tweet,Fine Gael,FG,702,auto
+ie,tweet,Fine Gael Party,FG,702,auto
+ie,tweet,Green Party,GP,705,auto
+ie,tweet,Independent,I4C,711,auto
+ie,tweet,Independents 4 Change,I4C,711,auto
+ie,tweet,Labour Party,Lab,703,auto
+ie,tweet,Sinn Féin,SF,707,auto
+ie,tweet,Social Democrats,SD,710,auto
+ie,tweet,Solidarity - People Before Profit,S-PBP,709,auto
+it,tweet,FORZA ITALIA - BERLUSCONI PRESIDENTE,FI,815,auto
+it,tweet,FORZA ITALIA - IL POPOLO DELLA LIBERTA - BERLUSCONI PRESIDENTE,FI,815,auto
+it,tweet,FRATELLI DITALIA,FDI,844,auto
+it,tweet,FRATELLI DITALIA-ALLEANZA NAZIONALE,FDI,844,auto
+it,tweet,Forza Italia,FI,815,auto
+it,tweet,LEGA - SALVINI PREMIER,Lega,811,auto
+it,tweet,LEGA NORD E AUTONOMIE - LEGA DEI POPOLI - NOI CON SALVINI,Lega,811,auto
+it,tweet,LIBERI E UGUALI,SI,838,auto
+it,tweet,Lega,Lega,811,auto
+it,tweet,Lega Nord,Lega,811,auto
+it,tweet,MOVIMENTO 5 STELLE,MS5,845,auto
+it,tweet,PARTITO DEMOCRATICO,DS,802,auto
+it,tweet,SINISTRA ITALIANA - SINISTRA ECOLOGIA LIBERTA - POSSIBILE,SI,838,auto
+lu,tweet,Christian Social People's Party,CSV,3801,auto
+lv,tweet,For Development/For!,AP!,2417,auto
+lv,tweet,"National Alliance ""All For Latvia!"""" – """"For Fatherland and Freedom/LNNK""""""",TB-LNNK,2406,auto
+lv,tweet,"National Alliance \All For Latvia!\"" – \""For Fatherland and Freedom/LNNK\""""",TB-LNNK,2406,auto
+lv,tweet,National Alliance “All For Latvia!”–“For Fatherland and Freedom/LNNK”,TB-LNNK,2406,auto
+lv,tweet,"Partija \VIENOTĪBA\""""",AP!,2417,auto
+lv,tweet,Political Party “KPV LV”,KPV LV,2415,auto
+lv,tweet,The New Conservative Party,JKP,2416,auto
+mt,tweet,Labour,PL,3701,auto
+mt,tweet,Partit Nazzjonalista,PN,3702,auto
+nl,tweet,50PLUS,50PLUS,1020,auto
+nl,tweet,Christian Democratic Appeal,CDA,1001,auto
+nl,tweet,Christian Union,CU,1016,auto
+nl,tweet,Democrats 66,D66,1004,auto
+nl,tweet,Forum for Democracy,FvD,1051,auto
+nl,tweet,Forum voor Democratie,FvD,1051,auto
+nl,tweet,GreenLeft,GL,1005,auto
+nl,tweet,GroenLinks,GL,1005,auto
+nl,tweet,Partij van de Arbeid,PvdA,1002,auto
+nl,tweet,Party for Freedom,PVV,1017,auto
+nl,tweet,Party for the Animals,PvdD,1018,auto
+nl,tweet,People's Party for Freedom and Democracy,VVD,1003,auto
+nl,tweet,Reformed Political Party,SGP,1006,auto
+nl,tweet,SGP,SGP,1006,auto
+nl,tweet,SP,SP,1014,auto
+nl,tweet,Socialist Party,SP,1014,auto
+nl,tweet,Staatkundig Gereformeerde Partij,SGP,1006,auto
+nl,tweet,VVD,VVD,1003,auto
+nl,tweet,Volkspartij voor Vrijheid en Democratie,VVD,1003,auto
+pl,parlamint,KO,,,unmapped
+pl,parlamint,KP-PSL,PSL,2606,seed
+pl,parlamint,Konfederacja,Confederation Liberty and Independence,2619,manual
+pl,parlamint,Lewica,,2601,manual
+pl,parlamint,PiS,PiS,2605,seed
+pl,tweet,Bezpartyjny,PiS,2605,auto
+pl,tweet,Civic Coalition,PO,2603,auto
+pl,tweet,Civic Platform,PO,2603,auto
+pl,tweet,Confederation Liberty and Independence,Konfederacja,2619,auto
+pl,tweet,Kukiz15,Kukiz,2617,auto
+pl,tweet,Law and Justice,PiS,2605,auto
+pl,tweet,Modern,Nowo,2618,auto
+pl,tweet,Platforma Obywatelska,PO,2603,auto
+pl,tweet,Polish People's Party,Kukiz,2617,auto
+pl,tweet,Polish People's Party-Kukiz15,Kukiz,2617,auto
+pl,tweet,Prawo i Sprawiedliwość,PiS,2605,auto
+pl,tweet,Republikanie,PiS,2605,auto
+pl,tweet,United Left,Nowa Lewica,2601,auto
+pl,tweet,Wiosna,Wiosnia,2621,auto
+pt,tweet,Partido Social Democrata,PPD/PSD,1206,auto
+pt,tweet,Partido Socialista,PS,1205,auto
+se,tweet,Cen,C,1603,auto
+se,tweet,Centerpartiet,C,1603,auto
+se,tweet,ChrDem,KD,1606,auto
+se,tweet,Grn,MP,1607,auto
+se,tweet,Lft,V,1601,auto
+se,tweet,Lib,L,1604,auto
+se,tweet,Mod,M,1605,auto
+se,tweet,SweDem,SD,1610,auto
+si,tweet,Lista Marjana Šarca,LMS,2915,auto
+si,tweet,New Slovenia – Christian Democrats Deputy Group,NSi,2905,auto
+si,tweet,Nova Slovenija – Krščanski demokrati,NSi,2905,auto
+si,tweet,Slovenian Democratic Party Deputy Group,SDS,2902,auto
+si,tweet,Slovenska demokratska stranka,SDS,2902,auto
+si,tweet,Social Democrats Deputy Group,SDS,2902,auto
+si,tweet,Socialni demokrati,SD,2903,auto
+sk,tweet,Progresívne Slovensko,PS,2819,auto
+de,bundestag,CDU/CSU,CDU,301,manual
+de,bundestag,SPD,SPD,302,manual
+de,bundestag,FDP,FDP,303,manual
+de,bundestag,BÜNDNIS 90/DIE GRÜNEN,Grunen,304,manual
+de,bundestag,DIE LINKE,LINKE,306,manual
+de,bundestag,AfD,AfD,310,manual

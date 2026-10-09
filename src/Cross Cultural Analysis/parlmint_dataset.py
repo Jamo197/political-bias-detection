@@ -198,6 +198,7 @@ def load_full(
     config: ParlaMintConfig,
     limit: int | None = None,
     since: str | None = None,
+    until: str | None = None,
 ) -> pd.DataFrame:
     """Download the split and return it as a DataFrame.
 
@@ -209,22 +210,25 @@ def load_full(
     ``since`` (e.g. ``"2016"`` or ``"2016-01-01"``) keeps only rows whose
     ``Date`` is on or after that day. The filter is applied before ``limit``
     and while the data is still in the memory-mapped Arrow format, so
-    filtered-out rows never reach RAM.
+    filtered-out rows never reach RAM. ``until`` works the same way for the
+    last day kept (inclusive).
     """
-    if since is None:
+    if since is None and until is None:
         split = f"{config.split}[:{limit}]" if limit is not None else None
         dataset = load_parlamint(config, streaming=False, split=split)
     else:
-        cutoff = _iso_cutoff(since)
+        start = _iso_cutoff(since) if since else ""
+        end = _iso_cutoff(until) if until else "9999-12-31"
         dataset = load_parlamint(config, streaming=False)
         total = len(dataset)
         # ISO dates compare correctly as strings; guard against missing values.
         dataset = dataset.filter(
-            lambda example: str(example["Date"] or "") >= cutoff
+            lambda example: start <= str(example["Date"] or "")[:10] <= end
+            and bool(example["Date"])
         )
         logger.info(
-            "Date filter (Date >= %s) kept %d of %d rows.",
-            cutoff, len(dataset), total,
+            "Date filter (%s <= Date <= %s) kept %d of %d rows.",
+            start or "-", end, len(dataset), total,
         )
         if limit is not None:
             dataset = dataset.select(range(min(limit, len(dataset))))

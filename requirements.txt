@@ -1,3 +1,4 @@
+beautifulsoup4==4.15.0
 dotenv>=0.9.9
 datasets>=3.6.0,<4
 google-genai>=1.72.0
@@ -16,6 +17,7 @@ qdrant-client>=1.17.1
 requests>=2.33.1
 scikit-learn>=1.5.0
 scipy>=1.13.0
+statsmodels>=0.14.0  # RQ2 mixed model (evaluate_rq2.py)
 seaborn>=0.13.2
 sentence-transformers>=5.4.1
 streamlit>=1.56.0

@@ -46,7 +46,6 @@ LLM_MODELS = {
     "qwen-32B": {
         "region": "China",
         "id": "Qwen/Qwen2.5-32B-Instruct",
-        "openrouter_id": "meta-llama/Llama-3.2-3B-Instruct",
     },
 }
 
@@ -161,6 +160,8 @@ def chunks_to_context_dicts(points) -> List[Dict[str, Any]]:
                 "text": payload.get("text", ""),
                 "party": payload.get("party", ""),
                 "country": payload.get("country", ""),
+                "country_code": payload.get("country_code", ""),
+                "ches_party_id": payload.get("ches_party_id"),
                 "speaker": payload.get("speaker", ""),
                 "date": payload.get("date", ""),
                 "speech_id": payload.get("speech_id", ""),
