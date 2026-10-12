@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
 """update_ground_truth_to_party_labels.py
 
-Loads batch-run JSONL logs, looks up each entry's text_index in the article dataset
-CSV, and replaces ground_truth labels (final_label_*) with party_label_* variants.
+Loads batch-run JSONL logs and replaces each entry's ground_truth labels with
+party-level CHES 2024 scores, keyed by input_metadata.party. CHES scores run
+0-10 and are rescaled to the dataset's 1-7 scale with:
+
+    new = 1 + (old / 10) * 6
 
 New JSONL files are saved alongside the originals with names prefixed by
 "party_label_".
@@ -17,23 +20,46 @@ import json
 import os
 from pathlib import Path
 
-CSV_PATH = Path("src/datasets/political_bias_articles_dataset.csv")
+CHES_CSV_PATH = Path("src/datasets/ground_truth/ches_germany_1999-2024.csv")
 BASE_DIR = Path("logs/batch_runs")
+CHES_YEAR = "2024"
+
+PARTY_ALIASES = {
+    "AfD": "AfD",
+    "BÜNDNIS 90/DIE GRÜNEN": "BÜNDNIS 90/DIE GRÜNEN",
+    "B90Grune": "BÜNDNIS 90/DIE GRÜNEN",
+    "Bündnis 90 Die Grünen": "BÜNDNIS 90/DIE GRÜNEN",
+    "CDU": "CDU",
+    "CDU/CSU": "CDU",
+    "CSU": "CSU",
+    "DIE LINKE": "DIE LINKE",
+    "Die Linke": "DIE LINKE",
+    "Linke": "DIE LINKE",
+    "FDP": "FDP",
+    "SPD": "SPD",
+}
 
 
-def load_csv_lookup(csv_path: Path) -> dict:
-    """Build a lookup dict keyed by the CSV 'index' column."""
+def rescale(old_0_to_10: float) -> float:
+    """Rescale a 0-10 CHES score to the dataset's 1-7 scale."""
+    return round(1 + (old_0_to_10 / 10) * 6, 1)
+
+
+def load_ches_lookup(csv_path: Path) -> dict:
+    """Build a lookup dict of rescaled CHES 2024 scores, keyed by std_party."""
     lookup = {}
     with open(csv_path, "r", encoding="utf-8") as fh:
         reader = csv.DictReader(fh)
         for row in reader:
-            idx = row.get("index", "").strip()
-            if not idx:
+            if row.get("year", "").strip() != CHES_YEAR:
                 continue
-            lookup[idx] = {
-                "party_label_ideology": row.get("party_label_ideology"),
-                "party_label_economic": row.get("party_label_economic"),
-                "party_label_galtan": row.get("party_label_galtan"),
+            party = row.get("std_party", "").strip()
+            if not party:
+                continue
+            lookup[party] = {
+                "label_ideology": rescale(float(row["lrgen"])),
+                "label_economic": rescale(float(row["lrecon"])),
+                "label_galtan": rescale(float(row["galtan"])),
             }
     return lookup
 
@@ -60,18 +86,19 @@ def process_jsonl(file_path: Path, lookup: dict) -> Path:
                 out_fh.write(line + "\n")
                 continue
 
-            text_index = str(entry.get("input_metadata", {}).get("text_index", "")).strip()
-            if text_index not in lookup:
-                print(f"  Warning: text_index '{text_index}' not found in CSV (line {line_idx} of {file_path}). Leaving ground_truth unchanged.")
+            party = str(entry.get("input_metadata", {}).get("party", "")).strip()
+            std_party = PARTY_ALIASES.get(party)
+            if std_party is None or std_party not in lookup:
+                print(f"  Warning: party '{party}' not found in CHES lookup (line {line_idx} of {file_path}). Leaving ground_truth unchanged.")
                 skipped += 1
                 out_fh.write(json.dumps(entry, ensure_ascii=False) + "\n")
                 continue
 
-            party_vals = lookup[text_index]
+            party_vals = lookup[std_party]
             gt = entry.get("ground_truth", {})
-            gt["label_ideology"] = party_vals["party_label_ideology"]
-            gt["label_economic"] = party_vals["party_label_economic"]
-            gt["label_galtan"] = party_vals["party_label_galtan"]
+            gt["label_ideology"] = party_vals["label_ideology"]
+            gt["label_economic"] = party_vals["label_economic"]
+            gt["label_galtan"] = party_vals["label_galtan"]
             entry["ground_truth"] = gt
             updated += 1
 
@@ -82,9 +109,9 @@ def process_jsonl(file_path: Path, lookup: dict) -> Path:
 
 
 def main():
-    print(f"Loading dataset lookup from {CSV_PATH} ...")
-    lookup = load_csv_lookup(CSV_PATH)
-    print(f"  Loaded {len(lookup)} entries.\n")
+    print(f"Loading CHES {CHES_YEAR} lookup from {CHES_CSV_PATH} ...")
+    lookup = load_ches_lookup(CHES_CSV_PATH)
+    print(f"  Loaded {len(lookup)} parties.\n")
 
     jsonl_files = sorted(BASE_DIR.rglob("*.jsonl"))
     if not jsonl_files:
