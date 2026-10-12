@@ -1,0 +1,955 @@
+Target,Model,Family,Condition,Party,N_samples,True_label_mean,Mean_signed_error,Mean_abs_error,Mean_signed_error_lo,Mean_signed_error_hi
+label_ideology,Llama-3.1-8B-Instruct,Llama,no_rag,AfD,114,6.6,-0.65,0.7447,-0.9755,-0.3763
+label_ideology,Llama-3.1-8B-Instruct,Llama,no_rag,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.8263,1.4981,0.5274,1.1167
+label_ideology,Llama-3.1-8B-Instruct,Llama,no_rag,CDU/CSU,51,4.9824,0.7373,1.5725,0.296,1.1431
+label_ideology,Llama-3.1-8B-Instruct,Llama,no_rag,DIE LINKE,179,1.9,1.3285,1.5207,1.0676,1.5832
+label_ideology,Llama-3.1-8B-Instruct,Llama,no_rag,FDP,58,4.6,0.681,1.781,0.224,1.0897
+label_ideology,Llama-3.1-8B-Instruct,Llama,no_rag,SPD,217,3.1,1.4203,1.9512,1.1875,1.6544
+label_ideology,Llama-3.1-8B-Instruct,Llama,bge/hyde,AfD,114,6.6,-0.9728,0.9728,-1.2693,-0.7061
+label_ideology,Llama-3.1-8B-Instruct,Llama,bge/hyde,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.4859,0.9756,0.2711,0.6994
+label_ideology,Llama-3.1-8B-Instruct,Llama,bge/hyde,CDU/CSU,51,4.9824,-0.1882,1.0745,-0.5647,0.1627
+label_ideology,Llama-3.1-8B-Instruct,Llama,bge/hyde,DIE LINKE,178,1.9,1.0197,1.1725,0.832,1.2293
+label_ideology,Llama-3.1-8B-Instruct,Llama,bge/hyde,FDP,58,4.6,-0.7655,1.2,-1.1087,-0.4137
+label_ideology,Llama-3.1-8B-Instruct,Llama,bge/hyde,SPD,217,3.1,0.4641,1.0558,0.3161,0.6175
+label_ideology,Llama-3.1-8B-Instruct,Llama,bge/hyde_hybrid,AfD,114,6.6,-0.9868,0.9868,-1.2939,-0.7087
+label_ideology,Llama-3.1-8B-Instruct,Llama,bge/hyde_hybrid,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.3064,0.8821,0.109,0.5173
+label_ideology,Llama-3.1-8B-Instruct,Llama,bge/hyde_hybrid,CDU/CSU,51,4.9824,-0.2765,1.0569,-0.6412,0.0686
+label_ideology,Llama-3.1-8B-Instruct,Llama,bge/hyde_hybrid,DIE LINKE,179,1.9,1.0782,1.2067,0.881,1.2827
+label_ideology,Llama-3.1-8B-Instruct,Llama,bge/hyde_hybrid,FDP,58,4.6,-0.8103,1.231,-1.1501,-0.4706
+label_ideology,Llama-3.1-8B-Instruct,Llama,bge/hyde_hybrid,SPD,217,3.1,0.4654,1.0442,0.3184,0.618
+label_ideology,Llama-3.1-8B-Instruct,Llama,bge/simple,AfD,114,6.6,-0.9298,0.9298,-1.2377,-0.6368
+label_ideology,Llama-3.1-8B-Instruct,Llama,bge/simple,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.3359,0.8526,0.1615,0.5391
+label_ideology,Llama-3.1-8B-Instruct,Llama,bge/simple,CDU/CSU,51,4.9824,-0.0627,1.0235,-0.4216,0.2746
+label_ideology,Llama-3.1-8B-Instruct,Llama,bge/simple,DIE LINKE,179,1.9,0.8872,1.0726,0.6972,1.0732
+label_ideology,Llama-3.1-8B-Instruct,Llama,bge/simple,FDP,58,4.6,-0.9672,1.4017,-1.3019,-0.5983
+label_ideology,Llama-3.1-8B-Instruct,Llama,bge/simple,SPD,217,3.1,0.5793,1.1249,0.4226,0.7388
+label_ideology,Llama-3.1-8B-Instruct,Llama,bge/simple_hybrid,AfD,114,6.6,-0.7447,0.7482,-0.9956,-0.5069
+label_ideology,Llama-3.1-8B-Instruct,Llama,bge/simple_hybrid,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.4321,0.9295,0.2288,0.6269
+label_ideology,Llama-3.1-8B-Instruct,Llama,bge/simple_hybrid,CDU/CSU,51,4.9824,-0.2235,1.1765,-0.6255,0.151
+label_ideology,Llama-3.1-8B-Instruct,Llama,bge/simple_hybrid,DIE LINKE,179,1.9,0.8911,1.0408,0.7196,1.0777
+label_ideology,Llama-3.1-8B-Instruct,Llama,bge/simple_hybrid,FDP,58,4.6,-1.1672,1.5017,-1.4845,-0.8396
+label_ideology,Llama-3.1-8B-Instruct,Llama,bge/simple_hybrid,SPD,217,3.1,0.4811,1.0986,0.3258,0.6373
+label_ideology,Llama-3.1-8B-Instruct,Llama,bge/twostage,AfD,114,6.6,-0.9202,0.9272,-1.2272,-0.6333
+label_ideology,Llama-3.1-8B-Instruct,Llama,bge/twostage,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.3295,0.8487,0.134,0.5231
+label_ideology,Llama-3.1-8B-Instruct,Llama,bge/twostage,CDU/CSU,51,4.9824,-0.3118,1.2373,-0.7236,0.0725
+label_ideology,Llama-3.1-8B-Instruct,Llama,bge/twostage,DIE LINKE,179,1.9,0.8425,0.9587,0.6899,1.0045
+label_ideology,Llama-3.1-8B-Instruct,Llama,bge/twostage,FDP,58,4.6,-1.1276,1.5034,-1.4759,-0.7879
+label_ideology,Llama-3.1-8B-Instruct,Llama,bge/twostage,SPD,217,3.1,0.5747,1.1203,0.412,0.7267
+label_ideology,Llama-3.1-8B-Instruct,Llama,bge/twostage_hybrid,AfD,114,6.6,-0.8667,0.8667,-1.1668,-0.5982
+label_ideology,Llama-3.1-8B-Instruct,Llama,bge/twostage_hybrid,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.3936,0.8808,0.1949,0.5923
+label_ideology,Llama-3.1-8B-Instruct,Llama,bge/twostage_hybrid,CDU/CSU,51,4.9824,-0.1549,1.2373,-0.5745,0.2374
+label_ideology,Llama-3.1-8B-Instruct,Llama,bge/twostage_hybrid,DIE LINKE,179,1.9,1.0,1.1117,0.824,1.1894
+label_ideology,Llama-3.1-8B-Instruct,Llama,bge/twostage_hybrid,FDP,58,4.6,-0.8155,1.2672,-1.169,-0.4621
+label_ideology,Llama-3.1-8B-Instruct,Llama,bge/twostage_hybrid,SPD,217,3.1,0.6922,1.1733,0.5469,0.8438
+label_ideology,Llama-3.1-8B-Instruct,Llama,e5/hyde,AfD,114,6.6,-0.9105,0.9105,-1.2009,-0.6421
+label_ideology,Llama-3.1-8B-Instruct,Llama,e5/hyde,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.3314,0.784,0.1628,0.5071
+label_ideology,Llama-3.1-8B-Instruct,Llama,e5/hyde,CDU/CSU,51,4.9824,-0.3882,1.1765,-0.7883,-0.0078
+label_ideology,Llama-3.1-8B-Instruct,Llama,e5/hyde,DIE LINKE,179,1.9,0.8603,0.9598,0.7078,1.0252
+label_ideology,Llama-3.1-8B-Instruct,Llama,e5/hyde,FDP,58,4.6,-0.8655,1.3793,-1.2225,-0.4862
+label_ideology,Llama-3.1-8B-Instruct,Llama,e5/hyde,SPD,217,3.1,0.3968,1.0161,0.2562,0.5507
+label_ideology,Llama-3.1-8B-Instruct,Llama,e5/simple,AfD,114,6.6,-0.8474,0.8509,-1.1352,-0.5947
+label_ideology,Llama-3.1-8B-Instruct,Llama,e5/simple,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.3314,0.8096,0.1551,0.5064
+label_ideology,Llama-3.1-8B-Instruct,Llama,e5/simple,CDU/CSU,51,4.9824,-0.2765,1.1118,-0.6451,0.0863
+label_ideology,Llama-3.1-8B-Instruct,Llama,e5/simple,DIE LINKE,178,1.9,0.9854,1.0944,0.8123,1.1675
+label_ideology,Llama-3.1-8B-Instruct,Llama,e5/simple,FDP,58,4.6,-1.0621,1.4724,-1.4069,-0.712
+label_ideology,Llama-3.1-8B-Instruct,Llama,e5/simple,SPD,217,3.1,0.5138,1.1,0.3604,0.6645
+label_ideology,Llama-3.1-8B-Instruct,Llama,e5/twostage,AfD,114,6.6,-0.7509,0.7614,-1.0176,-0.5096
+label_ideology,Llama-3.1-8B-Instruct,Llama,e5/twostage,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.3955,0.9058,0.207,0.5878
+label_ideology,Llama-3.1-8B-Instruct,Llama,e5/twostage,CDU/CSU,51,4.9824,-0.2706,1.1137,-0.6589,0.0922
+label_ideology,Llama-3.1-8B-Instruct,Llama,e5/twostage,DIE LINKE,179,1.9,1.0922,1.2106,0.8899,1.2961
+label_ideology,Llama-3.1-8B-Instruct,Llama,e5/twostage,FDP,58,4.6,-1.0138,1.3448,-1.3293,-0.6758
+label_ideology,Llama-3.1-8B-Instruct,Llama,e5/twostage,SPD,217,3.1,0.5498,1.0862,0.3926,0.7032
+label_ideology,Llama-3.1-8B-Instruct,Llama,jina/hyde,AfD,114,6.6,-0.9447,0.9447,-1.2474,-0.6614
+label_ideology,Llama-3.1-8B-Instruct,Llama,jina/hyde,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.3199,0.934,0.1051,0.5366
+label_ideology,Llama-3.1-8B-Instruct,Llama,jina/hyde,CDU/CSU,51,4.9824,-0.3843,1.1843,-0.7745,-0.0098
+label_ideology,Llama-3.1-8B-Instruct,Llama,jina/hyde,DIE LINKE,179,1.9,0.9687,1.105,0.7933,1.1553
+label_ideology,Llama-3.1-8B-Instruct,Llama,jina/hyde,FDP,58,4.6,-0.8603,1.2638,-1.2035,-0.5119
+label_ideology,Llama-3.1-8B-Instruct,Llama,jina/hyde,SPD,217,3.1,0.5382,1.1171,0.3783,0.7005
+label_ideology,Llama-3.1-8B-Instruct,Llama,jina/simple,AfD,114,6.6,-0.8728,0.8868,-1.1728,-0.5938
+label_ideology,Llama-3.1-8B-Instruct,Llama,jina/simple,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.441,1.0179,0.2192,0.6872
+label_ideology,Llama-3.1-8B-Instruct,Llama,jina/simple,CDU/CSU,51,4.9824,-0.3745,1.202,-0.7687,0.0059
+label_ideology,Llama-3.1-8B-Instruct,Llama,jina/simple,DIE LINKE,179,1.9,0.9324,1.0587,0.7642,1.1084
+label_ideology,Llama-3.1-8B-Instruct,Llama,jina/simple,FDP,58,4.6,-0.881,1.3224,-1.2207,-0.5121
+label_ideology,Llama-3.1-8B-Instruct,Llama,jina/simple,SPD,217,3.1,0.6304,1.176,0.4687,0.8014
+label_ideology,Llama-3.1-8B-Instruct,Llama,jina/twostage,AfD,103,6.6,-0.8252,0.8369,-1.1301,-0.5534
+label_ideology,Llama-3.1-8B-Instruct,Llama,jina/twostage,BÜNDNIS 90/DIE GRÜNEN,135,2.8,0.317,0.9096,0.1066,0.5437
+label_ideology,Llama-3.1-8B-Instruct,Llama,jina/twostage,CDU/CSU,44,4.9818,-0.4023,1.175,-0.7932,0.0273
+label_ideology,Llama-3.1-8B-Instruct,Llama,jina/twostage,DIE LINKE,155,1.9,1.0819,1.1981,0.8851,1.2936
+label_ideology,Llama-3.1-8B-Instruct,Llama,jina/twostage,FDP,49,4.6,-0.7163,1.1694,-1.0898,-0.3264
+label_ideology,Llama-3.1-8B-Instruct,Llama,jina/twostage,SPD,187,3.1,0.7134,1.1754,0.5358,0.8759
+label_ideology,Llama-3.1-8B-Instruct,Llama,qwen3/hyde,AfD,114,6.6,-0.7991,0.8026,-1.0728,-0.5447
+label_ideology,Llama-3.1-8B-Instruct,Llama,qwen3/hyde,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.2712,0.8083,0.1045,0.4597
+label_ideology,Llama-3.1-8B-Instruct,Llama,qwen3/hyde,CDU/CSU,51,4.9824,-0.2902,1.0549,-0.6334,0.0608
+label_ideology,Llama-3.1-8B-Instruct,Llama,qwen3/hyde,DIE LINKE,179,1.9,0.7972,0.9335,0.6413,0.9687
+label_ideology,Llama-3.1-8B-Instruct,Llama,qwen3/hyde,FDP,58,4.6,-1.1121,1.3741,-1.4225,-0.7913
+label_ideology,Llama-3.1-8B-Instruct,Llama,qwen3/hyde,SPD,217,3.1,0.4212,1.0313,0.27,0.5687
+label_ideology,Llama-3.1-8B-Instruct,Llama,qwen3/simple,AfD,114,6.6,-0.7596,0.7772,-1.0562,-0.5131
+label_ideology,Llama-3.1-8B-Instruct,Llama,qwen3/simple,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.1974,0.8192,0.0199,0.3904
+label_ideology,Llama-3.1-8B-Instruct,Llama,qwen3/simple,CDU/CSU,51,4.9824,-0.1882,1.1098,-0.5471,0.1784
+label_ideology,Llama-3.1-8B-Instruct,Llama,qwen3/simple,DIE LINKE,179,1.9,0.8453,1.005,0.6838,1.0246
+label_ideology,Llama-3.1-8B-Instruct,Llama,qwen3/simple,FDP,58,4.6,-0.9845,1.3293,-1.3172,-0.6569
+label_ideology,Llama-3.1-8B-Instruct,Llama,qwen3/simple,SPD,217,3.1,0.5037,1.0991,0.3392,0.6728
+label_ideology,Llama-3.1-8B-Instruct,Llama,qwen3/twostage,AfD,114,6.6,-0.8465,0.85,-1.1272,-0.578
+label_ideology,Llama-3.1-8B-Instruct,Llama,qwen3/twostage,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.2929,0.8212,0.1211,0.4924
+label_ideology,Llama-3.1-8B-Instruct,Llama,qwen3/twostage,CDU/CSU,51,4.9824,-0.3333,1.0078,-0.657,-0.0136
+label_ideology,Llama-3.1-8B-Instruct,Llama,qwen3/twostage,DIE LINKE,179,1.9,0.9078,1.0441,0.738,1.0905
+label_ideology,Llama-3.1-8B-Instruct,Llama,qwen3/twostage,FDP,58,4.6,-0.9103,1.1448,-1.2379,-0.5776
+label_ideology,Llama-3.1-8B-Instruct,Llama,qwen3/twostage,SPD,217,3.1,0.5793,1.1249,0.4299,0.7332
+label_ideology,Llama-3.2-3B-Instruct,Llama,no_rag,AfD,114,6.6,-1.1535,1.1921,-1.4167,-0.9123
+label_ideology,Llama-3.2-3B-Instruct,Llama,no_rag,BÜNDNIS 90/DIE GRÜNEN,156,2.8,-0.2397,1.4256,-0.5231,0.0462
+label_ideology,Llama-3.2-3B-Instruct,Llama,no_rag,CDU/CSU,51,4.9824,-2.5353,3.0373,-3.1039,-1.9235
+label_ideology,Llama-3.2-3B-Instruct,Llama,no_rag,DIE LINKE,179,1.9,1.7676,2.0603,1.4569,2.0632
+label_ideology,Llama-3.2-3B-Instruct,Llama,no_rag,FDP,58,4.6,-1.819,2.4121,-2.338,-1.2724
+label_ideology,Llama-3.2-3B-Instruct,Llama,no_rag,SPD,217,3.1,-0.7267,1.7046,-0.9774,-0.4765
+label_ideology,Llama-3.2-3B-Instruct,Llama,bge/hyde,AfD,107,6.6,-1.0084,1.0084,-1.2085,-0.8242
+label_ideology,Llama-3.2-3B-Instruct,Llama,bge/hyde,BÜNDNIS 90/DIE GRÜNEN,144,2.8,1.4917,1.625,1.3049,1.6729
+label_ideology,Llama-3.2-3B-Instruct,Llama,bge/hyde,CDU/CSU,49,4.9857,-0.798,1.0918,-1.0796,-0.5224
+label_ideology,Llama-3.2-3B-Instruct,Llama,bge/hyde,DIE LINKE,173,1.9,2.9566,2.9566,2.8046,3.1029
+label_ideology,Llama-3.2-3B-Instruct,Llama,bge/hyde,FDP,53,4.6,-0.3962,0.8189,-0.6642,-0.117
+label_ideology,Llama-3.2-3B-Instruct,Llama,bge/hyde,SPD,203,3.1,0.9724,1.2187,0.8359,1.1138
+label_ideology,Llama-3.2-3B-Instruct,Llama,bge/hyde_hybrid,AfD,109,6.6,-0.9294,0.933,-1.1129,-0.7596
+label_ideology,Llama-3.2-3B-Instruct,Llama,bge/hyde_hybrid,BÜNDNIS 90/DIE GRÜNEN,148,2.8,1.5196,1.6696,1.3243,1.7061
+label_ideology,Llama-3.2-3B-Instruct,Llama,bge/hyde_hybrid,CDU/CSU,49,4.9857,-1.0878,1.3122,-1.3818,-0.7979
+label_ideology,Llama-3.2-3B-Instruct,Llama,bge/hyde_hybrid,DIE LINKE,163,1.9,2.9196,2.9196,2.7748,3.062
+label_ideology,Llama-3.2-3B-Instruct,Llama,bge/hyde_hybrid,FDP,58,4.6,-0.3638,0.8603,-0.6431,-0.0948
+label_ideology,Llama-3.2-3B-Instruct,Llama,bge/hyde_hybrid,SPD,202,3.1,0.8485,1.1297,0.7247,0.9718
+label_ideology,Llama-3.2-3B-Instruct,Llama,bge/simple,AfD,104,6.6,-0.7894,0.7933,-0.9721,-0.6278
+label_ideology,Llama-3.2-3B-Instruct,Llama,bge/simple,BÜNDNIS 90/DIE GRÜNEN,147,2.8,1.5905,1.6993,1.3993,1.7823
+label_ideology,Llama-3.2-3B-Instruct,Llama,bge/simple,CDU/CSU,47,4.9894,-1.0191,1.5723,-1.4575,-0.5723
+label_ideology,Llama-3.2-3B-Instruct,Llama,bge/simple,DIE LINKE,167,1.9,2.9287,2.9287,2.7724,3.0874
+label_ideology,Llama-3.2-3B-Instruct,Llama,bge/simple,FDP,57,4.6,-0.3263,0.9439,-0.6702,-0.0017
+label_ideology,Llama-3.2-3B-Instruct,Llama,bge/simple,SPD,205,3.1,0.9444,1.2527,0.8,1.0869
+label_ideology,Llama-3.2-3B-Instruct,Llama,bge/simple_hybrid,AfD,104,6.6,-0.6596,0.6596,-0.8038,-0.544
+label_ideology,Llama-3.2-3B-Instruct,Llama,bge/simple_hybrid,BÜNDNIS 90/DIE GRÜNEN,143,2.8,1.7035,1.8266,1.5063,1.8959
+label_ideology,Llama-3.2-3B-Instruct,Llama,bge/simple_hybrid,CDU/CSU,46,4.9913,-0.6978,1.2109,-1.0588,-0.3521
+label_ideology,Llama-3.2-3B-Instruct,Llama,bge/simple_hybrid,DIE LINKE,158,1.9,3.0323,3.0323,2.8797,3.1861
+label_ideology,Llama-3.2-3B-Instruct,Llama,bge/simple_hybrid,FDP,52,4.6,-0.3192,1.0654,-0.6712,0.0156
+label_ideology,Llama-3.2-3B-Instruct,Llama,bge/simple_hybrid,SPD,205,3.1,1.019,1.2805,0.8761,1.1698
+label_ideology,Llama-3.2-3B-Instruct,Llama,bge/twostage,AfD,108,6.6,-0.8685,0.8796,-1.05,-0.7055
+label_ideology,Llama-3.2-3B-Instruct,Llama,bge/twostage,BÜNDNIS 90/DIE GRÜNEN,144,2.8,1.7465,1.834,1.5548,1.9257
+label_ideology,Llama-3.2-3B-Instruct,Llama,bge/twostage,CDU/CSU,48,4.9875,-1.0458,1.3458,-1.3501,-0.7229
+label_ideology,Llama-3.2-3B-Instruct,Llama,bge/twostage,DIE LINKE,169,1.9,3.1083,3.1083,2.9574,3.2569
+label_ideology,Llama-3.2-3B-Instruct,Llama,bge/twostage,FDP,55,4.6,-0.1473,0.8745,-0.4182,0.151
+label_ideology,Llama-3.2-3B-Instruct,Llama,bge/twostage,SPD,205,3.1,0.9907,1.258,0.8541,1.1337
+label_ideology,Llama-3.2-3B-Instruct,Llama,bge/twostage_hybrid,AfD,105,6.6,-0.6952,0.6952,-0.8286,-0.5714
+label_ideology,Llama-3.2-3B-Instruct,Llama,bge/twostage_hybrid,BÜNDNIS 90/DIE GRÜNEN,145,2.8,1.7883,1.9,1.5924,1.9752
+label_ideology,Llama-3.2-3B-Instruct,Llama,bge/twostage_hybrid,CDU/CSU,47,4.9894,-0.817,1.4,-1.2532,-0.3829
+label_ideology,Llama-3.2-3B-Instruct,Llama,bge/twostage_hybrid,DIE LINKE,160,1.9,3.2106,3.2106,3.0456,3.3675
+label_ideology,Llama-3.2-3B-Instruct,Llama,bge/twostage_hybrid,FDP,52,4.6,0.0808,0.9962,-0.2423,0.4078
+label_ideology,Llama-3.2-3B-Instruct,Llama,bge/twostage_hybrid,SPD,198,3.1,1.2076,1.3894,1.0702,1.353
+label_ideology,Llama-3.2-3B-Instruct,Llama,e5/hyde,AfD,105,6.6,-0.7238,0.7238,-0.8667,-0.5905
+label_ideology,Llama-3.2-3B-Instruct,Llama,e5/hyde,BÜNDNIS 90/DIE GRÜNEN,144,2.8,1.7826,1.8618,1.5958,1.9674
+label_ideology,Llama-3.2-3B-Instruct,Llama,e5/hyde,CDU/CSU,45,4.98,-0.7933,1.1444,-1.1222,-0.4756
+label_ideology,Llama-3.2-3B-Instruct,Llama,e5/hyde,DIE LINKE,159,1.9,3.2245,3.2245,3.0736,3.3818
+label_ideology,Llama-3.2-3B-Instruct,Llama,e5/hyde,FDP,55,4.6,-0.0509,0.6982,-0.2818,0.2
+label_ideology,Llama-3.2-3B-Instruct,Llama,e5/hyde,SPD,202,3.1,1.2307,1.3851,1.097,1.3589
+label_ideology,Llama-3.2-3B-Instruct,Llama,e5/simple,AfD,107,6.6,-0.643,0.643,-0.7738,-0.5308
+label_ideology,Llama-3.2-3B-Instruct,Llama,e5/simple,BÜNDNIS 90/DIE GRÜNEN,144,2.8,1.7833,1.9083,1.5805,1.9834
+label_ideology,Llama-3.2-3B-Instruct,Llama,e5/simple,CDU/CSU,47,4.9894,-0.6851,1.1149,-0.9702,-0.3787
+label_ideology,Llama-3.2-3B-Instruct,Llama,e5/simple,DIE LINKE,162,1.9,3.1136,3.1136,2.9531,3.2816
+label_ideology,Llama-3.2-3B-Instruct,Llama,e5/simple,FDP,54,4.6,-0.0185,0.8407,-0.313,0.276
+label_ideology,Llama-3.2-3B-Instruct,Llama,e5/simple,SPD,196,3.1,1.1459,1.3439,1.0046,1.2914
+label_ideology,Llama-3.2-3B-Instruct,Llama,e5/twostage,AfD,106,6.6,-0.5774,0.5849,-0.6962,-0.4717
+label_ideology,Llama-3.2-3B-Instruct,Llama,e5/twostage,BÜNDNIS 90/DIE GRÜNEN,139,2.8,1.7906,1.9101,1.5928,1.9928
+label_ideology,Llama-3.2-3B-Instruct,Llama,e5/twostage,CDU/CSU,46,4.9652,-0.6848,1.1109,-0.9935,-0.363
+label_ideology,Llama-3.2-3B-Instruct,Llama,e5/twostage,DIE LINKE,163,1.9,3.2497,3.2497,3.0944,3.4061
+label_ideology,Llama-3.2-3B-Instruct,Llama,e5/twostage,FDP,52,4.6,-0.0673,0.9596,-0.4019,0.2365
+label_ideology,Llama-3.2-3B-Instruct,Llama,e5/twostage,SPD,202,3.1,1.1802,1.3406,1.051,1.3144
+label_ideology,Llama-3.2-3B-Instruct,Llama,jina/hyde,AfD,98,6.6,-0.5745,0.5786,-0.7031,-0.4612
+label_ideology,Llama-3.2-3B-Instruct,Llama,jina/hyde,BÜNDNIS 90/DIE GRÜNEN,132,2.8,1.803,1.8818,1.606,1.9879
+label_ideology,Llama-3.2-3B-Instruct,Llama,jina/hyde,CDU/CSU,37,4.9811,-0.9622,1.1405,-1.3272,-0.6324
+label_ideology,Llama-3.2-3B-Instruct,Llama,jina/hyde,DIE LINKE,153,1.9,3.1242,3.1242,2.9569,3.2797
+label_ideology,Llama-3.2-3B-Instruct,Llama,jina/hyde,FDP,50,4.6,-0.124,0.876,-0.42,0.164
+label_ideology,Llama-3.2-3B-Instruct,Llama,jina/hyde,SPD,187,3.1,1.0802,1.3005,0.9315,1.2364
+label_ideology,Llama-3.2-3B-Instruct,Llama,jina/simple,AfD,90,6.6,-0.5767,0.6122,-0.7344,-0.4378
+label_ideology,Llama-3.2-3B-Instruct,Llama,jina/simple,BÜNDNIS 90/DIE GRÜNEN,127,2.8,1.6669,1.8669,1.4385,1.8937
+label_ideology,Llama-3.2-3B-Instruct,Llama,jina/simple,CDU/CSU,40,4.96,-1.04,1.4,-1.4601,-0.6049
+label_ideology,Llama-3.2-3B-Instruct,Llama,jina/simple,DIE LINKE,150,1.9,3.0627,3.0627,2.892,3.23
+label_ideology,Llama-3.2-3B-Instruct,Llama,jina/simple,FDP,48,4.6,-0.2375,0.8208,-0.5501,0.0479
+label_ideology,Llama-3.2-3B-Instruct,Llama,jina/simple,SPD,191,3.1,0.9503,1.2791,0.788,1.1079
+label_ideology,Llama-3.2-3B-Instruct,Llama,jina/twostage,AfD,105,6.6,-0.6267,0.6343,-0.7619,-0.5162
+label_ideology,Llama-3.2-3B-Instruct,Llama,jina/twostage,BÜNDNIS 90/DIE GRÜNEN,146,2.8,1.8219,1.9863,1.6041,2.0233
+label_ideology,Llama-3.2-3B-Instruct,Llama,jina/twostage,CDU/CSU,51,4.9824,-0.7922,1.1765,-1.1373,-0.4627
+label_ideology,Llama-3.2-3B-Instruct,Llama,jina/twostage,DIE LINKE,166,1.9,3.0982,3.0982,2.944,3.2531
+label_ideology,Llama-3.2-3B-Instruct,Llama,jina/twostage,FDP,52,4.6,-0.0404,0.8712,-0.3538,0.2712
+label_ideology,Llama-3.2-3B-Instruct,Llama,jina/twostage,SPD,204,3.1,1.0402,1.2794,0.8936,1.178
+label_ideology,Llama-3.2-3B-Instruct,Llama,qwen3/hyde,AfD,111,6.6,-0.7486,0.7486,-0.9055,-0.6135
+label_ideology,Llama-3.2-3B-Instruct,Llama,qwen3/hyde,BÜNDNIS 90/DIE GRÜNEN,139,2.8,1.7417,1.8755,1.5381,1.941
+label_ideology,Llama-3.2-3B-Instruct,Llama,qwen3/hyde,CDU/CSU,49,4.9857,-0.9673,1.3143,-1.2736,-0.6428
+label_ideology,Llama-3.2-3B-Instruct,Llama,qwen3/hyde,DIE LINKE,160,1.9,3.0469,3.0469,2.8719,3.2056
+label_ideology,Llama-3.2-3B-Instruct,Llama,qwen3/hyde,FDP,51,4.6,-0.049,0.8882,-0.3668,0.2608
+label_ideology,Llama-3.2-3B-Instruct,Llama,qwen3/hyde,SPD,209,3.1,1.1756,1.388,1.0344,1.322
+label_ideology,Llama-3.2-3B-Instruct,Llama,qwen3/simple,AfD,109,6.6,-0.7147,0.7257,-0.8688,-0.5761
+label_ideology,Llama-3.2-3B-Instruct,Llama,qwen3/simple,BÜNDNIS 90/DIE GRÜNEN,142,2.8,1.8225,1.9352,1.6147,2.0247
+label_ideology,Llama-3.2-3B-Instruct,Llama,qwen3/simple,CDU/CSU,50,4.984,-0.624,1.172,-0.948,-0.28
+label_ideology,Llama-3.2-3B-Instruct,Llama,qwen3/simple,DIE LINKE,169,1.9,3.1254,3.1254,2.9633,3.2758
+label_ideology,Llama-3.2-3B-Instruct,Llama,qwen3/simple,FDP,52,4.6,-0.0442,0.8673,-0.3212,0.2519
+label_ideology,Llama-3.2-3B-Instruct,Llama,qwen3/simple,SPD,202,3.1,1.1208,1.3208,0.9926,1.2555
+label_ideology,Llama-3.2-3B-Instruct,Llama,qwen3/twostage,AfD,107,6.6,-0.6355,0.6355,-0.7551,-0.5252
+label_ideology,Llama-3.2-3B-Instruct,Llama,qwen3/twostage,BÜNDNIS 90/DIE GRÜNEN,145,2.8,1.8014,1.9338,1.5869,2.0034
+label_ideology,Llama-3.2-3B-Instruct,Llama,qwen3/twostage,CDU/CSU,47,4.9894,-0.9234,1.4511,-1.3086,-0.5489
+label_ideology,Llama-3.2-3B-Instruct,Llama,qwen3/twostage,DIE LINKE,162,1.9,3.2512,3.2512,3.095,3.4204
+label_ideology,Llama-3.2-3B-Instruct,Llama,qwen3/twostage,FDP,54,4.6,0.1463,0.9796,-0.1704,0.4741
+label_ideology,Llama-3.2-3B-Instruct,Llama,qwen3/twostage,SPD,201,3.1,1.1448,1.3368,1.005,1.2821
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,no_rag,AfD,114,6.6,-0.9088,0.9123,-1.1982,-0.6412
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,no_rag,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.0301,0.5135,-0.0756,0.1455
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,no_rag,CDU/CSU,51,4.9824,-0.3314,0.849,-0.604,-0.0588
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,no_rag,DIE LINKE,179,1.9,0.8095,0.8363,0.7061,0.924
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,no_rag,FDP,58,4.6,-0.8069,1.031,-1.0741,-0.5397
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,no_rag,SPD,217,3.1,0.347,0.841,0.2433,0.4599
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,bge/hyde,AfD,114,6.6,-2.2754,2.2754,-2.6263,-1.9202
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,bge/hyde,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.2737,0.6904,0.139,0.4051
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,bge/hyde,CDU/CSU,51,4.9824,-0.5118,0.8725,-0.7726,-0.247
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,bge/hyde,DIE LINKE,179,1.9,0.857,0.8749,0.7425,0.9799
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,bge/hyde,FDP,58,4.6,-0.9103,0.9759,-1.1776,-0.6517
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,bge/hyde,SPD,217,3.1,0.506,0.9641,0.3793,0.6304
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,bge/hyde_hybrid,AfD,114,6.6,-2.4114,2.4114,-2.7535,-2.0474
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,bge/hyde_hybrid,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.2731,0.6936,0.1391,0.4052
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,bge/hyde_hybrid,CDU/CSU,51,4.9824,-0.6294,0.8804,-0.8647,-0.398
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,bge/hyde_hybrid,DIE LINKE,179,1.9,0.8067,0.8514,0.6922,0.9352
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,bge/hyde_hybrid,FDP,58,4.6,-0.8586,0.9862,-1.1259,-0.6086
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,bge/hyde_hybrid,SPD,217,3.1,0.4954,0.9599,0.3756,0.6153
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,bge/simple,AfD,114,6.6,-2.5079,2.5079,-2.8545,-2.1525
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,bge/simple,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.2269,0.6513,0.0949,0.3628
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,bge/simple,CDU/CSU,51,4.9824,-0.5314,0.8529,-0.7784,-0.2824
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,bge/simple,DIE LINKE,179,1.9,0.8709,0.9022,0.7508,0.9966
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,bge/simple,FDP,58,4.6,-0.8328,0.9293,-1.0828,-0.5828
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,bge/simple,SPD,217,3.1,0.5037,0.9673,0.3769,0.6281
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,bge/simple_hybrid,AfD,114,6.6,-2.4991,2.4991,-2.8675,-2.157
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,bge/simple_hybrid,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.1872,0.6333,0.0654,0.3154
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,bge/simple_hybrid,CDU/CSU,51,4.9824,-0.6098,0.7824,-0.8412,-0.3882
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,bge/simple_hybrid,DIE LINKE,179,1.9,0.8765,0.8944,0.762,0.9994
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,bge/simple_hybrid,FDP,58,4.6,-0.781,0.9431,-1.0483,-0.5052
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,bge/simple_hybrid,SPD,217,3.1,0.5313,0.9765,0.4138,0.6558
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,bge/twostage,AfD,114,6.6,-2.2491,2.2561,-2.5912,-1.8982
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,bge/twostage,BÜNDNIS 90/DIE GRÜNEN,155,2.8,0.2613,0.6819,0.1258,0.3969
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,bge/twostage,CDU/CSU,51,4.9824,-0.649,0.8216,-0.8824,-0.4098
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,bge/twostage,DIE LINKE,179,1.9,0.7983,0.8162,0.6894,0.9128
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,bge/twostage,FDP,58,4.6,-0.8069,0.969,-1.0744,-0.531
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,bge/twostage,SPD,217,3.1,0.6083,1.0074,0.4861,0.7235
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,bge/twostage_hybrid,AfD,114,6.6,-2.4307,2.4342,-2.7896,-2.0639
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,bge/twostage_hybrid,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.3058,0.684,0.1775,0.4404
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,bge/twostage_hybrid,CDU/CSU,51,4.9824,-0.4784,0.8235,-0.7353,-0.2373
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,bge/twostage_hybrid,DIE LINKE,179,1.9,0.7872,0.7961,0.6838,0.8961
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,bge/twostage_hybrid,FDP,58,4.6,-0.7121,0.8741,-0.9793,-0.4534
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,bge/twostage_hybrid,SPD,217,3.1,0.5982,1.0009,0.4714,0.7134
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,e5/hyde,AfD,114,6.6,-2.3325,2.3395,-2.6789,-1.964
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,e5/hyde,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.3154,0.7103,0.184,0.45
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,e5/hyde,CDU/CSU,51,4.9824,-0.5314,0.7275,-0.7431,-0.3118
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,e5/hyde,DIE LINKE,179,1.9,0.8598,0.8866,0.7564,0.9715
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,e5/hyde,FDP,58,4.6,-0.7379,0.9,-1.0052,-0.4793
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,e5/hyde,SPD,217,3.1,0.5406,1.0014,0.4161,0.6604
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,e5/simple,AfD,114,6.6,-2.4246,2.4281,-2.786,-2.0868
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,e5/simple,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.2513,0.6577,0.1263,0.3827
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,e5/simple,CDU/CSU,51,4.9824,-0.4824,0.6784,-0.6922,-0.2706
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,e5/simple,DIE LINKE,179,1.9,0.8849,0.9251,0.762,1.0134
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,e5/simple,FDP,58,4.6,-0.531,0.7241,-0.781,-0.2897
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,e5/simple,SPD,217,3.1,0.5438,1.0018,0.4253,0.6636
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,e5/twostage,AfD,114,6.6,-2.1395,2.1395,-2.4992,-1.7974
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,e5/twostage,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.2353,0.6532,0.1038,0.3635
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,e5/twostage,CDU/CSU,51,4.9824,-0.5216,0.7569,-0.753,-0.2862
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,e5/twostage,DIE LINKE,179,1.9,0.9017,0.924,0.7844,1.0246
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,e5/twostage,FDP,58,4.6,-0.7034,0.8345,-0.9707,-0.4621
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,e5/twostage,SPD,217,3.1,0.5544,0.9811,0.4346,0.6743
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,jina/hyde,AfD,114,6.6,-2.3675,2.3746,-2.7361,-2.0079
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,jina/hyde,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.2288,0.6571,0.0974,0.3699
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,jina/hyde,CDU/CSU,51,4.9824,-0.4137,0.8373,-0.6961,-0.1471
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,jina/hyde,DIE LINKE,179,1.9,0.7966,0.8056,0.6978,0.8961
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,jina/hyde,FDP,58,4.6,-0.7983,0.9259,-1.0485,-0.531
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,jina/hyde,SPD,217,3.1,0.5659,0.9917,0.4438,0.6881
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,jina/simple,AfD,114,6.6,-2.3877,2.3877,-2.7562,-2.0298
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,jina/simple,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.2321,0.6641,0.1006,0.3699
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,jina/simple,CDU/CSU,51,4.9824,-0.6196,0.8784,-0.8784,-0.3529
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,jina/simple,DIE LINKE,179,1.9,0.8849,0.8983,0.7732,1.0106
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,jina/simple,FDP,58,4.6,-0.6345,0.831,-0.8931,-0.3845
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,jina/simple,SPD,217,3.1,0.5705,1.0028,0.4392,0.6949
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,jina/twostage,AfD,114,6.6,-2.4596,2.4596,-2.8193,-2.1132
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,jina/twostage,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.1936,0.6179,0.0686,0.3186
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,jina/twostage,CDU/CSU,51,4.9824,-0.4725,0.7706,-0.7196,-0.2313
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,jina/twostage,DIE LINKE,179,1.9,0.8469,0.8603,0.7435,0.9553
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,jina/twostage,FDP,58,4.6,-0.7034,0.769,-0.9362,-0.4793
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,jina/twostage,SPD,217,3.1,0.5037,0.97,0.3815,0.6304
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,qwen3/hyde,AfD,114,6.6,-2.5974,2.6044,-2.9658,-2.249
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,qwen3/hyde,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.1744,0.6321,0.0494,0.2994
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,qwen3/hyde,CDU/CSU,51,4.9824,-0.5804,0.8549,-0.8412,-0.3235
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,qwen3/hyde,DIE LINKE,179,1.9,0.7508,0.7732,0.6558,0.8626
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,qwen3/hyde,FDP,58,4.6,-0.7207,0.8828,-0.9707,-0.4705
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,qwen3/hyde,SPD,217,3.1,0.4691,0.9889,0.3331,0.5959
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,qwen3/simple,AfD,114,6.6,-2.2667,2.2667,-2.6132,-1.8982
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,qwen3/simple,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.1359,0.6141,0.0109,0.2609
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,qwen3/simple,CDU/CSU,51,4.9824,-0.502,0.7373,-0.7196,-0.2803
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,qwen3/simple,DIE LINKE,179,1.9,0.7927,0.833,0.681,0.9184
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,qwen3/simple,FDP,58,4.6,-0.7207,0.8172,-0.9621,-0.4707
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,qwen3/simple,SPD,217,3.1,0.4576,0.9553,0.3332,0.5866
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,qwen3/twostage,AfD,114,6.6,-2.4096,2.4096,-2.7518,-2.0482
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,qwen3/twostage,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.2577,0.6808,0.1231,0.3955
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,qwen3/twostage,CDU/CSU,51,4.9824,-0.6882,0.8608,-0.9373,-0.4333
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,qwen3/twostage,DIE LINKE,179,1.9,0.7788,0.7966,0.6726,0.8933
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,qwen3/twostage,FDP,58,4.6,-0.6345,0.731,-0.8672,-0.3845
+label_ideology,Meta-Llama-3.1-70B-Instruct-FP8,Llama,qwen3/twostage,SPD,217,3.1,0.5336,1.0065,0.4092,0.6604
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,no_rag,AfD,114,6.6,-1.0956,1.2482,-1.4281,-0.7868
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,no_rag,BÜNDNIS 90/DIE GRÜNEN,156,2.8,-0.1724,0.7378,-0.3147,-0.023
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,no_rag,CDU/CSU,51,4.9824,-0.9,1.1941,-1.2,-0.6058
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,no_rag,DIE LINKE,179,1.9,0.5547,0.7324,0.4324,0.681
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,no_rag,FDP,58,4.6,-1.2914,1.4362,-1.5328,-1.0275
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,no_rag,SPD,217,3.1,-0.0157,0.5954,-0.1207,0.0857
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,bge/hyde,AfD,114,6.6,-0.9579,1.1754,-1.3132,-0.6228
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,bge/hyde,BÜNDNIS 90/DIE GRÜNEN,156,2.8,-0.2679,0.8974,-0.4321,-0.0878
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,bge/hyde,CDU/CSU,51,4.9824,-0.8863,1.2745,-1.204,-0.5725
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,bge/hyde,DIE LINKE,178,1.9,0.4253,0.85,0.2528,0.6169
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,bge/hyde,FDP,57,4.6,-1.4193,1.5351,-1.693,-1.1421
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,bge/hyde,SPD,217,3.1,0.0323,0.8065,-0.0973,0.1724
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,bge/hyde_hybrid,AfD,114,6.6,-1.007,1.2105,-1.3536,-0.6781
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,bge/hyde_hybrid,BÜNDNIS 90/DIE GRÜNEN,155,2.8,-0.2226,0.9065,-0.391,-0.0413
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,bge/hyde_hybrid,CDU/CSU,51,4.9824,-0.8294,1.249,-1.1667,-0.4882
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,bge/hyde_hybrid,DIE LINKE,178,1.9,0.4101,0.8045,0.2432,0.5978
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,bge/hyde_hybrid,FDP,58,4.6,-1.3259,1.5707,-1.6414,-0.9897
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,bge/hyde_hybrid,SPD,215,3.1,0.0372,0.8251,-0.0949,0.1786
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,bge/simple,AfD,113,6.6,-0.8018,1.0177,-1.1071,-0.4982
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,bge/simple,BÜNDNIS 90/DIE GRÜNEN,154,2.8,-0.3,0.8182,-0.4461,-0.1435
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,bge/simple,CDU/CSU,51,4.9824,-0.8392,1.3176,-1.1706,-0.5
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,bge/simple,DIE LINKE,179,1.9,0.4101,0.7765,0.2503,0.5894
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,bge/simple,FDP,58,4.6,-1.4086,1.5672,-1.6794,-1.1085
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,bge/simple,SPD,217,3.1,0.0249,0.7392,-0.0931,0.1576
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,bge/simple_hybrid,AfD,113,6.6,-0.6646,0.8805,-0.946,-0.3982
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,bge/simple_hybrid,BÜNDNIS 90/DIE GRÜNEN,155,2.8,-0.3052,0.8303,-0.451,-0.1387
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,bge/simple_hybrid,CDU/CSU,50,4.984,-0.762,1.458,-1.1481,-0.372
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,bge/simple_hybrid,DIE LINKE,179,1.9,0.4302,0.7832,0.2597,0.6146
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,bge/simple_hybrid,FDP,58,4.6,-1.4207,1.5414,-1.688,-1.1569
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,bge/simple_hybrid,SPD,215,3.1,0.1349,0.8465,-0.0126,0.2768
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,bge/twostage,AfD,114,6.6,-0.7684,0.9754,-1.0755,-0.4947
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,bge/twostage,BÜNDNIS 90/DIE GRÜNEN,154,2.8,-0.2208,0.8338,-0.3766,-0.0591
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,bge/twostage,CDU/CSU,51,4.9824,-0.7392,1.2137,-1.0648,-0.3843
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,bge/twostage,DIE LINKE,179,1.9,0.4257,0.7777,0.2625,0.6145
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,bge/twostage,FDP,58,4.6,-1.2552,1.5552,-1.5414,-0.9275
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,bge/twostage,SPD,214,3.1,0.0794,0.7738,-0.0584,0.2258
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,bge/twostage_hybrid,AfD,114,6.6,-0.7526,0.9807,-1.064,-0.4745
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,bge/twostage_hybrid,BÜNDNIS 90/DIE GRÜNEN,156,2.8,-0.2814,0.6878,-0.4013,-0.1532
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,bge/twostage_hybrid,CDU/CSU,50,4.984,-0.594,1.25,-0.9641,-0.216
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,bge/twostage_hybrid,DIE LINKE,179,1.9,0.4832,0.7939,0.314,0.6849
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,bge/twostage_hybrid,FDP,58,4.6,-1.4017,1.6259,-1.6741,-1.1034
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,bge/twostage_hybrid,SPD,213,3.1,0.0225,0.7869,-0.1052,0.154
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,e5/hyde,AfD,114,6.6,-0.9509,1.1719,-1.2983,-0.6359
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,e5/hyde,BÜNDNIS 90/DIE GRÜNEN,156,2.8,-0.1744,0.8859,-0.3526,0.0071
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,e5/hyde,CDU/CSU,51,4.9824,-0.849,1.2647,-1.1688,-0.498
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,e5/hyde,DIE LINKE,179,1.9,0.3458,0.7235,0.1877,0.5067
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,e5/hyde,FDP,58,4.6,-1.3241,1.569,-1.607,-1.0016
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,e5/hyde,SPD,215,3.1,0.0791,0.8149,-0.0595,0.233
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,e5/simple,AfD,114,6.6,-0.6289,0.8781,-0.9289,-0.3561
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,e5/simple,BÜNDNIS 90/DIE GRÜNEN,156,2.8,-0.2256,0.8577,-0.384,-0.041
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,e5/simple,CDU/CSU,50,4.972,-0.746,1.242,-1.068,-0.408
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,e5/simple,DIE LINKE,177,1.9,0.3955,0.7446,0.2339,0.5712
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,e5/simple,FDP,58,4.6,-1.3052,1.5638,-1.5914,-1.0155
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,e5/simple,SPD,215,3.1,0.0907,0.8293,-0.0447,0.2377
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,e5/twostage,AfD,114,6.6,-0.7263,0.9404,-1.0167,-0.4465
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,e5/twostage,BÜNDNIS 90/DIE GRÜNEN,153,2.8,-0.2797,0.7673,-0.4249,-0.1327
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,e5/twostage,CDU/CSU,51,4.9824,-0.9451,1.2706,-1.253,-0.6352
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,e5/twostage,DIE LINKE,179,1.9,0.424,0.7726,0.2676,0.6118
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,e5/twostage,FDP,58,4.6,-1.281,1.5052,-1.5552,-0.9827
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,e5/twostage,SPD,213,3.1,0.0399,0.808,-0.0991,0.1831
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,jina/hyde,AfD,114,6.6,-0.55,0.8061,-0.8325,-0.2851
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,jina/hyde,BÜNDNIS 90/DIE GRÜNEN,156,2.8,-0.2372,0.9449,-0.409,-0.0423
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,jina/hyde,CDU/CSU,50,4.984,-1.044,1.284,-1.342,-0.7319
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,jina/hyde,DIE LINKE,178,1.9,0.3483,0.7607,0.1826,0.5315
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,jina/hyde,FDP,58,4.6,-1.2759,1.431,-1.5259,-1.0172
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,jina/hyde,SPD,217,3.1,0.1945,0.87,0.0433,0.3521
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,jina/simple,AfD,112,6.6,-0.6625,0.9089,-0.9687,-0.3848
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,jina/simple,BÜNDNIS 90/DIE GRÜNEN,156,2.8,-0.2256,0.8936,-0.4051,-0.041
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,jina/simple,CDU/CSU,51,4.9824,-1.0216,1.3392,-1.3373,-0.7117
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,jina/simple,DIE LINKE,178,1.9,0.4725,0.8287,0.2944,0.6585
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,jina/simple,FDP,57,4.6,-1.1596,1.4509,-1.4369,-0.8421
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,jina/simple,SPD,217,3.1,0.1636,0.7949,0.029,0.3
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,jina/twostage,AfD,113,6.6,-0.6956,0.9186,-0.9992,-0.4221
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,jina/twostage,BÜNDNIS 90/DIE GRÜNEN,152,2.8,-0.2092,0.8697,-0.3789,-0.025
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,jina/twostage,CDU/CSU,48,4.975,-0.8896,1.3354,-1.2251,-0.5458
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,jina/twostage,DIE LINKE,177,1.9,0.4972,0.826,0.3367,0.6933
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,jina/twostage,FDP,57,4.6,-1.2702,1.4772,-1.5351,-0.9789
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,jina/twostage,SPD,214,3.1,0.1285,0.7678,0.0023,0.2715
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,qwen3/hyde,AfD,114,6.6,-0.8965,1.1175,-1.2343,-0.5772
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,qwen3/hyde,BÜNDNIS 90/DIE GRÜNEN,155,2.8,-0.2148,0.9374,-0.3942,-0.031
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,qwen3/hyde,CDU/CSU,51,4.9824,-0.9412,1.4118,-1.2784,-0.6
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,qwen3/hyde,DIE LINKE,179,1.9,0.343,0.7419,0.1709,0.5252
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,qwen3/hyde,FDP,58,4.6,-1.4224,1.5845,-1.7103,-1.1431
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,qwen3/hyde,SPD,213,3.1,0.0005,0.8709,-0.1394,0.1573
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,qwen3/simple,AfD,114,6.6,-0.7026,0.9307,-1.0035,-0.442
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,qwen3/simple,BÜNDNIS 90/DIE GRÜNEN,156,2.8,-0.3468,0.9288,-0.5064,-0.1731
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,qwen3/simple,CDU/CSU,51,4.9824,-1.0608,1.4451,-1.3746,-0.7235
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,qwen3/simple,DIE LINKE,179,1.9,0.2726,0.6637,0.1313,0.4269
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,qwen3/simple,FDP,58,4.6,-1.4172,1.6862,-1.7172,-1.0689
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,qwen3/simple,SPD,215,3.1,-0.0767,0.82,-0.2191,0.0638
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,qwen3/twostage,AfD,114,6.6,-0.8807,1.0947,-1.2045,-0.5737
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,qwen3/twostage,BÜNDNIS 90/DIE GRÜNEN,155,2.8,-0.2658,0.8181,-0.4168,-0.1154
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,qwen3/twostage,CDU/CSU,51,4.9824,-0.9059,1.3451,-1.2353,-0.5627
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,qwen3/twostage,DIE LINKE,179,1.9,0.3581,0.7179,0.1955,0.538
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,qwen3/twostage,FDP,58,4.6,-1.45,1.6121,-1.7138,-1.1759
+label_ideology,Ministral-3-14B-Instruct-2512,Mistral,qwen3/twostage,SPD,215,3.1,-0.0651,0.7749,-0.1884,0.0623
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,no_rag,AfD,114,6.6,-0.6693,0.9851,-0.9482,-0.4053
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,no_rag,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.5128,1.2782,0.25,0.7718
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,no_rag,CDU/CSU,50,4.984,-0.426,1.33,-0.8381,-0.0179
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,no_rag,DIE LINKE,179,1.9,1.4017,1.6218,1.1883,1.6235
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,no_rag,FDP,58,4.6,-0.5759,1.2276,-0.95,-0.2016
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,no_rag,SPD,217,3.1,0.5825,1.2369,0.3747,0.7742
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,bge/hyde,AfD,114,6.6,-1.5991,1.764,-1.8974,-1.3052
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,bge/hyde,BÜNDNIS 90/DIE GRÜNEN,153,2.8,0.1379,1.1614,-0.0857,0.3654
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,bge/hyde,CDU/CSU,51,4.9824,-0.9608,1.2627,-1.2981,-0.6313
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,bge/hyde,DIE LINKE,179,1.9,0.6855,1.1045,0.5112,0.8648
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,bge/hyde,FDP,58,4.6,-0.7741,1.4017,-1.1707,-0.3638
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,bge/hyde,SPD,217,3.1,0.423,1.0369,0.2539,0.5903
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,bge/hyde_hybrid,AfD,112,6.6,-1.4089,1.6125,-1.7223,-1.1178
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,bge/hyde_hybrid,BÜNDNIS 90/DIE GRÜNEN,154,2.8,0.3636,1.1208,0.163,0.5825
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,bge/hyde_hybrid,CDU/CSU,51,4.9824,-0.8745,1.1725,-1.1746,-0.5783
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,bge/hyde_hybrid,DIE LINKE,179,1.9,0.7905,1.176,0.605,0.986
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,bge/hyde_hybrid,FDP,58,4.6,-0.8345,1.3552,-1.1915,-0.4637
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,bge/hyde_hybrid,SPD,214,3.1,0.5061,1.035,0.3411,0.6626
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,bge/simple,AfD,112,6.6,-1.5348,1.6955,-1.8331,-1.2339
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,bge/simple,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.2314,1.1801,0.0154,0.4596
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,bge/simple,CDU/CSU,50,4.984,-0.754,1.21,-1.0901,-0.408
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,bge/simple,DIE LINKE,179,1.9,0.743,1.1486,0.5598,0.9279
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,bge/simple,FDP,58,4.6,-0.7483,1.2621,-1.0897,-0.4206
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,bge/simple,SPD,217,3.1,0.4521,1.0438,0.2815,0.6157
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,bge/simple_hybrid,AfD,113,6.6,-1.5894,1.7345,-1.8752,-1.3035
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,bge/simple_hybrid,BÜNDNIS 90/DIE GRÜNEN,154,2.8,0.2968,1.0669,0.0948,0.5143
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,bge/simple_hybrid,CDU/CSU,51,4.9824,-0.9333,1.251,-1.2706,-0.6137
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,bge/simple_hybrid,DIE LINKE,178,1.9,0.727,1.082,0.5432,0.904
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,bge/simple_hybrid,FDP,58,4.6,-0.9052,1.3293,-1.2639,-0.5569
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,bge/simple_hybrid,SPD,217,3.1,0.5018,1.1194,0.3203,0.688
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,bge/twostage,AfD,111,6.6,-1.3441,1.5351,-1.6289,-1.0721
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,bge/twostage,BÜNDNIS 90/DIE GRÜNEN,155,2.8,0.2226,1.1439,0.0148,0.4445
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,bge/twostage,CDU/CSU,51,4.9824,-0.5863,1.3392,-0.9902,-0.1902
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,bge/twostage,DIE LINKE,179,1.9,0.7246,1.0933,0.5408,0.9134
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,bge/twostage,FDP,58,4.6,-0.7397,1.1569,-1.0638,-0.4138
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,bge/twostage,SPD,216,3.1,0.5463,1.1111,0.3676,0.7273
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,bge/twostage_hybrid,AfD,111,6.6,-1.5757,1.7559,-1.8694,-1.2883
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,bge/twostage_hybrid,BÜNDNIS 90/DIE GRÜNEN,154,2.8,0.3532,1.0857,0.1506,0.5656
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,bge/twostage_hybrid,CDU/CSU,51,4.9824,-0.8157,1.1725,-1.1471,-0.4686
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,bge/twostage_hybrid,DIE LINKE,179,1.9,0.8547,1.1832,0.6642,1.057
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,bge/twostage_hybrid,FDP,57,4.6,-0.6228,1.1982,-0.9561,-0.2684
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,bge/twostage_hybrid,SPD,217,3.1,0.57,1.17,0.3922,0.747
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,e5/hyde,AfD,111,6.6,-1.8468,1.9874,-2.1748,-1.5162
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,e5/hyde,BÜNDNIS 90/DIE GRÜNEN,153,2.8,0.0778,1.0699,-0.1294,0.2889
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,e5/hyde,CDU/CSU,49,4.9857,-0.9347,1.3551,-1.347,-0.5407
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,e5/hyde,DIE LINKE,179,1.9,0.7659,1.1,0.5854,0.9525
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,e5/hyde,FDP,57,4.6,-1.0351,1.414,-1.4,-0.6684
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,e5/hyde,SPD,217,3.1,0.4493,1.0447,0.2894,0.6143
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,e5/simple,AfD,113,6.6,-1.723,1.8646,-2.031,-1.423
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,e5/simple,BÜNDNIS 90/DIE GRÜNEN,149,2.8,0.0651,1.0691,-0.1363,0.2692
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,e5/simple,CDU/CSU,48,4.975,-1.0521,1.3563,-1.448,-0.6833
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,e5/simple,DIE LINKE,179,1.9,0.6324,1.048,0.4547,0.819
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,e5/simple,FDP,57,4.6,-0.9333,1.3474,-1.3018,-0.5544
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,e5/simple,SPD,216,3.1,0.5093,1.1481,0.3337,0.6852
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,e5/twostage,AfD,113,6.6,-1.6655,1.8248,-1.977,-1.3655
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,e5/twostage,BÜNDNIS 90/DIE GRÜNEN,155,2.8,0.1452,1.0729,-0.0633,0.3523
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,e5/twostage,CDU/CSU,51,4.9824,-0.849,1.2059,-1.1824,-0.5059
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,e5/twostage,DIE LINKE,179,1.9,0.6497,1.0486,0.476,0.8342
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,e5/twostage,FDP,58,4.6,-0.9293,1.1845,-1.2552,-0.5981
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,e5/twostage,SPD,215,3.1,0.5088,1.16,0.327,0.68
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,jina/hyde,AfD,90,6.6,-1.9678,2.1011,-2.3434,-1.5911
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,jina/hyde,BÜNDNIS 90/DIE GRÜNEN,121,2.8,0.0785,1.1,-0.1727,0.3348
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,jina/hyde,CDU/CSU,40,4.96,-0.9225,1.3475,-1.3601,-0.4675
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,jina/hyde,DIE LINKE,135,1.9,0.6156,1.0274,0.4229,0.8215
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,jina/hyde,FDP,45,4.6,-0.8822,1.3444,-1.3311,-0.4444
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,jina/hyde,SPD,175,3.1,0.5166,1.1749,0.3206,0.712
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,jina/simple,AfD,113,6.6,-1.9062,2.0513,-2.2266,-1.5558
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,jina/simple,BÜNDNIS 90/DIE GRÜNEN,155,2.8,0.2535,1.2961,-0.0116,0.4949
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,jina/simple,CDU/CSU,51,4.9824,-0.8196,1.2549,-1.2021,-0.4411
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,jina/simple,DIE LINKE,178,1.9,0.8742,1.2034,0.6657,1.0803
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,jina/simple,FDP,58,4.6,-0.6379,1.0931,-0.9484,-0.3241
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,jina/simple,SPD,217,3.1,0.5894,1.0843,0.4272,0.7489
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,jina/twostage,AfD,113,6.6,-1.4858,1.6841,-1.7797,-1.1823
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,jina/twostage,BÜNDNIS 90/DIE GRÜNEN,153,2.8,0.2405,1.1386,0.0144,0.4537
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,jina/twostage,CDU/CSU,51,4.9824,-0.7961,1.2627,-1.1529,-0.4216
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,jina/twostage,DIE LINKE,179,1.9,0.8385,1.1425,0.657,1.0279
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,jina/twostage,FDP,58,4.6,-0.8207,1.2586,-1.1432,-0.4672
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,jina/twostage,SPD,214,3.1,0.5407,1.1079,0.3626,0.7098
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,qwen3/hyde,AfD,113,6.6,-1.5336,1.7,-1.8399,-1.2327
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,qwen3/hyde,BÜNDNIS 90/DIE GRÜNEN,155,2.8,0.1581,1.1129,-0.0568,0.3645
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,qwen3/hyde,CDU/CSU,50,4.984,-0.872,1.208,-1.2201,-0.542
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,qwen3/hyde,DIE LINKE,177,1.9,0.6023,0.9887,0.4339,0.7684
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,qwen3/hyde,FDP,58,4.6,-0.9724,1.2138,-1.2793,-0.6379
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,qwen3/hyde,SPD,216,3.1,0.4833,1.0407,0.3171,0.6454
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,qwen3/simple,AfD,112,6.6,-1.7929,1.9179,-2.1197,-1.4794
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,qwen3/simple,BÜNDNIS 90/DIE GRÜNEN,152,2.8,-0.0428,1.0717,-0.2526,0.1678
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,qwen3/simple,CDU/CSU,50,4.984,-1.068,1.292,-1.3861,-0.734
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,qwen3/simple,DIE LINKE,179,1.9,0.5553,1.0134,0.3732,0.7458
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,qwen3/simple,FDP,57,4.6,-0.8947,1.3544,-1.2562,-0.5386
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,qwen3/simple,SPD,214,3.1,0.378,1.1369,0.1991,0.5537
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,qwen3/twostage,AfD,113,6.6,-1.7602,1.9018,-2.0717,-1.4522
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,qwen3/twostage,BÜNDNIS 90/DIE GRÜNEN,154,2.8,0.1825,1.0955,-0.0279,0.3948
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,qwen3/twostage,CDU/CSU,51,4.9824,-0.9412,1.3451,-1.3197,-0.5705
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,qwen3/twostage,DIE LINKE,177,1.9,0.5887,0.9593,0.4355,0.748
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,qwen3/twostage,FDP,56,4.6,-0.7286,1.275,-1.0715,-0.3678
+label_ideology,Ministral-3-3B-Instruct-2512,Mistral,qwen3/twostage,SPD,217,3.1,0.4636,1.0839,0.2885,0.636
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,no_rag,AfD,114,6.6,-0.5667,0.886,-0.8737,-0.3
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,no_rag,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.5968,1.2712,0.3641,0.8391
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,no_rag,CDU/CSU,51,4.9824,-0.1196,1.002,-0.4491,0.2118
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,no_rag,DIE LINKE,179,1.9,0.9464,1.3296,0.7268,1.1744
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,no_rag,FDP,58,4.6,-0.0086,0.8741,-0.3208,0.3086
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,no_rag,SPD,217,3.1,0.8926,1.0917,0.7737,1.0134
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,bge/hyde,AfD,114,6.6,-0.3658,0.9219,-0.7062,-0.0701
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,bge/hyde,BÜNDNIS 90/DIE GRÜNEN,153,2.8,0.3843,1.2222,0.134,0.6491
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,bge/hyde,CDU/CSU,49,4.9857,-0.1449,1.1367,-0.4981,0.2184
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,bge/hyde,DIE LINKE,175,1.9,0.7429,1.4674,0.4691,1.0377
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,bge/hyde,FDP,58,4.6,-0.1034,1.2655,-0.4897,0.2983
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,bge/hyde,SPD,214,3.1,0.9145,1.2706,0.7219,1.115
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,bge/hyde_hybrid,AfD,113,6.6,-0.4009,0.9212,-0.7593,-0.0982
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,bge/hyde_hybrid,BÜNDNIS 90/DIE GRÜNEN,154,2.8,0.5071,1.2318,0.2636,0.7553
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,bge/hyde_hybrid,CDU/CSU,48,4.9875,-0.0646,1.1896,-0.4542,0.3501
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,bge/hyde_hybrid,DIE LINKE,175,1.9,0.784,1.5257,0.5057,1.0847
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,bge/hyde_hybrid,FDP,58,4.6,-0.1586,1.3172,-0.5741,0.2794
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,bge/hyde_hybrid,SPD,208,3.1,0.8875,1.2865,0.6841,1.0808
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,bge/simple,AfD,111,6.6,-0.2306,0.7856,-0.5452,0.0459
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,bge/simple,BÜNDNIS 90/DIE GRÜNEN,154,2.8,0.4169,1.3117,0.1629,0.6831
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,bge/simple,CDU/CSU,50,4.984,-0.034,1.19,-0.424,0.364
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,bge/simple,DIE LINKE,177,1.9,0.6508,1.3706,0.3898,0.9322
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,bge/simple,FDP,58,4.6,-0.6155,1.3155,-1.0018,-0.2206
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,bge/simple,SPD,215,3.1,0.9177,1.3009,0.7367,1.0981
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,bge/simple_hybrid,AfD,112,6.6,-0.1991,0.7938,-0.5313,0.0688
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,bge/simple_hybrid,BÜNDNIS 90/DIE GRÜNEN,148,2.8,0.3723,1.2358,0.1202,0.6366
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,bge/simple_hybrid,CDU/CSU,49,4.9857,-0.3449,1.3041,-0.7593,0.0695
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,bge/simple_hybrid,DIE LINKE,176,1.9,0.7744,1.4858,0.4943,1.0415
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,bge/simple_hybrid,FDP,57,4.6,-0.1351,1.2965,-0.5387,0.2878
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,bge/simple_hybrid,SPD,210,3.1,0.9538,1.3757,0.7538,1.1619
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,bge/twostage,AfD,112,6.6,-0.3268,0.7554,-0.6,-0.075
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,bge/twostage,BÜNDNIS 90/DIE GRÜNEN,155,2.8,0.64,1.3303,0.3942,0.8929
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,bge/twostage,CDU/CSU,51,4.9824,-0.1392,1.0843,-0.4981,0.1902
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,bge/twostage,DIE LINKE,179,1.9,0.9039,1.4067,0.6642,1.1447
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,bge/twostage,FDP,57,4.6,-0.186,0.9895,-0.5,0.1544
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,bge/twostage,SPD,215,3.1,0.9298,1.1726,0.7749,1.0842
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,bge/twostage_hybrid,AfD,114,6.6,-0.5754,0.8912,-0.879,-0.3148
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,bge/twostage_hybrid,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.5782,1.2385,0.3506,0.7981
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,bge/twostage_hybrid,CDU/CSU,51,4.9824,-0.0941,0.9765,-0.4216,0.2373
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,bge/twostage_hybrid,DIE LINKE,179,1.9,0.9285,1.3039,0.7101,1.1492
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,bge/twostage_hybrid,FDP,58,4.6,-0.0121,0.8776,-0.3208,0.2897
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,bge/twostage_hybrid,SPD,217,3.1,0.8917,1.0982,0.7691,1.0189
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,e5/hyde,AfD,112,6.6,-0.2143,0.7661,-0.509,0.0411
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,e5/hyde,BÜNDNIS 90/DIE GRÜNEN,152,2.8,0.5678,1.2783,0.3072,0.8303
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,e5/hyde,CDU/CSU,46,4.9913,-0.5391,1.2913,-0.9501,-0.1173
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,e5/hyde,DIE LINKE,176,1.9,0.7028,1.3665,0.4357,0.9597
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,e5/hyde,FDP,58,4.6,-0.4276,1.1586,-0.7948,-0.0603
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,e5/hyde,SPD,211,3.1,0.9194,1.2512,0.7426,1.1038
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,e5/simple,AfD,113,6.6,-0.1327,0.7221,-0.4044,0.1018
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,e5/simple,BÜNDNIS 90/DIE GRÜNEN,153,2.8,0.4451,1.181,0.1974,0.6942
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,e5/simple,CDU/CSU,50,4.984,-0.394,1.25,-0.772,-0.006
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,e5/simple,DIE LINKE,178,1.9,0.727,1.418,0.45,1.0096
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,e5/simple,FDP,56,4.6,-0.1536,1.2786,-0.5607,0.2662
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,e5/simple,SPD,210,3.1,0.9357,1.2757,0.7367,1.1452
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,e5/twostage,AfD,112,6.6,-0.1527,0.7402,-0.4402,0.1071
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,e5/twostage,BÜNDNIS 90/DIE GRÜNEN,151,2.8,0.5205,1.2159,0.2602,0.7828
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,e5/twostage,CDU/CSU,50,4.984,-0.286,1.214,-0.6761,0.106
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,e5/twostage,DIE LINKE,179,1.9,0.7067,1.4419,0.4352,0.981
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,e5/twostage,FDP,57,4.6,-0.2439,1.293,-0.6913,0.1843
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,e5/twostage,SPD,208,3.1,1.1832,1.4514,0.9812,1.3856
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,jina/hyde,AfD,114,6.6,-0.457,1.0254,-0.7957,-0.1211
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,jina/hyde,BÜNDNIS 90/DIE GRÜNEN,155,2.8,0.5426,1.2652,0.278,0.8239
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,jina/hyde,CDU/CSU,51,4.9824,-0.2902,1.2235,-0.6707,0.0765
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,jina/hyde,DIE LINKE,174,1.9,0.769,1.4897,0.4833,1.0506
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,jina/hyde,FDP,58,4.6,-0.1155,1.2672,-0.5139,0.2656
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,jina/hyde,SPD,211,3.1,0.9526,1.3213,0.7483,1.1502
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,jina/simple,AfD,112,6.6,-0.1527,0.7438,-0.4447,0.1161
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,jina/simple,BÜNDNIS 90/DIE GRÜNEN,154,2.8,0.5805,1.3753,0.3227,0.8793
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,jina/simple,CDU/CSU,50,4.984,-0.3,1.44,-0.7481,0.152
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,jina/simple,DIE LINKE,174,1.9,0.7391,1.4644,0.4534,1.027
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,jina/simple,FDP,57,4.6,-0.1211,1.3,-0.514,0.2773
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,jina/simple,SPD,212,3.1,0.9868,1.333,0.7844,1.1727
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,jina/twostage,AfD,111,6.6,-0.1369,0.7207,-0.4153,0.1055
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,jina/twostage,BÜNDNIS 90/DIE GRÜNEN,147,2.8,0.4973,1.2592,0.2354,0.749
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,jina/twostage,CDU/CSU,49,4.9857,-0.4061,1.2796,-0.8123,0.0347
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,jina/twostage,DIE LINKE,175,1.9,0.6914,1.4194,0.4366,0.9623
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,jina/twostage,FDP,58,4.6,-0.3241,1.3138,-0.7207,0.0776
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,jina/twostage,SPD,212,3.1,0.9665,1.3184,0.775,1.1609
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,qwen3/hyde,AfD,114,6.6,-0.2632,0.8544,-0.5746,0.0097
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,qwen3/hyde,BÜNDNIS 90/DIE GRÜNEN,151,2.8,0.4901,1.249,0.239,0.7457
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,qwen3/hyde,CDU/CSU,51,4.9824,-0.151,1.1902,-0.5177,0.2235
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,qwen3/hyde,DIE LINKE,179,1.9,0.6933,1.4162,0.4363,0.98
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,qwen3/hyde,FDP,58,4.6,-0.3086,1.2431,-0.7086,0.0707
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,qwen3/hyde,SPD,215,3.1,0.9219,1.2753,0.7358,1.1065
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,qwen3/simple,AfD,114,6.6,-0.2026,0.7658,-0.5114,0.0596
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,qwen3/simple,BÜNDNIS 90/DIE GRÜNEN,153,2.8,0.3444,1.181,0.1046,0.6079
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,qwen3/simple,CDU/CSU,49,4.9857,-0.4367,1.3347,-0.8857,-0.0387
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,qwen3/simple,DIE LINKE,174,1.9,0.5874,1.3299,0.3252,0.8478
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,qwen3/simple,FDP,57,4.6,-0.4105,1.3474,-0.8264,0.0018
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,qwen3/simple,SPD,211,3.1,0.846,1.2829,0.6483,1.0427
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,qwen3/twostage,AfD,113,6.6,-0.1381,0.7398,-0.408,0.1088
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,qwen3/twostage,BÜNDNIS 90/DIE GRÜNEN,153,2.8,0.4725,1.1876,0.2333,0.7307
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,qwen3/twostage,CDU/CSU,49,4.9857,-0.3653,1.2837,-0.7653,0.0776
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,qwen3/twostage,DIE LINKE,177,1.9,0.6198,1.4164,0.3406,0.9243
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,qwen3/twostage,FDP,56,4.6,-0.1125,1.1946,-0.4911,0.2858
+label_ideology,Ministral-3-8B-Instruct-2512,Mistral,qwen3/twostage,SPD,212,3.1,0.9439,1.3278,0.7429,1.1411
+label_ideology,Qwen2.5-32B-Instruct,Qwen,no_rag,AfD,114,6.6,-1.8509,1.8544,-2.0798,-1.6316
+label_ideology,Qwen2.5-32B-Instruct,Qwen,no_rag,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.7474,0.8282,0.6583,0.8398
+label_ideology,Qwen2.5-32B-Instruct,Qwen,no_rag,CDU/CSU,51,4.9824,-0.7569,0.8275,-0.9549,-0.5667
+label_ideology,Qwen2.5-32B-Instruct,Qwen,no_rag,DIE LINKE,179,1.9,1.4101,1.4101,1.3089,1.5106
+label_ideology,Qwen2.5-32B-Instruct,Qwen,no_rag,FDP,58,4.6,-0.5483,0.7034,-0.7207,-0.3672
+label_ideology,Qwen2.5-32B-Instruct,Qwen,no_rag,SPD,217,3.1,0.9641,0.9917,0.8899,1.0378
+label_ideology,Qwen2.5-32B-Instruct,Qwen,bge/hyde,AfD,114,6.6,-1.786,1.786,-2.0114,-1.5605
+label_ideology,Qwen2.5-32B-Instruct,Qwen,bge/hyde,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.5365,0.7878,0.4244,0.6487
+label_ideology,Qwen2.5-32B-Instruct,Qwen,bge/hyde,CDU/CSU,51,4.9824,-0.8843,0.9706,-1.1178,-0.6588
+label_ideology,Qwen2.5-32B-Instruct,Qwen,bge/hyde,DIE LINKE,179,1.9,0.8034,0.9609,0.6676,0.9554
+label_ideology,Qwen2.5-32B-Instruct,Qwen,bge/hyde,FDP,58,4.6,-0.919,0.981,-1.1172,-0.7379
+label_ideology,Qwen2.5-32B-Instruct,Qwen,bge/hyde,SPD,217,3.1,0.688,0.8189,0.6004,0.7756
+label_ideology,Qwen2.5-32B-Instruct,Qwen,bge/hyde_hybrid,AfD,114,6.6,-1.786,1.786,-2.0097,-1.5693
+label_ideology,Qwen2.5-32B-Instruct,Qwen,bge/hyde_hybrid,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.5365,0.7878,0.4212,0.6487
+label_ideology,Qwen2.5-32B-Instruct,Qwen,bge/hyde_hybrid,CDU/CSU,51,4.9824,-0.8843,0.9706,-1.1333,-0.6568
+label_ideology,Qwen2.5-32B-Instruct,Qwen,bge/hyde_hybrid,DIE LINKE,179,1.9,0.8034,0.9609,0.6637,0.9414
+label_ideology,Qwen2.5-32B-Instruct,Qwen,bge/hyde_hybrid,FDP,58,4.6,-0.919,0.981,-1.1175,-0.7207
+label_ideology,Qwen2.5-32B-Instruct,Qwen,bge/hyde_hybrid,SPD,217,3.1,0.688,0.8189,0.6028,0.771
+label_ideology,Qwen2.5-32B-Instruct,Qwen,bge/simple,AfD,114,6.6,-1.8123,1.8123,-2.0649,-1.5754
+label_ideology,Qwen2.5-32B-Instruct,Qwen,bge/simple,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.5276,0.7814,0.4198,0.6423
+label_ideology,Qwen2.5-32B-Instruct,Qwen,bge/simple,CDU/CSU,51,4.9824,-0.698,0.851,-0.8824,-0.4922
+label_ideology,Qwen2.5-32B-Instruct,Qwen,bge/simple,DIE LINKE,179,1.9,0.819,0.9665,0.6726,0.9648
+label_ideology,Qwen2.5-32B-Instruct,Qwen,bge/simple,FDP,58,4.6,-0.7466,0.8397,-0.9621,-0.5397
+label_ideology,Qwen2.5-32B-Instruct,Qwen,bge/simple,SPD,217,3.1,0.7041,0.8083,0.6189,0.7848
+label_ideology,Qwen2.5-32B-Instruct,Qwen,bge/simple_hybrid,AfD,114,6.6,-1.6035,1.6035,-1.8193,-1.3938
+label_ideology,Qwen2.5-32B-Instruct,Qwen,bge/simple_hybrid,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.559,0.8244,0.4372,0.6712
+label_ideology,Qwen2.5-32B-Instruct,Qwen,bge/simple_hybrid,CDU/CSU,51,4.9824,-0.8157,0.9294,-1.0392,-0.6078
+label_ideology,Qwen2.5-32B-Instruct,Qwen,bge/simple_hybrid,DIE LINKE,179,1.9,0.895,1.0615,0.7514,1.0374
+label_ideology,Qwen2.5-32B-Instruct,Qwen,bge/simple_hybrid,FDP,58,4.6,-0.85,0.85,-1.0224,-0.6862
+label_ideology,Qwen2.5-32B-Instruct,Qwen,bge/simple_hybrid,SPD,217,3.1,0.7203,0.8272,0.6373,0.8032
+label_ideology,Qwen2.5-32B-Instruct,Qwen,bge/twostage,AfD,114,6.6,-1.7754,1.7754,-2.0228,-1.5491
+label_ideology,Qwen2.5-32B-Instruct,Qwen,bge/twostage,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.5494,0.8173,0.434,0.6679
+label_ideology,Qwen2.5-32B-Instruct,Qwen,bge/twostage,CDU/CSU,51,4.9824,-0.7078,0.849,-0.9294,-0.5
+label_ideology,Qwen2.5-32B-Instruct,Qwen,bge/twostage,DIE LINKE,179,1.9,0.8771,1.038,0.7341,1.0151
+label_ideology,Qwen2.5-32B-Instruct,Qwen,bge/twostage,FDP,58,4.6,-0.7638,0.7948,-0.919,-0.617
+label_ideology,Qwen2.5-32B-Instruct,Qwen,bge/twostage,SPD,217,3.1,0.6387,0.8009,0.5512,0.7226
+label_ideology,Qwen2.5-32B-Instruct,Qwen,bge/twostage_hybrid,AfD,114,6.6,-1.8079,1.8079,-2.0448,-1.5754
+label_ideology,Qwen2.5-32B-Instruct,Qwen,bge/twostage_hybrid,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.5385,0.8423,0.4051,0.6699
+label_ideology,Qwen2.5-32B-Instruct,Qwen,bge/twostage_hybrid,CDU/CSU,51,4.9824,-0.6686,0.8686,-0.9099,-0.4529
+label_ideology,Qwen2.5-32B-Instruct,Qwen,bge/twostage_hybrid,DIE LINKE,179,1.9,0.9771,1.138,0.8291,1.1223
+label_ideology,Qwen2.5-32B-Instruct,Qwen,bge/twostage_hybrid,FDP,58,4.6,-0.7379,0.7828,-0.919,-0.5569
+label_ideology,Qwen2.5-32B-Instruct,Qwen,bge/twostage_hybrid,SPD,217,3.1,0.6664,0.8276,0.5719,0.7548
+label_ideology,Qwen2.5-32B-Instruct,Qwen,e5/hyde,AfD,114,6.6,-1.8281,1.8281,-2.0606,-1.6079
+label_ideology,Qwen2.5-32B-Instruct,Qwen,e5/hyde,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.5686,0.8212,0.4435,0.6904
+label_ideology,Qwen2.5-32B-Instruct,Qwen,e5/hyde,CDU/CSU,51,4.9824,-0.9333,0.9333,-1.1039,-0.7647
+label_ideology,Qwen2.5-32B-Instruct,Qwen,e5/hyde,DIE LINKE,179,1.9,0.9525,1.0844,0.8084,1.1045
+label_ideology,Qwen2.5-32B-Instruct,Qwen,e5/hyde,FDP,58,4.6,-0.781,0.8431,-0.9793,-0.5828
+label_ideology,Qwen2.5-32B-Instruct,Qwen,e5/hyde,SPD,217,3.1,0.6304,0.7705,0.5475,0.7134
+label_ideology,Qwen2.5-32B-Instruct,Qwen,e5/simple,AfD,114,6.6,-1.7825,1.7825,-2.0325,-1.5544
+label_ideology,Qwen2.5-32B-Instruct,Qwen,e5/simple,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.5782,0.8013,0.4628,0.6968
+label_ideology,Qwen2.5-32B-Instruct,Qwen,e5/simple,CDU/CSU,51,4.9824,-0.6922,0.8412,-0.9079,-0.4921
+label_ideology,Qwen2.5-32B-Instruct,Qwen,e5/simple,DIE LINKE,179,1.9,0.8709,1.0229,0.7358,1.0151
+label_ideology,Qwen2.5-32B-Instruct,Qwen,e5/simple,FDP,58,4.6,-0.819,0.85,-0.9931,-0.6466
+label_ideology,Qwen2.5-32B-Instruct,Qwen,e5/simple,SPD,217,3.1,0.6051,0.8023,0.5152,0.6973
+label_ideology,Qwen2.5-32B-Instruct,Qwen,e5/twostage,AfD,114,6.6,-1.8254,1.8254,-2.0702,-1.5956
+label_ideology,Qwen2.5-32B-Instruct,Qwen,e5/twostage,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.5865,0.7968,0.4808,0.6936
+label_ideology,Qwen2.5-32B-Instruct,Qwen,e5/twostage,CDU/CSU,51,4.9824,-0.7373,0.8235,-0.902,-0.5647
+label_ideology,Qwen2.5-32B-Instruct,Qwen,e5/twostage,DIE LINKE,179,1.9,0.8698,1.0508,0.7284,1.0123
+label_ideology,Qwen2.5-32B-Instruct,Qwen,e5/twostage,FDP,58,4.6,-0.7897,0.8207,-0.9534,-0.6259
+label_ideology,Qwen2.5-32B-Instruct,Qwen,e5/twostage,SPD,217,3.1,0.6535,0.7797,0.5751,0.7318
+label_ideology,Qwen2.5-32B-Instruct,Qwen,jina/hyde,AfD,114,6.6,-1.7456,1.7456,-2.0009,-1.5009
+label_ideology,Qwen2.5-32B-Instruct,Qwen,jina/hyde,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.4981,0.7968,0.3666,0.6359
+label_ideology,Qwen2.5-32B-Instruct,Qwen,jina/hyde,CDU/CSU,51,4.9824,-0.7667,0.8137,-0.9451,-0.6039
+label_ideology,Qwen2.5-32B-Instruct,Qwen,jina/hyde,DIE LINKE,179,1.9,0.9207,1.0536,0.7776,1.0659
+label_ideology,Qwen2.5-32B-Instruct,Qwen,jina/hyde,FDP,58,4.6,-0.8017,0.8328,-1.0155,-0.6172
+label_ideology,Qwen2.5-32B-Instruct,Qwen,jina/hyde,SPD,217,3.1,0.6627,0.7751,0.5866,0.7387
+label_ideology,Qwen2.5-32B-Instruct,Qwen,jina/simple,AfD,114,6.6,-1.6211,1.6211,-1.8387,-1.4175
+label_ideology,Qwen2.5-32B-Instruct,Qwen,jina/simple,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.5256,0.8154,0.4038,0.6475
+label_ideology,Qwen2.5-32B-Instruct,Qwen,jina/simple,CDU/CSU,51,4.9824,-0.8353,0.9059,-1.0412,-0.6333
+label_ideology,Qwen2.5-32B-Instruct,Qwen,jina/simple,DIE LINKE,179,1.9,0.9128,1.0469,0.762,1.0637
+label_ideology,Qwen2.5-32B-Instruct,Qwen,jina/simple,FDP,58,4.6,-0.6172,0.6931,-0.7812,-0.4534
+label_ideology,Qwen2.5-32B-Instruct,Qwen,jina/simple,SPD,217,3.1,0.6765,0.8147,0.5912,0.7594
+label_ideology,Qwen2.5-32B-Instruct,Qwen,jina/twostage,AfD,114,6.6,-1.9158,1.9158,-2.1659,-1.6745
+label_ideology,Qwen2.5-32B-Instruct,Qwen,jina/twostage,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.5449,0.8244,0.4314,0.6616
+label_ideology,Qwen2.5-32B-Instruct,Qwen,jina/twostage,CDU/CSU,51,4.9824,-0.8255,0.9157,-1.0472,-0.6098
+label_ideology,Qwen2.5-32B-Instruct,Qwen,jina/twostage,DIE LINKE,179,1.9,0.9274,1.0872,0.7765,1.0698
+label_ideology,Qwen2.5-32B-Instruct,Qwen,jina/twostage,FDP,58,4.6,-0.8931,0.9241,-1.0914,-0.7121
+label_ideology,Qwen2.5-32B-Instruct,Qwen,jina/twostage,SPD,217,3.1,0.6742,0.7811,0.5935,0.7502
+label_ideology,Qwen2.5-32B-Instruct,Qwen,qwen3/hyde,AfD,114,6.6,-1.6851,1.6851,-1.8913,-1.4816
+label_ideology,Qwen2.5-32B-Instruct,Qwen,qwen3/hyde,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.5686,0.8058,0.4563,0.6936
+label_ideology,Qwen2.5-32B-Instruct,Qwen,qwen3/hyde,CDU/CSU,51,4.9824,-0.6686,0.7549,-0.8275,-0.5
+label_ideology,Qwen2.5-32B-Instruct,Qwen,qwen3/hyde,DIE LINKE,179,1.9,0.7737,0.9547,0.6335,0.9112
+label_ideology,Qwen2.5-32B-Instruct,Qwen,qwen3/hyde,FDP,58,4.6,-0.8845,0.9293,-1.0828,-0.6862
+label_ideology,Qwen2.5-32B-Instruct,Qwen,qwen3/hyde,SPD,217,3.1,0.5843,0.7152,0.5083,0.6535
+label_ideology,Qwen2.5-32B-Instruct,Qwen,qwen3/simple,AfD,114,6.6,-1.8667,1.8667,-2.1079,-1.6368
+label_ideology,Qwen2.5-32B-Instruct,Qwen,qwen3/simple,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.434,0.7519,0.3186,0.5526
+label_ideology,Qwen2.5-32B-Instruct,Qwen,qwen3/simple,CDU/CSU,51,4.9824,-0.6196,0.7922,-0.7844,-0.4255
+label_ideology,Qwen2.5-32B-Instruct,Qwen,qwen3/simple,DIE LINKE,179,1.9,0.8223,0.9721,0.6888,0.971
+label_ideology,Qwen2.5-32B-Instruct,Qwen,qwen3/simple,FDP,58,4.6,-0.7552,0.8138,-0.9362,-0.5828
+label_ideology,Qwen2.5-32B-Instruct,Qwen,qwen3/simple,SPD,217,3.1,0.6097,0.7691,0.5267,0.6949
+label_ideology,Qwen2.5-32B-Instruct,Qwen,qwen3/twostage,AfD,114,6.6,-1.9044,1.9044,-2.1483,-1.6657
+label_ideology,Qwen2.5-32B-Instruct,Qwen,qwen3/twostage,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.591,0.8218,0.4788,0.7064
+label_ideology,Qwen2.5-32B-Instruct,Qwen,qwen3/twostage,CDU/CSU,51,4.9824,-0.698,0.8314,-0.8882,-0.5118
+label_ideology,Qwen2.5-32B-Instruct,Qwen,qwen3/twostage,DIE LINKE,179,1.9,0.8352,0.9894,0.6949,0.9888
+label_ideology,Qwen2.5-32B-Instruct,Qwen,qwen3/twostage,FDP,58,4.6,-0.8241,0.8552,-0.9881,-0.6603
+label_ideology,Qwen2.5-32B-Instruct,Qwen,qwen3/twostage,SPD,217,3.1,0.6742,0.8382,0.5843,0.7687
+label_ideology,Qwen2.5-3B-Instruct,Qwen,no_rag,AfD,114,6.6,-2.5254,2.5254,-2.6965,-2.3675
+label_ideology,Qwen2.5-3B-Instruct,Qwen,no_rag,BÜNDNIS 90/DIE GRÜNEN,156,2.8,1.2,1.2231,1.1006,1.2962
+label_ideology,Qwen2.5-3B-Instruct,Qwen,no_rag,CDU/CSU,51,4.9824,-0.6882,0.8451,-0.8746,-0.4863
+label_ideology,Qwen2.5-3B-Instruct,Qwen,no_rag,DIE LINKE,179,1.9,2.1419,2.1419,2.0721,2.2145
+label_ideology,Qwen2.5-3B-Instruct,Qwen,no_rag,FDP,58,4.6,-0.7207,0.7759,-0.8759,-0.5825
+label_ideology,Qwen2.5-3B-Instruct,Qwen,no_rag,SPD,217,3.1,0.6949,0.729,0.635,0.7526
+label_ideology,Qwen2.5-3B-Instruct,Qwen,bge/hyde,AfD,114,6.6,-2.5386,2.5386,-2.6527,-2.4158
+label_ideology,Qwen2.5-3B-Instruct,Qwen,bge/hyde,BÜNDNIS 90/DIE GRÜNEN,156,2.8,1.3218,1.3218,1.2545,1.3891
+label_ideology,Qwen2.5-3B-Instruct,Qwen,bge/hyde,CDU/CSU,51,4.9824,-0.8353,0.8667,-0.9902,-0.6824
+label_ideology,Qwen2.5-3B-Instruct,Qwen,bge/hyde,DIE LINKE,179,1.9,2.1894,2.1894,2.1251,2.2592
+label_ideology,Qwen2.5-3B-Instruct,Qwen,bge/hyde,FDP,58,4.6,-0.531,0.6414,-0.6517,-0.4103
+label_ideology,Qwen2.5-3B-Instruct,Qwen,bge/hyde,SPD,217,3.1,0.9161,0.9244,0.8747,0.9599
+label_ideology,Qwen2.5-3B-Instruct,Qwen,bge/hyde_hybrid,AfD,113,6.6,-2.5602,2.5602,-2.7239,-2.4142
+label_ideology,Qwen2.5-3B-Instruct,Qwen,bge/hyde_hybrid,BÜNDNIS 90/DIE GRÜNEN,156,2.8,1.2641,1.2641,1.2,1.3283
+label_ideology,Qwen2.5-3B-Instruct,Qwen,bge/hyde_hybrid,CDU/CSU,51,4.9824,-0.7471,0.802,-0.8726,-0.6117
+label_ideology,Qwen2.5-3B-Instruct,Qwen,bge/hyde_hybrid,DIE LINKE,179,1.9,2.2089,2.2089,2.1503,2.2732
+label_ideology,Qwen2.5-3B-Instruct,Qwen,bge/hyde_hybrid,FDP,58,4.6,-0.4966,0.6207,-0.6,-0.3759
+label_ideology,Qwen2.5-3B-Instruct,Qwen,bge/hyde_hybrid,SPD,217,3.1,0.9346,0.9429,0.8862,0.9806
+label_ideology,Qwen2.5-3B-Instruct,Qwen,bge/simple,AfD,114,6.6,-2.2974,2.2974,-2.4246,-2.1746
+label_ideology,Qwen2.5-3B-Instruct,Qwen,bge/simple,BÜNDNIS 90/DIE GRÜNEN,156,2.8,1.3635,1.3635,1.2994,1.4308
+label_ideology,Qwen2.5-3B-Instruct,Qwen,bge/simple,CDU/CSU,51,4.9824,-0.7765,0.8118,-0.8961,-0.651
+label_ideology,Qwen2.5-3B-Instruct,Qwen,bge/simple,DIE LINKE,179,1.9,2.2536,2.2536,2.1894,2.3263
+label_ideology,Qwen2.5-3B-Instruct,Qwen,bge/simple,FDP,58,4.6,-0.4534,0.6328,-0.5914,-0.3155
+label_ideology,Qwen2.5-3B-Instruct,Qwen,bge/simple,SPD,217,3.1,0.9323,0.9424,0.8839,0.9829
+label_ideology,Qwen2.5-3B-Instruct,Qwen,bge/simple_hybrid,AfD,114,6.6,-2.2096,2.2096,-2.3412,-2.0825
+label_ideology,Qwen2.5-3B-Instruct,Qwen,bge/simple_hybrid,BÜNDNIS 90/DIE GRÜNEN,156,2.8,1.3987,1.3987,1.325,1.4724
+label_ideology,Qwen2.5-3B-Instruct,Qwen,bge/simple_hybrid,CDU/CSU,50,4.972,-0.792,0.832,-0.9361,-0.656
+label_ideology,Qwen2.5-3B-Instruct,Qwen,bge/simple_hybrid,DIE LINKE,179,1.9,2.2453,2.2453,2.1894,2.3067
+label_ideology,Qwen2.5-3B-Instruct,Qwen,bge/simple_hybrid,FDP,58,4.6,-0.3414,0.5621,-0.4448,-0.2207
+label_ideology,Qwen2.5-3B-Instruct,Qwen,bge/simple_hybrid,SPD,217,3.1,0.9069,0.9171,0.8631,0.9531
+label_ideology,Qwen2.5-3B-Instruct,Qwen,bge/twostage,AfD,114,6.6,-2.3851,2.3851,-2.4991,-2.2667
+label_ideology,Qwen2.5-3B-Instruct,Qwen,bge/twostage,BÜNDNIS 90/DIE GRÜNEN,156,2.8,1.3474,1.3474,1.28,1.4147
+label_ideology,Qwen2.5-3B-Instruct,Qwen,bge/twostage,CDU/CSU,51,4.9824,-0.7078,0.751,-0.8334,-0.5666
+label_ideology,Qwen2.5-3B-Instruct,Qwen,bge/twostage,DIE LINKE,179,1.9,2.2397,2.2397,2.1754,2.3011
+label_ideology,Qwen2.5-3B-Instruct,Qwen,bge/twostage,FDP,58,4.6,-0.4276,0.6069,-0.5487,-0.3069
+label_ideology,Qwen2.5-3B-Instruct,Qwen,bge/twostage,SPD,217,3.1,0.9507,0.9562,0.9092,0.9945
+label_ideology,Qwen2.5-3B-Instruct,Qwen,bge/twostage_hybrid,AfD,114,6.6,-2.3588,2.3588,-2.4772,-2.2404
+label_ideology,Qwen2.5-3B-Instruct,Qwen,bge/twostage_hybrid,BÜNDNIS 90/DIE GRÜNEN,156,2.8,1.3795,1.3795,1.3186,1.4468
+label_ideology,Qwen2.5-3B-Instruct,Qwen,bge/twostage_hybrid,CDU/CSU,51,4.9824,-0.7667,0.802,-0.8961,-0.6254
+label_ideology,Qwen2.5-3B-Instruct,Qwen,bge/twostage_hybrid,DIE LINKE,179,1.9,2.2592,2.2592,2.2034,2.3207
+label_ideology,Qwen2.5-3B-Instruct,Qwen,bge/twostage_hybrid,FDP,58,4.6,-0.419,0.5983,-0.5483,-0.2897
+label_ideology,Qwen2.5-3B-Instruct,Qwen,bge/twostage_hybrid,SPD,217,3.1,0.9576,0.9631,0.9161,1.0014
+label_ideology,Qwen2.5-3B-Instruct,Qwen,e5/hyde,AfD,114,6.6,-2.5211,2.5211,-2.6175,-2.4243
+label_ideology,Qwen2.5-3B-Instruct,Qwen,e5/hyde,BÜNDNIS 90/DIE GRÜNEN,156,2.8,1.2577,1.2577,1.1968,1.3186
+label_ideology,Qwen2.5-3B-Instruct,Qwen,e5/hyde,CDU/CSU,51,4.9824,-0.8549,0.8824,-0.9863,-0.7235
+label_ideology,Qwen2.5-3B-Instruct,Qwen,e5/hyde,DIE LINKE,179,1.9,2.1698,2.1698,2.114,2.2285
+label_ideology,Qwen2.5-3B-Instruct,Qwen,e5/hyde,FDP,58,4.6,-0.4793,0.6034,-0.6,-0.3672
+label_ideology,Qwen2.5-3B-Instruct,Qwen,e5/hyde,SPD,217,3.1,0.9161,0.9253,0.8746,0.9599
+label_ideology,Qwen2.5-3B-Instruct,Qwen,e5/simple,AfD,114,6.6,-2.3588,2.3588,-2.4598,-2.2535
+label_ideology,Qwen2.5-3B-Instruct,Qwen,e5/simple,BÜNDNIS 90/DIE GRÜNEN,156,2.8,1.3378,1.3378,1.2865,1.3955
+label_ideology,Qwen2.5-3B-Instruct,Qwen,e5/simple,CDU/CSU,51,4.9824,-0.7176,0.7569,-0.8471,-0.5843
+label_ideology,Qwen2.5-3B-Instruct,Qwen,e5/simple,DIE LINKE,179,1.9,2.2536,2.2536,2.1978,2.3123
+label_ideology,Qwen2.5-3B-Instruct,Qwen,e5/simple,FDP,58,4.6,-0.4534,0.5776,-0.5483,-0.35
+label_ideology,Qwen2.5-3B-Instruct,Qwen,e5/simple,SPD,215,3.1,0.9605,0.966,0.9163,1.0047
+label_ideology,Qwen2.5-3B-Instruct,Qwen,e5/twostage,AfD,113,6.6,-2.2991,2.2991,-2.4053,-2.1929
+label_ideology,Qwen2.5-3B-Instruct,Qwen,e5/twostage,BÜNDNIS 90/DIE GRÜNEN,156,2.8,1.3923,1.3923,1.3346,1.4564
+label_ideology,Qwen2.5-3B-Instruct,Qwen,e5/twostage,CDU/CSU,51,4.9824,-0.7471,0.8255,-0.9137,-0.5824
+label_ideology,Qwen2.5-3B-Instruct,Qwen,e5/twostage,DIE LINKE,179,1.9,2.2201,2.2201,2.1615,2.2844
+label_ideology,Qwen2.5-3B-Instruct,Qwen,e5/twostage,FDP,58,4.6,-0.5138,0.631,-0.6172,-0.4103
+label_ideology,Qwen2.5-3B-Instruct,Qwen,e5/twostage,SPD,216,3.1,0.9671,0.9699,0.9301,1.0089
+label_ideology,Qwen2.5-3B-Instruct,Qwen,jina/hyde,AfD,80,6.6,-2.2837,2.2837,-2.44,-2.1313
+label_ideology,Qwen2.5-3B-Instruct,Qwen,jina/hyde,BÜNDNIS 90/DIE GRÜNEN,110,2.8,1.3182,1.3182,1.2364,1.4045
+label_ideology,Qwen2.5-3B-Instruct,Qwen,jina/hyde,CDU/CSU,38,4.9474,-0.75,0.7868,-0.8842,-0.6
+label_ideology,Qwen2.5-3B-Instruct,Qwen,jina/hyde,DIE LINKE,127,1.9,2.2102,2.2102,2.1472,2.2772
+label_ideology,Qwen2.5-3B-Instruct,Qwen,jina/hyde,FDP,39,4.6,-0.459,0.6333,-0.6003,-0.2923
+label_ideology,Qwen2.5-3B-Instruct,Qwen,jina/hyde,SPD,150,3.1,0.9267,0.932,0.88,0.9733
+label_ideology,Qwen2.5-3B-Instruct,Qwen,jina/simple,AfD,113,6.6,-2.3124,2.3124,-2.4319,-2.1929
+label_ideology,Qwen2.5-3B-Instruct,Qwen,jina/simple,BÜNDNIS 90/DIE GRÜNEN,156,2.8,1.3455,1.3455,1.2878,1.4077
+label_ideology,Qwen2.5-3B-Instruct,Qwen,jina/simple,CDU/CSU,51,4.9824,-0.7569,0.8039,-0.9078,-0.6
+label_ideology,Qwen2.5-3B-Instruct,Qwen,jina/simple,DIE LINKE,179,1.9,2.2313,2.2313,2.1642,2.2955
+label_ideology,Qwen2.5-3B-Instruct,Qwen,jina/simple,FDP,58,4.6,-0.4879,0.6121,-0.6,-0.3759
+label_ideology,Qwen2.5-3B-Instruct,Qwen,jina/simple,SPD,217,3.1,0.9668,0.9742,0.9184,1.0175
+label_ideology,Qwen2.5-3B-Instruct,Qwen,jina/twostage,AfD,114,6.6,-2.2184,2.2184,-2.3412,-2.0912
+label_ideology,Qwen2.5-3B-Instruct,Qwen,jina/twostage,BÜNDNIS 90/DIE GRÜNEN,156,2.8,1.3763,1.3763,1.309,1.4404
+label_ideology,Qwen2.5-3B-Instruct,Qwen,jina/twostage,CDU/CSU,51,4.9824,-0.7373,0.7804,-0.8765,-0.5961
+label_ideology,Qwen2.5-3B-Instruct,Qwen,jina/twostage,DIE LINKE,179,1.9,2.2816,2.2816,2.2257,2.3374
+label_ideology,Qwen2.5-3B-Instruct,Qwen,jina/twostage,FDP,58,4.6,-0.4103,0.5759,-0.5138,-0.2897
+label_ideology,Qwen2.5-3B-Instruct,Qwen,jina/twostage,SPD,217,3.1,0.9576,0.9668,0.9046,1.0083
+label_ideology,Qwen2.5-3B-Instruct,Qwen,qwen3/hyde,AfD,114,6.6,-2.3763,2.3763,-2.4947,-2.2579
+label_ideology,Qwen2.5-3B-Instruct,Qwen,qwen3/hyde,BÜNDNIS 90/DIE GRÜNEN,156,2.8,1.3378,1.3378,1.2801,1.3955
+label_ideology,Qwen2.5-3B-Instruct,Qwen,qwen3/hyde,CDU/CSU,51,4.9824,-0.7765,0.8039,-0.8961,-0.6568
+label_ideology,Qwen2.5-3B-Instruct,Qwen,qwen3/hyde,DIE LINKE,179,1.9,2.2145,2.2145,2.1475,2.2788
+label_ideology,Qwen2.5-3B-Instruct,Qwen,qwen3/hyde,FDP,58,4.6,-0.5138,0.6103,-0.6172,-0.4103
+label_ideology,Qwen2.5-3B-Instruct,Qwen,qwen3/hyde,SPD,217,3.1,0.9576,0.9806,0.9069,1.0083
+label_ideology,Qwen2.5-3B-Instruct,Qwen,qwen3/simple,AfD,114,6.6,-2.3061,2.3061,-2.407,-2.2009
+label_ideology,Qwen2.5-3B-Instruct,Qwen,qwen3/simple,BÜNDNIS 90/DIE GRÜNEN,156,2.8,1.4051,1.4051,1.3346,1.4757
+label_ideology,Qwen2.5-3B-Instruct,Qwen,qwen3/simple,CDU/CSU,51,4.9824,-0.6882,0.7353,-0.8196,-0.5549
+label_ideology,Qwen2.5-3B-Instruct,Qwen,qwen3/simple,DIE LINKE,179,1.9,2.276,2.276,2.2089,2.343
+label_ideology,Qwen2.5-3B-Instruct,Qwen,qwen3/simple,FDP,58,4.6,-0.4621,0.5862,-0.5655,-0.3586
+label_ideology,Qwen2.5-3B-Instruct,Qwen,qwen3/simple,SPD,217,3.1,0.9599,0.9636,0.9207,1.0037
+label_ideology,Qwen2.5-3B-Instruct,Qwen,qwen3/twostage,AfD,114,6.6,-2.2491,2.2491,-2.3544,-2.1439
+label_ideology,Qwen2.5-3B-Instruct,Qwen,qwen3/twostage,BÜNDNIS 90/DIE GRÜNEN,156,2.8,1.3635,1.3635,1.2962,1.434
+label_ideology,Qwen2.5-3B-Instruct,Qwen,qwen3/twostage,CDU/CSU,51,4.9824,-0.649,0.7118,-0.8157,-0.4745
+label_ideology,Qwen2.5-3B-Instruct,Qwen,qwen3/twostage,DIE LINKE,179,1.9,2.2564,2.2564,2.1978,2.3123
+label_ideology,Qwen2.5-3B-Instruct,Qwen,qwen3/twostage,FDP,58,4.6,-0.4966,0.5931,-0.5828,-0.3931
+label_ideology,Qwen2.5-3B-Instruct,Qwen,qwen3/twostage,SPD,217,3.1,0.9507,0.9581,0.9046,0.9968
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,no_rag,AfD,114,6.6,-1.0132,1.0167,-1.1764,-0.8588
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,no_rag,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.8224,0.8878,0.7269,0.9205
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,no_rag,CDU/CSU,51,4.9824,-0.3549,0.6922,-0.555,-0.1431
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,no_rag,DIE LINKE,179,1.9,1.3346,1.3346,1.2313,1.4425
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,no_rag,FDP,58,4.6,-0.5793,0.7828,-0.7707,-0.3914
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,no_rag,SPD,217,3.1,0.6705,0.6926,0.6092,0.73
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,bge/hyde,AfD,114,6.6,-0.85,0.85,-1.0518,-0.6789
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,bge/hyde,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.6904,0.8647,0.5686,0.8122
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,bge/hyde,CDU/CSU,51,4.9824,-0.4431,0.7451,-0.6529,-0.2333
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,bge/hyde,DIE LINKE,179,1.9,1.1782,1.2676,1.0274,1.3318
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,bge/hyde,FDP,58,4.6,-0.5914,0.75,-0.7724,-0.3931
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,bge/hyde,SPD,217,3.1,0.7641,0.8203,0.6903,0.8424
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,bge/hyde_hybrid,AfD,114,6.6,-0.8693,0.8693,-1.079,-0.6658
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,bge/hyde_hybrid,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.6551,0.8474,0.5365,0.7737
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,bge/hyde_hybrid,CDU/CSU,51,4.9824,-0.551,0.8294,-0.7804,-0.3196
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,bge/hyde_hybrid,DIE LINKE,179,1.9,1.1754,1.2648,1.0189,1.3458
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,bge/hyde_hybrid,FDP,58,4.6,-0.4966,0.7448,-0.6948,-0.2897
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,bge/hyde_hybrid,SPD,217,3.1,0.7479,0.8189,0.6741,0.8194
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,bge/simple,AfD,114,6.6,-0.814,0.8211,-1.0141,-0.6211
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,bge/simple,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.7321,0.8756,0.6135,0.8506
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,bge/simple,CDU/CSU,51,4.9824,-0.4588,0.7176,-0.6451,-0.2725
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,bge/simple,DIE LINKE,179,1.9,1.1335,1.2274,0.9826,1.2816
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,bge/simple,FDP,58,4.6,-0.531,0.7034,-0.7121,-0.35
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,bge/simple,SPD,217,3.1,0.7779,0.8488,0.6972,0.8539
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,bge/simple_hybrid,AfD,114,6.6,-0.7368,0.7439,-0.9123,-0.5772
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,bge/simple_hybrid,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.7513,0.8756,0.6423,0.8571
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,bge/simple_hybrid,CDU/CSU,51,4.9824,-0.4529,0.7627,-0.6883,-0.2275
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,bge/simple_hybrid,DIE LINKE,179,1.9,1.2173,1.2978,1.0609,1.3682
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,bge/simple_hybrid,FDP,58,4.6,-0.5914,0.781,-0.7812,-0.3931
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,bge/simple_hybrid,SPD,217,3.1,0.741,0.8175,0.6581,0.824
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,bge/twostage,AfD,114,6.6,-0.7772,0.7807,-0.9763,-0.6044
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,bge/twostage,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.7705,0.9103,0.6551,0.8891
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,bge/twostage,CDU/CSU,51,4.9824,-0.4922,0.7902,-0.702,-0.2608
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,bge/twostage,DIE LINKE,179,1.9,1.2341,1.2966,1.0916,1.3793
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,bge/twostage,FDP,58,4.6,-0.5655,0.7552,-0.7552,-0.3672
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,bge/twostage,SPD,217,3.1,0.7848,0.8622,0.7041,0.8654
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,bge/twostage_hybrid,AfD,114,6.6,-0.7219,0.7289,-0.8798,-0.5728
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,bge/twostage_hybrid,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.7481,0.8724,0.6391,0.8506
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,bge/twostage_hybrid,CDU/CSU,51,4.9824,-0.4725,0.8137,-0.7059,-0.2314
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,bge/twostage_hybrid,DIE LINKE,179,1.9,1.2816,1.3665,1.1223,1.4325
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,bge/twostage_hybrid,FDP,58,4.6,-0.4793,0.7448,-0.6776,-0.2724
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,bge/twostage_hybrid,SPD,217,3.1,0.7779,0.8332,0.6995,0.8585
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,e5/hyde,AfD,114,6.6,-0.9088,0.9123,-1.1298,-0.7131
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,e5/hyde,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.7128,0.859,0.6038,0.8314
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,e5/hyde,CDU/CSU,51,4.9824,-0.5804,0.8353,-0.8078,-0.3529
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,e5/hyde,DIE LINKE,179,1.9,1.2145,1.2726,1.0749,1.357
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,e5/hyde,FDP,58,4.6,-0.5483,0.7207,-0.7379,-0.35
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,e5/hyde,SPD,217,3.1,0.7134,0.7899,0.635,0.7894
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,e5/simple,AfD,114,6.6,-0.6982,0.7018,-0.8755,-0.5272
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,e5/simple,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.6712,0.8378,0.559,0.7769
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,e5/simple,CDU/CSU,51,4.9824,-0.4235,0.7529,-0.6373,-0.2019
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,e5/simple,DIE LINKE,179,1.9,1.1698,1.2547,1.0218,1.3179
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,e5/simple,FDP,58,4.6,-0.5052,0.7397,-0.695,-0.2983
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,e5/simple,SPD,217,3.1,0.7364,0.8406,0.6512,0.8217
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,e5/twostage,AfD,114,6.6,-0.7175,0.7246,-0.8948,-0.543
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,e5/twostage,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.6808,0.8346,0.575,0.7962
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,e5/twostage,CDU/CSU,51,4.9824,-0.5118,0.8373,-0.7353,-0.2901
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,e5/twostage,DIE LINKE,179,1.9,1.1391,1.2419,0.9911,1.2844
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,e5/twostage,FDP,58,4.6,-0.5828,0.7103,-0.7466,-0.4103
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,e5/twostage,SPD,217,3.1,0.7341,0.8106,0.6558,0.8124
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,jina/simple,AfD,114,6.6,-0.6763,0.6798,-0.8825,-0.5079
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,jina/simple,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.6795,0.8397,0.5673,0.7936
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,jina/simple,CDU/CSU,51,4.9824,-0.502,0.702,-0.6883,-0.3176
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,jina/simple,DIE LINKE,179,1.9,1.2313,1.3385,1.0721,1.3878
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,jina/simple,FDP,58,4.6,-0.4534,0.6707,-0.6345,-0.2638
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,jina/simple,SPD,217,3.1,0.7848,0.8512,0.711,0.8632
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,jina/twostage,AfD,114,6.6,-0.6439,0.6439,-0.8105,-0.4947
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,jina/twostage,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.7051,0.8756,0.5769,0.8321
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,jina/twostage,CDU/CSU,51,4.9824,-0.551,0.7902,-0.7667,-0.347
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,jina/twostage,DIE LINKE,179,1.9,1.276,1.3475,1.1168,1.4297
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,jina/twostage,FDP,58,4.6,-0.4966,0.6552,-0.6862,-0.3069
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,jina/twostage,SPD,217,3.1,0.7871,0.847,0.7134,0.8631
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,qwen3/hyde,AfD,114,6.6,-0.8193,0.8193,-1.0254,-0.6263
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,qwen3/hyde,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.6455,0.8353,0.5365,0.7641
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,qwen3/hyde,CDU/CSU,51,4.9824,-0.551,0.8098,-0.7686,-0.3392
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,qwen3/hyde,DIE LINKE,179,1.9,1.1251,1.2235,0.9771,1.276
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,qwen3/hyde,FDP,58,4.6,-0.4879,0.6914,-0.6776,-0.3067
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,qwen3/hyde,SPD,217,3.1,0.7065,0.7839,0.6304,0.7779
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,qwen3/simple,AfD,114,6.6,-0.7132,0.7167,-0.8974,-0.5456
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,qwen3/simple,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.5962,0.8128,0.4775,0.718
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,qwen3/simple,CDU/CSU,51,4.9824,-0.4725,0.798,-0.7,-0.2471
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,qwen3/simple,DIE LINKE,179,1.9,1.1251,1.2413,0.9715,1.2872
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,qwen3/simple,FDP,58,4.6,-0.5655,0.7552,-0.7552,-0.3759
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,qwen3/simple,SPD,217,3.1,0.7134,0.7963,0.635,0.7871
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,qwen3/twostage,AfD,114,6.6,-0.714,0.7175,-0.8825,-0.5561
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,qwen3/twostage,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.7385,0.8897,0.6167,0.8603
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,qwen3/twostage,CDU/CSU,51,4.9824,-0.5314,0.7667,-0.7373,-0.3216
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,qwen3/twostage,DIE LINKE,179,1.9,1.1726,1.2575,1.0106,1.3263
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,qwen3/twostage,FDP,58,4.6,-0.5052,0.6466,-0.669,-0.3414
+label_ideology,Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,qwen3/twostage,SPD,217,3.1,0.7018,0.7949,0.6189,0.7802
+label_ideology,Qwen2.5-7B-Instruct,Qwen,no_rag,AfD,114,6.6,-1.9456,1.9491,-2.1675,-1.7254
+label_ideology,Qwen2.5-7B-Instruct,Qwen,no_rag,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.7776,0.9032,0.6622,0.891
+label_ideology,Qwen2.5-7B-Instruct,Qwen,no_rag,CDU/CSU,51,4.9824,-1.4706,1.4863,-1.6667,-1.2666
+label_ideology,Qwen2.5-7B-Instruct,Qwen,no_rag,DIE LINKE,178,1.9,1.6826,1.6871,1.5786,1.7849
+label_ideology,Qwen2.5-7B-Instruct,Qwen,no_rag,FDP,58,4.6,-0.8483,1.0207,-1.031,-0.669
+label_ideology,Qwen2.5-7B-Instruct,Qwen,no_rag,SPD,217,3.1,0.4157,0.5797,0.3373,0.4968
+label_ideology,Qwen2.5-7B-Instruct,Qwen,bge/hyde,AfD,114,6.6,-1.2079,1.2711,-1.4746,-0.9587
+label_ideology,Qwen2.5-7B-Instruct,Qwen,bge/hyde,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.7532,1.0801,0.5827,0.9321
+label_ideology,Qwen2.5-7B-Instruct,Qwen,bge/hyde,CDU/CSU,51,4.9824,-1.3157,1.598,-1.6196,-0.9784
+label_ideology,Qwen2.5-7B-Instruct,Qwen,bge/hyde,DIE LINKE,179,1.9,1.7223,1.8642,1.514,1.9436
+label_ideology,Qwen2.5-7B-Instruct,Qwen,bge/hyde,FDP,58,4.6,-0.7552,1.1345,-1.0138,-0.4793
+label_ideology,Qwen2.5-7B-Instruct,Qwen,bge/hyde,SPD,217,3.1,0.4668,0.7359,0.3516,0.5816
+label_ideology,Qwen2.5-7B-Instruct,Qwen,bge/hyde_hybrid,AfD,114,6.6,-1.3842,1.4404,-1.6693,-1.0973
+label_ideology,Qwen2.5-7B-Instruct,Qwen,bge/hyde_hybrid,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.8128,1.1462,0.6256,1.0109
+label_ideology,Qwen2.5-7B-Instruct,Qwen,bge/hyde_hybrid,CDU/CSU,51,4.9824,-1.1882,1.4078,-1.4471,-0.9157
+label_ideology,Qwen2.5-7B-Instruct,Qwen,bge/hyde_hybrid,DIE LINKE,179,1.9,1.8989,2.0374,1.6871,2.1163
+label_ideology,Qwen2.5-7B-Instruct,Qwen,bge/hyde_hybrid,FDP,58,4.6,-0.5483,1.0966,-0.8155,-0.2638
+label_ideology,Qwen2.5-7B-Instruct,Qwen,bge/hyde_hybrid,SPD,217,3.1,0.465,0.7442,0.3539,0.5843
+label_ideology,Qwen2.5-7B-Instruct,Qwen,bge/simple,AfD,114,6.6,-1.136,1.2096,-1.4062,-0.8737
+label_ideology,Qwen2.5-7B-Instruct,Qwen,bge/simple,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.9372,1.1756,0.759,1.109
+label_ideology,Qwen2.5-7B-Instruct,Qwen,bge/simple,CDU/CSU,51,4.9824,-1.2667,1.502,-1.5608,-0.9608
+label_ideology,Qwen2.5-7B-Instruct,Qwen,bge/simple,DIE LINKE,179,1.9,1.9603,2.0721,1.7609,2.1721
+label_ideology,Qwen2.5-7B-Instruct,Qwen,bge/simple,FDP,58,4.6,-0.6931,1.0586,-0.969,-0.3981
+label_ideology,Qwen2.5-7B-Instruct,Qwen,bge/simple,SPD,217,3.1,0.4258,0.7475,0.3069,0.5489
+label_ideology,Qwen2.5-7B-Instruct,Qwen,bge/simple_hybrid,AfD,114,6.6,-1.036,1.0886,-1.293,-0.8017
+label_ideology,Qwen2.5-7B-Instruct,Qwen,bge/simple_hybrid,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.8724,1.1673,0.6718,1.0769
+label_ideology,Qwen2.5-7B-Instruct,Qwen,bge/simple_hybrid,CDU/CSU,51,4.9824,-1.3059,1.502,-1.5805,-1.0078
+label_ideology,Qwen2.5-7B-Instruct,Qwen,bge/simple_hybrid,DIE LINKE,179,1.9,2.033,2.148,1.8223,2.2279
+label_ideology,Qwen2.5-7B-Instruct,Qwen,bge/simple_hybrid,FDP,58,4.6,-0.8052,1.25,-1.1138,-0.4948
+label_ideology,Qwen2.5-7B-Instruct,Qwen,bge/simple_hybrid,SPD,217,3.1,0.5318,0.788,0.412,0.6544
+label_ideology,Qwen2.5-7B-Instruct,Qwen,bge/twostage,AfD,113,6.6,-1.208,1.2611,-1.4735,-0.953
+label_ideology,Qwen2.5-7B-Instruct,Qwen,bge/twostage,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.8538,1.1179,0.6692,1.0353
+label_ideology,Qwen2.5-7B-Instruct,Qwen,bge/twostage,CDU/CSU,51,4.9824,-1.3137,1.5725,-1.6256,-0.9842
+label_ideology,Qwen2.5-7B-Instruct,Qwen,bge/twostage,DIE LINKE,179,1.9,2.1615,2.2453,1.9503,2.352
+label_ideology,Qwen2.5-7B-Instruct,Qwen,bge/twostage,FDP,58,4.6,-0.7707,1.1534,-1.0397,-0.4947
+label_ideology,Qwen2.5-7B-Instruct,Qwen,bge/twostage,SPD,217,3.1,0.4535,0.7336,0.3493,0.5645
+label_ideology,Qwen2.5-7B-Instruct,Qwen,bge/twostage_hybrid,AfD,114,6.6,-1.1675,1.2272,-1.4369,-0.9114
+label_ideology,Qwen2.5-7B-Instruct,Qwen,bge/twostage_hybrid,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.8814,1.0853,0.7173,1.0475
+label_ideology,Qwen2.5-7B-Instruct,Qwen,bge/twostage_hybrid,CDU/CSU,51,4.9824,-1.198,1.4804,-1.4922,-0.8784
+label_ideology,Qwen2.5-7B-Instruct,Qwen,bge/twostage_hybrid,DIE LINKE,179,1.9,2.1492,2.2363,1.9491,2.3509
+label_ideology,Qwen2.5-7B-Instruct,Qwen,bge/twostage_hybrid,FDP,58,4.6,-0.6948,1.1431,-1.0224,-0.3931
+label_ideology,Qwen2.5-7B-Instruct,Qwen,bge/twostage_hybrid,SPD,217,3.1,0.559,0.7691,0.4368,0.688
+label_ideology,Qwen2.5-7B-Instruct,Qwen,e5/hyde,AfD,114,6.6,-0.9965,1.0982,-1.2263,-0.7754
+label_ideology,Qwen2.5-7B-Instruct,Qwen,e5/hyde,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.834,1.1212,0.6653,1.0045
+label_ideology,Qwen2.5-7B-Instruct,Qwen,e5/hyde,CDU/CSU,51,4.9824,-1.1588,1.3863,-1.4216,-0.8862
+label_ideology,Qwen2.5-7B-Instruct,Qwen,e5/hyde,DIE LINKE,179,1.9,2.1257,2.214,1.9212,2.3229
+label_ideology,Qwen2.5-7B-Instruct,Qwen,e5/hyde,FDP,58,4.6,-0.6862,1.0379,-0.9621,-0.4017
+label_ideology,Qwen2.5-7B-Instruct,Qwen,e5/hyde,SPD,217,3.1,0.5774,0.7848,0.453,0.6996
+label_ideology,Qwen2.5-7B-Instruct,Qwen,e5/simple,AfD,114,6.6,-0.9114,0.9921,-1.1553,-0.6842
+label_ideology,Qwen2.5-7B-Instruct,Qwen,e5/simple,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.8564,1.1538,0.6808,1.0353
+label_ideology,Qwen2.5-7B-Instruct,Qwen,e5/simple,CDU/CSU,51,4.9824,-1.2078,1.4745,-1.5,-0.8922
+label_ideology,Qwen2.5-7B-Instruct,Qwen,e5/simple,DIE LINKE,179,1.9,1.9676,2.0726,1.7676,2.1654
+label_ideology,Qwen2.5-7B-Instruct,Qwen,e5/simple,FDP,58,4.6,-0.65,1.0983,-0.9586,-0.3414
+label_ideology,Qwen2.5-7B-Instruct,Qwen,e5/simple,SPD,216,3.1,0.6778,0.8278,0.562,0.7981
+label_ideology,Qwen2.5-7B-Instruct,Qwen,e5/twostage,AfD,112,6.6,-0.9866,1.083,-1.2581,-0.7464
+label_ideology,Qwen2.5-7B-Instruct,Qwen,e5/twostage,BÜNDNIS 90/DIE GRÜNEN,155,2.8,0.7974,1.1032,0.6219,0.9729
+label_ideology,Qwen2.5-7B-Instruct,Qwen,e5/twostage,CDU/CSU,51,4.9824,-1.2275,1.4,-1.5177,-0.9332
+label_ideology,Qwen2.5-7B-Instruct,Qwen,e5/twostage,DIE LINKE,179,1.9,2.0782,2.1888,1.8827,2.2894
+label_ideology,Qwen2.5-7B-Instruct,Qwen,e5/twostage,FDP,58,4.6,-0.6776,1.0121,-0.9276,-0.4274
+label_ideology,Qwen2.5-7B-Instruct,Qwen,e5/twostage,SPD,217,3.1,0.5488,0.7793,0.429,0.671
+label_ideology,Qwen2.5-7B-Instruct,Qwen,jina/hyde,AfD,114,6.6,-1.0228,1.0754,-1.3018,-0.7754
+label_ideology,Qwen2.5-7B-Instruct,Qwen,jina/hyde,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.841,1.2,0.6596,1.041
+label_ideology,Qwen2.5-7B-Instruct,Qwen,jina/hyde,CDU/CSU,51,4.9824,-1.3098,1.5176,-1.5961,-1.0156
+label_ideology,Qwen2.5-7B-Instruct,Qwen,jina/hyde,DIE LINKE,179,1.9,2.0162,2.1279,1.8072,2.2168
+label_ideology,Qwen2.5-7B-Instruct,Qwen,jina/hyde,FDP,58,4.6,-0.6172,1.031,-0.9108,-0.3241
+label_ideology,Qwen2.5-7B-Instruct,Qwen,jina/hyde,SPD,217,3.1,0.471,0.7714,0.3511,0.6028
+label_ideology,Qwen2.5-7B-Instruct,Qwen,jina/simple,AfD,114,6.6,-0.8632,0.9596,-1.0974,-0.6517
+label_ideology,Qwen2.5-7B-Instruct,Qwen,jina/simple,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.8333,1.2397,0.6352,1.0392
+label_ideology,Qwen2.5-7B-Instruct,Qwen,jina/simple,CDU/CSU,51,4.9824,-1.2667,1.4235,-1.5333,-0.9882
+label_ideology,Qwen2.5-7B-Instruct,Qwen,jina/simple,DIE LINKE,178,1.9,2.0478,2.168,1.8348,2.2427
+label_ideology,Qwen2.5-7B-Instruct,Qwen,jina/simple,FDP,58,4.6,-0.7379,1.1034,-1.0138,-0.4621
+label_ideology,Qwen2.5-7B-Instruct,Qwen,jina/simple,SPD,217,3.1,0.471,0.7816,0.3544,0.5903
+label_ideology,Qwen2.5-7B-Instruct,Qwen,jina/twostage,AfD,114,6.6,-1.1465,1.1956,-1.4229,-0.8833
+label_ideology,Qwen2.5-7B-Instruct,Qwen,jina/twostage,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.8179,1.0897,0.6404,0.9898
+label_ideology,Qwen2.5-7B-Instruct,Qwen,jina/twostage,CDU/CSU,51,4.9824,-1.2275,1.4078,-1.498,-0.9333
+label_ideology,Qwen2.5-7B-Instruct,Qwen,jina/twostage,DIE LINKE,179,1.9,2.114,2.2134,1.8899,2.3224
+label_ideology,Qwen2.5-7B-Instruct,Qwen,jina/twostage,FDP,58,4.6,-0.7121,1.1569,-0.9966,-0.4017
+label_ideology,Qwen2.5-7B-Instruct,Qwen,jina/twostage,SPD,217,3.1,0.5217,0.7493,0.4088,0.641
+label_ideology,Qwen2.5-7B-Instruct,Qwen,qwen3/hyde,AfD,114,6.6,-1.1123,1.1965,-1.3474,-0.8771
+label_ideology,Qwen2.5-7B-Instruct,Qwen,qwen3/hyde,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.7994,1.1417,0.6122,0.9808
+label_ideology,Qwen2.5-7B-Instruct,Qwen,qwen3/hyde,CDU/CSU,51,4.9824,-1.2765,1.4804,-1.5569,-0.9784
+label_ideology,Qwen2.5-7B-Instruct,Qwen,qwen3/hyde,DIE LINKE,179,1.9,1.9184,2.0447,1.7084,2.1257
+label_ideology,Qwen2.5-7B-Instruct,Qwen,qwen3/hyde,FDP,58,4.6,-0.7638,1.0672,-1.031,-0.4963
+label_ideology,Qwen2.5-7B-Instruct,Qwen,qwen3/hyde,SPD,216,3.1,0.4755,0.731,0.3648,0.5903
+label_ideology,Qwen2.5-7B-Instruct,Qwen,qwen3/simple,AfD,114,6.6,-1.1351,1.1982,-1.386,-0.8964
+label_ideology,Qwen2.5-7B-Instruct,Qwen,qwen3/simple,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.8013,1.0936,0.634,0.9789
+label_ideology,Qwen2.5-7B-Instruct,Qwen,qwen3/simple,CDU/CSU,51,4.9824,-1.2843,1.5275,-1.6275,-0.9451
+label_ideology,Qwen2.5-7B-Instruct,Qwen,qwen3/simple,DIE LINKE,179,1.9,1.9061,2.067,1.6804,2.1129
+label_ideology,Qwen2.5-7B-Instruct,Qwen,qwen3/simple,FDP,58,4.6,-0.6845,1.1293,-0.9673,-0.3895
+label_ideology,Qwen2.5-7B-Instruct,Qwen,qwen3/simple,SPD,217,3.1,0.5221,0.7313,0.4138,0.6373
+label_ideology,Qwen2.5-7B-Instruct,Qwen,qwen3/twostage,AfD,113,6.6,-1.1018,1.1513,-1.3754,-0.8522
+label_ideology,Qwen2.5-7B-Instruct,Qwen,qwen3/twostage,BÜNDNIS 90/DIE GRÜNEN,156,2.8,0.7936,1.1141,0.6045,0.9725
+label_ideology,Qwen2.5-7B-Instruct,Qwen,qwen3/twostage,CDU/CSU,51,4.9824,-1.4235,1.6039,-1.7176,-1.1294
+label_ideology,Qwen2.5-7B-Instruct,Qwen,qwen3/twostage,DIE LINKE,179,1.9,2.1726,2.2575,1.9726,2.3782
+label_ideology,Qwen2.5-7B-Instruct,Qwen,qwen3/twostage,FDP,58,4.6,-0.5259,1.0569,-0.8052,-0.2327
+label_ideology,Qwen2.5-7B-Instruct,Qwen,qwen3/twostage,SPD,216,3.1,0.5921,0.7801,0.4718,0.7102

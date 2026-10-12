@@ -273,27 +273,54 @@ python -m src.run_batch --embedding_model bge --strategies simple \
 
 ## Computing Metrics After a Run
 
-```bash
-# Default: reads from logs/batch_runs/
-python -m src.evaluate_metrics
+`src/evaluate_metrics.py` is the single evaluation script (metrics, bias
+direction, group comparison, mixed-effects factor analysis). It replaces the
+former `src/results/analyze_bias_direction.py`.
 
-# Specific run directory
-python -m src.evaluate_metrics --base-dir "logs/batch_runs/2026-07-15_eval_12345678"
+```bash
+# Default: logs/batch_runs/, target label_ideology, 2000 bootstrap resamples
+python -m src.evaluate_metrics --run-id my_run
+
+# All three CHES targets
+python -m src.evaluate_metrics --targets all
+
+# Fast development run (no CIs, no mixed models)
+python -m src.evaluate_metrics --no-bootstrap --no-mixed
+
+# Per-configuration qualitative bias reports (top-K left/right/centric examples)
+python -m src.evaluate_metrics --qualitative --k 25
+
+# Restrict to one batch run / embedding / strategy
+python -m src.evaluate_metrics --batch-run 2026-08-12_eval_matrix_20260812_193917 \
+    --embedding-models e5,bge --retrieval-modes simple,hyde
 ```
 
-Output files (written to `results/`):
+Other flags: `--n-boot`, `--seed`, `--lmm-max-rows` (subsample for the mixed
+models), `--base-dir`, `--output-root`.
 
-| File                          | Description                                |
-|-------------------------------|--------------------------------------------|
-| `evaluation_metrics.csv`      | MAE, RMSE, Pearson r, Spearman rho per condition |
-| `rag_delta.csv`               | RAG-vs-baseline delta per condition        |
-| `mae_comparison.png`          | Grouped bar chart (MAE)                    |
-| `rmse_comparison.png`         | Grouped bar chart (RMSE)                   |
-| `all_metrics.png`             | 2x2 grid: all four metrics                 |
-| `rag_delta_heatmap.png`       | Heatmap of RAG improvement per condition   |
-| `scatter_predicted_vs_actual` | Predicted vs ground-truth ideology         |
+Output files (written to `results/evaluation/<run-id>/`, `<t>` = target):
 
----
+| File                                  | Description |
+|---------------------------------------|-------------|
+| `evaluation_metrics_<t>.csv`          | Per model x condition: MAE, RMSE, Pearson r, Spearman rho, Lin's CCC, mean signed error, calibration slope/intercept, each with `_lo`/`_hi` bootstrap CI |
+| `rag_delta_pairwise_<t>.csv`          | RAG vs. no_rag on paired texts: dMAE, dRMSE, dr, drho, dCCC, d\|bias\| with paired-bootstrap CIs; `ΔMAE_p_holm` / `ΔMAE_significant` (Holm across a model's conditions) |
+| `bias_direction_<t>.csv`              | Signed-error stats: % left/centric/right, t-test vs 0, skew, mean signed error per true bin |
+| `bias_by_party_<t>.csv`               | Mean signed error per model x condition x party (with CI) |
+| `group_comparison_<t>.csv`            | Pooled metrics by model / family / size bucket / release year / cutoff year / family x size, scopes `no_rag`, `rag`, `all` (text-level cluster bootstrap) |
+| `factor_analysis_<t>.csv` / `.md`     | Mixed models (random intercept per text) on \|error\| and signed error; `factor_analysis_summary_<t>.csv` has AIC/BIC/ICC |
+| `*_comparison_*.png`, `all_metrics_*.png`, `rag_delta_heatmap_*.png`, `scatter_*.png` | Metric plots |
+| `signed_error_forest_*.png`, `party_bias_heatmap_*.png`, `calibration_slope_vs_size_*.png` | Bias-direction / family-size plots |
+| `<t>/qualitative/<family>/<model>__<condition>/bias_analysis.{md,json}` | Only with `--qualitative` |
+
+Conventions: signed error = prediction − truth (positive = leans right);
+calibration slope = OLS slope of prediction on truth (< 1 = compressed towards
+the centre); CIs are percentile bootstrap over *texts*.
+
+Model family / size / time come from `MODEL_META` at the top of the script.
+Knowledge-cutoff values are marked `# VERIFY` — check them against the model
+cards. If any model has no cutoff, the time covariate falls back to the release
+date. Family and release/cutoff are nearly collinear (3 families, 2 release
+waves), so the time effect is descriptive, not causal.
 
 ## Log Structure
 
