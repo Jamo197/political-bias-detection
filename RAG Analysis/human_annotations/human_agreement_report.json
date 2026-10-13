@@ -1,0 +1,2104 @@
+{
+  "timestamp": "2026-10-13T06:49:45.393410+00:00",
+  "files": [
+    "/Users/janneslampe/Desktop/Coding/Master Thesis/Evaluation/RAG Analysis/human_annotations/Awsam_qualitative_annotations.jsonl",
+    "/Users/janneslampe/Desktop/Coding/Master Thesis/Evaluation/RAG Analysis/human_annotations/Jannes_qualitative_annotations.jsonl",
+    "/Users/janneslampe/Desktop/Coding/Master Thesis/Evaluation/RAG Analysis/human_annotations/Neda_qualitative_annotations.jsonl"
+  ],
+  "dimensions": [
+    "R_top",
+    "R_ideo",
+    "A_caus"
+  ],
+  "annotators": [
+    "Awsam",
+    "Jannes",
+    "Neda"
+  ],
+  "alignment": "shared",
+  "n_items": 125,
+  "n_shared_items": 125,
+  "n_union_items": 125,
+  "n_dropped_items": 0,
+  "diagnostics": {
+    "alignment": "shared",
+    "annotators": [
+      "Awsam",
+      "Jannes",
+      "Neda"
+    ],
+    "per_annotator_keys": {
+      "Awsam": 125,
+      "Jannes": 125,
+      "Neda": 125
+    },
+    "shared_keys": 125,
+    "union_keys": 125,
+    "analysed_keys": 125,
+    "not_shared_by_all": {
+      "Awsam": [],
+      "Jannes": [],
+      "Neda": []
+    },
+    "missing_from": {
+      "Awsam": [],
+      "Jannes": [],
+      "Neda": []
+    },
+    "missing_values": {
+      "Awsam": {
+        "R_top": 0,
+        "R_ideo": 0,
+        "A_caus": 0
+      },
+      "Jannes": {
+        "R_top": 0,
+        "R_ideo": 0,
+        "A_caus": 0
+      },
+      "Neda": {
+        "R_top": 0,
+        "R_ideo": 0,
+        "A_caus": 0
+      }
+    }
+  },
+  "per_dimension": {
+    "R_top": {
+      "config": {
+        "levels": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "kind": "ordinal"
+      },
+      "multirater": {
+        "n_raters": 3,
+        "n_items": 125,
+        "n_pairable_items": 125,
+        "alpha": 0.33382870434483236,
+        "alpha_level": "ordinal",
+        "mean_pairwise_kappa": 0.36740710868910814,
+        "min_pairwise_kappa": 0.24312254660458021,
+        "max_pairwise_kappa": 0.4711242903120818,
+        "primary_metric": 0.33382870434483236,
+        "primary_metric_name": "krippendorff_alpha_ordinal",
+        "pairwise": {
+          "Awsam|Jannes": {
+            "rater_a": "Awsam",
+            "rater_b": "Jannes",
+            "n": 125,
+            "exact_agreement": 0.288,
+            "kappa": 0.4711242903120818,
+            "kappa_type": "quadratic_weighted",
+            "alpha": 0.4280159873137106,
+            "mean_diff_a_minus_b": 0.752,
+            "mean_abs_diff": 1.072,
+            "pct_within_1": 0.68,
+            "labels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "confusion_matrix": [
+              [
+                2,
+                1,
+                0,
+                0,
+                0
+              ],
+              [
+                3,
+                11,
+                4,
+                1,
+                0
+              ],
+              [
+                9,
+                13,
+                2,
+                6,
+                3
+              ],
+              [
+                1,
+                12,
+                7,
+                6,
+                1
+              ],
+              [
+                0,
+                4,
+                10,
+                14,
+                15
+              ]
+            ]
+          },
+          "Awsam|Neda": {
+            "rater_a": "Awsam",
+            "rater_b": "Neda",
+            "n": 125,
+            "exact_agreement": 0.256,
+            "kappa": 0.24312254660458021,
+            "kappa_type": "quadratic_weighted",
+            "alpha": 0.16402094946810764,
+            "mean_diff_a_minus_b": 0.888,
+            "mean_abs_diff": 1.352,
+            "pct_within_1": 0.6,
+            "labels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "confusion_matrix": [
+              [
+                1,
+                2,
+                0,
+                0,
+                0
+              ],
+              [
+                8,
+                5,
+                1,
+                3,
+                2
+              ],
+              [
+                8,
+                11,
+                7,
+                5,
+                2
+              ],
+              [
+                4,
+                6,
+                5,
+                7,
+                5
+              ],
+              [
+                4,
+                12,
+                9,
+                6,
+                12
+              ]
+            ]
+          },
+          "Jannes|Neda": {
+            "rater_a": "Jannes",
+            "rater_b": "Neda",
+            "n": 125,
+            "exact_agreement": 0.272,
+            "kappa": 0.38797448915066224,
+            "kappa_type": "quadratic_weighted",
+            "alpha": 0.3862964645943896,
+            "mean_diff_a_minus_b": 0.136,
+            "mean_abs_diff": 1.144,
+            "pct_within_1": 0.664,
+            "labels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "confusion_matrix": [
+              [
+                6,
+                6,
+                3,
+                0,
+                0
+              ],
+              [
+                12,
+                10,
+                8,
+                8,
+                3
+              ],
+              [
+                4,
+                9,
+                3,
+                1,
+                6
+              ],
+              [
+                1,
+                9,
+                4,
+                8,
+                5
+              ],
+              [
+                2,
+                2,
+                4,
+                4,
+                7
+              ]
+            ]
+          }
+        },
+        "reference_pairwise": {
+          "Awsam|Jannes": {
+            "rater_a": "Awsam",
+            "rater_b": "Jannes",
+            "n": 125,
+            "exact_agreement": 0.288,
+            "kappa": 0.4711242903120818,
+            "kappa_type": "quadratic_weighted",
+            "alpha": 0.4280159873137106,
+            "mean_diff_a_minus_b": 0.752,
+            "mean_abs_diff": 1.072,
+            "pct_within_1": 0.68,
+            "labels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "confusion_matrix": [
+              [
+                2,
+                1,
+                0,
+                0,
+                0
+              ],
+              [
+                3,
+                11,
+                4,
+                1,
+                0
+              ],
+              [
+                9,
+                13,
+                2,
+                6,
+                3
+              ],
+              [
+                1,
+                12,
+                7,
+                6,
+                1
+              ],
+              [
+                0,
+                4,
+                10,
+                14,
+                15
+              ]
+            ]
+          },
+          "Jannes|Neda": {
+            "rater_a": "Jannes",
+            "rater_b": "Neda",
+            "n": 125,
+            "exact_agreement": 0.272,
+            "kappa": 0.38797448915066224,
+            "kappa_type": "quadratic_weighted",
+            "alpha": 0.3862964645943896,
+            "mean_diff_a_minus_b": 0.136,
+            "mean_abs_diff": 1.144,
+            "pct_within_1": 0.664,
+            "labels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "confusion_matrix": [
+              [
+                6,
+                6,
+                3,
+                0,
+                0
+              ],
+              [
+                12,
+                10,
+                8,
+                8,
+                3
+              ],
+              [
+                4,
+                9,
+                3,
+                1,
+                6
+              ],
+              [
+                1,
+                9,
+                4,
+                8,
+                5
+              ],
+              [
+                2,
+                2,
+                4,
+                4,
+                7
+              ]
+            ]
+          }
+        }
+      }
+    },
+    "R_ideo": {
+      "config": {
+        "levels": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "kind": "ordinal"
+      },
+      "multirater": {
+        "n_raters": 3,
+        "n_items": 125,
+        "n_pairable_items": 125,
+        "alpha": 0.31437440236877157,
+        "alpha_level": "ordinal",
+        "mean_pairwise_kappa": 0.3143427184957755,
+        "min_pairwise_kappa": 0.26908150064683045,
+        "max_pairwise_kappa": 0.34908389585342325,
+        "primary_metric": 0.31437440236877157,
+        "primary_metric_name": "krippendorff_alpha_ordinal",
+        "pairwise": {
+          "Awsam|Jannes": {
+            "rater_a": "Awsam",
+            "rater_b": "Jannes",
+            "n": 125,
+            "exact_agreement": 0.328,
+            "kappa": 0.34908389585342325,
+            "kappa_type": "quadratic_weighted",
+            "alpha": 0.3439218120384152,
+            "mean_diff_a_minus_b": -0.184,
+            "mean_abs_diff": 0.808,
+            "pct_within_1": 0.864,
+            "labels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "confusion_matrix": [
+              [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                2,
+                3,
+                2,
+                0
+              ],
+              [
+                0,
+                11,
+                10,
+                27,
+                7
+              ],
+              [
+                0,
+                7,
+                3,
+                20,
+                14
+              ],
+              [
+                0,
+                0,
+                1,
+                9,
+                9
+              ]
+            ]
+          },
+          "Awsam|Neda": {
+            "rater_a": "Awsam",
+            "rater_b": "Neda",
+            "n": 125,
+            "exact_agreement": 0.448,
+            "kappa": 0.26908150064683045,
+            "kappa_type": "quadratic_weighted",
+            "alpha": 0.22168353118881112,
+            "mean_diff_a_minus_b": -0.376,
+            "mean_abs_diff": 0.664,
+            "pct_within_1": 0.896,
+            "labels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "confusion_matrix": [
+              [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                3,
+                3,
+                1
+              ],
+              [
+                0,
+                1,
+                15,
+                31,
+                8
+              ],
+              [
+                0,
+                0,
+                7,
+                31,
+                6
+              ],
+              [
+                0,
+                0,
+                1,
+                8,
+                10
+              ]
+            ]
+          },
+          "Jannes|Neda": {
+            "rater_a": "Jannes",
+            "rater_b": "Neda",
+            "n": 125,
+            "exact_agreement": 0.448,
+            "kappa": 0.32486275898707284,
+            "kappa_type": "quadratic_weighted",
+            "alpha": 0.3498905083355397,
+            "mean_diff_a_minus_b": -0.192,
+            "mean_abs_diff": 0.688,
+            "pct_within_1": 0.872,
+            "labels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "confusion_matrix": [
+              [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                7,
+                11,
+                1
+              ],
+              [
+                0,
+                0,
+                6,
+                10,
+                1
+              ],
+              [
+                0,
+                0,
+                10,
+                37,
+                11
+              ],
+              [
+                0,
+                0,
+                3,
+                15,
+                12
+              ]
+            ]
+          }
+        },
+        "reference_pairwise": {
+          "Awsam|Jannes": {
+            "rater_a": "Awsam",
+            "rater_b": "Jannes",
+            "n": 125,
+            "exact_agreement": 0.328,
+            "kappa": 0.34908389585342325,
+            "kappa_type": "quadratic_weighted",
+            "alpha": 0.3439218120384152,
+            "mean_diff_a_minus_b": -0.184,
+            "mean_abs_diff": 0.808,
+            "pct_within_1": 0.864,
+            "labels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "confusion_matrix": [
+              [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                2,
+                3,
+                2,
+                0
+              ],
+              [
+                0,
+                11,
+                10,
+                27,
+                7
+              ],
+              [
+                0,
+                7,
+                3,
+                20,
+                14
+              ],
+              [
+                0,
+                0,
+                1,
+                9,
+                9
+              ]
+            ]
+          },
+          "Jannes|Neda": {
+            "rater_a": "Jannes",
+            "rater_b": "Neda",
+            "n": 125,
+            "exact_agreement": 0.448,
+            "kappa": 0.32486275898707284,
+            "kappa_type": "quadratic_weighted",
+            "alpha": 0.3498905083355397,
+            "mean_diff_a_minus_b": -0.192,
+            "mean_abs_diff": 0.688,
+            "pct_within_1": 0.872,
+            "labels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "confusion_matrix": [
+              [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                7,
+                11,
+                1
+              ],
+              [
+                0,
+                0,
+                6,
+                10,
+                1
+              ],
+              [
+                0,
+                0,
+                10,
+                37,
+                11
+              ],
+              [
+                0,
+                0,
+                3,
+                15,
+                12
+              ]
+            ]
+          }
+        }
+      }
+    },
+    "A_caus": {
+      "config": {
+        "levels": [
+          0,
+          1
+        ],
+        "kind": "nominal"
+      },
+      "multirater": {
+        "n_raters": 3,
+        "n_items": 125,
+        "n_pairable_items": 125,
+        "alpha": 0.6801961007866834,
+        "alpha_level": "nominal",
+        "mean_pairwise_kappa": 0.6799991884923235,
+        "min_pairwise_kappa": 0.6487867177522351,
+        "max_pairwise_kappa": 0.713375796178344,
+        "primary_metric": 0.6801961007866834,
+        "primary_metric_name": "krippendorff_alpha_nominal",
+        "pairwise": {
+          "Awsam|Jannes": {
+            "rater_a": "Awsam",
+            "rater_b": "Jannes",
+            "n": 125,
+            "exact_agreement": 0.856,
+            "kappa": 0.713375796178344,
+            "kappa_type": "unweighted",
+            "alpha": 0.7126923076923077,
+            "mean_diff_a_minus_b": -0.08,
+            "mean_abs_diff": 0.144,
+            "pct_within_1": null,
+            "labels": [
+              0,
+              1
+            ],
+            "confusion_matrix": [
+              [
+                56,
+                14
+              ],
+              [
+                4,
+                51
+              ]
+            ]
+          },
+          "Awsam|Neda": {
+            "rater_a": "Awsam",
+            "rater_b": "Neda",
+            "n": 125,
+            "exact_agreement": 0.84,
+            "kappa": 0.6778350515463918,
+            "kappa_type": "unweighted",
+            "alpha": 0.6787925696594428,
+            "mean_diff_a_minus_b": -0.032,
+            "mean_abs_diff": 0.16,
+            "pct_within_1": null,
+            "labels": [
+              0,
+              1
+            ],
+            "confusion_matrix": [
+              [
+                58,
+                12
+              ],
+              [
+                8,
+                47
+              ]
+            ]
+          },
+          "Jannes|Neda": {
+            "rater_a": "Jannes",
+            "rater_b": "Neda",
+            "n": 125,
+            "exact_agreement": 0.824,
+            "kappa": 0.6487867177522351,
+            "kappa_type": "unweighted",
+            "alpha": 0.6493855606758834,
+            "mean_diff_a_minus_b": 0.048,
+            "mean_abs_diff": 0.176,
+            "pct_within_1": null,
+            "labels": [
+              0,
+              1
+            ],
+            "confusion_matrix": [
+              [
+                52,
+                8
+              ],
+              [
+                14,
+                51
+              ]
+            ]
+          }
+        },
+        "reference_pairwise": {
+          "Awsam|Jannes": {
+            "rater_a": "Awsam",
+            "rater_b": "Jannes",
+            "n": 125,
+            "exact_agreement": 0.856,
+            "kappa": 0.713375796178344,
+            "kappa_type": "unweighted",
+            "alpha": 0.7126923076923077,
+            "mean_diff_a_minus_b": -0.08,
+            "mean_abs_diff": 0.144,
+            "pct_within_1": null,
+            "labels": [
+              0,
+              1
+            ],
+            "confusion_matrix": [
+              [
+                56,
+                14
+              ],
+              [
+                4,
+                51
+              ]
+            ]
+          },
+          "Jannes|Neda": {
+            "rater_a": "Jannes",
+            "rater_b": "Neda",
+            "n": 125,
+            "exact_agreement": 0.824,
+            "kappa": 0.6487867177522351,
+            "kappa_type": "unweighted",
+            "alpha": 0.6493855606758834,
+            "mean_diff_a_minus_b": 0.048,
+            "mean_abs_diff": 0.176,
+            "pct_within_1": null,
+            "labels": [
+              0,
+              1
+            ],
+            "confusion_matrix": [
+              [
+                52,
+                8
+              ],
+              [
+                14,
+                51
+              ]
+            ]
+          }
+        }
+      }
+    }
+  },
+  "annotator_bias": {
+    "R_top": {
+      "Awsam": {
+        "n": 125,
+        "mean_level": 3.704,
+        "mean_deviation_from_item_mean": 0.5466666666666667
+      },
+      "Jannes": {
+        "n": 125,
+        "mean_level": 2.952,
+        "mean_deviation_from_item_mean": -0.20533333333333328
+      },
+      "Neda": {
+        "n": 125,
+        "mean_level": 2.816,
+        "mean_deviation_from_item_mean": -0.3413333333333333
+      }
+    },
+    "R_ideo": {
+      "Awsam": {
+        "n": 125,
+        "mean_level": 3.6,
+        "mean_deviation_from_item_mean": -0.18666666666666665
+      },
+      "Jannes": {
+        "n": 125,
+        "mean_level": 3.784,
+        "mean_deviation_from_item_mean": -0.00266666666666665
+      },
+      "Neda": {
+        "n": 125,
+        "mean_level": 3.976,
+        "mean_deviation_from_item_mean": 0.18933333333333335
+      }
+    },
+    "A_caus": {
+      "Awsam": {
+        "n": 125,
+        "mean_level": 0.44,
+        "mean_deviation_from_item_mean": -0.03733333333333333
+      },
+      "Jannes": {
+        "n": 125,
+        "mean_level": 0.52,
+        "mean_deviation_from_item_mean": 0.04266666666666667
+      },
+      "Neda": {
+        "n": 125,
+        "mean_level": 0.472,
+        "mean_deviation_from_item_mean": -0.005333333333333323
+      }
+    }
+  },
+  "worst_disagreements": {
+    "R_top": [
+      {
+        "text_index": "73",
+        "chunk_index": 2,
+        "dimension": "R_top",
+        "spread": 4,
+        "mean_abs_deviation": 1.777777777777778,
+        "mean_pairwise_abs_diff": 2.6666666666666665,
+        "max_pairwise_diff": 4,
+        "max_disagreement_pairs": [
+          "Awsam|Neda",
+          "Jannes|Neda"
+        ],
+        "ratings": {
+          "Awsam": 5,
+          "Jannes": 5,
+          "Neda": 1
+        },
+        "party": "CDU/CSU",
+        "speaker": "Philipp Amthor"
+      },
+      {
+        "text_index": "73",
+        "chunk_index": 3,
+        "dimension": "R_top",
+        "spread": 4,
+        "mean_abs_deviation": 1.777777777777778,
+        "mean_pairwise_abs_diff": 2.6666666666666665,
+        "max_pairwise_diff": 4,
+        "max_disagreement_pairs": [
+          "Awsam|Neda",
+          "Jannes|Neda"
+        ],
+        "ratings": {
+          "Awsam": 5,
+          "Jannes": 5,
+          "Neda": 1
+        },
+        "party": "SPD",
+        "speaker": "Johannes Fechner"
+      },
+      {
+        "text_index": "39",
+        "chunk_index": 0,
+        "dimension": "R_top",
+        "spread": 4,
+        "mean_abs_deviation": 1.5555555555555554,
+        "mean_pairwise_abs_diff": 2.6666666666666665,
+        "max_pairwise_diff": 4,
+        "max_disagreement_pairs": [
+          "Awsam|Neda"
+        ],
+        "ratings": {
+          "Awsam": 5,
+          "Jannes": 4,
+          "Neda": 1
+        },
+        "party": "AfD",
+        "speaker": "Edgar Naujok"
+      },
+      {
+        "text_index": "143",
+        "chunk_index": 1,
+        "dimension": "R_top",
+        "spread": 4,
+        "mean_abs_deviation": 1.3333333333333333,
+        "mean_pairwise_abs_diff": 2.6666666666666665,
+        "max_pairwise_diff": 4,
+        "max_disagreement_pairs": [
+          "Awsam|Neda"
+        ],
+        "ratings": {
+          "Awsam": 5,
+          "Jannes": 3,
+          "Neda": 1
+        },
+        "party": "AfD",
+        "speaker": "Stephan Brandner"
+      },
+      {
+        "text_index": "24",
+        "chunk_index": 3,
+        "dimension": "R_top",
+        "spread": 3,
+        "mean_abs_deviation": 1.3333333333333333,
+        "mean_pairwise_abs_diff": 2.0,
+        "max_pairwise_diff": 3,
+        "max_disagreement_pairs": [
+          "Awsam|Neda",
+          "Jannes|Neda"
+        ],
+        "ratings": {
+          "Awsam": 2,
+          "Jannes": 2,
+          "Neda": 5
+        },
+        "party": "FDP",
+        "speaker": "Gero Clemens Hocker"
+      },
+      {
+        "text_index": "73",
+        "chunk_index": 1,
+        "dimension": "R_top",
+        "spread": 3,
+        "mean_abs_deviation": 1.3333333333333333,
+        "mean_pairwise_abs_diff": 2.0,
+        "max_pairwise_diff": 3,
+        "max_disagreement_pairs": [
+          "Awsam|Neda",
+          "Jannes|Neda"
+        ],
+        "ratings": {
+          "Awsam": 5,
+          "Jannes": 5,
+          "Neda": 2
+        },
+        "party": "FDP",
+        "speaker": "Linda Teuteberg"
+      },
+      {
+        "text_index": "700",
+        "chunk_index": 2,
+        "dimension": "R_top",
+        "spread": 3,
+        "mean_abs_deviation": 1.3333333333333333,
+        "mean_pairwise_abs_diff": 2.0,
+        "max_pairwise_diff": 3,
+        "max_disagreement_pairs": [
+          "Awsam|Jannes",
+          "Awsam|Neda"
+        ],
+        "ratings": {
+          "Awsam": 5,
+          "Jannes": 2,
+          "Neda": 2
+        },
+        "party": "SPD",
+        "speaker": "Jessica Rosenthal"
+      },
+      {
+        "text_index": "24",
+        "chunk_index": 1,
+        "dimension": "R_top",
+        "spread": 3,
+        "mean_abs_deviation": 1.1111111111111112,
+        "mean_pairwise_abs_diff": 2.0,
+        "max_pairwise_diff": 3,
+        "max_disagreement_pairs": [
+          "Jannes|Neda"
+        ],
+        "ratings": {
+          "Awsam": 3,
+          "Jannes": 2,
+          "Neda": 5
+        },
+        "party": "BÜNDNIS 90/DIE GRÜNEN",
+        "speaker": "Friedrich Ostendorff"
+      },
+      {
+        "text_index": "32",
+        "chunk_index": 0,
+        "dimension": "R_top",
+        "spread": 3,
+        "mean_abs_deviation": 1.1111111111111112,
+        "mean_pairwise_abs_diff": 2.0,
+        "max_pairwise_diff": 3,
+        "max_disagreement_pairs": [
+          "Awsam|Neda"
+        ],
+        "ratings": {
+          "Awsam": 5,
+          "Jannes": 3,
+          "Neda": 2
+        },
+        "party": "BÜNDNIS 90/DIE GRÜNEN",
+        "speaker": "Lisa Paus"
+      },
+      {
+        "text_index": "39",
+        "chunk_index": 2,
+        "dimension": "R_top",
+        "spread": 3,
+        "mean_abs_deviation": 1.1111111111111112,
+        "mean_pairwise_abs_diff": 2.0,
+        "max_pairwise_diff": 3,
+        "max_disagreement_pairs": [
+          "Awsam|Jannes"
+        ],
+        "ratings": {
+          "Awsam": 5,
+          "Jannes": 2,
+          "Neda": 3
+        },
+        "party": "AfD",
+        "speaker": "Martin Sichert"
+      },
+      {
+        "text_index": "39",
+        "chunk_index": 4,
+        "dimension": "R_top",
+        "spread": 3,
+        "mean_abs_deviation": 1.1111111111111112,
+        "mean_pairwise_abs_diff": 2.0,
+        "max_pairwise_diff": 3,
+        "max_disagreement_pairs": [
+          "Awsam|Neda"
+        ],
+        "ratings": {
+          "Awsam": 5,
+          "Jannes": 4,
+          "Neda": 2
+        },
+        "party": "AfD",
+        "speaker": "Marc Bernhard"
+      },
+      {
+        "text_index": "117",
+        "chunk_index": 2,
+        "dimension": "R_top",
+        "spread": 3,
+        "mean_abs_deviation": 1.1111111111111112,
+        "mean_pairwise_abs_diff": 2.0,
+        "max_pairwise_diff": 3,
+        "max_disagreement_pairs": [
+          "Awsam|Jannes"
+        ],
+        "ratings": {
+          "Awsam": 4,
+          "Jannes": 1,
+          "Neda": 3
+        },
+        "party": "CDU/CSU",
+        "speaker": "Christian Haase"
+      },
+      {
+        "text_index": "117",
+        "chunk_index": 4,
+        "dimension": "R_top",
+        "spread": 3,
+        "mean_abs_deviation": 1.1111111111111112,
+        "mean_pairwise_abs_diff": 2.0,
+        "max_pairwise_diff": 3,
+        "max_disagreement_pairs": [
+          "Jannes|Neda"
+        ],
+        "ratings": {
+          "Awsam": 4,
+          "Jannes": 2,
+          "Neda": 5
+        },
+        "party": "AfD",
+        "speaker": "Tino Chrupalla"
+      },
+      {
+        "text_index": "141",
+        "chunk_index": 0,
+        "dimension": "R_top",
+        "spread": 3,
+        "mean_abs_deviation": 1.1111111111111112,
+        "mean_pairwise_abs_diff": 2.0,
+        "max_pairwise_diff": 3,
+        "max_disagreement_pairs": [
+          "Awsam|Neda"
+        ],
+        "ratings": {
+          "Awsam": 5,
+          "Jannes": 3,
+          "Neda": 2
+        },
+        "party": "SPD",
+        "speaker": "Andreas Bovenschulte"
+      },
+      {
+        "text_index": "141",
+        "chunk_index": 1,
+        "dimension": "R_top",
+        "spread": 3,
+        "mean_abs_deviation": 1.1111111111111112,
+        "mean_pairwise_abs_diff": 2.0,
+        "max_pairwise_diff": 3,
+        "max_disagreement_pairs": [
+          "Awsam|Neda"
+        ],
+        "ratings": {
+          "Awsam": 5,
+          "Jannes": 4,
+          "Neda": 2
+        },
+        "party": "BÜNDNIS 90/DIE GRÜNEN",
+        "speaker": "Britta Haßelmann"
+      },
+      {
+        "text_index": "141",
+        "chunk_index": 2,
+        "dimension": "R_top",
+        "spread": 3,
+        "mean_abs_deviation": 1.1111111111111112,
+        "mean_pairwise_abs_diff": 2.0,
+        "max_pairwise_diff": 3,
+        "max_disagreement_pairs": [
+          "Awsam|Neda"
+        ],
+        "ratings": {
+          "Awsam": 5,
+          "Jannes": 3,
+          "Neda": 2
+        },
+        "party": "CDU/CSU",
+        "speaker": "Nina Warken"
+      },
+      {
+        "text_index": "141",
+        "chunk_index": 3,
+        "dimension": "R_top",
+        "spread": 3,
+        "mean_abs_deviation": 1.1111111111111112,
+        "mean_pairwise_abs_diff": 2.0,
+        "max_pairwise_diff": 3,
+        "max_disagreement_pairs": [
+          "Awsam|Jannes"
+        ],
+        "ratings": {
+          "Awsam": 5,
+          "Jannes": 2,
+          "Neda": 3
+        },
+        "party": "AfD",
+        "speaker": "Martin Sichert"
+      },
+      {
+        "text_index": "141",
+        "chunk_index": 4,
+        "dimension": "R_top",
+        "spread": 3,
+        "mean_abs_deviation": 1.1111111111111112,
+        "mean_pairwise_abs_diff": 2.0,
+        "max_pairwise_diff": 3,
+        "max_disagreement_pairs": [
+          "Awsam|Neda"
+        ],
+        "ratings": {
+          "Awsam": 5,
+          "Jannes": 3,
+          "Neda": 2
+        },
+        "party": "DIE LINKE",
+        "speaker": "Kathrin Vogler"
+      },
+      {
+        "text_index": "143",
+        "chunk_index": 4,
+        "dimension": "R_top",
+        "spread": 3,
+        "mean_abs_deviation": 1.1111111111111112,
+        "mean_pairwise_abs_diff": 2.0,
+        "max_pairwise_diff": 3,
+        "max_disagreement_pairs": [
+          "Awsam|Neda"
+        ],
+        "ratings": {
+          "Awsam": 5,
+          "Jannes": 4,
+          "Neda": 2
+        },
+        "party": "CDU/CSU",
+        "speaker": "Jan-Marco Luczak"
+      },
+      {
+        "text_index": "239",
+        "chunk_index": 2,
+        "dimension": "R_top",
+        "spread": 3,
+        "mean_abs_deviation": 1.1111111111111112,
+        "mean_pairwise_abs_diff": 2.0,
+        "max_pairwise_diff": 3,
+        "max_disagreement_pairs": [
+          "Awsam|Neda"
+        ],
+        "ratings": {
+          "Awsam": 2,
+          "Jannes": 4,
+          "Neda": 5
+        },
+        "party": "BÜNDNIS 90/DIE GRÜNEN",
+        "speaker": "Cem Özdemir"
+      }
+    ],
+    "R_ideo": [
+      {
+        "text_index": "510",
+        "chunk_index": 0,
+        "dimension": "R_ideo",
+        "spread": 3,
+        "mean_abs_deviation": 1.3333333333333333,
+        "mean_pairwise_abs_diff": 2.0,
+        "max_pairwise_diff": 3,
+        "max_disagreement_pairs": [
+          "Awsam|Neda",
+          "Jannes|Neda"
+        ],
+        "ratings": {
+          "Awsam": 2,
+          "Jannes": 2,
+          "Neda": 5
+        },
+        "party": "CDU/CSU",
+        "speaker": "Stephan Mayer"
+      },
+      {
+        "text_index": "239",
+        "chunk_index": 1,
+        "dimension": "R_ideo",
+        "spread": 2,
+        "mean_abs_deviation": 0.888888888888889,
+        "mean_pairwise_abs_diff": 1.3333333333333333,
+        "max_pairwise_diff": 2,
+        "max_disagreement_pairs": [
+          "Awsam|Jannes",
+          "Awsam|Neda"
+        ],
+        "ratings": {
+          "Awsam": 3,
+          "Jannes": 5,
+          "Neda": 5
+        },
+        "party": "BÜNDNIS 90/DIE GRÜNEN",
+        "speaker": "Cem Özdemir"
+      },
+      {
+        "text_index": "350",
+        "chunk_index": 2,
+        "dimension": "R_ideo",
+        "spread": 2,
+        "mean_abs_deviation": 0.888888888888889,
+        "mean_pairwise_abs_diff": 1.3333333333333333,
+        "max_pairwise_diff": 2,
+        "max_disagreement_pairs": [
+          "Awsam|Jannes",
+          "Awsam|Neda"
+        ],
+        "ratings": {
+          "Awsam": 3,
+          "Jannes": 5,
+          "Neda": 5
+        },
+        "party": "DIE LINKE",
+        "speaker": "Niema Movassat"
+      },
+      {
+        "text_index": "404",
+        "chunk_index": 1,
+        "dimension": "R_ideo",
+        "spread": 2,
+        "mean_abs_deviation": 0.888888888888889,
+        "mean_pairwise_abs_diff": 1.3333333333333333,
+        "max_pairwise_diff": 2,
+        "max_disagreement_pairs": [
+          "Awsam|Jannes",
+          "Awsam|Neda"
+        ],
+        "ratings": {
+          "Awsam": 3,
+          "Jannes": 5,
+          "Neda": 5
+        },
+        "party": "DIE LINKE",
+        "speaker": "Niema Movassat"
+      },
+      {
+        "text_index": "510",
+        "chunk_index": 2,
+        "dimension": "R_ideo",
+        "spread": 2,
+        "mean_abs_deviation": 0.888888888888889,
+        "mean_pairwise_abs_diff": 1.3333333333333333,
+        "max_pairwise_diff": 2,
+        "max_disagreement_pairs": [
+          "Awsam|Jannes",
+          "Jannes|Neda"
+        ],
+        "ratings": {
+          "Awsam": 5,
+          "Jannes": 3,
+          "Neda": 5
+        },
+        "party": "AfD",
+        "speaker": "Klaus Stöber"
+      },
+      {
+        "text_index": "141",
+        "chunk_index": 0,
+        "dimension": "R_ideo",
+        "spread": 2,
+        "mean_abs_deviation": 0.8888888888888888,
+        "mean_pairwise_abs_diff": 1.3333333333333333,
+        "max_pairwise_diff": 2,
+        "max_disagreement_pairs": [
+          "Awsam|Jannes",
+          "Awsam|Neda"
+        ],
+        "ratings": {
+          "Awsam": 2,
+          "Jannes": 4,
+          "Neda": 4
+        },
+        "party": "SPD",
+        "speaker": "Andreas Bovenschulte"
+      },
+      {
+        "text_index": "350",
+        "chunk_index": 1,
+        "dimension": "R_ideo",
+        "spread": 2,
+        "mean_abs_deviation": 0.8888888888888888,
+        "mean_pairwise_abs_diff": 1.3333333333333333,
+        "max_pairwise_diff": 2,
+        "max_disagreement_pairs": [
+          "Awsam|Jannes",
+          "Jannes|Neda"
+        ],
+        "ratings": {
+          "Awsam": 4,
+          "Jannes": 2,
+          "Neda": 4
+        },
+        "party": "SPD",
+        "speaker": "Sonja Eichwede"
+      },
+      {
+        "text_index": "350",
+        "chunk_index": 4,
+        "dimension": "R_ideo",
+        "spread": 2,
+        "mean_abs_deviation": 0.8888888888888888,
+        "mean_pairwise_abs_diff": 1.3333333333333333,
+        "max_pairwise_diff": 2,
+        "max_disagreement_pairs": [
+          "Awsam|Jannes",
+          "Jannes|Neda"
+        ],
+        "ratings": {
+          "Awsam": 4,
+          "Jannes": 2,
+          "Neda": 4
+        },
+        "party": "SPD",
+        "speaker": "Karl-Heinz Brunner"
+      },
+      {
+        "text_index": "534",
+        "chunk_index": 0,
+        "dimension": "R_ideo",
+        "spread": 2,
+        "mean_abs_deviation": 0.8888888888888888,
+        "mean_pairwise_abs_diff": 1.3333333333333333,
+        "max_pairwise_diff": 2,
+        "max_disagreement_pairs": [
+          "Awsam|Jannes",
+          "Jannes|Neda"
+        ],
+        "ratings": {
+          "Awsam": 4,
+          "Jannes": 2,
+          "Neda": 4
+        },
+        "party": "DIE LINKE",
+        "speaker": "Christian Görke"
+      },
+      {
+        "text_index": "628",
+        "chunk_index": 0,
+        "dimension": "R_ideo",
+        "spread": 2,
+        "mean_abs_deviation": 0.8888888888888888,
+        "mean_pairwise_abs_diff": 1.3333333333333333,
+        "max_pairwise_diff": 2,
+        "max_disagreement_pairs": [
+          "Awsam|Jannes",
+          "Jannes|Neda"
+        ],
+        "ratings": {
+          "Awsam": 4,
+          "Jannes": 2,
+          "Neda": 4
+        },
+        "party": "SPD",
+        "speaker": "Dorothee Martin"
+      },
+      {
+        "text_index": "662",
+        "chunk_index": 1,
+        "dimension": "R_ideo",
+        "spread": 2,
+        "mean_abs_deviation": 0.8888888888888888,
+        "mean_pairwise_abs_diff": 1.3333333333333333,
+        "max_pairwise_diff": 2,
+        "max_disagreement_pairs": [
+          "Awsam|Jannes",
+          "Jannes|Neda"
+        ],
+        "ratings": {
+          "Awsam": 4,
+          "Jannes": 2,
+          "Neda": 4
+        },
+        "party": "BÜNDNIS 90/DIE GRÜNEN",
+        "speaker": "Filiz Polat"
+      },
+      {
+        "text_index": "73",
+        "chunk_index": 0,
+        "dimension": "R_ideo",
+        "spread": 2,
+        "mean_abs_deviation": 0.6666666666666666,
+        "mean_pairwise_abs_diff": 1.3333333333333333,
+        "max_pairwise_diff": 2,
+        "max_disagreement_pairs": [
+          "Awsam|Neda"
+        ],
+        "ratings": {
+          "Awsam": 5,
+          "Jannes": 4,
+          "Neda": 3
+        },
+        "party": "CDU/CSU",
+        "speaker": "Ansgar Heveling"
+      },
+      {
+        "text_index": "73",
+        "chunk_index": 2,
+        "dimension": "R_ideo",
+        "spread": 2,
+        "mean_abs_deviation": 0.6666666666666666,
+        "mean_pairwise_abs_diff": 1.3333333333333333,
+        "max_pairwise_diff": 2,
+        "max_disagreement_pairs": [
+          "Jannes|Neda"
+        ],
+        "ratings": {
+          "Awsam": 4,
+          "Jannes": 5,
+          "Neda": 3
+        },
+        "party": "CDU/CSU",
+        "speaker": "Philipp Amthor"
+      },
+      {
+        "text_index": "118",
+        "chunk_index": 2,
+        "dimension": "R_ideo",
+        "spread": 2,
+        "mean_abs_deviation": 0.6666666666666666,
+        "mean_pairwise_abs_diff": 1.3333333333333333,
+        "max_pairwise_diff": 2,
+        "max_disagreement_pairs": [
+          "Awsam|Neda"
+        ],
+        "ratings": {
+          "Awsam": 2,
+          "Jannes": 3,
+          "Neda": 4
+        },
+        "party": "CDU/CSU",
+        "speaker": "Nadine Schön"
+      },
+      {
+        "text_index": "118",
+        "chunk_index": 3,
+        "dimension": "R_ideo",
+        "spread": 2,
+        "mean_abs_deviation": 0.6666666666666666,
+        "mean_pairwise_abs_diff": 1.3333333333333333,
+        "max_pairwise_diff": 2,
+        "max_disagreement_pairs": [
+          "Awsam|Neda"
+        ],
+        "ratings": {
+          "Awsam": 3,
+          "Jannes": 4,
+          "Neda": 5
+        },
+        "party": "SPD",
+        "speaker": "Helge Lindh"
+      },
+      {
+        "text_index": "118",
+        "chunk_index": 4,
+        "dimension": "R_ideo",
+        "spread": 2,
+        "mean_abs_deviation": 0.6666666666666666,
+        "mean_pairwise_abs_diff": 1.3333333333333333,
+        "max_pairwise_diff": 2,
+        "max_disagreement_pairs": [
+          "Awsam|Neda"
+        ],
+        "ratings": {
+          "Awsam": 2,
+          "Jannes": 3,
+          "Neda": 4
+        },
+        "party": "BÜNDNIS 90/DIE GRÜNEN",
+        "speaker": "Sascha Müller"
+      },
+      {
+        "text_index": "143",
+        "chunk_index": 4,
+        "dimension": "R_ideo",
+        "spread": 2,
+        "mean_abs_deviation": 0.6666666666666666,
+        "mean_pairwise_abs_diff": 1.3333333333333333,
+        "max_pairwise_diff": 2,
+        "max_disagreement_pairs": [
+          "Awsam|Neda"
+        ],
+        "ratings": {
+          "Awsam": 3,
+          "Jannes": 4,
+          "Neda": 5
+        },
+        "party": "CDU/CSU",
+        "speaker": "Jan-Marco Luczak"
+      },
+      {
+        "text_index": "178",
+        "chunk_index": 3,
+        "dimension": "R_ideo",
+        "spread": 2,
+        "mean_abs_deviation": 0.6666666666666666,
+        "mean_pairwise_abs_diff": 1.3333333333333333,
+        "max_pairwise_diff": 2,
+        "max_disagreement_pairs": [
+          "Awsam|Jannes"
+        ],
+        "ratings": {
+          "Awsam": 3,
+          "Jannes": 5,
+          "Neda": 4
+        },
+        "party": "AfD",
+        "speaker": "Jörn König"
+      },
+      {
+        "text_index": "178",
+        "chunk_index": 4,
+        "dimension": "R_ideo",
+        "spread": 2,
+        "mean_abs_deviation": 0.6666666666666666,
+        "mean_pairwise_abs_diff": 1.3333333333333333,
+        "max_pairwise_diff": 2,
+        "max_disagreement_pairs": [
+          "Awsam|Neda"
+        ],
+        "ratings": {
+          "Awsam": 3,
+          "Jannes": 4,
+          "Neda": 5
+        },
+        "party": "AfD",
+        "speaker": "Stephan Brandner"
+      },
+      {
+        "text_index": "210",
+        "chunk_index": 3,
+        "dimension": "R_ideo",
+        "spread": 2,
+        "mean_abs_deviation": 0.6666666666666666,
+        "mean_pairwise_abs_diff": 1.3333333333333333,
+        "max_pairwise_diff": 2,
+        "max_disagreement_pairs": [
+          "Awsam|Neda"
+        ],
+        "ratings": {
+          "Awsam": 3,
+          "Jannes": 4,
+          "Neda": 5
+        },
+        "party": "DIE LINKE",
+        "speaker": "Gesine Lötzsch"
+      }
+    ],
+    "A_caus": [
+      {
+        "text_index": "24",
+        "chunk_index": 1,
+        "dimension": "A_caus",
+        "spread": 1,
+        "mean_abs_deviation": 0.4444444444444445,
+        "mean_pairwise_abs_diff": 0.6666666666666666,
+        "max_pairwise_diff": 1,
+        "max_disagreement_pairs": [
+          "Awsam|Jannes",
+          "Awsam|Neda"
+        ],
+        "ratings": {
+          "Awsam": 0,
+          "Jannes": 1,
+          "Neda": 1
+        },
+        "party": "BÜNDNIS 90/DIE GRÜNEN",
+        "speaker": "Friedrich Ostendorff"
+      },
+      {
+        "text_index": "24",
+        "chunk_index": 3,
+        "dimension": "A_caus",
+        "spread": 1,
+        "mean_abs_deviation": 0.4444444444444445,
+        "mean_pairwise_abs_diff": 0.6666666666666666,
+        "max_pairwise_diff": 1,
+        "max_disagreement_pairs": [
+          "Awsam|Jannes",
+          "Awsam|Neda"
+        ],
+        "ratings": {
+          "Awsam": 0,
+          "Jannes": 1,
+          "Neda": 1
+        },
+        "party": "FDP",
+        "speaker": "Gero Clemens Hocker"
+      },
+      {
+        "text_index": "32",
+        "chunk_index": 1,
+        "dimension": "A_caus",
+        "spread": 1,
+        "mean_abs_deviation": 0.4444444444444445,
+        "mean_pairwise_abs_diff": 0.6666666666666666,
+        "max_pairwise_diff": 1,
+        "max_disagreement_pairs": [
+          "Awsam|Neda",
+          "Jannes|Neda"
+        ],
+        "ratings": {
+          "Awsam": 0,
+          "Jannes": 0,
+          "Neda": 1
+        },
+        "party": "CDU/CSU",
+        "speaker": "Friedrich Merz"
+      },
+      {
+        "text_index": "73",
+        "chunk_index": 3,
+        "dimension": "A_caus",
+        "spread": 1,
+        "mean_abs_deviation": 0.4444444444444445,
+        "mean_pairwise_abs_diff": 0.6666666666666666,
+        "max_pairwise_diff": 1,
+        "max_disagreement_pairs": [
+          "Awsam|Neda",
+          "Jannes|Neda"
+        ],
+        "ratings": {
+          "Awsam": 1,
+          "Jannes": 1,
+          "Neda": 0
+        },
+        "party": "SPD",
+        "speaker": "Johannes Fechner"
+      },
+      {
+        "text_index": "117",
+        "chunk_index": 3,
+        "dimension": "A_caus",
+        "spread": 1,
+        "mean_abs_deviation": 0.4444444444444445,
+        "mean_pairwise_abs_diff": 0.6666666666666666,
+        "max_pairwise_diff": 1,
+        "max_disagreement_pairs": [
+          "Awsam|Neda",
+          "Jannes|Neda"
+        ],
+        "ratings": {
+          "Awsam": 0,
+          "Jannes": 0,
+          "Neda": 1
+        },
+        "party": "SPD",
+        "speaker": "Thorsten Rudolph"
+      },
+      {
+        "text_index": "117",
+        "chunk_index": 4,
+        "dimension": "A_caus",
+        "spread": 1,
+        "mean_abs_deviation": 0.4444444444444445,
+        "mean_pairwise_abs_diff": 0.6666666666666666,
+        "max_pairwise_diff": 1,
+        "max_disagreement_pairs": [
+          "Awsam|Neda",
+          "Jannes|Neda"
+        ],
+        "ratings": {
+          "Awsam": 0,
+          "Jannes": 0,
+          "Neda": 1
+        },
+        "party": "AfD",
+        "speaker": "Tino Chrupalla"
+      },
+      {
+        "text_index": "210",
+        "chunk_index": 3,
+        "dimension": "A_caus",
+        "spread": 1,
+        "mean_abs_deviation": 0.4444444444444445,
+        "mean_pairwise_abs_diff": 0.6666666666666666,
+        "max_pairwise_diff": 1,
+        "max_disagreement_pairs": [
+          "Awsam|Neda",
+          "Jannes|Neda"
+        ],
+        "ratings": {
+          "Awsam": 0,
+          "Jannes": 0,
+          "Neda": 1
+        },
+        "party": "DIE LINKE",
+        "speaker": "Gesine Lötzsch"
+      },
+      {
+        "text_index": "239",
+        "chunk_index": 2,
+        "dimension": "A_caus",
+        "spread": 1,
+        "mean_abs_deviation": 0.4444444444444445,
+        "mean_pairwise_abs_diff": 0.6666666666666666,
+        "max_pairwise_diff": 1,
+        "max_disagreement_pairs": [
+          "Awsam|Neda",
+          "Jannes|Neda"
+        ],
+        "ratings": {
+          "Awsam": 0,
+          "Jannes": 0,
+          "Neda": 1
+        },
+        "party": "BÜNDNIS 90/DIE GRÜNEN",
+        "speaker": "Cem Özdemir"
+      },
+      {
+        "text_index": "239",
+        "chunk_index": 3,
+        "dimension": "A_caus",
+        "spread": 1,
+        "mean_abs_deviation": 0.4444444444444445,
+        "mean_pairwise_abs_diff": 0.6666666666666666,
+        "max_pairwise_diff": 1,
+        "max_disagreement_pairs": [
+          "Awsam|Neda",
+          "Jannes|Neda"
+        ],
+        "ratings": {
+          "Awsam": 0,
+          "Jannes": 0,
+          "Neda": 1
+        },
+        "party": "SPD",
+        "speaker": "Luiza Licina-Bode"
+      },
+      {
+        "text_index": "291",
+        "chunk_index": 1,
+        "dimension": "A_caus",
+        "spread": 1,
+        "mean_abs_deviation": 0.4444444444444445,
+        "mean_pairwise_abs_diff": 0.6666666666666666,
+        "max_pairwise_diff": 1,
+        "max_disagreement_pairs": [
+          "Awsam|Neda",
+          "Jannes|Neda"
+        ],
+        "ratings": {
+          "Awsam": 1,
+          "Jannes": 1,
+          "Neda": 0
+        },
+        "party": "SPD",
+        "speaker": "Andreas Mehltretter"
+      },
+      {
+        "text_index": "291",
+        "chunk_index": 3,
+        "dimension": "A_caus",
+        "spread": 1,
+        "mean_abs_deviation": 0.4444444444444445,
+        "mean_pairwise_abs_diff": 0.6666666666666666,
+        "max_pairwise_diff": 1,
+        "max_disagreement_pairs": [
+          "Awsam|Neda",
+          "Jannes|Neda"
+        ],
+        "ratings": {
+          "Awsam": 1,
+          "Jannes": 1,
+          "Neda": 0
+        },
+        "party": "SPD",
+        "speaker": "Dorothee Martin"
+      },
+      {
+        "text_index": "291",
+        "chunk_index": 4,
+        "dimension": "A_caus",
+        "spread": 1,
+        "mean_abs_deviation": 0.4444444444444445,
+        "mean_pairwise_abs_diff": 0.6666666666666666,
+        "max_pairwise_diff": 1,
+        "max_disagreement_pairs": [
+          "Awsam|Neda",
+          "Jannes|Neda"
+        ],
+        "ratings": {
+          "Awsam": 1,
+          "Jannes": 1,
+          "Neda": 0
+        },
+        "party": "SPD",
+        "speaker": "Isabel Cademartori Dujisin"
+      },
+      {
+        "text_index": "421",
+        "chunk_index": 3,
+        "dimension": "A_caus",
+        "spread": 1,
+        "mean_abs_deviation": 0.4444444444444445,
+        "mean_pairwise_abs_diff": 0.6666666666666666,
+        "max_pairwise_diff": 1,
+        "max_disagreement_pairs": [
+          "Awsam|Neda",
+          "Jannes|Neda"
+        ],
+        "ratings": {
+          "Awsam": 0,
+          "Jannes": 0,
+          "Neda": 1
+        },
+        "party": "DIE LINKE",
+        "speaker": "Jessica Tatti"
+      },
+      {
+        "text_index": "534",
+        "chunk_index": 0,
+        "dimension": "A_caus",
+        "spread": 1,
+        "mean_abs_deviation": 0.4444444444444445,
+        "mean_pairwise_abs_diff": 0.6666666666666666,
+        "max_pairwise_diff": 1,
+        "max_disagreement_pairs": [
+          "Awsam|Jannes",
+          "Awsam|Neda"
+        ],
+        "ratings": {
+          "Awsam": 0,
+          "Jannes": 1,
+          "Neda": 1
+        },
+        "party": "DIE LINKE",
+        "speaker": "Christian Görke"
+      },
+      {
+        "text_index": "534",
+        "chunk_index": 2,
+        "dimension": "A_caus",
+        "spread": 1,
+        "mean_abs_deviation": 0.4444444444444445,
+        "mean_pairwise_abs_diff": 0.6666666666666666,
+        "max_pairwise_diff": 1,
+        "max_disagreement_pairs": [
+          "Awsam|Jannes",
+          "Awsam|Neda"
+        ],
+        "ratings": {
+          "Awsam": 0,
+          "Jannes": 1,
+          "Neda": 1
+        },
+        "party": "DIE LINKE",
+        "speaker": "Gesine Lötzsch"
+      },
+      {
+        "text_index": "534",
+        "chunk_index": 3,
+        "dimension": "A_caus",
+        "spread": 1,
+        "mean_abs_deviation": 0.4444444444444445,
+        "mean_pairwise_abs_diff": 0.6666666666666666,
+        "max_pairwise_diff": 1,
+        "max_disagreement_pairs": [
+          "Awsam|Neda",
+          "Jannes|Neda"
+        ],
+        "ratings": {
+          "Awsam": 0,
+          "Jannes": 0,
+          "Neda": 1
+        },
+        "party": "DIE LINKE",
+        "speaker": "Fabio De Masi"
+      },
+      {
+        "text_index": "24",
+        "chunk_index": 2,
+        "dimension": "A_caus",
+        "spread": 1,
+        "mean_abs_deviation": 0.4444444444444444,
+        "mean_pairwise_abs_diff": 0.6666666666666666,
+        "max_pairwise_diff": 1,
+        "max_disagreement_pairs": [
+          "Awsam|Jannes",
+          "Jannes|Neda"
+        ],
+        "ratings": {
+          "Awsam": 0,
+          "Jannes": 1,
+          "Neda": 0
+        },
+        "party": "FDP",
+        "speaker": "Konstantin Kuhle"
+      },
+      {
+        "text_index": "24",
+        "chunk_index": 4,
+        "dimension": "A_caus",
+        "spread": 1,
+        "mean_abs_deviation": 0.4444444444444444,
+        "mean_pairwise_abs_diff": 0.6666666666666666,
+        "max_pairwise_diff": 1,
+        "max_disagreement_pairs": [
+          "Awsam|Jannes",
+          "Jannes|Neda"
+        ],
+        "ratings": {
+          "Awsam": 0,
+          "Jannes": 1,
+          "Neda": 0
+        },
+        "party": "BÜNDNIS 90/DIE GRÜNEN",
+        "speaker": "Leon Eckert"
+      },
+      {
+        "text_index": "39",
+        "chunk_index": 1,
+        "dimension": "A_caus",
+        "spread": 1,
+        "mean_abs_deviation": 0.4444444444444444,
+        "mean_pairwise_abs_diff": 0.6666666666666666,
+        "max_pairwise_diff": 1,
+        "max_disagreement_pairs": [
+          "Awsam|Jannes",
+          "Jannes|Neda"
+        ],
+        "ratings": {
+          "Awsam": 0,
+          "Jannes": 1,
+          "Neda": 0
+        },
+        "party": "AfD",
+        "speaker": "Denis Pauli"
+      },
+      {
+        "text_index": "39",
+        "chunk_index": 2,
+        "dimension": "A_caus",
+        "spread": 1,
+        "mean_abs_deviation": 0.4444444444444444,
+        "mean_pairwise_abs_diff": 0.6666666666666666,
+        "max_pairwise_diff": 1,
+        "max_disagreement_pairs": [
+          "Awsam|Jannes",
+          "Jannes|Neda"
+        ],
+        "ratings": {
+          "Awsam": 0,
+          "Jannes": 1,
+          "Neda": 0
+        },
+        "party": "AfD",
+        "speaker": "Martin Sichert"
+      }
+    ]
+  },
+  "summary": {
+    "weakest_pair_per_dimension": {
+      "R_top": {
+        "pair": "Awsam|Neda",
+        "kappa": 0.24312254660458021
+      },
+      "R_ideo": {
+        "pair": "Awsam|Neda",
+        "kappa": 0.26908150064683045
+      },
+      "A_caus": {
+        "pair": "Jannes|Neda",
+        "kappa": 0.6487867177522351
+      }
+    },
+    "weakest_dimension": {
+      "dimension": "R_ideo",
+      "alpha": 0.31437440236877157
+    }
+  },
+  "reference_annotator": "Jannes",
+  "optional_dimension_coverage": {
+    "N_info": {
+      "Awsam": 0,
+      "Jannes": 0,
+      "Neda": 0
+    }
+  }
+}

@@ -8,9 +8,15 @@ Agreement numbers come from ``compare_human_annotations.py`` so they match its
 CLI report. The Disagreements tab steps through chunks the annotators rated
 differently and shows the source text, RAG justification, chunk text and each
 annotator's ratings and notes side by side. Optionally, a consensus rating can
-be stored per chunk in ``annotations/consensus_annotations.jsonl``.
+be stored per chunk in ``annotations/consensus_annotations.jsonl``; all saved
+consensus chunks can be exported as a shareable markdown file.
+
+Annotators' ratings can also be revised after a discussion. Revisions go to
+``annotations/revised_annotations.jsonl`` (the annotation files stay untouched)
+and feed the agreement numbers, which are shown next to the original ones.
 """
 
+import dataclasses
 import datetime
 import json
 import re
@@ -41,6 +47,7 @@ from compare_human_annotations import (  # noqa: E402
 from run_streamlit import R_IDEO_OPTIONS, R_TOP_OPTIONS  # noqa: E402
 
 CONSENSUS_PATH = APP_ROOT / "annotations/consensus_annotations.jsonl"
+REVISIONS_PATH = APP_ROOT / "annotations/revised_annotations.jsonl"
 DIM_LABELS = {
     "R_top": "R_top (topical relevance)",
     "R_ideo": "R_ideo (ideological specificity)",
@@ -84,15 +91,22 @@ def load_table(files: Tuple[str, ...], dims: Tuple[str, ...], alignment: str):
 
 
 @st.cache_data
-def load_metrics(files: Tuple[str, ...], dims: Tuple[str, ...], alignment: str):
+def load_metrics(
+    files: Tuple[str, ...],
+    dims: Tuple[str, ...],
+    alignment: str,
+    revisions_json: str = "{}",
+):
+    """Agreement metrics; ``revisions_json`` is part of the cache key."""
     table, _ = load_table(files, dims, alignment)
+    table = apply_revisions(table, json.loads(revisions_json))
     metrics = {d: compute_multirater_metrics(table, d, ALL_DIMENSIONS[d]) for d in dims}
     bias = {d: compute_annotator_bias(table, d) for d in dims}
     return metrics, bias
 
 
-def load_consensus(path: Path = CONSENSUS_PATH) -> Dict[str, Dict[str, Any]]:
-    """Load consensus rows keyed ``"text_index|chunk_index"``."""
+def _load_rows(path: Path) -> Dict[str, Dict[str, Any]]:
+    """Load jsonl rows keyed ``"text_index|chunk_index"``."""
     if not path.exists():
         return {}
     rows: Dict[str, Dict[str, Any]] = {}
@@ -109,16 +123,86 @@ def load_consensus(path: Path = CONSENSUS_PATH) -> Dict[str, Dict[str, Any]]:
     return rows
 
 
-def save_consensus_row(row: Dict[str, Any], path: Path = CONSENSUS_PATH) -> None:
-    """Replace the consensus row for one chunk; atomic like the annotation app."""
+def _save_rows(rows: Dict[str, Dict[str, Any]], path: Path) -> None:
+    """Atomic write like the annotation app."""
     path.parent.mkdir(parents=True, exist_ok=True)
-    rows = load_consensus(path)
-    rows[f"{row['text_index']}|{row['chunk_index']}"] = row
     temporary = path.with_suffix(f"{path.suffix}.tmp")
     with temporary.open("w", encoding="utf-8") as handle:
         for saved in rows.values():
             handle.write(json.dumps(saved, ensure_ascii=False) + "\n")
     temporary.replace(path)
+
+
+def load_consensus(path: Path = CONSENSUS_PATH) -> Dict[str, Dict[str, Any]]:
+    """Load consensus rows keyed ``"text_index|chunk_index"``."""
+    return _load_rows(path)
+
+
+def save_consensus_row(row: Dict[str, Any], path: Path = CONSENSUS_PATH) -> None:
+    """Replace the consensus row for one chunk."""
+    rows = _load_rows(path)
+    rows[f"{row['text_index']}|{row['chunk_index']}"] = row
+    _save_rows(rows, path)
+
+
+def load_revisions(path: Path = REVISIONS_PATH) -> Dict[str, Dict[str, Any]]:
+    """Load revision rows keyed ``"text_index|chunk_index"``.
+
+    A row holds ``revised`` and ``original`` as ``annotator -> dim -> value``
+    (only the values that were changed), plus a free-text ``note``.
+    """
+    return _load_rows(path)
+
+
+def save_revision_row(
+    text_index: str,
+    chunk_index: int,
+    revised: Dict[str, Dict[str, int]],
+    original: Dict[str, Dict[str, int]],
+    note: str,
+    path: Path = REVISIONS_PATH,
+) -> None:
+    """Replace the revision row for one chunk; no changes removes the row."""
+    rows = _load_rows(path)
+    key = f"{text_index}|{chunk_index}"
+    if revised:
+        rows[key] = {
+            "text_index": text_index,
+            "chunk_index": chunk_index,
+            "revised": revised,
+            "original": original,
+            "note": note,
+            "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),
+        }
+    else:
+        rows.pop(key, None)
+    _save_rows(rows, path)
+
+
+def revised_values(revisions: Dict[str, Dict[str, Any]]) -> Dict[str, Dict[str, Dict[str, int]]]:
+    """``"text|chunk" -> annotator -> dim -> value``; input for ``apply_revisions``."""
+    return {key: row["revised"] for key, row in revisions.items()}
+
+
+def apply_revisions(table, revised: Dict[str, Dict[str, Dict[str, int]]]):
+    """Copy of ``table`` with revised values; missing ratings stay missing."""
+    if not revised:
+        return table
+    position = {key: i for i, key in enumerate(table.keys)}
+    matrices = {dim: matrix.copy() for dim, matrix in table.matrices.items()}
+    for storage_key, per_annotator in revised.items():
+        text_index, chunk_index = storage_key.rsplit("|", 1)
+        i = position.get((text_index, int(chunk_index)))
+        if i is None:
+            continue
+        for name, per_dim in per_annotator.items():
+            if name not in table.annotators:
+                continue
+            j = table.annotators.index(name)
+            for dim, value in per_dim.items():
+                if dim in matrices and not np.isnan(matrices[dim][i, j]):
+                    matrices[dim][i, j] = value
+    return dataclasses.replace(table, matrices=matrices)
 
 
 # ---------------------------------------------------------------------------
@@ -154,7 +238,9 @@ def first_record(raw: Dict[str, Dict[str, Dict[str, Any]]], text_index: str):
     return {}
 
 
-def build_disagreement_items(table, dims: List[str], min_spread: int, only_disagree: bool):
+def build_disagreement_items(
+    table, dims: List[str], min_spread: int, only_disagree: bool
+):
     """One entry per chunk: per-dim ratings and spread, filtered and sorted."""
     items = []
     for i, key in enumerate(table.keys):
@@ -189,14 +275,24 @@ def build_disagreement_items(table, dims: List[str], min_spread: int, only_disag
     return items
 
 
-def highlight_citation(text: str, chunk_index: int) -> str:
-    """Bold the ``[N]`` reference that cites this chunk in the justification."""
+def highlight_citation(
+    text: str, chunk_index: int, plain_markdown: bool = False
+) -> str:
+    """Bold the ``[N]`` reference that cites this chunk in the justification.
+
+    ``plain_markdown`` skips Streamlit's ``:red[]`` colour directive so the
+    result renders in any markdown viewer.
+    """
     target = chunk_index + 1
-    return re.sub(
-        r"\[(\d+)\]",
-        lambda m: f"**:red[[{m.group(1)}]]**" if int(m.group(1)) == target else m.group(0),
-        text or "",
-    )
+
+    def mark(match: "re.Match[str]") -> str:
+        if int(match.group(1)) != target:
+            return match.group(0)
+        if plain_markdown:
+            return f"**\\[{match.group(1)}\\]**"
+        return f"**:red[[{match.group(1)}]]**"
+
+    return re.sub(r"\[(\d+)\]", mark, text or "")
 
 
 # ---------------------------------------------------------------------------
@@ -204,7 +300,70 @@ def highlight_citation(text: str, chunk_index: int) -> str:
 # ---------------------------------------------------------------------------
 
 
-def render_overview(table, diagnostics, metrics, bias, dims: List[str]):
+def render_revision_summary(metrics, original_metrics, revisions, dims: List[str]):
+    """Original vs revised agreement plus a log of every changed rating."""
+    changed = sum(
+        len(per_dim)
+        for row in revisions.values()
+        for per_dim in row["revised"].values()
+    )
+    st.info(
+        f"Showing **revised** ratings: {changed} rating(s) changed in "
+        f"{len(revisions)} chunk(s). Original files are untouched."
+    )
+    rows = []
+    for dim in dims:
+        before, after = original_metrics[dim], metrics[dim]
+        rows.append(
+            {
+                "dimension": dim,
+                "alpha original": before["alpha"],
+                "alpha revised": after["alpha"],
+                "Δ alpha": (
+                    after["alpha"] - before["alpha"]
+                    if None not in (before["alpha"], after["alpha"])
+                    else None
+                ),
+                "mean κ original": before["mean_pairwise_kappa"],
+                "mean κ revised": after["mean_pairwise_kappa"],
+                "Δ mean κ": (
+                    after["mean_pairwise_kappa"] - before["mean_pairwise_kappa"]
+                    if None
+                    not in (after["mean_pairwise_kappa"], before["mean_pairwise_kappa"])
+                    else None
+                ),
+            }
+        )
+    st.dataframe(
+        pd.DataFrame(rows).round(3), hide_index=True, width="stretch"
+    )
+    with st.expander(f"Revision log ({changed} changes)"):
+        log = [
+            {
+                "text": row["text_index"],
+                "chunk": row["chunk_index"] + 1,
+                "annotator": name,
+                "dimension": dim,
+                "original": row["original"].get(name, {}).get(dim),
+                "revised": value,
+                "note": row.get("note", ""),
+            }
+            for row in revisions.values()
+            for name, per_dim in row["revised"].items()
+            for dim, value in per_dim.items()
+        ]
+        st.dataframe(pd.DataFrame(log), hide_index=True, width="stretch")
+
+
+def render_overview(
+    table,
+    diagnostics,
+    metrics,
+    bias,
+    dims: List[str],
+    original_metrics=None,
+    revisions=None,
+):
     st.subheader("Agreement overview")
     st.caption(
         f"Annotators: {', '.join(table.annotators)} · items analysed: "
@@ -213,14 +372,23 @@ def render_overview(table, diagnostics, metrics, bias, dims: List[str]):
     )
     for name, missing in diagnostics["missing_from"].items():
         if missing:
-            st.warning(f"{name} did not rate {len(missing)} chunk(s) that others rated.")
+            st.warning(
+                f"{name} did not rate {len(missing)} chunk(s) that others rated."
+            )
+
+    if revisions:
+        render_revision_summary(metrics, original_metrics, revisions, dims)
 
     cols = st.columns(len(dims))
     for col, dim in zip(cols, dims):
         multi = metrics[dim]
+        delta = None
+        if revisions and None not in (multi["alpha"], original_metrics[dim]["alpha"]):
+            delta = f"{multi['alpha'] - original_metrics[dim]['alpha']:+.3f}"
         col.metric(
             f"{dim} — Krippendorff α",
             fmt(multi["alpha"]),
+            delta=delta,
             help=f"{multi['alpha_level']} alpha across all raters; "
             f"mean pairwise kappa {fmt(multi['mean_pairwise_kappa'])}",
         )
@@ -229,6 +397,12 @@ def render_overview(table, diagnostics, metrics, bias, dims: List[str]):
             f"({fmt(multi['min_pairwise_kappa'])} … {fmt(multi['max_pairwise_kappa'])})"
         )
 
+    if st.checkbox("Show detailed metrics per dimension", value=False):
+        render_dimension_details(metrics, bias, dims)
+
+
+def render_dimension_details(metrics, bias, dims: List[str]):
+    """Pairwise agreement, annotator bias and confusion matrices per dimension."""
     for dim in dims:
         multi = metrics[dim]
         st.markdown(f"### {DIM_LABELS.get(dim, dim)}")
@@ -267,7 +441,9 @@ def render_overview(table, diagnostics, metrics, bias, dims: List[str]):
         st.caption("Annotator bias (positive deviation = rates higher than the others)")
         st.dataframe(pd.DataFrame(bias_rows), hide_index=True, width="stretch")
 
-        with st.expander("Confusion matrices (rows = first annotator, columns = second)"):
+        with st.expander(
+            "Confusion matrices (rows = first annotator, columns = second)"
+        ):
             pair_cols = st.columns(max(len(multi["pairwise"]), 1))
             for col, (pair, entry) in zip(pair_cols, multi["pairwise"].items()):
                 if entry is None:
@@ -318,7 +494,202 @@ def build_export_csv(items, raw, table, dims: List[str]) -> bytes:
     return pd.DataFrame(rows).to_csv(index=False).encode("utf-8-sig")
 
 
-def render_disagreements(table, raw, dims: List[str], min_spread: int, only_disagree: bool, sort_by: str, enable_consensus: bool):
+def _quote(text: str) -> str:
+    """Render multi-line text as a markdown blockquote."""
+    lines = (text or "").strip().splitlines() or ["—"]
+    # Two trailing spaces keep the original line breaks in rendered markdown.
+    return "\n".join(f"> {line}  " if line.strip() else ">" for line in lines)
+
+
+def _rating_text(dim: str, value: Optional[int]) -> str:
+    if value is None:
+        return "—"
+    if dim == "A_caus":
+        return "Yes" if value == 1 else "No"
+    return str(value)
+
+
+def _sort_key(item) -> Tuple[int, str, int]:
+    text_index, chunk_index = item["key"]
+    numeric = int(text_index) if text_index.isdigit() else 10**9
+    return (numeric, text_index, chunk_index)
+
+
+def build_consensus_markdown(
+    items,
+    raw,
+    table,
+    dims: List[str],
+    consensus: Dict[str, Dict[str, Any]],
+    revisions: Optional[Dict[str, Dict[str, Any]]] = None,
+) -> str:
+    """Shareable markdown of every chunk with a saved consensus.
+
+    Each chunk mirrors the app: source text, RAG justification, chunk, the
+    annotators' ratings and notes, and the consensus with its note. Revised
+    ratings (``items`` carry the revised values) are marked ``(was X)``.
+    """
+    revisions = revisions or {}
+    decided = sorted(
+        (it for it in items if f"{it['key'][0]}|{it['key'][1]}" in consensus),
+        key=_sort_key,
+    )
+    annotators = table.annotators
+    lines: List[str] = [
+        "# Annotation consensus",
+        "",
+        f"- Generated: {datetime.date.today().isoformat()}",
+        f"- Annotators: {', '.join(annotators)}",
+        f"- Dimensions: {', '.join(dims)}",
+        f"- Chunks with consensus: {len(decided)}",
+        "",
+    ]
+
+    if decided:
+        lines += [
+            "## Summary",
+            "",
+            "Share of chunks where an annotator's current rating equals the updated value.",
+            "",
+            "| annotator | " + " | ".join(dims) + " |",
+            "|---|" + "---|" * len(dims),
+        ]
+        for name in annotators:
+            cells = []
+            for dim in dims:
+                pairs = [
+                    (
+                        it["ratings"][dim][name],
+                        consensus[f"{it['key'][0]}|{it['key'][1]}"]["consensus"].get(
+                            dim
+                        ),
+                    )
+                    for it in decided
+                    if name in it["ratings"][dim]
+                ]
+                pairs = [(own, final) for own, final in pairs if final is not None]
+                cells.append(
+                    f"{100 * sum(own == final for own, final in pairs) / len(pairs):.0f} % ({len(pairs)})"
+                    if pairs
+                    else "—"
+                )
+            lines.append(f"| {name} | " + " | ".join(cells) + " |")
+        lines += ["", "---", ""]
+
+    for item in decided:
+        text_index, chunk_index = item["key"]
+        saved = consensus[f"{text_index}|{chunk_index}"]
+        record = first_record(raw, text_index)
+        context = record.get("source_context", {}) or {}
+        input_meta = context.get("input_metadata", {}) or {}
+        chunks = find_chunk(raw, item["key"])
+        any_chunk = next(iter(chunks.values()), {})
+        chunk_meta = any_chunk.get("chunk_metadata", {}) or {}
+        justification = (context.get("rag", {}) or {}).get("justification", "")
+
+        lines += [
+            f"## Text {text_index} · chunk {chunk_index + 1}",
+            "",
+            "### Source text",
+            "",
+            f"**Party:** {input_meta.get('party', '—')} · "
+            f"**Speaker:** {input_meta.get('speaker', '—')} · "
+            f"**Source:** {input_meta.get('source', '—')} · "
+            f"**Quadrant:** {context.get('quadrant', '—')}",
+            "",
+            _quote(record.get("input_text", "")),
+            "",
+            "### RAG justification",
+            "",
+            f"_Citation of this chunk: **\\[{chunk_index + 1}\\]**_",
+            "",
+            _quote(highlight_citation(justification, chunk_index, plain_markdown=True)),
+            "",
+            "### Chunk",
+            "",
+            f"**Party:** {chunk_meta.get('party', '—')} · "
+            f"**Speaker:** {chunk_meta.get('speaker', '—')} · "
+            f"**Source:** {chunk_meta.get('source') or '—'}",
+            "",
+            _quote(any_chunk.get("chunk_text", "")),
+            "",
+            "### Ratings",
+            "",
+            "| dimension | " + " | ".join(annotators) + " | **Updated Values** |",
+            "|---|" + "---|" * (len(annotators) + 1),
+        ]
+        for dim in dims:
+            cells = []
+            was = revisions.get(f"{text_index}|{chunk_index}", {}).get("original", {})
+            for name in annotators:
+                text = _rating_text(dim, item["ratings"][dim].get(name))
+                if name in was and dim in was[name]:
+                    text += f" (was {_rating_text(dim, was[name][dim])})"
+                cells.append(text)
+            final = _rating_text(dim, saved.get("consensus", {}).get(dim))
+            lines.append(f"| {dim} | " + " | ".join(cells) + f" | **{final}** |")
+        lines.append("")
+
+        note_lines = []
+        for name in annotators:
+            parts = []
+            chunk_note = ((chunks.get(name) or {}).get("notes") or "").strip()
+            sample_note = (
+                raw.get(name, {}).get(text_index, {}).get("sample_notes") or ""
+            ).strip()
+            if chunk_note:
+                parts.append(chunk_note)
+            if sample_note:
+                parts.append(f"(sample note) {sample_note}")
+            if parts:
+                body = "  \n  ".join(" ".join(parts).splitlines())
+                note_lines.append(f"- **{name}:** {body}")
+        if note_lines:
+            lines += ["**Annotator notes**", ""] + note_lines + [""]
+
+        revision_note = (
+            revisions.get(f"{text_index}|{chunk_index}", {}).get("note") or ""
+        ).strip()
+        if revision_note:
+            lines += ["**Revision note**", "", _quote(revision_note), ""]
+
+        consensus_note = (saved.get("note") or "").strip()
+        lines += [
+            "**Discussion note**",
+            "",
+            _quote(consensus_note) if consensus_note else "—",
+            "",
+            "---",
+            "",
+        ]
+
+    lines += [
+        "## Rubric",
+        "",
+        "**R_top**",
+        "",
+        *(f"- [{k}] {v}" for k, v in R_TOP_OPTIONS.items()),
+        "",
+        "**R_ideo**",
+        "",
+        *(f"- [{k}] {v}" for k, v in R_IDEO_OPTIONS.items()),
+        "",
+    ]
+    return "\n".join(lines)
+
+
+def render_disagreements(
+    table,
+    raw,
+    dims: List[str],
+    min_spread: int,
+    only_disagree: bool,
+    sort_by: str,
+    enable_consensus: bool,
+    enable_revision: bool = False,
+    revisions: Optional[Dict[str, Dict[str, Any]]] = None,
+):
+    revisions = revisions or {}
     items = build_disagreement_items(table, dims, min_spread, only_disagree)
     if sort_by == "Largest disagreement":
         items.sort(key=lambda it: (-it["max_spread"], -it["total_spread"]))
@@ -400,11 +771,22 @@ def render_disagreements(table, raw, dims: List[str], min_spread: int, only_disa
     with st.expander("Rubric"):
         rubric_cols = st.columns(2)
         rubric_cols[0].markdown(
-            "**R_top**\n\n" + "\n".join(f"- [{k}] {v}" for k, v in R_TOP_OPTIONS.items())
+            "**R_top**\n\n"
+            + "\n".join(f"- [{k}] {v}" for k, v in R_TOP_OPTIONS.items())
         )
         rubric_cols[1].markdown(
-            "**R_ideo**\n\n" + "\n".join(f"- [{k}] {v}" for k, v in R_IDEO_OPTIONS.items())
+            "**R_ideo**\n\n"
+            + "\n".join(f"- [{k}] {v}" for k, v in R_IDEO_OPTIONS.items())
         )
+
+    if enable_consensus:
+        render_consensus_form(item, dims, table.annotators)
+
+    st.write("### Annotator ratings")
+    storage_key = f"{text_index}|{chunk_index}"
+    revision = revisions.get(storage_key) or {}
+    originals = revision.get("original", {})
+    chosen: Dict[str, Dict[str, int]] = {}
 
     annotator_cols = st.columns(len(table.annotators))
     for col, name in zip(annotator_cols, table.annotators):
@@ -415,22 +797,92 @@ def render_disagreements(table, raw, dims: List[str], min_spread: int, only_disa
             continue
         for dim in dims:
             value = item["ratings"][dim].get(name)
+            was = originals.get(name, {}).get(dim)
+            if enable_revision and value is not None:
+                levels = ALL_DIMENSIONS[dim]["levels"]
+                chosen.setdefault(name, {})[dim] = col.radio(
+                    f"{dim}" + (f" (was {_rating_text(dim, was)})" if was is not None else ""),
+                    options=levels,
+                    index=levels.index(value),
+                    format_func=lambda v, d=dim: _rating_text(d, v),
+                    horizontal=True,
+                    key=f"rev_{storage_key}_{name}_{dim}",
+                )
+                continue
             differs = item["spreads"][dim] > 0
-            text = "—" if value is None else str(value)
-            if dim == "A_caus" and value is not None:
-                text = "Yes" if value == 1 else "No"
+            text = _rating_text(dim, value)
+            if was is not None:
+                text += f" (was {_rating_text(dim, was)})"
             marker = ":red[" + text + "]" if differs else text
             col.markdown(f"**{dim}:** {marker}")
         note = (entry.get("notes") or "").strip()
         col.caption("Chunk notes")
         col.write(note or "—")
-        sample_note = (raw.get(name, {}).get(text_index, {}).get("sample_notes") or "").strip()
+        sample_note = (
+            raw.get(name, {}).get(text_index, {}).get("sample_notes") or ""
+        ).strip()
         if sample_note:
             col.caption("Sample notes")
             col.write(sample_note)
 
-    if enable_consensus:
-        render_consensus_form(item, dims, table.annotators)
+    if enable_revision:
+        render_revision_form(item, dims, chosen, revision)
+
+
+def render_revision_form(
+    item,
+    dims: List[str],
+    chosen: Dict[str, Dict[str, int]],
+    revision: Dict[str, Any],
+):
+    """Save the radios above as revisions of the annotators' original ratings."""
+    text_index, chunk_index = item["key"]
+    storage_key = f"{text_index}|{chunk_index}"
+    note = st.text_area(
+        "Revision note (what changed and why)",
+        value=revision.get("note", ""),
+        key=f"rev_{storage_key}_note",
+        height=60,
+    )
+
+    def reset():
+        save_revision_row(text_index, chunk_index, {}, {}, "")
+        for key in [k for k in st.session_state if k.startswith(f"rev_{storage_key}_")]:
+            del st.session_state[key]
+
+    buttons = st.columns([1, 1, 4])
+    if buttons[0].button("Save revised ratings", type="primary", key=f"rev_{storage_key}_save"):
+        revised = {
+            name: dict(per_dim) for name, per_dim in revision.get("revised", {}).items()
+        }
+        original = {
+            name: dict(per_dim) for name, per_dim in revision.get("original", {}).items()
+        }
+        for name, per_dim in chosen.items():
+            for dim in dims:
+                if dim not in per_dim:
+                    continue
+                # The value before any revision: stored original, else what is shown.
+                before = original.get(name, {}).pop(dim, item["ratings"][dim].get(name))
+                revised.get(name, {}).pop(dim, None)
+                if per_dim[dim] != before:
+                    revised.setdefault(name, {})[dim] = per_dim[dim]
+                    original.setdefault(name, {})[dim] = before
+        revised = {name: v for name, v in revised.items() if v}
+        original = {name: v for name, v in original.items() if v}
+        save_revision_row(text_index, chunk_index, revised, original, note)
+        st.toast(
+            f"Saved {sum(len(v) for v in revised.values())} revised rating(s)"
+            if revised
+            else "No changes to the original ratings; revision removed."
+        )
+        st.rerun()  # agreement numbers in the Overview tab need recomputing
+    buttons[1].button(
+        "Reset to original",
+        on_click=reset,
+        disabled=not revision,
+        key=f"rev_{storage_key}_reset",
+    )
 
 
 def render_consensus_form(item, dims: List[str], annotators: List[str]):
@@ -438,7 +890,7 @@ def render_consensus_form(item, dims: List[str], annotators: List[str]):
     storage_key = f"{text_index}|{chunk_index}"
     saved = load_consensus().get(storage_key)
 
-    st.write("## Consensus")
+    st.write("## Revision")
     if saved:
         st.info("Consensus already saved for this chunk; values loaded.")
     values: Dict[str, int] = {}
@@ -491,7 +943,9 @@ def run_app():
         initial_sidebar_state="collapsed",
     )
     st.title("Human Annotation Comparison")
-    st.caption("Compare the annotators' R_top, R_ideo and A_caus ratings chunk by chunk.")
+    st.caption(
+        "Compare the annotators' R_top, R_ideo and A_caus ratings chunk by chunk."
+    )
 
     try:
         all_files = discover_annotation_files(SCRIPT_DIR, DEFAULT_PATTERN)
@@ -526,7 +980,19 @@ def run_app():
         sort_by = row2[2].radio(
             "Sort", ["Largest disagreement", "Text order"], horizontal=True
         )
-        enable_consensus = st.checkbox(
+        row3 = st.columns([2, 2, 2])
+        use_revised = row3[0].checkbox(
+            "Use revised ratings",
+            value=True,
+            help="Apply saved revisions to the ratings and agreement numbers. "
+            "Untick to see the original annotations only.",
+        )
+        enable_revision = row3[1].checkbox(
+            "Enable editing annotator ratings (writes annotations/revised_annotations.jsonl)",
+            value=False,
+            disabled=not use_revised,
+        )
+        enable_consensus = row3[2].checkbox(
             "Enable consensus editing (writes annotations/consensus_annotations.jsonl)",
             value=False,
         )
@@ -544,7 +1010,13 @@ def run_app():
 
     try:
         table, diagnostics = load_table(files, tuple(dims), alignment)
-        metrics, bias = load_metrics(files, tuple(dims), alignment)
+        revisions = load_revisions() if use_revised else {}
+        revised = revised_values(revisions)
+        metrics, bias = load_metrics(
+            files, tuple(dims), alignment, json.dumps(revised, sort_keys=True)
+        )
+        original_metrics, _ = load_metrics(files, tuple(dims), alignment)
+        table = apply_revisions(table, revised)
     except ValueError as exc:
         st.error(f"Could not load annotations: {exc}")
         return
@@ -553,12 +1025,39 @@ def run_app():
         return
     raw = load_raw_records(files)
 
+    consensus = load_consensus()
+    all_items = build_disagreement_items(table, dims, 1, False)
+    consensus_items = [
+        it for it in all_items if f"{it['key'][0]}|{it['key'][1]}" in consensus
+    ]
+    st.download_button(
+        f"Export consensus as Markdown ({len(consensus_items)} chunks)",
+        data=build_consensus_markdown(
+            all_items, raw, table, dims, consensus, revisions
+        ),
+        file_name="annotation_consensus.md",
+        mime="text/markdown",
+        disabled=not consensus_items,
+        help="All chunks with a saved consensus (independent of the filters "
+        "below), with source text, ratings, notes and the consensus note.",
+    )
+
     overview_tab, disagreement_tab = st.tabs(["Overview", "Disagreements"])
     with overview_tab:
-        render_overview(table, diagnostics, metrics, bias, dims)
+        render_overview(
+            table, diagnostics, metrics, bias, dims, original_metrics, revisions
+        )
     with disagreement_tab:
         render_disagreements(
-            table, raw, dims, min_spread, only_disagree, sort_by, enable_consensus
+            table,
+            raw,
+            dims,
+            min_spread,
+            only_disagree,
+            sort_by,
+            enable_consensus,
+            enable_revision and use_revised,
+            revisions,
         )
 
 
