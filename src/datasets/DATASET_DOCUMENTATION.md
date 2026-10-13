@@ -194,27 +194,25 @@ The project supports three party-level dimensions:
 | `party_label_economic` | Economic left-right score |
 | `party_label_galtan` | GAL-TAN score |
 
-The latest fixed party tables are stored on a 1-10 scale and converted to the project 1-7 scale with:
+The party scores come from the CHES 2024 expert survey. CHES runs from 0 to 10 and is converted to the project 1-7 scale with:
 
 ```python
-score_7 = 1 + ((score_10 - 1) / 9) * 6
+score_7 = 1 + (score_10 / 10) * 6
 ```
 
-Converted values are rounded to one decimal place.
+Converted values are rounded to one decimal place. (An earlier version of this dataset wrongly assumed a 1-10 CHES scale, i.e. `1 + ((score_10 - 1) / 9) * 6`. The party columns were corrected.
 
-The intended latest converted values are:
+The converted CHES 2024 values are:
 
 | Party | Ideology | Economic | GAL-TAN |
 |---|---:|---:|---:|
-| LINKE | 1.3 | 1.3 | 1.9 |
-| Grüne | 2.4 | 2.6 | 1.4 |
-| SPD | 2.7 | 2.7 | 2.7 |
-| BSW | 2.7 | 2.2 | 5.1 |
-| FDP | 4.3 | 5.4 | 2.5 |
-| CDU | 4.7 | 4.7 | 4.7 |
-| FW | 4.8 | 4.6 | 4.8 |
-| CSU | 5.4 | 4.9 | 5.3 |
-| AfD | 6.5 | 5.4 | 6.6 |
+| LINKE | 1.9 | 1.8 | 2.4 |
+| Grüne | 2.8 | 3.0 | 2.0 |
+| SPD | 3.1 | 3.1 | 3.2 |
+| FDP | 4.6 | 5.5 | 2.9 |
+| CDU | 4.9 | 4.9 | 4.9 |
+| CSU | 5.5 | 5.1 | 5.5 |
+| AfD | 6.6 | 5.6 | 6.6 |
 
 Party aliases are normalized in code. Examples include `Grüne`, `Bündnis 90 Die Grünen`, `Die Linke`, `LINKE`, `CDU`, `CSU`, `CDU/CSU`, `SPD`, `FDP`, `AfD`, `BSW`, and `FW`.
 
