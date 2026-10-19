@@ -84,7 +84,7 @@ load_dotenv(_PROJECT_ROOT / ".env.local")
 # Native TypeSafe API (TYPESAFE_API_KEY). Pinned to a version id so confidence
 # thresholds stay tuned against one model version; the response's `model` field
 # records the version that actually answered.
-TYPESAFE_JEV_MODEL = os.getenv("TYPESAFE_JEV_MODEL", "jev-1.13.0")
+TYPESAFE_JEV_MODEL = os.getenv("TYPESAFE_JEV_MODEL", "jev-1.14.0")
 # OpenRouter-compatible endpoint (OPENROUTER_API_KEY_ME), used only when no
 # TYPESAFE_API_KEY is present.
 OPENROUTER_BASE_URL = "https://openrouter.ai/api"
@@ -705,9 +705,7 @@ def run_judging(
     # Write the human-annotation-style snapshot (one line per text) so the
     # judge labels can be compared against an annotator's file directly.
     if grouped_snapshot_path:
-        grouped_records = build_judge_annotation_records(
-            results, records, args.model
-        )
+        grouped_records = build_judge_annotation_records(results, records, args.model)
         grouped_snapshot_path.parent.mkdir(parents=True, exist_ok=True)
         with grouped_snapshot_path.open("w", encoding="utf-8") as handle:
             for rec in grouped_records:
@@ -760,9 +758,7 @@ def build_judge_annotation_records(
         )
         chunk_annotations = []
         for res in entries:
-            chunk = chunk_lookup.get(
-                (text_index, res.get("chunk_index")), {}
-            )
+            chunk = chunk_lookup.get((text_index, res.get("chunk_index")), {})
             meta = chunk.get("chunk_metadata") or {}
             labels = res.get("derived_labels") or {}
             annotation = {
@@ -1290,9 +1286,7 @@ def main() -> None:
             sys.exit(1)
         # Accept either the flat per-chunk snapshot or the grouped
         # human-annotation-style snapshot.
-        if any(
-            isinstance(r.get("chunk_annotations"), list) for r in results
-        ):
+        if any(isinstance(r.get("chunk_annotations"), list) for r in results):
             results = flatten_annotation_records(results)
         results = rederive_labels_in_place(
             results, args.score_label_mode, args.a_caus_threshold

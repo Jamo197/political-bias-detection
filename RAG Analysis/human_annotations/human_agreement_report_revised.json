@@ -1,0 +1,932 @@
+{
+  "timestamp": "2026-10-19T14:11:57.038581+00:00",
+  "files": [
+    "/Users/janneslampe/Desktop/Coding/Master Thesis/Evaluation/RAG Analysis/human_annotations/Awsam_qualitative_annotations.jsonl",
+    "/Users/janneslampe/Desktop/Coding/Master Thesis/Evaluation/RAG Analysis/human_annotations/Jannes_qualitative_annotations.jsonl",
+    "/Users/janneslampe/Desktop/Coding/Master Thesis/Evaluation/RAG Analysis/human_annotations/Neda_qualitative_annotations.jsonl"
+  ],
+  "dimensions": [
+    "R_top",
+    "R_ideo",
+    "A_caus"
+  ],
+  "annotators": [
+    "Awsam",
+    "Jannes",
+    "Neda"
+  ],
+  "alignment": "shared",
+  "revised_csv": "/Users/janneslampe/Desktop/Coding/Master Thesis/Evaluation/RAG Analysis/human_annotations/revised/Annotations - annotation_disagreements.csv",
+  "n_items": 125,
+  "n_shared_items": 125,
+  "n_union_items": 125,
+  "n_dropped_items": 0,
+  "diagnostics": {
+    "alignment": "shared",
+    "revised_csv": "/Users/janneslampe/Desktop/Coding/Master Thesis/Evaluation/RAG Analysis/human_annotations/revised/Annotations - annotation_disagreements.csv",
+    "n_values_changed_by_revision": {
+      "Awsam": 79,
+      "Jannes": 85,
+      "Neda": 40
+    },
+    "annotators": [
+      "Awsam",
+      "Jannes",
+      "Neda"
+    ],
+    "per_annotator_keys": {
+      "Awsam": 125,
+      "Jannes": 125,
+      "Neda": 125
+    },
+    "shared_keys": 125,
+    "union_keys": 125,
+    "analysed_keys": 125,
+    "not_shared_by_all": {
+      "Awsam": [],
+      "Jannes": [],
+      "Neda": []
+    },
+    "missing_from": {
+      "Awsam": [],
+      "Jannes": [],
+      "Neda": []
+    },
+    "missing_values": {
+      "Awsam": {
+        "R_top": 0,
+        "R_ideo": 0,
+        "A_caus": 0
+      },
+      "Jannes": {
+        "R_top": 0,
+        "R_ideo": 0,
+        "A_caus": 0
+      },
+      "Neda": {
+        "R_top": 0,
+        "R_ideo": 0,
+        "A_caus": 0
+      }
+    }
+  },
+  "per_dimension": {
+    "R_top": {
+      "config": {
+        "levels": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "kind": "ordinal"
+      },
+      "multirater": {
+        "n_raters": 3,
+        "n_items": 125,
+        "n_pairable_items": 125,
+        "alpha": 0.8226192837913441,
+        "alpha_level": "ordinal",
+        "mean_pairwise_kappa": 0.8206967232638723,
+        "min_pairwise_kappa": 0.7655301776453713,
+        "max_pairwise_kappa": 0.9057263212111178,
+        "primary_metric": 0.8226192837913441,
+        "primary_metric_name": "krippendorff_alpha_ordinal",
+        "pairwise": {
+          "Awsam|Jannes": {
+            "rater_a": "Awsam",
+            "rater_b": "Jannes",
+            "n": 125,
+            "exact_agreement": 0.672,
+            "kappa": 0.9057263212111178,
+            "kappa_type": "quadratic_weighted",
+            "alpha": 0.9076834183549531,
+            "mean_diff_a_minus_b": 0.12,
+            "mean_abs_diff": 0.328,
+            "pct_within_1": 1.0,
+            "labels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "confusion_matrix": [
+              [
+                7,
+                3,
+                0,
+                0,
+                0
+              ],
+              [
+                5,
+                26,
+                3,
+                0,
+                0
+              ],
+              [
+                0,
+                7,
+                12,
+                6,
+                0
+              ],
+              [
+                0,
+                0,
+                6,
+                15,
+                1
+              ],
+              [
+                0,
+                0,
+                0,
+                10,
+                24
+              ]
+            ]
+          },
+          "Awsam|Neda": {
+            "rater_a": "Awsam",
+            "rater_b": "Neda",
+            "n": 125,
+            "exact_agreement": 0.512,
+            "kappa": 0.7908336709351277,
+            "kappa_type": "quadratic_weighted",
+            "alpha": 0.7917940505405504,
+            "mean_diff_a_minus_b": 0.36,
+            "mean_abs_diff": 0.568,
+            "pct_within_1": 0.936,
+            "labels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "confusion_matrix": [
+              [
+                8,
+                2,
+                0,
+                0,
+                0
+              ],
+              [
+                12,
+                19,
+                2,
+                1,
+                0
+              ],
+              [
+                0,
+                9,
+                12,
+                4,
+                0
+              ],
+              [
+                0,
+                2,
+                8,
+                9,
+                3
+              ],
+              [
+                0,
+                2,
+                3,
+                13,
+                16
+              ]
+            ]
+          },
+          "Jannes|Neda": {
+            "rater_a": "Jannes",
+            "rater_b": "Neda",
+            "n": 125,
+            "exact_agreement": 0.52,
+            "kappa": 0.7655301776453713,
+            "kappa_type": "quadratic_weighted",
+            "alpha": 0.7689341079641733,
+            "mean_diff_a_minus_b": 0.24,
+            "mean_abs_diff": 0.576,
+            "pct_within_1": 0.928,
+            "labels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "confusion_matrix": [
+              [
+                7,
+                5,
+                0,
+                0,
+                0
+              ],
+              [
+                13,
+                18,
+                3,
+                2,
+                0
+              ],
+              [
+                0,
+                7,
+                10,
+                4,
+                0
+              ],
+              [
+                0,
+                1,
+                9,
+                16,
+                5
+              ],
+              [
+                0,
+                3,
+                3,
+                5,
+                14
+              ]
+            ]
+          }
+        },
+        "reference_pairwise": {
+          "Awsam|Jannes": {
+            "rater_a": "Awsam",
+            "rater_b": "Jannes",
+            "n": 125,
+            "exact_agreement": 0.672,
+            "kappa": 0.9057263212111178,
+            "kappa_type": "quadratic_weighted",
+            "alpha": 0.9076834183549531,
+            "mean_diff_a_minus_b": 0.12,
+            "mean_abs_diff": 0.328,
+            "pct_within_1": 1.0,
+            "labels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "confusion_matrix": [
+              [
+                7,
+                3,
+                0,
+                0,
+                0
+              ],
+              [
+                5,
+                26,
+                3,
+                0,
+                0
+              ],
+              [
+                0,
+                7,
+                12,
+                6,
+                0
+              ],
+              [
+                0,
+                0,
+                6,
+                15,
+                1
+              ],
+              [
+                0,
+                0,
+                0,
+                10,
+                24
+              ]
+            ]
+          },
+          "Jannes|Neda": {
+            "rater_a": "Jannes",
+            "rater_b": "Neda",
+            "n": 125,
+            "exact_agreement": 0.52,
+            "kappa": 0.7655301776453713,
+            "kappa_type": "quadratic_weighted",
+            "alpha": 0.7689341079641733,
+            "mean_diff_a_minus_b": 0.24,
+            "mean_abs_diff": 0.576,
+            "pct_within_1": 0.928,
+            "labels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "confusion_matrix": [
+              [
+                7,
+                5,
+                0,
+                0,
+                0
+              ],
+              [
+                13,
+                18,
+                3,
+                2,
+                0
+              ],
+              [
+                0,
+                7,
+                10,
+                4,
+                0
+              ],
+              [
+                0,
+                1,
+                9,
+                16,
+                5
+              ],
+              [
+                0,
+                3,
+                3,
+                5,
+                14
+              ]
+            ]
+          }
+        }
+      }
+    },
+    "R_ideo": {
+      "config": {
+        "levels": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "kind": "ordinal"
+      },
+      "multirater": {
+        "n_raters": 3,
+        "n_items": 125,
+        "n_pairable_items": 125,
+        "alpha": 0.634330488437445,
+        "alpha_level": "ordinal",
+        "mean_pairwise_kappa": 0.6458384969671278,
+        "min_pairwise_kappa": 0.577358050600443,
+        "max_pairwise_kappa": 0.6950582003206245,
+        "primary_metric": 0.634330488437445,
+        "primary_metric_name": "krippendorff_alpha_ordinal",
+        "pairwise": {
+          "Awsam|Jannes": {
+            "rater_a": "Awsam",
+            "rater_b": "Jannes",
+            "n": 125,
+            "exact_agreement": 0.608,
+            "kappa": 0.665099239980316,
+            "kappa_type": "quadratic_weighted",
+            "alpha": 0.6562233346916855,
+            "mean_diff_a_minus_b": -0.136,
+            "mean_abs_diff": 0.392,
+            "pct_within_1": 1.0,
+            "labels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "confusion_matrix": [
+              [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                3,
+                0,
+                0
+              ],
+              [
+                0,
+                2,
+                18,
+                23,
+                0
+              ],
+              [
+                0,
+                0,
+                5,
+                39,
+                7
+              ],
+              [
+                0,
+                0,
+                0,
+                9,
+                18
+              ]
+            ]
+          },
+          "Awsam|Neda": {
+            "rater_a": "Awsam",
+            "rater_b": "Neda",
+            "n": 125,
+            "exact_agreement": 0.584,
+            "kappa": 0.577358050600443,
+            "kappa_type": "quadratic_weighted",
+            "alpha": 0.5664486154613098,
+            "mean_diff_a_minus_b": -0.176,
+            "mean_abs_diff": 0.432,
+            "pct_within_1": 0.984,
+            "labels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "confusion_matrix": [
+              [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                4,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                15,
+                27,
+                0
+              ],
+              [
+                0,
+                0,
+                3,
+                41,
+                7
+              ],
+              [
+                0,
+                0,
+                2,
+                8,
+                17
+              ]
+            ]
+          },
+          "Jannes|Neda": {
+            "rater_a": "Jannes",
+            "rater_b": "Neda",
+            "n": 125,
+            "exact_agreement": 0.72,
+            "kappa": 0.6950582003206245,
+            "kappa_type": "quadratic_weighted",
+            "alpha": 0.6861129276299296,
+            "mean_diff_a_minus_b": -0.04,
+            "mean_abs_diff": 0.28,
+            "pct_within_1": 1.0,
+            "labels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "confusion_matrix": [
+              [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                2,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                13,
+                13,
+                0
+              ],
+              [
+                0,
+                0,
+                9,
+                57,
+                5
+              ],
+              [
+                0,
+                0,
+                0,
+                6,
+                19
+              ]
+            ]
+          }
+        },
+        "reference_pairwise": {
+          "Awsam|Jannes": {
+            "rater_a": "Awsam",
+            "rater_b": "Jannes",
+            "n": 125,
+            "exact_agreement": 0.608,
+            "kappa": 0.665099239980316,
+            "kappa_type": "quadratic_weighted",
+            "alpha": 0.6562233346916855,
+            "mean_diff_a_minus_b": -0.136,
+            "mean_abs_diff": 0.392,
+            "pct_within_1": 1.0,
+            "labels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "confusion_matrix": [
+              [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                3,
+                0,
+                0
+              ],
+              [
+                0,
+                2,
+                18,
+                23,
+                0
+              ],
+              [
+                0,
+                0,
+                5,
+                39,
+                7
+              ],
+              [
+                0,
+                0,
+                0,
+                9,
+                18
+              ]
+            ]
+          },
+          "Jannes|Neda": {
+            "rater_a": "Jannes",
+            "rater_b": "Neda",
+            "n": 125,
+            "exact_agreement": 0.72,
+            "kappa": 0.6950582003206245,
+            "kappa_type": "quadratic_weighted",
+            "alpha": 0.6861129276299296,
+            "mean_diff_a_minus_b": -0.04,
+            "mean_abs_diff": 0.28,
+            "pct_within_1": 1.0,
+            "labels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "confusion_matrix": [
+              [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                2,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                13,
+                13,
+                0
+              ],
+              [
+                0,
+                0,
+                9,
+                57,
+                5
+              ],
+              [
+                0,
+                0,
+                0,
+                6,
+                19
+              ]
+            ]
+          }
+        }
+      }
+    },
+    "A_caus": {
+      "config": {
+        "levels": [
+          0,
+          1
+        ],
+        "kind": "nominal"
+      },
+      "multirater": {
+        "n_raters": 3,
+        "n_items": 125,
+        "n_pairable_items": 125,
+        "alpha": 0.8827920227920227,
+        "alpha_level": "nominal",
+        "mean_pairwise_kappa": 0.8824895566421996,
+        "min_pairwise_kappa": 0.8718277364778262,
+        "max_pairwise_kappa": 0.8878923766816144,
+        "primary_metric": 0.8827920227920227,
+        "primary_metric_name": "krippendorff_alpha_nominal",
+        "pairwise": {
+          "Awsam|Jannes": {
+            "rater_a": "Awsam",
+            "rater_b": "Jannes",
+            "n": 125,
+            "exact_agreement": 0.944,
+            "kappa": 0.8877485567671585,
+            "kappa_type": "unweighted",
+            "alpha": 0.8881903906600809,
+            "mean_diff_a_minus_b": 0.008,
+            "mean_abs_diff": 0.056,
+            "pct_within_1": null,
+            "labels": [
+              0,
+              1
+            ],
+            "confusion_matrix": [
+              [
+                56,
+                3
+              ],
+              [
+                4,
+                62
+              ]
+            ]
+          },
+          "Awsam|Neda": {
+            "rater_a": "Awsam",
+            "rater_b": "Neda",
+            "n": 125,
+            "exact_agreement": 0.936,
+            "kappa": 0.8718277364778262,
+            "kappa_type": "unweighted",
+            "alpha": 0.8723076923076923,
+            "mean_diff_a_minus_b": 0.016,
+            "mean_abs_diff": 0.064,
+            "pct_within_1": null,
+            "labels": [
+              0,
+              1
+            ],
+            "confusion_matrix": [
+              [
+                56,
+                3
+              ],
+              [
+                5,
+                61
+              ]
+            ]
+          },
+          "Jannes|Neda": {
+            "rater_a": "Jannes",
+            "rater_b": "Neda",
+            "n": 125,
+            "exact_agreement": 0.944,
+            "kappa": 0.8878923766816144,
+            "kappa_type": "unweighted",
+            "alpha": 0.8883336536613492,
+            "mean_diff_a_minus_b": 0.008,
+            "mean_abs_diff": 0.056,
+            "pct_within_1": null,
+            "labels": [
+              0,
+              1
+            ],
+            "confusion_matrix": [
+              [
+                57,
+                3
+              ],
+              [
+                4,
+                61
+              ]
+            ]
+          }
+        },
+        "reference_pairwise": {
+          "Awsam|Jannes": {
+            "rater_a": "Awsam",
+            "rater_b": "Jannes",
+            "n": 125,
+            "exact_agreement": 0.944,
+            "kappa": 0.8877485567671585,
+            "kappa_type": "unweighted",
+            "alpha": 0.8881903906600809,
+            "mean_diff_a_minus_b": 0.008,
+            "mean_abs_diff": 0.056,
+            "pct_within_1": null,
+            "labels": [
+              0,
+              1
+            ],
+            "confusion_matrix": [
+              [
+                56,
+                3
+              ],
+              [
+                4,
+                62
+              ]
+            ]
+          },
+          "Jannes|Neda": {
+            "rater_a": "Jannes",
+            "rater_b": "Neda",
+            "n": 125,
+            "exact_agreement": 0.944,
+            "kappa": 0.8878923766816144,
+            "kappa_type": "unweighted",
+            "alpha": 0.8883336536613492,
+            "mean_diff_a_minus_b": 0.008,
+            "mean_abs_diff": 0.056,
+            "pct_within_1": null,
+            "labels": [
+              0,
+              1
+            ],
+            "confusion_matrix": [
+              [
+                57,
+                3
+              ],
+              [
+                4,
+                61
+              ]
+            ]
+          }
+        }
+      }
+    }
+  },
+  "annotator_bias": {
+    "R_top": {
+      "Awsam": {
+        "n": 125,
+        "mean_level": 3.288,
+        "mean_deviation_from_item_mean": 0.15999999999999998
+      },
+      "Jannes": {
+        "n": 125,
+        "mean_level": 3.168,
+        "mean_deviation_from_item_mean": 0.04000000000000002
+      },
+      "Neda": {
+        "n": 125,
+        "mean_level": 2.928,
+        "mean_deviation_from_item_mean": -0.20000000000000004
+      }
+    },
+    "R_ideo": {
+      "Awsam": {
+        "n": 125,
+        "mean_level": 3.808,
+        "mean_deviation_from_item_mean": -0.10399999999999997
+      },
+      "Jannes": {
+        "n": 125,
+        "mean_level": 3.944,
+        "mean_deviation_from_item_mean": 0.032000000000000015
+      },
+      "Neda": {
+        "n": 125,
+        "mean_level": 3.984,
+        "mean_deviation_from_item_mean": 0.07200000000000001
+      }
+    },
+    "A_caus": {
+      "Awsam": {
+        "n": 125,
+        "mean_level": 0.528,
+        "mean_deviation_from_item_mean": 0.008000000000000002
+      },
+      "Jannes": {
+        "n": 125,
+        "mean_level": 0.52,
+        "mean_deviation_from_item_mean": 1.7763568394002505e-18
+      },
+      "Neda": {
+        "n": 125,
+        "mean_level": 0.512,
+        "mean_deviation_from_item_mean": -0.007999999999999997
+      }
+    }
+  },
+  "worst_disagreements": {
+    "R_top": [],
+    "R_ideo": [],
+    "A_caus": []
+  },
+  "summary": {
+    "weakest_pair_per_dimension": {
+      "R_top": {
+        "pair": "Jannes|Neda",
+        "kappa": 0.7655301776453713
+      },
+      "R_ideo": {
+        "pair": "Awsam|Neda",
+        "kappa": 0.577358050600443
+      },
+      "A_caus": {
+        "pair": "Awsam|Neda",
+        "kappa": 0.8718277364778262
+      }
+    },
+    "weakest_dimension": {
+      "dimension": "R_ideo",
+      "alpha": 0.634330488437445
+    }
+  },
+  "reference_annotator": "Jannes",
+  "optional_dimension_coverage": {
+    "N_info": {
+      "Awsam": 0,
+      "Jannes": 0,
+      "Neda": 0
+    }
+  }
+}

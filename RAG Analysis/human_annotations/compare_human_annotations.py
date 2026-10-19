@@ -25,9 +25,19 @@ The report also ranks the chunks where raters disagree most, shows each
 annotator's leniency/severity per dimension, and summarises which dimension and
 which annotator pair (per dimension) show the weakest agreement.
 
+Revised ratings: after the annotators discussed their disagreements, the
+revised scores were collected in a Google-Sheets CSV (``revised/``). It has one
+row per discussed chunk with wide columns (``R_top_Awsam``, ``R_ideo_Jannes``,
+``A_caus_Neda``, ...) and a 1-based ``chunk_number`` (= ``chunk_index`` + 1).
+By default these values overwrite the JSONL ratings for the chunks in the CSV
+(all other chunks keep their original ratings) and the report is written to
+``human_agreement_report_revised.json``. Pass ``--no-revised`` for the
+original-only numbers.
+
 Usage (from anywhere):
 
     python "RAG Analysis/human_annotations/compare_human_annotations.py"
+    python "RAG Analysis/human_annotations/compare_human_annotations.py" --no-revised
     python "RAG Analysis/human_annotations/compare_human_annotations.py" \
         --show-disagreements 15 --alignment all
 """
@@ -35,6 +45,7 @@ Usage (from anywhere):
 from __future__ import annotations
 
 import argparse
+import csv
 import json
 import re
 import sys
@@ -54,6 +65,8 @@ SCRIPT_DIR = Path(__file__).resolve().parent
 DEFAULT_PATTERN = "*_qualitative_annotations.jsonl"
 DEFAULT_OUTPUT = SCRIPT_DIR / "human_agreement_report.json"
 DEFAULT_SHOW_DISAGREEMENTS = 20
+DEFAULT_REVISED_CSV = SCRIPT_DIR / "revised" / "Annotations - annotation_disagreements.csv"
+DEFAULT_REVISED_OUTPUT = SCRIPT_DIR / "human_agreement_report_revised.json"
 
 # ``levels`` is the full label domain (confusion matrices, kappa, alpha);
 # ``kind`` selects kappa weighting ("ordinal" -> quadratic) and the
@@ -200,6 +213,47 @@ def load_annotations(path: Path, dims: list[str]) -> dict[Key, Item]:
     return items
 
 
+def load_revised_csv(
+    path: Path, dims: list[str], annotators: list[str]
+) -> dict[str, dict[Key, dict[str, int | None]]]:
+    """Read revised ratings: ``annotator -> (text_index, chunk_index) -> {dim: label}``.
+
+    Columns are ``<dim>_<annotator>``; ``chunk_number`` is 1-based. Only
+    annotators/dimensions present in the CSV are returned. Empty cells are
+    skipped (the original rating is kept).
+    """
+    revised: dict[str, dict[Key, dict[str, int | None]]] = {a: {} for a in annotators}
+    with path.open("r", encoding="utf-8", newline="") as handle:
+        reader = csv.DictReader(handle)
+        columns = set(reader.fieldnames or [])
+        for required in ("text_index", "chunk_number"):
+            if required not in columns:
+                raise ValueError(f"{path.name}: missing column {required!r}")
+        for row_no, row in enumerate(reader, start=2):
+            where = f"{path.name}:{row_no}"
+            text_index = (row["text_index"] or "").strip()
+            try:
+                chunk_index = int(float(row["chunk_number"])) - 1
+            except (TypeError, ValueError):
+                raise ValueError(f"{where}: invalid chunk_number") from None
+            key = (text_index, chunk_index)
+            for name in annotators:
+                for dim in dims:
+                    column = f"{dim}_{name}"
+                    if column not in columns:
+                        continue
+                    try:
+                        value = coerce_label(row[column])
+                    except ValueError as exc:
+                        raise ValueError(f"{where} {column}: {exc}") from exc
+                    if value is None:
+                        continue
+                    if value not in ALL_DIMENSIONS[dim]["levels"]:
+                        raise ValueError(f"{where} {column}: {value} out of range")
+                    revised[name].setdefault(key, {})[dim] = value
+    return revised
+
+
 def _natural_key(key: Key) -> tuple:
     """Sort text indices numerically when they are numbers ("2" < "10")."""
     text_index, chunk_index = key
@@ -227,7 +281,10 @@ class RatingTable:
 
 
 def build_table(
-    files: list[Path], dims: list[str], alignment: str
+    files: list[Path],
+    dims: list[str],
+    alignment: str,
+    revised_csv: Path | None = None,
 ) -> tuple[RatingTable, dict]:
     """Load all files and align them into a :class:`RatingTable`.
 
@@ -235,6 +292,9 @@ def build_table(
     item set for all coefficients). ``alignment="all"`` keeps the union; alpha
     then uses every chunk with >= 2 ratings and each pairwise kappa uses that
     pair's overlap.
+
+    If ``revised_csv`` is given, its ratings overwrite the loaded ones for the
+    chunks it lists; a revised chunk an annotator never rated originally raises.
     """
     per_annotator: dict[str, dict[Key, Item]] = {}
     for path in files:
@@ -245,6 +305,24 @@ def build_table(
                 f"(annotator = file name up to the first underscore)."
             )
         per_annotator[name] = load_annotations(path, dims)
+
+    n_revised: dict[str, int] = {}
+    if revised_csv is not None:
+        revised = load_revised_csv(revised_csv, dims, sorted(per_annotator))
+        for name, by_key in revised.items():
+            changed = 0
+            for key, labels in by_key.items():
+                item = per_annotator[name].get(key)
+                if item is None:
+                    raise ValueError(
+                        f"{revised_csv.name}: revised chunk {key!r} was not "
+                        f"annotated by {name}"
+                    )
+                for dim, value in labels.items():
+                    if item.labels.get(dim) != value:
+                        changed += 1
+                    item.labels[dim] = value
+            n_revised[name] = changed
 
     annotators = sorted(per_annotator)
     key_sets = {name: set(items) for name, items in per_annotator.items()}
@@ -277,6 +355,8 @@ def build_table(
 
     diagnostics = {
         "alignment": alignment,
+        "revised_csv": str(revised_csv) if revised_csv is not None else None,
+        "n_values_changed_by_revision": n_revised,
         "annotators": annotators,
         "per_annotator_keys": {n: len(key_sets[n]) for n in annotators},
         "shared_keys": len(shared),
@@ -537,6 +617,64 @@ def get_worst_disagreements(table: RatingTable, dim: str, n: int = 10) -> list[d
     return rows[:n]
 
 
+def consensus_label(values: np.ndarray, kind: str) -> int:
+    """Median for ordinal dims, majority vote for nominal ones (ties -> higher).
+
+    With an odd number of raters both are unambiguous; with an even number the
+    ordinal median is rounded up and a nominal tie resolves to the higher label.
+    """
+    values = values[~np.isnan(values)].astype(int)
+    if kind == "ordinal":
+        return int(np.ceil(np.median(values)))
+    counts = np.bincount(values)
+    return int(np.flatnonzero(counts == counts.max()).max())
+
+
+def export_reference(
+    files: list[Path], table: RatingTable, base_annotator: str, output: Path
+) -> int:
+    """Write a single annotation file with consensus labels for every chunk.
+
+    The structure follows the per-annotator JSONL files (what
+    ``run_llm_judge.py`` reads); ``R_top`` / ``R_ideo`` / ``A_caus`` hold the
+    consensus (see :func:`consensus_label`). Each chunk additionally carries
+    ``human_ratings`` (per annotator, after revision) and ``unanimous``.
+    """
+    base_path = next(f for f in files if annotator_name(f) == base_annotator)
+    row_of = {key: i for i, key in enumerate(table.keys)}
+    dims = [d for d in DIMENSIONS if d in table.matrices]
+    n_chunks = 0
+    with base_path.open(encoding="utf-8") as src, output.open(
+        "w", encoding="utf-8"
+    ) as dst:
+        for line in src:
+            if not line.strip():
+                continue
+            record = json.loads(line)
+            text_index = str(record["text_index"]).strip()
+            for chunk in record.get("chunk_annotations") or []:
+                i = row_of[(text_index, int(chunk["chunk_index"]))]
+                ratings = {}
+                unanimous = True
+                for dim in dims:
+                    row = table.matrices[dim][i]
+                    chunk[dim] = consensus_label(row, DIMENSIONS[dim]["kind"])
+                    ratings[dim] = {
+                        n: (None if np.isnan(v) else int(v))
+                        for n, v in zip(table.annotators, row)
+                    }
+                    unanimous &= len({v for v in row if not np.isnan(v)}) == 1
+                chunk["human_ratings"] = ratings
+                chunk["unanimous"] = bool(unanimous)
+                chunk["notes"] = ""
+                n_chunks += 1
+            record["annotator"] = "Consensus (median / majority of " + ", ".join(
+                table.annotators
+            ) + ")"
+            dst.write(json.dumps(record, ensure_ascii=False) + "\n")
+    return n_chunks
+
+
 def optional_dimension_coverage(files: list[Path], analysed: list[str]) -> dict:
     """How many chunks each annotator filled for optional, unanalysed dims."""
     extra = [d for d in OPTIONAL_DIMENSIONS if d not in analysed]
@@ -577,6 +715,13 @@ def print_report(
         f"{diagnostics['shared_keys']}, union {diagnostics['union_keys']}, "
         f"per annotator {diagnostics['per_annotator_keys']})"
     )
+    if diagnostics.get("revised_csv"):
+        print(
+            f"Revised ratings applied from {Path(diagnostics['revised_csv']).name}; "
+            f"values changed per annotator: {diagnostics['n_values_changed_by_revision']}"
+        )
+    else:
+        print("Original ratings only (no revision applied).")
     for name, missing in diagnostics["missing_from"].items():
         if missing:
             preview = ", ".join(f"{t}/{c}" for t, c in missing[:5])
@@ -719,7 +864,30 @@ def _build_arg_parser() -> argparse.ArgumentParser:
         help="Explicit annotation files (overrides --dir/--pattern).",
     )
     parser.add_argument(
-        "--output", default=str(DEFAULT_OUTPUT), help="Path for the JSON report."
+        "--revised-csv",
+        default=str(DEFAULT_REVISED_CSV),
+        help="CSV with revised ratings overriding the JSONL ones for the "
+        "chunks it lists (default: revised/Annotations - "
+        "annotation_disagreements.csv).",
+    )
+    parser.add_argument(
+        "--no-revised",
+        action="store_true",
+        help="Ignore the revised CSV and use the original ratings only.",
+    )
+    parser.add_argument(
+        "--output",
+        default=None,
+        help="Path for the JSON report (default: human_agreement_report.json, "
+        "or human_agreement_report_revised.json when revisions are applied).",
+    )
+    parser.add_argument(
+        "--export-reference",
+        metavar="PATH",
+        default=None,
+        help="Also write one consensus annotation file (median for ordinal, "
+        "majority for A_caus) in the per-annotator JSONL format, e.g. as "
+        "reference for run_llm_judge.py.",
     )
     parser.add_argument(
         "--show-disagreements",
@@ -767,7 +935,11 @@ def main() -> None:
     if not dims:
         raise SystemExit("No valid dimensions selected.")
 
-    table, diagnostics = build_table(files, dims, args.alignment)
+    revised_csv = None if args.no_revised else Path(args.revised_csv)
+    if revised_csv is not None and not revised_csv.is_file():
+        raise SystemExit(f"Revised CSV not found: {revised_csv} (use --no-revised)")
+
+    table, diagnostics = build_table(files, dims, args.alignment, revised_csv)
     if len(table.annotators) < 2:
         raise SystemExit("Need at least two annotators to compare.")
     if not table.keys:
@@ -810,6 +982,7 @@ def main() -> None:
         "dimensions": dims,
         "annotators": table.annotators,
         "alignment": args.alignment,
+        "revised_csv": str(revised_csv) if revised_csv is not None else None,
         "n_items": diagnostics["analysed_keys"],
         "n_shared_items": diagnostics["shared_keys"],
         "n_union_items": diagnostics["union_keys"],
@@ -822,11 +995,26 @@ def main() -> None:
         "reference_annotator": reference,
         "optional_dimension_coverage": coverage,
     }
-    output = Path(args.output)
+    output = Path(
+        args.output
+        or (DEFAULT_OUTPUT if revised_csv is None else DEFAULT_REVISED_OUTPUT)
+    )
     output.parent.mkdir(parents=True, exist_ok=True)
     with output.open("w", encoding="utf-8") as handle:
         json.dump(report, handle, ensure_ascii=False, indent=2, default=_json_default)
     print(f"\nReport saved to: {output}")
+
+    if args.export_reference:
+        if args.alignment != "shared" or set(DIMENSIONS) - set(dims):
+            raise SystemExit(
+                "--export-reference needs --alignment shared and all of "
+                f"{list(DIMENSIONS)} in --dims."
+            )
+        base = reference or table.annotators[0]
+        ref_path = Path(args.export_reference)
+        ref_path.parent.mkdir(parents=True, exist_ok=True)
+        n = export_reference(files, table, base, ref_path)
+        print(f"Reference file ({n} chunks) saved to: {ref_path}")
 
 
 if __name__ == "__main__":
