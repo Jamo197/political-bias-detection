@@ -1,0 +1,6 @@
+Model,Condition,K,N_texts,N_chunks,N_chunks_unmapped,Macro_F1,Bloc_precision_at_k,Mean_party_distance,Macro_F1_lo,Macro_F1_hi,Bloc_precision_at_k_lo,Bloc_precision_at_k_hi,Mean_party_distance_lo,Mean_party_distance_hi,F1_Left,F1_Centre,F1_Right
+Llama-3.1-8B-Instruct,k=1,1,768,774,6,0.4791,0.5768,1.1451,0.437,0.5199,0.5417,0.6107,1.062,1.2272,0.7078,0.2751,0.4545
+Llama-3.1-8B-Instruct,k=3,3,775,2325,16,0.4592,0.5611,1.1901,0.4313,0.4853,0.5383,0.5847,1.1347,1.2451,0.6957,0.2799,0.402
+Llama-3.1-8B-Instruct,k=5,5,775,3875,27,0.4493,0.5468,1.2227,0.4246,0.4722,0.527,0.5663,1.1736,1.2706,0.6813,0.2662,0.4004
+Llama-3.1-8B-Instruct,k=10,10,775,7750,53,0.4369,0.5348,1.2425,0.418,0.4559,0.518,0.5499,1.2044,1.2823,0.6733,0.2619,0.3756
+Llama-3.1-8B-Instruct,k=20,20,775,15500,100,0.4214,0.5235,1.27,0.4053,0.4371,0.5088,0.5371,1.2379,1.3045,0.6661,0.2517,0.3465
