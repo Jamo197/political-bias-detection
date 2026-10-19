@@ -145,3 +145,61 @@ def test_holm_monotone_and_bounded():
     assert adj[0] == pytest.approx(0.03)
     assert np.isnan(adj[3])
     assert all(a <= 1 for a in adj if not np.isnan(a))
+
+
+def _k_frame(rng, ks=(0, 1, 5), n=60, drop_last_for=None):
+    true = rng.uniform(1, 7, n)
+    rows = []
+    for k in ks:
+        noise = 1.5 / (1 + k)  # larger k -> less noise
+        m = n - 20 if k == drop_last_for else n
+        for i in range(m):
+            rows.append({"model": "m", "text_index": str(i), "k_chunks": k, "true": true[i],
+                         "pred": true[i] + rng.normal(0, noise)})
+    return pd.DataFrame(rows)
+
+
+def test_k_ablation_pairwise_direction_and_common_subset(rng):
+    df = _k_frame(rng, drop_last_for=5)
+    pair = em.compute_k_pairwise(df, n_boot=200)
+    assert len(pair) == 3
+    row = pair[(pair["K_low"] == 0) & (pair["K_high"] == 5)].iloc[0]
+    assert row["N_paired"] == 40 and row["ΔMAE"] < 0  # higher k is better
+
+    df["family"] = "x"
+    df["condition"] = df["k_chunks"].map(em._k_label)
+    metrics = em.compute_k_ablation_metrics(df, n_boot=0)
+    common = metrics[metrics["Subset"] == "common_texts"]
+    assert set(common["N_samples"]) == {40} and list(common["K"]) == [0, 1, 5]
+
+
+def test_norm_party_messy_spellings():
+    assert em._norm_party("BÜNDNIS\xa090/DIE\n                    GRÜNEN") == "BÜNDNIS 90/DIE GRÜNEN"
+    assert em._norm_party("Die Linke") == "DIE LINKE"
+    assert em._norm_party("CSU") == "CDU/CSU"
+    assert em._norm_party("fraktionslos") is None and em._norm_party(None) is None
+
+
+POS = {"DIE LINKE": 1.8, "SPD": 3.5, "FDP": 5.4, "AfD": 8.5}
+
+
+def _rq_frame(chunks_per_text):
+    return pd.DataFrame(
+        [{"model": "m", "condition": "e5/simple", "is_rag": True, "text_index": str(i),
+          "party": party, "chunk_parties": chunks}
+         for i, (party, chunks) in enumerate(chunks_per_text)]
+    )
+
+
+def test_retrieval_quality_perfect():
+    df = _rq_frame([("DIE LINKE", ["Die Linke"] * 3), ("FDP", ["FDP"] * 3), ("AfD", ["AfD"] * 3)])
+    row = em.compute_retrieval_quality(df, n_boot=0, positions=POS).iloc[0]
+    assert row["Macro_F1"] == 1 and row["Bloc_precision_at_k"] == 1 and row["Mean_party_distance"] == 0
+
+
+def test_retrieval_quality_known_mix():
+    df = _rq_frame([("DIE LINKE", ["SPD", "AfD", "fraktionslos"])])
+    row = em.compute_retrieval_quality(df, n_boot=0, positions=POS).iloc[0]
+    assert row["Bloc_precision_at_k"] == pytest.approx(0.5)
+    assert row["Mean_party_distance"] == pytest.approx(((3.5 - 1.8) + (8.5 - 1.8)) / 2)
+    assert row["N_chunks_unmapped"] == 1

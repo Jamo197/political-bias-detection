@@ -15,13 +15,18 @@ Sections
 5. Mixed-effects factor analysis (random intercept per text) on |error| and
    signed error.
 6. Optional qualitative per-configuration reports (``--qualitative``).
+7. Retrieval-depth (k) ablation for one model/strategy (``--k-ablation``): metrics
+   per k, paired pairwise k-vs-k comparison and a trend plot (separate entry point,
+   ``main_k_ablation``).
+8. Retrieval quality: do the retrieved chunks come from the input party's political
+   spectrum? Bloc Macro-F1, bloc precision@k and mean CHES party distance.
 
 Scale: 1.0 (extreme left) -> 7.0 (extreme right); signed error = prediction - truth.
-
-Planned: a retrieval-quality section (see results/qualitative/*_diagnostics.json).
 """
 
 import argparse
+import functools
+import itertools
 import json
 import re
 import warnings
@@ -48,9 +53,36 @@ ALL_TARGETS = ["label_ideology", "label_economic", "label_galtan"]
 CENTRIC_THRESHOLD = 0.5  # |signed_error| <= 0.5 counts as centric
 DEFAULT_N_BOOT = 2000
 DEFAULT_SEED = 42
+DEFAULT_K = 5  # k_chunks of the main evaluation matrix; other k = ablation runs
 
 # Merge party spellings before per-party analysis (edit if CDU/CSU should be split).
 PARTY_ALIASES = {"CDU": "CDU/CSU", "CSU": "CDU/CSU"}
+
+# Retrieval quality (section 8): party position = mean(lrecon, galtan) of the
+# CHES wave below (latest earlier wave if a party is missing), converted from the
+# CHES 0-10 scale to the project 1-7 scale (see _ches_to_7).
+# Blocs on the 1-7 scale: Left < 3.4 <= Centre < 5.2 <= Right (= 4 / 7 on 0-10).
+CHES_PATH = Path("src/datasets/ground_truth/ches_germany_1999-2024.csv")
+CHES_WAVE = 2024
+BLOC_THRESHOLDS = (3.4, 5.2)
+BLOC_NAMES = ["Left", "Centre", "Right"]
+
+# Casefolded, whitespace-normalised party spellings -> canonical name. Anything
+# not listed (fraktionslos, UNKNOWN, ...) is unmapped and excluded.
+CHUNK_PARTY_ALIASES = {
+    "die linke": "DIE LINKE",
+    "linke": "DIE LINKE",
+    "bündnis 90/die grünen": "BÜNDNIS 90/DIE GRÜNEN",
+    "die grünen": "BÜNDNIS 90/DIE GRÜNEN",
+    "grüne": "BÜNDNIS 90/DIE GRÜNEN",
+    "spd": "SPD",
+    "fdp": "FDP",
+    "afd": "AfD",
+    "cdu/csu": "CDU/CSU",
+    "cdu": "CDU/CSU",
+    "csu": "CDU/CSU",
+    "bsw": "BSW",
+}
 
 # Model metadata for the family / size / time comparison. Keyed by cleaned model
 # name (last path component of ``parameters.llm``). ``cutoff`` is the knowledge
@@ -79,6 +111,39 @@ def _clean_model_name(llm_path: str) -> str:
     if not llm_path or llm_path == "unknown":
         return "Unknown"
     return llm_path.split("/")[-1]
+
+
+@functools.lru_cache(maxsize=None)
+def _norm_party(name: Optional[str]) -> Optional[str]:
+    """Canonical party name for messy log spellings (NBSP, line breaks, case);
+    None for fraktionslos / unknown parties."""
+    if not isinstance(name, str):
+        return None
+    return CHUNK_PARTY_ALIASES.get(" ".join(name.split()).casefold())
+
+
+def _ches_to_7(score_10):
+    """CHES 0-10 -> project 1-7 scale (same formula as the ground-truth dataset,
+    see src/datasets/DATASET_DOCUMENTATION.md)."""
+    return 1 + (score_10 / 10) * 6
+
+
+def load_party_positions(
+    path: Path = CHES_PATH, wave: int = CHES_WAVE
+) -> Dict[str, float]:
+    """Party -> mean(lrecon, galtan) on the 1-7 scale from the CHES wave (or the
+    latest earlier wave a party appears in). CDU and CSU are averaged into CDU/CSU."""
+    ches = pd.read_csv(path)
+    ches = ches[ches["year"] <= wave].sort_values("year")
+    ches = ches.groupby("std_party").tail(1).copy()
+    ches["party"] = ches["std_party"].map(_norm_party)
+    ches["pos"] = _ches_to_7((ches["lrecon"] + ches["galtan"]) / 2)
+    return ches.dropna(subset=["party"]).groupby("party")["pos"].mean().to_dict()
+
+
+def _bloc(pos: float) -> int:
+    lo, hi = BLOC_THRESHOLDS
+    return 0 if pos < lo else (1 if pos < hi else 2)
 
 
 def _model_family(model_name: str) -> str:
@@ -194,12 +259,17 @@ def load_logs_from_directory(
     embedding_models: Optional[List[str]] = None,
     retrieval_modes: Optional[List[str]] = None,
     keep_details: bool = False,
+    models: Optional[List[str]] = None,
+    split_by_k: bool = False,
 ) -> pd.DataFrame:
     """Walk base_dir recursively, read JSONL entries, flatten into a DataFrame,
 
     and deduplicate re-run entries to prevent sample size inflation.
     ``keep_details`` additionally stores text, justification and retrieved chunks
     (only needed for the qualitative reports; memory heavy).
+    ``models`` keeps only these cleaned model names. ``split_by_k`` appends
+    ``/k<k_chunks>`` to RAG condition names so runs that differ only in k are
+    neither merged nor deduplicated against each other (k-ablation).
     """
     records: List[Dict] = []
     jsonl_files = sorted(base_dir.rglob("party_label_*.jsonl"))
@@ -226,6 +296,9 @@ def load_logs_from_directory(
                     continue
 
                 params = log.get("parameters", {})
+                model_name = _clean_model_name(params.get("llm", "unknown"))
+                if models and model_name not in models:
+                    continue
                 emb = params.get("embedding_model", "none")
                 retrieval_mode = params.get("retrieval_mode", "unknown")
                 is_rag = params.get("is_rag", True)
@@ -242,6 +315,8 @@ def load_logs_from_directory(
                     is_rag = False
                 else:
                     condition = f"{emb}/{retrieval_mode}"
+                    if split_by_k:
+                        condition += f"/k{params.get('k_chunks', 0)}"
 
                 if embedding_models and emb not in embedding_models:
                     continue
@@ -259,7 +334,7 @@ def load_logs_from_directory(
                 record = {
                     "run_id": log.get("run_id", "unknown"),
                     "batch_run": run_folder,
-                    "model": _clean_model_name(params.get("llm", "unknown")),
+                    "model": model_name,
                     "llm_full": params.get("llm", "unknown"),
                     "llm_region": params.get("llm_region", "unknown"),
                     "embedding_model": emb,
@@ -278,6 +353,9 @@ def load_logs_from_directory(
                     "label_galtan": gt.get("label_galtan"),
                     "k_chunks": params.get("k_chunks", 0),
                     "n_chunks_retrieved": len(inputs.get("retrieved_chunks", [])),
+                    "chunk_parties": [
+                        c.get("party") for c in inputs.get("retrieved_chunks", [])
+                    ],
                 }
                 if keep_details:
                     record["input_text"] = inputs.get("text")
@@ -491,6 +569,16 @@ def _add_ci(row: Dict[str, Any], name: str, samples: Optional[np.ndarray]):
     row[f"{name}_hi"] = _round(hi)
 
 
+def _boot_p_two_sided(samples: np.ndarray) -> float:
+    """Two-sided bootstrap p-value for H0: delta = 0 from bootstrap deltas."""
+    s = samples[~np.isnan(samples)]
+    p = 2 * min(
+        (np.sum(s <= 0) + 1) / (len(s) + 1),
+        (np.sum(s >= 0) + 1) / (len(s) + 1),
+    )
+    return _round(min(p, 1.0), 4)
+
+
 def _holm(pvals: Sequence[float]) -> List[float]:
     p = np.asarray(pvals, dtype=float)
     out = np.full(len(p), np.nan)
@@ -624,12 +712,7 @@ def compute_pairwise_rag_delta(
                     samples = _delta_arrays(boot_r, boot_b, key)
                     _add_ci(row, col, samples)
                     if key == "MAE":
-                        s = samples[~np.isnan(samples)]
-                        p = 2 * min(
-                            (np.sum(s <= 0) + 1) / (len(s) + 1),
-                            (np.sum(s >= 0) + 1) / (len(s) + 1),
-                        )
-                        row["ΔMAE_p_boot"] = _round(min(p, 1.0), 4)
+                        row["ΔMAE_p_boot"] = _boot_p_two_sided(samples)
             model_rows.append(row)
 
         # Holm correction across the RAG conditions of this model
@@ -1121,6 +1204,423 @@ def write_qualitative_reports(
                             )
                     md.write("\n---\n\n")
     print(f"Saved qualitative reports under {out_dir / 'qualitative'}")
+
+
+# ---------------------------------------------------------------------------
+# 7. Retrieval-depth (k) ablation
+# ---------------------------------------------------------------------------
+
+K_DELTA_METRICS = [
+    ("ΔMAE", "MAE"),
+    ("ΔRMSE", "RMSE"),
+    ("ΔPearson_r", "Pearson_r"),
+    ("ΔSpearman_rho", "Spearman_rho"),
+    ("ΔCCC", "CCC"),
+    ("Δ|Bias|", "Mean_signed_error"),  # on |mean signed error|
+]
+
+
+def _k_label(k: int) -> str:
+    return "no_rag" if int(k) == 0 else f"k={int(k)}"
+
+
+def compute_k_ablation_metrics(
+    valid_df: pd.DataFrame,
+    target_col: str = "label_ideology",
+    n_boot: int = DEFAULT_N_BOOT,
+    seed: int = DEFAULT_SEED,
+) -> pd.DataFrame:
+    """Metrics per k (k = 0 is the no_rag baseline) with bootstrap CIs.
+
+    ``Subset`` = ``all_available`` uses every text a k has (N may differ when a run
+    is incomplete); ``common_texts`` restricts all k to the texts present for every
+    k, so the rows are directly comparable."""
+    df = valid_df.assign(condition=valid_df["k_chunks"].map(_k_label))
+    common = set.intersection(*(set(g["text_index"]) for _, g in df.groupby("k_chunks")))
+    k_of = dict(zip(df["condition"], df["k_chunks"].astype(int)))
+
+    parts = []
+    for subset, sub in [
+        ("all_available", df),
+        ("common_texts", df[df["text_index"].isin(common)]),
+    ]:
+        m = compute_evaluation_metrics(sub, target_col, n_boot, seed)
+        m["Condition"] = m["Condition"].astype(str)
+        m.insert(3, "K", m["Condition"].map(k_of))
+        m.insert(0, "Subset", subset)
+        parts.append(m)
+    out = pd.concat(parts, ignore_index=True)
+    return out.sort_values(["Subset", "Model", "K"]).reset_index(drop=True)
+
+
+def compute_k_pairwise(
+    valid_df: pd.DataFrame,
+    target_col: str = "label_ideology",
+    n_boot: int = DEFAULT_N_BOOT,
+    seed: int = DEFAULT_SEED,
+) -> pd.DataFrame:
+    """All k-vs-k comparisons on the paired text_index intersection of each pair.
+
+    Deltas are (higher k) - (lower k): negative ΔMAE/ΔRMSE/Δ|Bias| = the larger k is
+    better; positive ΔPearson/ΔSpearman/ΔCCC = the larger k is better. Paired
+    bootstrap CIs (same resampled texts for both k); ΔMAE p-values are Holm-corrected
+    across all pairs of a model."""
+    rng = np.random.default_rng(seed)
+    rows = []
+    for model, mdf in valid_df.groupby("model"):
+        ks = sorted(mdf["k_chunks"].astype(int).unique())
+        model_rows = []
+        for k_lo, k_hi in itertools.combinations(ks, 2):
+            lo = mdf[mdf["k_chunks"] == k_lo][["text_index", "true", "pred"]]
+            hi = mdf[mdf["k_chunks"] == k_hi][["text_index", "pred"]]
+            merged = pd.merge(lo, hi, on="text_index", suffixes=("_lo", "_hi"))
+            if len(merged) < 3:
+                continue
+            y_true = merged["true"].to_numpy(float)
+            y_lo = merged["pred_lo"].to_numpy(float)
+            y_hi = merged["pred_hi"].to_numpy(float)
+            m_lo, m_hi = _vec_metrics(y_true, y_lo), _vec_metrics(y_true, y_hi)
+
+            boot_lo = boot_hi = None
+            if n_boot > 0:
+                idx = rng.integers(0, len(merged), size=(n_boot, len(merged)))
+                boot_lo = _vec_metrics(y_true[idx], y_lo[idx])
+                boot_hi = _vec_metrics(y_true[idx], y_hi[idx])
+
+            row: Dict[str, Any] = {
+                "Target": target_col,
+                "Model": model,
+                "K_low": k_lo,
+                "K_high": k_hi,
+                "Comparison": f"{_k_label(k_hi)} vs {_k_label(k_lo)}",
+                "N_paired": len(merged),
+            }
+            for col, key in K_DELTA_METRICS:
+                row[col] = _round(_delta_arrays(m_hi, m_lo, key)[()])
+                if boot_lo is not None:
+                    samples = _delta_arrays(boot_hi, boot_lo, key)
+                    _add_ci(row, col, samples)
+                    if key == "MAE":
+                        row["ΔMAE_p_boot"] = _boot_p_two_sided(samples)
+            model_rows.append(row)
+
+        if model_rows and "ΔMAE_p_boot" in model_rows[0]:
+            adj = _holm([r["ΔMAE_p_boot"] for r in model_rows])
+            for r, a in zip(model_rows, adj):
+                r["ΔMAE_p_holm"] = _round(a, 4)
+                r["ΔMAE_significant"] = bool(a < 0.05)
+        rows.extend(model_rows)
+    return pd.DataFrame(rows)
+
+
+def plot_k_ablation(metrics_df: pd.DataFrame, target_name: str, output_path: Path):
+    """Metric vs. k (ordinal x-axis) with bootstrap CIs on the common-texts subset;
+    the no_rag baseline (k = 0), if present, is drawn as a dashed reference line."""
+    sub = metrics_df[metrics_df["Subset"] == "common_texts"]
+    if sub.empty:
+        return
+    sns.set_theme(style="whitegrid")
+    panels = [
+        ("MAE", "MAE (lower = better)"),
+        ("RMSE", "RMSE (lower = better)"),
+        ("Pearson_r", "Pearson r (higher = better)"),
+        ("CCC", "Lin's CCC (higher = better)"),
+    ]
+    fig, axes = plt.subplots(2, 2, figsize=(11, 8))
+    for ax, (metric, ylabel) in zip(axes.flatten(), panels):
+        for model, g in sub.groupby("Model"):
+            base = g[g["K"] == 0]
+            rag = g[g["K"] > 0].sort_values("K")
+            x = np.arange(len(rag))
+            y = rag[metric].to_numpy(float)
+            if f"{metric}_lo" in rag.columns:
+                yerr = np.vstack([y - rag[f"{metric}_lo"], rag[f"{metric}_hi"] - y])
+                ax.errorbar(x, y, yerr=yerr, fmt="o-", capsize=3, label=model)
+            else:
+                ax.plot(x, y, "o-", label=model)
+            if not base.empty:
+                ax.axhline(float(base[metric].iloc[0]), color="grey", linestyle="--",
+                           linewidth=1, label="no_rag")
+        ax.set_xticks(np.arange(len(rag)))
+        ax.set_xticklabels(rag["K"].astype(int))
+        ax.set_xlabel("k (retrieved chunks)")
+        ax.set_ylabel(ylabel)
+    axes[0, 0].legend(fontsize=8)
+    n = int(sub["N_samples"].iloc[0])
+    fig.suptitle(f"k-ablation (n = {n} common texts)  |  Target: {target_name}",
+                 fontsize=13, fontweight="bold")
+    fig.tight_layout()
+    _save(fig, output_path)
+
+
+def evaluate_k_ablation(
+    df: pd.DataFrame, target_col: str, output_dir: Path, n_boot: int, seed: int
+):
+    print("\n" + "#" * 80)
+    print(f"# K-ABLATION | TARGET: {target_col}")
+    print("#" * 80)
+
+    valid_df = prepare_target_frame(df, target_col)
+    if valid_df["k_chunks"].nunique() < 2:
+        print("Need at least two distinct k values — skipping.")
+        return
+
+    counts = valid_df.groupby("k_chunks").agg(
+        N=("text_index", "nunique"), batch_run=("batch_run", lambda s: ", ".join(sorted(set(s))))
+    )
+    print(counts.to_string())
+    if counts["N"].nunique() > 1:
+        print(
+            "WARNING: unequal N across k (incomplete run?). Headline comparison uses the "
+            "'common_texts' subset; pairwise tests use each pair's own text intersection."
+        )
+
+    metrics_df = compute_k_ablation_metrics(valid_df, target_col, n_boot, seed)
+    pair_df = compute_k_pairwise(valid_df, target_col, n_boot, seed)
+
+    def _show(frame: pd.DataFrame) -> str:
+        return frame[[c for c in frame.columns if not c.endswith(("_lo", "_hi"))]].to_string(index=False)
+
+    print("\nMETRICS PER k (common texts: identical texts for every k)")
+    print(_show(metrics_df[metrics_df["Subset"] == "common_texts"]))
+    print("\nPAIRWISE k-vs-k (Δ = higher k - lower k; negative ΔMAE/ΔRMSE = higher k is better)")
+    print(_show(pair_df))
+
+    for name, frame in [
+        (f"k_ablation_metrics_{target_col}.csv", metrics_df),
+        (f"k_ablation_pairwise_{target_col}.csv", pair_df),
+    ]:
+        if not frame.empty:
+            frame.to_csv(output_dir / name, index=False)
+            print(f"  → {output_dir / name}")
+    plot_k_ablation(metrics_df, target_col, output_dir / f"k_ablation_{target_col}.png")
+
+
+def main_k_ablation(
+    base_dir: Path = BASE_DIR,
+    output_root: Path = OUTPUT_ROOT,
+    run_id: Optional[str] = None,
+    targets: Optional[List[str]] = None,
+    model: str = "Ministral-3-14B-Instruct-2512",
+    embedding_model: str = "e5",
+    retrieval_mode: str = "simple",
+    k_values: Optional[List[int]] = None,
+    include_baseline: bool = True,
+    n_boot: int = DEFAULT_N_BOOT,
+    seed: int = DEFAULT_SEED,
+):
+    """Compare different k_chunks for one model + embedding + strategy. Logs of all
+    batch runs under ``base_dir`` are scanned, so k values spread over several runs
+    (e.g. k=5 from an older batch) are combined automatically. The no_rag run of the
+    same model is added as k = 0 when ``include_baseline``."""
+    targets = targets or ["label_ideology"]
+    run_id = run_id or datetime.now().strftime("%Y-%m-%d_%H%M%S") + "_k_ablation"
+    output_dir = output_root / run_id
+    output_dir.mkdir(parents=True, exist_ok=True)
+    print(f"k-ablation | model={model} emb={embedding_model} strategy={retrieval_mode}")
+    print(f"Output directory: {output_dir.resolve()}\n")
+
+    df = load_logs_from_directory(base_dir, models=[model], split_by_k=True)
+    if df.empty:
+        print("No valid records found. Exiting.")
+        return
+    keep = (df["embedding_model"] == embedding_model) & (df["retrieval_mode"] == retrieval_mode)
+    if k_values:
+        keep &= df["k_chunks"].isin(k_values)
+    if include_baseline:
+        keep |= ~df["is_rag"]
+    df = df[keep]
+
+    print("\nRetrieval quality per k …")
+    print_party_blocs()
+    rq_df = compute_retrieval_quality(df.assign(condition=df["k_chunks"].map(_k_label)), n_boot, seed)
+    if not rq_df.empty:
+        rq_df.insert(2, "K", rq_df["Condition"].astype(str).map(lambda c: int(c[2:])))
+        rq_df = rq_df.sort_values(["Model", "K"]).reset_index(drop=True)
+        show = [c for c in rq_df.columns if not c.endswith(("_lo", "_hi"))]
+        print(rq_df[show].to_string(index=False))
+        rq_df.to_csv(output_dir / "k_ablation_retrieval_quality.csv", index=False)
+        print(f"  → {output_dir / 'k_ablation_retrieval_quality.csv'}")
+        plot_retrieval_quality(rq_df, output_dir / "k_ablation_retrieval_quality.png")
+
+    for target_col in targets:
+        evaluate_k_ablation(df, target_col, output_dir, n_boot, seed)
+    print(f"\nAll outputs written to: {output_dir.resolve()}\nDone.")
+
+
+# ---------------------------------------------------------------------------
+# 8. Retrieval quality (political spectrum of the retrieved chunks)
+# ---------------------------------------------------------------------------
+
+
+def _macro_f1(conf: np.ndarray) -> Tuple[np.ndarray, np.ndarray]:
+    """Per-bloc F1 and macro-F1 from flattened 3x3 confusion matrices (..., 9),
+    rows = input bloc, columns = chunk bloc. F1 = 2TP / (2TP + FP + FN); blocs that
+    occur neither as input nor as chunk are NaN and left out of the macro mean."""
+    C = conf.reshape(*conf.shape[:-1], 3, 3)
+    tp = np.diagonal(C, axis1=-2, axis2=-1)
+    f1 = _safe_div(2 * tp, C.sum(-1) + C.sum(-2))
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore", RuntimeWarning)
+        return f1, np.nanmean(f1, axis=-1)
+
+
+def compute_retrieval_quality(
+    df: pd.DataFrame,
+    n_boot: int = DEFAULT_N_BOOT,
+    seed: int = DEFAULT_SEED,
+    positions: Optional[Dict[str, float]] = None,
+) -> pd.DataFrame:
+    """Spectrum match of the retrieved chunks per (model, condition), RAG rows only.
+
+    Each chunk "predicts" the input party's bloc (Left / Centre / Right, see
+    BLOC_THRESHOLDS):
+    * Macro_F1: bloc F1 averaged over blocs (plus F1_<bloc>).
+    * Bloc_precision_at_k: mean per-text share of chunks from the input's bloc.
+    * Mean_party_distance: mean |pos(input party) - pos(chunk party)| on the
+      project 1-7 scale, i.e. comparable to MAE (graded; lower = better).
+    Fraktionslos/unknown chunk parties are excluded (N_chunks_unmapped). CIs:
+    cluster bootstrap over texts."""
+    positions = positions or load_party_positions()
+    rag = df[df["is_rag"]]
+    if rag.empty:
+        return pd.DataFrame()
+    rng = np.random.default_rng(seed)
+    texts = rag["text_index"].unique()
+    tpos = {t: i for i, t in enumerate(texts)}
+    counts = (
+        rng.multinomial(len(texts), np.full(len(texts), 1.0 / len(texts)), size=n_boot).astype(float)
+        if n_boot > 0
+        else None
+    )
+
+    rows = []
+    for (model, condition), g in rag.groupby(["model", "condition"]):
+        conf = np.zeros((len(texts), 9))
+        prec, dist = [], []
+        n_chunks = n_unmapped = 0
+        for text, party, chunks in zip(g["text_index"], g["party"], g["chunk_parties"]):
+            ip = positions.get(_norm_party(party))
+            if ip is None or not chunks:
+                continue
+            ib = _bloc(ip)
+            cps = [positions.get(_norm_party(c)) for c in chunks]
+            valid = [c for c in cps if c is not None]
+            n_chunks += len(cps)
+            n_unmapped += len(cps) - len(valid)
+            if not valid:
+                continue
+            cbs = [_bloc(c) for c in valid]
+            for cb in cbs:
+                conf[tpos[text], 3 * ib + cb] += 1
+            prec.append(np.mean([cb == ib for cb in cbs]))
+            dist.append(np.mean([abs(c - ip) for c in valid]))
+        if not prec:
+            continue
+
+        f1, macro = _macro_f1(conf.sum(0))
+        prec, dist = np.asarray(prec), np.asarray(dist)
+        row: Dict[str, Any] = {
+            "Model": model,
+            "Condition": condition,
+            "N_texts": len(prec),
+            "N_chunks": n_chunks,
+            "N_chunks_unmapped": n_unmapped,
+            "Macro_F1": _round(macro),
+            "Bloc_precision_at_k": _round(prec.mean()),
+            "Mean_party_distance": _round(dist.mean()),
+        }
+        if counts is not None:
+            _add_ci(row, "Macro_F1", _macro_f1(counts @ conf)[1])
+            for name, arr in (("Bloc_precision_at_k", prec), ("Mean_party_distance", dist)):
+                lo, hi, _ = bootstrap_ci(lambda x: x.mean(-1), [arr], n_boot, rng)
+                row[f"{name}_lo"], row[f"{name}_hi"] = _round(lo), _round(hi)
+        for name, v in zip(BLOC_NAMES, f1):
+            row[f"F1_{name}"] = _round(v)
+        rows.append(row)
+
+    out = pd.DataFrame(rows)
+    if not out.empty:
+        out = _apply_condition_order(out, "Condition")
+        out = out.sort_values(["Model", "Condition"]).reset_index(drop=True)
+    return out
+
+
+def print_party_blocs(positions: Optional[Dict[str, float]] = None):
+    positions = positions or load_party_positions()
+    print(f"Party positions (CHES {CHES_WAVE}, mean of lrecon & galtan, 1-7 scale) and blocs:")
+    for party, pos in sorted(positions.items(), key=lambda kv: kv[1]):
+        print(f"  {party:<24} {pos:5.2f}  {BLOC_NAMES[_bloc(pos)]}")
+
+
+def _plot_retrieval_quality_heatmaps(
+    rq_df: pd.DataFrame, output_path: Path, y_col: str, levels: List[str], models: List[str]
+):
+    sns.set_theme(style="white")
+    panels = [
+        ("Macro_F1", "Bloc Macro-F1 (higher = better)", "RdYlGn"),
+        ("Bloc_precision_at_k", "Same-bloc share (higher = better)", "RdYlGn"),
+        ("Mean_party_distance", "Mean party distance, 1-7 scale (lower = better)", "RdYlGn_r"),
+    ]
+    df = rq_df.assign(**{y_col: rq_df[y_col].astype(str)})
+    fig, axes = plt.subplots(
+        1, 3, figsize=(8 + 1.6 * len(models), max(5, 0.45 * len(levels) + 2.5)), sharey=True
+    )
+    for ax, (metric, title, cmap) in zip(axes, panels):
+        pivot = df.pivot_table(index=y_col, columns="Model", values=metric, aggfunc="first")
+        pivot = pivot.reindex(index=levels, columns=models)
+        sns.heatmap(pivot, annot=True, fmt=".2f", cmap=cmap, linewidths=0.5, ax=ax,
+                    cbar_kws={"shrink": 0.6}, annot_kws={"fontsize": 7})
+        ax.set_title(title, fontsize=12, fontweight="bold")
+        ax.set_xlabel("")
+        ax.set_ylabel("" if ax is not axes[0] else y_col)
+        ax.set_xticklabels(ax.get_xticklabels(), rotation=40, ha="right", fontsize=8)
+    fig.suptitle("Retrieval quality: political spectrum of retrieved chunks",
+                 fontsize=14, fontweight="bold")
+    fig.tight_layout()
+    _save(fig, output_path)
+
+
+def plot_retrieval_quality(rq_df: pd.DataFrame, output_path: Path, y_col: str = "Condition"):
+    """Macro-F1, bloc precision@k and mean party distance per condition. One model:
+    horizontal bars with bootstrap CIs; several models: condition x model heatmaps."""
+    if rq_df.empty:
+        return
+    levels = [str(c) for c in rq_df[y_col].astype(str).drop_duplicates()]
+    models = sorted(rq_df["Model"].unique(), key=lambda m: (_model_family(m), _model_size_key(m)))
+    if len(models) > 1:
+        _plot_retrieval_quality_heatmaps(rq_df, output_path, y_col, levels, models)
+        return
+    sns.set_theme(style="whitegrid")
+    height = 0.8 / len(models)
+    colors = sns.color_palette("mako", len(models))
+    panels = [
+        ("Macro_F1", "Bloc Macro-F1 (higher = better)"),
+        ("Bloc_precision_at_k", "Same-bloc share of chunks (higher = better)"),
+        ("Mean_party_distance", "Mean party distance, 1-7 scale (lower = better)"),
+    ]
+    fig, axes = plt.subplots(
+        1, 3, figsize=(18, max(5, 0.25 * len(levels) * len(models) + 2)), sharey=True
+    )
+    for ax, (metric, title) in zip(axes, panels):
+        for i, (model, color) in enumerate(zip(models, colors)):
+            g = rq_df[rq_df["Model"] == model]
+            g = g.set_index(g[y_col].astype(str)).reindex(levels)
+            y = np.arange(len(levels)) + (i - (len(models) - 1) / 2) * height
+            xerr = None
+            if f"{metric}_lo" in g.columns:
+                xerr = np.vstack([g[metric] - g[f"{metric}_lo"], g[f"{metric}_hi"] - g[metric]])
+            ax.barh(y, g[metric], height=height, xerr=xerr, color=color, label=model,
+                    error_kw={"elinewidth": 0.8, "capsize": 2})
+        ax.set_title(title, fontsize=12, fontweight="bold")
+        ax.set_yticks(np.arange(len(levels)))
+        ax.set_yticklabels(levels)
+        ax.invert_yaxis()
+    axes[0].legend(title="Model", fontsize=8)
+    fig.suptitle("Retrieval quality: political spectrum of retrieved chunks",
+                 fontsize=14, fontweight="bold")
+    fig.tight_layout()
+    _save(fig, output_path)
 
 
 # ---------------------------------------------------------------------------
@@ -1634,6 +2134,7 @@ def main(
     lmm_max_rows: Optional[int] = None,
     qualitative: bool = False,
     top_k: int = 25,
+    k_chunks: int = DEFAULT_K,
 ):
     targets = targets or ["label_ideology"]
     run_id = run_id or datetime.now().strftime("%Y-%m-%d_%H%M%S")
@@ -1648,11 +2149,30 @@ def main(
 
     print("[1/5] Loading batch-run JSONL files …")
     df = load_logs_from_directory(
-        base_dir, batch_run, embedding_models, retrieval_modes, keep_details=qualitative
+        base_dir, batch_run, embedding_models, retrieval_modes,
+        keep_details=qualitative, split_by_k=True,
     )
+    if not df.empty:
+        df["condition"] = df["condition"].str.replace(r"/k\d+$", "", regex=True)
     if df.empty:
         print("No valid records found. Exiting.")
         return
+    # k-ablation runs share model + condition with the main matrix; without this
+    # filter the dedup would silently replace the k = DEFAULT_K rows by them.
+    other_k = df["is_rag"] & (df["k_chunks"] != k_chunks)
+    if other_k.any():
+        print(f"  Excluding {int(other_k.sum())} RAG rows with k_chunks != {k_chunks} (use --k-ablation for those).")
+        df = df[~other_k]
+
+    print("\nRetrieval quality (political spectrum of retrieved chunks) …")
+    print_party_blocs()
+    rq_df = compute_retrieval_quality(df, n_boot, seed)
+    if not rq_df.empty:
+        show = [c for c in rq_df.columns if not c.endswith(("_lo", "_hi"))]
+        print(rq_df[show].to_string(index=False))
+        rq_df.to_csv(output_dir / "retrieval_quality.csv", index=False)
+        print(f"  → {output_dir / 'retrieval_quality.csv'}")
+        plot_retrieval_quality(rq_df, output_dir / "retrieval_quality.png")
 
     for target_col in targets:
         evaluate_target(
@@ -1695,6 +2215,13 @@ if __name__ == "__main__":
     parser.add_argument("--lmm-max-rows", type=int, default=None, help="Subsample rows for the mixed models.")
     parser.add_argument("--qualitative", action="store_true", help="Write per-configuration bias reports with top-K examples.")
     parser.add_argument("--k", type=int, default=25, help="Examples per category for --qualitative (default 25).")
+    parser.add_argument("--k-chunks", type=int, default=DEFAULT_K, help=f"k_chunks of the main evaluation (default {DEFAULT_K}); RAG rows with other k are excluded.")
+    parser.add_argument("--k-ablation", action="store_true", help="Run only the k_chunks ablation (one model/embedding/strategy) instead of the full evaluation.")
+    parser.add_argument("--k-model", type=str, default="Ministral-3-14B-Instruct-2512", help="Model (cleaned name) for --k-ablation.")
+    parser.add_argument("--k-embedding", type=str, default="e5", help="Embedding model for --k-ablation.")
+    parser.add_argument("--k-strategy", type=str, default="simple", help="Retrieval strategy for --k-ablation.")
+    parser.add_argument("--k-values", type=lambda v: [int(x) for x in _comma_list(v)], default=None, help="Comma-separated k values to include (default: all found).")
+    parser.add_argument("--k-no-baseline", action="store_true", help="Do not add the no_rag run (k = 0) to --k-ablation.")
     args = parser.parse_args()
 
     if args.targets and args.targets == ["all"]:
@@ -1704,6 +2231,22 @@ if __name__ == "__main__":
     unknown = [t for t in chosen_targets if t not in ALL_TARGETS]
     if unknown:
         parser.error(f"Unknown target(s): {unknown}. Choose from {ALL_TARGETS}.")
+
+    if args.k_ablation:
+        main_k_ablation(
+            base_dir=args.base_dir,
+            output_root=args.output_root,
+            run_id=args.run_id,
+            targets=chosen_targets,
+            model=args.k_model,
+            embedding_model=args.k_embedding,
+            retrieval_mode=args.k_strategy,
+            k_values=args.k_values,
+            include_baseline=not args.k_no_baseline,
+            n_boot=0 if args.no_bootstrap else args.n_boot,
+            seed=args.seed,
+        )
+        raise SystemExit(0)
 
     main(
         base_dir=args.base_dir,
@@ -1719,4 +2262,5 @@ if __name__ == "__main__":
         lmm_max_rows=args.lmm_max_rows,
         qualitative=args.qualitative,
         top_k=args.k,
+        k_chunks=args.k_chunks,
     )

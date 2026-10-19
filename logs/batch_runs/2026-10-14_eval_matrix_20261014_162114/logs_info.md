@@ -7,7 +7,7 @@
 - **Embedding Model:** e5
 - **Query Backend:** local
 - **Strategies:** simple
-- **K Chunks:** 20
+- **K Chunks:** 1, 3, 10, 20
 - **Random Seed:** None
 - **Sample Size:** None
 - **RAG Mode:** True

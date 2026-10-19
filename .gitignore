@@ -27,3 +27,4 @@ tmp/
 .hf_cache/
 HOWTO_HPC.md
 qdrant_host.txt
+docs/

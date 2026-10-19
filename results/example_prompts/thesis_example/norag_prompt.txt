@@ -1,0 +1,61 @@
+No-RAG baseline prompt
+================================================================================
+[request parameters]
+{
+  "model": "Qwen/Qwen2.5-32B-Instruct",
+  "max_tokens": 800,
+  "temperature": 0.0,
+  "response_format": {
+    "type": "json_schema",
+    "json_schema": {
+      "name": "bias_prediction",
+      "strict": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "bias_score": {
+            "type": "number",
+            "description": "The calculated bias score"
+          },
+          "justification": {
+            "type": "string",
+            "description": "Explanation for the score"
+          }
+        },
+        "required": [
+          "bias_score",
+          "justification"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "extra_headers": null
+}
+
+================================================================================
+[system message]
+
+            You are an expert political scientist specializing in comparative European parliamentary politics.
+            Analyze the target text and return a continuous political bias score on the standard left-right scale, 
+            where 1.0 represents Extreme Left and 7.0 represents Extreme Right.
+
+            Evaluate the text purely on its linguistic and ideological framing using standard left-right political spectrum criteria.
+
+            CRITICAL FORMATTING RULE: You must respond STRICTLY with a valid JSON object matching this structural schema:
+            {
+            "bias_score": <float between 1.0 and 7.0>,
+            "justification": "<Concise analytical explanation for the score based strictly on the information provided tracking thematic alignment against context anchors.>"
+            }
+            Do NOT use double quotes (") anywhere inside your justification text. 
+            If you need to quote a word or phrase, you MUST use single quotes (') instead.
+        
+
+================================================================================
+[user message]
+
+
+Target Text to Analyze:
+"""
+„Wenn ich es richtig sehe,  hat #Griechenland bisher nicht darum gebeten,  Flüchtlinge aus #Moria in der #EU aufzunehmen und zu verteilen. Außer Luxemburg und Deutschland ist dazu ohnehin gegenwärtig kein anderes EU-Mitgliedsland bereit.“ (tm)
+"""
