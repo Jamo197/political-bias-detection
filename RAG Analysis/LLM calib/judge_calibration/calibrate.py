@@ -18,8 +18,8 @@ of one text share an input and a justification; every third text is held out):
 * per-gate AUC and a risk-coverage table (agreement when only the most
   confident share of chunks is kept and the rest is escalated to a human).
 
-    python "RAG Analysis/judge_calibration/calibrate.py" 2026-10-20_154122
-    python "RAG Analysis/judge_calibration/calibrate.py" runA runB --subset holdout
+    python "RAG Analysis/LLM calib/judge_calibration/calibrate.py" "LLM judge results/2026-10-20_154122"
+    python "RAG Analysis/LLM calib/judge_calibration/calibrate.py" runA runB --subset holdout
 """
 
 from __future__ import annotations
@@ -35,7 +35,8 @@ from sklearn.metrics import cohen_kappa_score, roc_auc_score
 
 warnings.filterwarnings("ignore")
 
-ROOT = Path(__file__).resolve().parents[2]
+HERE = Path(__file__).resolve().parent
+ROOT = HERE.parents[2]
 RUNS = ROOT / "RAG Analysis"
 CONSENSUS = RUNS / "human_annotations/revised/consensus_reference_annotations.jsonl"
 sys.path.insert(0, str(RUNS / "human_annotations"))
@@ -464,6 +465,29 @@ def _fit_predict_ordinal(Ptr, ytr, Pte, minimums):
 LEVELS_ALL = [1, 2, 3, 4, 5]
 
 
+def fit_quantile_cutpoints(P: np.ndarray, y: np.ndarray) -> list[dict]:
+    """Cut points on the summed gate logits that reproduce the human label shares.
+
+    The score is the sum of the gate logits (one ranking, nothing weighted); the
+    cut point for 'level >= k' sits at the score quantile that leaves the share of
+    human labels below k underneath it. Only the marginal distribution is fitted,
+    not which chunk gets which label. Stored in the ordinal spec format (all
+    coefficients 1, intercept = -cut point), so ``apply_posthoc`` in
+    run_llm_judge.py reads it unchanged; a level no human label lies below (or
+    above) becomes a constant step. Predict with ``predict_ordinal(P, specs, 1)``.
+    """
+    score = _logit(P).sum(axis=1)
+    specs = []
+    for minimum in LEVELS_ALL[1:]:
+        share_below = float(np.mean(y < minimum))
+        if share_below in (0.0, 1.0):
+            specs.append({"level": minimum, "constant": share_below == 0.0})
+            continue
+        cut = float(np.quantile(score, share_below))
+        specs.append({"level": minimum, "coef": [1.0] * P.shape[1], "intercept": -cut})
+    return specs
+
+
 def posthoc_cv(rows: list[dict], dim: str) -> dict:
     gates, base = _ladder_levels(dim, rows)
     P = _gate_matrix(rows, gates)
@@ -482,6 +506,9 @@ def posthoc_cv(rows: list[dict], dim: str) -> dict:
         ),
         "ordinal_logistic": lambda tr, te: _fit_predict_ordinal(
             P[tr], y[tr], P[te], minimums
+        ),
+        "quantile_cutpoints": lambda tr, te: predict_ordinal(
+            P[te], fit_quantile_cutpoints(P[tr], y[tr]), 1
         ),
     }
     stored = np.array([r["derived_labels"][dim] for r in rows])
@@ -507,21 +534,29 @@ def _score(y: np.ndarray, pred: np.ndarray, dim: str) -> dict:
     }
 
 
-def export_posthoc(run: str, rows: list[dict], path: Path, dims: list[str], cv: dict) -> None:
-    """Fit the ordinal mapping on every chunk of the run and write it as JSON.
+def export_posthoc(
+    run: str, rows: list[dict], path: Path, dims: list[str], cv: dict, method: str = "ordinal_logistic"
+) -> None:
+    """Fit a post-hoc mapping on every chunk of the run and write it as JSON.
 
-    The out-of-sample quality of this mapping is the leave-one-text-out figure
-    from ``posthoc_cv`` (stored alongside), not its fit on the training data.
+    ``method`` is ``ordinal_logistic`` or ``quantile_cutpoints``. The
+    out-of-sample quality of the mapping is the leave-one-text-out figure from
+    ``posthoc_cv`` (stored alongside), not its fit on the training data.
     """
     spec = {}
     for dim in dims:
         gates, base = _ladder_levels(dim, rows)
-        minimums = list(range(base + 1, base + 1 + len(gates)))
+        P = _gate_matrix(rows, gates)
         y = np.array([r["human"][dim] for r in rows])
+        if method == "quantile_cutpoints":
+            base, thresholds = 1, fit_quantile_cutpoints(P, y)
+        else:
+            thresholds = fit_ordinal(P, y, list(range(base + 1, base + 1 + len(gates))))
         spec[dim] = {
+            "method": method,
             "gates": gates,
             "base": base,
-            "thresholds": fit_ordinal(_gate_matrix(rows, gates), y, minimums),
+            "thresholds": thresholds,
             "fitted_on": {
                 "run": run,
                 "n_chunks": len(rows),
@@ -530,25 +565,30 @@ def export_posthoc(run: str, rows: list[dict], path: Path, dims: list[str], cv: 
             },
             "leave_one_text_out_cv": {
                 "uncalibrated": cv[dim]["baseline"],
-                "ordinal_logistic": cv[dim]["ordinal_logistic"],
+                method: cv[dim][method],
             },
         }
     path.write_text(json.dumps(spec, indent=2, ensure_ascii=False), encoding="utf-8")
-    print(f"\nwrote post-hoc model for {dims} -> {path}")
+    print(f"\nwrote post-hoc model ({method}) for {dims} -> {path}")
 
 
 def posthoc_dev_to_holdout(rows: list[dict], dim: str) -> dict:
-    """Fit the ordinal mapping on the dev texts only, score the untouched holdout."""
+    """Fit the post-hoc mappings on the dev texts only, score the untouched holdout."""
     dev, hold = split_texts()
     gates, base = _ladder_levels(dim, rows)
     minimums = list(range(base + 1, base + 1 + len(gates)))
     tr = [r for r in rows if r["text_index"] in dev]
     te = [r for r in rows if r["text_index"] in hold]
-    specs = fit_ordinal(_gate_matrix(tr, gates), np.array([r["human"][dim] for r in tr]), minimums)
-    y = np.array([r["human"][dim] for r in te])
-    pred = np.clip(predict_ordinal(_gate_matrix(te, gates), specs, base), 1, 5)
+    Ptr, ytr = _gate_matrix(tr, gates), np.array([r["human"][dim] for r in tr])
+    Pte, y = _gate_matrix(te, gates), np.array([r["human"][dim] for r in te])
+    ordinal = np.clip(predict_ordinal(Pte, fit_ordinal(Ptr, ytr, minimums), base), 1, 5)
+    quantile = predict_ordinal(Pte, fit_quantile_cutpoints(Ptr, ytr), 1)
     stored = np.array([r["derived_labels"][dim] for r in te])
-    return {"uncalibrated": _score(y, stored, dim), "ordinal_logistic": _score(y, pred, dim)}
+    return {
+        "uncalibrated": _score(y, stored, dim),
+        "ordinal_logistic": _score(y, ordinal, dim),
+        "quantile_cutpoints": _score(y, quantile, dim),
+    }
 
 
 def print_posthoc(run: str, rows: list[dict]) -> dict:
@@ -600,6 +640,10 @@ def main() -> None:
     parser.add_argument("--export-posthoc", metavar="DIM[,DIM]", default=None,
                         help="fit the ordinal post-hoc mapping on all chunks of the (single) run for "
                              "these dimensions (e.g. R_ideo) and write it to judge_calibration/posthoc_<run>.json")
+    parser.add_argument("--export-quantile", metavar="DIM[,DIM]", default=None,
+                        help="fit distribution-matched cut points on the summed gate logits on all chunks "
+                             "of the (single) run and write them to judge_calibration/posthoc_quantile_<run>.json "
+                             "(for run_llm_judge.py --posthoc-model)")
     parser.add_argument("--json", action="store_true",
                         help="write calibration_report.json next to each run")
     args = parser.parse_args()
@@ -617,11 +661,14 @@ def main() -> None:
             part = rows if texts is None else [r for r in rows if r["text_index"] in texts]
             reports[subset] = evaluate(part)
             print_report(run, subset, part, reports[subset])
-        if args.posthoc or args.export_posthoc:
+        if args.posthoc or args.export_posthoc or args.export_quantile:
             reports["posthoc_cv"] = print_posthoc(run, rows)
         if args.export_posthoc:
-            export_posthoc(run, rows, RUNS / "judge_calibration" / f"posthoc_{Path(run).stem}.json",
+            export_posthoc(run, rows, HERE / f"posthoc_{Path(run).stem}.json",
                            args.export_posthoc.split(","), reports["posthoc_cv"])
+        if args.export_quantile:
+            export_posthoc(run, rows, HERE / f"posthoc_quantile_{Path(run).stem}.json",
+                           args.export_quantile.split(","), reports["posthoc_cv"], "quantile_cutpoints")
         if args.json:
             out =(RUNS / run if not Path(run).suffix else Path(run).parent) / "calibration_report.json"
             out.write_text(json.dumps(reports, indent=2, ensure_ascii=False), encoding="utf-8")

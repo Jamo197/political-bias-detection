@@ -1,0 +1,64 @@
+{
+  "R_ideo": {
+    "method": "quantile_cutpoints",
+    "gates": [
+      "I_evaluative",
+      "I_stance",
+      "I_party"
+    ],
+    "base": 1,
+    "thresholds": [
+      {
+        "level": 2,
+        "constant": true
+      },
+      {
+        "level": 3,
+        "coef": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "intercept": 5.7257039246888475
+      },
+      {
+        "level": 4,
+        "coef": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "intercept": -0.32650706854821
+      },
+      {
+        "level": 5,
+        "coef": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "intercept": -7.065196576790769
+      }
+    ],
+    "fitted_on": {
+      "run": "LLM judge results/2026-10-23_142551",
+      "n_chunks": 125,
+      "n_texts": 25,
+      "questions_hash": "17202cbdadf221ae"
+    },
+    "leave_one_text_out_cv": {
+      "uncalibrated": {
+        "alpha": 0.5629279762065396,
+        "qwk": 0.5798457786858234,
+        "exact": 0.64,
+        "bias": 0.088
+      },
+      "quantile_cutpoints": {
+        "alpha": 0.5785922980435128,
+        "qwk": 0.5978596283894688,
+        "exact": 0.632,
+        "bias": -0.008
+      }
+    }
+  }
+}

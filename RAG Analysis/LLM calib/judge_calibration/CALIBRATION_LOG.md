@@ -12,6 +12,8 @@ Reproduce any row: `python "RAG Analysis/judge_calibration/calibrate.py" --summa
 ## Final configuration (frozen, round 2)
 
 * Questions: built-in `JEV_QUESTIONS` in `src/run_llm_judge.py` = `questions_v4.json` (hash `7c4f5961ce892ca3`).
+  **Round 3 update:** `I_evaluative` replaced by its v5 wording (built-in hash now `17202cbdadf221ae`);
+  see "Round 3" below for the optional cut-point layer and the candidate `T_subarea`.
 * State: `--state-mode nometa` (default). R_top / R_ideo are asked with the full state minus the
   chunk's party / speaker / source; A_caus keeps the full state (two requests per chunk).
 * Labels read straight off the gate answers, nothing fitted, plus a `needs_review` flag.
@@ -47,6 +49,78 @@ that this gain only compensated for the speaker metadata: on the `nometa` run th
 mapping gives 0.489 out-of-sample, below the unfitted 0.560. The mapping is therefore not
 recommended; the code stays (`--posthoc-model`) but is off by default, and `posthoc_final.json`
 belongs to the old full-state probabilities and must not be applied to `nometa` runs.
+
+## Round 3: label shape (R_top 2/3, R_ideo 2)
+
+Problem (range-restriction report on `2026-10-22_132304`): R_top gave 2 too often and 3 too rarely
+(judge 8/45/15/24/33 vs consensus 10/37/23/29/26); R_ideo never gave 2. Diagnosis on the stored
+probabilities: `T_subarea` (the 2/3 gate) asked for "the same *narrow policy question*", stricter than
+help-page level 3; `I_evaluative` (the 2/3 gate) said yes for every chunk (5th percentile 0.94) because
+every speech "argues or evaluates", while the help page draws 2/3 at loaded framing vs neutral /
+balanced / consensual.
+
+Two changes, tested separately (run `v5_subarea_eval`, `questions_v5.json`, hash `42b4039d5921f935`):
+
+1. **Rewording** both gates along the help page (`T_subarea`: same sub-area or regulatory mechanism, with
+   the heating-law example; `I_evaluative`: loaded / one-sided framing vs neutral, balanced, consensual).
+2. **Distribution-matched cut points** (`calibrate.py --export-quantile`, applied with
+   `run_llm_judge.py --posthoc-model`): the level is read off the *sum of the gate logits* with four fixed
+   cut points placed so the label shares equal the consensus shares. Only the marginal distribution is
+   fitted (4 numbers per dimension), not which chunk gets which label.
+
+Gate AUC: `T_subarea` 0.876 -> 0.902, `I_evaluative` 0.813 -> 0.923 (other gates unchanged, A_caus
+identical: noise check passed).
+
+Alpha vs consensus, leave-one-text-out for the cut points (`--posthoc`):
+
+| Set-up | R_top | R_ideo |
+|---|---|---|
+| current questions, ladder | 0.697 | 0.551 |
+| current questions + cut points | 0.685 | 0.598 |
+| v5 questions, ladder | 0.648 | 0.576 |
+| v5 questions + cut points | **0.707** | 0.576 (qwk 0.597) |
+
+Paired delta v5 vs current (ladder, `compare_arms.py`): R_top -0.049 (-0.117, +0.017), R_ideo
+**+0.025 (+0.004, +0.057)**, holdout R_ideo +0.031.
+
+* **`I_evaluative` v5 adopted** into `JEV_QUESTIONS` (passes the round-2 rule on its own: alpha up, CI
+  above 0, holdout up; it now yields level 2 for a consensus-2 chunk without any fitting). New built-in
+  hash `17202cbdadf221ae`.
+* **`T_subarea` v5 not adopted on its own**: it ranks better but is too lenient at 0.5 (yes for 101
+  chunks vs 78 human), so the ladder shifts R_top up (bias +0.26). Only with the cut points does it give
+  the best R_top (0.707 LOTO, shape equal to the consensus). Kept in `questions_v5.json`.
+* **Cut points** fix the shape for both dimensions (range report, in-sample: R_top 10/37/23/29/26,
+  R_ideo 0/2/28/71/24, both exactly the consensus). For R_ideo they also remove the +0.1 bias. For R_top
+  they need the v5 `T_subarea`: on the old gate they cost 0.012.
+* All differences except the R_ideo rewording are within the bootstrap CIs. The cut points are fitted on
+  the evaluation set, so only the LOTO figures count; on the 8-text holdout (fit on dev texts only), R_top
+  with cut points is below the uncalibrated ladder (0.570 vs 0.603).
+
+Files: `posthoc_quantile_2026-10-22_132304.json` and `posthoc_quantile_v5_subarea_eval.json` (cut points
+per run). Rederived runs: `LLM judge results/2026-10-22_132304_quantile` and `v5_subarea_eval_quantile`.
+Apply a cut-point file only to runs whose gate wording matches the run it was fitted on.
+
+### Round 3b: re-run with the new built-in questions (`17202cbdadf221ae`)
+
+Two fresh runs: `2026-10-23_142551` (no post-hoc) and `2026-10-23_142308` (with
+`posthoc_quantile_v5_subarea_eval.json`). The two runs agree closely: gate correlation 0.995-0.999,
+0 R_top and 4 R_ideo ladder flips; A_caus kappa 0.74 vs 0.79 from 3 flips near 0.5.
+
+* **The 142308 R_top result is a mismatch, not a property of the cut points.** The v5 file was fitted for
+  the lenient v5 `T_subarea`; on the stricter built-in gate the logit sums are lower, so R_top slid down
+  (judge 20/41/21/26/17 vs consensus 10/37/23/29/26, bias -0.36). `run_llm_judge.py` now warns when a
+  post-hoc file's `fitted_on.questions_hash` differs from the answers' hash.
+* **The `I_evaluative` gain replicates.** R_ideo ladder alpha 0.551 -> 0.563 (v5 run 0.576); AUC 0.913.
+* **Refitted on 142551** (`posthoc_quantile_2026-10-23_142551.json`), LOTO alpha:
+  - R_top: ladder 0.690, with cut points 0.686.
+  - R_ideo: ladder 0.563, with cut points 0.579. Holdout (fit on dev texts): R_ideo 0.608 -> 0.665,
+    R_top 0.581 -> 0.513.
+* **Recommended configuration:** built-in questions, R_top read off the ladder, R_ideo through the cut
+  points (`posthoc_quantile_2026-10-23_142551_R_ideo.json`). On both runs, R_top cut points match the
+  label shares but lose a little agreement (LOTO -0.004 / -0.012, holdout -0.07 / -0.06). Range report
+  for this configuration (`2026-10-23_142551_ideo_cuts`): judge/human QWK ratio R_top 0.79, R_ideo 0.88
+  (in-sample for R_ideo), A_caus 0.82.
+* How the whole judge works now is described in `../HOW_THE_LLM_JUDGE_WORKS.md`.
 
 ## Round 2: asking Jev differently (three pre-planned experiments)
 

@@ -17,15 +17,19 @@ highest level whose gate the model answers yes to (probability >= 0.5):
 The ladder questions (``JEV_QUESTIONS``) and the A_caus citation gate were
 calibrated against the revised consensus annotations; the iteration history
 (``CALIBRATION_LOG.md``) and the tooling live in
-"RAG Analysis/judge_calibration/". By default nothing is rescaled or fitted
-afterwards: every label can be read off the individual answers. R_top / R_ideo
+"RAG Analysis/LLM calib/judge_calibration/". By default nothing is rescaled or
+fitted afterwards: every label can be read off the individual answers. R_top / R_ideo
 are asked with the chunk's speaker metadata withheld (``--state-mode nometa``,
 the annotators' "ignore metadata" rule; it raised R_ideo alpha from 0.49 to 0.56
 without fitting anything). Two further layers sit on top:
 
-* ``--posthoc-model`` (off; no longer recommended, it only helped before the
-  metadata was withheld): an ordinal-logistic mapping from the gate
-  probabilities, fitted by ``calibrate.py --export-posthoc``;
+* ``--posthoc-model`` (off by default): a mapping from the gate probabilities
+  to the level. Recommended for R_ideo is the distribution-matched one from
+  ``calibrate.py --export-quantile``: fixed cut points on the summed gate
+  logits that reproduce the consensus label shares (it yields the rare level 2
+  and removes the +0.1 bias). The ordinal-logistic mapping from
+  ``--export-posthoc`` is no longer recommended (it only helped before the
+  metadata was withheld);
 * ``needs_review`` (always computed): per-dimension flag for chunks whose gate
   answers are near the threshold or contradict each other, to be escalated to a
   human instead of trusting the label.
@@ -38,14 +42,14 @@ Usage (from the project root):
     python src/run_llm_judge.py --limit 5
     python src/run_llm_judge.py --annotations <file.jsonl> --concurrency 8
     python src/run_llm_judge.py --questions-file <questions_vN.json> --run-id vN
-    python src/run_llm_judge.py --rederive-from "RAG Analysis/<run>/llm_judge_annotations.jsonl"
+    python src/run_llm_judge.py --rederive-from "RAG Analysis/LLM judge results/<run>/llm_judge_annotations.jsonl"
     python src/run_llm_judge.py --rederive-from <flat.jsonl> --posthoc-model <posthoc.json>
 
 The extended agreement report (Krippendorff's alpha with bootstrap CIs, judge
 as a 4th rater, strata, risk-coverage, post-hoc calibration CV) is produced
-offline by "RAG Analysis/judge_calibration/calibrate.py".
+offline by "RAG Analysis/LLM calib/judge_calibration/calibrate.py".
 
-Each run writes into ``RAG Analysis/<run_id>/``:
+Each run writes into ``RAG Analysis/LLM judge results/<run_id>/``:
 
 * ``llm_judge_annotations.jsonl`` — flat, one line per (record, chunk) pair,
   with the raw Jev answers (gate probabilities, usage).
@@ -95,7 +99,7 @@ OPENROUTER_JEV_MODEL = os.getenv("OPENROUTER_JEV_MODEL", "~typesafe/jev-latest")
 DEFAULT_ANNOTATIONS_PATH = (
     "RAG Analysis/human_annotations/revised/consensus_reference_annotations.jsonl"
 )
-DEFAULT_OUTPUT_ROOT = "RAG Analysis"
+DEFAULT_OUTPUT_ROOT = "RAG Analysis/LLM judge results"
 FLAT_SNAPSHOT_NAME = "llm_judge_annotations.jsonl"
 GROUPED_SNAPSHOT_NAME = "llm_judge_qualitative_annotations.jsonl"
 REPORT_NAME = "llm_judge_report.json"
@@ -157,7 +161,10 @@ CONTENT_TASK = (
 # fields by backticked path, and every question has an explicit true/false test.
 # The R_ideo gates carry a burden-of-proof focus ("false unless the text itself
 # clearly shows it"): without it the model said yes far more often than the
-# annotators (I_party 70 % vs 19 %). To iterate, edit this constant and re-run;
+# annotators (I_party 70 % vs 19 %). I_evaluative follows the help page's 2-vs-3
+# line (loaded framing vs. neutral / balanced / consensual, round 3): asked as
+# "does the speaker argue or evaluate" it said yes for every chunk. To iterate,
+# edit this constant and re-run;
 # the questions hash stored with every result identifies the version.
 JEV_QUESTIONS = {
     "T_domain": {
@@ -234,12 +241,12 @@ JEV_QUESTIONS = {
     "I_evaluative": {
         "type": "noul",
         "instructions": {
-            "question": "Does the speaker argue, evaluate or demand something about policy?",
+            "question": "Does the passage use normative or politically loaded language, selective emphasis or one-sided framing?",
             "inspect": "`retrieved_chunk.text`"
         },
         "criteria": {
-            "true": "The speaker argues for or against a policy, judges the actions of political actors, or makes demands.",
-            "false": "The speaker only reports facts, procedures or the positions of others without evaluating or demanding anything."
+            "true": "The speaker frames the issue from one side: value-laden or politically loaded vocabulary ('economic justice' vs. 'favouring the rich', 'burden' vs. 'humanitarian obligation'), selective emphasis, praise or attacks on political actors, or demands for how things ought to be.",
+            "false": "The passage stays neutral or balanced: it reports facts, figures or procedures, gives a balanced overview of several viewpoints, makes a consensual or cross-party appeal, thanks or praises non-partisan actors, or explains a measure in a sober tone - even if the speaker mildly says they support something."
         }
     },
     "I_stance": {
@@ -494,7 +501,8 @@ def derive_labels(raw_answers: dict, citation: dict, posthoc: dict | None = None
     R_top: 1 + the highest gate answered yes (domain, sub-area, item, central).
 
     R_ideo: 5 = own-party position and a strong stance; 4 = strong stance;
-    3 = argues or evaluates; otherwise 1 (procedure only) or 2 (descriptive).
+    3 = loaded or one-sided framing; otherwise 1 (procedure only) or 2 (neutral,
+    balanced or consensual).
 
     ``posthoc`` (optional, off by default) replaces the R_top / R_ideo labels of
     the dimensions it contains with the fitted ordinal mapping.
@@ -595,6 +603,7 @@ def run_judging(
     questions = load_questions(args.questions_file)
     questions_hash = hash_questions(questions)
     posthoc = load_posthoc(args.posthoc_model)
+    check_posthoc(posthoc, questions_hash)
     client, args.model = build_client(args.model)
 
     print(f"Judge model: {args.model}")
@@ -679,10 +688,28 @@ def write_snapshots(
 
 
 def load_posthoc(path: str | None) -> dict | None:
-    """Fitted ordinal mapping(s) written by ``calibrate.py --export-posthoc``."""
+    """Fitted mapping(s) written by ``calibrate.py --export-quantile`` / ``--export-posthoc``."""
     if not path:
         return None
     return json.loads(Path(path).read_text(encoding="utf-8"))
+
+
+def check_posthoc(posthoc: dict | None, questions_hash: str) -> None:
+    """Warn when a mapping was fitted on answers to a different question set.
+
+    Cut points live on the scale of the gate probabilities, so they only fit the
+    wording they were fitted on: the v5 cut points applied to the stricter
+    built-in T_subarea shifted R_top down by a whole level.
+    """
+    for dim, spec in (posthoc or {}).items():
+        fitted = (spec.get("fitted_on") or {}).get("questions_hash")
+        if fitted and fitted != questions_hash:
+            print(
+                f"Warning: the {dim} post-hoc mapping was fitted on questions {fitted}, "
+                f"but these answers come from {questions_hash}; refit it with "
+                "calibrate.py --export-quantile on a run of these questions.",
+                file=sys.stderr,
+            )
 
 
 def hash_questions(questions: dict) -> str:
@@ -1042,9 +1069,10 @@ def _build_arg_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--posthoc-model",
         default=None,
-        help="JSON from calibrate.py --export-posthoc: map the gate probabilities "
-        "to R_top / R_ideo with a mapping fitted on the calibration set "
-        "(default: off, labels are read straight off the gate answers)",
+        help="JSON from calibrate.py --export-quantile (recommended for R_ideo) or "
+        "--export-posthoc: map the gate probabilities to R_top / R_ideo with a "
+        "mapping fitted on the calibration set (default: off, labels are read "
+        "straight off the gate answers)",
     )
     parser.add_argument(
         "--rederive-from",
@@ -1079,9 +1107,9 @@ def main() -> None:
 
     if args.rederive_from:
         records = load_existing_annotations(args.annotations)
-        results, questions_hash = rederive_results(
-            args.rederive_from, records, load_posthoc(args.posthoc_model)
-        )
+        posthoc = load_posthoc(args.posthoc_model)
+        results, questions_hash = rederive_results(args.rederive_from, records, posthoc)
+        check_posthoc(posthoc, questions_hash)
         args.model = next((r["model"] for r in results if r.get("model")), "unknown")
         failed = sum("error" in r for r in results)
         write_snapshots(results, records, args.model, run_dir)

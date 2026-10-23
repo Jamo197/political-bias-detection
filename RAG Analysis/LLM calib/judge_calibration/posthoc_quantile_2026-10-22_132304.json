@@ -1,0 +1,136 @@
+{
+  "R_top": {
+    "method": "quantile_cutpoints",
+    "gates": [
+      "T_domain",
+      "T_subarea",
+      "T_item",
+      "T_central"
+    ],
+    "base": 1,
+    "thresholds": [
+      {
+        "level": 2,
+        "coef": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "intercept": 6.754896044320972
+      },
+      {
+        "level": 3,
+        "coef": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "intercept": 1.178387234845769
+      },
+      {
+        "level": 4,
+        "coef": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "intercept": -1.2656631982271025
+      },
+      {
+        "level": 5,
+        "coef": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "intercept": -6.506368859927435
+      }
+    ],
+    "fitted_on": {
+      "run": "LLM judge results/2026-10-22_132304",
+      "n_chunks": 125,
+      "n_texts": 25,
+      "questions_hash": "7c4f5961ce892ca3"
+    },
+    "leave_one_text_out_cv": {
+      "uncalibrated": {
+        "alpha": 0.6969123003775513,
+        "qwk": 0.6920326769538558,
+        "exact": 0.464,
+        "bias": 0.04
+      },
+      "quantile_cutpoints": {
+        "alpha": 0.6853814555245584,
+        "qwk": 0.6829362029208301,
+        "exact": 0.432,
+        "bias": -0.032
+      }
+    }
+  },
+  "R_ideo": {
+    "method": "quantile_cutpoints",
+    "gates": [
+      "I_evaluative",
+      "I_stance",
+      "I_party"
+    ],
+    "base": 1,
+    "thresholds": [
+      {
+        "level": 2,
+        "constant": true
+      },
+      {
+        "level": 3,
+        "coef": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "intercept": 3.3682024493527774
+      },
+      {
+        "level": 4,
+        "coef": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "intercept": -1.0459685551826874
+      },
+      {
+        "level": 5,
+        "coef": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "intercept": -7.286629049045742
+      }
+    ],
+    "fitted_on": {
+      "run": "LLM judge results/2026-10-22_132304",
+      "n_chunks": 125,
+      "n_texts": 25,
+      "questions_hash": "7c4f5961ce892ca3"
+    },
+    "leave_one_text_out_cv": {
+      "uncalibrated": {
+        "alpha": 0.55076977211418,
+        "qwk": 0.5528616852146264,
+        "exact": 0.616,
+        "bias": 0.112
+      },
+      "quantile_cutpoints": {
+        "alpha": 0.5981243365499884,
+        "qwk": 0.6043537239196435,
+        "exact": 0.656,
+        "bias": -0.008
+      }
+    }
+  }
+}

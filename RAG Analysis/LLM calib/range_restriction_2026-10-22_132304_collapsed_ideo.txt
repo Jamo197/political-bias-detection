@@ -1,0 +1,98 @@
+
+Judge run: 2026-10-22_132304
+
+==============================================================================
+R_top  (agreement metric: QWK)
+==============================================================================
+Label distribution (share of chunks), with SD of the labels
+                   1       2       3       4       5      SD
+  Awsam         0.08    0.27    0.20    0.18    0.27    1.33
+  Jannes        0.10    0.29    0.17    0.25    0.20    1.30
+  Neda          0.16    0.27    0.20    0.22    0.15    1.32
+  consensus     0.08    0.30    0.18    0.23    0.21    1.28
+  judge         0.06    0.36    0.12    0.19    0.26    1.35
+
+                                    judge-human  human-human   ratio
+  QWK                                     0.655        0.821    0.80
+  exact agreement                         0.440        0.568    0.77
+  within-1 agreement                      0.837        0.955    0.88
+  Spearman (labels)                       0.669        0.839    0.80
+  ICC(2,1) (labels)                       0.657        0.822    0.80
+  Spearman (expected level)               0.703
+  ICC(2,1) (expected level)               0.657
+
+  QWK judge vs each annotator: Awsam 0.659, Jannes 0.685, Neda 0.621
+  QWK judge vs consensus (inflated, reference only): 0.692
+  Ratio judge-human / human-human QWK: 0.80 (95% CI 0.62 to 0.92, text bootstrap)
+
+==============================================================================
+R_ideo  (agreement metric: QWK)
+==============================================================================
+Label distribution (share of chunks), with SD of the labels
+                   1       2       3       4       5      SD
+  Awsam         0.00    0.03    0.34    0.41    0.22    0.81
+  Jannes        0.00    0.02    0.21    0.57    0.20    0.71
+  Neda          0.00    0.01    0.19    0.61    0.19    0.64
+  consensus     0.00    0.02    0.22    0.57    0.19    0.69
+  judge         0.00    0.00    0.22    0.52    0.26    0.69
+
+                                    judge-human  human-human   ratio
+  QWK                                     0.503        0.646    0.78
+  exact agreement                         0.581        0.637    0.91
+  within-1 agreement                      0.968        0.995    0.97
+  Spearman (labels)                       0.517        0.658    0.79
+  ICC(2,1) (labels)                       0.505        0.648    0.78
+  Spearman (expected level)               0.563
+  ICC(2,1) (expected level)               0.561
+
+  QWK judge vs each annotator: Awsam 0.434, Jannes 0.555, Neda 0.519
+  QWK judge vs consensus (inflated, reference only): 0.553
+  Ratio judge-human / human-human QWK: 0.78 (95% CI 0.63 to 0.97, text bootstrap)
+
+==============================================================================
+R_ideo_3  (agreement metric: QWK)
+==============================================================================
+Label distribution (share of chunks), with SD of the labels
+                   1       2       3      SD
+  Awsam         0.38    0.41    0.22    0.75
+  Jannes        0.23    0.57    0.20    0.66
+  Neda          0.20    0.61    0.19    0.63
+  consensus     0.24    0.57    0.19    0.66
+  judge         0.22    0.52    0.26    0.69
+
+                                    judge-human  human-human   ratio
+  QWK                                     0.501        0.633    0.79
+  exact agreement                         0.597        0.669    0.89
+  within-1 agreement                      0.973        0.995    0.98
+  Spearman (labels)                       0.511        0.644    0.79
+  ICC(2,1) (labels)                       0.503        0.635    0.79
+  Spearman (expected level)               0.559
+  ICC(2,1) (expected level)               0.569
+
+  QWK judge vs each annotator: Awsam 0.426, Jannes 0.563, Neda 0.514
+  QWK judge vs consensus (inflated, reference only): 0.546
+  Ratio judge-human / human-human QWK: 0.79 (95% CI 0.63 to 0.99, text bootstrap)
+
+==============================================================================
+A_caus  (agreement metric: kappa)
+==============================================================================
+Label distribution (share of chunks), with SD of the labels
+                   0       1      SD
+  Awsam         0.46    0.54    0.50
+  Jannes        0.47    0.53    0.50
+  Neda          0.48    0.52    0.50
+  consensus     0.48    0.52    0.50
+  judge         0.42    0.58    0.49
+
+                                    judge-human  human-human   ratio
+  kappa                                   0.731        0.882    0.83
+  exact agreement                         0.867        0.941    0.92
+  Spearman (labels)                       0.735        0.883    0.83
+  ICC(2,1) (labels)                       0.733        0.883    0.83
+  Spearman (P(A_caus=1))                  0.791
+
+  kappa judge vs each annotator: Awsam 0.725, Jannes 0.742, Neda 0.726
+  kappa judge vs consensus (inflated, reference only): 0.759
+  Ratio judge-human / human-human kappa: 0.83 (95% CI 0.62 to 1.01, text bootstrap)
+
+Wrote /Users/janneslampe/Desktop/Coding/Master Thesis/Evaluation/RAG Analysis/LLM calib/range_restriction_2026-10-22_132304_collapsed_ideo.json and /Users/janneslampe/Desktop/Coding/Master Thesis/Evaluation/RAG Analysis/LLM calib/range_restriction_2026-10-22_132304_collapsed_ideo.png
