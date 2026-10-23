@@ -1,58 +1,58 @@
-"""Jev (TypeSafe System One) judge calibration script.
+"""Jev (TypeSafe System One) judge for retrieved RAG chunks.
 
-Runs the Jev decision model through the TypeSafe Python SDK over the
-human-annotated chunks saved by ``run_streamlit.py``, computes agreement
-metrics (QWK for ordinal R_top/R_ideo, standard Cohen's κ for nominal
-A_caus), and produces a calibration report.
+Runs the calibrated Jev decision model through the TypeSafe Python SDK over
+annotated chunks (the format written by ``run_streamlit.py``) and, when the
+chunks carry human labels, reports agreement with them (quadratic-weighted κ
+for the ordinal R_top / R_ideo, Cohen's κ for the binary A_caus).
 
-By default the SDK talks to the native TypeSafe API using ``TYPESAFE_API_KEY``
-from ``.env.local``. When that key is absent it falls back to the
-OpenRouter-compatible endpoint with ``OPENROUTER_API_KEY_ME``. The model id is
-pinned per transport (see ``TYPESAFE_JEV_MODEL`` / ``OPENROUTER_JEV_MODEL``);
-the response's ``model`` field records the version that actually answered.
+Each (record, chunk) pair becomes one System One request whose typed yes/no
+(Noul) questions are answered independently. R_top and R_ideo are *ladders*:
+each level is gated by one question with a plain test, and the label is the
+highest level whose gate the model answers yes to (probability >= 0.5):
 
-Each (record, chunk) pair becomes one System One request whose four typed
-questions are answered in parallel and independently:
+* ``R_top``  — T_domain (>= 2), T_subarea (>= 3), T_item (>= 4), T_central (5)
+* ``R_ideo`` — I_evaluative (3), I_stance (4), I_party (5); I_procedural (1 vs 2)
+* ``A_caus`` — probability that the justification relied on this chunk
 
-* ``R_top``  — Score, 5 ordered levels (topical relevance)
-* ``R_ideo`` — Score, 5 ordered levels (ideological specificity)
-* ``A_caus`` — Noul, probability that the justification relied on this chunk
+The ladder questions (``JEV_QUESTIONS``) and the A_caus citation gate were
+calibrated against the revised consensus annotations; the iteration history
+(``CALIBRATION_LOG.md``) and the tooling live in
+"RAG Analysis/judge_calibration/". By default nothing is rescaled or fitted
+afterwards: every label can be read off the individual answers. R_top / R_ideo
+are asked with the chunk's speaker metadata withheld (``--state-mode nometa``,
+the annotators' "ignore metadata" rule; it raised R_ideo alpha from 0.49 to 0.56
+without fitting anything). Two further layers sit on top:
 
-Jev answers are typed values with probabilities, not generated text, so there
-is no prompt parsing or JSON-repair fallback. The raw answers (per-level
-probabilities, probability-weighted score, confidence, usage/cost) are stored
-alongside the derived integer labels, so thresholds and label derivation can
-be re-tuned offline from a previous run's JSONL with ``--rederive-from``
-without new API calls.
+* ``--posthoc-model`` (off; no longer recommended, it only helped before the
+  metadata was withheld): an ordinal-logistic mapping from the gate
+  probabilities, fitted by ``calibrate.py --export-posthoc``;
+* ``needs_review`` (always computed): per-dimension flag for chunks whose gate
+  answers are near the threshold or contradict each other, to be escalated to a
+  human instead of trusting the label.
 
-Retries, backoff, and ``Retry-After`` handling are delegated to the SDK's
-``RetryPolicy`` (see ``RETRY_POLICY``), so no hand-rolled HTTP client is
-needed.
+The SDK talks to the native TypeSafe API with ``TYPESAFE_API_KEY`` from
+``.env.local`` and falls back to OpenRouter with ``OPENROUTER_API_KEY_ME``.
 
 Usage (from the project root):
 
     python src/run_llm_judge.py --limit 5
-    python src/run_llm_judge.py --concurrency 8
-    python src/run_llm_judge.py --a-caus-threshold 0.6 \
-        --rederive-from "RAG Analysis/<run_id>/llm_judge_annotations.jsonl"
+    python src/run_llm_judge.py --annotations <file.jsonl> --concurrency 8
+    python src/run_llm_judge.py --questions-file <questions_vN.json> --run-id vN
+    python src/run_llm_judge.py --rederive-from "RAG Analysis/<run>/llm_judge_annotations.jsonl"
+    python src/run_llm_judge.py --rederive-from <flat.jsonl> --posthoc-model <posthoc.json>
 
-Each run writes a per-run snapshot (annotations JSONL) and the JSON agreement
-report into a timestamped subfolder under ``RAG Analysis/<run_id>/`` (similar
-to how ``evaluate_metrics.py`` organizes results). The append-only log still
-accumulates across runs.
+The extended agreement report (Krippendorff's alpha with bootstrap CIs, judge
+as a 4th rater, strata, risk-coverage, post-hoc calibration CV) is produced
+offline by "RAG Analysis/judge_calibration/calibrate.py".
 
-Two snapshots are written per run, both carrying the same judgments:
+Each run writes into ``RAG Analysis/<run_id>/``:
 
-* ``llm_judge_annotations.jsonl`` — flat, one line per (record, chunk) pair;
-  used for metrics and ``--rederive-from`` (keeps the raw probabilities).
-* ``llm_judge_qualitative_annotations.jsonl`` — grouped into one line per text
-  with a ``chunk_annotations`` list, mirroring the human annotation files, so
-  the judge's ``R_top`` / ``R_ideo`` / ``A_caus`` labels can be compared
-  directly against an annotator's file. ``--rederive-from`` accepts either
-  format.
-
-For calibration iterations, edit the JEV_QUESTIONS constant at the top of
-this file or pass ``--questions-file`` (a JSON file with the same shape).
+* ``llm_judge_annotations.jsonl`` — flat, one line per (record, chunk) pair,
+  with the raw Jev answers (gate probabilities, usage).
+* ``llm_judge_qualitative_annotations.jsonl`` — the same judgments grouped per
+  text in the human annotation format, so the judge's labels can be compared
+  directly against an annotator's file.
+* ``llm_judge_report.json`` — the agreement report.
 """
 
 from __future__ import annotations
@@ -61,6 +61,7 @@ import argparse
 import hashlib
 import json
 import os
+import re
 import sys
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
@@ -78,11 +79,10 @@ from run_streamlit import load_existing_annotations
 # Configuration
 # ---------------------------------------------------------------------------
 
-_PROJECT_ROOT = Path(__file__).resolve().parent.parent
-load_dotenv(_PROJECT_ROOT / ".env.local")
+load_dotenv(Path(__file__).resolve().parent.parent / ".env.local")
 
-# Native TypeSafe API (TYPESAFE_API_KEY). Pinned to a version id so confidence
-# thresholds stay tuned against one model version; the response's `model` field
+# Native TypeSafe API (TYPESAFE_API_KEY). Pinned to a version id so the
+# calibration stays tied to one model version; the response's `model` field
 # records the version that actually answered.
 TYPESAFE_JEV_MODEL = os.getenv("TYPESAFE_JEV_MODEL", "jev-1.14.0")
 # OpenRouter-compatible endpoint (OPENROUTER_API_KEY_ME), used only when no
@@ -90,31 +90,42 @@ TYPESAFE_JEV_MODEL = os.getenv("TYPESAFE_JEV_MODEL", "jev-1.14.0")
 OPENROUTER_BASE_URL = "https://openrouter.ai/api"
 OPENROUTER_JEV_MODEL = os.getenv("OPENROUTER_JEV_MODEL", "~typesafe/jev-latest")
 
+# Calibration reference: median / majority of the three annotators after the
+# discussion round (see human_agreement_report_revised.json).
 DEFAULT_ANNOTATIONS_PATH = (
-    "RAG Analysis/human_annotations/Jannes_qualitative_annotations.jsonl"
+    "RAG Analysis/human_annotations/revised/consensus_reference_annotations.jsonl"
 )
 DEFAULT_OUTPUT_ROOT = "RAG Analysis"
-DEFAULT_OUTPUT_LOG = "RAG Analysis/llm_judge_annotations.jsonl"
-# Human-annotation-style snapshot: one JSON object per text (matching the
-# files produced by run_streamlit.py), with the judge labels placed in the
-# same R_top / R_ideo / A_caus keys so the two can be diffed directly.
+FLAT_SNAPSHOT_NAME = "llm_judge_annotations.jsonl"
 GROUPED_SNAPSHOT_NAME = "llm_judge_qualitative_annotations.jsonl"
+REPORT_NAME = "llm_judge_report.json"
 
-DEFAULT_A_CAUS_THRESHOLD = 0.5
-DEFAULT_SCORE_LABEL_MODE = "argmax"  # "argmax" | "round"
-LOW_CONFIDENCE_FLOOR = 0.5
-NEAR_THRESHOLD_MARGIN = 0.15  # |noul - a_caus_threshold| below this is flagged
-MAX_ATTEMPTS = 5
+DIMENSIONS = ("R_top", "R_ideo", "A_caus")
+ORDINAL_DIMENSIONS = ("R_top", "R_ideo")
+KAPPA_TARGET = 0.70  # below this the judge lacks construct validity
+
+# Ladder gates, lowest level first: R_top level = 1 + the highest gate answered
+# yes (none: 1). R_ideo is derived in derive_labels().
+R_TOP_GATES = ("T_domain", "T_subarea", "T_item", "T_central")
+R_IDEO_GATES = ("I_procedural", "I_evaluative", "I_stance", "I_party")
+R_IDEO_LADDER = ("I_evaluative", "I_stance", "I_party")  # levels 3, 4, 5
+GATE_THRESHOLD = 0.5  # Noul probability >= threshold -> gate is yes
+
+A_CAUS_THRESHOLD = 0.5  # Noul probability >= threshold -> A_caus = 1
+
+# Trust-or-escalate: a dimension is flagged for human review when any of its
+# gates sits within this distance of the threshold, or the ladder contradicts
+# itself (a higher level answered yes while a lower one is no). R_top has four
+# gates that are rarely all decisive, so its band is narrower; on the 125
+# consensus chunks this routes R_top 39 %, R_ideo 32 %, A_caus 13 % to review.
+REVIEW_BANDS = {"R_top": 0.10, "R_ideo": 0.20, "A_caus": 0.20}
+
 REQUEST_TIMEOUT_SECONDS = 180  # Jev calls can take ~60s; keep headroom
-
 # The SDK owns backoff, jitter, and Retry-After handling. `timeout=None` keeps
 # the retry budget unbounded so a slow first attempt does not suppress retries;
 # each individual attempt is still capped by the client timeout above.
 RETRY_POLICY = RetryPolicy(
-    max_retries=MAX_ATTEMPTS - 1,
-    backoff_initial=1.0,
-    backoff_max=30.0,
-    timeout=None,
+    max_retries=4, backoff_initial=1.0, backoff_max=30.0, timeout=None
 )
 
 EVALUATION_TASK = (
@@ -129,267 +140,210 @@ EVALUATION_TASK = (
     "question rubrics are written in English; the texts themselves are German."
 )
 
-# Rubric level texts ported from the human annotation guidelines, restructured
-# per the TypeSafe docs:
-#   * instructions are objects: "question" + "compare"/"inspect" + "focus", and
-#     reference state fields via backticked paths (e.g. `retrieved_chunk.text`)
-#   * Score levels are {"what", "examples"} objects — the documented remedy when
-#     the model splits probability between neighbouring levels; same field names
-#     on every level so the model can compare like with like
-# Score criteria are ordered ascending: criteria[0] is level 1 (Jev levels are
-# 0-indexed; derive_labels() shifts back to the 1-based human scales).
+# State for the content questions (R_top / R_ideo) in --state-mode minimal: only
+# what the human annotators judged. They were told to rate the chunk text and to
+# ignore speaker metadata, and the rubrics never use the generator justification.
+CONTENT_TASK = (
+    "Comparing a passage from German parliamentary speeches with a German "
+    "political text (social media post, speech snippet, or quote). `input_text` "
+    "is the political text. `retrieved_chunk.text` is the passage; it may begin "
+    "or end mid-sentence and contains sentence markers such as [I-3]. Judge only "
+    "what is written in the two texts. The question rubrics are written in "
+    "English; the texts themselves are German."
+)
+
+# Calibrated ladder questions. Structure follows the TypeSafe docs: instructions
+# are objects ("question" + "compare"/"inspect" + "focus") that reference state
+# fields by backticked path, and every question has an explicit true/false test.
+# The R_ideo gates carry a burden-of-proof focus ("false unless the text itself
+# clearly shows it"): without it the model said yes far more often than the
+# annotators (I_party 70 % vs 19 %). To iterate, edit this constant and re-run;
+# the questions hash stored with every result identifies the version.
 JEV_QUESTIONS = {
-    "R_top": {
-        "type": "score",
+    "T_domain": {
+        "type": "noul",
         "instructions": {
-            "question": "How topically relevant is the retrieved chunk to the input text?",
-            "compare": ["`input_text`", "`retrieved_chunk.text`"],
-            "focus": (
-                "Judge strictly by specific policy target and legislative "
-                "mechanism, not by broad theme."
-            ),
+            "question": "Do the input text and the chunk belong to the same policy field, so that the chunk is part of the same area of debate?",
+            "compare": [
+                "`input_text`",
+                "`retrieved_chunk.text`"
+            ],
+            "focus": "Judge subject matter only: ignore stance, tone and ideology - opposite positions on the same measure are the same topic. First identify the SPECIFIC ITEM the input text takes a position on (a named bill or measure, a concrete event, a figure or proposal, an action by a named person or body), not just its general theme."
         },
-        "criteria": [
-            {
-                "what": "IRRELEVANT — completely different topic, domain, or societal sphere.",
-                "examples": [
-                    "The input text debates pension reform; the chunk is about fisheries quotas."
-                ],
-            },
-            {
-                "what": (
-                    "BROAD THEMATIC DOMAIN ONLY — shares a high-level domain "
-                    "(e.g. public finance, social welfare, environment), but "
-                    "targets different policies, different debates, or "
-                    "different eras."
-                ),
-                "examples": [
-                    "The input text is a generic complaint about taxes or "
-                    "costs; the chunk debates a specific federal budget or the "
-                    "Schuldenbremse."
-                ],
-            },
-            {
-                "what": (
-                    "RELATED SUB-ISSUE — same sub-policy domain, but different "
-                    "specific mechanisms, opposing bills, or non-overlapping "
-                    "details."
-                ),
-                "examples": [
-                    "Both texts concern labour-market policy, but the input "
-                    "text debates the minimum wage while the chunk debates "
-                    "unemployment-benefit sanctions."
-                ],
-            },
-            {
-                "what": (
-                    "DIRECT POLICY OVERLAP — both texts debate the exact same "
-                    "policy measure, bill, or specific institutional "
-                    "mechanism, differing only in rhetorical framing."
-                ),
-                "examples": [
-                    "Both texts specifically debate the Schuldenbremse or the "
-                    "Bürgergeld rates."
-                ],
-            },
-            {
-                "what": (
-                    "IDENTICAL TARGET — the exact same legislative bill, "
-                    "motion, entity, or specific quote is referenced in both "
-                    "texts."
-                ),
-                "examples": [
-                    "Both texts reference the same named amendment or the same "
-                    "quoted statement."
-                ],
-            },
-        ],
+        "criteria": {
+            "true": "Both belong to the same concrete policy field (for example both are about criminal law, the pandemic, climate and energy, migration, the armed forces, pensions, a named conflict), even if they discuss different measures within it.",
+            "false": "They belong to different fields, or the only overlap is something generic: both are 'politics', both involve the same party or person, or they share a word. Money, taxes, costs or government spending count as a shared field only when the input text is itself about that subject (for example public debt, or who pays for state spending); a passing mention of costs in an input text about another issue does not. If the input text is about one concrete issue and the chunk about another (for example consulting contracts for a ministry vs. an excess-profit tax; protest forms vs. extremist organisations), answer false."
+        }
     },
-    "R_ideo": {
-        "type": "score",
+    "T_subarea": {
+        "type": "noul",
         "instructions": {
-            "question": (
-                "How ideologically specific is the retrieved chunk on its own "
-                "merits, as evidence about political positions?"
-            ),
-            "inspect": "`retrieved_chunk.text`",
-            "focus": (
-                "Judge the chunk's own content, not the input text and not "
-                "the generator justification."
-            ),
+            "question": "Do the input text and the chunk argue about the same narrow policy question?",
+            "compare": [
+                "`input_text`",
+                "`retrieved_chunk.text`"
+            ],
+            "focus": "Judge subject matter only: ignore stance, tone and ideology - opposite positions on the same measure are the same topic. First identify the SPECIFIC ITEM the input text takes a position on (a named bill or measure, a concrete event, a figure or proposal, an action by a named person or body), not just its general theme."
         },
-        "criteria": [
-            {
-                "what": (
-                    "PROCEDURAL / NEUTRAL — bureaucratic announcements, "
-                    "committee schedules, uncontroversial administrative "
-                    "statements."
-                ),
-                "examples": [
-                    "A speaker announcing the next agenda item or a vote " "schedule."
-                ],
-            },
-            {
-                "what": (
-                    "DESCRIPTIVE REPORTING — mentions political conflict "
-                    "objectively without taking an ideological stance."
-                ),
-                "examples": [
-                    "A neutral summary that two parties disagree about a bill."
-                ],
-            },
-            {
-                "what": (
-                    "VALUE-LADEN RHETORIC — polarized adjectives, general "
-                    "critique, or emotional appeals without a clear "
-                    "programmatic ideology."
-                ),
-                "examples": [
-                    "Calling a policy 'a disgrace' or 'common sense' without "
-                    "any stated programme."
-                ],
-            },
-            {
-                "what": (
-                    "DISTINCT IDEOLOGICAL POSITION — a clear, partisan policy "
-                    "stance (e.g. fiscal hawkishness, deregulation, welfare "
-                    "expansion) expressed in parliamentary debate or public "
-                    "speech."
-                ),
-                "examples": [
-                    "A speaker declaring 'Not with us as CDU/CSU!' on the "
-                    "parliament floor — debate rhetoric, not formal doctrine."
-                ],
-            },
-            {
-                "what": (
-                    "BINDING MANIFESTO / FORMAL PROGRAMME — explicit reference "
-                    "to official party programmes, election manifestos, formal "
-                    "coalition agreements, or binding roll-call votes."
-                ),
-                "examples": [
-                    "Quoting the coalition agreement or a party's election "
-                    "manifesto by name."
-                ],
-            },
-        ],
+        "criteria": {
+            "true": "The chunk's main subject is the same narrow policy question as the input text's: the same kind of decision or problem (for example how a specific cost is shared, whether a specific obligation should exist, how a specific programme is financed), even if the chunk concerns another detail, institution or year than the input text's own item.",
+            "false": "The chunk's main subject is a different question that merely sits under the same umbrella theme (for example the input text is about paying for tests and the chunk is about a vaccination mandate; or both are about 'the military' but one is about equipment and the other about conscription), or it touches the shared theme only in passing."
+        }
+    },
+    "T_item": {
+        "type": "noul",
+        "instructions": {
+            "question": "Does the chunk discuss the specific item that the input text takes a position on?",
+            "compare": [
+                "`input_text`",
+                "`retrieved_chunk.text`"
+            ],
+            "focus": "Judge subject matter only: ignore stance, tone and ideology - opposite positions on the same measure are the same topic. First identify the SPECIFIC ITEM the input text takes a position on (a named bill or measure, a concrete event, a figure or proposal, an action by a named person or body), not just its general theme."
+        },
+        "criteria": {
+            "true": "The chunk addresses that same bill, measure, event, figure or named action - at least as one part of its content, from any angle and with any position.",
+            "false": "The chunk does not discuss that item: it covers other measures, a more general question, or a different instance of the same kind of thing."
+        }
+    },
+    "T_central": {
+        "type": "noul",
+        "instructions": {
+            "question": "Is the chunk mainly about the same bill, event, claim or decision that the input text refers to, and does it speak to the point the input text makes?",
+            "compare": [
+                "`input_text`",
+                "`retrieved_chunk.text`"
+            ],
+            "focus": "Judge subject matter only: ignore stance, tone and ideology - opposite positions on the same measure are the same topic. First identify the SPECIFIC ITEM the input text takes a position on (a named bill or measure, a concrete event, a figure or proposal, an action by a named person or body), not just its general theme."
+        },
+        "criteria": {
+            "true": "The chunk's main subject is that same item - named or unmistakably identified - and it addresses the specific point or claim the input text makes about it (support or opposition does not matter). A summary of the chunk would name this item as its main subject.",
+            "false": "The chunk covers the same wider issue but a different point (for example a vaccination mandate when the input text is about a statement on vaccination data), mentions the item only briefly, treats it as one of several topics in a broad speech, or is only the occasion of the debate."
+        }
+    },
+    "I_procedural": {
+        "type": "noul",
+        "instructions": {
+            "question": "Is the chunk only floor management or formalities?",
+            "inspect": "`retrieved_chunk.text`"
+        },
+        "criteria": {
+            "true": "The chunk consists of procedure only: addressing the chair, thanks, greetings, announcing agenda items or votes, with no substantive statement about policy.",
+            "false": "The chunk contains substantive statements about policy, facts or political actors."
+        }
+    },
+    "I_evaluative": {
+        "type": "noul",
+        "instructions": {
+            "question": "Does the speaker argue, evaluate or demand something about policy?",
+            "inspect": "`retrieved_chunk.text`"
+        },
+        "criteria": {
+            "true": "The speaker argues for or against a policy, judges the actions of political actors, or makes demands.",
+            "false": "The speaker only reports facts, procedures or the positions of others without evaluating or demanding anything."
+        }
+    },
+    "I_stance": {
+        "type": "noul",
+        "instructions": {
+            "question": "Does the speaker take a strong, partisan side on a contested political question?",
+            "inspect": "`retrieved_chunk.text`",
+            "focus": "Burden of proof: the answer is false unless the text itself clearly shows it. Answer true only if the passage leaves no reasonable doubt on this. If the passage is ambiguous, mixed or only partly fits, answer false."
+        },
+        "criteria": {
+            "true": "The speaker takes a clear side with charged or polarising language, sweeping judgements of political opponents or of the government's record, or a programmatic demand typical of one political camp (for example market-liberal, welfare-state, nationalist, ecological, law-and-order). The partisanship is the point of the passage.",
+            "false": "The speaker disagrees or criticises in a measured, technical or procedural way (rebutting a motion point by point, legal or fact-based reasoning, explaining or defending what the government did), expresses empathy or personal views, weighs pros and cons, or appeals for cross-party unity. Disagreement alone is not enough."
+        }
+    },
+    "I_party": {
+        "type": "noul",
+        "instructions": {
+            "question": "Does the speaker declare what their own party or faction stands for, demands or rejects?",
+            "inspect": "`retrieved_chunk.text`",
+            "focus": "Burden of proof: the answer is false unless the text itself clearly shows it. Answer true only if the passage leaves no reasonable doubt on this. If the passage is ambiguous, mixed or only partly fits, answer false."
+        },
+        "criteria": {
+            "true": "Both hold: (1) the chunk text explicitly names the speaker's own party or faction as the holder of the position ('we as the Left', 'for us in the CDU/CSU', 'we, the AfD', 'my faction', 'our motion') and (2) it states a programmatic position of that party - what it demands, rejects, proposes or will do ('we reject this', 'we demand', 'we will vote against', 'our proposal is').",
+            "false": "At least one fails. In particular these do NOT count: a generic 'we' (Germany, the Bundestag, everyone: 'we need a new mobility policy'); speaking as a minister or for the government; naming other parties only to attack or address them; a passing mention of one's own party inside an attack on others; a position that is merely typical of the party but never tied to it in the text."
+        }
     },
     "A_caus": {
         "type": "noul",
         "instructions": {
-            "question": (
-                "Did the generator justification demonstrably rely on this "
-                "specific retrieved chunk?"
-            ),
-            "compare": ["`generator_justification`", "`retrieved_chunk.text`"],
-            "focus": (
-                "Require an explicit citation of this chunk's identifier "
-                "(`retrieved_chunk.citation_forms`) and arguments derived "
-                "from facts, figures, or claims unique to this chunk."
-            ),
+            "question": "Did the generator justification demonstrably draw on this specific retrieved chunk?",
+            "compare": [
+                "`generator_justification`",
+                "`retrieved_chunk`"
+            ],
+            "focus": "The justification refers to retrieved reference chunks by number, by speaker name, or by the party whose reference statements it invokes. Decide whether it refers to THIS chunk (see `retrieved_chunk.citation_forms`, `retrieved_chunk.speaker`, `retrieved_chunk.party`). If the justification cites other chunks by number but not this chunk's number or speaker, answer false even when this chunk's party is also named - a shared party name is then only context. A party named only as the camp the input text itself belongs to is not a reference to a chunk."
         },
         "criteria": {
-            "true": (
-                "The justification explicitly cites this chunk by one of "
-                "`retrieved_chunk.citation_forms` AND derives its arguments "
-                "from facts, figures, or claims unique to this chunk."
-            ),
-            "false": (
-                "The justification does not explicitly cite this chunk's "
-                "identifier, or uses generic reasoning that could have been "
-                "produced from the input text alone or from model "
-                "pre-training."
-            ),
-        },
-    },
-}
-
-# Expected shape of the three questions (used to validate --questions-file and
-# the answers that come back).
-_EXPECTED_QUESTIONS = {
-    "R_top": {"type": "score", "levels": 5},
-    "R_ideo": {"type": "score", "levels": 5},
-    "A_caus": {"type": "noul"},
-}
-SCORE_LEVELS = {
-    name: cfg["levels"] for name, cfg in _EXPECTED_QUESTIONS.items() if "levels" in cfg
+            "true": "The justification refers to this chunk: it cites this chunk's number in any form (a single reference, a list such as '[2, 3]', 'reference [2]', 'anchor 2', 'Chunk 2'), OR it names this chunk's speaker, OR it invokes the statements or stance of this chunk's party as comparison evidence (e.g. 'echoing the SPD and FDP speakers in the reference anchors', 'similar to the AfD speakers') in a way that matches the content of this chunk.",
+            "false": "The justification does not refer to this chunk: its number is not cited, its speaker is not named, and its party is not invoked as reference evidence (a party mentioned only as the label for the input text's own orientation does not count; neither does a party name that merely overlaps with chunks cited by other numbers), or it relies on other chunks or on generic reasoning that could have been produced from the input text and pre-training alone."
+        }
+    }
 }
 
 
 # ---------------------------------------------------------------------------
-# Question & state building
+# Citation evidence and state building
 # ---------------------------------------------------------------------------
 
 
-def _is_nonempty_string(value: object) -> bool:
-    return isinstance(value, str) and bool(value.strip())
+# Numeric references to retrieved chunks: bracket groups such as "[2]", "[2, 3]",
+# "[1-3]", "[1 and 4]" (but not sentence markers like "[I-4]"), and keyword forms
+# such as "chunk 2", "anchors 1 and 3". Superset of the single "[n]" pattern in
+# human_annotations/update_acaus_from_citations.py, which misses list citations.
+_BRACKET_CITATION = re.compile(r"\[\s*(\d+(?:\s*(?:,|;|&|and|-|–|to)\s*\d+)*)\s*\]")
+_KEYWORD_CITATION = re.compile(
+    r"\b(?:chunks?|anchors?|references?|passages?|excerpts?)\s*(?:no\.?\s*|#\s*)?"
+    r"(\d+(?:\s*(?:,|;|&|and|-|–|to)\s*\d+)*)",
+    re.IGNORECASE,
+)
+_RANGE_SEPARATORS = re.compile(r"\s*(?:-|–|to)\s*")
 
 
-def _is_valid_instructions(value: object) -> bool:
-    """Instructions may be a string or a structured object with a question."""
-    if _is_nonempty_string(value):
-        return True
-    return isinstance(value, dict) and _is_nonempty_string(value.get("question"))
+def _expand_reference_group(group: str) -> set[int]:
+    numbers: set[int] = set()
+    for part in re.split(r"\s*(?:,|;|&|and)\s*", group.strip()):
+        bounds = [int(x) for x in re.findall(r"\d+", part)]
+        if (
+            len(bounds) == 2
+            and _RANGE_SEPARATORS.search(part)
+            and bounds[0] <= bounds[1]
+        ):
+            numbers.update(range(bounds[0], bounds[1] + 1))
+        else:
+            numbers.update(bounds)
+    return numbers
 
 
-def _is_valid_score_level(value: object) -> bool:
-    """A Score level may be a string or a structured object with a 'what'."""
-    if _is_nonempty_string(value):
-        return True
-    return isinstance(value, dict) and _is_nonempty_string(value.get("what"))
+def cited_chunk_numbers(justification: str) -> set[int]:
+    """1-based chunk numbers the justification cites by number, in any form."""
+    cited: set[int] = set()
+    for pattern in (_BRACKET_CITATION, _KEYWORD_CITATION):
+        for match in pattern.finditer(justification or ""):
+            cited |= _expand_reference_group(match.group(1))
+    return cited
 
 
-def _validate_questions(questions: dict) -> None:
-    """Ensure the question set matches the metrics' fixed label scales."""
-    if not isinstance(questions, dict):
-        raise ValueError(
-            "Questions definition must be a JSON object keyed by question name"
-        )
-    for name, expected in _EXPECTED_QUESTIONS.items():
-        q = questions.get(name)
-        if not isinstance(q, dict):
-            raise ValueError(f"Question '{name}' missing from questions definition")
-        if q.get("type") != expected["type"]:
-            raise ValueError(
-                f"Question '{name}' must be of type '{expected['type']}', "
-                f"got {q.get('type')!r}"
-            )
-        if not _is_valid_instructions(q.get("instructions")):
-            raise ValueError(
-                f"Question '{name}' needs 'instructions' as a non-empty string "
-                "or an object with a non-empty 'question' field"
-            )
-        criteria = q.get("criteria")
-        if expected["type"] == "score":
-            n_levels = expected["levels"]
-            if not isinstance(criteria, list) or len(criteria) != n_levels:
-                raise ValueError(
-                    f"Question '{name}' needs a criteria list with exactly "
-                    f"{n_levels} level descriptions (ascending from level 1)"
-                )
-            if not all(_is_valid_score_level(c) for c in criteria):
-                raise ValueError(
-                    f"Question '{name}' criteria must be non-empty strings or "
-                    "objects with a non-empty 'what' field"
-                )
-        else:  # noul
-            if not isinstance(criteria, dict):
-                raise ValueError(f"Question '{name}' needs criteria.true/false")
-            for side in ("true", "false"):
-                if not _is_nonempty_string(criteria.get(side)):
-                    raise ValueError(
-                        f"Question '{name}' needs non-empty criteria.{side}"
-                    )
+def citation_info(justification: str, chunk_number: int, speaker: str) -> dict:
+    """Deterministic evidence that the justification refers to one chunk.
 
-
-def build_questions(questions_file: str | None) -> tuple[dict, str | None]:
-    """Return the question set (default or from file) after validation."""
-    if questions_file:
-        questions = json.loads(Path(questions_file).read_text(encoding="utf-8"))
-    else:
-        questions = json.loads(json.dumps(JEV_QUESTIONS))  # deep copy
-    _validate_questions(questions)
-    return questions, questions_file
+    Reproduces how the human A_caus labels behave (checked on the consensus
+    set): a number-cited chunk is 1; once the justification cites chunks by
+    number, uncited chunks are 0 unless their speaker is named; without any
+    numeric citation the call is left to the model (speaker / party reference).
+    """
+    cited = cited_chunk_numbers(justification)
+    last_name = (speaker or "").strip().split(" ")[-1] if speaker else ""
+    named = len(last_name) >= 3 and bool(
+        re.search(rf"\b{re.escape(last_name)}\b", justification or "")
+    )
+    return {
+        "cited_by_number": chunk_number in cited,
+        "any_numeric_citation": bool(cited),
+        "speaker_named": named,
+    }
 
 
 def build_state(record: dict, chunk: dict) -> dict:
@@ -401,21 +355,24 @@ def build_state(record: dict, chunk: dict) -> dict:
     are included.
     """
     meta = chunk.get("chunk_metadata") or {}
-    chunk_idx_1based = chunk.get("chunk_index", 0) + 1
+    number = chunk.get("chunk_index", 0) + 1
     rag = (record.get("source_context") or {}).get("rag") or {}
     justification = (
         rag.get("justification") or ""
     ).strip() or "No justification provided."
 
     retrieved_chunk = {
-        "chunk_identifier": f"[{chunk_idx_1based}]",
-        "citation_forms": f'"[{chunk_idx_1based}]" or "Chunk {chunk_idx_1based}"',
+        "chunk_identifier": f"[{number}]",
+        "citation_forms": (
+            f'"[{number}]", a list containing it such as "[{number}, ...]", '
+            f'"reference {number}", "anchor {number}" or "Chunk {number}"'
+        ),
         "party": meta.get("party", "Unknown"),
         "speaker": meta.get("speaker", "Unknown"),
         "source": meta.get("source", "Unknown"),
     }
     if meta.get("date"):
-        retrieved_chunk["date"] = str(meta.get("date"))
+        retrieved_chunk["date"] = str(meta["date"])
     retrieved_chunk["text"] = (chunk.get("chunk_text") or "").strip()
 
     return {
@@ -423,6 +380,30 @@ def build_state(record: dict, chunk: dict) -> dict:
         "input_text": (record.get("input_text") or "").strip(),
         "retrieved_chunk": retrieved_chunk,
         "generator_justification": justification,
+    }
+
+
+def build_nometa_state(record: dict, chunk: dict) -> dict:
+    """Full state minus the chunk's metadata (party, speaker, source, identifier).
+
+    Keeps the original task text and the generator justification, so the only
+    difference to the full state is the annotators' rule 'ignore speaker metadata'.
+    """
+    state = build_state(record, chunk)
+    state["retrieved_chunk"] = {"text": state["retrieved_chunk"]["text"]}
+    return state
+
+
+def build_content_state(record: dict, chunk: dict) -> dict:
+    """Minimal state for the content questions: the two texts and nothing else.
+
+    No party, speaker, source, chunk identifier or generator justification, so
+    the topical and ideological answers cannot lean on metadata.
+    """
+    return {
+        "evaluation_task": CONTENT_TASK,
+        "input_text": (record.get("input_text") or "").strip(),
+        "retrieved_chunk": {"text": (chunk.get("chunk_text") or "").strip()},
     }
 
 
@@ -435,92 +416,45 @@ def build_client(model: str | None) -> tuple[TypeSafeClient, str]:
     """Create the Jev client and resolve the model id to send.
 
     Prefers the native TypeSafe API (``TYPESAFE_API_KEY``); falls back to the
-    OpenRouter-compatible endpoint (``OPENROUTER_API_KEY_ME``) when no native
-    key is present. Returns the client and the resolved model id so callers can
-    record which model was requested; the response's ``model`` field records
-    the version that actually answered.
+    OpenRouter-compatible endpoint (``OPENROUTER_API_KEY_ME``).
     """
     typesafe_key = os.getenv("TYPESAFE_API_KEY", "").strip()
+    openrouter_key = os.getenv("OPENROUTER_API_KEY_ME", "").strip()
     if typesafe_key:
         resolved = model or TYPESAFE_JEV_MODEL
-        return (
-            TypeSafeClient(
-                api_key=typesafe_key,
-                model=resolved,
-                timeout=REQUEST_TIMEOUT_SECONDS,
-                retry=RETRY_POLICY,
-            ),
-            resolved,
-        )
-
-    openrouter_key = os.getenv("OPENROUTER_API_KEY_ME", "").strip()
-    if openrouter_key:
+        options = {"api_key": typesafe_key}
+    elif openrouter_key:
         resolved = model or OPENROUTER_JEV_MODEL
-        return (
-            TypeSafeClient(
-                api_key=openrouter_key,
-                base_url=OPENROUTER_BASE_URL,
-                model=resolved,
-                timeout=REQUEST_TIMEOUT_SECONDS,
-                retry=RETRY_POLICY,
-            ),
-            resolved,
+        options = {"api_key": openrouter_key, "base_url": OPENROUTER_BASE_URL}
+    else:
+        raise SystemExit(
+            "Error: set TYPESAFE_API_KEY or OPENROUTER_API_KEY_ME in .env.local"
         )
-
-    raise SystemExit(
-        "Error: set TYPESAFE_API_KEY or OPENROUTER_API_KEY_ME in .env.local"
+    client = TypeSafeClient(
+        model=resolved,
+        timeout=REQUEST_TIMEOUT_SECONDS,
+        retry=RETRY_POLICY,
+        **options,
     )
+    return client, resolved
 
 
 def judge_chunk(
-    client: TypeSafeClient,
-    state: dict,
-    questions: dict,
-    model: str,
+    client: TypeSafeClient, state: dict, questions: dict, model: str
 ) -> dict:
     """Judge one chunk via the SDK; returns {'answers', 'usage', 'model'}.
 
-    The SDK already validates the response against its answer schema; the
-    checks below only guard the fields the metrics rely on. Answers are
-    converted to plain dicts so the raw values can be stored in the JSONL and
-    re-derived offline.
+    The SDK validates the response against its answer schema; answers are
+    converted to plain dicts so the raw values can be stored in the JSONL.
     """
     response = client.system_one(state=state, questions=questions, model=model)
 
-    validated: dict[str, dict] = {}
-    for name, expected in _EXPECTED_QUESTIONS.items():
-        ans = response.answers.get(name)
-        if ans is None or ans.type != expected["type"]:
-            raise RuntimeError(f"Missing or malformed answer for '{name}': {ans!r}")
-        validated[name] = ans.model_dump()
-
-    for name, expected in _EXPECTED_QUESTIONS.items():
-        ans = validated[name]
-        if expected["type"] == "score":
-            score = ans.get("score")
-            if not isinstance(score, (int, float)) or isinstance(score, bool):
-                raise RuntimeError(f"Answer '{name}' has no numeric score")
-            probs = ans.get("probabilities")
-            if probs is not None:
-                if not isinstance(probs, dict):
-                    raise RuntimeError(f"Answer '{name}' has malformed probabilities")
-                for key, value in probs.items():
-                    if (
-                        not isinstance(value, (int, float))
-                        or isinstance(value, bool)
-                        or not 0 <= value <= 1
-                    ):
-                        raise RuntimeError(
-                            f"Answer '{name}' has invalid probability {key}={value!r}"
-                        )
-        else:  # noul
-            noul = ans.get("noul")
-            if (
-                not isinstance(noul, (int, float))
-                or isinstance(noul, bool)
-                or not 0 <= noul <= 1
-            ):
-                raise RuntimeError(f"Answer '{name}' has no valid noul probability")
+    answers: dict[str, dict] = {}
+    for name, question in questions.items():
+        answer = response.answers.get(name)
+        if answer is None or answer.type != question["type"]:
+            raise RuntimeError(f"Missing or malformed answer for '{name}': {answer!r}")
+        answers[name] = answer.model_dump()
 
     usage = response.usage.model_dump()
     # The native TypeSafe API reports tokens only; OpenRouter also reports cost.
@@ -528,68 +462,112 @@ def judge_chunk(
     if raw_usage.get("cost") is not None:
         usage["cost"] = raw_usage["cost"]
 
-    return {"answers": validated, "usage": usage, "model": response.model}
+    return {"answers": answers, "usage": usage, "model": response.model}
 
 
 # ---------------------------------------------------------------------------
-# Label derivation (raw probabilities -> integer labels on the human scales)
+# Label derivation (raw answers -> integer labels on the human scales)
 # ---------------------------------------------------------------------------
 
 
-def _score_label_from_probabilities(answer: dict, n_levels: int) -> int | None:
-    """Most probable level index (0-based) from a score answer, or None."""
-    probs = answer.get("probabilities")
-    if not isinstance(probs, dict) or not probs:
-        return None
-    best_idx: int | None = None
-    best_p = -1.0
-    for key, value in probs.items():
-        try:
-            idx = int(key)
-            p = float(value)
-        except TypeError, ValueError:
-            continue
-        if not 0 <= idx < n_levels:
-            continue
-        if p > best_p:
-            best_p = p
-            best_idx = idx
-    return best_idx
+def apply_posthoc(raw_answers: dict, spec: dict) -> int:
+    """Level from a fitted ordinal mapping (see ``calibrate.py --export-posthoc``).
 
-
-def derive_score_label(answer: dict, mode: str, n_levels: int) -> int:
-    """Integer label (1-based) from a Jev score answer.
-
-    Jev score answers are 0-indexed: criteria[0] is level 1. 'argmax' picks
-    the most probable level; 'round' uses the rounded probability-weighted
-    position. Both are shifted by +1 onto the human annotation scale.
+    Each threshold is a logistic model on the clipped gate logits; the level is
+    ``base`` plus the number of thresholds the chunk reaches.
     """
-    if mode == "argmax":
-        idx = _score_label_from_probabilities(answer, n_levels)
-        if idx is not None:
-            return idx + 1
-    score = float(answer.get("score", 0.0))
-    idx = int(score + 0.5)  # round half up, 0-based weighted position
-    return max(0, min(n_levels - 1, idx)) + 1
+    probs = np.clip([raw_answers[g]["noul"] for g in spec["gates"]], 0.02, 0.98)
+    logits = np.log(probs / (1 - probs))
+    level = spec["base"]
+    for threshold in spec["thresholds"]:
+        if "constant" in threshold:
+            level += int(threshold["constant"])
+        else:
+            z = float(np.dot(threshold["coef"], logits)) + threshold["intercept"]
+            level += int(z >= 0)
+    return level
 
 
-def derive_labels(
-    raw_answers: dict,
-    score_label_mode: str = DEFAULT_SCORE_LABEL_MODE,
-    a_caus_threshold: float = DEFAULT_A_CAUS_THRESHOLD,
-) -> dict:
-    """Turn raw Jev answers into integer labels on the human scales.
+def derive_labels(raw_answers: dict, citation: dict, posthoc: dict | None = None) -> dict:
+    """Turn the raw gate answers into integer labels on the human scales.
 
-    The rubric's hard gating rule is enforced
-    deterministically here, because System One questions are answered
-    independently and cannot see each other's answers.
+    R_top: 1 + the highest gate answered yes (domain, sub-area, item, central).
+
+    R_ideo: 5 = own-party position and a strong stance; 4 = strong stance;
+    3 = argues or evaluates; otherwise 1 (procedure only) or 2 (descriptive).
+
+    ``posthoc`` (optional, off by default) replaces the R_top / R_ideo labels of
+    the dimensions it contains with the fitted ordinal mapping.
+
+    A_caus: citations are checked deterministically (see ``citation_info``), as
+    the human labels behave. A chunk cited by number or whose speaker is named
+    is 1; once other chunks are cited by number, an uncited chunk is 0;
+    otherwise (no numeric citations) the model's probability decides.
     """
-    labels = {}
-    for dim, n_levels in SCORE_LEVELS.items():
-        labels[dim] = derive_score_label(raw_answers[dim], score_label_mode, n_levels)
-    noul = float(raw_answers["A_caus"].get("noul", 0.0))
-    labels["A_caus"] = 1 if noul >= a_caus_threshold else 0
+    yes = {
+        gate: raw_answers[gate]["noul"] >= GATE_THRESHOLD
+        for gate in (*R_TOP_GATES, *R_IDEO_GATES)
+        if gate in raw_answers  # I_procedural is optional (never fires in the data)
+    }
+    yes.setdefault("I_procedural", False)
+    labels = {
+        "R_top": 1
+        + max((i for i, gate in enumerate(R_TOP_GATES, start=1) if yes[gate]), default=0)
+    }
+    if yes["I_party"] and yes["I_stance"]:
+        labels["R_ideo"] = 5
+    elif yes["I_stance"] and yes["I_evaluative"]:
+        labels["R_ideo"] = 4
+    elif yes["I_evaluative"]:
+        labels["R_ideo"] = 3
+    else:
+        labels["R_ideo"] = 1 if yes["I_procedural"] else 2
+
+    if citation["cited_by_number"] or citation["speaker_named"]:
+        labels["A_caus"] = 1
+    elif citation["any_numeric_citation"]:
+        labels["A_caus"] = 0
+    else:
+        labels["A_caus"] = int(raw_answers["A_caus"]["noul"] >= A_CAUS_THRESHOLD)
+    for dim, spec in (posthoc or {}).items():
+        labels[dim] = apply_posthoc(raw_answers, spec)
     return labels
+
+
+def needs_review(raw_answers: dict, citation: dict) -> dict:
+    """Per-dimension flag: should a human check this chunk's label?
+
+    Selective escalation: the judge's label is trusted only where its gate
+    answers are decisive and consistent. Gates absent from ``raw_answers`` (an
+    older question set) are ignored.
+    """
+
+    def uncertain(gates: tuple[str, ...], band: float) -> bool:
+        probs = [raw_answers[g]["noul"] for g in gates if g in raw_answers]
+        if any(abs(p - GATE_THRESHOLD) < band for p in probs):
+            return True
+        answered = [p >= GATE_THRESHOLD for p in probs]
+        # inconsistent ladder: some higher gate yes after a lower gate no
+        return any(not lo and any(answered[i + 1 :]) for i, lo in enumerate(answered))
+
+    if (
+        citation["cited_by_number"]
+        or citation["speaker_named"]
+        or citation["any_numeric_citation"]
+    ):
+        a_caus = False  # decided deterministically from the citations
+    else:
+        a_caus = (
+            abs(raw_answers["A_caus"]["noul"] - A_CAUS_THRESHOLD)
+            < REVIEW_BANDS["A_caus"]
+        )
+    flags = {
+        "R_top": uncertain(R_TOP_GATES, REVIEW_BANDS["R_top"]),
+        "R_ideo": uncertain(R_IDEO_LADDER, REVIEW_BANDS["R_ideo"]),
+        "A_caus": a_caus,
+    }
+    flags["any"] = any(flags.values())
+    return flags
 
 
 # ---------------------------------------------------------------------------
@@ -598,166 +576,195 @@ def derive_labels(
 
 
 def run_judging(
-    args: argparse.Namespace,
-    run_snapshot_path: Path | None = None,
-    grouped_snapshot_path: Path | None = None,
+    args: argparse.Namespace, run_dir: Path
 ) -> tuple[list[dict], int, str]:
-    """Load annotations, judge chunks with Jev, write log, return results."""
+    """Load annotations, judge chunks with Jev, write snapshots, return results."""
     records = load_existing_annotations(args.annotations)
     if not records:
-        print("No human annotations found. Exiting.", file=sys.stderr)
+        print("No annotations found. Exiting.", file=sys.stderr)
         sys.exit(1)
 
-    # Flatten to (record, chunk) tasks
-    tasks = []
-    for _text_index, record in records.items():
-        for chunk in record.get("chunk_annotations", []):
-            tasks.append((record, chunk))
-
+    tasks = [
+        (record, chunk)
+        for record in records.values()
+        for chunk in record.get("chunk_annotations", [])
+    ]
     if args.limit:
         tasks = tasks[: args.limit]
 
-    # Question setup
-    questions, questions_file = build_questions(args.questions_file)
-    questions_hash = hashlib.sha256(
-        json.dumps(questions, sort_keys=True, ensure_ascii=False).encode("utf-8")
-    ).hexdigest()[:16]
-
-    # Jev client: the native TypeSafe API when TYPESAFE_API_KEY is set,
-    # otherwise the OpenRouter-compatible endpoint.
+    questions = load_questions(args.questions_file)
+    questions_hash = hash_questions(questions)
+    posthoc = load_posthoc(args.posthoc_model)
     client, args.model = build_client(args.model)
 
     print(f"Judge model: {args.model}")
-    print(
-        f"Questions hash: {questions_hash}"
-        + (f" ({questions_file})" if questions_file else " (embedded JEV_QUESTIONS)")
-    )
+    print(f"Questions hash: {questions_hash}")
+    print(f"State mode: {args.state_mode}")
     print(f"Judging {len(tasks)} chunk(s) at concurrency {args.concurrency}")
 
-    def _human(chunk: dict) -> dict:
-        return {k: chunk.get(k) for k in ("R_top", "R_ideo", "A_caus")}
-
     def _process(record: dict, chunk: dict) -> dict:
-        base = {
+        result = {
             "text_index": record.get("text_index"),
             "chunk_index": chunk.get("chunk_index"),
             "model": args.model,
             "questions_hash": questions_hash,
-            "questions_file": questions_file,
+            "state_mode": args.state_mode,
             "timestamp": datetime.now(timezone.utc).isoformat(),
+            "human": {dim: chunk.get(dim) for dim in DIMENSIONS},
         }
         try:
             state = build_state(record, chunk)
-            judged = judge_chunk(client, state, questions, args.model)
-            labels = derive_labels(
-                judged["answers"], args.score_label_mode, args.a_caus_threshold
+            if args.state_mode in ("minimal", "nometa"):
+                # content questions get a reduced state; A_caus keeps the full
+                # state (it needs the justification and chunk metadata)
+                content = {k: q for k, q in questions.items() if k != "A_caus"}
+                content_state = (
+                    build_content_state(record, chunk)
+                    if args.state_mode == "minimal"
+                    else build_nometa_state(record, chunk)
+                )
+                judged = judge_chunk(client, content_state, content, args.model)
+                if "A_caus" in questions:
+                    extra = judge_chunk(
+                        client, state, {"A_caus": questions["A_caus"]}, args.model
+                    )
+                    judged["answers"].update(extra["answers"])
+                    judged["usage"] = {
+                        k: (judged["usage"].get(k) or 0) + (extra["usage"].get(k) or 0)
+                        for k in judged["usage"]
+                    }
+            else:
+                judged = judge_chunk(client, state, questions, args.model)
+            citation = citation_info(
+                state["generator_justification"],
+                chunk.get("chunk_index", 0) + 1,
+                state["retrieved_chunk"]["speaker"],
             )
-            return {
-                **base,
-                "response_model": judged["model"],
-                "raw_answers": judged["answers"],
-                "derived_labels": labels,
-                "label_config": {
-                    "score_label_mode": args.score_label_mode,
-                    "a_caus_threshold": args.a_caus_threshold,
-                },
-                "usage": judged["usage"],
-                "human": _human(chunk),
-            }
+            result.update(
+                response_model=judged["model"],
+                raw_answers=judged["answers"],
+                citation=citation,
+                derived_labels=derive_labels(judged["answers"], citation, posthoc),
+                uncalibrated_labels=derive_labels(judged["answers"], citation) if posthoc else None,
+                needs_review=needs_review(judged["answers"], citation),
+                usage=judged["usage"],
+            )
         except Exception as e:  # noqa: BLE001
-            return {**base, "error": str(e), "human": _human(chunk)}
+            result["error"] = str(e)
+        return result
 
-    results: list[dict] = []
-    failed = 0
+    with ThreadPoolExecutor(max_workers=args.concurrency) as executor:
+        futures = [executor.submit(_process, r, c) for r, c in tasks]
+        results = [
+            f.result()
+            for f in tqdm(as_completed(futures), total=len(futures), desc="Judging")
+        ]
+    failed = sum("error" in r for r in results)
 
-    if args.concurrency > 1:
-        with ThreadPoolExecutor(max_workers=args.concurrency) as executor:
-            futures = {executor.submit(_process, r, c): (r, c) for r, c in tasks}
-            for future in tqdm(
-                as_completed(futures), total=len(futures), desc="Judging chunks"
-            ):
-                res = future.result()
-                results.append(res)
-                if "error" in res:
-                    failed += 1
-    else:
-        for record, chunk in tqdm(tasks, desc="Judging chunks"):
-            res = _process(record, chunk)
-            results.append(res)
-            if "error" in res:
-                failed += 1
-
-    # Append to output log
-    output_path = Path(args.output)
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-    with output_path.open("a", encoding="utf-8") as handle:
-        for res in results:
-            handle.write(json.dumps(res, ensure_ascii=False) + "\n")
-
-    # Write per-run snapshot into the run output folder
-    if run_snapshot_path:
-        run_snapshot_path.parent.mkdir(parents=True, exist_ok=True)
-        with run_snapshot_path.open("w", encoding="utf-8") as handle:
-            for res in results:
-                handle.write(json.dumps(res, ensure_ascii=False) + "\n")
-        print(f"Flat annotations saved to: {run_snapshot_path}")
-
-    # Write the human-annotation-style snapshot (one line per text) so the
-    # judge labels can be compared against an annotator's file directly.
-    if grouped_snapshot_path:
-        grouped_records = build_judge_annotation_records(results, records, args.model)
-        grouped_snapshot_path.parent.mkdir(parents=True, exist_ok=True)
-        with grouped_snapshot_path.open("w", encoding="utf-8") as handle:
-            for rec in grouped_records:
-                handle.write(json.dumps(rec, ensure_ascii=False) + "\n")
-        print(f"Grouped annotations saved to: {grouped_snapshot_path}")
-
+    write_snapshots(results, records, args.model, run_dir)
     client.close()
     return results, failed, questions_hash
 
 
-def _chunk_lookup(records: dict) -> dict:
-    """Map (text_index, chunk_index) -> original chunk annotation dict."""
-    lookup = {}
-    for text_index, record in records.items():
-        for chunk in record.get("chunk_annotations", []):
-            lookup[(text_index, chunk.get("chunk_index"))] = chunk
-    return lookup
+def write_snapshots(
+    results: list[dict], records: dict, model: str, run_dir: Path
+) -> None:
+    run_dir.mkdir(parents=True, exist_ok=True)
+    flat_path = run_dir / FLAT_SNAPSHOT_NAME
+    grouped_path = run_dir / GROUPED_SNAPSHOT_NAME
+    _write_jsonl(flat_path, results)
+    _write_jsonl(grouped_path, build_judge_annotation_records(results, records, model))
+    print(f"Flat annotations saved to: {flat_path}")
+    print(f"Grouped annotations saved to: {grouped_path}")
+
+
+def load_posthoc(path: str | None) -> dict | None:
+    """Fitted ordinal mapping(s) written by ``calibrate.py --export-posthoc``."""
+    if not path:
+        return None
+    return json.loads(Path(path).read_text(encoding="utf-8"))
+
+
+def hash_questions(questions: dict) -> str:
+    return hashlib.sha256(
+        json.dumps(questions, sort_keys=True, ensure_ascii=False).encode("utf-8")
+    ).hexdigest()[:16]
+
+
+def load_questions(path: str | None) -> dict:
+    """The built-in ``JEV_QUESTIONS`` or a candidate set from a JSON file."""
+    if not path:
+        return JEV_QUESTIONS
+    questions = json.loads(Path(path).read_text(encoding="utf-8"))
+    required = {*R_TOP_GATES, *R_IDEO_LADDER, "A_caus"}
+    missing = required - set(questions)
+    if missing:
+        raise SystemExit(f"--questions-file is missing question(s): {sorted(missing)}")
+    return questions
+
+
+def rederive_results(
+    path: str, records: dict, posthoc: dict | None = None
+) -> tuple[list[dict], str]:
+    """Re-apply the current label rules to a stored run, without API calls.
+
+    Takes the flat JSONL of an earlier run (raw gate probabilities and citation
+    evidence are stored per chunk) and recomputes ``derived_labels`` and
+    ``needs_review`` with the present ``derive_labels`` / ``needs_review``.
+    """
+    human = {
+        (text_index, chunk.get("chunk_index")): {d: chunk.get(d) for d in DIMENSIONS}
+        for text_index, record in records.items()
+        for chunk in record.get("chunk_annotations", [])
+    }
+    results, hashes = [], set()
+    for line in Path(path).read_text(encoding="utf-8").splitlines():
+        if not line.strip():
+            continue
+        row = json.loads(line)
+        hashes.add(row.get("questions_hash"))
+        if "error" not in row:
+            row["derived_labels"] = derive_labels(row["raw_answers"], row["citation"], posthoc)
+            if posthoc:
+                row["uncalibrated_labels"] = derive_labels(row["raw_answers"], row["citation"])
+            row["needs_review"] = needs_review(row["raw_answers"], row["citation"])
+            row["human"] = human.get((row["text_index"], row["chunk_index"]), row["human"])
+        results.append(row)
+    return results, "+".join(sorted(h for h in hashes if h)) or "unknown"
+
+
+def _write_jsonl(path: Path, rows: list[dict]) -> None:
+    with path.open("w", encoding="utf-8") as handle:
+        for row in rows:
+            handle.write(json.dumps(row, ensure_ascii=False) + "\n")
 
 
 def build_judge_annotation_records(
-    results: list[dict],
-    records: dict,
-    model: str,
+    results: list[dict], records: dict, model: str
 ) -> list[dict]:
     """Group flat per-chunk judge results into human-style per-text records.
 
     Mirrors the shape written by ``run_streamlit.build_annotation_record`` so a
     judge run and a human annotator's file can be compared key-for-key. The
-    judge's integer labels live in the same ``R_top`` / ``R_ideo`` / ``A_caus``
-    fields; the original human labels are kept under ``human_labels`` and the
-    raw probabilities under ``raw_answers`` so ``--rederive-from`` still works.
+    judge's labels live in the same ``R_top`` / ``R_ideo`` / ``A_caus`` fields;
+    the reference labels are kept under ``human_labels`` and the raw answers
+    under ``raw_answers``.
     """
-    chunk_lookup = _chunk_lookup(records)
+    chunk_lookup = {
+        (text_index, chunk.get("chunk_index")): chunk
+        for text_index, record in records.items()
+        for chunk in record.get("chunk_annotations", [])
+    }
 
     grouped: dict = {}
-    order: list = []
     for res in results:
-        text_index = res.get("text_index")
-        if text_index not in grouped:
-            grouped[text_index] = []
-            order.append(text_index)
-        grouped[text_index].append(res)
+        grouped.setdefault(res.get("text_index"), []).append(res)
 
     annotation_records = []
-    for text_index in order:
+    for text_index, entries in grouped.items():
         sample = records.get(text_index, {})
-        entries = sorted(
-            grouped[text_index],
-            key=lambda r: (r.get("chunk_index") is None, r.get("chunk_index")),
-        )
         chunk_annotations = []
-        for res in entries:
+        for res in sorted(entries, key=lambda r: r.get("chunk_index") or 0):
             chunk = chunk_lookup.get((text_index, res.get("chunk_index")), {})
             meta = chunk.get("chunk_metadata") or {}
             labels = res.get("derived_labels") or {}
@@ -775,38 +782,24 @@ def build_judge_annotation_records(
                 "A_caus": labels.get("A_caus"),
                 "notes": "",
                 "timestamp": res.get("timestamp"),
-                # Judge-only extras: not part of the human schema, kept so a
-                # grouped snapshot can be re-derived/audited offline.
+                # Judge-only extras, not part of the human schema.
                 "human_labels": res.get("human"),
                 "response_model": res.get("response_model"),
                 "raw_answers": res.get("raw_answers"),
-                "label_config": res.get("label_config"),
+                "citation": res.get("citation"),
+                "needs_review": res.get("needs_review"),
                 "usage": res.get("usage"),
             }
             if "error" in res:
                 annotation["error"] = res["error"]
             chunk_annotations.append(annotation)
 
-        source_context = sample.get("source_context") or {
-            "text_index": text_index,
-            "quadrant": None,
-            "input_metadata": {},
-            "ground_truth": {},
-            "metrics": {},
-            "baseline": {},
-            "rag": {},
-        }
-        sample_manifest = sample.get("sample_manifest") or {
-            "seed": None,
-            "sample_limit": None,
-            "text_index": text_index,
-        }
         annotation_records.append(
             {
                 "text_index": text_index,
                 "input_text": sample.get("input_text", ""),
-                "source_context": source_context,
-                "sample_manifest": sample_manifest,
+                "source_context": sample.get("source_context") or {},
+                "sample_manifest": sample.get("sample_manifest") or {},
                 "chunk_annotations": chunk_annotations,
                 "annotator": model,
                 "sample_notes": "",
@@ -816,110 +809,31 @@ def build_judge_annotation_records(
     return annotation_records
 
 
-def flatten_annotation_records(records: list[dict]) -> list[dict]:
-    """Flatten human-style grouped records into per-chunk judge results.
-
-    Inverse of ``build_judge_annotation_records``; lets ``--rederive-from``
-    read either the grouped or the flat snapshot.
-    """
-    results = []
-    for record in records:
-        if not isinstance(record.get("chunk_annotations"), list):
-            results.append(record)
-            continue
-        text_index = record.get("text_index")
-        for entry in record.get("chunk_annotations", []):
-            res = {
-                "text_index": text_index,
-                "chunk_index": entry.get("chunk_index"),
-                "response_model": entry.get("response_model"),
-                "raw_answers": entry.get("raw_answers"),
-                "derived_labels": {
-                    k: entry.get(k) for k in ("R_top", "R_ideo", "A_caus")
-                },
-                "label_config": entry.get("label_config"),
-                "usage": entry.get("usage"),
-                "timestamp": entry.get("timestamp"),
-                "human": entry.get("human_labels"),
-            }
-            if "error" in entry:
-                res["error"] = entry["error"]
-            results.append(res)
-    return results
-
-
-# ---------------------------------------------------------------------------
-# Offline re-derivation (no API calls)
-# ---------------------------------------------------------------------------
-
-
-def load_results_from_jsonl(path: str) -> list[dict]:
-    """Load previous run records (log or snapshot) from JSONL."""
-    results = []
-    with Path(path).open("r", encoding="utf-8") as handle:
-        for line in handle:
-            line = line.strip()
-            if not line:
-                continue
-            try:
-                record = json.loads(line)
-            except json.JSONDecodeError:
-                continue
-            if isinstance(record, dict):
-                results.append(record)
-    return results
-
-
-def rederive_labels_in_place(
-    results: list[dict], score_label_mode: str, a_caus_threshold: float
-) -> list[dict]:
-    """Recompute derived_labels from stored raw_answers under new settings."""
-    updated = []
-    for r in results:
-        if "error" in r or "raw_answers" not in r:
-            updated.append(r)
-            continue
-        r = dict(r)
-        r["derived_labels"] = derive_labels(
-            r["raw_answers"], score_label_mode, a_caus_threshold
-        )
-        r["label_config"] = {
-            "score_label_mode": score_label_mode,
-            "a_caus_threshold": a_caus_threshold,
-        }
-        updated.append(r)
-    return updated
-
-
 # ---------------------------------------------------------------------------
 # Metrics
 # ---------------------------------------------------------------------------
 
 
-def _safe_kappa(y1, y2, labels=[1, 2, 3, 4, 5], weights=None):
+def _safe_kappa(y1, y2, labels, weights=None):
     """Compute Cohen's kappa, handling the all-agree edge case."""
     k = cohen_kappa_score(y1, y2, labels=labels, weights=weights)
     if np.isnan(k):
-        if len(y1) > 0 and np.all(y1 == y2):
-            return 1.0
-        return None
+        return 1.0 if len(y1) > 0 and np.all(y1 == y2) else None
     return float(k)
 
 
 def compute_metrics(results: list[dict]) -> dict:
-    """Compute agreement metrics per dimension on the derived labels."""
-    dims = {
-        "R_top": {"ordinal": True, "labels": [1, 2, 3, 4, 5]},
-        "R_ideo": {"ordinal": True, "labels": [1, 2, 3, 4, 5]},
-        "A_caus": {"ordinal": False, "labels": [0, 1]},
-    }
+    """Compute agreement metrics per dimension on the derived labels.
+
+    A dimension without reference labels (unannotated chunks) maps to None.
+    """
     per_dim = {}
-    for dim, cfg in dims.items():
-        h_vals = []
-        j_vals = []
-        conf_vals = []
+    for dim in DIMENSIONS:
+        ordinal = dim in ORDINAL_DIMENSIONS
+        labels = [1, 2, 3, 4, 5] if ordinal else [0, 1]
+        h_vals, j_vals = [], []
         for r in results:
-            if "error" in r or "derived_labels" not in r:
+            if "error" in r:
                 continue
             h = (r.get("human") or {}).get(dim)
             j = r["derived_labels"].get(dim)
@@ -927,134 +841,61 @@ def compute_metrics(results: list[dict]) -> dict:
                 continue
             h_vals.append(int(h))
             j_vals.append(int(j))
-            conf = ((r.get("raw_answers") or {}).get(dim) or {}).get("confidence")
-            if conf is not None:
-                conf_vals.append(float(conf))
 
         if not h_vals:
             per_dim[dim] = None
             continue
 
-        h_arr = np.array(h_vals)
-        j_arr = np.array(j_vals)
-        n = len(h_arr)
-        agreement = float(np.mean(h_arr == j_arr))
-        mean_diff = float(np.mean(j_arr - h_arr))
-
-        fixed_labels = cfg["labels"]
-        cm = confusion_matrix(h_arr, j_arr, labels=fixed_labels)
-
-        qwk = None
-        kappa = None
-        if cfg["ordinal"]:
-            qwk = _safe_kappa(h_arr, j_arr, weights="quadratic")
-            metric_val = qwk
-        else:
-            kappa = _safe_kappa(h_arr, j_arr, weights=None)
-            metric_val = kappa
-
-        below = metric_val is not None and metric_val < 0.70
-
+        h_arr, j_arr = np.array(h_vals), np.array(j_vals)
+        kappa = _safe_kappa(
+            h_arr, j_arr, labels, weights="quadratic" if ordinal else None
+        )
         per_dim[dim] = {
-            "n": int(n),
-            "exact_agreement": agreement,
-            "qwk": qwk if cfg["ordinal"] else None,
-            "kappa": kappa if not cfg["ordinal"] else None,
-            "mean_diff": mean_diff,
-            "mean_confidence": float(np.mean(conf_vals)) if conf_vals else None,
-            "labels": fixed_labels,
-            "confusion_matrix": cm.tolist(),
-            "below_threshold": below,
+            "n": len(h_arr),
+            "exact_agreement": float(np.mean(h_arr == j_arr)),
+            "qwk": kappa if ordinal else None,
+            "kappa": None if ordinal else kappa,
+            "mean_diff": float(np.mean(j_arr - h_arr)),
+            "labels": labels,
+            "confusion_matrix": confusion_matrix(h_arr, j_arr, labels=labels).tolist(),
+            "below_threshold": kappa is not None and kappa < KAPPA_TARGET,
         }
-
     return per_dim
 
 
 def get_worst_disagreements(results: list[dict], n: int = 5) -> list[dict]:
-    """Return the top-N largest |diff| disagreements for ordinal dims."""
+    """Return the top-N largest |diff| disagreements for the ordinal dims."""
     disagreements = []
     for r in results:
-        if "error" in r or "derived_labels" not in r:
+        if "error" in r:
             continue
-        for dim in ["R_top", "R_ideo"]:
-            h = r["human"][dim]
-            j = r["derived_labels"].get(dim)
-            if j is None:
+        for dim in ORDINAL_DIMENSIONS:
+            h = (r.get("human") or {}).get(dim)
+            if h is None:
                 continue
-            diff = abs(int(j) - int(h))
-            if diff > 0:
+            j = r["derived_labels"][dim]
+            if j != int(h):
                 disagreements.append(
                     {
                         "text_index": r["text_index"],
                         "chunk_index": r["chunk_index"],
                         "dimension": dim,
                         "human": int(h),
-                        "judge": int(j),
-                        "diff": diff,
+                        "judge": j,
+                        "diff": abs(j - int(h)),
                     }
                 )
     disagreements.sort(key=lambda x: (-x["diff"], x["text_index"], x["chunk_index"]))
     return disagreements[:n]
 
 
-def get_low_confidence(
-    results: list[dict],
-    floor: float = LOW_CONFIDENCE_FLOOR,
-    a_caus_threshold: float = DEFAULT_A_CAUS_THRESHOLD,
-    near_threshold_margin: float = NEAR_THRESHOLD_MARGIN,
-) -> list[dict]:
-    """Flag judgments the model itself was unsure about (candidates for
-    manual review). Score answers carry a confidence; Noul answers do not,
-    so A_caus is flagged when p(yes) sits near the decision threshold."""
-    flagged = []
-    for r in results:
-        if "error" in r or "raw_answers" not in r:
-            continue
-        issues = []
-        for dim in ("R_top", "R_ideo"):
-            conf = (r["raw_answers"].get(dim) or {}).get("confidence")
-            if conf is not None and conf < floor:
-                issues.append({"dimension": dim, "confidence": float(conf)})
-        noul = (r["raw_answers"].get("A_caus") or {}).get("noul")
-        if (
-            noul is not None
-            and abs(float(noul) - a_caus_threshold) <= near_threshold_margin
-        ):
-            issues.append(
-                {
-                    "dimension": "A_caus",
-                    "noul": float(noul),
-                    "threshold": a_caus_threshold,
-                }
-            )
-        if issues:
-            flagged.append(
-                {
-                    "text_index": r.get("text_index"),
-                    "chunk_index": r.get("chunk_index"),
-                    "issues": issues,
-                }
-            )
-    flagged.sort(key=lambda x: (str(x["text_index"]), x["chunk_index"]))
-    return flagged
-
-
 def compute_usage_totals(results: list[dict]) -> dict:
-    """Sum usage across judged records (Jev reports cost per response)."""
-    input_tokens = 0
-    output_tokens = 0
-    cost = 0.0
-    for r in results:
-        usage = r.get("usage")
-        if not isinstance(usage, dict):
-            continue
-        input_tokens += usage.get("input_tokens") or 0
-        output_tokens += usage.get("output_tokens") or 0
-        cost += usage.get("cost") or 0.0
+    """Sum usage across judged records (OpenRouter also reports cost)."""
+    usages = [r["usage"] for r in results if isinstance(r.get("usage"), dict)]
     return {
-        "input_tokens": int(input_tokens),
-        "output_tokens": int(output_tokens),
-        "cost": float(cost),
+        "input_tokens": sum(u.get("input_tokens") or 0 for u in usages),
+        "output_tokens": sum(u.get("output_tokens") or 0 for u in usages),
+        "cost": float(sum(u.get("cost") or 0.0 for u in usages)),
     }
 
 
@@ -1067,52 +908,38 @@ def print_and_save_report(
     results: list[dict],
     per_dim: dict,
     worst: list[dict],
-    low_conf: list[dict],
     model: str,
     questions_hash: str,
-    report_path: str,
-    *,
-    score_label_mode: str,
-    a_caus_threshold: float,
-    rederived_from: str | None = None,
+    report_path: Path,
 ) -> None:
     """Print a concise report to stdout and write a JSON report to disk."""
-    judged = len([r for r in results if "derived_labels" in r])
-    total = len(results)
+    judged = sum("derived_labels" in r for r in results)
     usage_totals = compute_usage_totals(results)
 
     print("\n=== Jev Judge Agreement Report ===")
     print(f"Model: {model}")
     print(f"Questions hash: {questions_hash}")
-    if rederived_from:
-        print(f"Rederived from: {rederived_from} (no new API calls)")
-    print(
-        f"Label derivation: score_label_mode={score_label_mode}, "
-        f"a_caus_threshold={a_caus_threshold}"
-    )
-    print(f"Judged chunks: {judged} / {total}")
+    print(f"Judged chunks: {judged} / {len(results)}")
 
     print("\nPer-dimension metrics:")
-    header = f"{'Dim':<12} {'n':>6} {'Agree%':>7} {'κ/κ_w':>7} {'MeanΔ':>7} {'Conf':>6}"
+    header = f"{'Dim':<12} {'n':>6} {'Agree%':>7} {'κ/κ_w':>7} {'MeanΔ':>7}"
     print(header)
     print("-" * len(header))
-    for dim in ["R_top", "R_ideo", "A_caus"]:
+    for dim in DIMENSIONS:
         d = per_dim[dim]
         if d is None:
-            print(f"{dim:<12} {'—':>6} {'—':>7} {'—':>7} {'—':>7} {'—':>6}")
+            print(f"{dim:<12} {'—':>6} {'—':>7} {'—':>7} {'—':>7}")
             continue
-        metric_val = d["qwk"] if dim in ("R_top", "R_ideo") else d["kappa"]
-        flag = " ⚠️ below 0.70" if d.get("below_threshold") else ""
-        metric_str = f"{metric_val:>6.3f}" if metric_val is not None else "   N/A"
-        conf = d.get("mean_confidence")
-        conf_str = f"{conf:>6.2f}" if conf is not None else "     —"
+        metric = d["qwk"] if dim in ORDINAL_DIMENSIONS else d["kappa"]
+        metric_str = f"{metric:>6.3f}" if metric is not None else "   N/A"
+        flag = f" ⚠️ below {KAPPA_TARGET:.2f}" if d["below_threshold"] else ""
         print(
             f"{dim:<12} {d['n']:>6} {d['exact_agreement']*100:>6.1f}% "
-            f"{metric_str} {d['mean_diff']:>+6.2f} {conf_str}{flag}"
+            f"{metric_str} {d['mean_diff']:>+6.2f}{flag}"
         )
 
-    print("\nConfusion matrices:")
-    for dim in ["R_top", "R_ideo", "A_caus"]:
+    print("\nConfusion matrices (rows: reference, columns: judge):")
+    for dim in DIMENSIONS:
         d = per_dim[dim]
         if d is None:
             continue
@@ -1121,32 +948,22 @@ def print_and_save_report(
             print(f"  {label}: {row}")
 
     if worst:
-        print(f"\nTop {len(worst)} disagreements (|diff| ≥ 1):")
+        print(f"\nTop {len(worst)} disagreements:")
         for wd in worst:
             print(
                 f"  sample {wd['text_index']} chunk {wd['chunk_index']} "
-                f"{wd['dimension']}: human={wd['human']} judge={wd['judge']} diff={wd['diff']}"
+                f"{wd['dimension']}: human={wd['human']} judge={wd['judge']} "
+                f"diff={wd['diff']}"
             )
 
-    if low_conf:
-        print(
-            f"\nLow-confidence judgments (confidence < {LOW_CONFIDENCE_FLOOR} "
-            f"or A_caus noul within {NEAR_THRESHOLD_MARGIN} of the threshold): "
-            f"{len(low_conf)}"
-        )
-        for lc in low_conf[:20]:
-            parts = []
-            for issue in lc["issues"]:
-                if "confidence" in issue:
-                    parts.append(f"{issue['dimension']} conf={issue['confidence']:.2f}")
-                else:
-                    parts.append(f"{issue['dimension']} noul={issue['noul']:.2f}")
-            print(
-                f"  sample {lc['text_index']} chunk {lc['chunk_index']}: "
-                + ", ".join(parts)
-            )
-        if len(low_conf) > 20:
-            print(f"  … and {len(low_conf) - 20} more")
+    review_share = {
+        key: float(np.mean([r["needs_review"][key] for r in results if "needs_review" in r]))
+        for key in (*DIMENSIONS, "any")
+        if any("needs_review" in r for r in results)
+    }
+    if review_share:
+        shares = ", ".join(f"{k} {v*100:.0f}%" for k, v in review_share.items())
+        print(f"\nRouted to human review (uncertain or inconsistent gates): {shares}")
 
     print(
         f"\nUsage: {usage_totals['input_tokens']:,} input tokens, "
@@ -1157,23 +974,19 @@ def print_and_save_report(
     report = {
         "model": model,
         "questions_hash": questions_hash,
-        "label_config": {
-            "score_label_mode": score_label_mode,
-            "a_caus_threshold": a_caus_threshold,
-        },
-        "rederived_from": rederived_from,
+        "a_caus_threshold": A_CAUS_THRESHOLD,
         "timestamp": datetime.now(timezone.utc).isoformat(),
-        "total_chunks": total,
+        "total_chunks": len(results),
         "judged_chunks": judged,
         "usage_totals": usage_totals,
         "per_dimension": per_dim,
-        "low_confidence": low_conf,
+        "needs_review_share": review_share,
         "worst_disagreements": worst,
     }
-    report_file = Path(report_path)
-    report_file.parent.mkdir(parents=True, exist_ok=True)
-    with report_file.open("w", encoding="utf-8") as handle:
-        json.dump(report, handle, ensure_ascii=False, indent=2)
+    report_path.parent.mkdir(parents=True, exist_ok=True)
+    report_path.write_text(
+        json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8"
+    )
     print(f"\nReport saved to: {report_path}")
 
 
@@ -1184,8 +997,8 @@ def print_and_save_report(
 
 def _build_arg_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        description="Run the Jev (TypeSafe System One) judge via the TypeSafe "
-        "Python SDK against human chunk annotations and compute agreement metrics."
+        description="Judge retrieved chunks with the calibrated Jev model and "
+        "report agreement with the reference annotations."
     )
     parser.add_argument(
         "--model",
@@ -1197,7 +1010,7 @@ def _build_arg_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--annotations",
         default=DEFAULT_ANNOTATIONS_PATH,
-        help="Path to human annotation JSONL",
+        help="Annotation JSONL with the chunks to judge",
     )
     parser.add_argument(
         "--output-root",
@@ -1210,19 +1023,34 @@ def _build_arg_parser() -> argparse.ArgumentParser:
         help="Name of the output subfolder (default: timestamp).",
     )
     parser.add_argument(
-        "--output",
-        default=DEFAULT_OUTPUT_LOG,
-        help="Append-only log for Jev judgments",
-    )
-    parser.add_argument(
-        "--report",
-        default=None,
-        help="Path for the JSON agreement report (default: <output-root>/<run-id>/llm_judge_report.json)",
-    )
-    parser.add_argument(
         "--questions-file",
         default=None,
-        help="JSON file overriding the embedded Jev question set (instructions + criteria)",
+        help="JSON file with a candidate question set (same shape as "
+        "JEV_QUESTIONS) instead of the built-in one",
+    )
+    parser.add_argument(
+        "--state-mode",
+        choices=("full", "minimal", "nometa"),
+        default="nometa",
+        help="nometa (default): the content questions (R_top / R_ideo) see the "
+        "full state without the chunk's party / speaker / source, as the human "
+        "annotators were told to ignore speaker metadata. full: every question "
+        "sees the whole state. minimal: the content questions see only "
+        "input_text and retrieved_chunk.text. A_caus always gets the full state "
+        "(two requests per chunk in both reduced modes)",
+    )
+    parser.add_argument(
+        "--posthoc-model",
+        default=None,
+        help="JSON from calibrate.py --export-posthoc: map the gate probabilities "
+        "to R_top / R_ideo with a mapping fitted on the calibration set "
+        "(default: off, labels are read straight off the gate answers)",
+    )
+    parser.add_argument(
+        "--rederive-from",
+        default=None,
+        help="Flat llm_judge_annotations.jsonl of an earlier run: re-apply the "
+        "current label rules to its stored gate probabilities (no API calls)",
     )
     parser.add_argument(
         "--limit",
@@ -1239,116 +1067,37 @@ def _build_arg_parser() -> argparse.ArgumentParser:
         default=5,
         help="Print top N worst disagreements for R_top / R_ideo",
     )
-    parser.add_argument(
-        "--a-caus-threshold",
-        type=float,
-        default=DEFAULT_A_CAUS_THRESHOLD,
-        help="Noul probability >= threshold -> A_caus = 1",
-    )
-    parser.add_argument(
-        "--score-label-mode",
-        choices=["argmax", "round"],
-        default=DEFAULT_SCORE_LABEL_MODE,
-        help="Turn a score answer into an integer label: most probable level "
-        "(argmax) or rounded probability-weighted position (round)",
-    )
-    parser.add_argument(
-        "--rederive-from",
-        default=None,
-        help="Skip the API and recompute metrics from a previous run's JSONL "
-        "(stored raw answers) with the current thresholds and label mode. "
-        "Accepts either the flat or the grouped (human-style) snapshot.",
-    )
     return parser
 
 
 def main() -> None:
-    parser = _build_arg_parser()
-    args = parser.parse_args()
+    args = _build_arg_parser().parse_args()
 
     run_id = args.run_id or datetime.now().strftime("%Y-%m-%d_%H%M%S")
-    args.run_id = run_id  # resolved run id, used for per-run output paths
-    output_dir = Path(args.output_root) / run_id
-    output_dir.mkdir(parents=True, exist_ok=True)
-    print(f"Output directory: {output_dir.resolve()}")
-
-    report_path = (
-        Path(args.report) if args.report else output_dir / "llm_judge_report.json"
-    )
+    run_dir = Path(args.output_root) / run_id
+    print(f"Output directory: {run_dir.resolve()}")
 
     if args.rederive_from:
-        results = load_results_from_jsonl(args.rederive_from)
-        if not results:
-            print(
-                f"No result records found in {args.rederive_from}. Exiting.",
-                file=sys.stderr,
-            )
-            sys.exit(1)
-        # Accept either the flat per-chunk snapshot or the grouped
-        # human-annotation-style snapshot.
-        if any(isinstance(r.get("chunk_annotations"), list) for r in results):
-            results = flatten_annotation_records(results)
-        results = rederive_labels_in_place(
-            results, args.score_label_mode, args.a_caus_threshold
+        records = load_existing_annotations(args.annotations)
+        results, questions_hash = rederive_results(
+            args.rederive_from, records, load_posthoc(args.posthoc_model)
         )
-        failed = sum(1 for r in results if "error" in r)
-        questions_hash = next(
-            (r.get("questions_hash") for r in results if r.get("questions_hash")),
-            "unknown",
-        )
-        if not args.model:
-            # Recover the model from the stored records when rederiving offline.
-            args.model = next(
-                (
-                    r.get("response_model") or r.get("model")
-                    for r in results
-                    if r.get("response_model") or r.get("model")
-                ),
-                "unknown",
-            )
-        rederived_from = args.rederive_from
-        print(
-            f"Rederiving labels for {len(results)} record(s) from "
-            f"{args.rederive_from} (no API calls)."
-        )
+        args.model = next((r["model"] for r in results if r.get("model")), "unknown")
+        failed = sum("error" in r for r in results)
+        write_snapshots(results, records, args.model, run_dir)
     else:
-        run_snapshot_path = output_dir / "llm_judge_annotations.jsonl"
-        grouped_snapshot_path = output_dir / GROUPED_SNAPSHOT_NAME
-        results, failed, questions_hash = run_judging(
-            args, run_snapshot_path, grouped_snapshot_path
-        )
-        rederived_from = None
-
-    per_dim = compute_metrics(results)
-    worst = get_worst_disagreements(results, n=args.show_disagreements)
-    low_conf = get_low_confidence(results, a_caus_threshold=args.a_caus_threshold)
+        results, failed, questions_hash = run_judging(args, run_dir)
     print_and_save_report(
         results,
-        per_dim,
-        worst,
-        low_conf,
+        compute_metrics(results),
+        get_worst_disagreements(results, n=args.show_disagreements),
         args.model,
         questions_hash,
-        report_path,
-        score_label_mode=args.score_label_mode,
-        a_caus_threshold=args.a_caus_threshold,
-        rederived_from=rederived_from,
+        run_dir / REPORT_NAME,
     )
-
     if failed:
         print(f"\nWarning: {failed} chunk(s) failed judging.")
 
 
 if __name__ == "__main__":
     main()
-    # results_path = Path(
-    #     "/Users/janneslampe/Desktop/Coding/Master Thesis/Evaluation/RAG Analysis/2026-09-28_135204/llm_judge_annotations.jsonl"
-    # )
-    # if not results_path.is_file():
-    #     raise FileNotFoundError(f"Results file not found: {results_path}")
-
-    # results = load_results_from_jsonl(results_path)
-    # if not results:
-    #     raise ValueError(f"No result records found in: {results_path}")
-
-    # print(json.dumps(compute_metrics(results), indent=2))

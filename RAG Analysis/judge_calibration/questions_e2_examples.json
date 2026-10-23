@@ -1,0 +1,215 @@
+{
+  "T_domain": {
+    "type": "noul",
+    "instructions": {
+      "question": "Do the input text and the chunk belong to the same policy field, so that the chunk is part of the same area of debate?",
+      "compare": [
+        "`input_text`",
+        "`retrieved_chunk.text`"
+      ],
+      "focus": "Judge subject matter only: ignore stance, tone and ideology - opposite positions on the same measure are the same topic. First identify the SPECIFIC ITEM the input text takes a position on (a named bill or measure, a concrete event, a figure or proposal, an action by a named person or body), not just its general theme."
+    },
+    "criteria": {
+      "true": {
+        "definition": "Both belong to the same concrete policy field (for example both are about criminal law, the pandemic, climate and energy, migration, the armed forces, pensions, a named conflict), even if they discuss different measures within it.",
+        "example": {
+          "input_text": "@stegoeri @jungeliberale @johannesvogel Welcher Vorstoß? Irgendwer zieht Beschlüsse aus 2007 hoch,  um sich künstlich aufzuregen. Damals war das eine ernste Diskussion,  bei der es um nicht weniger ging als den Sinn und Zweck des Strafrechts. Für den historischen Kontext empfehle ich:",
+          "chunk_excerpt": "Je weiter diese Legislatur voranschreitet, umso mehr beschleicht mich das Gefühl, dass die Koalition in ihrer Strafrechtspolitik einen Rollback hinlegen will. Sie wollen das Strafrecht bei immer mehr Verhaltensweisen eingreifen lassen. Schon der Begründer der modernen deutschen Strafrechtstheorie, Anselm von Feuerbach, forderte, dass nicht jedes anstößige Verhalten Gegenstand strafrechtlicher Verbote sein dürfe. Das nennt man Ultima-Ratio-Prinzip.",
+          "annotators": "all three rated R_top = 2 (broad domain only: same field, a different issue)",
+          "answer": "yes"
+        }
+      },
+      "false": {
+        "definition": "They belong to different fields, or the only overlap is something generic: both are 'politics', both involve the same party or person, or they share a word. Money, taxes, costs or government spending count as a shared field only when the input text is itself about that subject (for example public debt, or who pays for state spending); a passing mention of costs in an input text about another issue does not. If the input text is about one concrete issue and the chunk about another (for example consulting contracts for a ministry vs. an excess-profit tax; protest forms vs. extremist organisations), answer false.",
+        "example": {
+          "input_text": "Druck gegen die Identitäre Bewegung wirkt. Die Organisation verschleiert ihre Aktivitäten. Trotzdem spielen ihre popkulturelle,  digitale und ästhetische Anbiederung weiter eine gefährliche Rolle.Die @welt über die Anfrage von @bstrasser und mir👇 @fdpbt",
+          "chunk_excerpt": "solche Demonstrationsformen, bei denen regelmäßig Straftaten begangen werden, als Gesellschaft einfach hinnehmen würden, wenn wir sagen würden: Das wird durch die Justiz nicht mehr verurteilt, das wird durch die Sicherheitsbehörden nicht mehr adressiert. – Das würde doch im Kern dazu führen, dass plötzlich auch andere Akteure, die viel Schlimmeres im Schilde führen, anfangen, solche Aktionen zu betreiben.",
+          "annotators": "all three rated R_top = 1 (irrelevant: a different field and issue)",
+          "answer": "no"
+        }
+      }
+    }
+  },
+  "T_subarea": {
+    "type": "noul",
+    "instructions": {
+      "question": "Do the input text and the chunk argue about the same narrow policy question?",
+      "compare": [
+        "`input_text`",
+        "`retrieved_chunk.text`"
+      ],
+      "focus": "Judge subject matter only: ignore stance, tone and ideology - opposite positions on the same measure are the same topic. First identify the SPECIFIC ITEM the input text takes a position on (a named bill or measure, a concrete event, a figure or proposal, an action by a named person or body), not just its general theme."
+    },
+    "criteria": {
+      "true": {
+        "definition": "The chunk's main subject is the same narrow policy question as the input text's: the same kind of decision or problem (for example how a specific cost is shared, whether a specific obligation should exist, how a specific programme is financed), even if the chunk concerns another detail, institution or year than the input text's own item.",
+        "example": {
+          "input_text": "In der völlig aufgeheizten Stimmung in unserem Land tut es gut, dass Frau Bundestagspräsidentin Klöckner klare Worte gg. politisch motivierte Gewalt gefunden hat. Herzlichen Dank dafür! Hashtag#AfD Hashtag#Brandanschlag Hashtag#Baumann Hashtag#Klöckner @JuliaKloeckner @DrBerndBaumann https://lnkd.in/ebUCxvkm",
+          "chunk_excerpt": "Im Namen der Bundesregierung möchte ich hier die besten Wünsche für seine umfassende Genesung übermitteln. [I-1] Ich teile die Worte des Bundeskanzlers: „Gewalt darf keinen Platz haben in der europäischen Politik.“ Und ich sage: Gewalt, aus welchem Spektrum auch immer, darf auch in der deutschen Politik keinen Platz haben. [I-2] Vor der Tat steht das Wort.",
+          "annotators": "all three rated R_top = 3 (related sub-issue: same sub-area, different scope or target)",
+          "answer": "yes"
+        }
+      },
+      "false": {
+        "definition": "The chunk's main subject is a different question that merely sits under the same umbrella theme (for example the input text is about paying for tests and the chunk is about a vaccination mandate; or both are about 'the military' but one is about equipment and the other about conscription), or it touches the shared theme only in passing.",
+        "example": {
+          "input_text": "@stegoeri @jungeliberale @johannesvogel Welcher Vorstoß? Irgendwer zieht Beschlüsse aus 2007 hoch,  um sich künstlich aufzuregen. Damals war das eine ernste Diskussion,  bei der es um nicht weniger ging als den Sinn und Zweck des Strafrechts. Für den historischen Kontext empfehle ich:",
+          "chunk_excerpt": "Je weiter diese Legislatur voranschreitet, umso mehr beschleicht mich das Gefühl, dass die Koalition in ihrer Strafrechtspolitik einen Rollback hinlegen will. Sie wollen das Strafrecht bei immer mehr Verhaltensweisen eingreifen lassen. Schon der Begründer der modernen deutschen Strafrechtstheorie, Anselm von Feuerbach, forderte, dass nicht jedes anstößige Verhalten Gegenstand strafrechtlicher Verbote sein dürfe. Das nennt man Ultima-Ratio-Prinzip.",
+          "annotators": "all three rated R_top = 2 (broad domain only: same field, a different issue)",
+          "answer": "no"
+        }
+      }
+    }
+  },
+  "T_item": {
+    "type": "noul",
+    "instructions": {
+      "question": "Does the chunk discuss the specific item that the input text takes a position on?",
+      "compare": [
+        "`input_text`",
+        "`retrieved_chunk.text`"
+      ],
+      "focus": "Judge subject matter only: ignore stance, tone and ideology - opposite positions on the same measure are the same topic. First identify the SPECIFIC ITEM the input text takes a position on (a named bill or measure, a concrete event, a figure or proposal, an action by a named person or body), not just its general theme."
+    },
+    "criteria": {
+      "true": {
+        "definition": "The chunk addresses that same bill, measure, event, figure or named action - at least as one part of its content, from any angle and with any position.",
+        "example": {
+          "input_text": "Es war zu erwarten,  dass die #CO2-Abgabelast den sowieso bereits geplagten #Mieter n auferlegt wird. Wir sagen: #CO2-Abgabe ganz abschaffen!",
+          "chunk_excerpt": "und Mieter abgewälzt werden. [I-7] Nach wie vor überhilft die Modernisierungsumlage zum Beispiel die Kosten für die Sanierung alleine Mieterinnen und Mieter. Das ist ungerecht! [I-8] Deswegen wollen wir sie auch – im Gegensatz zu den Grünen – komplett abschaffen. Wir brauchen stattdessen ein ambitioniertes Förderprogramm von mindestens 5 Milliarden Euro, damit die Kosten gerecht verteilt werden.",
+          "annotators": "all three rated R_top = 4 (direct policy overlap: same controversy, slightly different aspect)",
+          "answer": "yes"
+        }
+      },
+      "false": {
+        "definition": "The chunk does not discuss that item: it covers other measures, a more general question, or a different instance of the same kind of thing.",
+        "example": {
+          "input_text": "In der völlig aufgeheizten Stimmung in unserem Land tut es gut, dass Frau Bundestagspräsidentin Klöckner klare Worte gg. politisch motivierte Gewalt gefunden hat. Herzlichen Dank dafür! Hashtag#AfD Hashtag#Brandanschlag Hashtag#Baumann Hashtag#Klöckner @JuliaKloeckner @DrBerndBaumann https://lnkd.in/ebUCxvkm",
+          "chunk_excerpt": "Im Namen der Bundesregierung möchte ich hier die besten Wünsche für seine umfassende Genesung übermitteln. [I-1] Ich teile die Worte des Bundeskanzlers: „Gewalt darf keinen Platz haben in der europäischen Politik.“ Und ich sage: Gewalt, aus welchem Spektrum auch immer, darf auch in der deutschen Politik keinen Platz haben. [I-2] Vor der Tat steht das Wort.",
+          "annotators": "all three rated R_top = 3 (related sub-issue: same sub-area, different scope or target)",
+          "answer": "no"
+        }
+      }
+    }
+  },
+  "T_central": {
+    "type": "noul",
+    "instructions": {
+      "question": "Is the chunk mainly about the same bill, event, claim or decision that the input text refers to, and does it speak to the point the input text makes?",
+      "compare": [
+        "`input_text`",
+        "`retrieved_chunk.text`"
+      ],
+      "focus": "Judge subject matter only: ignore stance, tone and ideology - opposite positions on the same measure are the same topic. First identify the SPECIFIC ITEM the input text takes a position on (a named bill or measure, a concrete event, a figure or proposal, an action by a named person or body), not just its general theme."
+    },
+    "criteria": {
+      "true": {
+        "definition": "The chunk's main subject is that same item - named or unmistakably identified - and it addresses the specific point or claim the input text makes about it (support or opposition does not matter). A summary of the chunk would name this item as its main subject.",
+        "example": {
+          "input_text": "Es war zu erwarten,  dass die #CO2-Abgabelast den sowieso bereits geplagten #Mieter n auferlegt wird. Wir sagen: #CO2-Abgabe ganz abschaffen!",
+          "chunk_excerpt": "Werte Kollegen! Sehr geehrte Damen und Herren! Wir beschäftigen uns heute mit einem Antrag der Linken zum Thema „Aufteilung des CO2-Preises“. Von der Vorgängerregierung zur Rettung des Weltklimas beschlossen, steht jetzt die Frage im Raum, wer die seit 2021 fällige CO2-Abgabe im Wohnbereich zahlen muss. Der Mieter oder der Vermieter?",
+          "annotators": "all three rated R_top = 5 (identical target: the very item the input text refers to)",
+          "answer": "yes"
+        }
+      },
+      "false": {
+        "definition": "The chunk covers the same wider issue but a different point (for example a vaccination mandate when the input text is about a statement on vaccination data), mentions the item only briefly, treats it as one of several topics in a broad speech, or is only the occasion of the debate.",
+        "example": {
+          "input_text": "Es war zu erwarten,  dass die #CO2-Abgabelast den sowieso bereits geplagten #Mieter n auferlegt wird. Wir sagen: #CO2-Abgabe ganz abschaffen!",
+          "chunk_excerpt": "und Mieter abgewälzt werden. [I-7] Nach wie vor überhilft die Modernisierungsumlage zum Beispiel die Kosten für die Sanierung alleine Mieterinnen und Mieter. Das ist ungerecht! [I-8] Deswegen wollen wir sie auch – im Gegensatz zu den Grünen – komplett abschaffen. Wir brauchen stattdessen ein ambitioniertes Förderprogramm von mindestens 5 Milliarden Euro, damit die Kosten gerecht verteilt werden.",
+          "annotators": "all three rated R_top = 4 (direct policy overlap: same controversy, slightly different aspect)",
+          "answer": "no"
+        }
+      }
+    }
+  },
+  "I_procedural": {
+    "type": "noul",
+    "instructions": {
+      "question": "Is the chunk only floor management or formalities?",
+      "inspect": "`retrieved_chunk.text`"
+    },
+    "criteria": {
+      "true": "The chunk consists of procedure only: addressing the chair, thanks, greetings, announcing agenda items or votes, with no substantive statement about policy.",
+      "false": "The chunk contains substantive statements about policy, facts or political actors."
+    }
+  },
+  "I_evaluative": {
+    "type": "noul",
+    "instructions": {
+      "question": "Does the speaker argue, evaluate or demand something about policy?",
+      "inspect": "`retrieved_chunk.text`"
+    },
+    "criteria": {
+      "true": "The speaker argues for or against a policy, judges the actions of political actors, or makes demands.",
+      "false": "The speaker only reports facts, procedures or the positions of others without evaluating or demanding anything."
+    }
+  },
+  "I_stance": {
+    "type": "noul",
+    "instructions": {
+      "question": "Does the speaker take a strong, partisan side on a contested political question?",
+      "inspect": "`retrieved_chunk.text`",
+      "focus": "Burden of proof: the answer is false unless the text itself clearly shows it. Answer true only if the passage leaves no reasonable doubt on this. If the passage is ambiguous, mixed or only partly fits, answer false."
+    },
+    "criteria": {
+      "true": {
+        "definition": "The speaker takes a clear side with charged or polarising language, sweeping judgements of political opponents or of the government's record, or a programmatic demand typical of one political camp (for example market-liberal, welfare-state, nationalist, ecological, law-and-order). The partisanship is the point of the passage.",
+        "example": {
+          "chunk_excerpt": "Im Namen der Bundesregierung möchte ich hier die besten Wünsche für seine umfassende Genesung übermitteln. [I-1] Ich teile die Worte des Bundeskanzlers: „Gewalt darf keinen Platz haben in der europäischen Politik.“ Und ich sage: Gewalt, aus welchem Spektrum auch immer, darf auch in der deutschen Politik keinen Platz haben. [I-2] Vor der Tat steht das Wort.",
+          "annotators": "all three rated R_ideo = 4 (clear ideological stance, not anchored in the speaker's party)",
+          "answer": "yes"
+        }
+      },
+      "false": {
+        "definition": "The speaker disagrees or criticises in a measured, technical or procedural way (rebutting a motion point by point, legal or fact-based reasoning, explaining or defending what the government did), expresses empathy or personal views, weighs pros and cons, or appeals for cross-party unity. Disagreement alone is not enough.",
+        "example": {
+          "chunk_excerpt": "Je weiter diese Legislatur voranschreitet, umso mehr beschleicht mich das Gefühl, dass die Koalition in ihrer Strafrechtspolitik einen Rollback hinlegen will. Sie wollen das Strafrecht bei immer mehr Verhaltensweisen eingreifen lassen. Schon der Begründer der modernen deutschen Strafrechtstheorie, Anselm von Feuerbach, forderte, dass nicht jedes anstößige Verhalten Gegenstand strafrechtlicher Verbote sein dürfe. Das nennt man Ultima-Ratio-Prinzip.",
+          "annotators": "all three rated R_ideo = 3 (implicit value framing, no clear side)",
+          "answer": "no"
+        }
+      }
+    }
+  },
+  "I_party": {
+    "type": "noul",
+    "instructions": {
+      "question": "Does the speaker declare what their own party or faction stands for, demands or rejects?",
+      "inspect": "`retrieved_chunk.text`",
+      "focus": "Burden of proof: the answer is false unless the text itself clearly shows it. Answer true only if the passage leaves no reasonable doubt on this. If the passage is ambiguous, mixed or only partly fits, answer false."
+    },
+    "criteria": {
+      "true": {
+        "definition": "Both hold: (1) the chunk text explicitly names the speaker's own party or faction as the holder of the position ('we as the Left', 'for us in the CDU/CSU', 'we, the AfD', 'my faction', 'our motion') and (2) it states a programmatic position of that party - what it demands, rejects, proposes or will do ('we reject this', 'we demand', 'we will vote against', 'our proposal is').",
+        "example": {
+          "chunk_excerpt": "[I-2] Ihr Vorhaben zur Umlage der CO2-Abgabe auf den Vermieter ist eine sozial angestrichene Scheinlösung. Deshalb sagen wir als AfD zu diesem Vorhaben Nein. [I-3] Wir als AfD haben aber die Lösung Ihrer Probleme: Wir fordern nämlich – das ist bekannt – die Abschaffung der CO2-Abgabe. Wir stehen generell ein für Wohlstand statt Abkassieren, und wir stehen ein für Freiheit statt für Sanierungszwang. [I-4] Der aktuelle CO2-Preis liegt bei 30 Euro je Tonne.",
+          "annotators": "all three rated R_ideo = 5 (explicit party grounding)",
+          "answer": "yes"
+        }
+      },
+      "false": {
+        "definition": "At least one fails. In particular these do NOT count: a generic 'we' (Germany, the Bundestag, everyone: 'we need a new mobility policy'); speaking as a minister or for the government; naming other parties only to attack or address them; a passing mention of one's own party inside an attack on others; a position that is merely typical of the party but never tied to it in the text.",
+        "example": {
+          "chunk_excerpt": "Im Namen der Bundesregierung möchte ich hier die besten Wünsche für seine umfassende Genesung übermitteln. [I-1] Ich teile die Worte des Bundeskanzlers: „Gewalt darf keinen Platz haben in der europäischen Politik.“ Und ich sage: Gewalt, aus welchem Spektrum auch immer, darf auch in der deutschen Politik keinen Platz haben. [I-2] Vor der Tat steht das Wort.",
+          "annotators": "all three rated R_ideo = 4 (clear ideological stance, not anchored in the speaker's party)",
+          "answer": "no"
+        }
+      }
+    }
+  },
+  "A_caus": {
+    "type": "noul",
+    "instructions": {
+      "question": "Did the generator justification demonstrably draw on this specific retrieved chunk?",
+      "compare": [
+        "`generator_justification`",
+        "`retrieved_chunk`"
+      ],
+      "focus": "The justification refers to retrieved reference chunks by number, by speaker name, or by the party whose reference statements it invokes. Decide whether it refers to THIS chunk (see `retrieved_chunk.citation_forms`, `retrieved_chunk.speaker`, `retrieved_chunk.party`). If the justification cites other chunks by number but not this chunk's number or speaker, answer false even when this chunk's party is also named - a shared party name is then only context. A party named only as the camp the input text itself belongs to is not a reference to a chunk."
+    },
+    "criteria": {
+      "true": "The justification refers to this chunk: it cites this chunk's number in any form (a single reference, a list such as '[2, 3]', 'reference [2]', 'anchor 2', 'Chunk 2'), OR it names this chunk's speaker, OR it invokes the statements or stance of this chunk's party as comparison evidence (e.g. 'echoing the SPD and FDP speakers in the reference anchors', 'similar to the AfD speakers') in a way that matches the content of this chunk.",
+      "false": "The justification does not refer to this chunk: its number is not cited, its speaker is not named, and its party is not invoked as reference evidence (a party mentioned only as the label for the input text's own orientation does not count; neither does a party name that merely overlaps with chunks cited by other numbers), or it relies on other chunks or on generic reasoning that could have been produced from the input text and pre-training alone."
+    }
+  }
+}

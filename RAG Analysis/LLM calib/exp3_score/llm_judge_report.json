@@ -1,0 +1,189 @@
+{
+  "model": "jev-1.14.0",
+  "questions_hash": "04b22423d7fd2e9c",
+  "a_caus_threshold": 0.5,
+  "timestamp": "2026-10-21T09:46:42.531233+00:00",
+  "total_chunks": 125,
+  "judged_chunks": 125,
+  "usage_totals": {
+    "input_tokens": 724787,
+    "output_tokens": 25125,
+    "cost": 0.0
+  },
+  "per_dimension": {
+    "R_top": {
+      "n": 125,
+      "exact_agreement": 0.472,
+      "qwk": 0.6829393816858434,
+      "kappa": null,
+      "mean_diff": 0.032,
+      "labels": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "confusion_matrix": [
+        [
+          5,
+          4,
+          0,
+          1,
+          0
+        ],
+        [
+          3,
+          27,
+          2,
+          4,
+          1
+        ],
+        [
+          0,
+          9,
+          3,
+          7,
+          4
+        ],
+        [
+          0,
+          6,
+          5,
+          7,
+          11
+        ],
+        [
+          0,
+          1,
+          2,
+          6,
+          17
+        ]
+      ],
+      "below_threshold": true
+    },
+    "R_ideo": {
+      "n": 125,
+      "exact_agreement": 0.64,
+      "qwk": 0.5746313471675453,
+      "kappa": null,
+      "mean_diff": 0.12,
+      "labels": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "confusion_matrix": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          2,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          12,
+          15,
+          1
+        ],
+        [
+          0,
+          0,
+          11,
+          48,
+          12
+        ],
+        [
+          0,
+          0,
+          1,
+          3,
+          20
+        ]
+      ],
+      "below_threshold": true
+    },
+    "A_caus": {
+      "n": 125,
+      "exact_agreement": 0.896,
+      "qwk": null,
+      "kappa": 0.7907276239536382,
+      "mean_diff": 0.056,
+      "labels": [
+        0,
+        1
+      ],
+      "confusion_matrix": [
+        [
+          50,
+          10
+        ],
+        [
+          3,
+          62
+        ]
+      ],
+      "below_threshold": false
+    }
+  },
+  "needs_review_share": {
+    "R_top": 0.408,
+    "R_ideo": 0.344,
+    "A_caus": 0.12,
+    "any": 0.68
+  },
+  "worst_disagreements": [
+    {
+      "text_index": "117",
+      "chunk_index": 3,
+      "dimension": "R_top",
+      "human": 5,
+      "judge": 2,
+      "diff": 3
+    },
+    {
+      "text_index": "143",
+      "chunk_index": 1,
+      "dimension": "R_top",
+      "human": 2,
+      "judge": 5,
+      "diff": 3
+    },
+    {
+      "text_index": "178",
+      "chunk_index": 1,
+      "dimension": "R_top",
+      "human": 1,
+      "judge": 4,
+      "diff": 3
+    },
+    {
+      "text_index": "117",
+      "chunk_index": 4,
+      "dimension": "R_top",
+      "human": 4,
+      "judge": 2,
+      "diff": 2
+    },
+    {
+      "text_index": "143",
+      "chunk_index": 4,
+      "dimension": "R_top",
+      "human": 2,
+      "judge": 4,
+      "diff": 2
+    }
+  ]
+}

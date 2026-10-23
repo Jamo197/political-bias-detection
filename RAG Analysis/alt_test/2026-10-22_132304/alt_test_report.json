@@ -1,0 +1,820 @@
+{
+  "timestamp": "2026-10-22T12:50:58.757245+00:00",
+  "run": "2026-10-22_132304",
+  "model": "jev-1.14.0",
+  "annotators": [
+    "Awsam",
+    "Jannes",
+    "Neda"
+  ],
+  "human_labels": "revised per-annotator ratings (Annotations - annotation_disagreements.csv)",
+  "n_items": 125,
+  "n_texts": 25,
+  "holdout_texts": [
+    "39",
+    "118",
+    "178",
+    "239",
+    "342",
+    "404",
+    "525",
+    "662"
+  ],
+  "epsilon": 0.2,
+  "q": 0.05,
+  "per_dimension": {
+    "R_top": {
+      "main": {
+        "score": "neg_rmse",
+        "epsilon": 0.2,
+        "q": 0.05,
+        "winning_rate": 0.0,
+        "passed": false,
+        "avg_advantage_probability": 0.6986666666666667,
+        "per_annotator": {
+          "Awsam": {
+            "n_units": 125,
+            "rho_f": 0.696,
+            "rho_h": 0.912,
+            "llm_wins": 11,
+            "human_wins": 38,
+            "ties": 76,
+            "mean_d": -0.216,
+            "test": "t-test",
+            "statistic": -0.3031830151852381,
+            "p": 0.6188707712470319,
+            "p_by": 1.0,
+            "rejected": false
+          },
+          "Jannes": {
+            "n_units": 125,
+            "rho_f": 0.696,
+            "rho_h": 0.904,
+            "llm_wins": 12,
+            "human_wins": 38,
+            "ties": 75,
+            "mean_d": -0.208,
+            "test": "t-test",
+            "statistic": -0.14915140899731502,
+            "p": 0.5591617672822264,
+            "p_by": 1.0,
+            "rejected": false
+          },
+          "Neda": {
+            "n_units": 125,
+            "rho_f": 0.704,
+            "rho_h": 0.84,
+            "llm_wins": 20,
+            "human_wins": 37,
+            "ties": 68,
+            "mean_d": -0.136,
+            "test": "t-test",
+            "statistic": 1.0774566415923243,
+            "p": 0.1416839826346562,
+            "p_by": 0.7792619044906091,
+            "rejected": false
+          }
+        }
+      },
+      "epsilon_sweep_winning_rate": {
+        "0.0": 0.0,
+        "0.05": 0.0,
+        "0.1": 0.0,
+        "0.15": 0.0,
+        "0.2": 0.0,
+        "0.25": 0.0,
+        "0.3": 0.3333333333333333
+      },
+      "min_passing_epsilon": 0.32,
+      "robustness": {
+        "holdout": {
+          "score": "neg_rmse",
+          "epsilon": 0.2,
+          "q": 0.05,
+          "winning_rate": 0.0,
+          "passed": false,
+          "avg_advantage_probability": 0.65,
+          "per_annotator": {
+            "Awsam": {
+              "n_units": 40,
+              "rho_f": 0.625,
+              "rho_h": 0.95,
+              "llm_wins": 2,
+              "human_wins": 15,
+              "ties": 23,
+              "mean_d": -0.325,
+              "test": "t-test",
+              "statistic": -1.3813122323956841,
+              "p": 0.9124768098706291,
+              "p_by": 1.0,
+              "rejected": false
+            },
+            "Jannes": {
+              "n_units": 40,
+              "rho_f": 0.65,
+              "rho_h": 0.9,
+              "llm_wins": 4,
+              "human_wins": 14,
+              "ties": 22,
+              "mean_d": -0.25,
+              "test": "t-test",
+              "statistic": -0.5016103101271009,
+              "p": 0.6906191628907228,
+              "p_by": 1.0,
+              "rejected": false
+            },
+            "Neda": {
+              "n_units": 40,
+              "rho_f": 0.675,
+              "rho_h": 0.875,
+              "llm_wins": 5,
+              "human_wins": 13,
+              "ties": 22,
+              "mean_d": -0.2,
+              "test": "t-test",
+              "statistic": 0.0,
+              "p": 0.5,
+              "p_by": 1.0,
+              "rejected": false
+            }
+          }
+        },
+        "text_level": {
+          "score": "neg_rmse",
+          "epsilon": 0.2,
+          "q": 0.05,
+          "winning_rate": 0.0,
+          "passed": false,
+          "avg_advantage_probability": 0.6986666666666667,
+          "per_annotator": {
+            "Awsam": {
+              "n_units": 25,
+              "rho_f": 0.696,
+              "rho_h": 0.912,
+              "llm_wins": 11,
+              "human_wins": 38,
+              "ties": 76,
+              "mean_d": -0.21600000000000003,
+              "test": "wilcoxon",
+              "statistic": 91.0,
+              "p": 0.5651078043887661,
+              "p_by": 1.0,
+              "rejected": false
+            },
+            "Jannes": {
+              "n_units": 25,
+              "rho_f": 0.696,
+              "rho_h": 0.904,
+              "llm_wins": 12,
+              "human_wins": 38,
+              "ties": 75,
+              "mean_d": -0.20800000000000002,
+              "test": "wilcoxon",
+              "statistic": 97.5,
+              "p": 0.458365214964495,
+              "p_by": 1.0,
+              "rejected": false
+            },
+            "Neda": {
+              "n_units": 25,
+              "rho_f": 0.704,
+              "rho_h": 0.84,
+              "llm_wins": 20,
+              "human_wins": 37,
+              "ties": 68,
+              "mean_d": -0.136,
+              "test": "wilcoxon",
+              "statistic": 105.0,
+              "p": 0.19592577441102627,
+              "p_by": 1.0,
+              "rejected": false
+            }
+          }
+        },
+        "acc_scoring": {
+          "score": "acc",
+          "epsilon": 0.2,
+          "q": 0.05,
+          "winning_rate": 0.0,
+          "passed": false,
+          "avg_advantage_probability": 0.7146666666666667,
+          "per_annotator": {
+            "Awsam": {
+              "n_units": 125,
+              "rho_f": 0.704,
+              "rho_h": 0.92,
+              "llm_wins": 10,
+              "human_wins": 37,
+              "ties": 78,
+              "mean_d": -0.216,
+              "test": "t-test",
+              "statistic": -0.31046021028253296,
+              "p": 0.621633883042766,
+              "p_by": 1.0,
+              "rejected": false
+            },
+            "Jannes": {
+              "n_units": 125,
+              "rho_f": 0.696,
+              "rho_h": 0.928,
+              "llm_wins": 9,
+              "human_wins": 38,
+              "ties": 78,
+              "mean_d": -0.232,
+              "test": "t-test",
+              "statistic": -0.6277897610729767,
+              "p": 0.734351941590071,
+              "p_by": 1.0,
+              "rejected": false
+            },
+            "Neda": {
+              "n_units": 125,
+              "rho_f": 0.744,
+              "rho_h": 0.864,
+              "llm_wins": 17,
+              "human_wins": 32,
+              "ties": 76,
+              "mean_d": -0.12,
+              "test": "t-test",
+              "statistic": 1.4497223579893623,
+              "p": 0.0748302448145735,
+              "p_by": 0.4115663464801542,
+              "rejected": false
+            }
+          }
+        },
+        "original_ratings": {
+          "score": "neg_rmse",
+          "epsilon": 0.2,
+          "q": 0.05,
+          "winning_rate": 1.0,
+          "passed": true,
+          "avg_advantage_probability": 0.8026666666666666,
+          "per_annotator": {
+            "Awsam": {
+              "n_units": 125,
+              "rho_f": 0.808,
+              "rho_h": 0.64,
+              "llm_wins": 45,
+              "human_wins": 24,
+              "ties": 56,
+              "mean_d": 0.168,
+              "test": "t-test",
+              "statistic": 5.6622085850493065,
+              "p": 4.926011006060813e-08,
+              "p_by": 1.3546530266667236e-07,
+              "rejected": true
+            },
+            "Jannes": {
+              "n_units": 125,
+              "rho_f": 0.776,
+              "rho_h": 0.752,
+              "llm_wins": 31,
+              "human_wins": 28,
+              "ties": 66,
+              "mean_d": 0.024,
+              "test": "t-test",
+              "statistic": 3.6328964291372867,
+              "p": 0.0002043817481529304,
+              "p_by": 0.0003746998716137057,
+              "rejected": true
+            },
+            "Neda": {
+              "n_units": 125,
+              "rho_f": 0.824,
+              "rho_h": 0.624,
+              "llm_wins": 47,
+              "human_wins": 22,
+              "ties": 56,
+              "mean_d": 0.2,
+              "test": "t-test",
+              "statistic": 6.224949798994367,
+              "p": 3.407038909890514e-09,
+              "p_by": 1.8738714004397826e-08,
+              "rejected": true
+            }
+          },
+          "min_passing_epsilon": 0.0
+        }
+      }
+    },
+    "R_ideo": {
+      "main": {
+        "score": "neg_rmse",
+        "epsilon": 0.2,
+        "q": 0.05,
+        "winning_rate": 0.3333333333333333,
+        "passed": false,
+        "avg_advantage_probability": 0.8213333333333334,
+        "per_annotator": {
+          "Awsam": {
+            "n_units": 125,
+            "rho_f": 0.84,
+            "rho_h": 0.792,
+            "llm_wins": 26,
+            "human_wins": 20,
+            "ties": 79,
+            "mean_d": 0.048,
+            "test": "t-test",
+            "statistic": 4.566699326333721,
+            "p": 5.888054593859202e-06,
+            "p_by": 3.238430026622561e-05,
+            "rejected": true
+          },
+          "Jannes": {
+            "n_units": 125,
+            "rho_f": 0.808,
+            "rho_h": 0.952,
+            "llm_wins": 6,
+            "human_wins": 24,
+            "ties": 95,
+            "mean_d": -0.144,
+            "test": "t-test",
+            "statistic": 1.331726995017602,
+            "p": 0.09269635353768901,
+            "p_by": 0.1699433148190965,
+            "rejected": false
+          },
+          "Neda": {
+            "n_units": 125,
+            "rho_f": 0.816,
+            "rho_h": 0.936,
+            "llm_wins": 8,
+            "human_wins": 23,
+            "ties": 94,
+            "mean_d": -0.12,
+            "test": "t-test",
+            "statistic": 1.8431658292114153,
+            "p": 0.033846390720685474,
+            "p_by": 0.09307757448188506,
+            "rejected": false
+          }
+        }
+      },
+      "epsilon_sweep_winning_rate": {
+        "0.0": 0.0,
+        "0.05": 0.0,
+        "0.1": 0.3333333333333333,
+        "0.15": 0.3333333333333333,
+        "0.2": 0.3333333333333333,
+        "0.25": 1.0,
+        "0.3": 1.0
+      },
+      "min_passing_epsilon": 0.22,
+      "robustness": {
+        "holdout": {
+          "score": "neg_rmse",
+          "epsilon": 0.2,
+          "q": 0.05,
+          "winning_rate": 0.0,
+          "passed": false,
+          "avg_advantage_probability": 0.7833333333333333,
+          "per_annotator": {
+            "Awsam": {
+              "n_units": 40,
+              "rho_f": 0.775,
+              "rho_h": 0.775,
+              "llm_wins": 9,
+              "human_wins": 9,
+              "ties": 22,
+              "mean_d": 0.0,
+              "test": "t-test",
+              "statistic": 1.8618986725025255,
+              "p": 0.03508254379626146,
+              "p_by": 0.19295399087943801,
+              "rejected": false
+            },
+            "Jannes": {
+              "n_units": 40,
+              "rho_f": 0.8,
+              "rho_h": 1.0,
+              "llm_wins": 0,
+              "human_wins": 8,
+              "ties": 32,
+              "mean_d": -0.2,
+              "test": "t-test",
+              "statistic": 0.0,
+              "p": 0.5,
+              "p_by": 0.9166666666666665,
+              "rejected": false
+            },
+            "Neda": {
+              "n_units": 40,
+              "rho_f": 0.775,
+              "rho_h": 0.975,
+              "llm_wins": 1,
+              "human_wins": 9,
+              "ties": 30,
+              "mean_d": -0.2,
+              "test": "t-test",
+              "statistic": 0.0,
+              "p": 0.5,
+              "p_by": 0.9166666666666665,
+              "rejected": false
+            }
+          }
+        },
+        "text_level": {
+          "score": "neg_rmse",
+          "epsilon": 0.2,
+          "q": 0.05,
+          "winning_rate": 0.3333333333333333,
+          "passed": false,
+          "avg_advantage_probability": 0.8213333333333334,
+          "per_annotator": {
+            "Awsam": {
+              "n_units": 25,
+              "rho_f": 0.84,
+              "rho_h": 0.792,
+              "llm_wins": 26,
+              "human_wins": 20,
+              "ties": 79,
+              "mean_d": 0.04800000000000001,
+              "test": "wilcoxon",
+              "statistic": 175.0,
+              "p": 0.0005579622288513674,
+              "p_by": 0.0030687922586825206,
+              "rejected": true
+            },
+            "Jannes": {
+              "n_units": 25,
+              "rho_f": 0.808,
+              "rho_h": 0.952,
+              "llm_wins": 6,
+              "human_wins": 24,
+              "ties": 95,
+              "mean_d": -0.14400000000000002,
+              "test": "wilcoxon",
+              "statistic": 139.0,
+              "p": 0.08818024876465197,
+              "p_by": 0.16166378940186193,
+              "rejected": false
+            },
+            "Neda": {
+              "n_units": 25,
+              "rho_f": 0.816,
+              "rho_h": 0.936,
+              "llm_wins": 8,
+              "human_wins": 23,
+              "ties": 94,
+              "mean_d": -0.12000000000000002,
+              "test": "wilcoxon",
+              "statistic": 121.0,
+              "p": 0.05454502479742015,
+              "p_by": 0.1499988181929054,
+              "rejected": false
+            }
+          }
+        },
+        "acc_scoring": {
+          "score": "acc",
+          "epsilon": 0.2,
+          "q": 0.05,
+          "winning_rate": 0.3333333333333333,
+          "passed": false,
+          "avg_advantage_probability": 0.8266666666666667,
+          "per_annotator": {
+            "Awsam": {
+              "n_units": 125,
+              "rho_f": 0.84,
+              "rho_h": 0.792,
+              "llm_wins": 26,
+              "human_wins": 20,
+              "ties": 79,
+              "mean_d": 0.048,
+              "test": "t-test",
+              "statistic": 4.566699326333721,
+              "p": 5.888054593859202e-06,
+              "p_by": 3.238430026622561e-05,
+              "rejected": true
+            },
+            "Jannes": {
+              "n_units": 125,
+              "rho_f": 0.824,
+              "rho_h": 0.936,
+              "llm_wins": 8,
+              "human_wins": 22,
+              "ties": 95,
+              "mean_d": -0.112,
+              "test": "t-test",
+              "statistic": 2.054682944732953,
+              "p": 0.02100517893152977,
+              "p_by": 0.05776424206170686,
+              "rejected": false
+            },
+            "Neda": {
+              "n_units": 125,
+              "rho_f": 0.816,
+              "rho_h": 0.936,
+              "llm_wins": 8,
+              "human_wins": 23,
+              "ties": 94,
+              "mean_d": -0.12,
+              "test": "t-test",
+              "statistic": 1.8431658292114153,
+              "p": 0.033846390720685474,
+              "p_by": 0.062051716321256695,
+              "rejected": false
+            }
+          }
+        },
+        "original_ratings": {
+          "score": "neg_rmse",
+          "epsilon": 0.2,
+          "q": 0.05,
+          "winning_rate": 1.0,
+          "passed": true,
+          "avg_advantage_probability": 0.8746666666666667,
+          "per_annotator": {
+            "Awsam": {
+              "n_units": 125,
+              "rho_f": 0.872,
+              "rho_h": 0.688,
+              "llm_wins": 39,
+              "human_wins": 16,
+              "ties": 70,
+              "mean_d": 0.184,
+              "test": "t-test",
+              "statistic": 6.70968367561307,
+              "p": 3.101452339380683e-10,
+              "p_by": 1.7057987866593757e-09,
+              "rejected": true
+            },
+            "Jannes": {
+              "n_units": 125,
+              "rho_f": 0.864,
+              "rho_h": 0.72,
+              "llm_wins": 35,
+              "human_wins": 17,
+              "ties": 73,
+              "mean_d": 0.144,
+              "test": "t-test",
+              "statistic": 6.092922505925414,
+              "p": 6.448996927192055e-09,
+              "p_by": 1.773474154977815e-08,
+              "rejected": true
+            },
+            "Neda": {
+              "n_units": 125,
+              "rho_f": 0.888,
+              "rho_h": 0.864,
+              "llm_wins": 17,
+              "human_wins": 14,
+              "ties": 94,
+              "mean_d": 0.024,
+              "test": "t-test",
+              "statistic": 5.014619083490695,
+              "p": 8.962638958533594e-07,
+              "p_by": 1.6431504757311587e-06,
+              "rejected": true
+            }
+          },
+          "min_passing_epsilon": 0.0
+        }
+      }
+    },
+    "A_caus": {
+      "main": {
+        "score": "acc",
+        "epsilon": 0.2,
+        "q": 0.05,
+        "winning_rate": 1.0,
+        "passed": true,
+        "avg_advantage_probability": 0.896,
+        "per_annotator": {
+          "Awsam": {
+            "n_units": 125,
+            "rho_f": 0.896,
+            "rho_h": 0.976,
+            "llm_wins": 3,
+            "human_wins": 13,
+            "ties": 109,
+            "mean_d": -0.08,
+            "test": "t-test",
+            "statistic": 3.8319982419510312,
+            "p": 0.0001004579896756279,
+            "p_by": 0.0002731571404849212,
+            "rejected": true
+          },
+          "Jannes": {
+            "n_units": 125,
+            "rho_f": 0.896,
+            "rho_h": 0.984,
+            "llm_wins": 2,
+            "human_wins": 13,
+            "ties": 110,
+            "mean_d": -0.088,
+            "test": "t-test",
+            "statistic": 3.7224089501620177,
+            "p": 0.00014899480390086613,
+            "p_by": 0.0002731571404849212,
+            "rejected": true
+          },
+          "Neda": {
+            "n_units": 125,
+            "rho_f": 0.896,
+            "rho_h": 0.976,
+            "llm_wins": 3,
+            "human_wins": 13,
+            "ties": 109,
+            "mean_d": -0.08,
+            "test": "t-test",
+            "statistic": 3.8319982419510312,
+            "p": 0.0001004579896756279,
+            "p_by": 0.0002731571404849212,
+            "rejected": true
+          }
+        }
+      },
+      "epsilon_sweep_winning_rate": {
+        "0.0": 0.0,
+        "0.05": 0.0,
+        "0.1": 0.0,
+        "0.15": 1.0,
+        "0.2": 1.0,
+        "0.25": 1.0,
+        "0.3": 1.0
+      },
+      "min_passing_epsilon": 0.15,
+      "robustness": {
+        "holdout": {
+          "score": "acc",
+          "epsilon": 0.2,
+          "q": 0.05,
+          "winning_rate": 0.0,
+          "passed": false,
+          "avg_advantage_probability": 0.875,
+          "per_annotator": {
+            "Awsam": {
+              "n_units": 40,
+              "rho_f": 0.875,
+              "rho_h": 0.975,
+              "llm_wins": 1,
+              "human_wins": 5,
+              "ties": 34,
+              "mean_d": -0.1,
+              "test": "t-test",
+              "statistic": 1.6690459207925603,
+              "p": 0.05155892709595099,
+              "p_by": 0.09452469967591014,
+              "rejected": false
+            },
+            "Jannes": {
+              "n_units": 40,
+              "rho_f": 0.875,
+              "rho_h": 0.975,
+              "llm_wins": 1,
+              "human_wins": 5,
+              "ties": 34,
+              "mean_d": -0.1,
+              "test": "t-test",
+              "statistic": 1.6690459207925603,
+              "p": 0.05155892709595099,
+              "p_by": 0.09452469967591014,
+              "rejected": false
+            },
+            "Neda": {
+              "n_units": 40,
+              "rho_f": 0.875,
+              "rho_h": 0.975,
+              "llm_wins": 1,
+              "human_wins": 5,
+              "ties": 34,
+              "mean_d": -0.1,
+              "test": "t-test",
+              "statistic": 1.6690459207925605,
+              "p": 0.051558927095950946,
+              "p_by": 0.09452469967591014,
+              "rejected": false
+            }
+          }
+        },
+        "text_level": {
+          "score": "acc",
+          "epsilon": 0.2,
+          "q": 0.05,
+          "winning_rate": 1.0,
+          "passed": true,
+          "avg_advantage_probability": 0.896,
+          "per_annotator": {
+            "Awsam": {
+              "n_units": 25,
+              "rho_f": 0.896,
+              "rho_h": 0.976,
+              "llm_wins": 3,
+              "human_wins": 13,
+              "ties": 109,
+              "mean_d": -0.08,
+              "test": "wilcoxon",
+              "statistic": 172.0,
+              "p": 0.0038480782014917924,
+              "p_by": 0.007054810036068285,
+              "rejected": true
+            },
+            "Jannes": {
+              "n_units": 25,
+              "rho_f": 0.896,
+              "rho_h": 0.984,
+              "llm_wins": 2,
+              "human_wins": 13,
+              "ties": 110,
+              "mean_d": -0.08800000000000001,
+              "test": "wilcoxon",
+              "statistic": 190.0,
+              "p": 0.0025326441995916675,
+              "p_by": 0.007054810036068285,
+              "rejected": true
+            },
+            "Neda": {
+              "n_units": 25,
+              "rho_f": 0.896,
+              "rho_h": 0.976,
+              "llm_wins": 3,
+              "human_wins": 13,
+              "ties": 109,
+              "mean_d": -0.08,
+              "test": "wilcoxon",
+              "statistic": 190.0,
+              "p": 0.0028382365409425265,
+              "p_by": 0.007054810036068285,
+              "rejected": true
+            }
+          }
+        },
+        "original_ratings": {
+          "score": "acc",
+          "epsilon": 0.2,
+          "q": 0.05,
+          "winning_rate": 1.0,
+          "passed": true,
+          "avg_advantage_probability": 0.936,
+          "per_annotator": {
+            "Awsam": {
+              "n_units": 125,
+              "rho_f": 0.936,
+              "rho_h": 0.96,
+              "llm_wins": 5,
+              "human_wins": 8,
+              "ties": 112,
+              "mean_d": -0.024,
+              "test": "t-test",
+              "statistic": 6.094145868075866,
+              "p": 6.411176644318754e-09,
+              "p_by": 1.3052729190203537e-08,
+              "rejected": true
+            },
+            "Jannes": {
+              "n_units": 125,
+              "rho_f": 0.936,
+              "rho_h": 0.984,
+              "llm_wins": 2,
+              "human_wins": 8,
+              "ties": 115,
+              "mean_d": -0.048,
+              "test": "t-test",
+              "statistic": 6.072326294159,
+              "p": 7.119670467383748e-09,
+              "p_by": 1.3052729190203537e-08,
+              "rejected": true
+            },
+            "Neda": {
+              "n_units": 125,
+              "rho_f": 0.936,
+              "rho_h": 0.92,
+              "llm_wins": 10,
+              "human_wins": 8,
+              "ties": 107,
+              "mean_d": 0.016,
+              "test": "t-test",
+              "statistic": 6.344095774981423,
+              "p": 1.9048884339078323e-09,
+              "p_by": 1.0476886386493077e-08,
+              "rejected": true
+            }
+          },
+          "min_passing_epsilon": 0.09
+        }
+      }
+    }
+  },
+  "summary": {
+    "R_top": {
+      "winning_rate": 0.0,
+      "passed": false,
+      "avg_advantage_probability": 0.6986666666666667,
+      "min_passing_epsilon": 0.32
+    },
+    "R_ideo": {
+      "winning_rate": 0.3333333333333333,
+      "passed": false,
+      "avg_advantage_probability": 0.8213333333333334,
+      "min_passing_epsilon": 0.22
+    },
+    "A_caus": {
+      "winning_rate": 1.0,
+      "passed": true,
+      "avg_advantage_probability": 0.896,
+      "min_passing_epsilon": 0.15
+    }
+  }
+}

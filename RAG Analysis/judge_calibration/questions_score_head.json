@@ -1,0 +1,100 @@
+{
+  "R_top": {
+    "type": "score",
+    "instructions": {
+      "question": "How topically relevant is the retrieved chunk to the input text?",
+      "compare": [
+        "`input_text`",
+        "`retrieved_chunk.text`"
+      ],
+      "focus": "Judge strictly by specific policy target and legislative mechanism, not by broad theme."
+    },
+    "criteria": [
+      {
+        "what": "IRRELEVANT — completely different topic, domain, or societal sphere.",
+        "examples": [
+          "The input text debates pension reform; the chunk is about fisheries quotas."
+        ]
+      },
+      {
+        "what": "BROAD THEMATIC DOMAIN ONLY — shares a high-level domain (e.g. public finance, social welfare, environment), but targets different policies, different debates, or different eras.",
+        "examples": [
+          "The input text is a generic complaint about taxes or costs; the chunk debates a specific federal budget or the Schuldenbremse."
+        ]
+      },
+      {
+        "what": "RELATED SUB-ISSUE — same sub-policy domain, but different specific mechanisms, opposing bills, or non-overlapping details.",
+        "examples": [
+          "Both texts concern labour-market policy, but the input text debates the minimum wage while the chunk debates unemployment-benefit sanctions."
+        ]
+      },
+      {
+        "what": "DIRECT POLICY OVERLAP — both texts debate the exact same policy measure, bill, or specific institutional mechanism, differing only in rhetorical framing.",
+        "examples": [
+          "Both texts specifically debate the Schuldenbremse or the Bürgergeld rates."
+        ]
+      },
+      {
+        "what": "IDENTICAL TARGET — the exact same legislative bill, motion, entity, or specific quote is referenced in both texts.",
+        "examples": [
+          "Both texts reference the same named amendment or the same quoted statement."
+        ]
+      }
+    ]
+  },
+  "R_ideo": {
+    "type": "score",
+    "instructions": {
+      "question": "How ideologically specific is the retrieved chunk on its own merits, as evidence about political positions?",
+      "inspect": "`retrieved_chunk.text`",
+      "focus": "Judge the chunk's own content, not the input text and not the generator justification."
+    },
+    "criteria": [
+      {
+        "what": "PROCEDURAL / NEUTRAL — bureaucratic announcements, committee schedules, uncontroversial administrative statements.",
+        "examples": [
+          "A speaker announcing the next agenda item or a vote schedule."
+        ]
+      },
+      {
+        "what": "DESCRIPTIVE REPORTING — mentions political conflict objectively without taking an ideological stance.",
+        "examples": [
+          "A neutral summary that two parties disagree about a bill."
+        ]
+      },
+      {
+        "what": "VALUE-LADEN RHETORIC — polarized adjectives, general critique, or emotional appeals without a clear programmatic ideology.",
+        "examples": [
+          "Calling a policy 'a disgrace' or 'common sense' without any stated programme."
+        ]
+      },
+      {
+        "what": "DISTINCT IDEOLOGICAL POSITION — a clear, partisan policy stance (e.g. fiscal hawkishness, deregulation, welfare expansion) expressed in parliamentary debate or public speech.",
+        "examples": [
+          "A speaker declaring 'Not with us as CDU/CSU!' on the parliament floor — debate rhetoric, not formal doctrine."
+        ]
+      },
+      {
+        "what": "BINDING MANIFESTO / FORMAL PROGRAMME — explicit reference to official party programmes, election manifestos, formal coalition agreements, or binding roll-call votes.",
+        "examples": [
+          "Quoting the coalition agreement or a party's election manifesto by name."
+        ]
+      }
+    ]
+  },
+  "A_caus": {
+    "type": "noul",
+    "instructions": {
+      "question": "Did the generator justification demonstrably rely on this specific retrieved chunk?",
+      "compare": [
+        "`generator_justification`",
+        "`retrieved_chunk.text`"
+      ],
+      "focus": "Require an explicit citation of this chunk's identifier (`retrieved_chunk.citation_forms`) and arguments derived from facts, figures, or claims unique to this chunk."
+    },
+    "criteria": {
+      "true": "The justification explicitly cites this chunk by one of `retrieved_chunk.citation_forms` AND derives its arguments from facts, figures, or claims unique to this chunk.",
+      "false": "The justification does not explicitly cite this chunk's identifier, or uses generic reasoning that could have been produced from the input text alone or from model pre-training."
+    }
+  }
+}

@@ -1,0 +1,79 @@
+Alt-Test: judge jev-1.14.0 (run 2026-10-22_132304) vs Awsam, Jannes, Neda; 125 chunks / 25 texts; eps = 0.2, q = 0.05 (BY)
+
+== R_top (score: neg_rmse)
+  main, all chunks: omega = 0.00 (fail), avg rho_f = 0.699
+    Awsam   n=125  rho_f=0.696 rho_h=0.912 (LLM 11 / human 38 / tie 76)  p=0.6189 p_BY=1.0000  H0 kept
+    Jannes  n=125  rho_f=0.696 rho_h=0.904 (LLM 12 / human 38 / tie 75)  p=0.5592 p_BY=1.0000  H0 kept
+    Neda    n=125  rho_f=0.704 rho_h=0.840 (LLM 20 / human 37 / tie 68)  p=0.1417 p_BY=0.7793  H0 kept
+  eps sweep (omega): 0.0: 0.00, 0.05: 0.00, 0.1: 0.00, 0.15: 0.00, 0.2: 0.00, 0.25: 0.00, 0.3: 0.33
+  smallest passing eps: 0.32
+  calibration holdout (40 chunks): omega = 0.00 (fail), avg rho_f = 0.650
+    Awsam   n=40   rho_f=0.625 rho_h=0.950 (LLM 2 / human 15 / tie 23)  p=0.9125 p_BY=1.0000  H0 kept
+    Jannes  n=40   rho_f=0.650 rho_h=0.900 (LLM 4 / human 14 / tie 22)  p=0.6906 p_BY=1.0000  H0 kept
+    Neda    n=40   rho_f=0.675 rho_h=0.875 (LLM 5 / human 13 / tie 22)  p=0.5000 p_BY=1.0000  H0 kept
+  text-level units (Wilcoxon, n=25): omega = 0.00 (fail), avg rho_f = 0.699
+    Awsam   n=25   rho_f=0.696 rho_h=0.912 (LLM 11 / human 38 / tie 76)  p=0.5651 p_BY=1.0000  H0 kept
+    Jannes  n=25   rho_f=0.696 rho_h=0.904 (LLM 12 / human 38 / tie 75)  p=0.4584 p_BY=1.0000  H0 kept
+    Neda    n=25   rho_f=0.704 rho_h=0.840 (LLM 20 / human 37 / tie 68)  p=0.1959 p_BY=1.0000  H0 kept
+  exact-match (ACC) scoring: omega = 0.00 (fail), avg rho_f = 0.715
+    Awsam   n=125  rho_f=0.704 rho_h=0.920 (LLM 10 / human 37 / tie 78)  p=0.6216 p_BY=1.0000  H0 kept
+    Jannes  n=125  rho_f=0.696 rho_h=0.928 (LLM 9 / human 38 / tie 78)  p=0.7344 p_BY=1.0000  H0 kept
+    Neda    n=125  rho_f=0.744 rho_h=0.864 (LLM 17 / human 32 / tie 76)  p=0.0748 p_BY=0.4116  H0 kept
+  original (pre-discussion) ratings: omega = 1.00 (PASS), avg rho_f = 0.803
+    Awsam   n=125  rho_f=0.808 rho_h=0.640 (LLM 45 / human 24 / tie 56)  p=0.0000 p_BY=0.0000  H0 rejected
+    Jannes  n=125  rho_f=0.776 rho_h=0.752 (LLM 31 / human 28 / tie 66)  p=0.0002 p_BY=0.0004  H0 rejected
+    Neda    n=125  rho_f=0.824 rho_h=0.624 (LLM 47 / human 22 / tie 56)  p=0.0000 p_BY=0.0000  H0 rejected
+    smallest passing eps (original ratings): 0.0
+
+== R_ideo (score: neg_rmse)
+  main, all chunks: omega = 0.33 (fail), avg rho_f = 0.821
+    Awsam   n=125  rho_f=0.840 rho_h=0.792 (LLM 26 / human 20 / tie 79)  p=0.0000 p_BY=0.0000  H0 rejected
+    Jannes  n=125  rho_f=0.808 rho_h=0.952 (LLM 6 / human 24 / tie 95)  p=0.0927 p_BY=0.1699  H0 kept
+    Neda    n=125  rho_f=0.816 rho_h=0.936 (LLM 8 / human 23 / tie 94)  p=0.0338 p_BY=0.0931  H0 kept
+  eps sweep (omega): 0.0: 0.00, 0.05: 0.00, 0.1: 0.33, 0.15: 0.33, 0.2: 0.33, 0.25: 1.00, 0.3: 1.00
+  smallest passing eps: 0.22
+  calibration holdout (40 chunks): omega = 0.00 (fail), avg rho_f = 0.783
+    Awsam   n=40   rho_f=0.775 rho_h=0.775 (LLM 9 / human 9 / tie 22)  p=0.0351 p_BY=0.1930  H0 kept
+    Jannes  n=40   rho_f=0.800 rho_h=1.000 (LLM 0 / human 8 / tie 32)  p=0.5000 p_BY=0.9167  H0 kept
+    Neda    n=40   rho_f=0.775 rho_h=0.975 (LLM 1 / human 9 / tie 30)  p=0.5000 p_BY=0.9167  H0 kept
+  text-level units (Wilcoxon, n=25): omega = 0.33 (fail), avg rho_f = 0.821
+    Awsam   n=25   rho_f=0.840 rho_h=0.792 (LLM 26 / human 20 / tie 79)  p=0.0006 p_BY=0.0031  H0 rejected
+    Jannes  n=25   rho_f=0.808 rho_h=0.952 (LLM 6 / human 24 / tie 95)  p=0.0882 p_BY=0.1617  H0 kept
+    Neda    n=25   rho_f=0.816 rho_h=0.936 (LLM 8 / human 23 / tie 94)  p=0.0545 p_BY=0.1500  H0 kept
+  exact-match (ACC) scoring: omega = 0.33 (fail), avg rho_f = 0.827
+    Awsam   n=125  rho_f=0.840 rho_h=0.792 (LLM 26 / human 20 / tie 79)  p=0.0000 p_BY=0.0000  H0 rejected
+    Jannes  n=125  rho_f=0.824 rho_h=0.936 (LLM 8 / human 22 / tie 95)  p=0.0210 p_BY=0.0578  H0 kept
+    Neda    n=125  rho_f=0.816 rho_h=0.936 (LLM 8 / human 23 / tie 94)  p=0.0338 p_BY=0.0621  H0 kept
+  original (pre-discussion) ratings: omega = 1.00 (PASS), avg rho_f = 0.875
+    Awsam   n=125  rho_f=0.872 rho_h=0.688 (LLM 39 / human 16 / tie 70)  p=0.0000 p_BY=0.0000  H0 rejected
+    Jannes  n=125  rho_f=0.864 rho_h=0.720 (LLM 35 / human 17 / tie 73)  p=0.0000 p_BY=0.0000  H0 rejected
+    Neda    n=125  rho_f=0.888 rho_h=0.864 (LLM 17 / human 14 / tie 94)  p=0.0000 p_BY=0.0000  H0 rejected
+    smallest passing eps (original ratings): 0.0
+
+== A_caus (score: acc)
+  main, all chunks: omega = 1.00 (PASS), avg rho_f = 0.896
+    Awsam   n=125  rho_f=0.896 rho_h=0.976 (LLM 3 / human 13 / tie 109)  p=0.0001 p_BY=0.0003  H0 rejected
+    Jannes  n=125  rho_f=0.896 rho_h=0.984 (LLM 2 / human 13 / tie 110)  p=0.0001 p_BY=0.0003  H0 rejected
+    Neda    n=125  rho_f=0.896 rho_h=0.976 (LLM 3 / human 13 / tie 109)  p=0.0001 p_BY=0.0003  H0 rejected
+  eps sweep (omega): 0.0: 0.00, 0.05: 0.00, 0.1: 0.00, 0.15: 1.00, 0.2: 1.00, 0.25: 1.00, 0.3: 1.00
+  smallest passing eps: 0.15
+  calibration holdout (40 chunks): omega = 0.00 (fail), avg rho_f = 0.875
+    Awsam   n=40   rho_f=0.875 rho_h=0.975 (LLM 1 / human 5 / tie 34)  p=0.0516 p_BY=0.0945  H0 kept
+    Jannes  n=40   rho_f=0.875 rho_h=0.975 (LLM 1 / human 5 / tie 34)  p=0.0516 p_BY=0.0945  H0 kept
+    Neda    n=40   rho_f=0.875 rho_h=0.975 (LLM 1 / human 5 / tie 34)  p=0.0516 p_BY=0.0945  H0 kept
+  text-level units (Wilcoxon, n=25): omega = 1.00 (PASS), avg rho_f = 0.896
+    Awsam   n=25   rho_f=0.896 rho_h=0.976 (LLM 3 / human 13 / tie 109)  p=0.0038 p_BY=0.0071  H0 rejected
+    Jannes  n=25   rho_f=0.896 rho_h=0.984 (LLM 2 / human 13 / tie 110)  p=0.0025 p_BY=0.0071  H0 rejected
+    Neda    n=25   rho_f=0.896 rho_h=0.976 (LLM 3 / human 13 / tie 109)  p=0.0028 p_BY=0.0071  H0 rejected
+  original (pre-discussion) ratings: omega = 1.00 (PASS), avg rho_f = 0.936
+    Awsam   n=125  rho_f=0.936 rho_h=0.960 (LLM 5 / human 8 / tie 112)  p=0.0000 p_BY=0.0000  H0 rejected
+    Jannes  n=125  rho_f=0.936 rho_h=0.984 (LLM 2 / human 8 / tie 115)  p=0.0000 p_BY=0.0000  H0 rejected
+    Neda    n=125  rho_f=0.936 rho_h=0.920 (LLM 10 / human 8 / tie 107)  p=0.0000 p_BY=0.0000  H0 rejected
+    smallest passing eps (original ratings): 0.09
+
+Summary (main test):
+  R_top   omega = 0.00  fail  avg rho_f = 0.699  min eps = 0.32
+  R_ideo  omega = 0.33  fail  avg rho_f = 0.821  min eps = 0.22
+  A_caus  omega = 1.00  PASS  avg rho_f = 0.896  min eps = 0.15
+
+Saved /Users/janneslampe/Desktop/Coding/Master Thesis/Evaluation/RAG Analysis/alt_test/2026-10-22_132304/alt_test_report.json and alt_test_items.csv

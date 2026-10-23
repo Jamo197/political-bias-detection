@@ -1,0 +1,25 @@
+R_ideo rating counts (all annotators pooled, 125 chunks):
+  revised  1: 0  2: 8  3: 93  4: 198  5: 76
+  original 1: 0  2: 28  3: 98  4: 175  5: 74
+  judge    1: 0  2: 0  3: 27  4: 65  5: 33
+
+== 5-level (as annotated)  [1 | 2 | 3 | 4 | 5]
+  humans:  alpha 0.634 (0.51-0.73), mean pairwise kappa 0.646, original ratings alpha 0.314
+  judge:   vs consensus alpha 0.551 (0.42-0.67), exact 0.62, 4th-rater alpha 0.565, Alt-Test omega 0.33
+== 4-level: 1+2  [descriptive/balanced | implicit | stance | party]
+  humans:  alpha 0.634 (0.50-0.74), mean pairwise kappa 0.646, original ratings alpha 0.314
+  judge:   vs consensus alpha 0.551 (0.40-0.67), exact 0.62, 4th-rater alpha 0.565, Alt-Test omega 0.33
+== 3-level: 1+2+3  [at most implicit framing | clear stance | explicit party]
+  humans:  alpha 0.623 (0.50-0.72), mean pairwise kappa 0.633, original ratings alpha 0.304
+  judge:   vs consensus alpha 0.546 (0.40-0.67), exact 0.63, 4th-rater alpha 0.556, Alt-Test omega 0.33
+== binary: <=3 vs 4+5  [no clear stance | clear stance or party]
+  humans:  alpha 0.446 (0.30-0.59), mean pairwise kappa 0.454, original ratings alpha 0.201
+  judge:   vs consensus alpha 0.298 (0.16-0.42), exact 0.75, 4th-rater alpha 0.336, Alt-Test omega 1.00
+== binary: <=4 vs 5  [no explicit party grounding | explicit party]
+  humans:  alpha 0.638 (0.48-0.77), mean pairwise kappa 0.638, original ratings alpha 0.278
+  judge:   vs consensus alpha 0.615 (0.39-0.79), exact 0.86, 4th-rater alpha 0.621, Alt-Test omega 1.00
+== 3-level: 3+4 merged  [descriptive/balanced | framing or stance | party]
+  humans:  alpha 0.621 (0.46-0.74), mean pairwise kappa 0.612, original ratings alpha 0.284
+  judge:   vs consensus alpha 0.605 (0.38-0.76), exact 0.85, 4th-rater alpha 0.608, Alt-Test omega 1.00
+
+Saved /Users/janneslampe/Desktop/Coding/Master Thesis/Evaluation/RAG Analysis/r_ideo_rescale/2026-10-22_132304/r_ideo_rescale_report.json

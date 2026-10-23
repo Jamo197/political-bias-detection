@@ -1,8 +1,16 @@
-"""Streamlit app to compare human qualitative annotations against each other.
+"""Streamlit app to compare the human annotations and the LLM judge.
 
 Run from anywhere:
 
     streamlit run "RAG Analysis/human_annotations/run_annotation_comparison.py"
+
+Two views (tabs):
+
+* **Human vs LLM** — per chunk, what each annotator, the consensus and the Jev
+  judge (``src/run_llm_judge.py``) scored. Annotators come from the revised
+  ``revised/consensus_reference_annotations.jsonl`` (ratings after the
+  discussion round); the judge from any ``RAG Analysis/<run_id>/`` folder.
+* **Annotator agreement** — the annotators against each other (below).
 
 Agreement numbers come from ``compare_human_annotations.py`` so they match its
 CLI report. The Disagreements tab steps through chunks the annotators rated
@@ -27,6 +35,7 @@ from typing import Any, Dict, List, Optional, Tuple
 import numpy as np
 import pandas as pd
 import streamlit as st
+from sklearn.metrics import cohen_kappa_score, confusion_matrix
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 APP_ROOT = SCRIPT_DIR.parent.parent
@@ -48,6 +57,12 @@ from run_streamlit import R_IDEO_OPTIONS, R_TOP_OPTIONS  # noqa: E402
 
 CONSENSUS_PATH = APP_ROOT / "annotations/consensus_annotations.jsonl"
 REVISIONS_PATH = APP_ROOT / "annotations/revised_annotations.jsonl"
+# Human vs LLM view: revised annotator ratings and the judge runs to compare.
+CONSENSUS_REFERENCE_PATH = SCRIPT_DIR / "revised/consensus_reference_annotations.jsonl"
+REVISED_NOTES_PATH = SCRIPT_DIR / "revised/Annotations - annotation_disagreements.csv"
+JUDGE_RUNS_ROOT = SCRIPT_DIR.parent
+JUDGE_FLAT_NAME = "llm_judge_annotations.jsonl"
+JUDGE_DIMS = ["R_top", "R_ideo", "A_caus"]
 DIM_LABELS = {
     "R_top": "R_top (topical relevance)",
     "R_ideo": "R_ideo (ideological specificity)",
@@ -278,7 +293,7 @@ def build_disagreement_items(
 def highlight_citation(
     text: str, chunk_index: int, plain_markdown: bool = False
 ) -> str:
-    """Bold the ``[N]`` reference that cites this chunk in the justification.
+    """Bold the ``[N]`` / ``[N, M]`` reference that cites this chunk.
 
     ``plain_markdown`` skips Streamlit's ``:red[]`` colour directive so the
     result renders in any markdown viewer.
@@ -286,13 +301,14 @@ def highlight_citation(
     target = chunk_index + 1
 
     def mark(match: "re.Match[str]") -> str:
-        if int(match.group(1)) != target:
+        if target not in {int(n) for n in re.findall(r"\d+", match.group(1))}:
             return match.group(0)
         if plain_markdown:
             return f"**\\[{match.group(1)}\\]**"
         return f"**:red[[{match.group(1)}]]**"
 
-    return re.sub(r"\[(\d+)\]", mark, text or "")
+    # Single ("[2]") and list ("[2, 3]") citations.
+    return re.sub(r"\[(\d+(?:\s*,\s*\d+)*)\]", mark, text or "")
 
 
 # ---------------------------------------------------------------------------
@@ -932,21 +948,471 @@ def render_consensus_form(item, dims: List[str], annotators: List[str]):
 
 
 # ---------------------------------------------------------------------------
+# Human vs LLM
+# ---------------------------------------------------------------------------
+
+
+@st.cache_data
+def load_reference(path: str, mtime: float) -> Dict[str, Dict[str, Any]]:
+    """Revised consensus records keyed by ``text_index`` (``mtime`` busts the cache)."""
+    records: Dict[str, Dict[str, Any]] = {}
+    with Path(path).open("r", encoding="utf-8") as handle:
+        for line in handle:
+            if line.strip():
+                record = json.loads(line)
+                records[str(record["text_index"]).strip()] = record
+    return records
+
+
+@st.cache_data
+def load_judge_run(path: str, mtime: float) -> Dict[ItemKey, Dict[str, Any]]:
+    """Flat judge results keyed ``(text_index, chunk_index)``."""
+    results: Dict[ItemKey, Dict[str, Any]] = {}
+    with Path(path).open("r", encoding="utf-8") as handle:
+        for line in handle:
+            if line.strip():
+                row = json.loads(line)
+                results[(str(row["text_index"]).strip(), row["chunk_index"])] = row
+    return results
+
+
+@st.cache_data
+def load_revised_notes(path: str, mtime: float) -> Dict[ItemKey, Dict[str, str]]:
+    """Discussion-round notes per ``(text_index, chunk_index)`` and annotator."""
+    if not Path(path).exists():
+        return {}
+    frame = pd.read_csv(path, dtype=str).fillna("")
+    note_columns = [c for c in frame.columns if c.startswith("notes_")]
+    notes: Dict[ItemKey, Dict[str, str]] = {}
+    for _, row in frame.iterrows():
+        key = (str(row["text_index"]).strip(), int(row["chunk_number"]) - 1)
+        notes[key] = {
+            c[len("notes_") :]: row[c].strip() for c in note_columns if row[c].strip()
+        }
+    return notes
+
+
+def discover_judge_runs() -> List[Path]:
+    """Judge result files under ``RAG Analysis/<run_id>/`` (and the calibration
+    runs in ``judge_calibration/runs/``), newest first."""
+    found = [
+        *JUDGE_RUNS_ROOT.glob(f"*/{JUDGE_FLAT_NAME}"),
+        *(JUDGE_RUNS_ROOT / "judge_calibration/runs").glob(f"*/{JUDGE_FLAT_NAME}"),
+    ]
+    return sorted(found, key=lambda p: p.stat().st_mtime, reverse=True)
+
+
+def _run_label(path: Path) -> str:
+    stamp = datetime.datetime.fromtimestamp(path.stat().st_mtime)
+    return f"{path.parent.name}  ({stamp:%Y-%m-%d %H:%M})"
+
+
+def build_llm_items(reference, judge) -> List[Dict[str, Any]]:
+    """One entry per chunk judged in the run: consensus, annotators and LLM labels."""
+    items = []
+    for text_index, record in reference.items():
+        for chunk in record.get("chunk_annotations") or []:
+            key = (text_index, chunk["chunk_index"])
+            result = judge.get(key)
+            if result is None or "error" in result:
+                continue
+            llm = result["derived_labels"]
+            ratings = chunk.get("human_ratings") or {}
+            consensus = {dim: chunk.get(dim) for dim in JUDGE_DIMS}
+            items.append(
+                {
+                    "key": key,
+                    "record": record,
+                    "chunk": chunk,
+                    "result": result,
+                    "consensus": consensus,
+                    "annotators": {dim: ratings.get(dim, {}) for dim in JUDGE_DIMS},
+                    "llm": {dim: llm.get(dim) for dim in JUDGE_DIMS},
+                    "diff": {
+                        dim: llm[dim] - consensus[dim]
+                        for dim in JUDGE_DIMS
+                        if llm.get(dim) is not None and consensus[dim] is not None
+                    },
+                }
+            )
+    return items
+
+
+def _kappa(a: List[int], b: List[int], dim: str) -> Optional[float]:
+    """Quadratic-weighted κ for the ordinal dims, plain κ for A_caus."""
+    if not a:
+        return None
+    ordinal = dim != "A_caus"
+    value = cohen_kappa_score(
+        a,
+        b,
+        labels=[1, 2, 3, 4, 5] if ordinal else [0, 1],
+        weights="quadratic" if ordinal else None,
+    )
+    return None if np.isnan(value) else float(value)
+
+
+def llm_agreement(items, dim: str) -> Dict[str, Any]:
+    """LLM vs consensus and vs each annotator, with human–human κ for scale."""
+    rated = [it for it in items if dim in it["diff"]]
+    llm = [it["llm"][dim] for it in rated]
+    consensus = [it["consensus"][dim] for it in rated]
+    names = sorted({n for it in rated for n in it["annotators"][dim]})
+
+    def paired(name: str):
+        pairs = [
+            (it["annotators"][dim][name], it["llm"][dim])
+            for it in rated
+            if name in it["annotators"][dim]
+        ]
+        return [p[0] for p in pairs], [p[1] for p in pairs]
+
+    per_annotator = {n: _kappa(*paired(n), dim) for n in names}
+    human_pairs = []
+    for i, first in enumerate(names):
+        for second in names[i + 1 :]:
+            both = [
+                (it["annotators"][dim][first], it["annotators"][dim][second])
+                for it in rated
+                if first in it["annotators"][dim] and second in it["annotators"][dim]
+            ]
+            value = _kappa([p[0] for p in both], [p[1] for p in both], dim)
+            if value is not None:
+                human_pairs.append(value)
+    return {
+        "n": len(rated),
+        "agree": float(np.mean(np.array(llm) == np.array(consensus))) if rated else None,
+        "kappa": _kappa(consensus, llm, dim),
+        "bias": float(np.mean(np.array(llm) - np.array(consensus))) if rated else None,
+        "per_annotator": per_annotator,
+        "human_human": float(np.mean(human_pairs)) if human_pairs else None,
+        "labels": [0, 1] if dim == "A_caus" else [1, 2, 3, 4, 5],
+        "confusion": (
+            confusion_matrix(
+                consensus, llm, labels=[0, 1] if dim == "A_caus" else [1, 2, 3, 4, 5]
+            )
+            if rated
+            else None
+        ),
+    }
+
+
+def a_caus_path(result: Dict[str, Any]) -> str:
+    """How the judge's A_caus label came about (mirrors ``derive_labels``)."""
+    citation = result.get("citation")
+    if not citation:
+        return "model probability only (this run stored no citation evidence)"
+    if citation.get("cited_by_number"):
+        return "chunk cited by number → 1"
+    if citation.get("speaker_named"):
+        return "speaker named in the justification → 1"
+    if citation.get("any_numeric_citation"):
+        return "other chunks cited by number, this one not → 0"
+    return "no numeric citations → the model's probability decides"
+
+
+# Ladder gates behind R_top / R_ideo (see src/run_llm_judge.py). The label prefix
+# keeps the bars in ladder order; levels in brackets are what a "yes" unlocks.
+GATE_LABELS = {
+    "R_top": {
+        "T_domain": "T1 same broad field (≥2)",
+        "T_subarea": "T2 same narrow question (≥3)",
+        "T_item": "T3 input's item discussed (≥4)",
+        "T_central": "T4 item is the main subject (5)",
+    },
+    "R_ideo": {
+        "I_procedural": "I1 only procedure (1, else 2)",
+        "I_evaluative": "I2 argues or evaluates (≥3)",
+        "I_stance": "I3 strong partisan side (≥4)",
+        "I_party": "I4 own party's position (5)",
+    },
+}
+GATE_RULES = {
+    "R_top": "Label = 1 + the highest gate that is yes.",
+    "R_ideo": "5 = I3 and I4 · 4 = I3 and I2 · 3 = I2 · otherwise 1 (I1 yes) or 2.",
+}
+
+
+def explain_score(answer: Dict[str, Any]) -> str:
+    """Markdown: the label is the most probable rubric level."""
+    probabilities = answer.get("probabilities") or {}
+    if not probabilities:
+        return "No probabilities stored for this answer."
+    best = max(probabilities, key=probabilities.get)
+    return (
+        f"Most probable rubric level: **{int(best) + 1}** (p = {probabilities[best]:.2f}) "
+        f"· weighted score {answer.get('score', 0.0) + 1:.2f}"
+    )
+
+
+def render_llm_summary(items, dims: List[str]):
+    stats = {dim: llm_agreement(items, dim) for dim in dims}
+    rows = []
+    for dim in dims:
+        s = stats[dim]
+        row = {
+            "dimension": dim,
+            "n": s["n"],
+            "exact agree %": round(100 * s["agree"], 1) if s["agree"] is not None else None,
+            "LLM vs consensus": s["kappa"],
+            "bias (LLM − consensus)": s["bias"],
+        }
+        for name, value in s["per_annotator"].items():
+            row[f"LLM vs {name}"] = value
+        row["annotators among themselves"] = s["human_human"]
+        rows.append(row)
+    st.caption(
+        "κ is quadratic-weighted for R_top / R_ideo and plain Cohen's κ for A_caus. "
+        "“Annotators among themselves” is the mean pairwise κ of the (revised) human "
+        "ratings: the level the LLM is measured against."
+    )
+    st.dataframe(pd.DataFrame(rows).round(3), hide_index=True, width="stretch")
+
+    with st.expander("Confusion matrices (rows = consensus, columns = LLM)"):
+        cols = st.columns(len(dims))
+        for col, dim in zip(cols, dims):
+            matrix = stats[dim]["confusion"]
+            if matrix is None:
+                continue
+            labels = stats[dim]["labels"]
+            col.caption(dim)
+            col.dataframe(
+                pd.DataFrame(
+                    matrix,
+                    index=[f"consensus={v}" for v in labels],
+                    columns=[f"LLM={v}" for v in labels],
+                )
+            )
+
+
+def render_llm_item(item, notes: Dict[str, str], dims: List[str]):
+    text_index, chunk_index = item["key"]
+    record, chunk, result = item["record"], item["chunk"], item["result"]
+    context = record.get("source_context", {}) or {}
+    input_meta = context.get("input_metadata", {}) or {}
+    chunk_meta = chunk.get("chunk_metadata", {}) or {}
+
+    st.write("## Source Text")
+    meta_cols = st.columns(4)
+    meta_cols[0].caption(f"Party: **{input_meta.get('party', '—')}**")
+    meta_cols[1].caption(f"Speaker: **{input_meta.get('speaker', '—')}**")
+    meta_cols[2].caption(f"Source: **{input_meta.get('source', '—')}**")
+    meta_cols[3].caption(f"Quadrant: **{context.get('quadrant', '—')}**")
+    st.write(record.get("input_text", ""))
+
+    justification = (context.get("rag", {}) or {}).get("justification", "")
+    with st.expander("RAG justification (this chunk's citation highlighted)"):
+        st.markdown(highlight_citation(justification or "—", chunk_index))
+
+    st.write("## Chunk")
+    chunk_cols = st.columns(3)
+    chunk_cols[0].caption(f"Party: **{chunk_meta.get('party', '—')}**")
+    chunk_cols[1].caption(f"Speaker: **{chunk_meta.get('speaker', '—')}**")
+    chunk_cols[2].caption(f"Retrieval score: **{chunk_meta.get('score', '—')}**")
+    st.write(chunk.get("chunk_text", ""))
+
+    st.write("## Ratings")
+    names = sorted({n for dim in dims for n in item["annotators"][dim]})
+    header = ["dimension", *names, "**consensus**", "**LLM**", "LLM − consensus"]
+    lines = ["| " + " | ".join(header) + " |", "|" + "---|" * len(header)]
+    for dim in dims:
+        cells = [dim]
+        for name in names:
+            value = item["annotators"][dim].get(name)
+            cells.append(_rating_text(dim, value))
+        consensus, llm = item["consensus"][dim], item["llm"][dim]
+        differs = dim in item["diff"] and item["diff"][dim] != 0
+        llm_text = _rating_text(dim, llm)
+        cells += [
+            f"**{_rating_text(dim, consensus)}**",
+            f"**:red[{llm_text}]**" if differs else f"**{llm_text}**",
+            f"{item['diff'][dim]:+d}" if dim in item["diff"] else "—",
+        ]
+        lines.append("| " + " | ".join(cells) + " |")
+    st.markdown("\n".join(lines))
+
+    st.write("### How the LLM got there")
+    detail_cols = st.columns(3)
+    for col, dim in zip(detail_cols[:2], ("R_top", "R_ideo")):
+        if dim not in dims:
+            continue
+        answers = result.get("raw_answers") or {}
+        col.markdown(f"**{dim}**")
+        gates = GATE_LABELS[dim]
+        if all(g in answers for g in gates):  # ladder run
+            yes = [g for g in gates if answers[g]["noul"] >= 0.5]
+            col.markdown(
+                f"Label **{result['derived_labels'][dim]}** · "
+                f"gates yes: {', '.join(yes) or 'none'}"
+            )
+            col.bar_chart(
+                pd.DataFrame({"p(yes)": {gates[g]: answers[g]["noul"] for g in gates}}),
+                height=170,
+            )
+            col.caption(f"A gate is yes at p ≥ 0.5. {GATE_RULES[dim]}")
+            continue
+        answer = answers.get(dim) or {}  # older five-level score runs
+        col.markdown(explain_score(answer))
+        probabilities = answer.get("probabilities") or {}
+        if probabilities:
+            chart = pd.DataFrame(
+                {"probability": {str(int(k) + 1): v for k, v in probabilities.items()}}
+            )
+            col.bar_chart(chart, height=140)
+            col.caption("Chart: probability of each rubric level; the label is the tallest bar.")
+    if "A_caus" in dims:
+        answer = (result.get("raw_answers") or {}).get("A_caus") or {}
+        detail_cols[2].markdown("**A_caus**")
+        detail_cols[2].caption(f"p(relied on this chunk) = {answer.get('noul', float('nan')):.2f}")
+        detail_cols[2].write(a_caus_path(result))
+
+    st.write("### Annotator notes (discussion round)")
+    note_cols = st.columns(max(len(names), 1))
+    for col, name in zip(note_cols, names):
+        col.markdown(f"**{name}**")
+        col.write(notes.get(name) or "—")
+
+
+def render_llm_comparison():
+    if not CONSENSUS_REFERENCE_PATH.exists():
+        st.error(f"Missing reference annotations: {CONSENSUS_REFERENCE_PATH}")
+        return
+    runs = discover_judge_runs()
+    if not runs:
+        st.info(
+            f"No judge runs found under {JUDGE_RUNS_ROOT}. Run "
+            "`python src/run_llm_judge.py` first."
+        )
+        return
+
+    reference = load_reference(
+        str(CONSENSUS_REFERENCE_PATH), CONSENSUS_REFERENCE_PATH.stat().st_mtime
+    )
+    notes = load_revised_notes(
+        str(REVISED_NOTES_PATH),
+        REVISED_NOTES_PATH.stat().st_mtime if REVISED_NOTES_PATH.exists() else 0.0,
+    )
+
+    top = st.columns([3, 2, 1])
+    run_path = top[0].selectbox("LLM judge run", runs, format_func=_run_label, key="llm_run")
+    dims = top[1].multiselect(
+        "Dimensions",
+        options=JUDGE_DIMS,
+        default=JUDGE_DIMS,
+        format_func=lambda d: DIM_LABELS.get(d, d),
+        key="llm_dims",
+    )
+    if top[2].button("Reload files", key="llm_reload"):
+        st.cache_data.clear()
+        st.rerun()
+    if not dims:
+        st.warning("Select at least one dimension.")
+        return
+
+    judge = load_judge_run(str(run_path), run_path.stat().st_mtime)
+    items = build_llm_items(reference, judge)
+    total = sum(len(r.get("chunk_annotations") or []) for r in reference.values())
+    if not items:
+        st.warning("None of the judged chunks match the reference annotations.")
+        return
+    sample = next(iter(judge.values()))
+    st.caption(
+        f"Judge model **{sample.get('response_model') or sample.get('model', '—')}** · "
+        f"questions hash `{sample.get('questions_hash', '—')}` · "
+        f"{len(items)} of {total} reference chunks judged"
+        f"{' · failed: ' + str(sum('error' in r for r in judge.values())) if any('error' in r for r in judge.values()) else ''}. "
+        "Annotator ratings are the revised ones (after the discussion round)."
+    )
+
+    render_llm_summary(items, dims)
+
+    st.subheader("Chunk by chunk")
+    row = st.columns([2, 2, 2, 2])
+    only_diff = row[0].checkbox(
+        "Only chunks where the LLM differs from the consensus", value=True, key="llm_only_diff"
+    )
+    min_diff = row[1].slider(
+        "Minimum |LLM − consensus|", 1, 4, 1, disabled=not only_diff, key="llm_min_diff"
+    )
+    direction = row[2].radio(
+        "Direction",
+        ["Any", "LLM higher", "LLM lower"],
+        horizontal=True,
+        disabled=not only_diff,
+        key="llm_direction",
+    )
+    sort_by = row[3].radio(
+        "Sort", ["Largest difference", "Text order"], horizontal=True, key="llm_sort"
+    )
+
+    def wanted(item) -> bool:
+        diffs = [item["diff"][d] for d in dims if d in item["diff"]]
+        if not only_diff:
+            return True
+        if direction == "LLM higher":
+            diffs = [d for d in diffs if d > 0]
+        elif direction == "LLM lower":
+            diffs = [d for d in diffs if d < 0]
+        return any(abs(d) >= min_diff for d in diffs)
+
+    shown = [it for it in items if wanted(it)]
+    if sort_by == "Largest difference":
+        shown.sort(
+            key=lambda it: (
+                -max((abs(it["diff"][d]) for d in dims if d in it["diff"]), default=0),
+                -sum(abs(it["diff"][d]) for d in dims if d in it["diff"]),
+            )
+        )
+    else:
+        shown.sort(key=lambda it: (int(it["key"][0]) if it["key"][0].isdigit() else 10**9, it["key"][1]))
+    if not shown:
+        st.info("No chunks match the current filters.")
+        return
+
+    labels = {
+        idx: f"text {it['key'][0]} · chunk {it['key'][1] + 1} · "
+        + (
+            ", ".join(
+                f"{d} LLM {_rating_text(d, it['llm'][d])} vs {_rating_text(d, it['consensus'][d])}"
+                for d in dims
+                if it["diff"].get(d)
+            )
+            or "LLM matches the consensus"
+        )
+        for idx, it in enumerate(shown)
+    }
+    if st.session_state.get("llm_select") not in labels:
+        st.session_state["llm_select"] = 0
+
+    def go(delta: int):
+        st.session_state["llm_select"] = max(
+            0, min(len(shown) - 1, st.session_state["llm_select"] + delta)
+        )
+
+    nav = st.columns([1, 1, 4])
+    nav[0].button("Previous", on_click=go, args=(-1,), width="stretch", key="llm_prev")
+    nav[1].button("Next", on_click=go, args=(1,), width="stretch", key="llm_next")
+    nav[2].selectbox(
+        f"Item ({len(shown)} chunks)",
+        options=list(labels),
+        format_func=labels.get,
+        key="llm_select",
+        label_visibility="collapsed",
+    )
+    item = shown[st.session_state["llm_select"]]
+    st.subheader(
+        f"Item {st.session_state['llm_select'] + 1} / {len(shown)} — "
+        f"text {item['key'][0]}, chunk {item['key'][1] + 1}"
+    )
+    render_llm_item(item, notes.get(item["key"], {}), dims)
+
+
+# ---------------------------------------------------------------------------
 # App
 # ---------------------------------------------------------------------------
 
 
-def run_app():
-    st.set_page_config(
-        page_title="Annotation Comparison",
-        layout="wide",
-        initial_sidebar_state="collapsed",
-    )
-    st.title("Human Annotation Comparison")
-    st.caption(
-        "Compare the annotators' R_top, R_ideo and A_caus ratings chunk by chunk."
-    )
-
+def render_annotator_agreement():
     try:
         all_files = discover_annotation_files(SCRIPT_DIR, DEFAULT_PATTERN)
     except FileNotFoundError as exc:
@@ -1059,6 +1525,24 @@ def run_app():
             enable_revision and use_revised,
             revisions,
         )
+
+
+def run_app():
+    st.set_page_config(
+        page_title="Annotation Comparison",
+        layout="wide",
+        initial_sidebar_state="collapsed",
+    )
+    st.title("Annotation Comparison")
+    st.caption(
+        "Compare the annotators' R_top, R_ideo and A_caus ratings with each other "
+        "and with the LLM judge, chunk by chunk."
+    )
+    llm_tab, agreement_tab = st.tabs(["Human vs LLM", "Annotator agreement"])
+    with llm_tab:
+        render_llm_comparison()
+    with agreement_tab:
+        render_annotator_agreement()
 
 
 if __name__ == "__main__":

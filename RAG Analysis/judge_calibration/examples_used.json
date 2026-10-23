@@ -1,0 +1,70 @@
+{
+  "example_texts": [
+    "32",
+    "210",
+    "350",
+    "382"
+  ],
+  "examples": {
+    "T_domain:yes": {
+      "text_index": "350",
+      "chunk_index": 0,
+      "rating": "R_top=2"
+    },
+    "T_domain:no": {
+      "text_index": "382",
+      "chunk_index": 3,
+      "rating": "R_top=1"
+    },
+    "T_subarea:yes": {
+      "text_index": "32",
+      "chunk_index": 0,
+      "rating": "R_top=3"
+    },
+    "T_subarea:no": {
+      "text_index": "350",
+      "chunk_index": 0,
+      "rating": "R_top=2"
+    },
+    "T_item:yes": {
+      "text_index": "210",
+      "chunk_index": 0,
+      "rating": "R_top=4"
+    },
+    "T_item:no": {
+      "text_index": "32",
+      "chunk_index": 0,
+      "rating": "R_top=3"
+    },
+    "T_central:yes": {
+      "text_index": "210",
+      "chunk_index": 1,
+      "rating": "R_top=5"
+    },
+    "T_central:no": {
+      "text_index": "210",
+      "chunk_index": 0,
+      "rating": "R_top=4"
+    },
+    "I_stance:yes": {
+      "text_index": "32",
+      "chunk_index": 0,
+      "rating": "R_ideo=4"
+    },
+    "I_stance:no": {
+      "text_index": "350",
+      "chunk_index": 0,
+      "rating": "R_ideo=3"
+    },
+    "I_party:yes": {
+      "text_index": "210",
+      "chunk_index": 1,
+      "rating": "R_ideo=5"
+    },
+    "I_party:no": {
+      "text_index": "32",
+      "chunk_index": 0,
+      "rating": "R_ideo=4"
+    }
+  }
+}
