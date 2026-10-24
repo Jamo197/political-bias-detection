@@ -1,0 +1,45 @@
+{
+  "family": "mistral",
+  "size": "14b",
+  "llm": "mistralai/Ministral-3-14B-Instruct-2512",
+  "embedding": "e5",
+  "strategy": "simple",
+  "baseline_paths": [
+    "logs/batch_runs/2026-08-24_eval_matrix_20260824_165851/none/no_rag/party_label_mistral-14B_no_rag_evaluation_logs.jsonl"
+  ],
+  "rag_paths": [
+    "logs/batch_runs/2026-08-24_eval_matrix_20260824_183010/e5/simple/party_label_mistral-14B_simple_evaluation_logs.jsonl"
+  ],
+  "seed": 42,
+  "samples_per_quadrant": 25,
+  "target": "label_ideology",
+  "thresholds": {
+    "pass": 0.5,
+    "fail": 1.0
+  },
+  "baseline_records": 775,
+  "rag_records": 775,
+  "inner_join_records": 775,
+  "baseline_only_count": 0,
+  "rag_only_count": 0,
+  "baseline_duplicates": 0,
+  "rag_duplicates": 0,
+  "malformed_lines": 0,
+  "missing_text_index_lines": 0,
+  "ground_truth_mismatches": 0,
+  "invalid_value_ids": 5,
+  "buffer_count": 284,
+  "population_counts": {
+    "Q1_RAG_Win": 39,
+    "Q2_RAG_Distraction": 46,
+    "Q3_Joint_Failure": 135,
+    "Q4_Baseline_Sufficiency": 266
+  },
+  "selected_counts": {
+    "Q1_RAG_Win": 25,
+    "Q2_RAG_Distraction": 25,
+    "Q3_Joint_Failure": 25,
+    "Q4_Baseline_Sufficiency": 25
+  },
+  "valid_paired_records": 770
+}

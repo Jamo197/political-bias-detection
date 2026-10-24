@@ -4,12 +4,12 @@
 Pairs no-RAG and RAG JSONL records on ``text_index`` and applies strict
 pass/fail thresholds to ``label_ideology`` errors.
 
-Enhancements:
-- Fixed Python 3 exception tuple syntax.
-- Fixed boundary condition (>= fail_threshold).
-- Added signed residuals and directional shift metrics for RQ2.
-- Injected qualitative annotation schema for immediate coding.
-- Added explicit under-sampling warnings when population < k.
+Results are written to ``<output-dir>/<family>/<size>/qualitative_<embedding>_<strategy>*``.
+
+Examples:
+    python "RAG Analysis/extract_qualitative_strata.py"                      # all models, e5/simple
+    python "RAG Analysis/extract_qualitative_strata.py" --family qwen --size 7b 32b
+    python "RAG Analysis/extract_qualitative_strata.py" --embedding e5 bge --strategy simple hyde
 """
 
 from __future__ import annotations
@@ -22,14 +22,45 @@ import random
 import re
 import sys
 from dataclasses import dataclass, field
+from functools import lru_cache
 from pathlib import Path
-from typing import Any, Dict, Iterable, List, Optional, Tuple
+from typing import Any, Dict, Iterable, List, Optional, Sequence, Tuple
 
 QUADRANTS = (
     "Q1_RAG_Win",
     "Q2_RAG_Distraction",
     "Q3_Joint_Failure",
     "Q4_Baseline_Sufficiency",
+)
+
+# family -> size -> exact ``parameters.llm`` value in the batch logs
+MODELS: Dict[str, Dict[str, str]] = {
+    "llama": {
+        "3b": "meta-llama/Llama-3.2-3B-Instruct",
+        "8b": "meta-llama/Llama-3.1-8B-Instruct",
+        "70b": "RedHatAI/Meta-Llama-3.1-70B-Instruct-FP8",
+    },
+    "qwen": {
+        "3b": "Qwen/Qwen2.5-3B-Instruct",
+        "7b": "Qwen/Qwen2.5-7B-Instruct",
+        "32b": "Qwen/Qwen2.5-32B-Instruct",
+        "72b": "RedHatAI/Qwen2.5-72B-Instruct-FP8-dynamic",
+    },
+    "mistral": {
+        "3b": "mistralai/Ministral-3-3B-Instruct-2512",
+        "8b": "mistralai/Ministral-3-8B-Instruct-2512",
+        "14b": "mistralai/Ministral-3-14B-Instruct-2512",
+    },
+}
+
+EMBEDDINGS = ("e5", "qwen3", "bge", "jina")
+STRATEGIES = (
+    "simple",
+    "hyde",
+    "twostage",
+    "simple_hybrid",
+    "hyde_hybrid",
+    "twostage_hybrid",
 )
 
 
@@ -41,6 +72,14 @@ class ParsedLog:
     malformed_lines: int = 0
     missing_ids: int = 0
     metadata: Dict[str, Any] = field(default_factory=dict)
+    sources: Dict[str, Path] = field(default_factory=dict)
+
+
+@dataclass
+class LogInfo:
+    path: Path
+    metadata: Dict[str, Any]
+    mtime: float
 
 
 def _normalise_id(value: Any) -> Optional[str]:
@@ -65,6 +104,21 @@ def _record_id(record: Dict[str, Any]) -> Optional[str]:
 
 def _record_metadata(record: Dict[str, Any]) -> Dict[str, Any]:
     return record.get("parameters") or {}
+
+
+def _log_metadata(record: Dict[str, Any], file_path: Path) -> Dict[str, Any]:
+    params = _record_metadata(record)
+    return {
+        "llm": params.get("llm"),
+        "embedding_model": params.get("embedding_model"),
+        "retrieval_mode": params.get("retrieval_mode"),
+        "is_rag": params.get("is_rag"),
+        "party_label_file": file_path.name.startswith("party_label_"),
+    }
+
+
+def _is_rag(metadata: Dict[str, Any]) -> bool:
+    return bool(metadata.get("is_rag")) and metadata.get("retrieval_mode") != "no_rag"
 
 
 def parse_jsonl(file_path: Path) -> ParsedLog:
@@ -97,24 +151,50 @@ def parse_jsonl(file_path: Path) -> ParsedLog:
             parsed.records[text_index] = record
 
             if not parsed.metadata:
-                params = _record_metadata(record)
-                parsed.metadata = {
-                    "llm": params.get("llm"),
-                    "embedding_model": params.get("embedding_model"),
-                    "retrieval_mode": params.get("retrieval_mode"),
-                    "is_rag": params.get("is_rag"),
-                    "party_label_file": file_path.name.startswith("party_label_"),
-                }
+                parsed.metadata = _log_metadata(record, file_path)
     return parsed
+
+
+@lru_cache(maxsize=None)
+def _cached_log(file_path: Path) -> ParsedLog:
+    return parse_jsonl(file_path)
+
+
+def _first_record_metadata(file_path: Path) -> Optional[Dict[str, Any]]:
+    with file_path.open("r", encoding="utf-8") as handle:
+        for raw_line in handle:
+            line = raw_line.strip()
+            if not line:
+                continue
+            try:
+                record = json.loads(line)
+            except json.JSONDecodeError:
+                continue
+            if isinstance(record, dict):
+                return _log_metadata(record, file_path)
+    return None
 
 
 def _log_files(batch_root: Path, include_original: bool) -> Iterable[Path]:
     for path in sorted(batch_root.glob("**/*.jsonl")):
         if path.name == "evaluation_logs.jsonl":
             continue
+        # k-ablation runs sweep k_chunks over the same texts and are not comparable.
+        if "k-ablation" in path.name:
+            continue
         if not include_original and not path.name.startswith("party_label_"):
             continue
         yield path
+
+
+def build_log_index(batch_root: Path, include_original: bool = False) -> List[LogInfo]:
+    """Read only the first record of each log so discovery needs no full parse."""
+    index: List[LogInfo] = []
+    for path in _log_files(batch_root, include_original):
+        metadata = _first_record_metadata(path)
+        if metadata is not None:
+            index.append(LogInfo(path, metadata, path.stat().st_mtime))
+    return index
 
 
 def _model_family(model: Any) -> str:
@@ -128,43 +208,28 @@ def _model_family(model: Any) -> str:
     return re.sub(r"[^a-z0-9]+", "", value)
 
 
-def _matches_model(model: Any, selector: str) -> bool:
-    actual = _model_family(model)
-    wanted = _model_family(selector)
-    aliases = {
-        "llama8b": ("llama31", "8b"),
-        "llama318b": ("llama31", "8b"),
-        "llama70b": ("llama31", "70b"),
-        "llama3170b": ("llama31", "70b"),
-        "ministral14b": ("ministral", "14b"),
-        "mistralsmall": ("mistral", "small"),
-    }
-    if wanted in aliases:
-        return all(part in actual for part in aliases[wanted])
-    return wanted in actual
-
-
-def discover_log(
-    batch_root: Path,
+def discover_logs(
+    index: Sequence[LogInfo],
     *,
-    model: str,
+    llm: str,
     embedding: str,
     strategy: str,
     rag: bool,
-    include_original: bool = False,
     run_hint: Optional[str] = None,
-) -> Path:
-    """Find the largest matching candidate, with deterministic tie handling."""
-    candidates: List[Tuple[int, float, Path]] = []
-    for path in _log_files(batch_root, include_original):
-        if run_hint and run_hint not in str(path):
+) -> List[Path]:
+    """Select the largest matching log and merge in disjoint partial runs.
+
+    Candidates are ordered by (record count, mtime) descending; a candidate is
+    added only if none of its ``text_index`` values are already covered, so a
+    complete run wins over its duplicates while split runs are combined.
+    """
+    kind = "RAG" if rag else "baseline"
+    candidates: List[Tuple[int, float, Path, set]] = []
+    for info in index:
+        if run_hint and run_hint not in str(info.path):
             continue
-        parsed = parse_jsonl(path)
-        params = parsed.metadata
-        record_is_rag = (
-            bool(params.get("is_rag")) and params.get("retrieval_mode") != "no_rag"
-        )
-        if record_is_rag != rag or not _matches_model(params.get("llm"), model):
+        params = info.metadata
+        if params.get("llm") != llm or _is_rag(params) != rag:
             continue
         if rag and (
             params.get("embedding_model") != embedding
@@ -173,26 +238,53 @@ def discover_log(
             continue
         if not rag and params.get("embedding_model") not in (None, "", "none"):
             continue
-        candidates.append((len(parsed.records), path.stat().st_mtime, path))
+        ids = set(_cached_log(info.path).records)
+        candidates.append((len(ids), info.mtime, info.path, ids))
 
     if not candidates:
         raise FileNotFoundError(
-            f"No {'RAG' if rag else 'baseline'} log found for model={model!r}, "
-            f"embedding={embedding!r}, strategy={strategy!r} under {batch_root}"
+            f"No {kind} log found for llm={llm!r}"
+            + (f", embedding={embedding!r}, strategy={strategy!r}" if rag else "")
         )
     candidates.sort(key=lambda item: (item[0], item[1]), reverse=True)
-    top_count = candidates[0][0]
-    tied = [item[2] for item in candidates if item[0] == top_count]
-    if len(tied) > 1 and run_hint is None:
-        raise RuntimeError(
-            "Multiple equally large candidate logs found. Use --baseline/--rag or "
-            f"--run-hint to select one:\n  " + "\n  ".join(str(path) for path in tied)
+
+    selected: List[Path] = []
+    covered: set = set()
+    skipped: List[Path] = []
+    for count, _, path, ids in candidates:
+        if ids & covered:
+            skipped.append(path)
+            continue
+        selected.append(path)
+        covered |= ids
+        print(f"[*] Selected {kind} log ({count} records): {path}")
+    if skipped:
+        print(
+            f"[WARNING] Ignored {len(skipped)} overlapping {kind} log(s):\n    "
+            + "\n    ".join(str(path) for path in skipped),
+            file=sys.stderr,
         )
-    selected = candidates[0][2]
-    print(
-        f"[*] Selected {'RAG' if rag else 'baseline'} log ({top_count} records): {selected}"
-    )
     return selected
+
+
+def _merge_logs(paths: Sequence[Path]) -> ParsedLog:
+    """Combine logs of disjoint runs, remembering each record's source file."""
+    logs = [_cached_log(path) for path in paths]
+    llms = {log.metadata.get("llm") for log in logs}
+    if len(llms) > 1:
+        raise ValueError(f"Cannot merge logs of different models: {sorted(map(str, llms))}")
+
+    merged = ParsedLog(path=logs[0].path, records={}, metadata=dict(logs[0].metadata))
+    for log in logs:
+        for text_index, record in log.records.items():
+            if text_index in merged.records:
+                merged.duplicate_ids.append(text_index)
+            merged.records[text_index] = record
+            merged.sources[text_index] = log.path
+        merged.duplicate_ids.extend(log.duplicate_ids)
+        merged.malformed_lines += log.malformed_lines
+        merged.missing_ids += log.missing_ids
+    return merged
 
 
 def extract_scalar_prediction(
@@ -317,8 +409,8 @@ def _sample_row(
 
 
 def build_stratified_dataset(
-    baseline_path: Path,
-    rag_path: Path,
+    baseline_paths: Sequence[Path],
+    rag_paths: Sequence[Path],
     samples_per_quadrant: int = 25,
     correct_thresh: float = 0.5,
     incorrect_thresh: float = 1.0,
@@ -332,8 +424,8 @@ def build_stratified_dataset(
     if correct_thresh >= incorrect_thresh:
         raise ValueError("pass threshold must be strictly smaller than fail threshold")
 
-    baseline_log = parse_jsonl(baseline_path)
-    rag_log = parse_jsonl(rag_path)
+    baseline_log = _merge_logs(baseline_paths)
+    rag_log = _merge_logs(rag_paths)
     baseline_model = baseline_log.metadata.get("llm")
     rag_model = rag_log.metadata.get("llm")
 
@@ -394,8 +486,8 @@ def build_stratified_dataset(
                 rag,
                 base_target,
                 quadrant,
-                baseline_path,
-                rag_path,
+                baseline_log.sources[text_index],
+                rag_log.sources[text_index],
                 correct_thresh,
                 incorrect_thresh,
             )
@@ -471,59 +563,26 @@ def _write_summary(path: Path, rows: List[Dict[str, Any]]) -> None:
             )
 
 
-def _comparison_models(name: str) -> Tuple[str, str]:
-    if name == "capacity-8b":
-        return "llama-8B", "llama-8B"
-    if name == "capacity-70b":
-        return "llama-70B", "llama-70B"
-    if name == "mid-scale":
-        return "ministral-14B", "ministral-14B"
-    raise ValueError(f"Unknown comparison: {name}")
-
-
-def _run_comparison(
-    args: argparse.Namespace, baseline_model: str, rag_model: str, name: str
+def _export(
+    args: argparse.Namespace,
+    baseline_paths: List[Path],
+    rag_paths: List[Path],
+    output_dir: Path,
+    prefix: str,
+    extra: Dict[str, Any],
 ) -> None:
-    baseline_hint = args.baseline_run_hint if name != "capacity-8b" else None
-    rag_hint = args.rag_run_hint if name != "capacity-8b" else None
-    if args.baseline and args.rag:
-        baseline_path, rag_path = args.baseline, args.rag
-    else:
-        baseline_path = discover_log(
-            args.batch_root,
-            model=baseline_model,
-            embedding=args.embedding,
-            strategy=args.strategy,
-            rag=False,
-            include_original=args.include_original,
-            run_hint=baseline_hint,
-        )
-        rag_path = discover_log(
-            args.batch_root,
-            model=rag_model,
-            embedding=args.embedding,
-            strategy=args.strategy,
-            rag=True,
-            include_original=args.include_original,
-            run_hint=rag_hint,
-        )
-
     diagnostics: Dict[str, Any] = {
-        "comparison": name,
-        "baseline_path": str(baseline_path),
-        "rag_path": str(rag_path),
-        "model_selector_baseline": baseline_model,
-        "model_selector_rag": rag_model,
-        "embedding": args.embedding,
-        "strategy": args.strategy,
+        **extra,
+        "baseline_paths": [str(path) for path in baseline_paths],
+        "rag_paths": [str(path) for path in rag_paths],
         "seed": args.seed,
         "samples_per_quadrant": args.k,
         "target": args.target,
         "thresholds": {"pass": args.pass_threshold, "fail": args.fail_threshold},
     }
     rows, _ = build_stratified_dataset(
-        baseline_path,
-        rag_path,
+        baseline_paths,
+        rag_paths,
         args.k,
         args.pass_threshold,
         args.fail_threshold,
@@ -531,20 +590,60 @@ def _run_comparison(
         args.seed,
         diagnostics,
     )
-    prefix = args.output_prefix or f"qualitative_{name.replace('-', '_')}"
-    _write_jsonl(args.output_dir / f"{prefix}.jsonl", rows)
-    _write_summary(args.output_dir / f"{prefix}_summary.csv", rows)
-    (args.output_dir / f"{prefix}_diagnostics.json").write_text(
+    output_dir.mkdir(parents=True, exist_ok=True)
+    _write_jsonl(output_dir / f"{prefix}.jsonl", rows)
+    _write_summary(output_dir / f"{prefix}_summary.csv", rows)
+    (output_dir / f"{prefix}_diagnostics.json").write_text(
         json.dumps(diagnostics, ensure_ascii=False, indent=2, allow_nan=False) + "\n",
         encoding="utf-8",
     )
-    print(
-        f"[+] Exported {len(rows)} samples to {args.output_dir / (prefix + '.jsonl')}"
-    )
+    print(f"[+] Exported {len(rows)} samples to {output_dir / (prefix + '.jsonl')}")
     for quadrant in QUADRANTS:
         print(
             f"    {quadrant}: {diagnostics['selected_counts'][quadrant]}/{diagnostics['population_counts'][quadrant]}"
         )
+
+
+def _run_model(
+    args: argparse.Namespace,
+    index: Sequence[LogInfo],
+    family: str,
+    size: str,
+    embedding: str,
+    strategy: str,
+) -> None:
+    llm = MODELS[family][size]
+    print(f"\n=== {family}/{size} ({llm}) | {embedding}/{strategy} ===")
+    baseline_paths = discover_logs(
+        index,
+        llm=llm,
+        embedding=embedding,
+        strategy=strategy,
+        rag=False,
+        run_hint=args.baseline_run_hint,
+    )
+    rag_paths = discover_logs(
+        index,
+        llm=llm,
+        embedding=embedding,
+        strategy=strategy,
+        rag=True,
+        run_hint=args.rag_run_hint,
+    )
+    _export(
+        args,
+        baseline_paths,
+        rag_paths,
+        args.output_dir / family / size,
+        f"qualitative_{embedding}_{strategy}",
+        {
+            "family": family,
+            "size": size,
+            "llm": llm,
+            "embedding": embedding,
+            "strategy": strategy,
+        },
+    )
 
 
 def main() -> None:
@@ -552,17 +651,24 @@ def main() -> None:
         description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
     )
     parser.add_argument(
-        "--comparison",
-        choices=["capacity", "mid-scale", "all"],
-        help="Run a confirmed comparison; omit when using explicit paths.",
+        "--family",
+        choices=[*MODELS, "all"],
+        default="all",
+        help="Model family to process (default: all).",
+    )
+    parser.add_argument(
+        "--size",
+        nargs="+",
+        type=str.lower,
+        help="Restrict to these sizes, e.g. --size 3b 8b (default: all sizes).",
     )
     parser.add_argument("--batch-root", type=Path, default=Path("logs/batch_runs"))
     parser.add_argument("--baseline", type=Path, help="Explicit baseline JSONL path.")
     parser.add_argument("--rag", type=Path, help="Explicit RAG JSONL path.")
     parser.add_argument(
-        "--embedding", default="e5", choices=["e5", "qwen3", "bge", "jina"]
+        "--embedding", nargs="+", default=["e5"], choices=EMBEDDINGS
     )
-    parser.add_argument("--strategy", default="simple")
+    parser.add_argument("--strategy", nargs="+", default=["simple"], choices=STRATEGIES)
     parser.add_argument("--k", type=int, default=25, help="Samples per quadrant.")
     parser.add_argument("--pass-threshold", type=float, default=0.5)
     parser.add_argument("--fail-threshold", type=float, default=1.0)
@@ -570,7 +676,9 @@ def main() -> None:
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--output-dir", type=Path, default=Path("results/qualitative"))
     parser.add_argument(
-        "--output-prefix", help="Prefix for explicit-path output files."
+        "--output-prefix",
+        default="qualitative_explicit",
+        help="Prefix for explicit-path output files.",
     )
     parser.add_argument(
         "--baseline-run-hint", help="Substring used to select a baseline run directory."
@@ -587,21 +695,53 @@ def main() -> None:
 
     if bool(args.baseline) != bool(args.rag):
         parser.error("--baseline and --rag must be supplied together")
-    if args.comparison is None and not (args.baseline and args.rag):
-        parser.error("provide --comparison or both --baseline and --rag")
-    if args.comparison is not None and (args.baseline or args.rag):
-        parser.error("do not combine --comparison with explicit --baseline/--rag")
+    if args.baseline and args.rag:
+        _export(
+            args,
+            [args.baseline],
+            [args.rag],
+            args.output_dir,
+            args.output_prefix,
+            {"mode": "explicit"},
+        )
+        return
 
-    args.output_dir.mkdir(parents=True, exist_ok=True)
-    if args.comparison == "all":
-        comparisons = ("capacity-8b", "capacity-70b", "mid-scale")
-    elif args.comparison == "capacity":
-        comparisons = ("capacity-8b", "capacity-70b")
-    else:
-        comparisons = (args.comparison,)
-    for comparison in comparisons:
-        baseline_model, rag_model = _comparison_models(comparison)
-        _run_comparison(args, baseline_model, rag_model, comparison)
+    families = list(MODELS) if args.family == "all" else [args.family]
+    if args.size:
+        known = {size for family in families for size in MODELS[family]}
+        unknown = sorted(set(args.size) - known)
+        if unknown:
+            parser.error(
+                f"unknown size(s) {unknown} for {args.family}; available: {sorted(known)}"
+            )
+    jobs = [
+        (family, size, embedding, strategy)
+        for family in families
+        for size in MODELS[family]
+        if not args.size or size in args.size
+        for embedding in args.embedding
+        for strategy in args.strategy
+    ]
+
+    index = build_log_index(args.batch_root, args.include_original)
+    print(f"[*] Indexed {len(index)} logs under {args.batch_root}")
+    exported: List[str] = []
+    skipped: List[str] = []
+    for family, size, embedding, strategy in jobs:
+        label = f"{family}/{size} {embedding}/{strategy}"
+        try:
+            _run_model(args, index, family, size, embedding, strategy)
+        except FileNotFoundError as error:
+            print(f"[WARNING] Skipping {label}: {error}", file=sys.stderr)
+            skipped.append(f"{label} ({error})")
+            continue
+        exported.append(label)
+
+    print(f"\n[*] Exported {len(exported)}/{len(jobs)} configurations")
+    for label in exported:
+        print(f"    + {label}")
+    for label in skipped:
+        print(f"    - {label}")
 
 
 if __name__ == "__main__":

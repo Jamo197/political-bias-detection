@@ -10,19 +10,16 @@ ROOT = Path(__file__).resolve().parent.parent
 OUTPUT_DIR = ROOT / "dist"
 PACKAGE_DIR = OUTPUT_DIR / "qualitative_annotation_app"
 ARCHIVE_PATH = OUTPUT_DIR / "qualitative_annotation_app.zip"
-SAMPLE_PATH = ROOT / "results" / "qualitative" / "qualitative_capacity_8b.jsonl"
+SAMPLE_PATH = (
+    ROOT / "results" / "qualitative" / "llama" / "8b" / "qualitative_e5_simple.jsonl"
+)
 SAMPLE_LIMIT = 25
 SAMPLE_SEED = 42
 
 FILES = {
     ROOT / "main.py": Path("main.py"),
     ROOT / "src" / "run_streamlit.py": Path("src/run_streamlit.py"),
-    ROOT
-    / "results"
-    / "qualitative"
-    / "qualitative_capacity_8b.jsonl": Path(
-        "results/qualitative/qualitative_capacity_8b.jsonl"
-    ),
+    SAMPLE_PATH: Path("results/qualitative/llama/8b/qualitative_e5_simple.jsonl"),
     ROOT / "annotation_release" / "README.md": Path("README.md"),
     ROOT / "RAG Analysis" / "help page.md": Path("help_page.md"),
     ROOT / "annotation_release" / "requirements.txt": Path("requirements.txt"),

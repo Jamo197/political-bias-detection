@@ -1,0 +1,45 @@
+{
+  "family": "llama",
+  "size": "70b",
+  "llm": "RedHatAI/Meta-Llama-3.1-70B-Instruct-FP8",
+  "embedding": "e5",
+  "strategy": "simple",
+  "baseline_paths": [
+    "logs/batch_runs/2026-08-18_eval_matrix_20260818_170035/none/no_rag/party_label_llama-70B_no_rag_evaluation_logs.jsonl"
+  ],
+  "rag_paths": [
+    "logs/batch_runs/2026-08-17_eval_matrix_20260817_123007/e5/simple/party_label_llama-70B_simple_evaluation_logs.jsonl"
+  ],
+  "seed": 42,
+  "samples_per_quadrant": 25,
+  "target": "label_ideology",
+  "thresholds": {
+    "pass": 0.5,
+    "fail": 1.0
+  },
+  "baseline_records": 775,
+  "rag_records": 775,
+  "inner_join_records": 775,
+  "baseline_only_count": 0,
+  "rag_only_count": 0,
+  "baseline_duplicates": 0,
+  "rag_duplicates": 0,
+  "malformed_lines": 0,
+  "missing_text_index_lines": 0,
+  "ground_truth_mismatches": 0,
+  "invalid_value_ids": 0,
+  "buffer_count": 382,
+  "population_counts": {
+    "Q1_RAG_Win": 22,
+    "Q2_RAG_Distraction": 73,
+    "Q3_Joint_Failure": 116,
+    "Q4_Baseline_Sufficiency": 182
+  },
+  "selected_counts": {
+    "Q1_RAG_Win": 22,
+    "Q2_RAG_Distraction": 25,
+    "Q3_Joint_Failure": 25,
+    "Q4_Baseline_Sufficiency": 25
+  },
+  "valid_paired_records": 775
+}

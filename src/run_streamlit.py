@@ -9,7 +9,7 @@ import streamlit as st
 
 DEFAULT_ANNOTATOR = "Human Annotator"
 APP_ROOT = Path(__file__).resolve().parent.parent
-QUALITATIVE_SAMPLE_PATH = APP_ROOT / "results/qualitative/qualitative_capacity_8b.jsonl"
+QUALITATIVE_SAMPLE_PATH = APP_ROOT / "results/qualitative/llama/8b/qualitative_e5_simple.jsonl"
 ANNOTATION_LOG_PATH = APP_ROOT / "annotations/qualitative_annotations.jsonl"
 ANNOTATION_SAMPLE_LIMIT = 25
 ANNOTATION_SEED = 42
