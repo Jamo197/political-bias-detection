@@ -45,6 +45,10 @@ Usage (from the project root):
     python src/run_llm_judge.py --rederive-from "RAG Analysis/LLM judge results/<run>/llm_judge_annotations.jsonl"
     python src/run_llm_judge.py --rederive-from <flat.jsonl> --posthoc-model <posthoc.json>
 
+    # latest run
+    python src/run_llm_judge.py --posthoc-model "RAG Analysis/LLM calib/judge_calibration/posthoc_quantile_2026-10-23_142551_R_ideo.json"
+
+
 The extended agreement report (Krippendorff's alpha with bootstrap CIs, judge
 as a 4th rater, strata, risk-coverage, post-hoc calibration CV) is produced
 offline by "RAG Analysis/LLM calib/judge_calibration/calibrate.py".
@@ -171,123 +175,108 @@ JEV_QUESTIONS = {
         "type": "noul",
         "instructions": {
             "question": "Do the input text and the chunk belong to the same policy field, so that the chunk is part of the same area of debate?",
-            "compare": [
-                "`input_text`",
-                "`retrieved_chunk.text`"
-            ],
-            "focus": "Judge subject matter only: ignore stance, tone and ideology - opposite positions on the same measure are the same topic. First identify the SPECIFIC ITEM the input text takes a position on (a named bill or measure, a concrete event, a figure or proposal, an action by a named person or body), not just its general theme."
+            "compare": ["`input_text`", "`retrieved_chunk.text`"],
+            "focus": "Judge subject matter only: ignore stance, tone and ideology - opposite positions on the same measure are the same topic. First identify the SPECIFIC ITEM the input text takes a position on (a named bill or measure, a concrete event, a figure or proposal, an action by a named person or body), not just its general theme.",
         },
         "criteria": {
             "true": "Both belong to the same concrete policy field (for example both are about criminal law, the pandemic, climate and energy, migration, the armed forces, pensions, a named conflict), even if they discuss different measures within it.",
-            "false": "They belong to different fields, or the only overlap is something generic: both are 'politics', both involve the same party or person, or they share a word. Money, taxes, costs or government spending count as a shared field only when the input text is itself about that subject (for example public debt, or who pays for state spending); a passing mention of costs in an input text about another issue does not. If the input text is about one concrete issue and the chunk about another (for example consulting contracts for a ministry vs. an excess-profit tax; protest forms vs. extremist organisations), answer false."
-        }
+            "false": "They belong to different fields, or the only overlap is something generic: both are 'politics', both involve the same party or person, or they share a word. Money, taxes, costs or government spending count as a shared field only when the input text is itself about that subject (for example public debt, or who pays for state spending); a passing mention of costs in an input text about another issue does not. If the input text is about one concrete issue and the chunk about another (for example consulting contracts for a ministry vs. an excess-profit tax; protest forms vs. extremist organisations), answer false.",
+        },
     },
     "T_subarea": {
         "type": "noul",
         "instructions": {
             "question": "Do the input text and the chunk argue about the same narrow policy question?",
-            "compare": [
-                "`input_text`",
-                "`retrieved_chunk.text`"
-            ],
-            "focus": "Judge subject matter only: ignore stance, tone and ideology - opposite positions on the same measure are the same topic. First identify the SPECIFIC ITEM the input text takes a position on (a named bill or measure, a concrete event, a figure or proposal, an action by a named person or body), not just its general theme."
+            "compare": ["`input_text`", "`retrieved_chunk.text`"],
+            "focus": "Judge subject matter only: ignore stance, tone and ideology - opposite positions on the same measure are the same topic. First identify the SPECIFIC ITEM the input text takes a position on (a named bill or measure, a concrete event, a figure or proposal, an action by a named person or body), not just its general theme.",
         },
         "criteria": {
             "true": "The chunk's main subject is the same narrow policy question as the input text's: the same kind of decision or problem (for example how a specific cost is shared, whether a specific obligation should exist, how a specific programme is financed), even if the chunk concerns another detail, institution or year than the input text's own item.",
-            "false": "The chunk's main subject is a different question that merely sits under the same umbrella theme (for example the input text is about paying for tests and the chunk is about a vaccination mandate; or both are about 'the military' but one is about equipment and the other about conscription), or it touches the shared theme only in passing."
-        }
+            "false": "The chunk's main subject is a different question that merely sits under the same umbrella theme (for example the input text is about paying for tests and the chunk is about a vaccination mandate; or both are about 'the military' but one is about equipment and the other about conscription), or it touches the shared theme only in passing.",
+        },
     },
     "T_item": {
         "type": "noul",
         "instructions": {
             "question": "Does the chunk discuss the specific item that the input text takes a position on?",
-            "compare": [
-                "`input_text`",
-                "`retrieved_chunk.text`"
-            ],
-            "focus": "Judge subject matter only: ignore stance, tone and ideology - opposite positions on the same measure are the same topic. First identify the SPECIFIC ITEM the input text takes a position on (a named bill or measure, a concrete event, a figure or proposal, an action by a named person or body), not just its general theme."
+            "compare": ["`input_text`", "`retrieved_chunk.text`"],
+            "focus": "Judge subject matter only: ignore stance, tone and ideology - opposite positions on the same measure are the same topic. First identify the SPECIFIC ITEM the input text takes a position on (a named bill or measure, a concrete event, a figure or proposal, an action by a named person or body), not just its general theme.",
         },
         "criteria": {
             "true": "The chunk addresses that same bill, measure, event, figure or named action - at least as one part of its content, from any angle and with any position.",
-            "false": "The chunk does not discuss that item: it covers other measures, a more general question, or a different instance of the same kind of thing."
-        }
+            "false": "The chunk does not discuss that item: it covers other measures, a more general question, or a different instance of the same kind of thing.",
+        },
     },
     "T_central": {
         "type": "noul",
         "instructions": {
             "question": "Is the chunk mainly about the same bill, event, claim or decision that the input text refers to, and does it speak to the point the input text makes?",
-            "compare": [
-                "`input_text`",
-                "`retrieved_chunk.text`"
-            ],
-            "focus": "Judge subject matter only: ignore stance, tone and ideology - opposite positions on the same measure are the same topic. First identify the SPECIFIC ITEM the input text takes a position on (a named bill or measure, a concrete event, a figure or proposal, an action by a named person or body), not just its general theme."
+            "compare": ["`input_text`", "`retrieved_chunk.text`"],
+            "focus": "Judge subject matter only: ignore stance, tone and ideology - opposite positions on the same measure are the same topic. First identify the SPECIFIC ITEM the input text takes a position on (a named bill or measure, a concrete event, a figure or proposal, an action by a named person or body), not just its general theme.",
         },
         "criteria": {
             "true": "The chunk's main subject is that same item - named or unmistakably identified - and it addresses the specific point or claim the input text makes about it (support or opposition does not matter). A summary of the chunk would name this item as its main subject.",
-            "false": "The chunk covers the same wider issue but a different point (for example a vaccination mandate when the input text is about a statement on vaccination data), mentions the item only briefly, treats it as one of several topics in a broad speech, or is only the occasion of the debate."
-        }
+            "false": "The chunk covers the same wider issue but a different point (for example a vaccination mandate when the input text is about a statement on vaccination data), mentions the item only briefly, treats it as one of several topics in a broad speech, or is only the occasion of the debate.",
+        },
     },
     "I_procedural": {
         "type": "noul",
         "instructions": {
             "question": "Is the chunk only floor management or formalities?",
-            "inspect": "`retrieved_chunk.text`"
+            "inspect": "`retrieved_chunk.text`",
         },
         "criteria": {
             "true": "The chunk consists of procedure only: addressing the chair, thanks, greetings, announcing agenda items or votes, with no substantive statement about policy.",
-            "false": "The chunk contains substantive statements about policy, facts or political actors."
-        }
+            "false": "The chunk contains substantive statements about policy, facts or political actors.",
+        },
     },
     "I_evaluative": {
         "type": "noul",
         "instructions": {
             "question": "Does the passage use normative or politically loaded language, selective emphasis or one-sided framing?",
-            "inspect": "`retrieved_chunk.text`"
+            "inspect": "`retrieved_chunk.text`",
         },
         "criteria": {
             "true": "The speaker frames the issue from one side: value-laden or politically loaded vocabulary ('economic justice' vs. 'favouring the rich', 'burden' vs. 'humanitarian obligation'), selective emphasis, praise or attacks on political actors, or demands for how things ought to be.",
-            "false": "The passage stays neutral or balanced: it reports facts, figures or procedures, gives a balanced overview of several viewpoints, makes a consensual or cross-party appeal, thanks or praises non-partisan actors, or explains a measure in a sober tone - even if the speaker mildly says they support something."
-        }
+            "false": "The passage stays neutral or balanced: it reports facts, figures or procedures, gives a balanced overview of several viewpoints, makes a consensual or cross-party appeal, thanks or praises non-partisan actors, or explains a measure in a sober tone - even if the speaker mildly says they support something.",
+        },
     },
     "I_stance": {
         "type": "noul",
         "instructions": {
             "question": "Does the speaker take a strong, partisan side on a contested political question?",
             "inspect": "`retrieved_chunk.text`",
-            "focus": "Burden of proof: the answer is false unless the text itself clearly shows it. Answer true only if the passage leaves no reasonable doubt on this. If the passage is ambiguous, mixed or only partly fits, answer false."
+            "focus": "Burden of proof: the answer is false unless the text itself clearly shows it. Answer true only if the passage leaves no reasonable doubt on this. If the passage is ambiguous, mixed or only partly fits, answer false.",
         },
         "criteria": {
             "true": "The speaker takes a clear side with charged or polarising language, sweeping judgements of political opponents or of the government's record, or a programmatic demand typical of one political camp (for example market-liberal, welfare-state, nationalist, ecological, law-and-order). The partisanship is the point of the passage.",
-            "false": "The speaker disagrees or criticises in a measured, technical or procedural way (rebutting a motion point by point, legal or fact-based reasoning, explaining or defending what the government did), expresses empathy or personal views, weighs pros and cons, or appeals for cross-party unity. Disagreement alone is not enough."
-        }
+            "false": "The speaker disagrees or criticises in a measured, technical or procedural way (rebutting a motion point by point, legal or fact-based reasoning, explaining or defending what the government did), expresses empathy or personal views, weighs pros and cons, or appeals for cross-party unity. Disagreement alone is not enough.",
+        },
     },
     "I_party": {
         "type": "noul",
         "instructions": {
             "question": "Does the speaker declare what their own party or faction stands for, demands or rejects?",
             "inspect": "`retrieved_chunk.text`",
-            "focus": "Burden of proof: the answer is false unless the text itself clearly shows it. Answer true only if the passage leaves no reasonable doubt on this. If the passage is ambiguous, mixed or only partly fits, answer false."
+            "focus": "Burden of proof: the answer is false unless the text itself clearly shows it. Answer true only if the passage leaves no reasonable doubt on this. If the passage is ambiguous, mixed or only partly fits, answer false.",
         },
         "criteria": {
             "true": "Both hold: (1) the chunk text explicitly names the speaker's own party or faction as the holder of the position ('we as the Left', 'for us in the CDU/CSU', 'we, the AfD', 'my faction', 'our motion') and (2) it states a programmatic position of that party - what it demands, rejects, proposes or will do ('we reject this', 'we demand', 'we will vote against', 'our proposal is').",
-            "false": "At least one fails. In particular these do NOT count: a generic 'we' (Germany, the Bundestag, everyone: 'we need a new mobility policy'); speaking as a minister or for the government; naming other parties only to attack or address them; a passing mention of one's own party inside an attack on others; a position that is merely typical of the party but never tied to it in the text."
-        }
+            "false": "At least one fails. In particular these do NOT count: a generic 'we' (Germany, the Bundestag, everyone: 'we need a new mobility policy'); speaking as a minister or for the government; naming other parties only to attack or address them; a passing mention of one's own party inside an attack on others; a position that is merely typical of the party but never tied to it in the text.",
+        },
     },
     "A_caus": {
         "type": "noul",
         "instructions": {
             "question": "Did the generator justification demonstrably draw on this specific retrieved chunk?",
-            "compare": [
-                "`generator_justification`",
-                "`retrieved_chunk`"
-            ],
-            "focus": "The justification refers to retrieved reference chunks by number, by speaker name, or by the party whose reference statements it invokes. Decide whether it refers to THIS chunk (see `retrieved_chunk.citation_forms`, `retrieved_chunk.speaker`, `retrieved_chunk.party`). If the justification cites other chunks by number but not this chunk's number or speaker, answer false even when this chunk's party is also named - a shared party name is then only context. A party named only as the camp the input text itself belongs to is not a reference to a chunk."
+            "compare": ["`generator_justification`", "`retrieved_chunk`"],
+            "focus": "The justification refers to retrieved reference chunks by number, by speaker name, or by the party whose reference statements it invokes. Decide whether it refers to THIS chunk (see `retrieved_chunk.citation_forms`, `retrieved_chunk.speaker`, `retrieved_chunk.party`). If the justification cites other chunks by number but not this chunk's number or speaker, answer false even when this chunk's party is also named - a shared party name is then only context. A party named only as the camp the input text itself belongs to is not a reference to a chunk.",
         },
         "criteria": {
             "true": "The justification refers to this chunk: it cites this chunk's number in any form (a single reference, a list such as '[2, 3]', 'reference [2]', 'anchor 2', 'Chunk 2'), OR it names this chunk's speaker, OR it invokes the statements or stance of this chunk's party as comparison evidence (e.g. 'echoing the SPD and FDP speakers in the reference anchors', 'similar to the AfD speakers') in a way that matches the content of this chunk.",
-            "false": "The justification does not refer to this chunk: its number is not cited, its speaker is not named, and its party is not invoked as reference evidence (a party mentioned only as the label for the input text's own orientation does not count; neither does a party name that merely overlaps with chunks cited by other numbers), or it relies on other chunks or on generic reasoning that could have been produced from the input text and pre-training alone."
-        }
-    }
+            "false": "The justification does not refer to this chunk: its number is not cited, its speaker is not named, and its party is not invoked as reference evidence (a party mentioned only as the label for the input text's own orientation does not count; neither does a party name that merely overlaps with chunks cited by other numbers), or it relies on other chunks or on generic reasoning that could have been produced from the input text and pre-training alone.",
+        },
+    },
 }
 
 
@@ -495,7 +484,9 @@ def apply_posthoc(raw_answers: dict, spec: dict) -> int:
     return level
 
 
-def derive_labels(raw_answers: dict, citation: dict, posthoc: dict | None = None) -> dict:
+def derive_labels(
+    raw_answers: dict, citation: dict, posthoc: dict | None = None
+) -> dict:
     """Turn the raw gate answers into integer labels on the human scales.
 
     R_top: 1 + the highest gate answered yes (domain, sub-area, item, central).
@@ -520,7 +511,9 @@ def derive_labels(raw_answers: dict, citation: dict, posthoc: dict | None = None
     yes.setdefault("I_procedural", False)
     labels = {
         "R_top": 1
-        + max((i for i, gate in enumerate(R_TOP_GATES, start=1) if yes[gate]), default=0)
+        + max(
+            (i for i, gate in enumerate(R_TOP_GATES, start=1) if yes[gate]), default=0
+        )
     }
     if yes["I_party"] and yes["I_stance"]:
         labels["R_ideo"] = 5
@@ -583,9 +576,7 @@ def needs_review(raw_answers: dict, citation: dict) -> dict:
 # ---------------------------------------------------------------------------
 
 
-def run_judging(
-    args: argparse.Namespace, run_dir: Path
-) -> tuple[list[dict], int, str]:
+def run_judging(args: argparse.Namespace, run_dir: Path) -> tuple[list[dict], int, str]:
     """Load annotations, judge chunks with Jev, write snapshots, return results."""
     records = load_existing_annotations(args.annotations)
     if not records:
@@ -654,7 +645,9 @@ def run_judging(
                 raw_answers=judged["answers"],
                 citation=citation,
                 derived_labels=derive_labels(judged["answers"], citation, posthoc),
-                uncalibrated_labels=derive_labels(judged["answers"], citation) if posthoc else None,
+                uncalibrated_labels=(
+                    derive_labels(judged["answers"], citation) if posthoc else None
+                ),
                 needs_review=needs_review(judged["answers"], citation),
                 usage=judged["usage"],
             )
@@ -751,11 +744,17 @@ def rederive_results(
         row = json.loads(line)
         hashes.add(row.get("questions_hash"))
         if "error" not in row:
-            row["derived_labels"] = derive_labels(row["raw_answers"], row["citation"], posthoc)
+            row["derived_labels"] = derive_labels(
+                row["raw_answers"], row["citation"], posthoc
+            )
             if posthoc:
-                row["uncalibrated_labels"] = derive_labels(row["raw_answers"], row["citation"])
+                row["uncalibrated_labels"] = derive_labels(
+                    row["raw_answers"], row["citation"]
+                )
             row["needs_review"] = needs_review(row["raw_answers"], row["citation"])
-            row["human"] = human.get((row["text_index"], row["chunk_index"]), row["human"])
+            row["human"] = human.get(
+                (row["text_index"], row["chunk_index"]), row["human"]
+            )
         results.append(row)
     return results, "+".join(sorted(h for h in hashes if h)) or "unknown"
 
@@ -984,7 +983,9 @@ def print_and_save_report(
             )
 
     review_share = {
-        key: float(np.mean([r["needs_review"][key] for r in results if "needs_review" in r]))
+        key: float(
+            np.mean([r["needs_review"][key] for r in results if "needs_review" in r])
+        )
         for key in (*DIMENSIONS, "any")
         if any("needs_review" in r for r in results)
     }

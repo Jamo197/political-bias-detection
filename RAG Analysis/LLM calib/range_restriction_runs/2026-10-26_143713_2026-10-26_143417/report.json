@@ -1,0 +1,273 @@
+{
+  "run_info": {
+    "judge_run": "2026-10-26_143417",
+    "judge_run_path": "RAG Analysis/LLM judge results/2026-10-26_143417",
+    "judge_files": [
+      "llm_judge_annotations.jsonl",
+      "llm_judge_qualitative_annotations.jsonl",
+      "llm_judge_report.json"
+    ],
+    "consensus_file": "/Users/janneslampe/Desktop/Coding/Master Thesis/Evaluation/RAG Analysis/human_annotations/revised/consensus_reference_annotations.jsonl",
+    "chunks_in_annotations": 125,
+    "chunks_used": 125,
+    "texts_used": 25,
+    "annotators": [
+      "Awsam",
+      "Jannes",
+      "Neda"
+    ],
+    "command": "RAG Analysis/LLM calib/range_restriction_report.py --run RAG Analysis/LLM judge results/2026-10-26_143417",
+    "judge_model": "jev-1.14.0",
+    "judge_questions_hash": "17202cbdadf221ae",
+    "judge_a_caus_threshold": 0.5,
+    "judge_timestamp": "2026-10-26T13:34:28.570412+00:00",
+    "judge_total_chunks": 125,
+    "judge_judged_chunks": 125
+  },
+  "R_top": {
+    "levels": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "distribution": {
+      "Awsam": [
+        0.08,
+        0.272,
+        0.2,
+        0.176,
+        0.272
+      ],
+      "Jannes": [
+        0.096,
+        0.288,
+        0.168,
+        0.248,
+        0.2
+      ],
+      "Neda": [
+        0.16,
+        0.272,
+        0.2,
+        0.216,
+        0.152
+      ],
+      "consensus": [
+        0.08,
+        0.296,
+        0.184,
+        0.232,
+        0.208
+      ],
+      "judge": [
+        0.064,
+        0.36,
+        0.112,
+        0.2,
+        0.264
+      ]
+    },
+    "levels_used_sd": {
+      "Awsam": 1.3315614893800436,
+      "Jannes": 1.3006828975580482,
+      "Neda": 1.3156048038829897,
+      "consensus": 1.2818486650147125,
+      "judge": 1.3469966592386189
+    },
+    "judge_vs_annotators_mean": {
+      "qwk": 0.6548732394833571,
+      "exact": 0.43733333333333335,
+      "f1_macro": 0.40785508279002974,
+      "spearman": 0.6711305777700692,
+      "icc": 0.6566808580188052,
+      "within1": 0.8373333333333334,
+      "spearman_score": 0.7052554601159495,
+      "icc_score": 0.6597420544817844
+    },
+    "judge_vs_each_annotator_qwk": {
+      "Awsam": 0.6612586913888394,
+      "Jannes": 0.6833135878975667,
+      "Neda": 0.6200474391636652
+    },
+    "judge_vs_each_annotator_f1_macro": {
+      "Awsam": 0.4006607387901832,
+      "Jannes": 0.41547649455695435,
+      "Neda": 0.4074280150229518
+    },
+    "human_vs_human_mean": {
+      "qwk": 0.8206967232638723,
+      "exact": 0.5680000000000001,
+      "f1_macro": 0.5598993634160548,
+      "spearman": 0.8388709143882732,
+      "icc": 0.8218459890710187,
+      "within1": 0.9546666666666667
+    },
+    "judge_vs_consensus_qwk": 0.690159082500925,
+    "judge_vs_consensus_f1_macro": 0.4300714935688065,
+    "ratio_judge_to_human": 0.7979479153748256,
+    "ratio_ci95": [
+      0.6282794944553839,
+      0.9131793727220094
+    ]
+  },
+  "R_ideo": {
+    "levels": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "distribution": {
+      "Awsam": [
+        0.0,
+        0.032,
+        0.344,
+        0.408,
+        0.216
+      ],
+      "Jannes": [
+        0.0,
+        0.024,
+        0.208,
+        0.568,
+        0.2
+      ],
+      "Neda": [
+        0.0,
+        0.008,
+        0.192,
+        0.608,
+        0.192
+      ],
+      "consensus": [
+        0.0,
+        0.016,
+        0.224,
+        0.568,
+        0.192
+      ],
+      "judge": [
+        0.0,
+        0.008,
+        0.2,
+        0.536,
+        0.256
+      ]
+    },
+    "levels_used_sd": {
+      "Awsam": 0.8069299845711521,
+      "Jannes": 0.7077174577470869,
+      "Neda": 0.6447821337475163,
+      "consensus": 0.6898579563939231,
+      "judge": 0.6974238309665077
+    },
+    "judge_vs_annotators_mean": {
+      "qwk": 0.5144636241307565,
+      "exact": 0.5893333333333334,
+      "f1_macro": 0.5492120728245266,
+      "spearman": 0.5175998771765465,
+      "icc": 0.5164371008505383,
+      "within1": 0.968,
+      "spearman_score": 0.5634782126312261,
+      "icc_score": 0.569307287545041
+    },
+    "judge_vs_each_annotator_qwk": {
+      "Awsam": 0.42922374429223753,
+      "Jannes": 0.5825305073859988,
+      "Neda": 0.5316366207140333
+    },
+    "judge_vs_each_annotator_f1_macro": {
+      "Awsam": 0.33736291126620144,
+      "Jannes": 0.5956218871988155,
+      "Neda": 0.7146514200085629
+    },
+    "human_vs_human_mean": {
+      "qwk": 0.6458384969671278,
+      "exact": 0.6373333333333333,
+      "f1_macro": 0.5391852442458506,
+      "spearman": 0.657844932083266,
+      "icc": 0.6476535765024449,
+      "within1": 0.9946666666666667
+    },
+    "judge_vs_consensus_qwk": 0.5642880631371259,
+    "judge_vs_consensus_f1_macro": 0.610372963787648,
+    "ratio_judge_to_human": 0.7965824684448037,
+    "ratio_ci95": [
+      0.6667786404584625,
+      0.9623990405594626
+    ]
+  },
+  "A_caus": {
+    "levels": [
+      0,
+      1
+    ],
+    "distribution": {
+      "Awsam": [
+        0.464,
+        0.536
+      ],
+      "Jannes": [
+        0.472,
+        0.528
+      ],
+      "Neda": [
+        0.48,
+        0.52
+      ],
+      "consensus": [
+        0.48,
+        0.52
+      ],
+      "judge": [
+        0.432,
+        0.568
+      ]
+    },
+    "levels_used_sd": {
+      "Awsam": 0.49870231601627835,
+      "Jannes": 0.49921538437832624,
+      "Neda": 0.49959983987187184,
+      "consensus": 0.49959983987187184,
+      "judge": 0.495354418573207
+    },
+    "judge_vs_annotators_mean": {
+      "qwk": 0.7258881030421379,
+      "exact": 0.864,
+      "f1_macro": 0.8627204877572541,
+      "spearman": 0.7283347481750697,
+      "icc": 0.7274819083614745,
+      "f1_pos": 0.8759435224422997,
+      "spearman_score": 0.7918833796332031,
+      "icc_score": 0.7880343152083932
+    },
+    "judge_vs_each_annotator_qwk": {
+      "Awsam": 0.7091520165460186,
+      "Jannes": 0.7259125499806527,
+      "Neda": 0.7425997425997426
+    },
+    "judge_vs_each_annotator_f1_macro": {
+      "Awsam": 0.8544254658385093,
+      "Jannes": 0.862734965441509,
+      "Neda": 0.8710010319917441
+    },
+    "human_vs_human_mean": {
+      "qwk": 0.8823084799532196,
+      "exact": 0.9413333333333332,
+      "f1_macro": 0.9411463410887396,
+      "spearman": 0.8825344525731036,
+      "icc": 0.8831395308512361,
+      "f1_pos": 0.9444424153142513
+    },
+    "judge_vs_consensus_qwk": 0.7425997425997426,
+    "judge_vs_consensus_f1_macro": 0.8710010319917441,
+    "ratio_judge_to_human": 0.8227146395335845,
+    "ratio_ci95": [
+      0.6142657090461519,
+      1.0019838977220032
+    ]
+  }
+}
