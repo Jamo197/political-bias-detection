@@ -1,0 +1,220 @@
+{
+  "model": "jev-1.14.0",
+  "question_set": "v1",
+  "questions_hash": "17202cbdadf221ae",
+  "a_caus_threshold": 0.5,
+  "timestamp": "2026-10-26T16:13:02.160969+00:00",
+  "total_chunks": 125,
+  "judged_chunks": 125,
+  "usage_totals": {
+    "input_tokens": 937287,
+    "output_tokens": 61500,
+    "cost": 0.0
+  },
+  "per_dimension": {
+    "R_top": {
+      "n": 125,
+      "exact_agreement": 0.48,
+      "qwk": 0.6892739212703596,
+      "kappa": null,
+      "spearman": 0.7074521382213397,
+      "mean_diff": 0.032,
+      "labels": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "confusion_matrix": [
+        [
+          5,
+          4,
+          0,
+          1,
+          0
+        ],
+        [
+          3,
+          27,
+          2,
+          4,
+          1
+        ],
+        [
+          0,
+          9,
+          3,
+          7,
+          4
+        ],
+        [
+          0,
+          5,
+          6,
+          8,
+          10
+        ],
+        [
+          0,
+          1,
+          2,
+          6,
+          17
+        ]
+      ],
+      "below_threshold": true
+    },
+    "R_ideo": {
+      "n": 125,
+      "exact_agreement": 0.624,
+      "qwk": 0.5642880631371259,
+      "kappa": null,
+      "spearman": 0.6247865530279345,
+      "mean_diff": 0.104,
+      "labels": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "confusion_matrix": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          11,
+          16,
+          1
+        ],
+        [
+          0,
+          0,
+          12,
+          47,
+          12
+        ],
+        [
+          0,
+          0,
+          1,
+          4,
+          19
+        ]
+      ],
+      "below_threshold": true
+    },
+    "A_caus": {
+      "n": 125,
+      "exact_agreement": 0.872,
+      "qwk": null,
+      "kappa": 0.7425997425997426,
+      "spearman": 0.8356605835617117,
+      "mean_diff": 0.048,
+      "labels": [
+        0,
+        1
+      ],
+      "confusion_matrix": [
+        [
+          49,
+          11
+        ],
+        [
+          5,
+          60
+        ]
+      ],
+      "below_threshold": false
+    }
+  },
+  "a_caus_by_path": {
+    "model": {
+      "n": 53,
+      "agree": 38,
+      "false_pos": 11,
+      "false_neg": 4
+    },
+    "cited_by_number": {
+      "n": 49,
+      "agree": 49,
+      "false_pos": 0,
+      "false_neg": 0
+    },
+    "other_chunks_cited": {
+      "n": 20,
+      "agree": 19,
+      "false_pos": 0,
+      "false_neg": 1
+    },
+    "speaker_named": {
+      "n": 3,
+      "agree": 3,
+      "false_pos": 0,
+      "false_neg": 0
+    }
+  },
+  "r_top_by_input_specificity": {},
+  "needs_review_share": {
+    "R_top": 0.408,
+    "R_ideo": 0.376,
+    "A_caus": 0.104,
+    "any": 0.704
+  },
+  "worst_disagreements": [
+    {
+      "text_index": "117",
+      "chunk_index": 3,
+      "dimension": "R_top",
+      "human": 5,
+      "judge": 2,
+      "diff": 3
+    },
+    {
+      "text_index": "143",
+      "chunk_index": 1,
+      "dimension": "R_top",
+      "human": 2,
+      "judge": 5,
+      "diff": 3
+    },
+    {
+      "text_index": "178",
+      "chunk_index": 1,
+      "dimension": "R_top",
+      "human": 1,
+      "judge": 4,
+      "diff": 3
+    },
+    {
+      "text_index": "117",
+      "chunk_index": 4,
+      "dimension": "R_top",
+      "human": 4,
+      "judge": 2,
+      "diff": 2
+    },
+    {
+      "text_index": "143",
+      "chunk_index": 4,
+      "dimension": "R_top",
+      "human": 2,
+      "judge": 4,
+      "diff": 2
+    }
+  ]
+}

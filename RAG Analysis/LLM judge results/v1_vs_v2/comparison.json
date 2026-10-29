@@ -1,0 +1,83 @@
+{
+  "baseline": "v1",
+  "n_common_chunks": 125,
+  "sets": {
+    "v2": {
+      "R_top": {
+        "n": 125,
+        "baseline_kappa": 0.6892739212703596,
+        "kappa": 0.6322799545200238,
+        "delta": -0.056993966750335745,
+        "delta_ci95": [
+          -0.11373616585343171,
+          -0.006546616087923461
+        ],
+        "baseline_exact": 0.48,
+        "exact": 0.384,
+        "chunks_closer": 13,
+        "chunks_further": 28,
+        "label_changed": 41
+      },
+      "R_ideo": {
+        "n": 125,
+        "baseline_kappa": 0.5642880631371259,
+        "kappa": 0.5340241359701776,
+        "delta": -0.030263927166948257,
+        "delta_ci95": [
+          -0.17941670806129095,
+          0.09885372798705946
+        ],
+        "baseline_exact": 0.624,
+        "exact": 0.624,
+        "chunks_closer": 9,
+        "chunks_further": 11,
+        "label_changed": 21
+      },
+      "A_caus": {
+        "n": 125,
+        "baseline_kappa": 0.7425997425997426,
+        "kappa": 0.792332268370607,
+        "delta": 0.0497325257708644,
+        "delta_ci95": [
+          -0.06245534135091228,
+          0.1708379156260851
+        ],
+        "baseline_exact": 0.872,
+        "exact": 0.896,
+        "chunks_closer": 7,
+        "chunks_further": 4,
+        "label_changed": 11
+      },
+      "R_ideo@holistic": {
+        "n": 125,
+        "baseline_kappa": 0.5642880631371259,
+        "kappa": 0.4796287449669009,
+        "delta": -0.08465931817022498,
+        "delta_ci95": [
+          -0.23680946618066812,
+          0.05916859120271875
+        ],
+        "baseline_exact": 0.624,
+        "exact": 0.632,
+        "chunks_closer": 14,
+        "chunks_further": 14,
+        "label_changed": 29
+      },
+      "R_top@holistic": {
+        "n": 125,
+        "baseline_kappa": 0.6892739212703596,
+        "kappa": 0.5729969137983838,
+        "delta": -0.11627700747197578,
+        "delta_ci95": [
+          -0.19485727449279164,
+          -0.03765133017549736
+        ],
+        "baseline_exact": 0.48,
+        "exact": 0.4,
+        "chunks_closer": 27,
+        "chunks_further": 37,
+        "label_changed": 64
+      }
+    }
+  }
+}

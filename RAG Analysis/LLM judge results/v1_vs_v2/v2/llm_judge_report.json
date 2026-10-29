@@ -1,0 +1,337 @@
+{
+  "model": "jev-1.14.0",
+  "question_set": "v2",
+  "questions_hash": "cb45224daf0a014d",
+  "a_caus_threshold": 0.5,
+  "timestamp": "2026-10-26T16:13:02.176910+00:00",
+  "total_chunks": 125,
+  "judged_chunks": 125,
+  "usage_totals": {
+    "input_tokens": 937287,
+    "output_tokens": 61500,
+    "cost": 0.0
+  },
+  "per_dimension": {
+    "R_top": {
+      "n": 125,
+      "exact_agreement": 0.384,
+      "qwk": 0.6322799545200238,
+      "kappa": null,
+      "spearman": 0.7122129288073253,
+      "mean_diff": 0.344,
+      "labels": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "confusion_matrix": [
+        [
+          3,
+          4,
+          2,
+          1,
+          0
+        ],
+        [
+          4,
+          18,
+          8,
+          4,
+          3
+        ],
+        [
+          0,
+          6,
+          4,
+          4,
+          9
+        ],
+        [
+          0,
+          1,
+          9,
+          4,
+          15
+        ],
+        [
+          0,
+          0,
+          2,
+          5,
+          19
+        ]
+      ],
+      "below_threshold": true
+    },
+    "R_ideo": {
+      "n": 125,
+      "exact_agreement": 0.624,
+      "qwk": 0.5340241359701776,
+      "kappa": null,
+      "spearman": 0.6156999619370146,
+      "mean_diff": 0.04,
+      "labels": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "confusion_matrix": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          14,
+          13,
+          1
+        ],
+        [
+          0,
+          0,
+          16,
+          44,
+          11
+        ],
+        [
+          0,
+          0,
+          2,
+          3,
+          19
+        ]
+      ],
+      "below_threshold": true
+    },
+    "A_caus": {
+      "n": 125,
+      "exact_agreement": 0.896,
+      "qwk": null,
+      "kappa": 0.792332268370607,
+      "spearman": 0.8393510526870642,
+      "mean_diff": -0.04,
+      "labels": [
+        0,
+        1
+      ],
+      "confusion_matrix": [
+        [
+          56,
+          4
+        ],
+        [
+          9,
+          56
+        ]
+      ],
+      "below_threshold": false
+    },
+    "R_ideo@holistic": {
+      "n": 125,
+      "exact_agreement": 0.632,
+      "qwk": 0.4796287449669009,
+      "kappa": null,
+      "spearman": 0.6353360463392836,
+      "mean_diff": 0.328,
+      "labels": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "confusion_matrix": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          3,
+          21,
+          4
+        ],
+        [
+          0,
+          0,
+          4,
+          52,
+          15
+        ],
+        [
+          0,
+          0,
+          0,
+          1,
+          23
+        ]
+      ],
+      "below_threshold": true
+    },
+    "R_top@holistic": {
+      "n": 125,
+      "exact_agreement": 0.4,
+      "qwk": 0.5729969137983838,
+      "kappa": null,
+      "spearman": 0.6743009300583104,
+      "mean_diff": 0.296,
+      "labels": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "confusion_matrix": [
+        [
+          0,
+          5,
+          4,
+          1,
+          0
+        ],
+        [
+          0,
+          15,
+          15,
+          6,
+          1
+        ],
+        [
+          0,
+          2,
+          10,
+          8,
+          3
+        ],
+        [
+          0,
+          1,
+          8,
+          13,
+          7
+        ],
+        [
+          0,
+          0,
+          4,
+          10,
+          12
+        ]
+      ],
+      "below_threshold": true
+    }
+  },
+  "a_caus_by_path": {
+    "model": {
+      "n": 53,
+      "agree": 41,
+      "false_pos": 4,
+      "false_neg": 8
+    },
+    "cited_by_number": {
+      "n": 49,
+      "agree": 49,
+      "false_pos": 0,
+      "false_neg": 0
+    },
+    "other_chunks_cited": {
+      "n": 20,
+      "agree": 19,
+      "false_pos": 0,
+      "false_neg": 1
+    },
+    "speaker_named": {
+      "n": 3,
+      "agree": 3,
+      "false_pos": 0,
+      "false_neg": 0
+    }
+  },
+  "r_top_by_input_specificity": {
+    "no_item": {
+      "n": 27,
+      "qwk": 0.6131133304385583,
+      "mean_diff": 0.18518518518518517
+    },
+    "item": {
+      "n": 98,
+      "qwk": 0.6305318717011774,
+      "mean_diff": 0.3877551020408163
+    }
+  },
+  "needs_review_share": {
+    "R_top": 0.496,
+    "R_ideo": 0.496,
+    "A_caus": 0.096,
+    "any": 0.752
+  },
+  "worst_disagreements": [
+    {
+      "text_index": "117",
+      "chunk_index": 0,
+      "dimension": "R_top",
+      "human": 2,
+      "judge": 5,
+      "diff": 3
+    },
+    {
+      "text_index": "143",
+      "chunk_index": 1,
+      "dimension": "R_top",
+      "human": 2,
+      "judge": 5,
+      "diff": 3
+    },
+    {
+      "text_index": "178",
+      "chunk_index": 1,
+      "dimension": "R_top",
+      "human": 1,
+      "judge": 4,
+      "diff": 3
+    },
+    {
+      "text_index": "342",
+      "chunk_index": 3,
+      "dimension": "R_top",
+      "human": 2,
+      "judge": 5,
+      "diff": 3
+    },
+    {
+      "text_index": "117",
+      "chunk_index": 3,
+      "dimension": "R_top",
+      "human": 5,
+      "judge": 3,
+      "diff": 2
+    }
+  ]
+}
