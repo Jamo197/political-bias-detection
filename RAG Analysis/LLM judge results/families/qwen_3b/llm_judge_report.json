@@ -1,0 +1,30 @@
+{
+  "model": "jev-1.14.0",
+  "question_set": "v1",
+  "questions_hash": "17202cbdadf221ae",
+  "a_caus_threshold": 0.5,
+  "timestamp": "2026-10-29T13:49:44.814952+00:00",
+  "total_chunks": 355,
+  "judged_chunks": 355,
+  "usage_totals": {
+    "input_tokens": 1562878,
+    "output_tokens": 86620,
+    "cost": 0.0
+  },
+  "per_dimension": {
+    "R_top": null,
+    "R_ideo": null,
+    "A_caus": null
+  },
+  "a_caus_by_path": {},
+  "r_top_by_input_specificity": {},
+  "needs_review_share": {
+    "R_top": 0.4507042253521127,
+    "R_ideo": 0.29859154929577464,
+    "A_caus": 0.11830985915492957,
+    "any": 0.6619718309859155,
+    "spot_check": 0.05070422535211268,
+    "to_review": 0.6788732394366197
+  },
+  "worst_disagreements": []
+}

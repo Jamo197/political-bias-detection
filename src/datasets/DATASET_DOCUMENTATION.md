@@ -206,13 +206,14 @@ The converted CHES 2024 values are:
 
 | Party | Ideology | Economic | GAL-TAN |
 |---|---:|---:|---:|
-| LINKE | 1.9 | 1.8 | 2.4 |
-| Grüne | 2.8 | 3.0 | 2.0 |
+| DIE LINKE | 1.9 | 1.8 | 2.4 |
+| BÜNDNIS 90/DIE GRÜNEN | 2.8 | 3.0 | 2.0 |
 | SPD | 3.1 | 3.1 | 3.2 |
 | FDP | 4.6 | 5.5 | 2.9 |
 | CDU | 4.9 | 4.9 | 4.9 |
 | CSU | 5.5 | 5.1 | 5.5 |
 | AfD | 6.6 | 5.6 | 6.6 |
+| BSW | 3.2 | 2.7 | 5.2 |
 
 Party aliases are normalized in code. Examples include `Grüne`, `Bündnis 90 Die Grünen`, `Die Linke`, `LINKE`, `CDU`, `CSU`, `CDU/CSU`, `SPD`, `FDP`, `AfD`, `BSW`, and `FW`.
 

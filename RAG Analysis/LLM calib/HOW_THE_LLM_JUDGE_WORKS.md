@@ -258,7 +258,96 @@ Output files per run:
 * `llm_judge_report.json`: agreement with the reference labels, confusion matrices and the share flagged
   for review.
 
-## 9. How it got here (short)
+## 9. Judge-assisted annotation of all model families
+
+The judge pre-annotates the generator results of every model family and size. A human checks only what the
+judge is unsure about, plus a blind random sample.
+
+**1. Judge everything.** This covers 10 files, 968 texts and 4,840 chunks, with one folder per model and
+size.
+
+```bash
+python src/run_llm_judge.py --samples all --run-id families --concurrency 8
+python src/run_llm_judge.py --samples all --run-id families --resume   # after a crash or failed chunks
+```
+
+* Question set v1 and the R_ideo cut points are the defaults.
+* `families/summary.json` lists the flagged chunks per dimension and file.
+
+**2. Review in Streamlit**, one folder at a time:
+
+```bash
+streamlit run src/run_streamlit.py -- --review "RAG Analysis/LLM judge results/families/llama_70b" --annotator Jannes
+```
+
+* **Which texts:**
+  - All Q1 (RAG win) and Q2 (RAG distraction) texts, plus 10 random texts each from Q3 and Q4. That is
+    about 70 texts (350 chunks) per model and size.
+  - The draw is seeded per folder and stored in `review_selection.json`, so it never changes.
+  - Other quotas: `--quotas Q1=all,Q2=all,Q3=5,Q4=5`. Every text: `--all`.
+  - Texts outside the selection keep the judge's labels (source `judge`).
+* **⚠ review R_top**: the judge was unsure on this dimension. It is pre-filled with the judge's label;
+  check it. The other dimensions of the chunk are pre-filled too and count as "seen".
+* **🎯 spot check**: about 5 % of all chunks, chosen at random by a fixed hash. They are empty and must be
+  rated from scratch, so the judge's label cannot anchor the rating.
+* The reviews are saved to `reviewed_annotations.jsonl` in the same folder. Re-opening the app continues
+  where you left off.
+
+**3. Merge** into the final labels:
+
+```bash
+python src/merge_judge_review.py "RAG Analysis/LLM judge results/families"
+# llama_8b: let the human consensus win for the 12 texts the annotators rated
+python src/merge_judge_review.py "RAG Analysis/LLM judge results/families/llama_8b" \
+  --human "RAG Analysis/human_annotations/revised/consensus_reference_annotations.jsonl"
+```
+
+* Each folder gets `final_annotations.jsonl`, in the human annotation format.
+* Each label carries its source: `judge`, `judge_seen`, `human_review`, `human_changed`, `spot_check` or
+  `human_consensus`.
+* `review_summary.json` reports two numbers:
+  - how often a reviewed flagged label was changed;
+  - the spot-check agreement on dimensions the judge did not flag. This is the error estimate for every
+    label with source `judge`.
+
+**Transfer to unreviewed models.** Retrieval does not depend on the generator: the same input text retrieves
+the same chunks for every model.
+
+* R_top and R_ideo depend only on the input text and the chunk. A pair reviewed for one model is copied to
+  every identical pair (`--transfer-from`, label source `transferred`).
+* A_caus is never transferred, because it depends on each model's own justification.
+* Consensus labels (`--human`) are copied the same way. Their A_caus is used only where the justification is
+  identical.
+
+```bash
+F="RAG Analysis/LLM judge results/families"
+python src/merge_judge_review.py "$F" --transfer-from "$F/llama_70b" "$F/mistral_14b" "$F/qwen_3b" \
+  --human "RAG Analysis/human_annotations/revised/consensus_reference_annotations.jsonl"
+```
+
+Status on 2 Nov 2026 (llama_70b, mistral_14b and qwen_3b reviewed):
+
+* The transfer covers 15-29 % of the chunks of each unreviewed model; the rest keeps the judge's labels.
+* A correction mapping refitted on the 940 reviewed chunks did not beat the judge's own labels on a held-out
+  model, so no learned correction is applied.
+* The reviewer rated pairs that occur in several models identically in 71 % (R_top) and 89 % (R_ideo) of
+  cases. That is about the level the judge reaches against the reviewed labels.
+
+**What to expect.** These figures come from the 125 calibration chunks.
+
+| | R_top | R_ideo | A_caus |
+|---|---|---|---|
+| Chunks flagged | 40 % | 31 % | 13 % |
+| Judge errors caught by the flag | 52 % | 47 % | 56 % |
+| Exact agreement on unflagged chunks | 59 % (~95 % within ±1) | 73 % | 94 % |
+
+* Expect about two thirds of all chunks (~3,200) to have at least one flagged dimension, but you check only
+  the flagged dimension.
+* About half of the judge's errors are not flagged, so they remain in the final data. Report the
+  spot-check error estimate in the method section, and describe the procedure as "LLM pre-annotation with
+  human review of uncertain cases and a blind random check".
+
+## 10. How it got here (short)
 
 | Round | Change | Effect |
 |---|---|---|

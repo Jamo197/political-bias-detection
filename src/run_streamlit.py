@@ -1,7 +1,31 @@
+"""Annotation app for retrieved RAG chunks (R_top, R_ideo, A_caus).
+
+Two modes:
+
+* annotation (default): a seeded random sample of generator results, rated
+  from scratch;
+* review: the output of the LLM judge (``run_llm_judge.py --samples``) is
+  loaded and a fixed selection of texts is shown: every Q1 (RAG win) and Q2
+  (RAG distraction) text and 10 random texts each of Q3 and Q4
+  (``REVIEW_QUOTAS``, seeded per folder, stored in review_selection.json). Flagged
+  dimensions are marked and pre-filled with the judge's label; spot-check
+  chunks (a random 5 %) are rated blind, so their agreement with the judge
+  estimates the error of the labels nobody reviewed. The reviewed records go
+  to their own file and are merged with the judge labels by
+  ``merge_judge_review.py``.
+
+    streamlit run src/run_streamlit.py
+    streamlit run src/run_streamlit.py -- --review "RAG Analysis/LLM judge results/<run>/llama_70b"
+    streamlit run src/run_streamlit.py -- --review <folder> --annotator Jannes --all
+    streamlit run src/run_streamlit.py -- --review <folder> --quotas Q1=all,Q2=all,Q3=5,Q4=5
+"""
+
+import argparse
 import datetime
 import json
 import random
 import re
+import sys
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
@@ -13,6 +37,14 @@ QUALITATIVE_SAMPLE_PATH = APP_ROOT / "results/qualitative/llama/8b/qualitative_e
 ANNOTATION_LOG_PATH = APP_ROOT / "annotations/qualitative_annotations.jsonl"
 ANNOTATION_SAMPLE_LIMIT = 25
 ANNOTATION_SEED = 42
+JUDGE_GROUPED_NAME = "llm_judge_qualitative_annotations.jsonl"
+REVIEWED_NAME = "reviewed_annotations.jsonl"
+SELECTION_NAME = "review_selection.json"
+# Texts reviewed per quadrant (None = all): the RAG wins and distractions in
+# full, a random sample of the rest. The texts not selected keep the judge labels.
+REVIEW_QUOTAS = {"Q1": None, "Q2": None, "Q3": 10, "Q4": 10}
+REVIEW_SEED = 42
+DIMENSIONS = ("R_top", "R_ideo", "A_caus")
 
 SESSION_STATE_DEFAULTS = {
     "annotation_samples": [],
@@ -25,6 +57,7 @@ SESSION_STATE_DEFAULTS = {
     "existing_annotations": {},  # Maps text_index -> latest saved annotation record
     "chunk_annotations_loaded_for": None,  # text_index of the sample currently in chunk state
     "acaus_auto_detected": set(),  # Chunk indices where A_caus was auto-set from the RAG justification
+    "review_mode": None,  # {"judge_path", "show_all"} when reviewing judge output
 }
 
 # Rubric descriptions from RAG Analysis/RAG Analysis.md
@@ -208,11 +241,139 @@ def detect_cited_chunks(justification: str, n_chunks: int) -> set:
     return cited
 
 
+def parse_app_args(argv: Optional[List[str]] = None) -> argparse.Namespace:
+    """Arguments after ``--`` on the streamlit command line."""
+    parser = argparse.ArgumentParser(prog="run_streamlit.py", add_help=False)
+    parser.add_argument("--review", default=None,
+                        help="judge run folder (or its llm_judge_qualitative_annotations.jsonl)")
+    parser.add_argument("--out", default=None,
+                        help="reviewed records (default: reviewed_annotations.jsonl next to the judge file)")
+    parser.add_argument("--annotator", default=None)
+    parser.add_argument("--all", action="store_true",
+                        help="review mode: show every text instead of the quadrant selection")
+    parser.add_argument("--quotas", default=None,
+                        help="review mode: texts per quadrant, e.g. Q1=all,Q2=all,Q3=10,Q4=10")
+    args, _ = parser.parse_known_args(sys.argv[1:] if argv is None else argv)
+    return args
+
+
+def resolve_judge_path(path: str | Path) -> Path:
+    judge_path = Path(path).expanduser().resolve()
+    if judge_path.is_dir():
+        judge_path = judge_path / JUDGE_GROUPED_NAME
+    if not judge_path.exists():
+        raise FileNotFoundError(f"Judge output not found: {judge_path}")
+    return judge_path
+
+
+def chunk_needs_human(chunk: Dict[str, Any]) -> bool:
+    return bool((chunk.get("needs_review") or {}).get("any") or chunk.get("spot_check"))
+
+
+def parse_quotas(spec: Optional[str]) -> Dict[str, Optional[int]]:
+    """'Q1=all,Q3=10' -> {'Q1': None, 'Q3': 10}; None -> REVIEW_QUOTAS."""
+    if not spec:
+        return dict(REVIEW_QUOTAS)
+    quotas: Dict[str, Optional[int]] = {}
+    for part in spec.split(","):
+        quadrant, _, value = part.strip().partition("=")
+        quotas[quadrant.strip()] = None if value.strip() in ("", "all") else int(value)
+    return quotas
+
+
+def quadrant_of(record: Dict[str, Any]) -> str:
+    """'Q1_RAG_Win' -> 'Q1'."""
+    quadrant = (record.get("source_context") or {}).get("quadrant") or record.get("quadrant") or ""
+    return quadrant.split("_")[0] or "unknown"
+
+
+def select_review_texts(
+    records: Dict[str, Dict[str, Any]],
+    quotas: Dict[str, Optional[int]],
+    salt: str,
+    seed: int = REVIEW_SEED,
+) -> List[str]:
+    """Text ids to review: per quadrant all (quota None) or a seeded random sample.
+
+    ``salt`` (the folder name) gives every model family and size its own draw.
+    Quadrants without a quota are skipped. Ordered by quadrant, then file order.
+    """
+    by_quadrant: Dict[str, List[str]] = {}
+    for text_index, record in records.items():
+        by_quadrant.setdefault(quadrant_of(record), []).append(text_index)
+    selected = []
+    for quadrant in sorted(by_quadrant):
+        if quadrant not in quotas:
+            continue
+        ids, quota = by_quadrant[quadrant], quotas[quadrant]
+        if quota is not None and quota < len(ids):
+            chosen = set(random.Random(f"{seed}|{salt}|{quadrant}").sample(sorted(ids), quota))
+            ids = [t for t in ids if t in chosen]
+        selected.extend(ids)
+    return selected
+
+
+def write_review_selection(judge_path: Path, quotas: Dict[str, Optional[int]], show_all: bool) -> List[str]:
+    """Select the texts to review and store the choice next to the judge output.
+
+    An existing selection with the same quotas is reused, so the set stays
+    fixed even if the selection rule changes later.
+    """
+    records = load_existing_annotations(judge_path)
+    path = judge_path.parent / SELECTION_NAME
+    if show_all:
+        return list(records)
+    if path.exists():
+        saved = json.loads(path.read_text(encoding="utf-8"))
+        if saved.get("quotas") == quotas:
+            return saved["text_indices"]
+    selected = select_review_texts(records, quotas, judge_path.parent.name)
+    counts: Dict[str, int] = {}
+    for t in selected:
+        counts[quadrant_of(records[t])] = counts.get(quadrant_of(records[t]), 0) + 1
+    path.write_text(
+        json.dumps(
+            {"quotas": quotas, "seed": REVIEW_SEED, "salt": judge_path.parent.name,
+             "per_quadrant": counts, "text_indices": selected},
+            ensure_ascii=False, indent=2,
+        ),
+        encoding="utf-8",
+    )
+    return selected
+
+
+def load_review_samples(judge_path: Path, text_indices: List[str]) -> List[Dict[str, Any]]:
+    """Judge records of the selected texts as app samples, in selection order.
+
+    Each sample is the original generator result (``source_context``) plus the
+    judge's chunk annotations under ``judge_chunks`` (chunk_index -> entry).
+    """
+    records = load_existing_annotations(judge_path)
+    samples = []
+    for text_index in text_indices:
+        record = records[text_index]
+        judge_chunks = {
+            c["chunk_index"]: c for c in record.get("chunk_annotations", [])
+        }
+        sample = dict(record.get("source_context") or {})
+        sample["text_index"] = record.get("text_index")
+        sample["input_text"] = record.get("input_text", "")
+        sample["judge_chunks"] = judge_chunks
+        samples.append(sample)
+    return samples
+
+
+def judge_flags(judge_chunk: Dict[str, Any]) -> List[str]:
+    review = judge_chunk.get("needs_review") or {}
+    return [dim for dim in DIMENSIONS if review.get(dim)]
+
+
 def load_chunk_state_for_sample(sample: Dict[str, Any]):
     """Populate chunk annotation state for the given sample.
 
-    Precedence per chunk: existing annotation record > auto-detected A_caus
-    (chunk cited as [N] in the RAG justification) > static defaults.
+    Precedence per chunk: existing annotation record > judge labels (review
+    mode; empty for spot-check chunks, which are rated blind) > auto-detected
+    A_caus (chunk cited as [N] in the RAG justification) > static defaults.
     Also pre-fills sample notes and syncs widget keys so pre-filled values
     render correctly.
     """
@@ -230,10 +391,13 @@ def load_chunk_state_for_sample(sample: Dict[str, Any]):
         len(retrieved_chunks),
     )
 
+    judge_chunks = sample.get("judge_chunks") or {}
+
     chunk_annotations: Dict[int, Dict[str, Any]] = {}
     auto_detected = set()
     for chunk_idx in range(len(retrieved_chunks)):
         prev = existing_by_idx.get(chunk_idx)
+        judged = judge_chunks.get(chunk_idx)
         if prev is not None:
             state = {
                 "R_top": prev.get("R_top", 3),
@@ -241,6 +405,12 @@ def load_chunk_state_for_sample(sample: Dict[str, Any]):
                 "A_caus": prev.get("A_caus", 0),
                 "notes": prev.get("notes", ""),
             }
+        elif judged is not None:
+            blind = bool(judged.get("spot_check"))
+            state = {
+                dim: None if blind else judged.get(dim) for dim in DIMENSIONS
+            }
+            state["notes"] = ""
         else:
             state = {
                 "R_top": 3,
@@ -275,7 +445,14 @@ def init_session_state():
         st.session_state.get("annotation_log_path", ANNOTATION_LOG_PATH)
     )
 
-    if not st.session_state.get("annotation_samples"):
+    review = st.session_state.get("review_mode")
+    if review and not st.session_state.get("annotation_samples"):
+        judge_path = Path(review["judge_path"])
+        st.session_state["annotation_samples"] = load_review_samples(
+            judge_path,
+            write_review_selection(judge_path, review["quotas"], review["show_all"]),
+        )
+    elif not st.session_state.get("annotation_samples"):
         rows = load_qualitative_samples()
         st.session_state["annotation_samples"] = select_random_samples(
             rows,
@@ -307,6 +484,21 @@ def render_chunk_form(chunk_index: int, chunk: Dict[str, Any]):
         }
 
     chunk_state = st.session_state["chunk_annotations"][chunk_index]
+    judged = (sample_judge_chunks() or {}).get(chunk_index)
+    flags = judge_flags(judged) if judged else []
+    if judged and judged.get("spot_check"):
+        st.info(
+            "Spot check: rate all three dimensions from scratch (the judge's labels are "
+            "hidden; this sample measures the judge's error on unreviewed chunks)."
+        )
+    elif flags:
+        st.warning(
+            "Judge uncertain on **" + ", ".join(flags) + "**; check these. "
+            "The other dimensions are the judge's label and are kept unless you change them."
+        )
+    elif judged:
+        st.caption("Not flagged: the judge's labels are kept unless you change them.")
+    mark = lambda dim: " ⚠ review" if dim in flags else ""  # noqa: E731
 
     # Display chunk metadata
     meta_cols = st.columns([1, 1, 1, 1])
@@ -326,7 +518,7 @@ def render_chunk_form(chunk_index: int, chunk: Dict[str, Any]):
     likert_cols = st.columns([1, 1])
 
     r_top = likert_cols[0].selectbox(
-        "R_top (Topical Relevance)",
+        "R_top (Topical Relevance)" + mark("R_top"),
         options=[1, 2, 3, 4, 5],
         format_func=lambda x: f"[{x}] {R_TOP_OPTIONS[x]}",
         help="Does the chunk discuss the exact policy issue, entity, or debate present in the input text?",
@@ -335,7 +527,7 @@ def render_chunk_form(chunk_index: int, chunk: Dict[str, Any]):
     chunk_state["R_top"] = r_top
 
     r_ideo = likert_cols[1].selectbox(
-        "R_ideo (Ideological Specificity)",
+        "R_ideo (Ideological Specificity)" + mark("R_ideo"),
         options=[1, 2, 3, 4, 5],
         format_func=lambda x: f"[{x}] {R_IDEO_OPTIONS[x]}",
         help="Does the chunk provide unambiguous grounding for how a specific political party, faction, or ideology views this topic?",
@@ -345,7 +537,7 @@ def render_chunk_form(chunk_index: int, chunk: Dict[str, Any]):
 
     # Rubric form — binary attribution scale
     a_caus = st.radio(
-        "A_caus (Attribution)",
+        "A_caus (Attribution)" + mark("A_caus"),
         options=[0, 1],
         format_func=lambda x: "No" if x == 0 else "Yes",
         horizontal=True,
@@ -366,6 +558,13 @@ def render_chunk_form(chunk_index: int, chunk: Dict[str, Any]):
         height=60,
     )
     chunk_state["notes"] = chunk_notes
+
+
+def sample_judge_chunks() -> Dict[int, Dict[str, Any]]:
+    """Judge chunk entries of the sample on screen (review mode), else {}."""
+    rows = st.session_state.get("annotation_samples", [])
+    index = int(st.session_state.get("annotation_index", 0))
+    return rows[index].get("judge_chunks", {}) if rows else {}
 
 
 def render_annotation_section():
@@ -391,6 +590,15 @@ def render_annotation_section():
         load_chunk_state_for_sample(sample)
 
     st.subheader(f"Sample {index + 1} / {len(rows)} — {quadrant}")
+    review = st.session_state.get("review_mode")
+    if review:
+        done = sum(
+            1 for r in rows if r.get("text_index") in st.session_state.get("existing_annotations", {})
+        )
+        st.caption(
+            f"Review mode: {Path(review['judge_path']).parent.name} ({quadrant_of(sample)}) | "
+            f"{done} / {len(rows)} texts reviewed | saving to {st.session_state['annotation_log_path']}"
+        )
 
     if sample_id in st.session_state.get("existing_annotations", {}):
         st.info("Previously annotated — values loaded from file.")
@@ -468,10 +676,19 @@ def render_annotation_section():
     if not retrieved_chunks:
         st.info("No retrieved chunks available for this sample.")
     else:
+        judge_chunks = sample.get("judge_chunks") or {}
         for chunk_idx, chunk in enumerate(retrieved_chunks):
+            judged = judge_chunks.get(chunk_idx)
+            tag, expanded = "", chunk_idx == 0
+            if judged:
+                expanded = chunk_needs_human(judged)
+                if judged.get("spot_check"):
+                    tag = "🎯 spot check — "
+                elif judge_flags(judged):
+                    tag = "⚠ review " + ", ".join(judge_flags(judged)) + " — "
             with st.expander(
-                f"Chunk {chunk_idx + 1} — {chunk.get('party', '?')} | Score: {chunk.get('score', 0):.4f}",
-                expanded=(chunk_idx == 0),
+                f"{tag}Chunk {chunk_idx + 1} — {chunk.get('party', '?')} | Score: {chunk.get('score', 0):.4f}",
+                expanded=expanded,
             ):
                 render_chunk_form(chunk_idx, chunk)
 
@@ -499,7 +716,7 @@ def render_annotation_section():
     if nav_cols[0].button("Previous") and index > 0:
         st.session_state["annotation_index"] = index - 1
         st.rerun()
-    if nav_cols[1].button("Reset sample set"):
+    if not review and nav_cols[1].button("Reset sample set"):
         st.session_state["annotation_samples"] = select_random_samples(
             load_qualitative_samples(),
             limit=ANNOTATION_SAMPLE_LIMIT,
@@ -513,6 +730,15 @@ def render_annotation_section():
         "Save annotations and go next" if can_go_next else "Save annotations"
     )
     if nav_cols[2].button(save_button_label, type="primary"):
+        missing = [
+            chunk_idx + 1
+            for chunk_idx, chunk_data in st.session_state["chunk_annotations"].items()
+            if any(chunk_data.get(dim) is None for dim in DIMENSIONS)
+        ]
+        if missing:
+            st.error(f"Rate every dimension first (chunk {', '.join(map(str, sorted(missing)))}).")
+            st.stop()
+        judge_chunks = sample.get("judge_chunks") or {}
         # Convert chunk_annotations dict to list
         chunk_annotations_list = []
         for chunk_idx, chunk_data in sorted(
@@ -536,6 +762,11 @@ def render_annotation_section():
                 "notes": chunk_data.get("notes", ""),
                 "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),
             }
+            judged = judge_chunks.get(chunk_idx)
+            if judged is not None:
+                annotation_entry["judge_labels"] = {dim: judged.get(dim) for dim in DIMENSIONS}
+                annotation_entry["needs_review"] = judged.get("needs_review")
+                annotation_entry["spot_check"] = bool(judged.get("spot_check"))
             chunk_annotations_list.append(annotation_entry)
 
         record = build_annotation_record(
@@ -544,6 +775,8 @@ def render_annotation_section():
             annotator=st.session_state.get("annotation_annotator", DEFAULT_ANNOTATOR),
             sample_notes=st.session_state.get("annotation_sample_notes", ""),
         )
+        if review:
+            record["sample_manifest"] = {"review_of": str(review["judge_path"])}
         save_annotation_record(
             record,
             st.session_state.get("annotation_log_path", ANNOTATION_LOG_PATH),
@@ -567,7 +800,7 @@ def render_annotation_section():
         st.download_button(
             "Download annotations",
             data=annotation_path.read_bytes(),
-            file_name="qualitative_annotations.jsonl",
+            file_name=annotation_path.name,
             mime="application/jsonl",
             help="Download the annotation file and send it back after completing the samples.",
         )
@@ -580,6 +813,20 @@ def run_streamlit_app():
         layout="wide",
         initial_sidebar_state="collapsed",
     )
+    if "review_mode" not in st.session_state:
+        args = parse_app_args()
+        if args.review:
+            judge_path = resolve_judge_path(args.review)
+            st.session_state["review_mode"] = {
+                "judge_path": str(judge_path),
+                "show_all": args.all,
+                "quotas": parse_quotas(args.quotas),
+            }
+            st.session_state["annotation_log_path"] = Path(args.out) if args.out else judge_path.parent / REVIEWED_NAME
+        else:
+            st.session_state["review_mode"] = None
+        if args.annotator:
+            st.session_state["annotation_annotator"] = args.annotator
     init_session_state()
     render_annotation_section()
 

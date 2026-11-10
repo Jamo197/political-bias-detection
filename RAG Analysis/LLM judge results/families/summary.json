@@ -1,0 +1,102 @@
+{
+  "llama_3b": {
+    "source_file": "results/qualitative/llama/3b/qualitative_e5_simple.jsonl",
+    "chunks": 500,
+    "failed": 0,
+    "review_R_top": 241,
+    "review_R_ideo": 135,
+    "review_A_caus": 43,
+    "review_any": 325,
+    "spot_check": 25
+  },
+  "llama_70b": {
+    "source_file": "results/qualitative/llama/70b/qualitative_e5_simple.jsonl",
+    "chunks": 485,
+    "failed": 0,
+    "review_R_top": 218,
+    "review_R_ideo": 136,
+    "review_A_caus": 3,
+    "review_any": 293,
+    "spot_check": 18
+  },
+  "llama_8b": {
+    "source_file": "results/qualitative/llama/8b/qualitative_e5_simple.jsonl",
+    "chunks": 500,
+    "failed": 0,
+    "review_R_top": 203,
+    "review_R_ideo": 143,
+    "review_A_caus": 55,
+    "review_any": 315,
+    "spot_check": 27
+  },
+  "mistral_14b": {
+    "source_file": "results/qualitative/mistral/14b/qualitative_e5_simple.jsonl",
+    "chunks": 500,
+    "failed": 0,
+    "review_R_top": 245,
+    "review_R_ideo": 141,
+    "review_A_caus": 11,
+    "review_any": 327,
+    "spot_check": 25
+  },
+  "mistral_3b": {
+    "source_file": "results/qualitative/mistral/3b/qualitative_e5_simple.jsonl",
+    "chunks": 500,
+    "failed": 0,
+    "review_R_top": 180,
+    "review_R_ideo": 143,
+    "review_A_caus": 0,
+    "review_any": 279,
+    "spot_check": 34
+  },
+  "mistral_8b": {
+    "source_file": "results/qualitative/mistral/8b/qualitative_e5_simple.jsonl",
+    "chunks": 500,
+    "failed": 0,
+    "review_R_top": 200,
+    "review_R_ideo": 157,
+    "review_A_caus": 21,
+    "review_any": 304,
+    "spot_check": 21
+  },
+  "qwen_32b": {
+    "source_file": "results/qualitative/qwen/32b/qualitative_e5_simple.jsonl",
+    "chunks": 500,
+    "failed": 0,
+    "review_R_top": 220,
+    "review_R_ideo": 139,
+    "review_A_caus": 29,
+    "review_any": 312,
+    "spot_check": 33
+  },
+  "qwen_3b": {
+    "source_file": "results/qualitative/qwen/3b/qualitative_e5_simple.jsonl",
+    "chunks": 355,
+    "failed": 0,
+    "review_R_top": 160,
+    "review_R_ideo": 106,
+    "review_A_caus": 42,
+    "review_any": 235,
+    "spot_check": 18
+  },
+  "qwen_72b": {
+    "source_file": "results/qualitative/qwen/72b/qualitative_e5_simple.jsonl",
+    "chunks": 500,
+    "failed": 0,
+    "review_R_top": 219,
+    "review_R_ideo": 152,
+    "review_A_caus": 2,
+    "review_any": 309,
+    "spot_check": 22
+  },
+  "qwen_7b": {
+    "source_file": "results/qualitative/qwen/7b/qualitative_e5_simple.jsonl",
+    "chunks": 500,
+    "failed": 0,
+    "review_R_top": 199,
+    "review_R_ideo": 158,
+    "review_A_caus": 60,
+    "review_any": 321,
+    "spot_check": 29
+  }
+}
