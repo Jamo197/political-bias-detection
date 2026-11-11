@@ -49,7 +49,11 @@ from scipy.stats import rankdata
 BASE_DIR = Path("logs/batch_runs")
 OUTPUT_ROOT = Path("results/evaluation")
 
-ALL_TARGETS = ["label_ideology", "label_economic", "label_galtan"]
+# ``ches_lrgen`` = exact (unrounded) CHES lrgen of the author's party, recomputed
+# from CHES_PATH (wave CHES_WAVE, 1-7 scale); see attach_ches_lrgen. The log's
+# ``label_ideology`` is the same value rounded to one decimal.
+ALL_TARGETS = ["ches_lrgen", "label_ideology", "label_economic", "label_galtan"]
+THESIS_ROOT = Path("results/thesis")
 CENTRIC_THRESHOLD = 0.5  # |signed_error| <= 0.5 counts as centric
 DEFAULT_N_BOOT = 2000
 DEFAULT_SEED = 42
@@ -139,6 +143,30 @@ def load_party_positions(
     ches["party"] = ches["std_party"].map(_norm_party)
     ches["pos"] = _ches_to_7((ches["lrecon"] + ches["galtan"]) / 2)
     return ches.dropna(subset=["party"]).groupby("party")["pos"].mean().to_dict()
+
+
+# Log party -> CHES std_party for the lrgen target. CDU/CSU-tagged posts get the
+# CDU value (as in the logs' label_ideology); CSU posts keep the CSU value.
+LRGEN_PARTY_MAP = {"CDU/CSU": "CDU"}
+
+
+def load_ches_lrgen(path: Path = CHES_PATH, wave: int = CHES_WAVE) -> Dict[str, float]:
+    """CHES std_party -> lrgen on the 1-7 scale from the given wave (or the
+    latest earlier wave a party appears in). Unrounded."""
+    ches = pd.read_csv(path)
+    ches = ches[ches["year"] <= wave].sort_values("year").groupby("std_party").tail(1)
+    return dict(zip(ches["std_party"], _ches_to_7(ches["lrgen"])))
+
+
+def attach_ches_lrgen(df: pd.DataFrame, path: Path = CHES_PATH, wave: int = CHES_WAVE) -> pd.DataFrame:
+    """Add column ``ches_lrgen`` (exact CHES lrgen of the author's party, 1-7)."""
+    lrgen = load_ches_lrgen(path, wave)
+    party = df["party"].map(lambda p: " ".join(p.split()) if isinstance(p, str) else p)
+    df["ches_lrgen"] = party.replace(LRGEN_PARTY_MAP).map(lrgen)
+    missing = df.loc[df["ches_lrgen"].isna(), "party"].value_counts()
+    if not missing.empty:
+        print(f"  Warning: no CHES lrgen for parties {missing.to_dict()} (rows dropped later).")
+    return df
 
 
 def _bloc(pos: float) -> int:
@@ -261,6 +289,7 @@ def load_logs_from_directory(
     keep_details: bool = False,
     models: Optional[List[str]] = None,
     split_by_k: bool = False,
+    exclude_file_patterns: Sequence[str] = (),
 ) -> pd.DataFrame:
     """Walk base_dir recursively, read JSONL entries, flatten into a DataFrame,
 
@@ -270,9 +299,13 @@ def load_logs_from_directory(
     ``models`` keeps only these cleaned model names. ``split_by_k`` appends
     ``/k<k_chunks>`` to RAG condition names so runs that differ only in k are
     neither merged nor deduplicated against each other (k-ablation).
+    ``exclude_file_patterns`` skips files whose name contains any of the strings.
     """
     records: List[Dict] = []
-    jsonl_files = sorted(base_dir.rglob("party_label_*.jsonl"))
+    jsonl_files = sorted(
+        fp for fp in base_dir.rglob("party_label_*.jsonl")
+        if not any(pat in fp.name for pat in exclude_file_patterns)
+    )
 
     if not jsonl_files:
         raise FileNotFoundError(
@@ -351,6 +384,7 @@ def load_logs_from_directory(
                     "label_ideology": gt.get("label_ideology"),
                     "label_economic": gt.get("label_economic"),
                     "label_galtan": gt.get("label_galtan"),
+                    "source_file": str(fp),
                     "k_chunks": params.get("k_chunks", 0),
                     "n_chunks_retrieved": len(inputs.get("retrieved_chunks", [])),
                     "chunk_parties": [
@@ -373,6 +407,7 @@ def load_logs_from_directory(
     # Deduplicate runs to prevent sample-size inflation from duplicated executions
     initial_len = len(df)
     df = df.drop_duplicates(subset=["model", "condition", "text_index"], keep="last")
+    df = attach_ches_lrgen(df)
     print(
         f"Loaded {len(df)} unique records (deduplicated from {initial_len}) across {len(jsonl_files)} files."
     )
@@ -2184,6 +2219,264 @@ def main(
     print("Done.")
 
 
+def main_baseline(
+    base_dir: Path = BASE_DIR,
+    output_dir: Path = THESIS_ROOT / "01_baseline_no_rag",
+    target_col: str = "ches_lrgen",
+    n_boot: int = DEFAULT_N_BOOT,
+    seed: int = DEFAULT_SEED,
+):
+    """Thesis section 'Baseline performance (No-RAG)': point metrics only
+    (MAE, RMSE, Pearson r, Spearman rho, CCC, mean signed error, calibration
+    slope/intercept, with bootstrap CIs) per model on the no_rag runs.
+    Only party_label_* logs; k-ablation files are skipped."""
+    output_dir.mkdir(parents=True, exist_ok=True)
+    print(f"Baseline (no_rag) | target: {target_col} | output: {output_dir.resolve()}")
+    df = load_logs_from_directory(
+        base_dir, retrieval_modes=["no_rag"], exclude_file_patterns=("k-ablation",)
+    )
+    valid = prepare_target_frame(df, target_col)
+    metrics = compute_evaluation_metrics(valid, target_col, n_boot, seed)
+    meta, _ = build_model_meta(metrics["Model"].unique())
+    metrics = metrics.merge(
+        meta[["model", "params_b"]].rename(columns={"model": "Model", "params_b": "Params_B"}),
+        on="Model", how="left",
+    ).sort_values(["Family", "Params_B"]).reset_index(drop=True)
+    metrics.to_csv(output_dir / f"point_metrics_no_rag_{target_col}.csv", index=False)
+
+    # Readable table: point estimate [95% CI]
+    table = metrics[["Model", "N_samples"]].copy()
+    for name in METRIC_NAMES:
+        if f"{name}_lo" in metrics:
+            table[name] = [
+                f"{v:.3f} [{lo:.3f}, {hi:.3f}]"
+                for v, lo, hi in zip(metrics[name], metrics[f"{name}_lo"], metrics[f"{name}_hi"])
+            ]
+        else:
+            table[name] = metrics[name].map(lambda v: f"{v:.3f}")
+    targets = (
+        valid.groupby("party")["true"].first().sort_values().round(4).to_dict()
+    )
+    sources = valid.groupby("model")["source_file"].unique().map(sorted).to_dict()
+    md = [
+        f"# Baseline performance (No-RAG) — target `{target_col}`",
+        "",
+        f"Target: CHES {CHES_WAVE} `lrgen` of the author's party, converted to 1–7 "
+        "(`1 + lrgen/10*6`, unrounded); CDU/CSU-tagged posts use the CDU value. "
+        "Prediction: `output.bias`. Signed error = prediction − target "
+        "(negative = left of target).",
+        f"Bootstrap: {n_boot} resamples of posts, seed {seed}, percentile 95% CIs."
+        if n_boot else "Bootstrap: off.",
+        "",
+        _md_table(table),
+        "",
+        "## Target per party (1–7)",
+        "",
+        _md_table(pd.DataFrame({"Party": list(targets), "Target": list(targets.values())})),
+        "",
+        "## Source logs",
+        "",
+        *[f"- {m}: " + ", ".join(f"`{s}`" for s in fs) for m, fs in sources.items()],
+        "",
+    ]
+    (output_dir / f"point_metrics_no_rag_{target_col}.md").write_text("\n".join(md), encoding="utf-8")
+    print(table.to_string(index=False))
+    print(f"\n  → {output_dir / f'point_metrics_no_rag_{target_col}.csv'}")
+    print(f"  → {output_dir / f'point_metrics_no_rag_{target_col}.md'}")
+
+
+EXCLUDED_RETRIEVAL_MODES = ("hyde_hybrid",)  # did not run as expected
+SMALL_MODEL_MAX_B = 8  # 'small models' for the reference check (3B and 7/8B)
+
+
+def load_main_matrix(base_dir: Path = BASE_DIR, k_chunks: int = DEFAULT_K) -> pd.DataFrame:
+    """party_label_* logs without k-ablation files: no_rag + RAG runs with
+    k_chunks == k, excluding EXCLUDED_RETRIEVAL_MODES."""
+    df = load_logs_from_directory(
+        base_dir, exclude_file_patterns=("k-ablation",), split_by_k=True
+    )
+    keep = (~df["is_rag"]) | (df["k_chunks"] == k_chunks)
+    keep &= ~df["retrieval_mode"].isin(EXCLUDED_RETRIEVAL_MODES)
+    df = df[keep].copy()
+    df["condition"] = df["condition"].str.replace(r"/k\d+$", "", regex=True)
+    print(f"  Main matrix: {len(df)} rows, conditions {sorted(df['condition'].unique())}")
+    return df
+
+
+def constant_reference_mae(valid: pd.DataFrame) -> Tuple[float, float]:
+    """(target median, MAE of predicting it for every post) over unique posts."""
+    t = valid.drop_duplicates("text_index")["true"]
+    med = float(t.median())
+    return med, float((t - med).abs().mean())
+
+
+def compute_rag_vs_norag(
+    valid: pd.DataFrame, n_boot: int = DEFAULT_N_BOOT, seed: int = DEFAULT_SEED,
+    ref_mae: float = np.nan,
+) -> pd.DataFrame:
+    """Paired RAG-vs-no_rag comparison per model x RAG condition on the shared
+    posts. Paired bootstrap CIs (same resampled posts for both) for ΔMAE, Δslope,
+    Δintercept, Δ|mean signed error|; Wilcoxon signed-rank test on the per-post
+    |e_RAG| - |e_noRAG| with Holm correction across the conditions of each model.
+    Negative ΔMAE = RAG better."""
+    rng = np.random.default_rng(seed)
+    rows = []
+    for model, mdf in valid.groupby("model"):
+        base = mdf[mdf["condition"] == "no_rag"][["text_index", "true", "pred"]]
+        model_rows = []
+        for cond in sorted(c for c in mdf["condition"].unique() if c != "no_rag"):
+            rag = mdf[mdf["condition"] == cond][["text_index", "pred"]]
+            m = base.merge(rag, on="text_index", suffixes=("_base", "_rag"))
+            if len(m) < 3:
+                continue
+            y, yb, yr = (m[c].to_numpy(float) for c in ("true", "pred_base", "pred_rag"))
+            mb, mr = _vec_metrics(y, yb), _vec_metrics(y, yr)
+            d_abs = np.abs(yr - y) - np.abs(yb - y)
+            nonzero = d_abs[d_abs != 0]
+            p = stats.wilcoxon(nonzero).pvalue if len(nonzero) > 0 else 1.0
+            cond_rows = mdf.loc[mdf["condition"] == cond].iloc[0]
+            row: Dict[str, Any] = {
+                "Model": model,
+                "Family": mdf["family"].iloc[0],
+                "Params_B": mdf["params_b"].iloc[0],
+                "Condition": cond,
+                "Embedding": cond_rows["embedding_model"],
+                "Strategy": cond_rows["retrieval_mode"],
+                "N_paired": len(m),
+                "N_changed": int(len(nonzero)),
+            }
+            if n_boot > 0:
+                idx = rng.integers(0, len(m), size=(n_boot, len(m)))
+                bb, br = _vec_metrics(y[idx], yb[idx]), _vec_metrics(y[idx], yr[idx])
+            for label, key in [("MAE", "MAE"), ("Slope", "Calibration_slope"),
+                               ("Intercept", "Calibration_intercept"),
+                               ("MSE", "Mean_signed_error")]:
+                row[f"{label}_base"] = _round(mb[key][()])
+                row[f"{label}_rag"] = _round(mr[key][()])
+                if n_boot > 0:
+                    _add_ci(row, f"{label}_rag", br[key])
+            for col, key in [("dMAE", "MAE"), ("dSlope", "Calibration_slope"),
+                             ("dIntercept", "Calibration_intercept")]:
+                row[col] = _round(mr[key][()] - mb[key][()])
+                if n_boot > 0:
+                    _add_ci(row, col, br[key] - bb[key])
+            row["dAbsMSE"] = _round(abs(mr["Mean_signed_error"][()]) - abs(mb["Mean_signed_error"][()]))
+            if n_boot > 0:
+                _add_ci(row, "dAbsMSE", np.abs(br["Mean_signed_error"]) - np.abs(bb["Mean_signed_error"]))
+            row["p_wilcoxon"] = float(p)
+            model_rows.append(row)
+        for r, a in zip(model_rows, _holm([r["p_wilcoxon"] for r in model_rows])):
+            r["p_holm"] = a
+            r["significant"] = bool(a < 0.05)
+            r["direction"] = ("RAG better" if r["dMAE"] < 0 else "RAG worse") if r["significant"] else "n.s."
+            # §5.1 checks
+            if n_boot > 0:
+                r["check_slope_towards_1"] = bool(
+                    abs(1 - r["Slope_rag"]) < abs(1 - r["Slope_base"]) and r["dSlope_lo"] > 0)
+                r["check_offset_shrinks"] = bool(r["dAbsMSE_hi"] < 0)
+                r["check_below_ref"] = bool(r["MAE_rag_hi"] < ref_mae)
+        rows.extend(model_rows)
+    out = pd.DataFrame(rows)
+    return out.sort_values(["Family", "Params_B", "Condition"]).reset_index(drop=True)
+
+
+def summarise_rag_vs_norag(delta: pd.DataFrame) -> pd.DataFrame:
+    """One row per model: how many conditions improve/worsen significantly and
+    how often each §5.1 check holds."""
+    g = delta.groupby(["Family", "Params_B", "Model"], sort=True)
+    summ = g.agg(
+        N_conditions=("Condition", "size"),
+        MAE_base=("MAE_base", "first"),
+        dMAE_median=("dMAE", "median"),
+        dMAE_min=("dMAE", "min"),
+        dMAE_max=("dMAE", "max"),
+        Sig_better=("direction", lambda s: int((s == "RAG better").sum())),
+        Sig_worse=("direction", lambda s: int((s == "RAG worse").sum())),
+        Slope_base=("Slope_base", "first"),
+        Slope_rag_median=("Slope_rag", "median"),
+        Slope_towards_1=("check_slope_towards_1", "sum"),
+        AbsMSE_base=("MSE_base", lambda s: abs(s.iloc[0])),
+        Offset_shrinks=("check_offset_shrinks", "sum"),
+        Below_ref=("check_below_ref", "sum"),
+    ).reset_index()
+    best = delta.loc[delta.groupby("Model")["dMAE"].idxmin(), ["Model", "Condition", "dMAE"]]
+    best.columns = ["Model", "Best_condition", "Best_dMAE"]
+    summ = summ.merge(best, on="Model")
+    summ["Small_model"] = summ["Params_B"] <= SMALL_MODEL_MAX_B
+    return summ
+
+
+def main_rag_vs_norag(
+    base_dir: Path = BASE_DIR,
+    output_dir: Path = THESIS_ROOT / "02_rag_vs_no_rag",
+    target_col: str = "ches_lrgen",
+    n_boot: int = DEFAULT_N_BOOT,
+    seed: int = DEFAULT_SEED,
+    k_chunks: int = DEFAULT_K,
+):
+    """Thesis section 'RAG vs. no-RAG' (RQ1b): paired ΔMAE per model x condition
+    with Wilcoxon + Holm, plus the §5.1 checks (slope, offset, small models vs.
+    the constant-median reference)."""
+    output_dir.mkdir(parents=True, exist_ok=True)
+    print(f"RAG vs no_rag | target: {target_col} | output: {output_dir.resolve()}")
+    valid = prepare_target_frame(load_main_matrix(base_dir, k_chunks), target_col)
+    t_median, ref_mae = constant_reference_mae(valid)
+    delta = compute_rag_vs_norag(valid, n_boot, seed, ref_mae)
+    summ = summarise_rag_vs_norag(delta)
+    delta.to_csv(output_dir / f"rag_vs_no_rag_{target_col}.csv", index=False)
+    summ.to_csv(output_dir / f"rag_vs_no_rag_summary_{target_col}.csv", index=False)
+
+    def fmt(r, c):
+        return f"{r[c]:+.3f} [{r[c + '_lo']:+.3f}, {r[c + '_hi']:+.3f}]"
+
+    tab = pd.DataFrame({
+        "Model": delta["Model"].map(lambda m: f"{_meta_for(m)['family']} {int(_meta_for(m)['params_b'])}B"),
+        "Condition": delta["Condition"],
+        "N": delta["N_paired"],
+        "MAE no-RAG": delta["MAE_base"].map("{:.3f}".format),
+        "MAE RAG": delta["MAE_rag"].map("{:.3f}".format),
+        "ΔMAE [95% CI]": delta.apply(lambda r: fmt(r, "dMAE"), axis=1),
+        "p (Holm)": delta["p_holm"].map(lambda p: "<0.001" if p < 0.001 else f"{p:.3f}"),
+        "Δβ": delta.apply(lambda r: fmt(r, "dSlope"), axis=1),
+        "Δ|MSE|": delta.apply(lambda r: fmt(r, "dAbsMSE"), axis=1),
+    })
+    s_tab = summ[["Model", "N_conditions", "MAE_base", "dMAE_median", "dMAE_min", "dMAE_max",
+                  "Sig_better", "Sig_worse", "Slope_base", "Slope_rag_median", "Slope_towards_1",
+                  "AbsMSE_base", "Offset_shrinks", "Below_ref", "Best_condition"]].copy()
+    s_tab["Model"] = s_tab["Model"].map(lambda m: f"{_meta_for(m)['family']} {int(_meta_for(m)['params_b'])}B")
+    s_tab = s_tab.round(3)
+    md = [
+        f"# RAG vs. no-RAG (RQ1b) — target `{target_col}`",
+        "",
+        f"Target: exact CHES {CHES_WAVE} lrgen of the author's party (1–7). RAG runs with "
+        f"k = {k_chunks}; excluded retrieval modes: {', '.join(EXCLUDED_RETRIEVAL_MODES)}; "
+        "k-ablation files excluded.",
+        "Pairing: per model and condition, the posts present in both the RAG and the no-RAG run "
+        "(N). ΔX = RAG − no-RAG (negative ΔMAE = RAG better). CIs: paired bootstrap "
+        f"({n_boot} resamples, seed {seed}). Test: Wilcoxon signed-rank on the per-post "
+        "|e_RAG| − |e_noRAG| (zero differences dropped), Holm-corrected across the conditions "
+        "of each model.",
+        "",
+        "§5.1 checks (counts over each model's conditions):",
+        "- **Slope_towards_1**: β_RAG closer to 1 than β_noRAG and Δβ CI > 0.",
+        "- **Offset_shrinks**: Δ|mean signed error| CI < 0.",
+        f"- **Below_ref**: upper CI of MAE_RAG below {ref_mae:.3f} (constant prediction at the "
+        f"target median {t_median:.2f}). Relevant for small models (≤ {SMALL_MODEL_MAX_B}B).",
+        "",
+        "## Summary per model",
+        "",
+        _md_table(s_tab),
+        "",
+        "## All model × condition pairs",
+        "",
+        _md_table(tab),
+        "",
+    ]
+    (output_dir / f"rag_vs_no_rag_{target_col}.md").write_text("\n".join(md), encoding="utf-8")
+    print(s_tab.to_string(index=False))
+    print(f"\n  → {output_dir}")
+
+
 def _comma_list(value: str) -> List[str]:
     return [x.strip() for x in value.split(",") if x.strip()]
 
@@ -2222,7 +2515,26 @@ if __name__ == "__main__":
     parser.add_argument("--k-strategy", type=str, default="simple", help="Retrieval strategy for --k-ablation.")
     parser.add_argument("--k-values", type=lambda v: [int(x) for x in _comma_list(v)], default=None, help="Comma-separated k values to include (default: all found).")
     parser.add_argument("--k-no-baseline", action="store_true", help="Do not add the no_rag run (k = 0) to --k-ablation.")
+    parser.add_argument("--baseline", action="store_true", help="Thesis baseline: point metrics on no_rag runs only (target ches_lrgen), written to results/thesis/01_baseline_no_rag.")
+    parser.add_argument("--rag-vs-norag", action="store_true", help="Thesis RQ1b: paired RAG-vs-no_rag per model x condition (hyde_hybrid dropped), written to results/thesis/02_rag_vs_no_rag.")
     args = parser.parse_args()
+
+    if args.rag_vs_norag:
+        main_rag_vs_norag(
+            base_dir=args.base_dir,
+            n_boot=0 if args.no_bootstrap else args.n_boot,
+            seed=args.seed,
+            k_chunks=args.k_chunks,
+        )
+        raise SystemExit(0)
+
+    if args.baseline:
+        main_baseline(
+            base_dir=args.base_dir,
+            n_boot=0 if args.no_bootstrap else args.n_boot,
+            seed=args.seed,
+        )
+        raise SystemExit(0)
 
     if args.targets and args.targets == ["all"]:
         chosen_targets = ALL_TARGETS

@@ -1,0 +1,11 @@
+Family,Params_B,Model,N_conditions,MAE_base,dMAE_median,dMAE_min,dMAE_max,Sig_better,Sig_worse,Slope_base,Slope_rag_median,Slope_towards_1,AbsMSE_base,Offset_shrinks,Below_ref,Best_condition,Best_dMAE,Small_model
+Llama,3,Llama-3.2-3B-Instruct,14,1.8162,-0.08310000000000001,-0.1658,-0.0294,0,0,0.3717,0.18295,0,0.2831,0,0,bge/hyde,-0.1658,True
+Llama,8,Llama-3.1-8B-Instruct,14,1.55,-0.5024,-0.5841,-0.4542,14,0,0.5998,0.5868,0,0.8843,14,4,qwen3/hyde,-0.5841,True
+Llama,70,Meta-Llama-3.1-70B-Instruct-FP8,14,0.8117,0.2782,0.2273,0.305,0,14,0.6352,0.3252,0,0.0836,0,0,qwen3/simple,0.2273,False
+Mistral,3,Ministral-3-3B-Instruct-2512,14,1.3143,-0.07915,-0.1466,0.0004,1,0,0.5525,0.4748,0,0.4253,14,0,qwen3/hyde,-0.1466,True
+Mistral,8,Ministral-3-8B-Instruct-2512,14,1.139,0.1038,-0.0115,0.163,0,4,0.6552,0.7483,11,0.499,1,0,bge/twostage_hybrid,-0.0115,True
+Mistral,14,Ministral-3-14B-Instruct-2512,14,0.8647,0.0641,0.0334,0.1193,0,7,0.6291,0.71675,12,0.2169,2,14,bge/twostage_hybrid,0.0334,False
+Qwen,3,Qwen2.5-3B-Instruct,14,1.4346,0.0701,0.05,0.0846,0,10,0.0246,0.032100000000000004,0,0.4694,0,0,bge/simple_hybrid,0.05,True
+Qwen,7,Qwen2.5-7B-Instruct,14,1.2021,0.08875,0.0344,0.1275,0,4,0.2086,0.32799999999999996,14,0.2224,0,0,bge/hyde,0.0344,True
+Qwen,32,Qwen2.5-32B-Instruct,14,1.1589,-0.1492,-0.2034,-0.106,14,0,0.2838,0.402,14,0.3922,14,11,qwen3/hyde,-0.2034,False
+Qwen,72,Qwen2.5-72B-Instruct-FP8-dynamic,13,0.9411,-0.0171,-0.0468,0.0133,0,0,0.4787,0.5516,12,0.4551,1,13,qwen3/simple,-0.0468,False
