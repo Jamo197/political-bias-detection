@@ -28,13 +28,9 @@ OUT_DIR = em.THESIS_ROOT / "02_rag_vs_no_rag"
 TARGET = "ches_lrgen"
 DELTA_CSV = OUT_DIR / f"rag_vs_no_rag_{TARGET}.csv"
 
-# Cells with failed retrieval (no or too few chunks in the logs), excluded until re-run:
-# Ministral-8B bge/twostage_hybrid retrieved 0 chunks for every post,
-# Ministral-8B bge/twostage fewer than 5 chunks for 58 % of the posts.
-INVALID_CELLS = {
-    ("Ministral-3-8B-Instruct-2512", "bge/twostage"),
-    ("Ministral-3-8B-Instruct-2512", "bge/twostage_hybrid"),
-}
+# Cells excluded from the figure (failed retrieval). Empty since the re-run of
+# Ministral-3-8B bge/twostage and bge/twostage_hybrid on 10 November 2026.
+INVALID_CELLS: set = set()
 
 
 def _save(fig, name: str):
