@@ -1,0 +1,49 @@
+Outcome,Spec,Term,Estimate,SE,CI_lo,CI_hi,p
+abs_error,M3_rag_design,Intercept,1.0915,0.0318,1.0291,1.1539,0.0
+abs_error,M3_rag_design,"C(family, Treatment('Llama'))[T.Mistral]",-0.231,0.0073,-0.2453,-0.2168,0.0
+abs_error,M3_rag_design,"C(family, Treatment('Llama'))[T.Qwen]",-0.0575,0.0067,-0.0706,-0.0444,0.0
+abs_error,M3_rag_design,"C(party_group, Treatment('SPD'))[T.AfD]",0.333,0.0526,0.23,0.4361,0.0
+abs_error,M3_rag_design,"C(party_group, Treatment('SPD'))[T.BÜNDNIS 90/DIE GRÜNEN]",0.0612,0.0477,-0.0323,0.1547,0.199442
+abs_error,M3_rag_design,"C(party_group, Treatment('SPD'))[T.CDU/CSU]",0.1227,0.0707,-0.0159,0.2613,0.082817
+abs_error,M3_rag_design,"C(party_group, Treatment('SPD'))[T.DIE LINKE]",0.5103,0.0459,0.4204,0.6002,0.0
+abs_error,M3_rag_design,"C(party_group, Treatment('SPD'))[T.FDP]",0.0697,0.0672,-0.062,0.2014,0.299425
+abs_error,M3_rag_design,"C(strategy, Treatment('simple'))[T.hyde]",0.0032,0.0071,-0.0108,0.0172,0.651362
+abs_error,M3_rag_design,"C(strategy, Treatment('simple'))[T.twostage]",0.0087,0.0065,-0.004,0.0214,0.17911
+abs_error,M3_rag_design,"C(embedding_model, Treatment('bge'))[T.e5]",-0.0025,0.0084,-0.0189,0.0138,0.761652
+abs_error,M3_rag_design,"C(embedding_model, Treatment('bge'))[T.jina]",0.0134,0.0085,-0.0033,0.03,0.115167
+abs_error,M3_rag_design,"C(embedding_model, Treatment('bge'))[T.qwen3]",-0.0116,0.0084,-0.0279,0.0048,0.166418
+abs_error,M3_rag_design,size_c,-0.1197,0.0017,-0.123,-0.1163,0.0
+abs_error,M3_rag_design,hybrid,0.0097,0.0096,-0.0091,0.0285,0.309899
+abs_error,M3_no_design,Intercept,1.0967,0.0311,1.0357,1.1577,0.0
+abs_error,M3_no_design,"C(family, Treatment('Llama'))[T.Mistral]",-0.231,0.0073,-0.2453,-0.2168,0.0
+abs_error,M3_no_design,"C(family, Treatment('Llama'))[T.Qwen]",-0.0577,0.0067,-0.0708,-0.0446,0.0
+abs_error,M3_no_design,"C(party_group, Treatment('SPD'))[T.AfD]",0.333,0.0526,0.23,0.4361,0.0
+abs_error,M3_no_design,"C(party_group, Treatment('SPD'))[T.BÜNDNIS 90/DIE GRÜNEN]",0.0612,0.0477,-0.0323,0.1547,0.199447
+abs_error,M3_no_design,"C(party_group, Treatment('SPD'))[T.CDU/CSU]",0.1227,0.0707,-0.0159,0.2613,0.082837
+abs_error,M3_no_design,"C(party_group, Treatment('SPD'))[T.DIE LINKE]",0.5103,0.0459,0.4204,0.6002,0.0
+abs_error,M3_no_design,"C(party_group, Treatment('SPD'))[T.FDP]",0.0697,0.0672,-0.062,0.2014,0.299468
+abs_error,M3_no_design,size_c,-0.1197,0.0017,-0.1231,-0.1164,0.0
+signed_error,M3_rag_design,Intercept,0.785,0.0411,0.7044,0.8656,0.0
+signed_error,M3_rag_design,"C(family, Treatment('Llama'))[T.Mistral]",-0.4767,0.0089,-0.4941,-0.4593,0.0
+signed_error,M3_rag_design,"C(family, Treatment('Llama'))[T.Qwen]",0.0122,0.0082,-0.0039,0.0282,0.137591
+signed_error,M3_rag_design,"C(party_group, Treatment('SPD'))[T.AfD]",-1.8802,0.0681,-2.0137,-1.7466,0.0
+signed_error,M3_rag_design,"C(party_group, Treatment('SPD'))[T.BÜNDNIS 90/DIE GRÜNEN]",-0.0914,0.0618,-0.2126,0.0298,0.139516
+signed_error,M3_rag_design,"C(party_group, Treatment('SPD'))[T.CDU/CSU]",-1.4126,0.0917,-1.5922,-1.2329,0.0
+signed_error,M3_rag_design,"C(party_group, Treatment('SPD'))[T.DIE LINKE]",0.6702,0.0595,0.5536,0.7868,0.0
+signed_error,M3_rag_design,"C(party_group, Treatment('SPD'))[T.FDP]",-1.3763,0.0871,-1.547,-1.2057,0.0
+signed_error,M3_rag_design,"C(strategy, Treatment('simple'))[T.hyde]",-0.021,0.0088,-0.0381,-0.0038,0.016635
+signed_error,M3_rag_design,"C(strategy, Treatment('simple'))[T.twostage]",0.0303,0.008,0.0148,0.0459,0.000136
+signed_error,M3_rag_design,"C(embedding_model, Treatment('bge'))[T.e5]",0.0271,0.0103,0.007,0.0472,0.008181
+signed_error,M3_rag_design,"C(embedding_model, Treatment('bge'))[T.jina]",0.0309,0.0104,0.0105,0.0513,0.003016
+signed_error,M3_rag_design,"C(embedding_model, Treatment('bge'))[T.qwen3]",-0.0122,0.0102,-0.0323,0.0078,0.232046
+signed_error,M3_rag_design,size_c,-0.1353,0.0021,-0.1394,-0.1312,0.0
+signed_error,M3_rag_design,hybrid,0.0335,0.0118,0.0105,0.0566,0.004345
+signed_error,M3_no_design,Intercept,0.8042,0.0403,0.7252,0.8832,0.0
+signed_error,M3_no_design,"C(family, Treatment('Llama'))[T.Mistral]",-0.4765,0.0089,-0.4939,-0.459,0.0
+signed_error,M3_no_design,"C(family, Treatment('Llama'))[T.Qwen]",0.0126,0.0082,-0.0035,0.0286,0.125228
+signed_error,M3_no_design,"C(party_group, Treatment('SPD'))[T.AfD]",-1.8802,0.0681,-2.0137,-1.7466,0.0
+signed_error,M3_no_design,"C(party_group, Treatment('SPD'))[T.BÜNDNIS 90/DIE GRÜNEN]",-0.0914,0.0618,-0.2126,0.0298,0.139581
+signed_error,M3_no_design,"C(party_group, Treatment('SPD'))[T.CDU/CSU]",-1.4125,0.0917,-1.5922,-1.2329,0.0
+signed_error,M3_no_design,"C(party_group, Treatment('SPD'))[T.DIE LINKE]",0.6702,0.0595,0.5536,0.7868,0.0
+signed_error,M3_no_design,"C(party_group, Treatment('SPD'))[T.FDP]",-1.3763,0.0871,-1.547,-1.2057,0.0
+signed_error,M3_no_design,size_c,-0.1352,0.0021,-0.1394,-0.1311,0.0

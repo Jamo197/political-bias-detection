@@ -1,0 +1,3 @@
+Strategy,N_posts,Share_posts_changed,Mean_chunks_replaced,Coverage_shared,Coverage_only_dense,Coverage_only_hybrid,dCoverage_hybrid_minus_dense,p_wilcoxon_coverage,SameParty_only_dense,SameParty_only_hybrid,dSameParty_hybrid_minus_dense,p_wilcoxon_sameparty
+simple,775,0.9948,2.2451,0.1273,0.1035,0.1667,0.0632,1.1817619929684422e-66,0.2729,0.2594,-0.0141,0.3459026896610594
+twostage,775,0.9729,2.5146,0.1446,0.1166,0.1667,0.0502,3.283040291229319e-53,0.2684,0.2417,-0.0277,0.06104253148798053

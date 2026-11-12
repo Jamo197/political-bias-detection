@@ -1,0 +1,15 @@
+Condition,N_posts,Share_identical_list_across_models,Share_identical_set_across_models
+bge/hyde,775,0.0,0.0
+bge/simple,775,0.9948,0.9948
+bge/simple_hybrid,775,0.1716,0.5213
+bge/twostage,775,0.9961,0.9961
+bge/twostage_hybrid,775,0.8516,0.8516
+e5/hyde,775,0.0,0.0
+e5/simple,775,1.0,1.0
+e5/twostage,775,0.9974,0.9974
+jina/hyde,775,0.0026,0.0026
+jina/simple,775,0.68,0.8826
+jina/twostage,775,0.8555,0.8555
+qwen3/hyde,775,0.0,0.0
+qwen3/simple,775,0.8387,0.9303
+qwen3/twostage,775,0.9174,0.9174

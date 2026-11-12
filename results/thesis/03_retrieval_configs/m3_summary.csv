@@ -1,0 +1,7 @@
+Outcome,Spec,N,N_texts,Var_text,Var_resid,ICC,LogLik,AIC,BIC,Converged,Formula
+abs_error,M3_rag_design,105913.0,775.0,0.2006,0.8033,0.1999,-140061.27,280156.54,280319.23,True,"abs_error ~ C(family, Treatment('Llama')) + size_c + C(party_group, Treatment('SPD')) + C(strategy, Treatment('simple')) + hybrid + C(embedding_model, Treatment('bge'))"
+abs_error,M3_no_design,105913.0,775.0,0.2006,0.8033,0.1998,-140067.49,280156.99,280262.26,True,"abs_error ~ C(family, Treatment('Llama')) + size_c + C(party_group, Treatment('SPD'))"
+abs_error,LR test design factors,,,,,,12.45,6.0,0.05257282679658016,,"LR = 2ΔlogLik (LogLik col), df (AIC col), p (BIC col)"
+signed_error,M3_rag_design,105913.0,775.0,0.3382,1.2096,0.2185,-161781.9,323597.81,323760.5,True,"signed_error ~ C(family, Treatment('Llama')) + size_c + C(party_group, Treatment('SPD')) + C(strategy, Treatment('simple')) + hybrid + C(embedding_model, Treatment('bge'))"
+signed_error,M3_no_design,105913.0,775.0,0.3382,1.2104,0.2184,-161818.96,323659.91,323765.19,True,"signed_error ~ C(family, Treatment('Llama')) + size_c + C(party_group, Treatment('SPD'))"
+signed_error,LR test design factors,,,,,,74.1,6.0,5.872395303344999e-14,,"LR = 2ΔlogLik (LogLik col), df (AIC col), p (BIC col)"

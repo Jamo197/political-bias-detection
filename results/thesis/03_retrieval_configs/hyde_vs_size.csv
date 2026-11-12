@@ -1,0 +1,11 @@
+Model,Family,Params_B,dMAE_hyde_simple,dMAE_twostage_simple,log2_params,dHyDE_bge,dHyDE_e5,dHyDE_jina,dHyDE_qwen3
+Llama-3.2-3B-Instruct,Llama,3,-0.0015,0.0374,1.585,-0.0142,0.0247,0.0018,-0.0181
+Llama-3.1-8B-Instruct,Llama,8,-0.0214,0.0031,3.0,0.0227,-0.0537,-0.0203,-0.0343
+Meta-Llama-3.1-70B-Instruct-FP8,Llama,70,0.0037,-0.0147,6.1293,-0.0283,0.0049,-0.0235,0.0618
+Ministral-3-3B-Instruct-2512,Mistral,3,-0.0186,-0.0392,1.585,0.0096,0.005,-0.0198,-0.0691
+Ministral-3-8B-Instruct-2512,Mistral,8,0.0098,0.0088,3.0,0.0053,0.0011,0.0042,0.0286
+Ministral-3-14B-Instruct-2512,Mistral,14,0.0387,-0.0083,3.8074,0.0686,0.0399,-0.0048,0.0511
+Qwen2.5-3B-Instruct,Qwen,3,-0.007,-0.0047,1.585,0.0121,-0.0139,-0.0206,-0.0055
+Qwen2.5-7B-Instruct,Qwen,7,-0.0085,0.0282,2.8074,-0.0503,0.0179,-0.0029,0.0011
+Qwen2.5-32B-Instruct,Qwen,32,0.0051,0.0309,5.0,0.0175,0.023,0.0101,-0.0303
+Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,72,0.0162,0.0108,6.1699,0.0096,0.0306,,0.0083

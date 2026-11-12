@@ -1,0 +1,11 @@
+Model,N_conditions,Spearman_sameparty_MAE,p
+Llama-3.1-8B-Instruct,14,-0.4462,0.1098
+Llama-3.2-3B-Instruct,14,0.2923,0.3105
+Meta-Llama-3.1-70B-Instruct-FP8,14,-0.2659,0.3581
+Ministral-3-14B-Instruct-2512,14,0.3407,0.2333
+Ministral-3-3B-Instruct-2512,14,-0.3319,0.2464
+Ministral-3-8B-Instruct-2512,14,-0.4462,0.1098
+Qwen2.5-32B-Instruct,14,-0.5429,0.0449
+Qwen2.5-3B-Instruct,14,0.1692,0.563
+Qwen2.5-72B-Instruct-FP8-dynamic,13,-0.9066,0.0
+Qwen2.5-7B-Instruct,14,-0.2703,0.3499

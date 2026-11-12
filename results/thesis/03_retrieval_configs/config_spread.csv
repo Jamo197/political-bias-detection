@@ -1,0 +1,11 @@
+Model,Params_B,MAE_no_rag,N_conditions,MAE_rag_mean,MAE_rag_min,MAE_rag_max,Range_conditions,SD_conditions,Best_condition,Worst_condition,Range_over_noise_SD
+Llama-3.2-3B-Instruct,3,1.8041,14,1.7156,1.6504,1.7794,0.129,0.0372,bge/hyde,bge/twostage_hybrid,15.0
+Ministral-3-3B-Instruct-2512,3,1.3165,14,1.2369,1.1712,1.3145,0.1433,0.0361,qwen3/hyde,jina/simple,16.6628
+Qwen2.5-3B-Instruct,3,1.4346,14,1.5029,1.4817,1.5192,0.0375,0.0115,jina/hyde,bge/twostage_hybrid,4.3605
+Qwen2.5-7B-Instruct,7,1.2021,14,1.2898,1.2365,1.3299,0.0934,0.0257,bge/hyde,bge/twostage,10.8605
+Llama-3.1-8B-Instruct,8,1.5488,14,1.0419,0.9647,1.0946,0.1299,0.0392,qwen3/hyde,jina/simple,15.1047
+Ministral-3-8B-Instruct-2512,8,1.1414,14,1.2523,1.2118,1.3014,0.0896,0.0296,qwen3/simple,jina/hyde,10.4186
+Ministral-3-14B-Instruct-2512,14,0.8649,14,0.9317,0.8996,0.9872,0.0876,0.0265,bge/twostage_hybrid,qwen3/hyde,10.186
+Qwen2.5-32B-Instruct,32,1.1589,14,1.011,0.9555,1.0529,0.0974,0.0259,qwen3/hyde,jina/twostage,11.3256
+Meta-Llama-3.1-70B-Instruct-FP8,70,0.8117,14,1.0875,1.039,1.1167,0.0777,0.0205,qwen3/simple,bge/simple,9.0349
+Qwen2.5-72B-Instruct-FP8-dynamic,72,0.9411,13,0.9219,0.8943,0.9544,0.0601,0.0188,qwen3/simple,bge/twostage,6.9884

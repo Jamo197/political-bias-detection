@@ -1,0 +1,5 @@
+Embedder,Mean_effect,SD_effect,Mean_rank,N_best,N_worst,Native_dim,MRL_truncated_to_1024
+qwen3,-0.0104,0.0225,2.0,6,2,4096,True
+e5,-0.0015,0.009,2.2,2,1,1024,False
+bge,-0.0002,0.0153,2.8,1,3,1024,False
+jina,0.0122,0.0209,3.0,1,4,2048,True

@@ -1,0 +1,101 @@
+Model,Family,Params_B,Factor,Level,Effect
+Llama-3.1-8B-Instruct,Llama,8,embedder,bge,0.0154
+Llama-3.1-8B-Instruct,Llama,8,embedder,e5,-0.011
+Llama-3.1-8B-Instruct,Llama,8,embedder,jina,0.0449
+Llama-3.1-8B-Instruct,Llama,8,embedder,qwen3,-0.0492
+Llama-3.1-8B-Instruct,Llama,8,strategy,simple,0.0061
+Llama-3.1-8B-Instruct,Llama,8,strategy,hyde,-0.0153
+Llama-3.1-8B-Instruct,Llama,8,strategy,twostage,0.0092
+Llama-3.1-8B-Instruct,Llama,8,hybrid,simple_hybrid − simple,-0.0079
+Llama-3.1-8B-Instruct,Llama,8,hybrid,twostage_hybrid − twostage,0.0296
+Llama-3.1-8B-Instruct,Llama,8,residual_sd,additive fit,0.0228
+Llama-3.2-3B-Instruct,Llama,3,embedder,bge,-0.0327
+Llama-3.2-3B-Instruct,Llama,3,embedder,e5,0.0144
+Llama-3.2-3B-Instruct,Llama,3,embedder,jina,-0.01
+Llama-3.2-3B-Instruct,Llama,3,embedder,qwen3,0.0284
+Llama-3.2-3B-Instruct,Llama,3,strategy,simple,-0.012
+Llama-3.2-3B-Instruct,Llama,3,strategy,hyde,-0.0134
+Llama-3.2-3B-Instruct,Llama,3,strategy,twostage,0.0254
+Llama-3.2-3B-Instruct,Llama,3,hybrid,simple_hybrid − simple,0.0106
+Llama-3.2-3B-Instruct,Llama,3,hybrid,twostage_hybrid − twostage,0.0516
+Llama-3.2-3B-Instruct,Llama,3,residual_sd,additive fit,0.0173
+Meta-Llama-3.1-70B-Instruct-FP8,Llama,70,embedder,bge,0.0096
+Meta-Llama-3.1-70B-Instruct-FP8,Llama,70,embedder,e5,-0.0011
+Meta-Llama-3.1-70B-Instruct-FP8,Llama,70,embedder,jina,0.0033
+Meta-Llama-3.1-70B-Instruct-FP8,Llama,70,embedder,qwen3,-0.0117
+Meta-Llama-3.1-70B-Instruct-FP8,Llama,70,strategy,simple,0.0037
+Meta-Llama-3.1-70B-Instruct-FP8,Llama,70,strategy,hyde,0.0074
+Meta-Llama-3.1-70B-Instruct-FP8,Llama,70,strategy,twostage,-0.0111
+Meta-Llama-3.1-70B-Instruct-FP8,Llama,70,hybrid,simple_hybrid − simple,-0.0066
+Meta-Llama-3.1-70B-Instruct-FP8,Llama,70,hybrid,twostage_hybrid − twostage,0.0118
+Meta-Llama-3.1-70B-Instruct-FP8,Llama,70,residual_sd,additive fit,0.0238
+Ministral-3-14B-Instruct-2512,Mistral,14,embedder,bge,0.0016
+Ministral-3-14B-Instruct-2512,Mistral,14,embedder,e5,-0.0104
+Ministral-3-14B-Instruct-2512,Mistral,14,embedder,jina,-0.0065
+Ministral-3-14B-Instruct-2512,Mistral,14,embedder,qwen3,0.0154
+Ministral-3-14B-Instruct-2512,Mistral,14,strategy,simple,-0.0101
+Ministral-3-14B-Instruct-2512,Mistral,14,strategy,hyde,0.0286
+Ministral-3-14B-Instruct-2512,Mistral,14,strategy,twostage,-0.0185
+Ministral-3-14B-Instruct-2512,Mistral,14,hybrid,simple_hybrid − simple,0.0208
+Ministral-3-14B-Instruct-2512,Mistral,14,hybrid,twostage_hybrid − twostage,-0.0127
+Ministral-3-14B-Instruct-2512,Mistral,14,residual_sd,additive fit,0.0174
+Ministral-3-3B-Instruct-2512,Mistral,3,embedder,bge,-0.0193
+Ministral-3-3B-Instruct-2512,Mistral,3,embedder,e5,0.0046
+Ministral-3-3B-Instruct-2512,Mistral,3,embedder,jina,0.0439
+Ministral-3-3B-Instruct-2512,Mistral,3,embedder,qwen3,-0.0292
+Ministral-3-3B-Instruct-2512,Mistral,3,strategy,simple,0.0193
+Ministral-3-3B-Instruct-2512,Mistral,3,strategy,hyde,0.0007
+Ministral-3-3B-Instruct-2512,Mistral,3,strategy,twostage,-0.02
+Ministral-3-3B-Instruct-2512,Mistral,3,hybrid,simple_hybrid − simple,-0.0025
+Ministral-3-3B-Instruct-2512,Mistral,3,hybrid,twostage_hybrid − twostage,0.0498
+Ministral-3-3B-Instruct-2512,Mistral,3,residual_sd,additive fit,0.0256
+Ministral-3-8B-Instruct-2512,Mistral,8,embedder,bge,0.0025
+Ministral-3-8B-Instruct-2512,Mistral,8,embedder,e5,-0.0128
+Ministral-3-8B-Instruct-2512,Mistral,8,embedder,jina,0.033
+Ministral-3-8B-Instruct-2512,Mistral,8,embedder,qwen3,-0.0227
+Ministral-3-8B-Instruct-2512,Mistral,8,strategy,simple,-0.0062
+Ministral-3-8B-Instruct-2512,Mistral,8,strategy,hyde,0.0036
+Ministral-3-8B-Instruct-2512,Mistral,8,strategy,twostage,0.0026
+Ministral-3-8B-Instruct-2512,Mistral,8,hybrid,simple_hybrid − simple,0.0379
+Ministral-3-8B-Instruct-2512,Mistral,8,hybrid,twostage_hybrid − twostage,0.0038
+Ministral-3-8B-Instruct-2512,Mistral,8,residual_sd,additive fit,0.0276
+Qwen2.5-32B-Instruct,Qwen,32,embedder,bge,0.0003
+Qwen2.5-32B-Instruct,Qwen,32,embedder,e5,0.0092
+Qwen2.5-32B-Instruct,Qwen,32,embedder,jina,0.0069
+Qwen2.5-32B-Instruct,Qwen,32,embedder,qwen3,-0.0164
+Qwen2.5-32B-Instruct,Qwen,32,strategy,simple,-0.012
+Qwen2.5-32B-Instruct,Qwen,32,strategy,hyde,-0.0069
+Qwen2.5-32B-Instruct,Qwen,32,strategy,twostage,0.0189
+Qwen2.5-32B-Instruct,Qwen,32,hybrid,simple_hybrid − simple,0.0109
+Qwen2.5-32B-Instruct,Qwen,32,hybrid,twostage_hybrid − twostage,0.0408
+Qwen2.5-32B-Instruct,Qwen,32,residual_sd,additive fit,0.0244
+Qwen2.5-3B-Instruct,Qwen,3,embedder,bge,0.0053
+Qwen2.5-3B-Instruct,Qwen,3,embedder,e5,0.0006
+Qwen2.5-3B-Instruct,Qwen,3,embedder,jina,-0.0082
+Qwen2.5-3B-Instruct,Qwen,3,embedder,qwen3,0.0023
+Qwen2.5-3B-Instruct,Qwen,3,strategy,simple,0.0039
+Qwen2.5-3B-Instruct,Qwen,3,strategy,hyde,-0.0031
+Qwen2.5-3B-Instruct,Qwen,3,strategy,twostage,-0.0008
+Qwen2.5-3B-Instruct,Qwen,3,hybrid,simple_hybrid − simple,-0.0184
+Qwen2.5-3B-Instruct,Qwen,3,hybrid,twostage_hybrid − twostage,0.0119
+Qwen2.5-3B-Instruct,Qwen,3,residual_sd,additive fit,0.011
+Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,72,embedder,bge,0.0171
+Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,72,embedder,e5,-0.0036
+Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,72,embedder,jina,0.0068
+Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,72,embedder,qwen3,-0.0202
+Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,72,strategy,simple,-0.0089
+Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,72,strategy,hyde,0.007
+Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,72,strategy,twostage,0.0019
+Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,72,hybrid,simple_hybrid − simple,0.0048
+Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,72,hybrid,twostage_hybrid − twostage,-0.0075
+Qwen2.5-72B-Instruct-FP8-dynamic,Qwen,72,residual_sd,additive fit,0.0131
+Qwen2.5-7B-Instruct,Qwen,7,embedder,bge,-0.0016
+Qwen2.5-7B-Instruct,Qwen,7,embedder,e5,-0.005
+Qwen2.5-7B-Instruct,Qwen,7,embedder,jina,0.0075
+Qwen2.5-7B-Instruct,Qwen,7,embedder,qwen3,-0.0008
+Qwen2.5-7B-Instruct,Qwen,7,strategy,simple,-0.0065
+Qwen2.5-7B-Instruct,Qwen,7,strategy,hyde,-0.0151
+Qwen2.5-7B-Instruct,Qwen,7,strategy,twostage,0.0216
+Qwen2.5-7B-Instruct,Qwen,7,hybrid,simple_hybrid − simple,0.0196
+Qwen2.5-7B-Instruct,Qwen,7,hybrid,twostage_hybrid − twostage,-0.0109
+Qwen2.5-7B-Instruct,Qwen,7,residual_sd,additive fit,0.026

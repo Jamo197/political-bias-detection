@@ -1,0 +1,18 @@
+Model,Condition,Kind,Run_a,Run_b,N,MAE_a,MAE_b,dMAE,dMAE_lo,dMAE_hi,abs_dMAE,Pred_identical,Chunks_identical,Chunk_jaccard
+Llama-3.1-8B-Instruct,bge/hyde_hybrid,HyDE rerun,2026-08-04_eval_matrix_20260804_082443,2026-08-06_eval_matrix_20260806_091309,774,1.0661,1.0634,0.0027,-0.0649,0.0694,0.0027,0.6421,0.0013,0.293
+Ministral-3-3B-Instruct-2512,bge/hyde,HyDE rerun,2026-08-03_eval_matrix_20260803_182344,2026-08-07_eval_matrix_20260807_225551,769,1.2296,1.2335,-0.0038,-0.0827,0.0746,0.0038,0.4096,0.0,0.2432
+Ministral-3-3B-Instruct-2512,bge/hyde_hybrid,HyDE rerun,2026-08-03_eval_matrix_20260803_182344,2026-08-07_eval_matrix_20260807_225551,761,1.2664,1.2007,0.0657,-0.0085,0.1373,0.0657,0.4284,0.0,0.2427
+Llama-3.1-8B-Instruct,bge/hyde vs bge/hyde_hybrid,HyDE rerun (hyde_hybrid),2026-08-06_eval_matrix_20260806_091309,2026-08-06_eval_matrix_20260806_091309,775,1.0705,1.0629,0.0076,-0.0619,0.0777,0.0076,0.6568,0.0026,0.2916
+Meta-Llama-3.1-70B-Instruct-FP8,bge/hyde vs bge/hyde_hybrid,HyDE rerun (hyde_hybrid),2026-08-17_eval_matrix_20260817_121042,2026-08-18_eval_matrix_20260818_170035,775,1.0884,1.1032,-0.0148,-0.0753,0.0533,0.0148,0.6994,0.0026,0.3665
+Ministral-3-14B-Instruct-2512,bge/hyde vs bge/hyde_hybrid,HyDE rerun (hyde_hybrid),2026-08-06_eval_matrix_20260806_211059,2026-08-06_eval_matrix_20260806_211059,769,0.9804,0.9845,-0.0041,-0.0589,0.0514,0.0041,0.4369,0.0013,0.2921
+Ministral-3-3B-Instruct-2512,bge/hyde vs bge/hyde_hybrid,HyDE rerun (hyde_hybrid),2026-08-07_eval_matrix_20260807_225551,2026-08-07_eval_matrix_20260807_225551,775,1.2307,1.207,0.0238,-0.0563,0.099,0.0238,0.4452,0.0,0.2383
+Qwen2.5-3B-Instruct,bge/hyde vs bge/hyde_hybrid,HyDE rerun (hyde_hybrid),2026-08-08_eval_matrix_20260808_234122,2026-08-08_eval_matrix_20260808_234122,774,1.5137,1.509,0.0047,-0.0306,0.0401,0.0047,0.7649,0.0,0.2776
+Qwen2.5-72B-Instruct-FP8-dynamic,bge/hyde vs bge/hyde_hybrid,HyDE rerun (hyde_hybrid),2026-08-27_eval_matrix_20260827_125658,2026-08-27_eval_matrix_20260827_125658,775,0.9336,0.937,-0.0034,-0.0433,0.0321,0.0034,0.6968,0.0039,0.3774
+Qwen2.5-7B-Instruct,bge/hyde vs bge/hyde_hybrid,HyDE rerun (hyde_hybrid),2026-08-04_eval_matrix_20260804_191413,2026-08-04_eval_matrix_20260804_191413,775,1.2354,1.3006,-0.0653,-0.1256,-0.0091,0.0653,0.6219,0.0929,0.4421
+Llama-3.1-8B-Instruct,bge/simple,fixed context,2026-08-03_eval_matrix_20260803_224143,2026-08-06_eval_matrix_20260806_091309,775,1.0668,1.0487,0.0181,0.0043,0.035,0.0181,0.9665,1.0,1.0
+Llama-3.1-8B-Instruct,bge/twostage,fixed context,2026-08-04_eval_matrix_20260804_082443,2026-10-09_eval_matrix_20261009_083943,775,1.0356,1.0441,-0.0085,-0.0224,0.0059,0.0085,0.9626,1.0,1.0
+Ministral-3-3B-Instruct-2512,bge/simple,fixed context,2026-08-03_eval_matrix_20260803_182344,2026-08-07_eval_matrix_20260807_225551,767,1.2168,1.2236,-0.0068,-0.0255,0.0125,0.0068,0.9166,0.9752,0.997
+Qwen2.5-32B-Instruct,bge/hyde vs bge/hyde_hybrid,identical copy (excluded),2026-10-09_eval_matrix_20261009_115233,2026-10-10_eval_matrix_20261010_115720,775,1.0156,1.0156,0.0,0.0,0.0,0.0,1.0,1.0,1.0
+Llama-3.1-8B-Instruct,bge/simple_hybrid,retrieval varies,2026-08-03_eval_matrix_20260803_224143,2026-08-06_eval_matrix_20260806_091309,775,1.0243,1.0408,-0.0165,-0.0555,0.0213,0.0165,0.8465,0.369,0.92
+Llama-3.1-8B-Instruct,bge/twostage_hybrid,retrieval varies,2026-08-04_eval_matrix_20260804_082443,2026-10-09_eval_matrix_20261009_083943,774,1.0624,1.0743,-0.0119,-0.0439,0.0196,0.0119,0.9251,0.9302,0.975
+Ministral-3-3B-Instruct-2512,bge/simple_hybrid,retrieval varies,2026-08-03_eval_matrix_20260803_182344,2026-08-07_eval_matrix_20260807_225551,768,1.2068,1.2212,-0.0144,-0.0627,0.0325,0.0144,0.737,0.3802,0.9132
