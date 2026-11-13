@@ -1,0 +1,11 @@
+Llama 3B posts,Cited chunks in cell,Q1 texts,Q2 texts,Share Q1 (weighted),CI low,CI high,Share Q1 (unweighted),Cited chunks in Q1 texts,Cited chunks in Q2 texts
+all,any cited chunk (reference),202,200,0.5227,0.4617,0.5769,0.5025,656,646
+all,relevant × same party,65,53,0.5615,0.4633,0.6602,0.5508,100,78
+all,relevant × other party,82,96,0.4729,0.3865,0.5601,0.4607,134,195
+all,not relevant × same party,101,68,0.5855,0.5026,0.6651,0.5976,169,104
+all,not relevant × other party,125,123,0.5373,0.4616,0.6038,0.504,253,269
+Llama 3B baseline >= 1,any cited chunk (reference),199,200,0.5183,0.4602,0.5734,0.4987,647,646
+Llama 3B baseline >= 1,relevant × same party,65,53,0.5607,0.4628,0.6592,0.5508,100,78
+Llama 3B baseline >= 1,relevant × other party,82,96,0.4718,0.3853,0.5593,0.4607,134,195
+Llama 3B baseline >= 1,not relevant × same party,100,68,0.5825,0.5029,0.672,0.5952,168,104
+Llama 3B baseline >= 1,not relevant × other party,122,123,0.5303,0.459,0.6043,0.498,245,269

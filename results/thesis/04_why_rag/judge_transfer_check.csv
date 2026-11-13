@@ -1,0 +1,7 @@
+Check,N,Consistent,Share,Definition,Source
+Texts in the e5/simple RAG log of all 10 models,775,775,1.0,identical ordered list of 5 chunks (speech id + chunk text) in all 10 models,RAG logs listed in qualitative_e5_simple_diagnostics.json
+Texts in the RAG log of at least one model,775,775,1.0,text present in all 10 RAG logs,RAG logs
+"Annotated (model, text) pairs whose chunks equal the model's RAG log",968,968,1.0,same 5 chunk texts in the same order,final_annotations.jsonl vs RAG logs
+"(text, chunk) pairs annotated for more than one model",2750,1395,0.5073,'Consistent' = pairs that occur in >= 2 models' samples,final_annotations.jsonl
+"Human-reviewed pairs repeated across models, R_top identical",110,78,0.7091,"the reviewer gave the same label to the same (text, chunk) pair in different models",review_summary.json (transfer)
+"Human-reviewed pairs repeated across models, R_ideo identical",110,98,0.8909,"the reviewer gave the same label to the same (text, chunk) pair in different models",review_summary.json (transfer)

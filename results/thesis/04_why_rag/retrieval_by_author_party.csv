@@ -1,0 +1,8 @@
+Author party,Posts,Retrieved chunks,Chunks without position,Posts without any positioned chunk,Author position,Posts with an opposite bloc (left or right authors),Same-party share,Same-party share CI low,Same-party share CI high,Same-bloc share,Same-bloc share CI low,Same-bloc share CI high,Mean position of retrieved parties,Mean position of retrieved parties CI low,Mean position of retrieved parties CI high,Mean distance to author position,Mean distance to author position CI low,Mean distance to author position CI high,Opposite-bloc share,Opposite-bloc share CI low,Opposite-bloc share CI high
+All posts,775,3875,27,0,,673,0.3003,0.2823,0.3194,0.5463,0.5259,0.5661,3.828,3.7686,3.8865,1.2948,1.2392,1.3529,0.1296,0.1137,0.1461
+DIE LINKE,179,895,10,0,1.85,179,0.3453,0.3008,0.3908,0.6587,0.6196,0.6967,3.3901,3.2509,3.5316,1.5401,1.4009,1.6816,0.1034,0.0782,0.1318
+Grüne,156,780,3,0,2.83,156,0.2333,0.2,0.2654,0.5827,0.5391,0.624,3.6954,3.5939,3.7978,1.0784,0.9897,1.1659,0.0449,0.0295,0.0628
+SPD,217,1085,5,0,3.08,217,0.3134,0.2818,0.3436,0.5873,0.5528,0.6212,3.7884,3.7024,3.8773,0.9913,0.9158,1.0705,0.0696,0.0516,0.0896
+FDP,58,290,0,0,4.63,0,0.1966,0.1379,0.2552,0.4414,0.3723,0.5172,3.9094,3.7487,4.0789,1.1169,0.9796,1.2534,,,
+CDU/CSU,51,255,3,0,5.031,7,0.2892,0.2284,0.351,0.4137,0.3431,0.4824,4.0056,3.8557,4.1486,1.2182,1.0778,1.3591,0.6286,0.4286,0.8286
+AfD,114,570,6,0,6.56,114,0.3544,0.3057,0.4044,0.3544,0.3057,0.4044,4.6515,4.4841,4.8247,1.9085,1.7353,2.0759,0.3706,0.3237,0.4175

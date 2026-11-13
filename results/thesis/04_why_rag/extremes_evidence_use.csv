@@ -1,0 +1,49 @@
+Model,Posts,Subset,N posts,N texts,SD of E,E coefficient,CI low,CI high,p,B coefficient,R2
+Llama 3B (all),all paired posts,all posts,710,710,0.8598,0.1192,0.0379,0.2006,0.0041,0.3157,0.3552
+Llama 3B (all),all paired posts,DIE LINKE,162,162,0.9532,0.0216,-0.1278,0.1709,0.7773,0.2442,0.2362
+Llama 3B (all),all paired posts,AfD,107,107,0.8954,0.0954,-0.0109,0.2017,0.0787,0.1482,0.1512
+Llama 3B (all),all paired posts,other parties,441,441,0.6475,0.0894,-0.0682,0.2471,0.2663,0.2767,0.2206
+Llama 3B (baseline ≥ 1),baseline score >= 1,all posts,611,611,0.8964,0.1416,0.0568,0.2263,0.0011,0.3367,0.3359
+Llama 3B (baseline ≥ 1),baseline score >= 1,DIE LINKE,153,153,0.9604,0.0196,-0.1356,0.1748,0.8047,0.2486,0.2063
+Llama 3B (baseline ≥ 1),baseline score >= 1,AfD,107,107,0.8954,0.0954,-0.0109,0.2017,0.0787,0.1482,0.1512
+Llama 3B (baseline ≥ 1),baseline score >= 1,other parties,351,351,0.6623,0.1714,0.001,0.3418,0.0486,0.3214,0.232
+Llama 8B,all paired posts,all posts,774,774,0.8494,0.6471,0.5343,0.7599,0.0,0.3492,0.4409
+Llama 8B,all paired posts,DIE LINKE,178,178,0.9358,0.5569,0.3496,0.7642,0.0,0.2091,0.3985
+Llama 8B,all paired posts,AfD,114,114,0.9015,0.5111,0.2301,0.7921,0.0004,0.4074,0.333
+Llama 8B,all paired posts,other parties,482,482,0.6454,0.3754,0.2027,0.5482,0.0,0.2999,0.2649
+Llama 70B,all paired posts,all posts,775,775,0.8519,0.0596,-0.0583,0.1775,0.3218,0.4753,0.3093
+Llama 70B,all paired posts,DIE LINKE,179,179,0.9403,0.2374,0.1115,0.3634,0.0002,0.6222,0.4904
+Llama 70B,all paired posts,AfD,114,114,0.9015,-0.5786,-0.9751,-0.1822,0.0042,0.382,0.1282
+Llama 70B,all paired posts,other parties,482,482,0.6454,0.215,0.1006,0.3295,0.0002,0.6221,0.4545
+Ministral 3B,all paired posts,all posts,761,761,0.8557,0.6589,0.5354,0.7824,0.0,0.3335,0.3541
+Ministral 3B,all paired posts,DIE LINKE,179,179,0.9403,0.7646,0.6129,0.9163,0.0,0.1765,0.4328
+Ministral 3B,all paired posts,AfD,113,113,0.9036,0.2199,-0.1527,0.5925,0.2474,0.3239,0.0934
+Ministral 3B,all paired posts,other parties,469,469,0.6492,0.5665,0.3662,0.7668,0.0,0.3156,0.2268
+Ministral 8B,all paired posts,all posts,760,760,0.8561,0.568,0.4201,0.716,0.0,0.7177,0.5772
+Ministral 8B,all paired posts,DIE LINKE,178,178,0.9363,0.7385,0.4818,0.9952,0.0,0.6171,0.5749
+Ministral 8B,all paired posts,AfD,113,113,0.9054,0.246,0.03,0.462,0.0256,0.5105,0.3385
+Ministral 8B,all paired posts,other parties,469,469,0.6479,0.3594,0.1394,0.5794,0.0014,0.6189,0.3327
+Ministral 14B,all paired posts,all posts,770,770,0.8526,0.6042,0.4845,0.7238,0.0,0.755,0.701
+Ministral 14B,all paired posts,DIE LINKE,177,177,0.9409,0.4495,0.3028,0.5962,0.0,0.7515,0.6876
+Ministral 14B,all paired posts,AfD,114,114,0.9015,0.6809,0.425,0.9367,0.0,0.3882,0.3781
+Ministral 14B,all paired posts,other parties,479,479,0.6458,0.4559,0.3178,0.5939,0.0,0.754,0.5167
+Qwen 3B,all paired posts,all posts,773,773,0.8527,0.0395,0.0018,0.0772,0.0402,0.1536,0.0612
+Qwen 3B,all paired posts,DIE LINKE,179,179,0.9403,-0.0033,-0.0692,0.0627,0.9225,0.2265,0.0819
+Qwen 3B,all paired posts,AfD,114,114,0.9015,0.1466,0.0325,0.2606,0.0117,0.1098,0.1048
+Qwen 3B,all paired posts,other parties,480,480,0.6462,0.0129,-0.034,0.0598,0.5906,0.1372,0.0451
+Qwen 7B,all paired posts,all posts,773,773,0.852,0.307,0.1838,0.4302,0.0,0.6191,0.2446
+Qwen 7B,all paired posts,DIE LINKE,178,178,0.9358,0.0269,-0.2213,0.2752,0.8316,0.4734,0.0587
+Qwen 7B,all paired posts,AfD,114,114,0.9015,0.5574,0.3248,0.7899,0.0,0.2817,0.2577
+Qwen 7B,all paired posts,other parties,481,481,0.6459,0.0829,-0.0859,0.2517,0.3357,0.5225,0.1213
+Qwen 32B,all paired posts,all posts,775,775,0.8519,0.4771,0.3953,0.5589,0.0,0.5631,0.4813
+Qwen 32B,all paired posts,DIE LINKE,179,179,0.9403,0.4476,0.3475,0.5477,0.0,0.5924,0.5439
+Qwen 32B,all paired posts,AfD,114,114,0.9015,0.3058,0.0723,0.5393,0.0103,0.3447,0.1703
+Qwen 32B,all paired posts,other parties,482,482,0.6454,0.3249,0.2323,0.4175,0.0,0.4629,0.2747
+Qwen 72B,all paired posts,all posts,775,775,0.8519,0.4268,0.3625,0.4911,0.0,0.8087,0.7265
+Qwen 72B,all paired posts,DIE LINKE,179,179,0.9403,0.4878,0.3726,0.603,0.0,0.7063,0.6807
+Qwen 72B,all paired posts,AfD,114,114,0.9015,0.3515,0.1722,0.5308,0.0001,0.5853,0.4367
+Qwen 72B,all paired posts,other parties,482,482,0.6454,0.3167,0.2386,0.3947,0.0,0.6276,0.405
+All models (model fixed effects),all paired posts,all posts,7646,775,0.8528,0.4336,0.3885,0.4786,0.0,0.4836,0.4649
+All models (model fixed effects),all paired posts,DIE LINKE,1768,179,0.9379,0.4153,0.3452,0.4854,0.0,0.3926,0.5641
+All models (model fixed effects),all paired posts,AfD,1131,114,0.8979,0.2545,0.124,0.385,0.0001,0.3515,0.3684
+All models (model fixed effects),all paired posts,other parties,4747,482,0.6458,0.3142,0.2405,0.388,0.0,0.4068,0.3264

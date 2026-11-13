@@ -1,0 +1,16 @@
+Dimension,Rater,N chunks,Share level 1,Share level 2,Share level 3,Share level 4,Share level 5,SD of labels,Source,Share level 0
+R_top,Awsam,125,0.08,0.272,0.2,0.176,0.272,1.3316,range_restriction_2026-10-23_142551_ideo_cuts.json,
+R_top,Jannes,125,0.096,0.288,0.168,0.248,0.2,1.3007,range_restriction_2026-10-23_142551_ideo_cuts.json,
+R_top,Neda,125,0.16,0.272,0.2,0.216,0.152,1.3156,range_restriction_2026-10-23_142551_ideo_cuts.json,
+R_top,Consensus,125,0.08,0.296,0.184,0.232,0.208,1.2818,range_restriction_2026-10-23_142551_ideo_cuts.json,
+R_top,"Judge (run 2026-10-23_142551, R_ideo cut points)",125,0.064,0.368,0.112,0.2,0.256,1.3421,range_restriction_2026-10-23_142551_ideo_cuts.json,
+R_ideo,Awsam,125,0.0,0.032,0.344,0.408,0.216,0.8069,range_restriction_2026-10-23_142551_ideo_cuts.json,
+R_ideo,Jannes,125,0.0,0.024,0.208,0.568,0.2,0.7077,range_restriction_2026-10-23_142551_ideo_cuts.json,
+R_ideo,Neda,125,0.0,0.008,0.192,0.608,0.192,0.6448,range_restriction_2026-10-23_142551_ideo_cuts.json,
+R_ideo,Consensus,125,0.0,0.016,0.224,0.568,0.192,0.6899,range_restriction_2026-10-23_142551_ideo_cuts.json,
+R_ideo,"Judge (run 2026-10-23_142551, R_ideo cut points)",125,0.0,0.016,0.224,0.568,0.192,0.6899,range_restriction_2026-10-23_142551_ideo_cuts.json,
+A_caus,Awsam,125,0.536,,,,,0.4987,range_restriction_2026-10-23_142551_ideo_cuts.json,0.464
+A_caus,Jannes,125,0.528,,,,,0.4992,range_restriction_2026-10-23_142551_ideo_cuts.json,0.472
+A_caus,Neda,125,0.52,,,,,0.4996,range_restriction_2026-10-23_142551_ideo_cuts.json,0.48
+A_caus,Consensus,125,0.52,,,,,0.4996,range_restriction_2026-10-23_142551_ideo_cuts.json,0.48
+A_caus,"Judge (run 2026-10-23_142551, R_ideo cut points)",125,0.568,,,,,0.4954,range_restriction_2026-10-23_142551_ideo_cuts.json,0.432

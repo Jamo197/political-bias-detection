@@ -1,0 +1,99 @@
+Block,Dimension,Comparison,Statistic,Value,CI low,CI high,N chunks,N texts,Source
+"Humans, first round (independent)",R_top,3 annotators,Krippendorff's alpha (ordinal),0.3338,0.1665,0.4593,125,25,human_agreement_report.json
+"Humans, first round (independent)",R_top,Awsam vs Jannes,QWK,0.4711,0.299,0.604,125,25,human_agreement_report.json
+"Humans, first round (independent)",R_top,Awsam vs Jannes,exact agreement,0.288,,,125,25,human_agreement_report.json
+"Humans, first round (independent)",R_top,Awsam vs Neda,QWK,0.2431,0.0767,0.4011,125,25,human_agreement_report.json
+"Humans, first round (independent)",R_top,Awsam vs Neda,exact agreement,0.256,,,125,25,human_agreement_report.json
+"Humans, first round (independent)",R_top,Jannes vs Neda,QWK,0.388,0.1674,0.5497,125,25,human_agreement_report.json
+"Humans, first round (independent)",R_top,Jannes vs Neda,exact agreement,0.272,,,125,25,human_agreement_report.json
+"Humans, first round (independent)",R_top,mean of the 3 pairs,QWK,0.3674,,,125,25,human_agreement_report.json
+"Humans, first round (independent)",R_ideo,3 annotators,Krippendorff's alpha (ordinal),0.3144,0.1884,0.4216,125,25,human_agreement_report.json
+"Humans, first round (independent)",R_ideo,Awsam vs Jannes,QWK,0.3491,0.1825,0.4972,125,25,human_agreement_report.json
+"Humans, first round (independent)",R_ideo,Awsam vs Jannes,exact agreement,0.328,,,125,25,human_agreement_report.json
+"Humans, first round (independent)",R_ideo,Awsam vs Neda,QWK,0.2691,0.1101,0.4013,125,25,human_agreement_report.json
+"Humans, first round (independent)",R_ideo,Awsam vs Neda,exact agreement,0.448,,,125,25,human_agreement_report.json
+"Humans, first round (independent)",R_ideo,Jannes vs Neda,QWK,0.3249,0.2209,0.4108,125,25,human_agreement_report.json
+"Humans, first round (independent)",R_ideo,Jannes vs Neda,exact agreement,0.448,,,125,25,human_agreement_report.json
+"Humans, first round (independent)",R_ideo,mean of the 3 pairs,QWK,0.3143,,,125,25,human_agreement_report.json
+"Humans, first round (independent)",A_caus,3 annotators,Krippendorff's alpha (nominal),0.6802,0.5253,0.8172,125,25,human_agreement_report.json
+"Humans, first round (independent)",A_caus,Awsam vs Jannes,Cohen's kappa,0.7134,0.5262,0.872,125,25,human_agreement_report.json
+"Humans, first round (independent)",A_caus,Awsam vs Jannes,exact agreement,0.856,,,125,25,human_agreement_report.json
+"Humans, first round (independent)",A_caus,Awsam vs Neda,Cohen's kappa,0.6778,0.5036,0.8265,125,25,human_agreement_report.json
+"Humans, first round (independent)",A_caus,Awsam vs Neda,exact agreement,0.84,,,125,25,human_agreement_report.json
+"Humans, first round (independent)",A_caus,Jannes vs Neda,Cohen's kappa,0.6488,0.466,0.8066,125,25,human_agreement_report.json
+"Humans, first round (independent)",A_caus,Jannes vs Neda,exact agreement,0.824,,,125,25,human_agreement_report.json
+"Humans, first round (independent)",A_caus,mean of the 3 pairs,Cohen's kappa,0.68,,,125,25,human_agreement_report.json
+"Humans, after discussion and revision",R_top,3 annotators,Krippendorff's alpha (ordinal),0.8226,0.7517,0.8609,125,25,human_agreement_report_revised.json
+"Humans, after discussion and revision",R_top,Awsam vs Jannes,QWK,0.9057,0.8584,0.9337,125,25,human_agreement_report_revised.json
+"Humans, after discussion and revision",R_top,Awsam vs Jannes,exact agreement,0.672,,,125,25,human_agreement_report_revised.json
+"Humans, after discussion and revision",R_top,Awsam vs Neda,QWK,0.7908,0.7053,0.8521,125,25,human_agreement_report_revised.json
+"Humans, after discussion and revision",R_top,Awsam vs Neda,exact agreement,0.512,,,125,25,human_agreement_report_revised.json
+"Humans, after discussion and revision",R_top,Jannes vs Neda,QWK,0.7655,0.6691,0.834,125,25,human_agreement_report_revised.json
+"Humans, after discussion and revision",R_top,Jannes vs Neda,exact agreement,0.52,,,125,25,human_agreement_report_revised.json
+"Humans, after discussion and revision",R_top,mean of the 3 pairs,QWK,0.8207,,,125,25,human_agreement_report_revised.json
+"Humans, after discussion and revision",R_ideo,3 annotators,Krippendorff's alpha (ordinal),0.6343,0.5038,0.7286,125,25,human_agreement_report_revised.json
+"Humans, after discussion and revision",R_ideo,Awsam vs Jannes,QWK,0.6651,0.5609,0.7421,125,25,human_agreement_report_revised.json
+"Humans, after discussion and revision",R_ideo,Awsam vs Jannes,exact agreement,0.608,,,125,25,human_agreement_report_revised.json
+"Humans, after discussion and revision",R_ideo,Awsam vs Neda,QWK,0.5774,0.4143,0.6982,125,25,human_agreement_report_revised.json
+"Humans, after discussion and revision",R_ideo,Awsam vs Neda,exact agreement,0.584,,,125,25,human_agreement_report_revised.json
+"Humans, after discussion and revision",R_ideo,Jannes vs Neda,QWK,0.6951,0.5476,0.7947,125,25,human_agreement_report_revised.json
+"Humans, after discussion and revision",R_ideo,Jannes vs Neda,exact agreement,0.72,,,125,25,human_agreement_report_revised.json
+"Humans, after discussion and revision",R_ideo,mean of the 3 pairs,QWK,0.6458,,,125,25,human_agreement_report_revised.json
+"Humans, after discussion and revision",A_caus,3 annotators,Krippendorff's alpha (nominal),0.8828,0.7948,0.9559,125,25,human_agreement_report_revised.json
+"Humans, after discussion and revision",A_caus,Awsam vs Jannes,Cohen's kappa,0.8877,0.7797,0.968,125,25,human_agreement_report_revised.json
+"Humans, after discussion and revision",A_caus,Awsam vs Jannes,exact agreement,0.944,,,125,25,human_agreement_report_revised.json
+"Humans, after discussion and revision",A_caus,Awsam vs Neda,Cohen's kappa,0.8718,0.7667,0.952,125,25,human_agreement_report_revised.json
+"Humans, after discussion and revision",A_caus,Awsam vs Neda,exact agreement,0.936,,,125,25,human_agreement_report_revised.json
+"Humans, after discussion and revision",A_caus,Jannes vs Neda,Cohen's kappa,0.8879,0.7904,0.9673,125,25,human_agreement_report_revised.json
+"Humans, after discussion and revision",A_caus,Jannes vs Neda,exact agreement,0.944,,,125,25,human_agreement_report_revised.json
+"Humans, after discussion and revision",A_caus,mean of the 3 pairs,Cohen's kappa,0.8825,,,125,25,human_agreement_report_revised.json
+"Judge vs humans (run 2026-10-23_142551, R_top ladder, R_ideo cut points)",R_top,judge vs Awsam,QWK,0.6491,,,125,25,LLM calib/range_restriction_runs/archive/range_restriction_2026-10-23_142551_ideo_cuts.json
+"Judge vs humans (run 2026-10-23_142551, R_top ladder, R_ideo cut points)",R_top,judge vs Jannes,QWK,0.675,,,125,25,LLM calib/range_restriction_runs/archive/range_restriction_2026-10-23_142551_ideo_cuts.json
+"Judge vs humans (run 2026-10-23_142551, R_top ladder, R_ideo cut points)",R_top,judge vs Neda,QWK,0.6149,,,125,25,LLM calib/range_restriction_runs/archive/range_restriction_2026-10-23_142551_ideo_cuts.json
+"Judge vs humans (run 2026-10-23_142551, R_top ladder, R_ideo cut points)",R_top,judge vs humans (mean of 3),QWK,0.6464,,,125,25,LLM calib/range_restriction_runs/archive/range_restriction_2026-10-23_142551_ideo_cuts.json
+"Judge vs humans (run 2026-10-23_142551, R_top ladder, R_ideo cut points)",R_top,human vs human (mean of 3 pairs),QWK,0.8207,,,125,25,LLM calib/range_restriction_runs/archive/range_restriction_2026-10-23_142551_ideo_cuts.json
+"Judge vs humans (run 2026-10-23_142551, R_top ladder, R_ideo cut points)",R_top,ratio judge-human / human-human,QWK ratio,0.7876,0.611,0.9044,125,25,LLM calib/range_restriction_runs/archive/range_restriction_2026-10-23_142551_ideo_cuts.json
+"Judge vs humans (run 2026-10-23_142551, R_top ladder, R_ideo cut points)",R_top,judge vs humans (mean of 3),exact agreement,0.4533,,,125,25,LLM calib/range_restriction_runs/archive/range_restriction_2026-10-23_142551_ideo_cuts.json
+"Judge vs humans (run 2026-10-23_142551, R_top ladder, R_ideo cut points)",R_top,human vs human (mean of 3 pairs),exact agreement,0.568,,,125,25,LLM calib/range_restriction_runs/archive/range_restriction_2026-10-23_142551_ideo_cuts.json
+"Judge vs humans (run 2026-10-23_142551, R_top ladder, R_ideo cut points)",R_ideo,judge vs Awsam,QWK,0.4543,,,125,25,LLM calib/range_restriction_runs/archive/range_restriction_2026-10-23_142551_ideo_cuts.json
+"Judge vs humans (run 2026-10-23_142551, R_top ladder, R_ideo cut points)",R_ideo,judge vs Jannes,QWK,0.6478,,,125,25,LLM calib/range_restriction_runs/archive/range_restriction_2026-10-23_142551_ideo_cuts.json
+"Judge vs humans (run 2026-10-23_142551, R_top ladder, R_ideo cut points)",R_ideo,judge vs Neda,QWK,0.6062,,,125,25,LLM calib/range_restriction_runs/archive/range_restriction_2026-10-23_142551_ideo_cuts.json
+"Judge vs humans (run 2026-10-23_142551, R_top ladder, R_ideo cut points)",R_ideo,judge vs humans (mean of 3),QWK,0.5695,,,125,25,LLM calib/range_restriction_runs/archive/range_restriction_2026-10-23_142551_ideo_cuts.json
+"Judge vs humans (run 2026-10-23_142551, R_top ladder, R_ideo cut points)",R_ideo,human vs human (mean of 3 pairs),QWK,0.6458,,,125,25,LLM calib/range_restriction_runs/archive/range_restriction_2026-10-23_142551_ideo_cuts.json
+"Judge vs humans (run 2026-10-23_142551, R_top ladder, R_ideo cut points)",R_ideo,ratio judge-human / human-human,QWK ratio,0.8817,0.7481,1.0164,125,25,LLM calib/range_restriction_runs/archive/range_restriction_2026-10-23_142551_ideo_cuts.json
+"Judge vs humans (run 2026-10-23_142551, R_top ladder, R_ideo cut points)",R_ideo,judge vs humans (mean of 3),exact agreement,0.616,,,125,25,LLM calib/range_restriction_runs/archive/range_restriction_2026-10-23_142551_ideo_cuts.json
+"Judge vs humans (run 2026-10-23_142551, R_top ladder, R_ideo cut points)",R_ideo,human vs human (mean of 3 pairs),exact agreement,0.6373,,,125,25,LLM calib/range_restriction_runs/archive/range_restriction_2026-10-23_142551_ideo_cuts.json
+"Judge vs humans (run 2026-10-23_142551, R_top ladder, R_ideo cut points)",A_caus,judge vs Awsam,QWK (= Cohen's kappa for 0/1),0.7092,,,125,25,LLM calib/range_restriction_runs/archive/range_restriction_2026-10-23_142551_ideo_cuts.json
+"Judge vs humans (run 2026-10-23_142551, R_top ladder, R_ideo cut points)",A_caus,judge vs Jannes,QWK (= Cohen's kappa for 0/1),0.7259,,,125,25,LLM calib/range_restriction_runs/archive/range_restriction_2026-10-23_142551_ideo_cuts.json
+"Judge vs humans (run 2026-10-23_142551, R_top ladder, R_ideo cut points)",A_caus,judge vs Neda,QWK (= Cohen's kappa for 0/1),0.7426,,,125,25,LLM calib/range_restriction_runs/archive/range_restriction_2026-10-23_142551_ideo_cuts.json
+"Judge vs humans (run 2026-10-23_142551, R_top ladder, R_ideo cut points)",A_caus,judge vs humans (mean of 3),QWK (= Cohen's kappa for 0/1),0.7259,,,125,25,LLM calib/range_restriction_runs/archive/range_restriction_2026-10-23_142551_ideo_cuts.json
+"Judge vs humans (run 2026-10-23_142551, R_top ladder, R_ideo cut points)",A_caus,human vs human (mean of 3 pairs),QWK (= Cohen's kappa for 0/1),0.8823,,,125,25,LLM calib/range_restriction_runs/archive/range_restriction_2026-10-23_142551_ideo_cuts.json
+"Judge vs humans (run 2026-10-23_142551, R_top ladder, R_ideo cut points)",A_caus,ratio judge-human / human-human,QWK ratio,0.8227,0.6143,1.002,125,25,LLM calib/range_restriction_runs/archive/range_restriction_2026-10-23_142551_ideo_cuts.json
+"Judge vs humans (run 2026-10-23_142551, R_top ladder, R_ideo cut points)",A_caus,judge vs humans (mean of 3),exact agreement,0.864,,,125,25,LLM calib/range_restriction_runs/archive/range_restriction_2026-10-23_142551_ideo_cuts.json
+"Judge vs humans (run 2026-10-23_142551, R_top ladder, R_ideo cut points)",A_caus,human vs human (mean of 3 pairs),exact agreement,0.9413,,,125,25,LLM calib/range_restriction_runs/archive/range_restriction_2026-10-23_142551_ideo_cuts.json
+"Judge vs humans (run 2026-10-23_142551, R_top ladder, R_ideo cut points)",R_top,judge vs consensus,QWK,0.6819,0.5238,0.7896,125,25,recomputed from 2026-10-23_142551_ideo_cuts/llm_judge_qualitative_annotations.jsonl (matches range_restriction_2026-10-23_142551_ideo_cuts.json)
+"Judge vs humans (run 2026-10-23_142551, R_top ladder, R_ideo cut points)",R_top,judge vs consensus,exact agreement,0.48,,,125,25,recomputed from 2026-10-23_142551_ideo_cuts
+"Judge vs humans (run 2026-10-23_142551, R_top ladder, R_ideo cut points)",R_top,judge vs consensus,within ±1,0.848,,,125,25,recomputed from 2026-10-23_142551_ideo_cuts
+"Judge vs humans (run 2026-10-23_142551, R_top ladder, R_ideo cut points)",R_ideo,judge vs consensus,QWK,0.6134,0.4646,0.7181,125,25,recomputed from 2026-10-23_142551_ideo_cuts/llm_judge_qualitative_annotations.jsonl (matches range_restriction_2026-10-23_142551_ideo_cuts.json)
+"Judge vs humans (run 2026-10-23_142551, R_top ladder, R_ideo cut points)",R_ideo,judge vs consensus,exact agreement,0.656,,,125,25,recomputed from 2026-10-23_142551_ideo_cuts
+"Judge vs humans (run 2026-10-23_142551, R_top ladder, R_ideo cut points)",R_ideo,judge vs consensus,within ±1,0.992,,,125,25,recomputed from 2026-10-23_142551_ideo_cuts
+"Judge vs humans (run 2026-10-23_142551, R_top ladder, R_ideo cut points)",A_caus,judge vs consensus,Cohen's kappa,0.7426,0.5369,0.9187,125,25,recomputed from 2026-10-23_142551_ideo_cuts/llm_judge_qualitative_annotations.jsonl (matches range_restriction_2026-10-23_142551_ideo_cuts.json)
+"Judge vs humans (run 2026-10-23_142551, R_top ladder, R_ideo cut points)",A_caus,judge vs consensus,exact agreement,0.872,,,125,25,recomputed from 2026-10-23_142551_ideo_cuts
+"Cut points, out of sample",R_top,"leave-one-text-out, gate ladder (0.5 thresholds)",Krippendorff's alpha (ordinal) vs consensus,0.6897,,,125,25,LLM calib/judge_calibration/posthoc_quantile_2026-10-23_142551.json
+"Cut points, out of sample",R_top,"leave-one-text-out, gate ladder (0.5 thresholds)",QWK vs consensus,0.6819,,,125,25,LLM calib/judge_calibration/posthoc_quantile_2026-10-23_142551.json
+"Cut points, out of sample",R_top,"leave-one-text-out, gate ladder (0.5 thresholds)",exact agreement,0.48,,,125,25,LLM calib/judge_calibration/posthoc_quantile_2026-10-23_142551.json
+"Cut points, out of sample",R_top,"leave-one-text-out, gate ladder (0.5 thresholds)",mean bias (judge - consensus),0.024,,,125,25,LLM calib/judge_calibration/posthoc_quantile_2026-10-23_142551.json
+"Cut points, out of sample",R_top,"leave-one-text-out, distribution-matched cut points",Krippendorff's alpha (ordinal) vs consensus,0.6863,,,125,25,LLM calib/judge_calibration/posthoc_quantile_2026-10-23_142551.json
+"Cut points, out of sample",R_top,"leave-one-text-out, distribution-matched cut points",QWK vs consensus,0.6833,,,125,25,LLM calib/judge_calibration/posthoc_quantile_2026-10-23_142551.json
+"Cut points, out of sample",R_top,"leave-one-text-out, distribution-matched cut points",exact agreement,0.456,,,125,25,LLM calib/judge_calibration/posthoc_quantile_2026-10-23_142551.json
+"Cut points, out of sample",R_top,"leave-one-text-out, distribution-matched cut points",mean bias (judge - consensus),0.0,,,125,25,LLM calib/judge_calibration/posthoc_quantile_2026-10-23_142551.json
+"Cut points, out of sample",R_ideo,"leave-one-text-out, gate ladder (0.5 thresholds)",Krippendorff's alpha (ordinal) vs consensus,0.5629,,,125,25,LLM calib/judge_calibration/posthoc_quantile_2026-10-23_142551.json
+"Cut points, out of sample",R_ideo,"leave-one-text-out, gate ladder (0.5 thresholds)",QWK vs consensus,0.5798,,,125,25,LLM calib/judge_calibration/posthoc_quantile_2026-10-23_142551.json
+"Cut points, out of sample",R_ideo,"leave-one-text-out, gate ladder (0.5 thresholds)",exact agreement,0.64,,,125,25,LLM calib/judge_calibration/posthoc_quantile_2026-10-23_142551.json
+"Cut points, out of sample",R_ideo,"leave-one-text-out, gate ladder (0.5 thresholds)",mean bias (judge - consensus),0.088,,,125,25,LLM calib/judge_calibration/posthoc_quantile_2026-10-23_142551.json
+"Cut points, out of sample",R_ideo,"leave-one-text-out, distribution-matched cut points",Krippendorff's alpha (ordinal) vs consensus,0.5786,,,125,25,LLM calib/judge_calibration/posthoc_quantile_2026-10-23_142551.json
+"Cut points, out of sample",R_ideo,"leave-one-text-out, distribution-matched cut points",QWK vs consensus,0.5979,,,125,25,LLM calib/judge_calibration/posthoc_quantile_2026-10-23_142551.json
+"Cut points, out of sample",R_ideo,"leave-one-text-out, distribution-matched cut points",exact agreement,0.632,,,125,25,LLM calib/judge_calibration/posthoc_quantile_2026-10-23_142551.json
+"Cut points, out of sample",R_ideo,"leave-one-text-out, distribution-matched cut points",mean bias (judge - consensus),-0.008,,,125,25,LLM calib/judge_calibration/posthoc_quantile_2026-10-23_142551.json
+"Cut points, out of sample",R_ideo,"8-text holdout, gate ladder (0.5 thresholds)",Krippendorff's alpha (ordinal) vs consensus,0.608,,,125,25,LLM calib/judge_calibration/CALIBRATION_LOG.md (round 3b)
+"Cut points, out of sample",R_ideo,"8-text holdout, distribution-matched cut points",Krippendorff's alpha (ordinal) vs consensus,0.665,,,125,25,LLM calib/judge_calibration/CALIBRATION_LOG.md (round 3b)

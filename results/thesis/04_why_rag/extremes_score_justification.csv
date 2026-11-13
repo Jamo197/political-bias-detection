@@ -1,0 +1,61 @@
+Model,Condition,Subset,N,Described as right,Described as left,Score contradicts description,Posts with contradiction,Likens post to author party,Likens to author party but scores other side,Posts likened but scored other side
+Llama 3B,baseline,DIE LINKE,162,0.1667,0.537,0.1543,25,0.0,0.0,0.0
+Llama 3B,baseline,AfD,107,0.6262,0.0841,0.0841,9,0.0374,0.0,0.0
+Llama 3B,baseline,other parties,441,0.195,0.3651,0.1293,57,,,
+Llama 3B,RAG,DIE LINKE,162,0.1296,0.4877,0.2407,39,0.3457,0.1728,28.0
+Llama 3B,RAG,AfD,107,0.5327,0.1682,0.1215,13,0.1121,0.0,0.0
+Llama 3B,RAG,other parties,441,0.3084,0.3107,0.0794,35,,,
+Llama 8B,baseline,DIE LINKE,178,0.191,0.6517,0.0,0,0.0056,0.0,0.0
+Llama 8B,baseline,AfD,114,0.614,0.0702,0.0,0,0.0351,0.0,0.0
+Llama 8B,baseline,other parties,482,0.4004,0.3402,0.0062,3,,,
+Llama 8B,RAG,DIE LINKE,178,0.0506,0.6348,0.0,0,0.5281,0.0,0.0
+Llama 8B,RAG,AfD,114,0.5,0.0702,0.0088,1,0.693,0.0263,3.0
+Llama 8B,RAG,other parties,482,0.1618,0.5124,0.0104,5,,,
+Llama 70B,baseline,DIE LINKE,179,0.0559,0.8268,0.0,0,0.0,0.0,0.0
+Llama 70B,baseline,AfD,114,0.5965,0.0965,0.0088,1,0.0439,0.0,0.0
+Llama 70B,baseline,other parties,482,0.1826,0.471,0.0,0,,,
+Llama 70B,RAG,DIE LINKE,179,0.0391,0.7933,0.0112,2,0.5196,0.0,0.0
+Llama 70B,RAG,AfD,114,0.5263,0.1228,0.193,22,0.7456,0.4123,47.0
+Llama 70B,RAG,other parties,482,0.2054,0.4253,0.0041,2,,,
+Ministral 3B,baseline,DIE LINKE,179,0.0838,0.4581,0.0112,2,0.0,0.0,0.0
+Ministral 3B,baseline,AfD,113,0.5221,0.0796,0.0,0,0.0177,0.0,0.0
+Ministral 3B,baseline,other parties,469,0.1748,0.1919,0.0085,4,,,
+Ministral 3B,RAG,DIE LINKE,179,0.0279,0.4525,0.0168,3,0.3408,0.0,0.0
+Ministral 3B,RAG,AfD,113,0.292,0.1416,0.0354,4,0.708,0.0354,4.0
+Ministral 3B,RAG,other parties,469,0.0981,0.2729,0.0149,7,,,
+Ministral 8B,baseline,DIE LINKE,178,0.1236,0.3876,0.0,0,0.0056,0.0,0.0
+Ministral 8B,baseline,AfD,113,0.531,0.0354,0.0088,1,0.0442,0.0,0.0
+Ministral 8B,baseline,other parties,469,0.2452,0.1322,0.0064,3,,,
+Ministral 8B,RAG,DIE LINKE,178,0.0843,0.1854,0.0674,12,0.5393,0.0,0.0
+Ministral 8B,RAG,AfD,113,0.2212,0.1681,0.177,20,0.8407,0.0265,3.0
+Ministral 8B,RAG,other parties,469,0.1535,0.1684,0.0469,22,,,
+Ministral 14B,baseline,DIE LINKE,177,0.0339,0.2203,0.0056,1,0.0113,0.0,0.0
+Ministral 14B,baseline,AfD,114,0.3772,0.0263,0.0088,1,0.1316,0.0175,2.0
+Ministral 14B,baseline,other parties,479,0.071,0.0731,0.0146,7,,,
+Ministral 14B,RAG,DIE LINKE,177,0.0621,0.3503,0.0226,4,0.565,0.0113,2.0
+Ministral 14B,RAG,AfD,114,0.3947,0.0614,0.0614,7,0.7807,0.0263,3.0
+Ministral 14B,RAG,other parties,479,0.1294,0.1503,0.0271,13,,,
+Qwen 3B,baseline,DIE LINKE,179,0.6257,0.1732,0.0391,7,0.0,0.0,0.0
+Qwen 3B,baseline,AfD,114,0.7719,0.0526,0.1228,14,0.0088,0.0,0.0
+Qwen 3B,baseline,other parties,480,0.6646,0.0792,0.075,36,,,
+Qwen 3B,RAG,DIE LINKE,179,0.419,0.1899,0.0,0,0.1397,0.0,0.0
+Qwen 3B,RAG,AfD,114,0.6667,0.0351,0.0088,1,0.2632,0.0088,1.0
+Qwen 3B,RAG,other parties,480,0.4938,0.1083,0.0021,1,,,
+Qwen 7B,baseline,DIE LINKE,178,0.1124,0.2697,0.0169,3,0.0337,0.0,0.0
+Qwen 7B,baseline,AfD,114,0.4649,0.0877,0.0263,3,0.0175,0.0,0.0
+Qwen 7B,baseline,other parties,481,0.1476,0.2017,0.0125,6,,,
+Qwen 7B,RAG,DIE LINKE,178,0.1011,0.427,0.1067,19,0.3652,0.1124,20.0
+Qwen 7B,RAG,AfD,114,0.5965,0.0526,0.0088,1,0.3421,0.0,0.0
+Qwen 7B,RAG,other parties,481,0.2245,0.2412,0.0187,9,,,
+Qwen 32B,baseline,DIE LINKE,179,0.0782,0.7654,0.0056,1,0.0056,0.0,0.0
+Qwen 32B,baseline,AfD,114,0.6754,0.0526,0.0,0,0.0526,0.0,0.0
+Qwen 32B,baseline,other parties,482,0.3029,0.3402,0.0,0,,,
+Qwen 32B,RAG,DIE LINKE,179,0.0615,0.676,0.0112,2,0.3966,0.0,0.0
+Qwen 32B,RAG,AfD,114,0.6316,0.0877,0.0351,4,0.5439,0.0526,6.0
+Qwen 32B,RAG,other parties,482,0.1929,0.3402,0.0041,2,,,
+Qwen 72B,baseline,DIE LINKE,179,0.0447,0.7598,0.0,0,0.0112,0.0,0.0
+Qwen 72B,baseline,AfD,114,0.7719,0.0439,0.0,0,0.0263,0.0,0.0
+Qwen 72B,baseline,other parties,482,0.1846,0.4315,0.0,0,,,
+Qwen 72B,RAG,DIE LINKE,179,0.0726,0.6201,0.0112,2,0.5698,0.0,0.0
+Qwen 72B,RAG,AfD,114,0.7456,0.0439,0.0175,2,0.7368,0.0175,2.0
+Qwen 72B,RAG,other parties,482,0.1411,0.334,0.0062,3,,,

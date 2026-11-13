@@ -1,0 +1,8 @@
+Author party,Posts,Retrieved chunks,Share names any party,Share names any party CI low,Share names any party CI high,Share names its own party,Share names its own party CI low,Share names its own party CI high,Share names another party,Share names another party CI low,Share names another party CI high,Chunks from other parties,... naming the author party,Share naming the author party,Reference: same share in posts of other parties,Share naming the author party CI low,Share naming the author party CI high,Difference,Difference CI low,Difference CI high,Bootstrap p (difference),Bootstrap p (Holm)
+All posts,775,3875,0.5512,0.5311,0.5698,0.1899,0.1755,0.2049,0.4625,0.4434,0.48,,,,,,,,,,,
+DIE LINKE,179,895,0.5933,0.5553,0.6335,0.2492,0.2134,0.2849,0.4838,0.4458,0.5207,592.0,86.0,0.1453,0.0547,0.1161,0.1769,0.0906,0.0599,0.1228,0.001,0.006
+Grüne,156,780,0.5346,0.4962,0.5756,0.1808,0.1538,0.209,0.4449,0.4077,0.4846,598.0,82.0,0.1371,0.1252,0.1071,0.1684,0.0119,-0.0223,0.0472,0.4738,0.4738
+SPD,217,1085,0.435,0.4028,0.4691,0.1088,0.0903,0.129,0.3696,0.3401,0.4,746.0,42.0,0.0563,0.1339,0.0402,0.0729,-0.0776,-0.1,-0.0538,0.001,0.006
+FDP,58,290,0.5517,0.4828,0.6207,0.1655,0.1207,0.2103,0.4793,0.4103,0.5517,233.0,37.0,0.1588,0.114,0.1057,0.2203,0.0448,-0.0108,0.1085,0.1219,0.2438
+CDU/CSU,51,255,0.5804,0.5098,0.6549,0.2078,0.1451,0.2706,0.4667,0.3961,0.5374,182.0,59.0,0.3242,0.1955,0.2394,0.4205,0.1287,0.0401,0.225,0.003,0.009
+AfD,114,570,0.7158,0.6702,0.7632,0.2684,0.2263,0.314,0.6193,0.5719,0.6667,370.0,149.0,0.4027,0.1065,0.3298,0.48,0.2962,0.2245,0.3735,0.001,0.006

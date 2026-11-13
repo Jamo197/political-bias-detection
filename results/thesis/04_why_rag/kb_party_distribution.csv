@@ -1,0 +1,9 @@
+Party,Speeches,Share of all speeches,Share of speeches with a position,"Position (lrgen, 1-7)",Bloc,Raw spellings
+DIE LINKE,3910,0.0859,0.0871,1.85,Left,'DIE LINKE'
+Grüne,6868,0.1509,0.1529,2.83,Left,'BÜNDNIS 90/DIE GRÜNEN'
+SPD,10806,0.2375,0.2406,3.08,Left,'SPD'
+BSW,151,0.0033,0.0034,3.18,Left,'BSW'
+FDP,4846,0.1065,0.1079,4.63,Centre,'FDP'
+CDU/CSU,11953,0.2627,0.2661,4.95,Centre,'CDU/CSU'
+AfD,6377,0.1402,0.142,6.56,Right,'AfD'
+no position,588,0.0129,,,,'Fraktionslos'; 'UNKNOWN'

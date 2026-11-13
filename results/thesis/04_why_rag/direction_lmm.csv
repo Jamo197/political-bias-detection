@@ -1,0 +1,25 @@
+Outcome,Llama 3B posts,Term,Coefficient,SE,CI low,CI high,p,N rows,N texts,Converged,Formula,"p (Holm, interactions)"
+abs error,all,rag (effect for SPD),-0.0221,0.0276,-0.0763,0.032,0.4228,15292,775,True,"abs_error ~ rag * C(party, Treatment('SPD')) + C(model) + (1 | text_index)",
+abs error,all,rag x AfD,0.016,0.0469,-0.076,0.108,0.7332,15292,775,True,"abs_error ~ rag * C(party, Treatment('SPD')) + C(model) + (1 | text_index)",1.0
+abs error,all,rag x CDU/CSU,-0.1896,0.0634,-0.3139,-0.0654,0.0028,15292,775,True,"abs_error ~ rag * C(party, Treatment('SPD')) + C(model) + (1 | text_index)",0.0139
+abs error,all,rag x DIE LINKE,0.0287,0.041,-0.0517,0.1091,0.4843,15292,775,True,"abs_error ~ rag * C(party, Treatment('SPD')) + C(model) + (1 | text_index)",1.0
+abs error,all,rag x FDP,-0.1264,0.06,-0.2441,-0.0087,0.0352,15292,775,True,"abs_error ~ rag * C(party, Treatment('SPD')) + C(model) + (1 | text_index)",0.141
+abs error,all,rag x Grüne,0.0257,0.0427,-0.058,0.1093,0.5473,15292,775,True,"abs_error ~ rag * C(party, Treatment('SPD')) + C(model) + (1 | text_index)",1.0
+signed error,all,rag (effect for SPD),0.1342,0.0349,0.0658,0.2026,0.0001,15292,775,True,"signed_error ~ rag * C(party, Treatment('SPD')) + C(model) + (1 | text_index)",
+signed error,all,rag x AfD,-0.1159,0.0593,-0.2321,0.0004,0.0507,15292,775,True,"signed_error ~ rag * C(party, Treatment('SPD')) + C(model) + (1 | text_index)",0.2029
+signed error,all,rag x CDU/CSU,-0.1278,0.0801,-0.2848,0.0293,0.1108,15292,775,True,"signed_error ~ rag * C(party, Treatment('SPD')) + C(model) + (1 | text_index)",0.255
+signed error,all,rag x DIE LINKE,-0.1841,0.0519,-0.2857,-0.0824,0.0004,15292,775,True,"signed_error ~ rag * C(party, Treatment('SPD')) + C(model) + (1 | text_index)",0.0019
+signed error,all,rag x FDP,-0.1307,0.0759,-0.2794,0.018,0.085,15292,775,True,"signed_error ~ rag * C(party, Treatment('SPD')) + C(model) + (1 | text_index)",0.255
+signed error,all,rag x Grüne,-0.0441,0.0539,-0.1498,0.0616,0.414,15292,775,True,"signed_error ~ rag * C(party, Treatment('SPD')) + C(model) + (1 | text_index)",0.414
+abs error,baseline score >= 1,rag (effect for SPD),0.0197,0.0276,-0.0343,0.0738,0.4743,15094,775,True,"abs_error ~ rag * C(party, Treatment('SPD')) + C(model) + (1 | text_index)",
+abs error,baseline score >= 1,rag x AfD,-0.0259,0.0466,-0.1171,0.0654,0.5784,15094,775,True,"abs_error ~ rag * C(party, Treatment('SPD')) + C(model) + (1 | text_index)",1.0
+abs error,baseline score >= 1,rag x CDU/CSU,-0.1283,0.0635,-0.2528,-0.0038,0.0433,15094,775,True,"abs_error ~ rag * C(party, Treatment('SPD')) + C(model) + (1 | text_index)",0.2167
+abs error,baseline score >= 1,rag x DIE LINKE,-0.0157,0.0408,-0.0957,0.0643,0.7004,15094,775,True,"abs_error ~ rag * C(party, Treatment('SPD')) + C(model) + (1 | text_index)",1.0
+abs error,baseline score >= 1,rag x FDP,-0.1009,0.0599,-0.2183,0.0164,0.0919,15094,775,True,"abs_error ~ rag * C(party, Treatment('SPD')) + C(model) + (1 | text_index)",0.3675
+abs error,baseline score >= 1,rag x Grüne,-0.0005,0.0425,-0.0838,0.0829,0.9913,15094,775,True,"abs_error ~ rag * C(party, Treatment('SPD')) + C(model) + (1 | text_index)",1.0
+signed error,baseline score >= 1,rag (effect for SPD),0.0545,0.034,-0.0122,0.1212,0.1093,15094,775,True,"signed_error ~ rag * C(party, Treatment('SPD')) + C(model) + (1 | text_index)",
+signed error,baseline score >= 1,rag x AfD,-0.0362,0.0574,-0.1488,0.0764,0.5286,15094,775,True,"signed_error ~ rag * C(party, Treatment('SPD')) + C(model) + (1 | text_index)",1.0
+signed error,baseline score >= 1,rag x CDU/CSU,-0.1572,0.0784,-0.3107,-0.0036,0.0449,15094,775,True,"signed_error ~ rag * C(party, Treatment('SPD')) + C(model) + (1 | text_index)",0.1795
+signed error,baseline score >= 1,rag x DIE LINKE,-0.1261,0.0503,-0.2248,-0.0275,0.0122,15094,775,True,"signed_error ~ rag * C(party, Treatment('SPD')) + C(model) + (1 | text_index)",0.0612
+signed error,baseline score >= 1,rag x FDP,-0.1209,0.0739,-0.2657,0.0239,0.1017,15094,775,True,"signed_error ~ rag * C(party, Treatment('SPD')) + C(model) + (1 | text_index)",0.305
+signed error,baseline score >= 1,rag x Grüne,-0.0165,0.0525,-0.1193,0.0864,0.7534,15094,775,True,"signed_error ~ rag * C(party, Treatment('SPD')) + C(model) + (1 | text_index)",1.0

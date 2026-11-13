@@ -1,0 +1,45 @@
+Model,Quadrant,Population texts,Sampled texts,Weight
+Llama 3B (all),Q1,63,25,2.52
+Llama 3B (all),Q2,138,25,5.52
+Llama 3B (all),Q3,269,25,10.76
+Llama 3B (all),Q4,78,25,3.12
+Llama 3B (baseline ≥ 1),Q1,50,21,2.381
+Llama 3B (baseline ≥ 1),Q2,138,25,5.52
+Llama 3B (baseline ≥ 1),Q3,201,20,10.05
+Llama 3B (baseline ≥ 1),Q4,78,25,3.12
+Llama 8B,Q1,72,25,2.88
+Llama 8B,Q2,26,25,1.04
+Llama 8B,Q3,203,25,8.12
+Llama 8B,Q4,158,25,6.32
+Llama 70B,Q1,22,22,1.0
+Llama 70B,Q2,73,25,2.92
+Llama 70B,Q3,116,25,4.64
+Llama 70B,Q4,182,25,7.28
+Ministral 3B,Q1,73,25,2.92
+Ministral 3B,Q2,115,25,4.6
+Ministral 3B,Q3,218,25,8.72
+Ministral 3B,Q4,102,25,4.08
+Ministral 8B,Q1,89,25,3.56
+Ministral 8B,Q2,46,25,1.84
+Ministral 8B,Q3,266,25,10.64
+Ministral 8B,Q4,158,25,6.32
+Ministral 14B,Q1,39,25,1.56
+Ministral 14B,Q2,46,25,1.84
+Ministral 14B,Q3,135,25,5.4
+Ministral 14B,Q4,266,25,10.64
+Qwen 3B,Q1,8,8,1.0
+Qwen 3B,Q2,23,23,1.0
+Qwen 3B,Q3,417,25,16.68
+Qwen 3B,Q4,15,15,1.0
+Qwen 7B,Q1,93,25,3.72
+Qwen 7B,Q2,54,25,2.16
+Qwen 7B,Q3,283,25,11.32
+Qwen 7B,Q4,130,25,5.2
+Qwen 32B,Q1,78,25,3.12
+Qwen 32B,Q2,39,25,1.56
+Qwen 32B,Q3,226,25,9.04
+Qwen 32B,Q4,94,25,3.76
+Qwen 72B,Q1,52,25,2.08
+Qwen 72B,Q2,30,25,1.2
+Qwen 72B,Q3,180,25,7.2
+Qwen 72B,Q4,134,25,5.36
