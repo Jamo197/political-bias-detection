@@ -15,7 +15,12 @@ Grüne 2.83, SPD 3.08, BSW 3.18, FDP 4.63, CDU 4.95, CSU 5.54, AfD 6.56). The
 same values are used for the target and for the retrieved chunks; the
 Bundestag faction CDU/CSU gets the CDU value. Chunks of non-attached speakers
 ('Fraktionslos') or of unknown party get no position and are counted.
-Blocs: left < 3.4 <= centre < 5.2 <= right.
+Blocs (em.BLOC_THRESHOLDS, five blocs after Jakob et al.): far-left < 2.2 <=
+centre-left < 3.4 <= centre < 4.6 <= centre-right < 5.8 <= far-right. DIE LINKE
+far-left; Grüne, SPD, BSW centre-left; FDP, CDU, CSU centre-right; AfD
+far-right; no party in the centre. Sides: left side = far-left + centre-left
+(< 3.4), right side = centre-right + far-right (>= 4.6). "Opposite side" = the
+other side of the centre; score-based checks use the side bands 3.4 / 4.6.
 
 Quadrants of the annotated sample (Q1 RAG win, Q2 RAG distraction, Q3 joint
 failure, Q4 baseline sufficient) are the ones the texts were SAMPLED in, i.e.
@@ -51,7 +56,7 @@ Subcommands and outputs (results/thesis/04_why_rag/):
           04_why_rag_composition.md
           Knowledge base: --kb rag/ingest/artifacts/chunks.jsonl (indexed chunk file)
           or a CSV party,chunks counted from it; without it, the speech counts in
-          src/datasets/knowledge_base/kb_speech_counts.csv are used and labelled
+          extraction/datasets/knowledge_base/kb_speech_counts.csv are used and labelled
           as an approximation.
           fig_judge_labels.pdf/.png     stacked R_top / R_ideo shares per model
           04_why_rag_judge.md           report
@@ -1792,7 +1797,7 @@ DEFAULT_KB = (
 )  # the file indexed into chunks_e5 (HPC)
 # Fallback: speeches per party of the indexed corpus (thesis table tab:kb-parties); an
 # approximation, because longer speeches yield more chunks.
-KB_SPEECHES = ROOT / "src" / "datasets" / "knowledge_base" / "kb_speech_counts.csv"
+KB_SPEECHES = ROOT / "extraction" / "datasets" / "knowledge_base" / "kb_speech_counts.csv"
 N_PERM = 1000
 KB_NOTE = {
     "chunks": "This is the chunk file indexed into the e5 collection, i.e. the pool e5/simple retrieves from.",
@@ -1804,7 +1809,8 @@ KB_NOTE = {
         "are therefore approximate (lifts by up to about 10 %)."
     ),
 }
-BLOC_NAMES = em.BLOC_NAMES  # Left / Centre / Right
+BLOC_NAMES = em.BLOC_NAMES  # Far-left / Centre-left / Centre / Centre-right / Far-right
+SIDE_LO, SIDE_HI = em.SIDE_THRESHOLDS  # left side < 3.4 <= centre < 4.6 <= right side
 
 # Party names in chunk text (case-sensitive; 'Union' not after 'Europäische(n)').
 MENTION_PATTERNS = {
@@ -1995,14 +2001,16 @@ class RetrievalArrays:
         self.a_group = first["author_group"].to_numpy()
         self.a_pos = first["author_pos"].to_numpy(dtype=float)
         self.a_bloc = first["author_bloc"].to_numpy(dtype=int)
-        opp = np.where(self.a_bloc == 0, 2, np.where(self.a_bloc == 2, 0, -9))
-        self.opp = opp
+        side = np.asarray(em.BLOC_SIDE)
+        self.S = np.where(self.B >= 0, side[np.clip(self.B, 0, None)], -9)
+        # opposite side of the centre (no author sits in the centre bloc)
+        self.opp = -side[self.a_bloc]
 
     def per_text(self, perm: Optional[np.ndarray] = None) -> Dict[str, np.ndarray]:
-        G, P, B = (
-            (self.G, self.P, self.B)
+        G, P, B, S = (
+            (self.G, self.P, self.B, self.S)
             if perm is None
-            else (self.G[perm], self.P[perm], self.B[perm])
+            else (self.G[perm], self.P[perm], self.B[perm], self.S[perm])
         )
         valid = G >= 0
         nv = valid.sum(1).astype(float)
@@ -2016,8 +2024,8 @@ class RetrievalArrays:
                     np.where(valid, np.abs(P - self.a_pos[:, None]), np.nan), 1
                 ),
                 "opposite_bloc": np.where(
-                    self.opp >= 0,
-                    ((B == self.opp[:, None]) & valid).sum(1) / nv,
+                    self.opp != 0,
+                    ((S == self.opp[:, None]) & valid).sum(1) / nv,
                     np.nan,
                 ),
             }
@@ -2029,7 +2037,7 @@ STAT_LABELS = {
     "same_bloc": "Same-bloc share",
     "mean_position": "Mean position of retrieved parties",
     "distance": "Mean distance to author position",
-    "opposite_bloc": "Opposite-bloc share",
+    "opposite_bloc": "Opposite-side share",
 }
 
 
@@ -2040,6 +2048,7 @@ def kb_expectation(arr: RetrievalArrays, kb: pd.DataFrame) -> Dict[str, np.ndarr
     p = {g: s for g, s in zip(kbp["group"], kbp["Share with a position"])}
     pos = {g: group_position(g) for g in p}
     bloc = {g: em._bloc(pos[g]) for g in p}
+    side = {g: em._side(pos[g]) for g in p}
     out = {
         "same_party": np.array([p.get(g, 0.0) for g in arr.a_group]),
         "same_bloc": np.array(
@@ -2051,7 +2060,7 @@ def kb_expectation(arr: RetrievalArrays, kb: pd.DataFrame) -> Dict[str, np.ndarr
         ),
         "opposite_bloc": np.array(
             [
-                sum(p[g] for g in p if bloc[g] == o) if o >= 0 else np.nan
+                sum(p[g] for g in p if side[g] == o) if o != 0 else np.nan
                 for o in arr.opp
             ]
         ),
@@ -2138,9 +2147,12 @@ def chance_level(
 
 
 def chapter03_crosscheck(ret: pd.DataFrame) -> Dict[str, float]:
-    """Same-party / same-bloc / distance as defined in chapter 03 (positions =
-    mean(lrecon, galtan), em.load_party_positions), for comparison only."""
+    """Same-party / same-bloc / distance as defined in chapter 03, for comparison
+    only: blocs by lrgen (2 dp, em.load_bloc_positions; the faction CDU/CSU gets
+    the CDU value, also for CSU authors), distance by mean(lrecon, galtan)
+    (em.load_party_positions)."""
     pos03 = em.load_party_positions(ROOT / em.CHES_PATH, em.CHES_WAVE)
+    bpos03 = em.load_bloc_positions(ROOT / em.CHES_PATH, em.CHES_WAVE)
     out = defaultdict(list)
     for t, g in ret.groupby("text_index"):
         a = g["author_group"].iloc[0]
@@ -2150,7 +2162,7 @@ def chapter03_crosscheck(ret: pd.DataFrame) -> Dict[str, float]:
         out["same_party"].append(np.mean([c == a for c in mapped]))
         ap = pos03[a]
         out["same_bloc"].append(
-            np.mean([em._bloc(pos03[c]) == em._bloc(ap) for c in mapped])
+            np.mean([em._bloc(bpos03[c]) == em._bloc(bpos03[a]) for c in mapped])
         )
         out["distance"].append(np.mean([abs(pos03[c] - ap) for c in mapped]))
     res = {k: float(np.mean(v)) for k, v in out.items()}
@@ -2158,14 +2170,14 @@ def chapter03_crosscheck(ret: pd.DataFrame) -> Dict[str, float]:
     # authors: CSU keeps its own lrgen position here, chapter 03 uses CDU/CSU).
     moved = []
     for g in group_order([g for g in pos03 if g in GROUP_DISPLAY]):
-        b_now, b_03 = em._bloc(group_position(g)), em._bloc(pos03[g])
+        b_now, b_03 = em._bloc(group_position(g)), em._bloc(bpos03[g])
         if b_now != b_03:
             moved.append(
                 f"{GROUP_DISPLAY[g]} ({BLOC_NAMES[b_03].lower()} → {BLOC_NAMES[b_now].lower()})"
             )
-    if em._bloc(POSITIONS["CSU"]) != em._bloc(pos03["CDU/CSU"]):
+    if em._bloc(POSITIONS["CSU"]) != em._bloc(bpos03["CDU/CSU"]):
         moved.append(
-            f"CSU authors ({BLOC_NAMES[em._bloc(pos03['CDU/CSU'])].lower()} → "
+            f"CSU authors ({BLOC_NAMES[em._bloc(bpos03['CDU/CSU'])].lower()} → "
             f"{BLOC_NAMES[em._bloc(POSITIONS['CSU'])].lower()})"
         )
     res["moved"] = moved
@@ -2250,8 +2262,8 @@ def by_author_party(
             "Author position": (
                 float(np.mean(arr.a_pos[mask])) if scope != "All posts" else np.nan
             ),
-            "Posts with an opposite bloc (left or right authors)": int(
-                (arr.opp[mask] >= 0).sum()
+            "Posts with an opposite side (authors outside the centre bloc)": int(
+                (arr.opp[mask] != 0).sum()
             ),
         }
         for stat, label in STAT_LABELS.items():
@@ -2476,8 +2488,11 @@ def write_composition_report(
         f"CDU value 4.95). Chunks without a position: {n_np} "
         f"({', '.join(f'{k} {v}' for k, v in raw_np.items())}); they count in the composition matrix as "
         f"'no position' and are left out of all shares, positions and distances. Knowledge base: `{kb_path}` "
-        f"({int(kb['Count'].sum())} {kb.attrs['unit']}). {KB_NOTE[kb.attrs['unit']]} Positions: CHES 2024 lrgen, two decimals; blocs left < 3.4 ≤ centre "
-        f"< 5.2 ≤ right. Bootstrap {n_boot} resamples of texts, seed {seed}; permutation null {N_PERM} shuffles of "
+        f"({int(kb['Count'].sum())} {kb.attrs['unit']}). {KB_NOTE[kb.attrs['unit']]} Positions: CHES 2024 lrgen, two decimals; five blocs far-left < 2.2 ≤ "
+        f"centre-left < 3.4 ≤ centre < 4.6 ≤ centre-right < 5.8 ≤ far-right (DIE LINKE far-left; Grüne, SPD, BSW "
+        f"centre-left; FDP, CDU, CSU centre-right; AfD far-right; no party in the centre). 'Opposite side' = chunks "
+        f"from the other side of the centre (left side = far-left + centre-left, right side = centre-right + "
+        f"far-right). Bootstrap {n_boot} resamples of texts, seed {seed}; permutation null {N_PERM} shuffles of "
         f"the chunk lists across texts, seed {seed}.\n"
     )
     L.append("## 1. Knowledge base and chance level\n")
@@ -2499,13 +2514,17 @@ def write_composition_report(
     ]
     L.append(md_table(allp) + "\n")
     L.append(readings["chance"] + "\n")
+    pa03 = pd.read_csv(ROOT / em.THESIS_ROOT / "03_retrieval_configs" / "party_agreement_by_condition.csv")
+    pa03 = pa03[pa03["Condition"] == "e5/simple"].iloc[0]
     L.append(
-        f"Cross-check with chapter 03: with the chapter-03 definitions (party positions = mean of CHES lrecon and "
-        f"galtan, `em.load_party_positions`) the same texts give same-party {cross03['same_party']:.4f}, same-bloc "
-        f"{cross03['same_bloc']:.4f} and distance {cross03['distance']:.4f} "
-        f"(`party_agreement_by_condition.csv`, e5/simple: 0.3002, 0.5467, 1.2232; there averaged over models). "
-        f"Same-party does not depend on positions. Same-bloc and distance differ because this chapter places "
-        f"parties by lrgen; this moves {', '.join(cross03['moved']) or 'no party'} to another bloc.\n"
+        f"Cross-check with chapter 03: with the chapter-03 definitions (blocs by lrgen as here, but CSU authors "
+        f"counted as CDU/CSU; distance by the mean of CHES lrecon and galtan, `em.load_party_positions`) the same "
+        f"texts give same-party {cross03['same_party']:.4f}, same-bloc {cross03['same_bloc']:.4f} and distance "
+        f"{cross03['distance']:.4f} (`party_agreement_by_condition.csv`, e5/simple: {pa03['Same_party']:.4f}, "
+        f"{pa03['Same_bloc']:.4f}, {pa03['Party_distance']:.4f}; there averaged over models, slightly different "
+        f"post sets). Same-party and same-bloc do not depend on the position set "
+        f"({'no party changes bloc' if not cross03['moved'] else 'moved: ' + ', '.join(cross03['moved'])}); "
+        f"the distance differs because chapter 03 measures it on lrecon/galtan positions.\n"
     )
     L.append("## 2. Retrieved party composition by author party\n")
     wide = matrix.pivot(index="Author party", columns="Chunk party", values="Share")
@@ -2631,9 +2650,11 @@ def composition_readings(
         f"against {pct(sp['Knowledge-base expectation'])} for random chunks and {pct(sp['Permutation null mean'])} "
         f"under the permutation null, which keeps the overall mix of retrieved parties but breaks the link to the "
         f"post. Same-bloc ({pct(sb['Observed'])} vs {pct(sb['Knowledge-base expectation'])} / "
-        f"{pct(sb['Permutation null mean'])}) and opposite-bloc chunks ({pct(ob['Observed'])} vs "
+        f"{pct(sb['Permutation null mean'])}) and opposite-side chunks ({pct(ob['Observed'])} vs "
         f"{pct(ob['Knowledge-base expectation'])} / {pct(ob['Permutation null mean'])}) point the same way: retrieval "
-        f"is clearly party- and bloc-sensitive, but most chunks still come from other parties. The retrieved parties "
+        f"is clearly party- and bloc-sensitive, but most chunks still come from other parties (and other blocs). "
+        f"With five blocs the same-bloc share is the own-party share plus chunks of bloc partners (centre-left: "
+        f"Grüne, SPD, BSW; centre-right: FDP, CDU/CSU; DIE LINKE and AfD are alone in their bloc). The retrieved parties "
         f"sit at {mp['Observed']:.2f} on average, left of the pool ({mp['Knowledge-base expectation']:.2f}) and right "
         f"of the posts' authors ({author_mean:.2f})."
     )
@@ -2665,8 +2686,9 @@ def composition_readings(
         f"parties at the ends of the scale (mean distance AfD "
         f"{c('AfD', 'distance')['Observed']:.2f}, DIE LINKE {c('DIE LINKE', 'distance')['Observed']:.2f}) and close "
         f"for SPD ({c('SPD', 'distance')['Observed']:.2f}). For AfD posts {pct(c('AfD', 'opposite_bloc')['Observed'])} "
-        f"of the chunks come from the left bloc. The CDU/CSU row mixes CDU authors (centre) and CSU authors (right); "
-        f"its opposite-bloc share rests on {int(c('CDU/CSU', 'opposite_bloc')['Posts'])} CSU posts only. Tests "
+        f"of the chunks come from the left side (DIE LINKE, Grüne, SPD, BSW), for DIE LINKE posts "
+        f"{pct(c('DIE LINKE', 'opposite_bloc')['Observed'])} from the right side (FDP, CDU/CSU, AfD). Both extreme "
+        f"parties are alone in their bloc, so their same-bloc share equals their same-party share. Tests "
         f"against chance are in `retrieval_chance_level.csv`; "
         + (
             f"for {', '.join(wil_ns)} the same-party excess is significant in the permutation test but not in the "
@@ -2832,7 +2854,7 @@ def direction_data() -> pd.DataFrame:
 
 def _overall_metrics(T, P, L, A) -> Dict[str, np.ndarray]:
     """Metrics over the last axis (vectorised for bootstrap index matrices)."""
-    lo, hi = em.BLOC_THRESHOLDS
+    lo, hi = SIDE_LO, SIDE_HI
     mt, mp = T.mean(-1, keepdims=True), P.mean(-1, keepdims=True)
     slope = ((T - mt) * (P - mp)).sum(-1) / ((T - mt) ** 2).sum(-1)
     with np.errstate(invalid="ignore", divide="ignore"):
@@ -2845,13 +2867,13 @@ def _overall_metrics(T, P, L, A) -> Dict[str, np.ndarray]:
         "Calibration slope": slope,
         "Calibration intercept": mp[..., 0] - slope * mt[..., 0],
         "Spread AfD - DIE LINKE": spread,
-        "Share in centre band [3.4, 5.2)": ((P >= lo) & (P < hi)).mean(-1),
+        "Share in centre band [3.4, 4.6)": ((P >= lo) & (P < hi)).mean(-1),
     }
 
 
 def direction_overall(d: pd.DataFrame, n_boot: int, seed: int) -> pd.DataFrame:
     rows = []
-    lo_c, hi_c = em.BLOC_THRESHOLDS
+    lo_c, hi_c = SIDE_LO, SIDE_HI
     for folder, *_ in MODELS:
         for scope in scopes(folder):
             g = in_scope(d[d["model"] == folder], scope)
@@ -2868,7 +2890,7 @@ def direction_overall(d: pd.DataFrame, n_boot: int, seed: int) -> pd.DataFrame:
                 "Mean absolute error": np.abs(R - T) - np.abs(B - T),
                 "Mean signed error": R - B,
                 "Mean prediction": R - B,
-                "Share in centre band [3.4, 5.2)": ((R >= lo_c) & (R < hi_c)).astype(
+                "Share in centre band [3.4, 4.6)": ((R >= lo_c) & (R < hi_c)).astype(
                     float
                 )
                 - ((B >= lo_c) & (B < hi_c)).astype(float),
@@ -3167,7 +3189,7 @@ def plot_direction_party(bp: pd.DataFrame):
         ax.set_xticks(x)
         ax.set_xticklabels(labels, fontsize=7.5, rotation=30, ha="right", color=INK)
         ax.set_ylim(1, 7)
-        ax.axhspan(*em.BLOC_THRESHOLDS, color="#f0efec", zorder=0)
+        ax.axhspan(SIDE_LO, SIDE_HI, color="#f0efec", zorder=0)
         ax.grid(axis="y", color="#e6e5e0", linewidth=0.6)
         for s in ("top", "right"):
             ax.spines[s].set_visible(False)
@@ -3280,7 +3302,7 @@ def write_direction_report(
         f"4.63, CDU 4.95, CSU 5.54, AfD 6.56); target spread AfD − DIE LINKE = "
         f"{POSITIONS['AfD'] - POSITIONS['DIE LINKE']:.2f}. CSU posts (about 7 per model) are merged into CDU/CSU, as "
         f"in the party labels of the logs, and are not tested on their own; each post keeps its own target "
-        f"(CSU 5.54, CDU and CDU/CSU 4.95). Centre band [3.4, 5.2). Moved = |RAG − baseline| ≥ {MOVE_THRESHOLD}. "
+        f"(CSU 5.54, CDU and CDU/CSU 4.95). Centre band [3.4, 4.6) (the centre bloc). Moved = |RAG − baseline| ≥ {MOVE_THRESHOLD}. "
         f"Paired bootstrap {n_boot} resamples of posts, seed {seed}; Wilcoxon signed-rank tests on per-post "
         f"differences, Holm within each model. No other exclusions.\n"
     )
@@ -3292,7 +3314,7 @@ def write_direction_report(
                 "SD of predictions",
                 "Calibration slope",
                 "Spread AfD - DIE LINKE",
-                "Share in centre band [3.4, 5.2)",
+                "Share in centre band [3.4, 4.6)",
             ]
         )
     ]
@@ -3313,7 +3335,7 @@ def write_direction_report(
         "SD of predictions",
         "Calibration slope",
         "Spread AfD - DIE LINKE",
-        "Share in centre band [3.4, 5.2)",
+        "Share in centre band [3.4, 4.6)",
     ]
     tab = tab.pivot(index="Model", columns="Statistic", values="cell").loc[
         overall["Model"].drop_duplicates(), stat_order
@@ -3424,7 +3446,7 @@ def write_direction_report(
     L.append("![fig_direction_party.png](fig_direction_party.png)\n")
     L.append(
         "Figure: mean prediction per author party, baseline (circle) and RAG (square); black bar = mean "
-        "target; grey band = centre band [3.4, 5.2).\n"
+        "target; grey band = centre band [3.4, 4.6).\n"
     )
     L.append("![fig_direction_extremes.png](fig_direction_extremes.png)\n")
     L.append(
@@ -3453,8 +3475,8 @@ def direction_readings(overall, movement, bp, comp, lmm) -> Dict[str, str]:
     sp_up, sp_dn = by_ci("Spread AfD - DIE LINKE", 1), by_ci(
         "Spread AfD - DIE LINKE", -1
     )
-    c_up, c_dn = by_ci("Share in centre band [3.4, 5.2)", 1), by_ci(
-        "Share in centre band [3.4, 5.2)", -1
+    c_up, c_dn = by_ci("Share in centre band [3.4, 4.6)", 1), by_ci(
+        "Share in centre band [3.4, 4.6)", -1
     )
     same_ge1 = all(
         np.sign(_get(overall, Model=ge1, Statistic=s)["Difference (RAG - baseline)"])
@@ -3467,7 +3489,7 @@ def direction_readings(overall, movement, bp, comp, lmm) -> Dict[str, str]:
             "Mean signed error",
             "SD of predictions",
             "Spread AfD - DIE LINKE",
-            "Share in centre band [3.4, 5.2)",
+            "Share in centre band [3.4, 4.6)",
         )
     )
     r = {}
@@ -3832,10 +3854,12 @@ def extremes_judge_labels(d: pd.DataFrame, n_boot: int, seed: int) -> pd.DataFra
     ch["chunk_bloc"] = ch["chunk_pos"].map(
         lambda p: em._bloc(p) if not pd.isna(p) else -1
     )
-    ch["opp"] = ch["author_bloc"].map({0: 2, 2: 0}).fillna(-9).astype(int)
+    # opposite = other side of the centre (left side vs right side)
+    ch["opp"] = ch["author_bloc"].map(lambda b: -em.BLOC_SIDE[b]).astype(int)
+    ch["chunk_side"] = ch["chunk_bloc"].map(lambda b: em.BLOC_SIDE[b] if b >= 0 else -9)
     ch["cited"] = ch["A_caus"] == 1
     ch["cited_own"] = ch["cited"] & (ch["chunk_group"] == ch["party"])
-    ch["cited_opp"] = ch["cited"] & (ch["chunk_bloc"] == ch["opp"])
+    ch["cited_opp"] = ch["cited"] & (ch["chunk_side"] == ch["opp"])
     t = ch.groupby(
         ["model", "text_index", "quadrant", "party", "B", "opp"], as_index=False
     ).agg(
@@ -3909,7 +3933,7 @@ def _judge_row(
         np.random.default_rng(seed),
     )
     w = t["w"].to_numpy(float)
-    has_opp = (t["opp"] >= 0).to_numpy()
+    has_opp = (t["opp"] != 0).to_numpy()
     stats = (
         ("Mean R_top", t["sum_R_top"], t["chunks"], None),
         ("Mean R_ideo", t["sum_R_ideo"], t["chunks"], None),
@@ -3922,7 +3946,7 @@ def _judge_row(
             None,
         ),
         (
-            "Cited chunks from the opposite bloc per text",
+            "Cited chunks from the opposite side per text",
             t["cited_opp"],
             np.ones(len(t)),
             has_opp,
@@ -3937,7 +3961,7 @@ def _judge_row(
         row[name] = float((ww * num).sum() / (ww * den).sum())
         lo, hi = ci(boot_ratio(num, den, ww, m))
         row[f"{name} CI low"], row[f"{name} CI high"] = lo, hi
-    row["Texts with an opposite bloc"] = int(has_opp.sum())
+    row["Texts with an opposite side"] = int(has_opp.sum())
     return row
 
 
@@ -4064,9 +4088,9 @@ def case_rows(
                 "Score sentence": score_sentence(just, p["R"]),
                 "Justification describes the post as": describes(just),
                 "Score contradicts description": (
-                    describes(just) == "right" and p["R"] < em.BLOC_THRESHOLDS[0]
+                    describes(just) == "right" and p["R"] < SIDE_LO
                 )
-                or (describes(just) == "left" and p["R"] >= em.BLOC_THRESHOLDS[1]),
+                or (describes(just) == "left" and p["R"] >= SIDE_HI),
                 "Likens post to author party": likens(just, author_group),
                 "Likened but scored other side": likens(just, author_group)
                 and other_side(p["R"], author_group),
@@ -4230,7 +4254,7 @@ def likens(text: str, party: str) -> bool:
 
 
 def other_side(score: float, party: str) -> bool:
-    lo, hi = em.BLOC_THRESHOLDS
+    lo, hi = SIDE_LO, SIDE_HI
     return score < lo if party == "AfD" else score >= hi
 
 
@@ -4249,8 +4273,8 @@ def describes(text: str) -> str:
 
 def score_justification(d: pd.DataFrame, logs) -> pd.DataFrame:
     """Share of justifications that describe the post as right / left, and share where
-    the score contradicts that description (right but < 3.4, left but >= 5.2)."""
-    lo, hi = em.BLOC_THRESHOLDS
+    the score contradicts that description (right but < 3.4, left but >= 4.6)."""
+    lo, hi = SIDE_LO, SIDE_HI
     rows = []
     for folder, *_ in MODELS:
         base, rag = logs[folder]
@@ -4450,7 +4474,7 @@ def write_extremes_report(
             "Mean R_ideo",
             "Share cited (A_caus = 1)",
             "Cited chunks from the author's party per text",
-            "Cited chunks from the opposite bloc per text",
+            "Cited chunks from the opposite side per text",
         ]
     ]
     L.append(md_table(jt) + "\n")
@@ -4468,10 +4492,10 @@ def write_extremes_report(
     L.append(md_table(summ) + "\n")
     L.append(
         "Score vs. justification (keyword heuristics). 'Contradicts': the justification describes the post as "
-        "right but the score is < 3.4, or as left but ≥ 5.2. 'Likened to own party but other side': the "
+        "right but the score is < 3.4, or as left but ≥ 4.6. 'Likened to own party but other side': the "
         "justification likens the post to the author's party (aligns with / similar to / characteristic of … "
         "AfD resp. DIE LINKE) but the score lies on the other side of the centre band (AfD < 3.4, DIE LINKE "
-        "≥ 5.2). Shares of posts:\n"
+        "≥ 4.6). Shares of posts:\n"
     )
     ex = sj[sj["Subset"].isin(["AfD", "DIE LINKE"])]
     a = ex.pivot_table(
@@ -4625,9 +4649,9 @@ def extremes_readings(
     }
     r["gap"] = (
         f"Reading: the evidence of the extreme parties lies far towards the centre. For AfD posts E averages "
-        f"{ga['Mean E']:.2f}, {abs(ga['E - target']):.2f} points left of the target, and lies in the right bloc for only "
+        f"{ga['Mean E']:.2f}, {abs(ga['E - target']):.2f} points left of the target, and lies in the AfD's far-right bloc for only "
         f"{ga[BLOC_KEY] * 100:.0f} % of the posts; for DIE LINKE posts E averages "
-        f"{gl['Mean E']:.2f}, {gl['E - target']:.2f} points right of the target (left bloc in "
+        f"{gl['Mean E']:.2f}, {gl['E - target']:.2f} points right of the target (far-left bloc in "
         f"{gl[BLOC_KEY] * 100:.0f} %). A model that predicted E itself would have "
         f"an MAE of {ga['MAE of E as prediction']:.2f} on AfD and {gl['MAE of E as prediction']:.2f} on DIE LINKE posts, "
         f"worse than the baseline of {worse['AfD']} (AfD) and {worse['DIE LINKE']} (DIE LINKE) of the {len(main)} "
@@ -4660,7 +4684,7 @@ def extremes_readings(
         f"{pj.loc['other parties', 'Share cited (A_caus = 1)']:.2f}). Per text, the models cite "
         f"{pj.loc['AfD', OWN_KEY]:.2f} AfD chunks for AfD posts and "
         f"{pj.loc['DIE LINKE', OWN_KEY]:.2f} DIE LINKE chunks for DIE LINKE "
-        f"posts, but also {pj.loc['AfD', 'Cited chunks from the opposite bloc per text']:.2f} left-bloc chunks for AfD "
+        f"posts, but also {pj.loc['AfD', 'Cited chunks from the opposite side per text']:.2f} left-side chunks (DIE LINKE, Grüne, SPD, BSW) for AfD "
         f"posts. The per-model cells are small: {len(small)} cells have fewer than {SMALL_TEXTS} sampled texts (e.g. "
         f"{', '.join(f'{m} {s} ({n})' for m, s, n in zip(small['Model'][:4], small['Subset'][:4], small['Sampled texts'][:4]))}), "
         f"so per-model differences are not interpreted."
@@ -4703,7 +4727,7 @@ def extremes_readings(
         f"The output schema in `rag/evaluator.py` "
         f"lists `bias_score` before `justification`, so with constrained decoding the score is most likely generated "
         f"before the reasoning, and the reasoning cannot correct it. For DIE LINKE posts the mirror pattern (likened to "
-        f"DIE LINKE but scored ≥ 5.2) appears mainly in {lk.index[0]} ({lk.iloc[0] * 100:.0f} %) and {lk.index[1]} "
+        f"DIE LINKE but scored ≥ 4.6) appears mainly in {lk.index[0]} ({lk.iloc[0] * 100:.0f} %) and {lk.index[1]} "
         f"({lk.iloc[1] * 100:.0f} %). Both measures are keyword heuristics; a manual check of Llama 70B case "
         f"justifications found the flagged ones to be real contradictions and the unflagged ones to include further "
         f"contradictions, so the shares are lower bounds."
@@ -4737,7 +4761,7 @@ def extremes_readings(
         f"They retrieve {lc['Retrieved from author party (of 5)']:.1f} DIE LINKE chunks of 5 but cite only "
         f"{lc['Cited from author party']:.2f}, and {lc['Posts without numeric citation']} of {lc['N']} justifications "
         f"cite no chunk by number. {lc['Likened but scored other side']} liken the post to DIE LINKE but score it "
-        f"≥ 5.2. Because this model shifts all posts towards the centre band with RAG (section 1 of "
+        f"≥ 4.6. Because this model shifts all posts towards the centre band with RAG (section 1 of "
         f"`04_why_rag_direction.md`), these cases mainly show that general shift rather than DIE LINKE-specific "
         f"evidence."
     )
@@ -4959,7 +4983,9 @@ def labels_by_chunk_party(ch: pd.DataFrame, scope: str, m: np.ndarray) -> pd.Dat
         ("Chunk party", NO_POSITION, (ch["chunk_group"] == NO_POSITION).to_numpy())
     )
     groups += [
-        ("Chunk bloc", b, (ch["chunk_bloc"] == b).to_numpy()) for b in BLOC_NAMES
+        ("Chunk bloc", b, (ch["chunk_bloc"] == b).to_numpy())
+        for b in BLOC_NAMES
+        if (ch["chunk_bloc"] == b).any()  # the centre bloc holds no party
     ]
     groups += [
         ("Chunk from the author's party", "yes", ch["same_party"].to_numpy()),
@@ -6083,7 +6109,7 @@ def main():
         default=None,
         help="indexed chunk file (chunks.jsonl), or CSV with columns party,chunks (counted from it) "
         "or party,speeches (approximation). Default: the chunk file if present, else "
-        "src/datasets/knowledge_base/kb_speech_counts.csv",
+        "extraction/datasets/knowledge_base/kb_speech_counts.csv",
     )
     p.add_argument("--n-boot", type=int, default=em.DEFAULT_N_BOOT)
     p.add_argument("--seed", type=int, default=em.DEFAULT_SEED)

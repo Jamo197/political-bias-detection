@@ -65,11 +65,18 @@ PARTY_ALIASES = {"CDU": "CDU/CSU", "CSU": "CDU/CSU"}
 # Retrieval quality (section 8): party position = mean(lrecon, galtan) of the
 # CHES wave below (latest earlier wave if a party is missing), converted from the
 # CHES 0-10 scale to the project 1-7 scale (see _ches_to_7).
-# Blocs on the 1-7 scale: Left < 3.4 <= Centre < 5.2 <= Right (= 4 / 7 on 0-10).
+# Blocs: five blocs as in Jakob et al. (far-left ... far-right), with the
+# symmetric CHES cut-offs 2 / 4 / 6 / 8 on 0-10 = 2.2 / 3.4 / 4.6 / 5.8 on 1-7
+# (lower bound inclusive). Parties are assigned to blocs by CHES lrgen rounded to
+# two decimals (load_bloc_positions), NOT by the mean(lrecon, galtan) position
+# used for the party distance. Sides: left = far-left + centre-left, right =
+# centre-right + far-right; the centre bloc (3.4 - 4.6) holds no party.
 CHES_PATH = Path("src/datasets/ground_truth/ches_germany_1999-2024.csv")
 CHES_WAVE = 2024
-BLOC_THRESHOLDS = (3.4, 5.2)
-BLOC_NAMES = ["Left", "Centre", "Right"]
+BLOC_THRESHOLDS = (2.2, 3.4, 4.6, 5.8)
+BLOC_NAMES = ["Far-left", "Centre-left", "Centre", "Centre-right", "Far-right"]
+BLOC_SIDE = [-1, -1, 0, 1, 1]  # bloc index -> side (-1 left, 0 centre, +1 right)
+SIDE_THRESHOLDS = (BLOC_THRESHOLDS[1], BLOC_THRESHOLDS[2])  # left < 3.4 <= centre < 4.6 <= right
 
 # Casefolded, whitespace-normalised party spellings -> canonical name. Anything
 # not listed (fraktionslos, UNKNOWN, ...) is unmapped and excluded.
@@ -170,8 +177,33 @@ def attach_ches_lrgen(df: pd.DataFrame, path: Path = CHES_PATH, wave: int = CHES
 
 
 def _bloc(pos: float) -> int:
-    lo, hi = BLOC_THRESHOLDS
-    return 0 if pos < lo else (1 if pos < hi else 2)
+    """Bloc index 0..4 (BLOC_NAMES) of a 1-7 position; lower bounds inclusive."""
+    return int(np.searchsorted(BLOC_THRESHOLDS, pos, side="right"))
+
+
+def _side(pos: float) -> int:
+    """Side of a 1-7 position: -1 left (< 3.4), 0 centre, +1 right (>= 4.6)."""
+    return BLOC_SIDE[_bloc(pos)]
+
+
+def _round2(x: float) -> float:
+    """Round half-up to two decimals (avoids banker's rounding / float artefacts)."""
+    from decimal import ROUND_HALF_UP, Decimal
+
+    return float(Decimal(repr(float(x))).quantize(Decimal("0.01"), rounding=ROUND_HALF_UP))
+
+
+def load_bloc_positions(path: Path = CHES_PATH, wave: int = CHES_WAVE) -> Dict[str, float]:
+    """Canonical party (as _norm_party) -> CHES lrgen on 1-7, rounded to two
+    decimals; used for bloc membership only. CDU/CSU gets the CDU value
+    (CSU, 5.54, is in the same bloc)."""
+    lrgen = load_ches_lrgen(path, wave)
+    out: Dict[str, float] = {}
+    for std, v in lrgen.items():
+        canon = _norm_party(std)
+        if canon and (canon != "CDU/CSU" or std == LRGEN_PARTY_MAP["CDU/CSU"]):
+            out[canon] = _round2(v)
+    return out
 
 
 def _model_family(model_name: str) -> str:
@@ -1489,10 +1521,12 @@ def main_k_ablation(
 
 
 def _macro_f1(conf: np.ndarray) -> Tuple[np.ndarray, np.ndarray]:
-    """Per-bloc F1 and macro-F1 from flattened 3x3 confusion matrices (..., 9),
+    """Per-bloc F1 and macro-F1 from flattened nxn confusion matrices (..., n*n),
     rows = input bloc, columns = chunk bloc. F1 = 2TP / (2TP + FP + FN); blocs that
-    occur neither as input nor as chunk are NaN and left out of the macro mean."""
-    C = conf.reshape(*conf.shape[:-1], 3, 3)
+    occur neither as input nor as chunk (e.g. the empty centre) are NaN and left
+    out of the macro mean."""
+    n = len(BLOC_NAMES)
+    C = conf.reshape(*conf.shape[:-1], n, n)
     tp = np.diagonal(C, axis1=-2, axis2=-1)
     f1 = _safe_div(2 * tp, C.sum(-1) + C.sum(-2))
     with warnings.catch_warnings():
@@ -1505,11 +1539,12 @@ def compute_retrieval_quality(
     n_boot: int = DEFAULT_N_BOOT,
     seed: int = DEFAULT_SEED,
     positions: Optional[Dict[str, float]] = None,
+    bloc_positions: Optional[Dict[str, float]] = None,
 ) -> pd.DataFrame:
     """Spectrum match of the retrieved chunks per (model, condition), RAG rows only.
 
-    Each chunk "predicts" the input party's bloc (Left / Centre / Right, see
-    BLOC_THRESHOLDS):
+    Each chunk "predicts" the input party's bloc (five blocs, see BLOC_THRESHOLDS;
+    membership by lrgen, load_bloc_positions):
     * Macro_F1: bloc F1 averaged over blocs (plus F1_<bloc>).
     * Bloc_precision_at_k: mean per-text share of chunks from the input's bloc.
     * Mean_party_distance: mean |pos(input party) - pos(chunk party)| on the
@@ -1517,6 +1552,8 @@ def compute_retrieval_quality(
     Fraktionslos/unknown chunk parties are excluded (N_chunks_unmapped). CIs:
     cluster bootstrap over texts."""
     positions = positions or load_party_positions()
+    bpos = bloc_positions or load_bloc_positions()
+    nb = len(BLOC_NAMES)
     rag = df[df["is_rag"]]
     if rag.empty:
         return pd.DataFrame()
@@ -1531,23 +1568,24 @@ def compute_retrieval_quality(
 
     rows = []
     for (model, condition), g in rag.groupby(["model", "condition"]):
-        conf = np.zeros((len(texts), 9))
+        conf = np.zeros((len(texts), nb * nb))
         prec, dist = [], []
         n_chunks = n_unmapped = 0
         for text, party, chunks in zip(g["text_index"], g["party"], g["chunk_parties"]):
             ip = positions.get(_norm_party(party))
             if ip is None or not chunks:
                 continue
-            ib = _bloc(ip)
-            cps = [positions.get(_norm_party(c)) for c in chunks]
+            ib = _bloc(bpos[_norm_party(party)])
+            names = [_norm_party(c) for c in chunks]
+            cps = [positions.get(c) for c in names]
             valid = [c for c in cps if c is not None]
             n_chunks += len(cps)
             n_unmapped += len(cps) - len(valid)
             if not valid:
                 continue
-            cbs = [_bloc(c) for c in valid]
+            cbs = [_bloc(bpos[c]) for c, v in zip(names, cps) if v is not None]
             for cb in cbs:
-                conf[tpos[text], 3 * ib + cb] += 1
+                conf[tpos[text], nb * ib + cb] += 1
             prec.append(np.mean([cb == ib for cb in cbs]))
             dist.append(np.mean([abs(c - ip) for c in valid]))
         if not prec:
@@ -1583,9 +1621,13 @@ def compute_retrieval_quality(
 
 def print_party_blocs(positions: Optional[Dict[str, float]] = None):
     positions = positions or load_party_positions()
-    print(f"Party positions (CHES {CHES_WAVE}, mean of lrecon & galtan, 1-7 scale) and blocs:")
+    bpos = load_bloc_positions()
+    print(f"Party positions (CHES {CHES_WAVE}, 1-7 scale): distance = mean(lrecon, galtan); "
+          f"bloc = lrgen (2 dp):")
     for party, pos in sorted(positions.items(), key=lambda kv: kv[1]):
-        print(f"  {party:<24} {pos:5.2f}  {BLOC_NAMES[_bloc(pos)]}")
+        lr = bpos.get(party)
+        bloc = BLOC_NAMES[_bloc(lr)] if lr is not None else "?"
+        print(f"  {party:<24} {pos:5.2f}  lrgen {lr if lr is not None else float('nan'):5.2f}  {bloc}")
 
 
 def _plot_retrieval_quality_heatmaps(

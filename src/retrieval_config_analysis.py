@@ -679,8 +679,11 @@ def hybrid_lexical(valid: pd.DataFrame, chunk_text: Dict[str, str], post_text: D
 
 def party_agreement(valid: pd.DataFrame) -> Tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
     """Per post: share of mapped chunks from the author's party and bloc.
-    Aggregated per model x condition; plus abs error by # same-party chunks."""
+    Aggregated per model x condition; plus abs error by # same-party chunks.
+    Bloc = one of five blocs by CHES lrgen (2 dp, em.load_bloc_positions);
+    distance = mean(lrecon, galtan) positions as before."""
     positions = em.load_party_positions()
+    bpos = em.load_bloc_positions()
     rag = valid[valid["is_rag"]].copy()
 
     def per_row(party, cps):
@@ -691,8 +694,8 @@ def party_agreement(valid: pd.DataFrame) -> Tuple[pd.DataFrame, pd.DataFrame, pd
         if not a or not mapped:
             return np.nan, np.nan, np.nan, 0
         same = sum(c == a for c in mapped)
-        bloc = (np.mean([em._bloc(positions[c]) == em._bloc(ap) for c in mapped if c in positions])
-                if ap is not None else np.nan)
+        bloc = (np.mean([em._bloc(bpos[c]) == em._bloc(bpos[a]) for c in mapped if c in bpos])
+                if a in bpos else np.nan)
         dist = (np.mean([abs(positions[c] - ap) for c in mapped if c in positions])
                 if ap is not None else np.nan)
         return same / len(mapped), bloc, dist, same

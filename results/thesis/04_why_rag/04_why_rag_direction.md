@@ -2,27 +2,27 @@
 
 ## Data
 
-Paired posts of e5/simple (k = 5) and the no-RAG baseline per model (inner join on text_index, both scores parseable): Llama 3B 710, Llama 8B 774, Llama 70B 775, Ministral 3B 761, Ministral 8B 760, Ministral 14B 770, Qwen 3B 773, Qwen 7B 773, Qwen 32B 775, Qwen 72B 775. Llama 3B is reported on all paired posts and on the 611 posts with a baseline score ≥ 1. Target: CHES 2024 lrgen of the author's party, two decimals (DIE LINKE 1.85, Grüne 2.83, SPD 3.08, FDP 4.63, CDU 4.95, CSU 5.54, AfD 6.56); target spread AfD − DIE LINKE = 4.71. CSU posts (about 7 per model) are merged into CDU/CSU, as in the party labels of the logs, and are not tested on their own; each post keeps its own target (CSU 5.54, CDU and CDU/CSU 4.95). Centre band [3.4, 5.2). Moved = |RAG − baseline| ≥ 0.5. Paired bootstrap 2000 resamples of posts, seed 42; Wilcoxon signed-rank tests on per-post differences, Holm within each model. No other exclusions.
+Paired posts of e5/simple (k = 5) and the no-RAG baseline per model (inner join on text_index, both scores parseable): Llama 3B 710, Llama 8B 774, Llama 70B 775, Ministral 3B 761, Ministral 8B 760, Ministral 14B 770, Qwen 3B 773, Qwen 7B 773, Qwen 32B 775, Qwen 72B 775. Llama 3B is reported on all paired posts and on the 611 posts with a baseline score ≥ 1. Target: CHES 2024 lrgen of the author's party, two decimals (DIE LINKE 1.85, Grüne 2.83, SPD 3.08, FDP 4.63, CDU 4.95, CSU 5.54, AfD 6.56); target spread AfD − DIE LINKE = 4.71. CSU posts (about 7 per model) are merged into CDU/CSU, as in the party labels of the logs, and are not tested on their own; each post keeps its own target (CSU 5.54, CDU and CDU/CSU 4.95). Centre band [3.4, 4.6) (the centre bloc). Moved = |RAG − baseline| ≥ 0.5. Paired bootstrap 2000 resamples of posts, seed 42; Wilcoxon signed-rank tests on per-post differences, Holm within each model. No other exclusions.
 
 ## 1. Overall shift per model
 
 Baseline → RAG (difference [95 % CI]):
 
-| Model | Mean signed error | SD of predictions | Calibration slope | Spread AfD - DIE LINKE | Share in centre band [3.4, 5.2) |
+| Model | Mean signed error | SD of predictions | Calibration slope | Spread AfD - DIE LINKE | Share in centre band [3.4, 4.6) |
 |---|---|---|---|---|---|
 | Llama 3B (all) | -0.34 → 1.26 (+1.60 [+1.47, +1.73]) | 2.14 → 1.17 (-0.97 [-1.05, -0.88]) | 0.38 → 0.20 (-0.18 [-0.26, -0.10]) | 1.78 → 0.94 (-0.84 [-1.20, -0.43]) | 0.06 → 0.55 (+0.49 [+0.45, +0.53]) |
 | Llama 3B (baseline ≥ 1) | 0.14 → 1.37 (+1.23 [+1.10, +1.35]) | 1.86 → 1.15 (-0.72 [-0.78, -0.64]) | 0.36 → 0.20 (-0.16 [-0.24, -0.09]) | 1.57 → 0.90 (-0.67 [-1.03, -0.28]) | 0.07 → 0.52 (+0.45 [+0.41, +0.49]) |
-| Llama 8B | 0.89 → 0.23 (-0.66 [-0.78, -0.55]) | 2.01 → 1.58 (-0.44 [-0.49, -0.38]) | 0.60 → 0.58 (-0.01 [-0.09, +0.06]) | 2.72 → 2.87 (+0.15 [-0.22, +0.52]) | 0.06 → 0.25 (+0.19 [+0.15, +0.22]) |
+| Llama 8B | 0.89 → 0.23 (-0.66 [-0.78, -0.55]) | 2.01 → 1.58 (-0.44 [-0.49, -0.38]) | 0.60 → 0.58 (-0.01 [-0.09, +0.06]) | 2.72 → 2.87 (+0.15 [-0.22, +0.52]) | 0.03 → 0.25 (+0.22 [+0.19, +0.25]) |
 | Llama 70B | 0.09 → -0.01 (-0.10 [-0.19, -0.00]) | 1.40 → 1.24 (-0.16 [-0.21, -0.10]) | 0.63 → 0.32 (-0.32 [-0.39, -0.24]) | 2.98 → 1.39 (-1.59 [-2.02, -1.19]) | 0.32 → 0.41 (+0.09 [+0.06, +0.12]) |
 | Ministral 3B | 0.43 → -0.07 (-0.51 [-0.63, -0.39]) | 1.77 → 1.57 (-0.20 [-0.28, -0.12]) | 0.55 → 0.46 (-0.09 [-0.17, -0.01]) | 2.64 → 2.34 (-0.30 [-0.71, +0.13]) | 0.43 → 0.51 (+0.08 [+0.04, +0.12]) |
-| Ministral 8B | 0.51 → 0.47 (-0.04 [-0.14, +0.06]) | 1.68 → 1.99 (+0.31 [+0.25, +0.37]) | 0.66 → 0.76 (+0.10 [+0.04, +0.17]) | 3.20 → 3.84 (+0.64 [+0.32, +0.97]) | 0.38 → 0.21 (-0.16 [-0.20, -0.13]) |
-| Ministral 14B | -0.21 → -0.16 (+0.06 [-0.01, +0.13]) | 1.45 → 1.69 (+0.24 [+0.19, +0.30]) | 0.63 → 0.75 (+0.11 [+0.05, +0.18]) | 3.06 → 3.68 (+0.62 [+0.29, +0.96]) | 0.22 → 0.24 (+0.02 [-0.01, +0.05]) |
-| Qwen 3B | 0.47 → 0.64 (+0.17 [+0.12, +0.22]) | 0.62 → 0.41 (-0.21 [-0.26, -0.16]) | 0.02 → 0.03 (+0.00 [-0.04, +0.04]) | 0.03 → 0.09 (+0.05 [-0.14, +0.25]) | 0.87 → 0.98 (+0.11 [+0.08, +0.13]) |
+| Ministral 8B | 0.51 → 0.47 (-0.04 [-0.14, +0.06]) | 1.68 → 1.99 (+0.31 [+0.25, +0.37]) | 0.66 → 0.76 (+0.10 [+0.04, +0.17]) | 3.20 → 3.84 (+0.64 [+0.32, +0.97]) | 0.35 → 0.21 (-0.13 [-0.17, -0.10]) |
+| Ministral 14B | -0.21 → -0.16 (+0.06 [-0.01, +0.13]) | 1.45 → 1.69 (+0.24 [+0.19, +0.30]) | 0.63 → 0.75 (+0.11 [+0.05, +0.18]) | 3.06 → 3.68 (+0.62 [+0.29, +0.96]) | 0.19 → 0.23 (+0.04 [+0.01, +0.07]) |
+| Qwen 3B | 0.47 → 0.64 (+0.17 [+0.12, +0.22]) | 0.62 → 0.41 (-0.21 [-0.26, -0.16]) | 0.02 → 0.03 (+0.00 [-0.04, +0.04]) | 0.03 → 0.09 (+0.05 [-0.14, +0.25]) | 0.72 → 0.82 (+0.09 [+0.06, +0.13]) |
 | Qwen 7B | 0.22 → 0.56 (+0.34 [+0.26, +0.43]) | 0.89 → 1.35 (+0.46 [+0.40, +0.52]) | 0.21 → 0.36 (+0.15 [+0.09, +0.21]) | 1.07 → 1.82 (+0.75 [+0.41, +1.10]) | 0.75 → 0.58 (-0.17 [-0.21, -0.14]) |
-| Qwen 32B | 0.39 → 0.13 (-0.27 [-0.33, -0.20]) | 0.88 → 1.09 (+0.20 [+0.15, +0.26]) | 0.28 → 0.40 (+0.12 [+0.07, +0.18]) | 1.44 → 2.05 (+0.61 [+0.33, +0.91]) | 0.78 → 0.65 (-0.13 [-0.16, -0.09]) |
-| Qwen 72B | 0.46 → 0.45 (-0.00 [-0.06, +0.05]) | 1.01 → 1.22 (+0.21 [+0.17, +0.25]) | 0.48 → 0.57 (+0.09 [+0.05, +0.12]) | 2.35 → 2.83 (+0.48 [+0.29, +0.66]) | 0.69 → 0.61 (-0.09 [-0.12, -0.06]) |
+| Qwen 32B | 0.39 → 0.13 (-0.27 [-0.33, -0.20]) | 0.88 → 1.09 (+0.20 [+0.15, +0.26]) | 0.28 → 0.40 (+0.12 [+0.07, +0.18]) | 1.44 → 2.05 (+0.61 [+0.33, +0.91]) | 0.78 → 0.65 (-0.13 [-0.17, -0.10]) |
+| Qwen 72B | 0.46 → 0.45 (-0.00 [-0.06, +0.05]) | 1.01 → 1.22 (+0.21 [+0.17, +0.25]) | 0.48 → 0.57 (+0.09 [+0.05, +0.12]) | 2.35 → 2.83 (+0.48 [+0.29, +0.66]) | 0.69 → 0.60 (-0.09 [-0.12, -0.06]) |
 
-Reading: there is no common direction. With RAG, 3 of 10 models predict further right on average (Llama 3B (all), Qwen 3B, Qwen 7B) and 4 further left (Llama 8B, Llama 70B, Ministral 3B, Qwen 32B). More informative is the spread: the predictions become more dispersed (SD up) in Ministral 8B, Ministral 14B, Qwen 7B, Qwen 32B, Qwen 72B, and the AfD − DIE LINKE gap widens in Ministral 8B, Ministral 14B, Qwen 7B, Qwen 32B, Qwen 72B, towards the target gap of 4.71. The SD shrinks in Llama 3B (all), Llama 8B, Llama 70B, Ministral 3B, Qwen 3B, and the gap narrows in Llama 3B (all), Llama 70B. More predictions fall in the centre band in Llama 3B (all), Llama 8B, Llama 70B, Ministral 3B, Qwen 3B and fewer in Ministral 8B, Qwen 7B, Qwen 32B, Qwen 72B. The Llama 3B results without the sub-1 baseline scores point the same way.
+Reading: there is no common direction. With RAG, 3 of 10 models predict further right on average (Llama 3B (all), Qwen 3B, Qwen 7B) and 4 further left (Llama 8B, Llama 70B, Ministral 3B, Qwen 32B). More informative is the spread: the predictions become more dispersed (SD up) in Ministral 8B, Ministral 14B, Qwen 7B, Qwen 32B, Qwen 72B, and the AfD − DIE LINKE gap widens in Ministral 8B, Ministral 14B, Qwen 7B, Qwen 32B, Qwen 72B, towards the target gap of 4.71. The SD shrinks in Llama 3B (all), Llama 8B, Llama 70B, Ministral 3B, Qwen 3B, and the gap narrows in Llama 3B (all), Llama 70B. More predictions fall in the centre band in Llama 3B (all), Llama 8B, Llama 70B, Ministral 3B, Ministral 14B, Qwen 3B and fewer in Ministral 8B, Qwen 7B, Qwen 32B, Qwen 72B. The Llama 3B results without the sub-1 baseline scores point the same way.
 
 ## 2. Movement per post
 
@@ -118,7 +118,7 @@ Reading: pooled over models, RAG moves SPD posts +0.13 points (signed error) and
 
 ![fig_direction_party.png](fig_direction_party.png)
 
-Figure: mean prediction per author party, baseline (circle) and RAG (square); black bar = mean target; grey band = centre band [3.4, 5.2).
+Figure: mean prediction per author party, baseline (circle) and RAG (square); black bar = mean target; grey band = centre band [3.4, 4.6).
 
 ![fig_direction_extremes.png](fig_direction_extremes.png)
 

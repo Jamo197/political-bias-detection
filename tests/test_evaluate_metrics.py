@@ -181,6 +181,9 @@ def test_norm_party_messy_spellings():
 
 
 POS = {"DIE LINKE": 1.8, "SPD": 3.5, "FDP": 5.4, "AfD": 8.5}
+# Bloc membership (five blocs, lrgen): DIE LINKE + SPD centre-left here, FDP
+# centre-right, AfD far-right.
+BPOS = {"DIE LINKE": 2.5, "SPD": 3.08, "FDP": 4.63, "AfD": 6.56}
 
 
 def _rq_frame(chunks_per_text):
@@ -193,13 +196,22 @@ def _rq_frame(chunks_per_text):
 
 def test_retrieval_quality_perfect():
     df = _rq_frame([("DIE LINKE", ["Die Linke"] * 3), ("FDP", ["FDP"] * 3), ("AfD", ["AfD"] * 3)])
-    row = em.compute_retrieval_quality(df, n_boot=0, positions=POS).iloc[0]
+    row = em.compute_retrieval_quality(df, n_boot=0, positions=POS, bloc_positions=BPOS).iloc[0]
     assert row["Macro_F1"] == 1 and row["Bloc_precision_at_k"] == 1 and row["Mean_party_distance"] == 0
 
 
 def test_retrieval_quality_known_mix():
     df = _rq_frame([("DIE LINKE", ["SPD", "AfD", "fraktionslos"])])
-    row = em.compute_retrieval_quality(df, n_boot=0, positions=POS).iloc[0]
+    row = em.compute_retrieval_quality(df, n_boot=0, positions=POS, bloc_positions=BPOS).iloc[0]
     assert row["Bloc_precision_at_k"] == pytest.approx(0.5)
     assert row["Mean_party_distance"] == pytest.approx(((3.5 - 1.8) + (8.5 - 1.8)) / 2)
     assert row["N_chunks_unmapped"] == 1
+
+
+def test_five_blocs():
+    names = [em.BLOC_NAMES[em._bloc(x)] for x in (1.85, 2.2, 3.08, 3.4, 4.63, 5.8, 6.56)]
+    assert names == ["Far-left", "Centre-left", "Centre-left", "Centre", "Centre-right",
+                     "Far-right", "Far-right"]
+    assert [em._side(x) for x in (1.85, 3.39, 3.4, 4.6)] == [-1, -1, 0, 1]
+    b = em.load_bloc_positions()
+    assert b["DIE LINKE"] == 1.85 and b["CDU/CSU"] == 4.95 and b["AfD"] == 6.56

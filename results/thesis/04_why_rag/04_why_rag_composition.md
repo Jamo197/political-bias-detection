@@ -2,19 +2,19 @@
 
 ## Data
 
-Retrieved chunks: the e5/simple RAG logs of the ten models (k = 5). Retrieval does not depend on the generator: for all 775 texts the ten models received the identical ordered chunk list (checked), so every retrieval fact is computed once per text (775 texts, 3875 chunks). Because no model enters, the Llama-3B split by baseline score does not apply. Author parties: DIE LINKE 179, Grüne 156, SPD 217, FDP 58, CDU/CSU 51, AfD 114 posts (CDU/CSU = CDU, CSU and CDU/CSU authors; CSU authors keep the CSU position 5.54, all others the CDU value 4.95). Chunks without a position: 27 (Fraktionslos 20, fraktionslos 5, UNKNOWN 2); they count in the composition matrix as 'no position' and are left out of all shares, positions and distances. Knowledge base: `src/datasets/knowledge_base/kb_speech_counts.csv` (45499 speeches). APPROXIMATION: the knowledge-base shares are shares of speeches (thesis table tab:kb-parties), not of chunks. Retrieval draws chunks, and longer speeches yield more chunks; on the 1,731-speech development sample of the chunker the chunk share differs from the speech share by up to 2 percentage points (CDU/CSU 29.6 % vs 27.5 %, DIE LINKE 8.7 % vs 9.8 %). Expected shares and lifts are therefore approximate (lifts by up to about 10 %). Positions: CHES 2024 lrgen, two decimals; blocs left < 3.4 ≤ centre < 5.2 ≤ right. Bootstrap 2000 resamples of texts, seed 42; permutation null 1000 shuffles of the chunk lists across texts, seed 42.
+Retrieved chunks: the e5/simple RAG logs of the ten models (k = 5). Retrieval does not depend on the generator: for all 775 texts the ten models received the identical ordered chunk list (checked), so every retrieval fact is computed once per text (775 texts, 3875 chunks). Because no model enters, the Llama-3B split by baseline score does not apply. Author parties: DIE LINKE 179, Grüne 156, SPD 217, FDP 58, CDU/CSU 51, AfD 114 posts (CDU/CSU = CDU, CSU and CDU/CSU authors; CSU authors keep the CSU position 5.54, all others the CDU value 4.95). Chunks without a position: 27 (Fraktionslos 20, fraktionslos 5, UNKNOWN 2); they count in the composition matrix as 'no position' and are left out of all shares, positions and distances. Knowledge base: `extraction/datasets/knowledge_base/kb_speech_counts.csv` (45499 speeches). APPROXIMATION: the knowledge-base shares are shares of speeches (thesis table tab:kb-parties), not of chunks. Retrieval draws chunks, and longer speeches yield more chunks; on the 1,731-speech development sample of the chunker the chunk share differs from the speech share by up to 2 percentage points (CDU/CSU 29.6 % vs 27.5 %, DIE LINKE 8.7 % vs 9.8 %). Expected shares and lifts are therefore approximate (lifts by up to about 10 %). Positions: CHES 2024 lrgen, two decimals; five blocs far-left < 2.2 ≤ centre-left < 3.4 ≤ centre < 4.6 ≤ centre-right < 5.8 ≤ far-right (DIE LINKE far-left; Grüne, SPD, BSW centre-left; FDP, CDU, CSU centre-right; AfD far-right; no party in the centre). 'Opposite side' = chunks from the other side of the centre (left side = far-left + centre-left, right side = centre-right + far-right). Bootstrap 2000 resamples of texts, seed 42; permutation null 1000 shuffles of the chunk lists across texts, seed 42.
 
 ## 1. Knowledge base and chance level
 
 | Party | Speeches | Share of all speeches | Share of speeches with a position | Position (lrgen, 1-7) | Bloc |
 |---|---|---|---|---|---|
-| DIE LINKE | 3910 | 0.0859 | 0.0871 | 1.85 | Left |
-| Grüne | 6868 | 0.1509 | 0.1529 | 2.83 | Left |
-| SPD | 10806 | 0.2375 | 0.2406 | 3.08 | Left |
-| BSW | 151 | 0.0033 | 0.0034 | 3.18 | Left |
-| FDP | 4846 | 0.1065 | 0.1079 | 4.63 | Centre |
-| CDU/CSU | 11953 | 0.2627 | 0.2661 | 4.95 | Centre |
-| AfD | 6377 | 0.1402 | 0.142 | 6.56 | Right |
+| DIE LINKE | 3910 | 0.0859 | 0.0871 | 1.85 | Far-left |
+| Grüne | 6868 | 0.1509 | 0.1529 | 2.83 | Centre-left |
+| SPD | 10806 | 0.2375 | 0.2406 | 3.08 | Centre-left |
+| BSW | 151 | 0.0033 | 0.0034 | 3.18 | Centre-left |
+| FDP | 4846 | 0.1065 | 0.1079 | 4.63 | Centre-right |
+| CDU/CSU | 11953 | 0.2627 | 0.2661 | 4.95 | Centre-right |
+| AfD | 6377 | 0.1402 | 0.142 | 6.56 | Far-right |
 | no position | 588 | 0.0129 |  |  |  |
 
 Reading: the pool is dominated by CDU/CSU (26 %) and SPD (24 %); DIE LINKE (9 %) and BSW (0.3 %) are the smallest groups. These shares of speeches define what five random chunks would contain (approximately, see Data).
@@ -22,14 +22,14 @@ Reading: the pool is dominated by CDU/CSU (26 %) and SPD (24 %); DIE LINKE (9 %)
 | Statistic | Observed | CI low | CI high | Knowledge-base expectation | Permutation null mean | Permutation null 2.5 % | Permutation null 97.5 % | Wilcoxon p (Holm) | Permutation p |
 |---|---|---|---|---|---|---|---|---|---|
 | Same-party share | 0.3003 | 0.2823 | 0.3194 | 0.1647 | 0.1737 | 0.1601 | 0.1883 | <0.001 | <0.001 |
-| Same-bloc share | 0.5463 | 0.5259 | 0.5661 | 0.4161 | 0.4581 | 0.4429 | 0.4721 | <0.001 | <0.001 |
+| Same-bloc share | 0.4334 | 0.4135 | 0.4533 | 0.2846 | 0.295 | 0.2779 | 0.3114 | <0.001 | <0.001 |
 | Mean position of retrieved parties | 3.828 | 3.7686 | 3.8865 | 4.0941 |  |  |  | <0.001 |  |
 | Mean distance to author position | 1.2948 | 1.2392 | 1.3529 | 1.7193 | 1.6576 | 1.6125 | 1.7038 | <0.001 | <0.001 |
-| Opposite-bloc share | 0.1296 | 0.1137 | 0.1461 | 0.2035 | 0.1933 | 0.1805 | 0.2061 | <0.001 | <0.001 |
+| Opposite-side share | 0.4022 | 0.3835 | 0.4199 | 0.5068 | 0.4757 | 0.4581 | 0.4942 | <0.001 | <0.001 |
 
-Reading: for a random post, 30 % of the retrieved chunks come from the author's own party, against 16 % for random chunks and 17 % under the permutation null, which keeps the overall mix of retrieved parties but breaks the link to the post. Same-bloc (55 % vs 42 % / 46 %) and opposite-bloc chunks (13 % vs 20 % / 19 %) point the same way: retrieval is clearly party- and bloc-sensitive, but most chunks still come from other parties. The retrieved parties sit at 3.83 on average, left of the pool (4.09) and right of the posts' authors (3.50).
+Reading: for a random post, 30 % of the retrieved chunks come from the author's own party, against 16 % for random chunks and 17 % under the permutation null, which keeps the overall mix of retrieved parties but breaks the link to the post. Same-bloc (43 % vs 28 % / 29 %) and opposite-side chunks (40 % vs 51 % / 48 %) point the same way: retrieval is clearly party- and bloc-sensitive, but most chunks still come from other parties (and other blocs). With five blocs the same-bloc share is the own-party share plus chunks of bloc partners (centre-left: Grüne, SPD, BSW; centre-right: FDP, CDU/CSU; DIE LINKE and AfD are alone in their bloc). The retrieved parties sit at 3.83 on average, left of the pool (4.09) and right of the posts' authors (3.50).
 
-Cross-check with chapter 03: with the chapter-03 definitions (party positions = mean of CHES lrecon and galtan, `em.load_party_positions`) the same texts give same-party 0.3003, same-bloc 0.5468 and distance 1.2227 (`party_agreement_by_condition.csv`, e5/simple: 0.3002, 0.5467, 1.2232; there averaged over models). Same-party does not depend on positions. Same-bloc and distance differ because this chapter places parties by lrgen; this moves BSW (centre → left), CSU authors (centre → right) to another bloc.
+Cross-check with chapter 03: with the chapter-03 definitions (blocs by lrgen as here, but CSU authors counted as CDU/CSU; distance by the mean of CHES lrecon and galtan, `em.load_party_positions`) the same texts give same-party 0.3003, same-bloc 0.4334 and distance 1.2227 (`party_agreement_by_condition.csv`, e5/simple: 0.3002, 0.4330, 1.2232; there averaged over models, slightly different post sets). Same-party and same-bloc do not depend on the position set (no party changes bloc); the distance differs because chapter 03 measures it on lrecon/galtan positions.
 
 ## 2. Retrieved party composition by author party
 
@@ -48,17 +48,17 @@ Share of the retrieved chunks (rows sum to 1):
 
 Reading: the own party is the largest (or tied largest) column for DIE LINKE (34 %), SPD (31 %), CDU/CSU (29 %), AfD (35 %); Grüne posts get more chunks from SPD (24 %) than from their own party (23 %); FDP posts get more chunks from SPD (25 %) than from their own party (20 %). AfD posts still get 64 % of their chunks from other parties. The CIs per cell are in `retrieval_composition_matrix.csv`.
 
-| Author party | Posts | Author position | Same-party share | Same-bloc share | Mean position of retrieved parties | Mean distance to author position | Opposite-bloc share |
+| Author party | Posts | Author position | Same-party share | Same-bloc share | Mean position of retrieved parties | Mean distance to author position | Opposite-side share |
 |---|---|---|---|---|---|---|---|
-| All posts | 775 |  | 0.30 (0.28-0.32) | 0.55 (0.53-0.57) | 3.83 (3.77-3.89) | 1.29 (1.24-1.35) | 0.13 (0.11-0.15) |
-| DIE LINKE | 179 | 1.85 | 0.35 (0.30-0.39) | 0.66 (0.62-0.70) | 3.39 (3.25-3.53) | 1.54 (1.40-1.68) | 0.10 (0.08-0.13) |
-| Grüne | 156 | 2.83 | 0.23 (0.20-0.27) | 0.58 (0.54-0.62) | 3.70 (3.59-3.80) | 1.08 (0.99-1.17) | 0.04 (0.03-0.06) |
-| SPD | 217 | 3.08 | 0.31 (0.28-0.34) | 0.59 (0.55-0.62) | 3.79 (3.70-3.88) | 0.99 (0.92-1.07) | 0.07 (0.05-0.09) |
-| FDP | 58 | 4.63 | 0.20 (0.14-0.26) | 0.44 (0.37-0.52) | 3.91 (3.75-4.08) | 1.12 (0.98-1.25) |  |
-| CDU/CSU | 51 | 5.031 | 0.29 (0.23-0.35) | 0.41 (0.34-0.48) | 4.01 (3.86-4.15) | 1.22 (1.08-1.36) | 0.63 (0.43-0.83) |
+| All posts | 775 |  | 0.30 (0.28-0.32) | 0.43 (0.41-0.45) | 3.83 (3.77-3.89) | 1.29 (1.24-1.35) | 0.40 (0.38-0.42) |
+| DIE LINKE | 179 | 1.85 | 0.35 (0.30-0.39) | 0.35 (0.30-0.39) | 3.39 (3.25-3.53) | 1.54 (1.40-1.68) | 0.34 (0.30-0.38) |
+| Grüne | 156 | 2.83 | 0.23 (0.20-0.27) | 0.47 (0.43-0.51) | 3.70 (3.59-3.80) | 1.08 (0.99-1.17) | 0.42 (0.38-0.46) |
+| SPD | 217 | 3.08 | 0.31 (0.28-0.34) | 0.51 (0.48-0.55) | 3.79 (3.70-3.88) | 0.99 (0.92-1.07) | 0.41 (0.38-0.45) |
+| FDP | 58 | 4.63 | 0.20 (0.14-0.26) | 0.44 (0.37-0.52) | 3.91 (3.75-4.08) | 1.12 (0.98-1.25) | 0.50 (0.43-0.57) |
+| CDU/CSU | 51 | 5.031 | 0.29 (0.23-0.35) | 0.45 (0.39-0.51) | 4.01 (3.86-4.15) | 1.22 (1.08-1.36) | 0.49 (0.43-0.55) |
 | AfD | 114 | 6.56 | 0.35 (0.31-0.40) | 0.35 (0.31-0.40) | 4.65 (4.48-4.82) | 1.91 (1.74-2.08) | 0.37 (0.32-0.42) |
 
-Reading: the same-party share is highest for AfD (35 %) and DIE LINKE (35 %) posts, the two parties at the ends of the scale, and lowest for FDP (20 %) and Grüne (23 %). The retrieved parties are far from the author for the parties at the ends of the scale (mean distance AfD 1.91, DIE LINKE 1.54) and close for SPD (0.99). For AfD posts 37 % of the chunks come from the left bloc. The CDU/CSU row mixes CDU authors (centre) and CSU authors (right); its opposite-bloc share rests on 7 CSU posts only. Tests against chance are in `retrieval_chance_level.csv`; for FDP, CDU/CSU the same-party excess is significant in the permutation test but not in the Holm-corrected Wilcoxon test, because most of their posts receive no own-party chunk at all (median 0), so the mean rises without the median.
+Reading: the same-party share is highest for AfD (35 %) and DIE LINKE (35 %) posts, the two parties at the ends of the scale, and lowest for FDP (20 %) and Grüne (23 %). The retrieved parties are far from the author for the parties at the ends of the scale (mean distance AfD 1.91, DIE LINKE 1.54) and close for SPD (0.99). For AfD posts 37 % of the chunks come from the left side (DIE LINKE, Grüne, SPD, BSW), for DIE LINKE posts 34 % from the right side (FDP, CDU/CSU, AfD). Both extreme parties are alone in their bloc, so their same-bloc share equals their same-party share. Tests against chance are in `retrieval_chance_level.csv`; for FDP, CDU/CSU the same-party excess is significant in the permutation test but not in the Holm-corrected Wilcoxon test, because most of their posts receive no own-party chunk at all (median 0), so the mean rises without the median.
 
 ## 3. Lift (observed share / knowledge-base share)
 
