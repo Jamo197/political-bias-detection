@@ -32,7 +32,7 @@ Writes CSV + Markdown to results/thesis/03_retrieval_configs/:
   m3_coefficients.csv / m3_summary.csv
         mixed model M3 (RAG rows) + likelihood-ratio test of the design factors
   k_ablation.csv / k_pairwise.csv
-        MAE against k for Llama-8B and Ministral-14B (e5/simple)
+        MAE against k for Llama-8B, Ministral-14B and Llama-70B (e5/simple)
   retrieval_configs_ches_lrgen.md
         all tables in one report
 
@@ -67,7 +67,8 @@ STRATEGIES = ["simple", "hyde", "twostage"]
 MRL_TRUNCATED = {"jina": 2048, "qwen3": 4096}
 NATIVE_DIM = {"bge": 1024, "e5": 1024, "jina": 2048, "qwen3": 4096}
 
-K_MODELS = ["Llama-3.1-8B-Instruct", "Ministral-3-14B-Instruct-2512"]
+K_MODELS = ["Llama-3.1-8B-Instruct", "Ministral-3-14B-Instruct-2512",
+            "Meta-Llama-3.1-70B-Instruct-FP8"]
 K_CONDITION = "e5/simple"
 
 # Runs superseded by a pipeline fix (not replicates of the final cell).
@@ -789,6 +790,8 @@ def k_ablation(rows: pd.DataFrame, valid: pd.DataFrame, n_boot: int, seed: int):
     k5 = valid[valid["model"].isin(K_MODELS) & (valid["condition"] == K_CONDITION)].copy()
     k0 = valid[valid["model"].isin(K_MODELS) & (valid["condition"] == "no_rag")].copy()
     allk = pd.concat([kf, k5, k0], ignore_index=True)
+    # a k-ablation file may itself contain k = 5 (Llama-70B): keep it, not the main-matrix copy
+    allk = allk.drop_duplicates(["model", "k_chunks", "text_index"], keep="first")
     cols = ["model", "k_chunks", "text_index", "abs_error", "signed_error", "true", "pred",
             "party", "chunk_parties", "batch_run"]
     allk = allk[cols]

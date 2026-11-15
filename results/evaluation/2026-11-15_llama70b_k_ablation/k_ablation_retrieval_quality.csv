@@ -1,0 +1,6 @@
+Model,Condition,K,N_texts,N_chunks,N_chunks_unmapped,Macro_F1,Bloc_precision_at_k,Mean_party_distance,Macro_F1_lo,Macro_F1_hi,Bloc_precision_at_k_lo,Bloc_precision_at_k_hi,Mean_party_distance_lo,Mean_party_distance_hi,F1_Far-left,F1_Centre-left,F1_Centre,F1_Centre-right,F1_Far-right
+Meta-Llama-3.1-70B-Instruct-FP8,k=1,1,769,775,6,0.4334,0.4616,1.1444,0.3935,0.4701,0.4252,0.4954,1.0665,1.2289,0.4348,0.5685,,0.2759,0.4545
+Meta-Llama-3.1-70B-Instruct-FP8,k=3,3,774,2322,16,0.4206,0.452,1.189,0.3944,0.4459,0.4279,0.4759,1.1346,1.2462,0.4416,0.5578,,0.2812,0.402
+Meta-Llama-3.1-70B-Instruct-FP8,k=5,5,775,3875,27,0.4057,0.4334,1.2227,0.3831,0.4274,0.414,0.4533,1.1736,1.2706,0.42,0.5358,,0.2664,0.4004
+Meta-Llama-3.1-70B-Instruct-FP8,k=10,10,775,7750,53,0.3941,0.4225,1.2425,0.3756,0.4123,0.4063,0.4376,1.2044,1.2804,0.4094,0.5294,,0.262,0.3756
+Meta-Llama-3.1-70B-Instruct-FP8,k=20,20,775,15500,100,0.3781,0.4103,1.27,0.3625,0.3935,0.3963,0.4241,1.2368,1.3038,0.3905,0.5235,,0.2518,0.3465

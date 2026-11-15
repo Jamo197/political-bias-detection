@@ -207,19 +207,27 @@ def plot_m3(coef: pd.DataFrame):
     _save(fig, "fig_config_m3")
 
 
+def _k_style(model: str):
+    """(colour, marker): family colour; a second model of the same family gets a darker shade."""
+    meta = em._meta_for(model)
+    col, mk = FAMILY_COLOR[meta["family"]], FAMILY_MARKER[meta["family"]]
+    if meta["family"] == "Llama" and meta["params_b"] >= 70:
+        return "#123d73", "^"
+    return col, mk
+
+
 def _k_panel(ax, d: pd.DataFrame, mark_incomplete: bool):
     for model, g in d.groupby("Model"):
-        fam = em._meta_for(model)["family"]
-        col = FAMILY_COLOR[fam]
+        col, mk = _k_style(model)
         base = g[g["K"] == 0].iloc[0]
         ax.axhline(base["MAE"], color=col, linewidth=0.9, linestyle="--", alpha=0.9)
         r = g[g["K"] > 0].sort_values("K")
         ax.fill_between(r["K"], r["MAE_lo"], r["MAE_hi"], color=col, alpha=0.12, linewidth=0)
         ax.plot(r["K"], r["MAE"], color=col, linewidth=1.6)
         full = (r["N"] >= 700) | (not mark_incomplete)
-        ax.scatter(r.loc[full, "K"], r.loc[full, "MAE"], s=22, marker=FAMILY_MARKER[fam],
+        ax.scatter(r.loc[full, "K"], r.loc[full, "MAE"], s=22, marker=mk,
                    color=col, edgecolor="white", linewidth=0.6, zorder=3)
-        ax.scatter(r.loc[~full, "K"], r.loc[~full, "MAE"], s=22, marker=FAMILY_MARKER[fam],
+        ax.scatter(r.loc[~full, "K"], r.loc[~full, "MAE"], s=22, marker=mk,
                    facecolor="white", edgecolor=col, linewidth=1, zorder=3)
         for _, rr in r[~full].iterrows():
             ax.annotate(f"N = {int(rr['N'])}", (rr["K"], rr["MAE"]), textcoords="offset points",
@@ -249,9 +257,8 @@ def plot_k(k: pd.DataFrame):
             ax.set_title(f"Common posts ({ns})", fontsize=8.5, color=INK)
     axes[0].set_ylabel("MAE (95% CI)")
     models = k["Model"].unique()
-    handles = [Line2D([], [], color=FAMILY_COLOR[em._meta_for(m)["family"]], linewidth=1.6,
-                      marker=FAMILY_MARKER[em._meta_for(m)["family"]], markersize=4,
-                      label=short_name(m)) for m in models]
+    handles = [Line2D([], [], color=_k_style(m)[0], linewidth=1.6, marker=_k_style(m)[1],
+                      markersize=4, label=short_name(m)) for m in models]
     handles += [Line2D([], [], color=INK_2, linewidth=0.9, linestyle="--", label="no-RAG (same model, same posts)"),
                 Line2D([], [], marker="s", linestyle="", markerfacecolor="white",
                        markeredgecolor=INK_2, markersize=4, label="incomplete run")]
