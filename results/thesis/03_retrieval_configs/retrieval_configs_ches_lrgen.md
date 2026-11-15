@@ -10,30 +10,31 @@ Cells that were run more than once (≥ 700 shared posts). *fixed context*: ≥ 
 |---|---|---|---|---|---|---|---|
 | HyDE rerun | 3 | 0.0241 | 0.0657 | 0.038 | 0.4934 | 0.0004 | 0.0269 |
 | HyDE rerun (hyde_hybrid) | 7 | 0.0177 | 0.0653 | 0.0271 | 0.6174 | 0.0148 | 0.0192 |
-| fixed context | 3 | 0.0111 | 0.0181 | 0.0122 | 0.9486 | 0.9917 | 0.0086 |
+| fixed context | 4 | 0.0097 | 0.0181 | 0.0109 | 0.9579 | 0.9938 | 0.0077 |
 | retrieval varies | 3 | 0.0143 | 0.0165 | 0.0144 | 0.8362 | 0.5598 | 0.0102 |
 | HyDE (pooled) | 10 | 0.0196 | 0.0657 | 0.0308 | 0.5802 | 0.0105 | 0.0218 |
-| all | 16 | 0.017 | 0.0657 | 0.0257 | 0.6973 | 0.2974 | 0.0182 |
+| all | 17 | 0.0163 | 0.0657 | 0.025 | 0.7142 | 0.3388 | 0.0176 |
 
 | Kind | Model | Condition | N | MAE_a | MAE_b | dMAE | dMAE_lo | dMAE_hi | Pred_identical | Chunks_identical |
 |---|---|---|---|---|---|---|---|---|---|---|
 | HyDE rerun | Llama-3.1-8B-Instruct | bge/hyde_hybrid | 774 | 1.0661 | 1.0634 | 0.0027 | -0.0649 | 0.0694 | 0.6421 | 0.0013 |
-| HyDE rerun | Ministral-3-3B-Instruct-2512 | bge/hyde | 769 | 1.2296 | 1.2335 | -0.0038 | -0.0827 | 0.0746 | 0.4096 | 0.0 |
-| HyDE rerun | Ministral-3-3B-Instruct-2512 | bge/hyde_hybrid | 761 | 1.2664 | 1.2007 | 0.0657 | -0.0085 | 0.1373 | 0.4284 | 0.0 |
-| HyDE rerun (hyde_hybrid) | Llama-3.1-8B-Instruct | bge/hyde vs bge/hyde_hybrid | 775 | 1.0705 | 1.0629 | 0.0076 | -0.0619 | 0.0777 | 0.6568 | 0.0026 |
-| HyDE rerun (hyde_hybrid) | Meta-Llama-3.1-70B-Instruct-FP8 | bge/hyde vs bge/hyde_hybrid | 775 | 1.0884 | 1.1032 | -0.0148 | -0.0753 | 0.0533 | 0.6994 | 0.0026 |
-| HyDE rerun (hyde_hybrid) | Ministral-3-14B-Instruct-2512 | bge/hyde vs bge/hyde_hybrid | 769 | 0.9804 | 0.9845 | -0.0041 | -0.0589 | 0.0514 | 0.4369 | 0.0013 |
-| HyDE rerun (hyde_hybrid) | Ministral-3-3B-Instruct-2512 | bge/hyde vs bge/hyde_hybrid | 775 | 1.2307 | 1.207 | 0.0238 | -0.0563 | 0.099 | 0.4452 | 0.0 |
-| HyDE rerun (hyde_hybrid) | Qwen2.5-3B-Instruct | bge/hyde vs bge/hyde_hybrid | 774 | 1.5137 | 1.509 | 0.0047 | -0.0306 | 0.0401 | 0.7649 | 0.0 |
-| HyDE rerun (hyde_hybrid) | Qwen2.5-72B-Instruct-FP8-dynamic | bge/hyde vs bge/hyde_hybrid | 775 | 0.9336 | 0.937 | -0.0034 | -0.0433 | 0.0321 | 0.6968 | 0.0039 |
-| HyDE rerun (hyde_hybrid) | Qwen2.5-7B-Instruct | bge/hyde vs bge/hyde_hybrid | 775 | 1.2354 | 1.3006 | -0.0653 | -0.1256 | -0.0091 | 0.6219 | 0.0929 |
+| HyDE rerun | Ministral-3-3B-Instruct-2512 | bge/hyde | 769 | 1.2296 | 1.2335 | -0.0038 | -0.0853 | 0.0772 | 0.4096 | 0.0 |
+| HyDE rerun | Ministral-3-3B-Instruct-2512 | bge/hyde_hybrid | 761 | 1.2664 | 1.2007 | 0.0657 | -0.007 | 0.1428 | 0.4284 | 0.0 |
+| HyDE rerun (hyde_hybrid) | Llama-3.1-8B-Instruct | bge/hyde vs bge/hyde_hybrid | 775 | 1.0705 | 1.0629 | 0.0076 | -0.0643 | 0.0813 | 0.6568 | 0.0026 |
+| HyDE rerun (hyde_hybrid) | Meta-Llama-3.1-70B-Instruct-FP8 | bge/hyde vs bge/hyde_hybrid | 775 | 1.0884 | 1.1032 | -0.0148 | -0.0773 | 0.0482 | 0.6994 | 0.0026 |
+| HyDE rerun (hyde_hybrid) | Ministral-3-14B-Instruct-2512 | bge/hyde vs bge/hyde_hybrid | 769 | 0.9804 | 0.9845 | -0.0041 | -0.057 | 0.0538 | 0.4369 | 0.0013 |
+| HyDE rerun (hyde_hybrid) | Ministral-3-3B-Instruct-2512 | bge/hyde vs bge/hyde_hybrid | 775 | 1.2307 | 1.207 | 0.0238 | -0.0529 | 0.0969 | 0.4452 | 0.0 |
+| HyDE rerun (hyde_hybrid) | Qwen2.5-3B-Instruct | bge/hyde vs bge/hyde_hybrid | 774 | 1.5137 | 1.509 | 0.0047 | -0.0307 | 0.0419 | 0.7649 | 0.0 |
+| HyDE rerun (hyde_hybrid) | Qwen2.5-72B-Instruct-FP8-dynamic | bge/hyde vs bge/hyde_hybrid | 775 | 0.9336 | 0.937 | -0.0034 | -0.0419 | 0.0341 | 0.6968 | 0.0039 |
+| HyDE rerun (hyde_hybrid) | Qwen2.5-7B-Instruct | bge/hyde vs bge/hyde_hybrid | 775 | 1.2354 | 1.3006 | -0.0653 | -0.1212 | -0.0055 | 0.6219 | 0.0929 |
 | fixed context | Llama-3.1-8B-Instruct | bge/simple | 775 | 1.0668 | 1.0487 | 0.0181 | 0.0043 | 0.035 | 0.9665 | 1.0 |
 | fixed context | Llama-3.1-8B-Instruct | bge/twostage | 775 | 1.0356 | 1.0441 | -0.0085 | -0.0224 | 0.0059 | 0.9626 | 1.0 |
-| fixed context | Ministral-3-3B-Instruct-2512 | bge/simple | 767 | 1.2168 | 1.2236 | -0.0068 | -0.0255 | 0.0125 | 0.9166 | 0.9752 |
+| fixed context | Meta-Llama-3.1-70B-Instruct-FP8 | no_rag | 775 | 0.8117 | 0.817 | -0.0053 | -0.0185 | 0.0035 | 0.9858 | 1.0 |
+| fixed context | Ministral-3-3B-Instruct-2512 | bge/simple | 767 | 1.2168 | 1.2236 | -0.0068 | -0.0245 | 0.0121 | 0.9166 | 0.9752 |
 | identical copy (excluded) | Qwen2.5-32B-Instruct | bge/hyde vs bge/hyde_hybrid | 775 | 1.0156 | 1.0156 | 0.0 | 0.0 | 0.0 | 1.0 | 1.0 |
 | retrieval varies | Llama-3.1-8B-Instruct | bge/simple_hybrid | 775 | 1.0243 | 1.0408 | -0.0165 | -0.0555 | 0.0213 | 0.8465 | 0.369 |
 | retrieval varies | Llama-3.1-8B-Instruct | bge/twostage_hybrid | 774 | 1.0624 | 1.0743 | -0.0119 | -0.0439 | 0.0196 | 0.9251 | 0.9302 |
-| retrieval varies | Ministral-3-3B-Instruct-2512 | bge/simple_hybrid | 768 | 1.2068 | 1.2212 | -0.0144 | -0.0627 | 0.0325 | 0.737 | 0.3802 |
+| retrieval varies | Ministral-3-3B-Instruct-2512 | bge/simple_hybrid | 768 | 1.2068 | 1.2212 | -0.0144 | -0.0595 | 0.029 | 0.737 | 0.3802 |
 
 ## 2. Spread of the conditions
 
@@ -47,20 +48,20 @@ Two-way decomposition of the MAE matrix (10 models × 14 conditions, paired CSV 
 | SD of model means |  | 0.2566 |  |  |  |
 | SD of condition means |  | 0.0149 |  |  |  |
 | Mean within-model SD across conditions |  | 0.0271 |  |  |  |
-| Run-to-run SD (noise floor) |  | 0.0086 |  |  |  |
+| Run-to-run SD (noise floor) |  | 0.0077 |  |  |  |
 
 | Model | MAE_no_rag | MAE_rag_mean | MAE_rag_min | MAE_rag_max | Range_conditions | SD_conditions | Range_over_noise_SD | Best_condition | Worst_condition |
 |---|---|---|---|---|---|---|---|---|---|
-| Llama-3.2-3B-Instruct | 1.8041 | 1.7156 | 1.6504 | 1.7794 | 0.129 | 0.0372 | 15.0 | bge/hyde | bge/twostage_hybrid |
-| Ministral-3-3B-Instruct-2512 | 1.3165 | 1.2369 | 1.1712 | 1.3145 | 0.1433 | 0.0361 | 16.6628 | qwen3/hyde | jina/simple |
-| Qwen2.5-3B-Instruct | 1.4346 | 1.5029 | 1.4817 | 1.5192 | 0.0375 | 0.0115 | 4.3605 | jina/hyde | bge/twostage_hybrid |
-| Qwen2.5-7B-Instruct | 1.2021 | 1.2898 | 1.2365 | 1.3299 | 0.0934 | 0.0257 | 10.8605 | bge/hyde | bge/twostage |
-| Llama-3.1-8B-Instruct | 1.5488 | 1.0419 | 0.9647 | 1.0946 | 0.1299 | 0.0392 | 15.1047 | qwen3/hyde | jina/simple |
-| Ministral-3-8B-Instruct-2512 | 1.1414 | 1.2523 | 1.2118 | 1.3014 | 0.0896 | 0.0296 | 10.4186 | qwen3/simple | jina/hyde |
-| Ministral-3-14B-Instruct-2512 | 0.8649 | 0.9317 | 0.8996 | 0.9872 | 0.0876 | 0.0265 | 10.186 | bge/twostage_hybrid | qwen3/hyde |
-| Qwen2.5-32B-Instruct | 1.1589 | 1.011 | 0.9555 | 1.0529 | 0.0974 | 0.0259 | 11.3256 | qwen3/hyde | jina/twostage |
-| Meta-Llama-3.1-70B-Instruct-FP8 | 0.8117 | 1.0875 | 1.039 | 1.1167 | 0.0777 | 0.0205 | 9.0349 | qwen3/simple | bge/simple |
-| Qwen2.5-72B-Instruct-FP8-dynamic | 0.9411 | 0.9219 | 0.8943 | 0.9544 | 0.0601 | 0.0188 | 6.9884 | qwen3/simple | bge/twostage |
+| Llama-3.2-3B-Instruct | 1.8041 | 1.7156 | 1.6504 | 1.7794 | 0.129 | 0.0372 | 16.7532 | bge/hyde | bge/twostage_hybrid |
+| Ministral-3-3B-Instruct-2512 | 1.3165 | 1.2369 | 1.1712 | 1.3145 | 0.1433 | 0.0361 | 18.6104 | qwen3/hyde | jina/simple |
+| Qwen2.5-3B-Instruct | 1.4346 | 1.5029 | 1.4817 | 1.5192 | 0.0375 | 0.0115 | 4.8701 | jina/hyde | bge/twostage_hybrid |
+| Qwen2.5-7B-Instruct | 1.2021 | 1.2898 | 1.2365 | 1.3299 | 0.0934 | 0.0257 | 12.1299 | bge/hyde | bge/twostage |
+| Llama-3.1-8B-Instruct | 1.5488 | 1.0419 | 0.9647 | 1.0946 | 0.1299 | 0.0392 | 16.8701 | qwen3/hyde | jina/simple |
+| Ministral-3-8B-Instruct-2512 | 1.1414 | 1.2523 | 1.2118 | 1.3014 | 0.0896 | 0.0296 | 11.6364 | qwen3/simple | jina/hyde |
+| Ministral-3-14B-Instruct-2512 | 0.8649 | 0.9317 | 0.8996 | 0.9872 | 0.0876 | 0.0265 | 11.3766 | bge/twostage_hybrid | qwen3/hyde |
+| Qwen2.5-32B-Instruct | 1.1589 | 1.011 | 0.9555 | 1.0529 | 0.0974 | 0.0259 | 12.6494 | qwen3/hyde | jina/twostage |
+| Meta-Llama-3.1-70B-Instruct-FP8 | 0.8117 | 1.0875 | 1.039 | 1.1167 | 0.0777 | 0.0205 | 10.0909 | qwen3/simple | bge/simple |
+| Qwen2.5-72B-Instruct-FP8-dynamic | 0.9411 | 0.9219 | 0.8943 | 0.9544 | 0.0601 | 0.0188 | 7.8052 | qwen3/simple | bge/twostage |
 
 ## 3. Embedder
 
@@ -408,18 +409,30 @@ k = 0 is the no-RAG run, k = 5 comes from the main matrix, the other k from the 
 | common_texts | Llama-3.1-8B-Instruct | 5 | 2026-08-03_eval_matrix_20260803_224143 | 772 | 1.037 | 0.9662 | 1.1109 | 0.2203 | 0.5856 | 0.2992 |
 | common_texts | Llama-3.1-8B-Instruct | 10 | 2026-10-15_eval_matrix_20261015_173302 | 772 | 0.9956 | 0.9288 | 1.0626 | 0.2152 | 0.5819 | 0.294 |
 | common_texts | Llama-3.1-8B-Instruct | 20 | 2026-10-15_eval_matrix_20261015_173302 | 772 | 1.0978 | 1.026 | 1.1773 | 0.2782 | 0.5592 | 0.2808 |
-| all_available | Ministral-3-14B-Instruct-2512 | 0 | 2026-08-24_eval_matrix_20260824_165851 | 775 | 0.8649 | 0.8011 | 0.9309 | -0.2187 | 0.6288 |  |
-| all_available | Ministral-3-14B-Instruct-2512 | 1 | 2026-10-14_eval_matrix_20261014_162114 | 774 | 0.9934 | 0.9182 | 1.0674 | -0.2892 | 0.6628 | 0.3281 |
-| all_available | Ministral-3-14B-Instruct-2512 | 3 | 2026-10-14_eval_matrix_20261014_162114 | 769 | 0.9694 | 0.9002 | 1.0408 | -0.2893 | 0.6699 | 0.3136 |
-| all_available | Ministral-3-14B-Instruct-2512 | 5 | 2026-08-24_eval_matrix_20260824_183010 | 770 | 0.914 | 0.8502 | 0.9791 | -0.1601 | 0.7466 | 0.3007 |
-| all_available | Ministral-3-14B-Instruct-2512 | 10 | 2026-10-14_eval_matrix_20261014_162114 | 765 | 0.9079 | 0.845 | 0.9759 | -0.1839 | 0.7269 | 0.2939 |
-| all_available | Ministral-3-14B-Instruct-2512 | 20 | 2026-10-14_eval_matrix_20261014_162114 | 596 | 0.8706 | 0.7982 | 0.9451 | -0.2423 | 0.7394 | 0.2817 |
-| common_texts | Ministral-3-14B-Instruct-2512 | 0 | 2026-08-24_eval_matrix_20260824_165851 | 576 | 0.8444 | 0.7729 | 0.9215 | -0.2629 | 0.6477 |  |
-| common_texts | Ministral-3-14B-Instruct-2512 | 1 | 2026-10-14_eval_matrix_20261014_162114 | 576 | 0.9484 | 0.8691 | 1.035 | -0.2765 | 0.7065 | 0.3357 |
-| common_texts | Ministral-3-14B-Instruct-2512 | 3 | 2026-10-14_eval_matrix_20261014_162114 | 576 | 0.9324 | 0.8538 | 1.0124 | -0.3036 | 0.7003 | 0.3215 |
-| common_texts | Ministral-3-14B-Instruct-2512 | 5 | 2026-08-24_eval_matrix_20260824_183010 | 576 | 0.8734 | 0.8002 | 0.9464 | -0.1914 | 0.7735 | 0.3035 |
-| common_texts | Ministral-3-14B-Instruct-2512 | 10 | 2026-10-14_eval_matrix_20261014_162114 | 576 | 0.8613 | 0.7941 | 0.935 | -0.2221 | 0.7573 | 0.2968 |
-| common_texts | Ministral-3-14B-Instruct-2512 | 20 | 2026-10-14_eval_matrix_20261014_162114 | 576 | 0.8796 | 0.8061 | 0.9549 | -0.2431 | 0.7359 | 0.2809 |
+| all_available | Meta-Llama-3.1-70B-Instruct-FP8 | 0 | 2026-11-14_eval_matrix_20261114_164004 | 775 | 0.817 | 0.7598 | 0.8706 | 0.0756 | 0.6283 |  |
+| all_available | Meta-Llama-3.1-70B-Instruct-FP8 | 1 | 2026-11-14_k_ablation_20261114_162426 | 775 | 0.9451 | 0.8746 | 1.0128 | -0.0654 | 0.481 | 0.3277 |
+| all_available | Meta-Llama-3.1-70B-Instruct-FP8 | 3 | 2026-11-14_k_ablation_20261114_162426 | 775 | 1.0611 | 0.9841 | 1.1376 | -0.1422 | 0.3226 | 0.315 |
+| all_available | Meta-Llama-3.1-70B-Instruct-FP8 | 5 | 2026-11-14_k_ablation_20261114_162426 | 775 | 1.0972 | 1.0259 | 1.172 | -0.0065 | 0.3159 | 0.3003 |
+| all_available | Meta-Llama-3.1-70B-Instruct-FP8 | 10 | 2026-11-14_k_ablation_20261114_162426 | 775 | 1.1709 | 1.0958 | 1.2482 | 0.0597 | 0.2714 | 0.2947 |
+| all_available | Meta-Llama-3.1-70B-Instruct-FP8 | 20 | 2026-11-14_k_ablation_20261114_162426 | 775 | 1.1558 | 1.0816 | 1.2354 | 0.0913 | 0.2908 | 0.2812 |
+| common_texts | Meta-Llama-3.1-70B-Instruct-FP8 | 0 | 2026-11-14_eval_matrix_20261114_164004 | 775 | 0.817 | 0.7634 | 0.8788 | 0.0756 | 0.6283 |  |
+| common_texts | Meta-Llama-3.1-70B-Instruct-FP8 | 1 | 2026-11-14_k_ablation_20261114_162426 | 775 | 0.9451 | 0.8744 | 1.0124 | -0.0654 | 0.481 | 0.3277 |
+| common_texts | Meta-Llama-3.1-70B-Instruct-FP8 | 3 | 2026-11-14_k_ablation_20261114_162426 | 775 | 1.0611 | 0.98 | 1.1394 | -0.1422 | 0.3226 | 0.315 |
+| common_texts | Meta-Llama-3.1-70B-Instruct-FP8 | 5 | 2026-11-14_k_ablation_20261114_162426 | 775 | 1.0972 | 1.0213 | 1.1756 | -0.0065 | 0.3159 | 0.3003 |
+| common_texts | Meta-Llama-3.1-70B-Instruct-FP8 | 10 | 2026-11-14_k_ablation_20261114_162426 | 775 | 1.1709 | 1.0957 | 1.2489 | 0.0597 | 0.2714 | 0.2947 |
+| common_texts | Meta-Llama-3.1-70B-Instruct-FP8 | 20 | 2026-11-14_k_ablation_20261114_162426 | 775 | 1.1558 | 1.077 | 1.231 | 0.0913 | 0.2908 | 0.2812 |
+| all_available | Ministral-3-14B-Instruct-2512 | 0 | 2026-08-24_eval_matrix_20260824_165851 | 775 | 0.8649 | 0.8014 | 0.9326 | -0.2187 | 0.6288 |  |
+| all_available | Ministral-3-14B-Instruct-2512 | 1 | 2026-10-14_eval_matrix_20261014_162114 | 774 | 0.9934 | 0.9198 | 1.0646 | -0.2892 | 0.6628 | 0.3281 |
+| all_available | Ministral-3-14B-Instruct-2512 | 3 | 2026-10-14_eval_matrix_20261014_162114 | 769 | 0.9694 | 0.9009 | 1.0396 | -0.2893 | 0.6699 | 0.3136 |
+| all_available | Ministral-3-14B-Instruct-2512 | 5 | 2026-08-24_eval_matrix_20260824_183010 | 770 | 0.914 | 0.8485 | 0.9828 | -0.1601 | 0.7466 | 0.3007 |
+| all_available | Ministral-3-14B-Instruct-2512 | 10 | 2026-10-14_eval_matrix_20261014_162114 | 765 | 0.9079 | 0.8422 | 0.9766 | -0.1839 | 0.7269 | 0.2939 |
+| all_available | Ministral-3-14B-Instruct-2512 | 20 | 2026-11-15_eval_matrix_20261115_132758 | 734 | 0.9279 | 0.8614 | 0.9995 | -0.1299 | 0.7153 | 0.2805 |
+| common_texts | Ministral-3-14B-Instruct-2512 | 0 | 2026-08-24_eval_matrix_20260824_165851 | 716 | 0.8652 | 0.8023 | 0.9319 | -0.2139 | 0.6335 |  |
+| common_texts | Ministral-3-14B-Instruct-2512 | 1 | 2026-10-14_eval_matrix_20261014_162114 | 716 | 1.004 | 0.9275 | 1.0845 | -0.3035 | 0.6528 | 0.3263 |
+| common_texts | Ministral-3-14B-Instruct-2512 | 3 | 2026-10-14_eval_matrix_20261014_162114 | 716 | 0.9695 | 0.8973 | 1.0444 | -0.2824 | 0.6768 | 0.3124 |
+| common_texts | Ministral-3-14B-Instruct-2512 | 5 | 2026-08-24_eval_matrix_20260824_183010 | 716 | 0.9273 | 0.8608 | 0.9959 | -0.1611 | 0.7397 | 0.2992 |
+| common_texts | Ministral-3-14B-Instruct-2512 | 10 | 2026-10-14_eval_matrix_20261014_162114 | 716 | 0.9164 | 0.8487 | 0.9855 | -0.1847 | 0.7232 | 0.2929 |
+| common_texts | Ministral-3-14B-Instruct-2512 | 20 | 2026-11-15_eval_matrix_20261115_132758 | 716 | 0.9334 | 0.8619 | 1.0013 | -0.1266 | 0.7141 | 0.28 |
 
 | Model | Scope | A | B | N | dMAE | dMAE_lo | dMAE_hi | p_holm | significant |
 |---|---|---|---|---|---|---|---|---|---|
@@ -433,13 +446,23 @@ k = 0 is the no-RAG run, k = 5 comes from the main matrix, the other k from the 
 | Llama-3.1-8B-Instruct | vs k=5 | k=3 | k=5 | 774 | 0.011 | -0.0429 | 0.0683 | 0.9769 | False |
 | Llama-3.1-8B-Instruct | vs k=5 | k=10 | k=5 | 773 | -0.0413 | -0.1008 | 0.0183 | 0.2905 | False |
 | Llama-3.1-8B-Instruct | vs k=5 | k=20 | k=5 | 773 | 0.0607 | -0.0044 | 0.1242 | 0.2905 | False |
-| Ministral-3-14B-Instruct-2512 | vs k=0 | k=1 | k=0 | 774 | 0.1284 | 0.0538 | 0.2005 | 0.0004 | True |
-| Ministral-3-14B-Instruct-2512 | vs k=0 | k=3 | k=0 | 769 | 0.1025 | 0.0417 | 0.1644 | 0.0003 | True |
-| Ministral-3-14B-Instruct-2512 | vs k=0 | k=5 | k=0 | 770 | 0.0525 | -0.0133 | 0.1158 | 0.035 | True |
-| Ministral-3-14B-Instruct-2512 | vs k=0 | k=10 | k=0 | 765 | 0.0383 | -0.0228 | 0.1013 | 0.0918 | False |
-| Ministral-3-14B-Instruct-2512 | vs k=0 | k=20 | k=0 | 596 | 0.0322 | -0.0387 | 0.1052 | 0.4957 | False |
-| Ministral-3-14B-Instruct-2512 | vs k=5 | k=0 | k=5 | 770 | -0.0525 | -0.1141 | 0.0093 | 0.035 | True |
-| Ministral-3-14B-Instruct-2512 | vs k=5 | k=1 | k=5 | 769 | 0.079 | 0.0223 | 0.1376 | 0.0664 | False |
-| Ministral-3-14B-Instruct-2512 | vs k=5 | k=3 | k=5 | 765 | 0.0516 | 0.0061 | 0.0987 | 0.0937 | False |
-| Ministral-3-14B-Instruct-2512 | vs k=5 | k=10 | k=5 | 760 | -0.0121 | -0.0442 | 0.0182 | 0.4957 | False |
-| Ministral-3-14B-Instruct-2512 | vs k=5 | k=20 | k=5 | 592 | 0.0073 | -0.0397 | 0.0574 | 0.9865 | False |
+| Meta-Llama-3.1-70B-Instruct-FP8 | vs k=0 | k=1 | k=0 | 775 | 0.1281 | 0.0573 | 0.1984 | 0.0009 | True |
+| Meta-Llama-3.1-70B-Instruct-FP8 | vs k=0 | k=3 | k=0 | 775 | 0.244 | 0.1659 | 0.3249 | 0.0 | True |
+| Meta-Llama-3.1-70B-Instruct-FP8 | vs k=0 | k=5 | k=0 | 775 | 0.2802 | 0.2012 | 0.3602 | 0.0 | True |
+| Meta-Llama-3.1-70B-Instruct-FP8 | vs k=0 | k=10 | k=0 | 775 | 0.3539 | 0.2827 | 0.4287 | 0.0 | True |
+| Meta-Llama-3.1-70B-Instruct-FP8 | vs k=0 | k=20 | k=0 | 775 | 0.3388 | 0.261 | 0.4181 | 0.0 | True |
+| Meta-Llama-3.1-70B-Instruct-FP8 | vs k=5 | k=0 | k=5 | 775 | -0.2802 | -0.3597 | -0.2038 | 0.0 | True |
+| Meta-Llama-3.1-70B-Instruct-FP8 | vs k=5 | k=1 | k=5 | 775 | -0.1521 | -0.2202 | -0.0856 | 0.0004 | True |
+| Meta-Llama-3.1-70B-Instruct-FP8 | vs k=5 | k=3 | k=5 | 775 | -0.0362 | -0.0802 | 0.0105 | 0.0137 | True |
+| Meta-Llama-3.1-70B-Instruct-FP8 | vs k=5 | k=10 | k=5 | 775 | 0.0737 | 0.0269 | 0.1231 | 0.0003 | True |
+| Meta-Llama-3.1-70B-Instruct-FP8 | vs k=5 | k=20 | k=5 | 775 | 0.0586 | 0.0093 | 0.1092 | 0.0029 | True |
+| Ministral-3-14B-Instruct-2512 | vs k=0 | k=1 | k=0 | 774 | 0.1284 | 0.0549 | 0.2021 | 0.0004 | True |
+| Ministral-3-14B-Instruct-2512 | vs k=0 | k=3 | k=0 | 769 | 0.1025 | 0.0397 | 0.1645 | 0.0003 | True |
+| Ministral-3-14B-Instruct-2512 | vs k=0 | k=5 | k=0 | 770 | 0.0525 | -0.0101 | 0.113 | 0.035 | True |
+| Ministral-3-14B-Instruct-2512 | vs k=0 | k=10 | k=0 | 765 | 0.0383 | -0.0277 | 0.0982 | 0.0734 | False |
+| Ministral-3-14B-Instruct-2512 | vs k=0 | k=20 | k=0 | 734 | 0.0645 | -0.0044 | 0.1299 | 0.0581 | False |
+| Ministral-3-14B-Instruct-2512 | vs k=5 | k=0 | k=5 | 770 | -0.0525 | -0.113 | 0.0086 | 0.035 | True |
+| Ministral-3-14B-Instruct-2512 | vs k=5 | k=1 | k=5 | 769 | 0.079 | 0.0209 | 0.137 | 0.0581 | False |
+| Ministral-3-14B-Instruct-2512 | vs k=5 | k=3 | k=5 | 765 | 0.0516 | 0.0078 | 0.0978 | 0.0734 | False |
+| Ministral-3-14B-Instruct-2512 | vs k=5 | k=10 | k=5 | 760 | -0.0121 | -0.0456 | 0.0207 | 0.42 | False |
+| Ministral-3-14B-Instruct-2512 | vs k=5 | k=20 | k=5 | 729 | 0.0084 | -0.0335 | 0.0519 | 0.6559 | False |
