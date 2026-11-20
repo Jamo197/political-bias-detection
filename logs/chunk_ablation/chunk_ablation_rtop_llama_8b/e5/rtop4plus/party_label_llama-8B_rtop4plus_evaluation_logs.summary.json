@@ -1,0 +1,37 @@
+{
+  "run_id": "chunk_ablation_rtop_llama_8b",
+  "condition": "rtop4plus",
+  "model_id": "meta-llama/Llama-3.1-8B-Instruct",
+  "model_key": "llama-8B",
+  "posts_total": 100,
+  "posts_predicted_now": 65,
+  "posts_resumed": 0,
+  "posts_skipped_no_chunks": 35,
+  "predictions_failed": 0,
+  "chunks_per_post": {
+    "1": 14,
+    "4": 9,
+    "2": 9,
+    "5": 22,
+    "0": 35,
+    "3": 11
+  },
+  "args": {
+    "mode": "rtop",
+    "family": "llama_8b",
+    "model_id": "meta-llama/Llama-3.1-8B-Instruct",
+    "model_key": "llama-8B",
+    "llm_base_url": "http://localhost:8134/v1",
+    "llm_region": "unknown",
+    "k_chunks": 5,
+    "seed": 33,
+    "source_log": "logs/batch_runs/2026-08-17_eval_matrix_20260817_123007/e5/simple/party_label_llama-70B_simple_evaluation_logs.jsonl",
+    "min_rtop": 4,
+    "select": "high",
+    "no_chunk_policy": "skip",
+    "concurrency": 16,
+    "run_id": "chunk_ablation_rtop_llama_8b",
+    "out_root": "logs/chunk_ablation",
+    "print_model_id": false
+  }
+}
