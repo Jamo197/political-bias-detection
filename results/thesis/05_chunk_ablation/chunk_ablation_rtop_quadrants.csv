@@ -1,0 +1,9 @@
+model,quadrant,n_posts
+Llama-3.1-8B-Instruct,baseline sufficiency,19
+Llama-3.1-8B-Instruct,RAG win,17
+Llama-3.1-8B-Instruct,joint failure,15
+Llama-3.1-8B-Instruct,RAG distraction,14
+Ministral-3-8B-Instruct-2512,RAG distraction,19
+Ministral-3-8B-Instruct-2512,RAG win,18
+Ministral-3-8B-Instruct-2512,baseline sufficiency,16
+Ministral-3-8B-Instruct-2512,joint failure,14
