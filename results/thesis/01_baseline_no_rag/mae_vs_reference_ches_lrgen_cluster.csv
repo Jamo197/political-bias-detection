@@ -1,0 +1,11 @@
+Model,N,MAE,Ref_MAE,Diff,Post_lo,Post_hi,Post_excludes_0,Cluster_lo,Cluster_hi,Cluster_excludes_0,Cluster_direction
+Llama-3.2-3B-Instruct,775,1.8041,1.0898,0.7143,0.5883,0.8481,True,-0.1991,1.2631,False,n.s.
+Llama-3.1-8B-Instruct,775,1.5488,1.0898,0.459,0.3102,0.6009,True,-0.5849,1.217,False,n.s.
+Meta-Llama-3.1-70B-Instruct-FP8,775,0.817,1.0898,-0.2728,-0.3654,-0.1776,True,-1.041,0.2844,False,n.s.
+Ministral-3-3B-Instruct-2512,774,1.3165,1.0888,0.2277,0.1053,0.349,True,-0.6289,0.7672,False,n.s.
+Ministral-3-8B-Instruct-2512,775,1.1414,1.0898,0.0516,-0.0576,0.162,False,-0.7782,0.6093,False,n.s.
+Ministral-3-14B-Instruct-2512,775,0.8649,1.0898,-0.225,-0.3104,-0.1384,True,-0.8228,0.2281,False,n.s.
+Qwen2.5-3B-Instruct,775,1.4346,1.0898,0.3448,0.2734,0.4145,True,-0.1876,0.6553,False,n.s.
+Qwen2.5-7B-Instruct,774,1.2021,1.0897,0.1125,0.0367,0.1837,True,-0.4115,0.4246,False,n.s.
+Qwen2.5-32B-Instruct,775,1.1589,1.0898,0.069,-0.0154,0.147,False,-0.5993,0.5221,False,n.s.
+Qwen2.5-72B-Instruct-FP8-dynamic,775,0.9411,1.0898,-0.1487,-0.2403,-0.0592,True,-0.9146,0.3248,False,n.s.

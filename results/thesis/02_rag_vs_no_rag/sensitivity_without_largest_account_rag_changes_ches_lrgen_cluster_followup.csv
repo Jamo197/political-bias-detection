@@ -1,0 +1,17 @@
+Model,Condition,Cluster_CI_direction_full,dMAE,dMAE_lo,dMAE_hi,Cluster_CI_direction_sens
+Qwen2.5-32B-Instruct,bge/simple,RAG better,-0.152,-0.294,0.018,n.s.
+Qwen2.5-32B-Instruct,bge/simple_hybrid,RAG better,-0.138,-0.249,0.011,n.s.
+Qwen2.5-32B-Instruct,bge/twostage,RAG better,-0.131,-0.243,0.014,n.s.
+Qwen2.5-32B-Instruct,e5/simple,RAG better,-0.136,-0.247,0.018,n.s.
+Qwen2.5-32B-Instruct,e5/twostage,RAG better,-0.124,-0.241,0.02,n.s.
+Qwen2.5-32B-Instruct,jina/hyde,RAG better,-0.137,-0.24,0.002,n.s.
+Qwen2.5-32B-Instruct,qwen3/hyde,RAG better,-0.174,-0.304,0.004,n.s.
+Qwen2.5-32B-Instruct,qwen3/simple,RAG better,-0.154,-0.277,0.004,n.s.
+Qwen2.5-72B-Instruct-FP8-dynamic,bge/hyde,n.s.,-0.057,-0.098,-0.004,RAG better
+Qwen2.5-72B-Instruct-FP8-dynamic,bge/simple,n.s.,-0.08,-0.133,-0.02,RAG better
+Qwen2.5-72B-Instruct-FP8-dynamic,e5/simple,n.s.,-0.097,-0.176,-0.006,RAG better
+Qwen2.5-72B-Instruct-FP8-dynamic,e5/twostage,n.s.,-0.092,-0.161,-0.012,RAG better
+Qwen2.5-72B-Instruct-FP8-dynamic,jina/simple,n.s.,-0.088,-0.175,-0.005,RAG better
+Qwen2.5-72B-Instruct-FP8-dynamic,qwen3/hyde,n.s.,-0.082,-0.134,-0.016,RAG better
+Qwen2.5-72B-Instruct-FP8-dynamic,qwen3/simple,n.s.,-0.098,-0.158,-0.03,RAG better
+Qwen2.5-72B-Instruct-FP8-dynamic,qwen3/twostage,n.s.,-0.086,-0.165,-0.003,RAG better

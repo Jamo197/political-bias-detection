@@ -1,0 +1,132 @@
+== (1) MAE: post-level vs cluster 95% intervals ==
+Llama-3.2-3B-Instruct                MAE 1.804  post [1.708, 1.901]  cluster [1.557, 2.059]  width x2.61
+Llama-3.1-8B-Instruct                MAE 1.549  post [1.452, 1.645]  cluster [1.242, 1.766]  width x2.71
+Meta-Llama-3.1-70B-Instruct-FP8      MAE 0.817  post [0.764, 0.874]  cluster [0.706, 0.887]  width x1.65
+Ministral-3-3B-Instruct-2512         MAE 1.317  post [1.230, 1.394]  cluster [1.164, 1.491]  width x2.01
+Ministral-3-8B-Instruct-2512         MAE 1.141  post [1.076, 1.213]  cluster [1.034, 1.249]  width x1.57
+Ministral-3-14B-Instruct-2512        MAE 0.865  post [0.803, 0.926]  cluster [0.732, 1.090]  width x2.91
+Qwen2.5-3B-Instruct                  MAE 1.435  post [1.372, 1.498]  cluster [1.006, 1.922]  width x7.24
+Qwen2.5-7B-Instruct                  MAE 1.202  post [1.142, 1.268]  cluster [0.872, 1.560]  width x5.47
+Qwen2.5-32B-Instruct                 MAE 1.159  post [1.106, 1.214]  cluster [0.976, 1.347]  width x3.44
+Qwen2.5-72B-Instruct-FP8-dynamic     MAE 0.941  post [0.897, 0.987]  cluster [0.778, 1.153]  width x4.17
+
+== MAE minus constant-median reference ==
+                           Model   N    MAE  Ref_MAE    Diff  Post_lo  Post_hi  Post_excludes_0  Cluster_lo  Cluster_hi  Cluster_excludes_0 Cluster_direction
+           Llama-3.2-3B-Instruct 775 1.8041   1.0898  0.7143   0.5883   0.8481             True     -0.1991      1.2631               False              n.s.
+           Llama-3.1-8B-Instruct 775 1.5488   1.0898  0.4590   0.3102   0.6009             True     -0.5849      1.2170               False              n.s.
+ Meta-Llama-3.1-70B-Instruct-FP8 775 0.8170   1.0898 -0.2728  -0.3654  -0.1776             True     -1.0410      0.2844               False              n.s.
+    Ministral-3-3B-Instruct-2512 774 1.3165   1.0888  0.2277   0.1053   0.3490             True     -0.6289      0.7672               False              n.s.
+    Ministral-3-8B-Instruct-2512 775 1.1414   1.0898  0.0516  -0.0576   0.1620            False     -0.7782      0.6093               False              n.s.
+   Ministral-3-14B-Instruct-2512 775 0.8649   1.0898 -0.2250  -0.3104  -0.1384             True     -0.8228      0.2281               False              n.s.
+             Qwen2.5-3B-Instruct 775 1.4346   1.0898  0.3448   0.2734   0.4145             True     -0.1876      0.6553               False              n.s.
+             Qwen2.5-7B-Instruct 774 1.2021   1.0897  0.1125   0.0367   0.1837             True     -0.4115      0.4246               False              n.s.
+            Qwen2.5-32B-Instruct 775 1.1589   1.0898  0.0690  -0.0154   0.1470            False     -0.5993      0.5221               False              n.s.
+Qwen2.5-72B-Instruct-FP8-dynamic 775 0.9411   1.0898 -0.1487  -0.2403  -0.0592             True     -0.9146      0.3248               False              n.s.
+
+== Mean signed error ==
+                           Model   N            Metric  Estimate  Post_lo  Post_hi  Cluster_lo  Cluster_hi  Width_ratio
+           Llama-3.2-3B-Instruct 775 Mean_signed_error   -0.3069  -0.4708  -0.1526     -1.1353      0.5575        5.320
+           Llama-3.1-8B-Instruct 775 Mean_signed_error    0.8840   0.7481   1.0169      0.3484      1.2037        3.182
+ Meta-Llama-3.1-70B-Instruct-FP8 775 Mean_signed_error    0.0756  -0.0043   0.1538     -0.4194      0.3777        5.042
+    Ministral-3-3B-Instruct-2512 774 Mean_signed_error    0.4309   0.3059   0.5495     -0.1736      0.8337        4.135
+    Ministral-3-8B-Instruct-2512 775 Mean_signed_error    0.5060   0.4096   0.6063      0.0342      0.7701        3.741
+   Ministral-3-14B-Instruct-2512 775 Mean_signed_error   -0.2187  -0.3044  -0.1321     -0.7074      0.0984        4.677
+             Qwen2.5-3B-Instruct 775 Mean_signed_error    0.4694   0.3623   0.5820     -0.5230      1.1968        7.828
+             Qwen2.5-7B-Instruct 774 Mean_signed_error    0.2224   0.1194   0.3251     -0.5888      0.8165        6.832
+            Qwen2.5-32B-Instruct 775 Mean_signed_error    0.3922   0.3011   0.4839     -0.4135      0.8503        6.914
+Qwen2.5-72B-Instruct-FP8-dynamic 775 Mean_signed_error    0.4551   0.3783   0.5281     -0.1221      0.8361        6.397
+
+== Paired MAE differences ==
+                 Comparison  N_paired    dMAE  Post_lo  Post_hi  Post_excludes_0  Cluster_lo  Cluster_hi  Cluster_excludes_0
+   Llama 70B minus Qwen 72B       775 -0.1241  -0.1777  -0.0719             True     -0.3273      0.0420               False
+Mistral 14B minus Llama 70B       775  0.0479  -0.0160   0.1117            False     -0.0988      0.2849               False
+
+== Dependence diagnostics ==
+n_posts                                                                   775
+n_accounts                                                                 72
+posts_per_account_min                                                       1
+posts_per_account_median                                                  2.0
+posts_per_account_max                                                     193
+share_top3_parties                                                     0.7123
+top3_parties                SPD 0.280; DIE LINKE 0.231; BÜNDNIS 90/DIE GRÜ...
+share_largest_account                                                   0.249
+                           Model   N  Mean_abs_error    ICC  Mean_cluster_size_weighted  Design_effect  SE_inflation_sqrt_deff  Empirical_CI_width_ratio
+           Llama-3.2-3B-Instruct 775          1.8041 0.1478                       84.61          13.36                    3.65                      2.61
+           Llama-3.1-8B-Instruct 775          1.5488 0.1038                       84.61           9.67                    3.11                      2.71
+ Meta-Llama-3.1-70B-Instruct-FP8 775          0.8170 0.0413                       84.61           4.46                    2.11                      1.65
+    Ministral-3-3B-Instruct-2512 774          1.3165 0.0424                       84.71           4.55                    2.13                      2.01
+    Ministral-3-8B-Instruct-2512 775          1.1414 0.0569                       84.61           5.76                    2.40                      1.57
+   Ministral-3-14B-Instruct-2512 775          0.8649 0.1234                       84.61          11.32                    3.36                      2.91
+             Qwen2.5-3B-Instruct 775          1.4346 0.6539                       84.61          55.67                    7.46                      7.24
+             Qwen2.5-7B-Instruct 774          1.2021 0.3797                       84.40          32.66                    5.72                      5.47
+            Qwen2.5-32B-Instruct 775          1.1589 0.2386                       84.61          20.94                    4.58                      3.44
+Qwen2.5-72B-Instruct-FP8-dynamic 775          0.9411 0.2052                       84.61          18.16                    4.26                      4.17
+
+== RAG vs no-RAG ==
+ Family  Params_B                            Model  N_conditions  Post_holm_better  Post_holm_worse  Post_CI_better  Post_CI_worse  Cluster_CI_better  Cluster_CI_worse
+  Llama       3.0            Llama-3.2-3B-Instruct            14                 0                0               3              0                  0                 0
+  Llama       8.0            Llama-3.1-8B-Instruct            14                14                0              14              0                 14                 0
+  Llama      70.0  Meta-Llama-3.1-70B-Instruct-FP8            14                 0               14               0             14                  0                14
+Mistral       3.0     Ministral-3-3B-Instruct-2512            14                 1                0               4              0                  0                 0
+Mistral       8.0     Ministral-3-8B-Instruct-2512            14                 0                5               0             11                  0                 3
+Mistral      14.0    Ministral-3-14B-Instruct-2512            14                 0                7               0              7                  0                 1
+   Qwen       3.0              Qwen2.5-3B-Instruct            14                 0               10               0             14                  0                 0
+   Qwen       7.0              Qwen2.5-7B-Instruct            14                 0                4               0              9                  0                 0
+   Qwen      32.0             Qwen2.5-32B-Instruct            14                14                0              14              0                  9                 0
+   Qwen      72.0 Qwen2.5-72B-Instruct-FP8-dynamic            13                 0                0               1              0                  0                 0
+              NaN                            TOTAL           139                29               40              36             55                 23                18
+
+Changed vs post-level Wilcoxon/Holm: 30; changed vs post-level CI: 50
+                           Model           Condition  dMAE_post  Post_lo  Post_hi Post_wilcoxon_holm Post_CI_direction  Cluster_lo  Cluster_hi Cluster_CI_direction
+           Llama-3.2-3B-Instruct            bge/hyde    -0.1658  -0.2769  -0.0525               n.s.        RAG better     -0.5974      0.2707                 n.s.
+           Llama-3.2-3B-Instruct          bge/simple    -0.1268  -0.2362  -0.0166               n.s.        RAG better     -0.5102      0.2705                 n.s.
+           Llama-3.2-3B-Instruct   bge/simple_hybrid    -0.1431  -0.2656  -0.0215               n.s.        RAG better     -0.5755      0.3027                 n.s.
+    Ministral-3-3B-Instruct-2512          bge/simple    -0.0924  -0.1838  -0.0008               n.s.        RAG better     -0.2944      0.1915                 n.s.
+    Ministral-3-3B-Instruct-2512        bge/twostage    -0.1189  -0.2073  -0.0258               n.s.        RAG better     -0.3330      0.1120                 n.s.
+    Ministral-3-3B-Instruct-2512          qwen3/hyde    -0.1466  -0.2387  -0.0541         RAG better        RAG better     -0.3669      0.1158                 n.s.
+    Ministral-3-3B-Instruct-2512      qwen3/twostage    -0.1043  -0.2023  -0.0099               n.s.        RAG better     -0.3933      0.2249                 n.s.
+    Ministral-3-8B-Instruct-2512            bge/hyde     0.1139   0.0346   0.1885               n.s.         RAG worse     -0.0068      0.1848                 n.s.
+    Ministral-3-8B-Instruct-2512          bge/simple     0.1145   0.0366   0.1884               n.s.         RAG worse      0.0003      0.2050            RAG worse
+    Ministral-3-8B-Instruct-2512   bge/simple_hybrid     0.1398   0.0611   0.2254          RAG worse         RAG worse     -0.0006      0.2318                 n.s.
+    Ministral-3-8B-Instruct-2512        bge/twostage     0.1162   0.0459   0.1943          RAG worse         RAG worse     -0.0413      0.2158                 n.s.
+    Ministral-3-8B-Instruct-2512 bge/twostage_hybrid     0.1190   0.0361   0.2023               n.s.         RAG worse     -0.0207      0.2159                 n.s.
+    Ministral-3-8B-Instruct-2512         e5/twostage     0.1364   0.0568   0.2201               n.s.         RAG worse     -0.0436      0.2599                 n.s.
+    Ministral-3-8B-Instruct-2512       jina/twostage     0.1119   0.0241   0.1944          RAG worse         RAG worse     -0.0265      0.2096                 n.s.
+    Ministral-3-8B-Instruct-2512          qwen3/hyde     0.0957   0.0139   0.1738               n.s.         RAG worse     -0.0201      0.1814                 n.s.
+    Ministral-3-8B-Instruct-2512      qwen3/twostage     0.0832   0.0064   0.1588               n.s.         RAG worse     -0.0525      0.1839                 n.s.
+   Ministral-3-14B-Instruct-2512   bge/simple_hybrid     0.0710   0.0096   0.1302          RAG worse         RAG worse     -0.0783      0.1732                 n.s.
+   Ministral-3-14B-Instruct-2512             e5/hyde     0.0875   0.0223   0.1537               n.s.         RAG worse     -0.0139      0.1850                 n.s.
+   Ministral-3-14B-Instruct-2512           e5/simple     0.0525  -0.0116   0.1132          RAG worse              n.s.     -0.1030      0.1700                 n.s.
+   Ministral-3-14B-Instruct-2512         jina/simple     0.0660   0.0044   0.1324          RAG worse         RAG worse     -0.0719      0.1683                 n.s.
+   Ministral-3-14B-Instruct-2512          qwen3/hyde     0.1193   0.0585   0.1826          RAG worse         RAG worse     -0.0290      0.2439                 n.s.
+   Ministral-3-14B-Instruct-2512        qwen3/simple     0.0699   0.0063   0.1328          RAG worse         RAG worse     -0.0694      0.1917                 n.s.
+   Ministral-3-14B-Instruct-2512      qwen3/twostage     0.0631   0.0074   0.1206          RAG worse         RAG worse     -0.0551      0.1545                 n.s.
+             Qwen2.5-3B-Instruct            bge/hyde     0.0804   0.0346   0.1268          RAG worse         RAG worse     -0.0135      0.1548                 n.s.
+             Qwen2.5-3B-Instruct          bge/simple     0.0683   0.0175   0.1164          RAG worse         RAG worse     -0.0662      0.1552                 n.s.
+             Qwen2.5-3B-Instruct   bge/simple_hybrid     0.0500   0.0024   0.0981               n.s.         RAG worse     -0.1021      0.1519                 n.s.
+             Qwen2.5-3B-Instruct        bge/twostage     0.0726   0.0211   0.1177          RAG worse         RAG worse     -0.0561      0.1616                 n.s.
+             Qwen2.5-3B-Instruct bge/twostage_hybrid     0.0846   0.0424   0.1307          RAG worse         RAG worse     -0.0450      0.1740                 n.s.
+             Qwen2.5-3B-Instruct             e5/hyde     0.0589   0.0146   0.1036               n.s.         RAG worse     -0.0374      0.1356                 n.s.
+             Qwen2.5-3B-Instruct           e5/simple     0.0698   0.0232   0.1138          RAG worse         RAG worse     -0.0637      0.1606                 n.s.
+             Qwen2.5-3B-Instruct         e5/twostage     0.0744   0.0300   0.1194          RAG worse         RAG worse     -0.0549      0.1655                 n.s.
+             Qwen2.5-3B-Instruct           jina/hyde     0.0697   0.0163   0.1227               n.s.         RAG worse     -0.0402      0.1558                 n.s.
+             Qwen2.5-3B-Instruct         jina/simple     0.0704   0.0223   0.1196          RAG worse         RAG worse     -0.0683      0.1671                 n.s.
+             Qwen2.5-3B-Instruct       jina/twostage     0.0661   0.0210   0.1113          RAG worse         RAG worse     -0.0907      0.1667                 n.s.
+             Qwen2.5-3B-Instruct          qwen3/hyde     0.0752   0.0298   0.1221          RAG worse         RAG worse     -0.0569      0.1702                 n.s.
+             Qwen2.5-3B-Instruct        qwen3/simple     0.0808   0.0346   0.1250          RAG worse         RAG worse     -0.0611      0.1753                 n.s.
+             Qwen2.5-3B-Instruct      qwen3/twostage     0.0565   0.0069   0.1028               n.s.         RAG worse     -0.0941      0.1556                 n.s.
+             Qwen2.5-7B-Instruct          bge/simple     0.0847   0.0136   0.1577               n.s.         RAG worse     -0.1865      0.2693                 n.s.
+             Qwen2.5-7B-Instruct   bge/simple_hybrid     0.1043   0.0266   0.1838          RAG worse         RAG worse     -0.2310      0.3205                 n.s.
+             Qwen2.5-7B-Instruct        bge/twostage     0.1275   0.0541   0.2022          RAG worse         RAG worse     -0.1663      0.3490                 n.s.
+             Qwen2.5-7B-Instruct bge/twostage_hybrid     0.1168   0.0382   0.1913          RAG worse         RAG worse     -0.2020      0.3344                 n.s.
+             Qwen2.5-7B-Instruct             e5/hyde     0.0897   0.0133   0.1683               n.s.         RAG worse     -0.2417      0.3012                 n.s.
+             Qwen2.5-7B-Instruct           jina/hyde     0.0878   0.0022   0.1705               n.s.         RAG worse     -0.2336      0.2854                 n.s.
+             Qwen2.5-7B-Instruct         jina/simple     0.0926   0.0167   0.1677               n.s.         RAG worse     -0.2627      0.3198                 n.s.
+             Qwen2.5-7B-Instruct       jina/twostage     0.0958   0.0173   0.1756               n.s.         RAG worse     -0.2276      0.3161                 n.s.
+             Qwen2.5-7B-Instruct      qwen3/twostage     0.1222   0.0465   0.2002          RAG worse         RAG worse     -0.2109      0.3435                 n.s.
+            Qwen2.5-32B-Instruct            bge/hyde    -0.1432  -0.1997  -0.0902         RAG better        RAG better     -0.2691      0.0171                 n.s.
+            Qwen2.5-32B-Instruct bge/twostage_hybrid    -0.1074  -0.1606  -0.0532         RAG better        RAG better     -0.1780      0.0106                 n.s.
+            Qwen2.5-32B-Instruct             e5/hyde    -0.1270  -0.1787  -0.0697         RAG better        RAG better     -0.2215      0.0240                 n.s.
+            Qwen2.5-32B-Instruct       jina/twostage    -0.1060  -0.1613  -0.0516         RAG better        RAG better     -0.2056      0.0654                 n.s.
+            Qwen2.5-32B-Instruct      qwen3/twostage    -0.1258  -0.1785  -0.0681         RAG better        RAG better     -0.2463      0.0267                 n.s.
+Qwen2.5-72B-Instruct-FP8-dynamic        qwen3/simple    -0.0468  -0.0922  -0.0026               n.s.        RAG better     -0.1423      0.0328                 n.s.
