@@ -34,7 +34,9 @@ import evaluate_metrics as em  # noqa: E402
 
 OUT_DIR = em.THESIS_ROOT / "01_baseline_no_rag"
 TARGET = "ches_lrgen"
-METRICS_CSV = OUT_DIR / f"point_metrics_no_rag_{TARGET}.csv"
+METRICS_CSV = OUT_DIR / f"point_metrics_no_rag_{TARGET}.csv"  # point estimates, slope, intercept
+CLUSTER_CSV = OUT_DIR / f"point_metrics_no_rag_{TARGET}_cluster.csv"  # account-cluster 95% CIs
+REF_CSV = OUT_DIR / f"mae_vs_reference_{TARGET}_cluster.csv"  # MAE minus constant-median reference
 
 FAMILIES = ["Llama", "Qwen", "Mistral"]  # same order as the thesis tables
 FAMILY_LABEL = {"Llama": "Llama", "Qwen": "Qwen", "Mistral": "Ministral"}  # thesis naming
@@ -45,10 +47,10 @@ SCALE = (1, 7)
 VIEW = (-0.1, 8.1)  # some predictions fall outside 1-7 (Llama 3B down to 0, Ministral 8B up to 7.9)
 SEED = 42
 # Tick-label alignment for close party positions (Grüne/SPD, FDP/Union).
-LABEL_HA = {"Greens": "right", "SPD": "left", "FDP": "right"}
+LABEL_HA = {"Die Grünen": "right", "SPD": "left", "FDP": "right"}
 
 PARTY_SHORT = {
-    "DIE LINKE": "DIE LINKE", "BÜNDNIS 90/DIE GRÜNEN": "Greens", "SPD": "SPD",
+    "DIE LINKE": "DIE LINKE", "BÜNDNIS 90/DIE GRÜNEN": "Die Grünen", "SPD": "SPD",
     "FDP": "FDP", "CDU": "CDU", "CDU/CSU": "CDU", "CSU": "CSU", "AfD": "AfD",
 }
 
@@ -77,6 +79,13 @@ def short_name(model: str) -> str:
 
 def load_data():
     metrics = pd.read_csv(METRICS_CSV)
+    # MAE intervals: account-cluster bootstrap (replaces the post-level CI of the old file).
+    cl = pd.read_csv(CLUSTER_CSV)
+    cl = cl[cl["Metric"] == "MAE"].set_index("Model")
+    metrics["MAE_lo"] = metrics["Model"].map(cl["Cluster_lo"])
+    metrics["MAE_hi"] = metrics["Model"].map(cl["Cluster_hi"])
+    ref = pd.read_csv(REF_CSV).set_index("Model")
+    metrics["beats_ref"] = metrics["Model"].map(ref["Cluster_direction"]) == "better than ref"
     df = em.load_logs_from_directory(
         em.BASE_DIR, retrieval_modes=["no_rag"], exclude_file_patterns=("k-ablation",)
     )
@@ -335,11 +344,11 @@ def plot_size(metrics, posts):
     ax.set_xticks(np.log2(ticks))
     ax.set_xticklabels([f"{t}B" for t in ticks])
     ax.set_xlim(np.log2(2.5), np.log2(110))
-    ax.set_ylim(0.6, 2.0)
+    ax.set_ylim(0.6, 2.15)
     ax.grid(axis="y", color=GRID, linewidth=0.5)
     ax.set_axisbelow(True)
     ax.set_xlabel("Parameters (log₂ scale)")
-    ax.set_ylabel("MAE (scale points, 95% CI)")
+    ax.set_ylabel("MAE (scale points, 95% cluster CI)")
     fig.tight_layout()
     _save(fig, "fig_baseline_size")
 
@@ -362,7 +371,6 @@ def constant_references(posts: pd.DataFrame):
 
 def plot_mae(metrics, posts):
     refs = constant_references(posts)
-    best_ref = min(r[2] for r in refs)
     fams = models_by_family(metrics)
 
     rows, y, ys, fam_mid = [], 0.0, [], {}
@@ -385,7 +393,7 @@ def plot_mae(metrics, posts):
 
     for yy, m in zip(ys, rows):
         col = FAMILY_COLOR[m["Family"]]
-        beats = m["MAE_hi"] < best_ref
+        beats = bool(m["beats_ref"])
         ax.plot([m["MAE_lo"], m["MAE_hi"]], [yy, yy], color=col, linewidth=1.6,
                 solid_capstyle="round", zorder=2)
         ax.scatter([m["MAE"]], [yy], marker=FAMILY_MARKER[m["Family"]], s=34, zorder=3,
@@ -399,17 +407,17 @@ def plot_mae(metrics, posts):
         ax.text(-0.13, mid, FAMILY_LABEL[fam], transform=ax.get_yaxis_transform(), ha="right",
                 va="center", fontsize=8, color=INK)
     ax.set_ylim(ys[-1] - 0.7, ys[0] + 2.5)
-    ax.set_xlim(0.6, 2.05)
+    ax.set_xlim(0.6, 2.15)
     ax.tick_params(axis="y", length=0)
     ax.spines["left"].set_visible(False)
     ax.grid(axis="x", color=GRID, linewidth=0.5)
     ax.set_axisbelow(True)
-    ax.set_xlabel("MAE (scale points, 95% CI)")
+    ax.set_xlabel("MAE (scale points, 95% cluster CI)")
     handles = [
         Line2D([], [], marker="o", linestyle="", color=INK_2, markersize=5,
-               label=f"CI below best constant reference ({best_ref:.2f})"),
+               label="clearly better than constant median reference"),
         Line2D([], [], marker="o", linestyle="", markerfacecolor="white",
-               markeredgecolor=INK_2, markersize=5, label="CI overlaps or above"),
+               markeredgecolor=INK_2, markersize=5, label="not clearly better (cluster CI of difference includes 0)"),
     ]
     for (label, _, mae), ls in zip(refs, ref_styles):
         handles.append(Line2D([], [], color=INK_3, linewidth=0.8, linestyle=ls,
