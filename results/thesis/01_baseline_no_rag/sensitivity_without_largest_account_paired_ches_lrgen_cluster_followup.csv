@@ -1,0 +1,3 @@
+Comparison,N_full,dMAE_full,lo_full,hi_full,excludes_0_full,N_sens,dMAE_sens,lo_sens,hi_sens,excludes_0_sens
+Llama-70B minus Qwen-72B,775,-0.124,-0.327,0.042,False,582,-0.209,-0.349,-0.016,True
+Mistral-14B minus Llama-70B,775,0.048,-0.099,0.285,False,582,0.154,0.016,0.318,True

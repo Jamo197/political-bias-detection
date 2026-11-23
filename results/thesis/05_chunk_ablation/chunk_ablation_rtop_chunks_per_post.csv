@@ -1,0 +1,3 @@
+model,condition,count,mean,min,max
+Llama-3.1-8B-Instruct,e5/rtop4plus,65,3.246153846153846,1,5
+Ministral-3-8B-Instruct-2512,e5/rtop4plus,67,2.970149253731343,1,5

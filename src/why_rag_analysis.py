@@ -11,13 +11,13 @@ text_index).
 
 Positions: CHES 2024 lrgen of the author's party on the 1-7 scale
 (1 + lrgen / 10 * 6), rounded half-up to two decimals (DIE LINKE 1.85,
-Grüne 2.83, SPD 3.08, BSW 3.18, FDP 4.63, CDU 4.95, CSU 5.54, AfD 6.56). The
+Die Grünen 2.83, SPD 3.08, BSW 3.18, FDP 4.63, CDU 4.95, CSU 5.54, AfD 6.56). The
 same values are used for the target and for the retrieved chunks; the
 Bundestag faction CDU/CSU gets the CDU value. Chunks of non-attached speakers
 ('Fraktionslos') or of unknown party get no position and are counted.
 Blocs (em.BLOC_THRESHOLDS, five blocs after Jakob et al.): far-left < 2.2 <=
 centre-left < 3.4 <= centre < 4.6 <= centre-right < 5.8 <= far-right. DIE LINKE
-far-left; Grüne, SPD, BSW centre-left; FDP, CDU, CSU centre-right; AfD
+far-left; Die Grünen, SPD, BSW centre-left; FDP, CDU, CSU centre-right; AfD
 far-right; no party in the centre. Sides: left side = far-left + centre-left
 (< 3.4), right side = centre-right + far-right (>= 4.6). "Opposite side" = the
 other side of the centre; score-based checks use the side bands 3.4 / 4.6.
@@ -1779,7 +1779,7 @@ def cmd_judge(args):
 GROUP_OF = {"CDU": "CDU/CSU", "CSU": "CDU/CSU"}  # canonical CHES party -> display group
 GROUP_DISPLAY = {
     "DIE LINKE": "DIE LINKE",
-    "BÜNDNIS 90/DIE GRÜNEN": "Grüne",
+    "BÜNDNIS 90/DIE GRÜNEN": "Die Grünen",
     "SPD": "SPD",
     "BSW": "BSW",
     "FDP": "FDP",
@@ -2489,7 +2489,7 @@ def write_composition_report(
         f"({', '.join(f'{k} {v}' for k, v in raw_np.items())}); they count in the composition matrix as "
         f"'no position' and are left out of all shares, positions and distances. Knowledge base: `{kb_path}` "
         f"({int(kb['Count'].sum())} {kb.attrs['unit']}). {KB_NOTE[kb.attrs['unit']]} Positions: CHES 2024 lrgen, two decimals; five blocs far-left < 2.2 ≤ "
-        f"centre-left < 3.4 ≤ centre < 4.6 ≤ centre-right < 5.8 ≤ far-right (DIE LINKE far-left; Grüne, SPD, BSW "
+        f"centre-left < 3.4 ≤ centre < 4.6 ≤ centre-right < 5.8 ≤ far-right (DIE LINKE far-left; Die Grünen, SPD, BSW "
         f"centre-left; FDP, CDU, CSU centre-right; AfD far-right; no party in the centre). 'Opposite side' = chunks "
         f"from the other side of the centre (left side = far-left + centre-left, right side = centre-right + "
         f"far-right). Bootstrap {n_boot} resamples of texts, seed {seed}; permutation null {N_PERM} shuffles of "
@@ -2654,7 +2654,7 @@ def composition_readings(
         f"{pct(ob['Knowledge-base expectation'])} / {pct(ob['Permutation null mean'])}) point the same way: retrieval "
         f"is clearly party- and bloc-sensitive, but most chunks still come from other parties (and other blocs). "
         f"With five blocs the same-bloc share is the own-party share plus chunks of bloc partners (centre-left: "
-        f"Grüne, SPD, BSW; centre-right: FDP, CDU/CSU; DIE LINKE and AfD are alone in their bloc). The retrieved parties "
+        f"Die Grünen, SPD, BSW; centre-right: FDP, CDU/CSU; DIE LINKE and AfD are alone in their bloc). The retrieved parties "
         f"sit at {mp['Observed']:.2f} on average, left of the pool ({mp['Knowledge-base expectation']:.2f}) and right "
         f"of the posts' authors ({author_mean:.2f})."
     )
@@ -2681,12 +2681,12 @@ def composition_readings(
     r["by_author"] = (
         f"Reading: the same-party share is highest for AfD ({pct(c('AfD', 'same_party')['Observed'])}) and DIE LINKE "
         f"({pct(c('DIE LINKE', 'same_party')['Observed'])}) posts, the two parties at the ends of the scale, and "
-        f"lowest for FDP ({pct(c('FDP', 'same_party')['Observed'])}) and Grüne "
-        f"({pct(c('Grüne', 'same_party')['Observed'])}). The retrieved parties are far from the author for the "
+        f"lowest for FDP ({pct(c('FDP', 'same_party')['Observed'])}) and Die Grünen "
+        f"({pct(c('Die Grünen', 'same_party')['Observed'])}). The retrieved parties are far from the author for the "
         f"parties at the ends of the scale (mean distance AfD "
         f"{c('AfD', 'distance')['Observed']:.2f}, DIE LINKE {c('DIE LINKE', 'distance')['Observed']:.2f}) and close "
         f"for SPD ({c('SPD', 'distance')['Observed']:.2f}). For AfD posts {pct(c('AfD', 'opposite_bloc')['Observed'])} "
-        f"of the chunks come from the left side (DIE LINKE, Grüne, SPD, BSW), for DIE LINKE posts "
+        f"of the chunks come from the left side (DIE LINKE, Die Grünen, SPD, BSW), for DIE LINKE posts "
         f"{pct(c('DIE LINKE', 'opposite_bloc')['Observed'])} from the right side (FDP, CDU/CSU, AfD). Both extreme "
         f"parties are alone in their bloc, so their same-bloc share equals their same-party share. Tests "
         f"against chance are in `retrieval_chance_level.csv`; "
@@ -3298,7 +3298,7 @@ def write_direction_report(
         f"Paired posts of e5/simple (k = 5) and the no-RAG baseline per model (inner join on text_index, both scores "
         f"parseable): {', '.join(f'{DISPLAY[m]} {n[m]}' for m, *_ in MODELS)}. Llama 3B is reported on all paired "
         f"posts and on the {int(((d['model'] == LLAMA_3B) & (d['B'] >= 1)).sum())} posts with a baseline score ≥ 1. "
-        f"Target: CHES 2024 lrgen of the author's party, two decimals (DIE LINKE 1.85, Grüne 2.83, SPD 3.08, FDP "
+        f"Target: CHES 2024 lrgen of the author's party, two decimals (DIE LINKE 1.85, Die Grünen 2.83, SPD 3.08, FDP "
         f"4.63, CDU 4.95, CSU 5.54, AfD 6.56); target spread AfD − DIE LINKE = "
         f"{POSITIONS['AfD'] - POSITIONS['DIE LINKE']:.2f}. CSU posts (about 7 per model) are merged into CDU/CSU, as "
         f"in the party labels of the logs, and are not tested on their own; each post keeps its own target "
@@ -3539,7 +3539,7 @@ def direction_readings(overall, movement, bp, comp, lmm) -> Dict[str, str]:
         f"posts it lowers the error in {lst(a_better)} and raises it in {lst(a_worse)} (95 % CIs of ΔMAE). The extremes "
         f"therefore do not move together: a model can improve one end and worsen the other. The largest single "
         f"deterioration is {worst['Model']} for {worst['Author party']} posts (MAE {worst['MAE baseline']:.2f} → "
-        f"{worst['MAE RAG']:.2f}). CIs and Holm-corrected p values are computed per model; all parties incl. Grüne, "
+        f"{worst['MAE RAG']:.2f}). CIs and Holm-corrected p values are computed per model; all parties incl. Die Grünen, "
         f"SPD, FDP and CDU/CSU are in `direction_by_party.csv` "
         + (
             "(no cell has fewer than 30 posts after merging CSU into CDU/CSU)."
@@ -4406,7 +4406,7 @@ def write_extremes_report(
         f"E = mean position of the retrieved chunks' parties (CHES 2024 lrgen, two decimals; CDU/CSU faction = CDU "
         f"value; chunks without a position left out; {int(d.drop_duplicates('text_index')['E'].isna().sum())} texts "
         f"without any positioned chunk). Subsets: DIE LINKE posts, AfD posts and the posts of all other parties "
-        f"(Grüne, SPD, FDP, CDU, CSU). Regressions: OLS, standard errors clustered by text (as in "
+        f"(Die Grünen, SPD, FDP, CDU, CSU). Regressions: OLS, standard errors clustered by text (as in "
         f"`analyze_chunk_influence.py`); pooled fits add model fixed effects. Judge labels: `final_annotations.jsonl`, "
         f"weighted by the quadrant base rates of each model, CIs from {n_boot} bootstrap resamples of texts within "
         f"quadrants (seed {seed}). Llama 3B: all paired posts and posts with a baseline score ≥ 1. Cited chunks in "
@@ -4684,7 +4684,7 @@ def extremes_readings(
         f"{pj.loc['other parties', 'Share cited (A_caus = 1)']:.2f}). Per text, the models cite "
         f"{pj.loc['AfD', OWN_KEY]:.2f} AfD chunks for AfD posts and "
         f"{pj.loc['DIE LINKE', OWN_KEY]:.2f} DIE LINKE chunks for DIE LINKE "
-        f"posts, but also {pj.loc['AfD', 'Cited chunks from the opposite side per text']:.2f} left-side chunks (DIE LINKE, Grüne, SPD, BSW) for AfD "
+        f"posts, but also {pj.loc['AfD', 'Cited chunks from the opposite side per text']:.2f} left-side chunks (DIE LINKE, Die Grünen, SPD, BSW) for AfD "
         f"posts. The per-model cells are small: {len(small)} cells have fewer than {SMALL_TEXTS} sampled texts (e.g. "
         f"{', '.join(f'{m} {s} ({n})' for m, s, n in zip(small['Model'][:4], small['Subset'][:4], small['Sampled texts'][:4]))}), "
         f"so per-model differences are not interpreted."
@@ -5549,7 +5549,7 @@ def term_label(t: str) -> str:
         lvl = t.split("[T.")[1].rstrip("]")
         lvl = {
             "Mistral": "Ministral",
-            "BÜNDNIS 90/DIE GRÜNEN": "Grüne",
+            "BÜNDNIS 90/DIE GRÜNEN": "Die Grünen",
             "hyde": "HyDE",
             "twostage": "two-stage",
         }.get(lvl, lvl)

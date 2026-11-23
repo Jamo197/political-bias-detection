@@ -4,8 +4,9 @@ Figure for the thesis section 'RAG vs. no-RAG' (RQ1b). Reads the paired results
 written by ``evaluate_metrics.py --rag-vs-norag`` and writes PDF + PNG to
 results/thesis/02_rag_vs_no_rag/:
 
-  fig_rag_dmae   paired ΔMAE (RAG − no-RAG, 95% CI) per model; one sub-row per
-                 RAG condition, filled marker = Holm-significant (Wilcoxon).
+  fig_rag_dmae   paired ΔMAE (RAG − no-RAG, 95% account-cluster bootstrap CI)
+                 per model; one sub-row per RAG condition, filled marker = CI
+                 excludes zero.
                  Right margin: count of significantly better / worse conditions.
 
 Usage:  python src/plot_rag_figures.py
@@ -26,7 +27,7 @@ from plot_baseline_figures import (  # noqa: E402  (shared style + rcParams)
 
 OUT_DIR = em.THESIS_ROOT / "02_rag_vs_no_rag"
 TARGET = "ches_lrgen"
-DELTA_CSV = OUT_DIR / f"rag_vs_no_rag_{TARGET}.csv"
+DELTA_CSV = OUT_DIR / f"rag_vs_no_rag_{TARGET}_cluster.csv"
 
 # Cells excluded from the figure (failed retrieval). Empty since the re-run of
 # Ministral-3-8B bge/twostage and bge/twostage_hybrid on 10 November 2026.
@@ -90,12 +91,12 @@ def plot_dmae(delta: pd.DataFrame):
     ax.spines["left"].set_visible(False)
     ax.grid(axis="x", color=GRID, linewidth=0.5)
     ax.set_axisbelow(True)
-    ax.set_xlabel("ΔMAE = MAE(RAG) − MAE(no-RAG), 95% CI   (negative = RAG better)")
+    ax.set_xlabel("ΔMAE = MAE(RAG) − MAE(no-RAG), 95% cluster CI   (negative = RAG better)")
     ax.text(0.0, ys[0] + 0.62, "← RAG better   RAG worse →", ha="center", va="bottom",
             fontsize=6.8, color=INK_2)
     handles = [
         Line2D([], [], marker="o", linestyle="", color=INK_2, markersize=4,
-               label="Holm-significant (Wilcoxon, p < 0.05)"),
+               label="95% cluster CI excludes 0"),
         Line2D([], [], marker="o", linestyle="", markerfacecolor="white",
                markeredgecolor=INK_2, markersize=4, label="not significant"),
     ]
@@ -106,7 +107,10 @@ def plot_dmae(delta: pd.DataFrame):
 
 
 def main():
-    delta = pd.read_csv(DELTA_CSV)
+    delta = pd.read_csv(DELTA_CSV).rename(columns={
+        "dMAE_cluster": "dMAE", "Cluster_lo": "dMAE_lo", "Cluster_hi": "dMAE_hi",
+        "Cluster_CI_direction": "direction"})
+    delta["significant"] = delta["direction"] != "n.s."
     bad = delta.apply(lambda r: (r["Model"], r["Condition"]) in INVALID_CELLS, axis=1)
     delta = delta[~bad]
     print(f"Excluded {int(bad.sum())} invalid cells (failed retrieval).")

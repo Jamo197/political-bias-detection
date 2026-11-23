@@ -1,0 +1,11 @@
+,better_full,worse_full,better_sens,worse_sens
+Llama-8B,14,0,14,0
+Llama-3B,0,0,0,0
+Llama-70B,0,14,0,14
+Mistral-14B,0,1,0,1
+Mistral-3B,0,0,0,0
+Mistral-8B,0,2,0,2
+Qwen-32B,9,0,1,0
+Qwen-3B,0,0,0,0
+Qwen-72B,0,0,8,0
+Qwen-7B,0,0,0,0

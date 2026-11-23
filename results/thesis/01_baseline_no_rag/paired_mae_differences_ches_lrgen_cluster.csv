@@ -1,0 +1,3 @@
+Comparison,N_paired,dMAE,Post_lo,Post_hi,Post_excludes_0,Cluster_lo,Cluster_hi,Cluster_excludes_0
+Llama 70B minus Qwen 72B,775,-0.1241,-0.1777,-0.0719,True,-0.3273,0.042,False
+Mistral 14B minus Llama 70B,775,0.0479,-0.016,0.1117,False,-0.0988,0.2849,False
